@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: ae9fffb4b99771048834f79d52cb4704
+guid: 5820f8a10297fbc4397bfa4a9b140b4e
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -141,13 +141,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: DarkSoulMainPlayerVer2_0
+      name: PlayerAnim_LightSwing_0
       rect:
         serializedVersion: 2
-        x: 0
+        x: 151
         y: 0
-        width: 128
-        height: 128
+        width: 92
+        height: 113
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -155,20 +155,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 96af24a8fa4dff3408a7bd01d3f438ba
-      internalID: -506372041
+      spriteID: 4764c8c2eb22a9a4a8e17e516484cfe6
+      internalID: -9664130
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: DarkSoulMainPlayerVer2_1
+      name: PlayerAnim_LightSwing_1
       rect:
         serializedVersion: 2
-        x: 128
+        x: 414
         y: 0
-        width: 128
-        height: 128
+        width: 86
+        height: 113
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -176,20 +176,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f6d5e19e64e5484489a7b8c96d697753
-      internalID: -1974479949
+      spriteID: ed63fb76f4582144abc18b8d8c7558ea
+      internalID: 828302667
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: DarkSoulMainPlayerVer2_2
+      name: PlayerAnim_LightSwing_2
       rect:
         serializedVersion: 2
-        x: 256
+        x: 654
         y: 0
-        width: 128
-        height: 128
+        width: 95
+        height: 113
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -197,20 +197,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5abe5d1e45b4e4142a6d84714548a5a2
-      internalID: -1047329757
+      spriteID: 90dc2351ced550144805602b3d169593
+      internalID: 1232094238
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: DarkSoulMainPlayerVer2_3
+      name: PlayerAnim_LightSwing_3
       rect:
         serializedVersion: 2
-        x: 384
+        x: 881
         y: 0
-        width: 128
-        height: 128
+        width: 119
+        height: 110
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -218,20 +218,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c3854efa25b34c94b917ef959a84b6e8
-      internalID: -1843648880
+      spriteID: 5410635cf6ed6584c80ff069d3519b10
+      internalID: 1603102063
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: DarkSoulMainPlayerVer2_4
+      name: PlayerAnim_LightSwing_4
       rect:
         serializedVersion: 2
-        x: 512
+        x: 1122
         y: 0
-        width: 128
-        height: 128
+        width: 140
+        height: 124
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -239,8 +239,134 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 888aa053d6bf91f4d9649aeab576313e
-      internalID: -1016624777
+      spriteID: d7d1ee029f71906488d62dd6fd7dcc8b
+      internalID: -96256297
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayerAnim_LightSwing_5
+      rect:
+        serializedVersion: 2
+        x: 1284
+        y: 0
+        width: 237
+        height: 118
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3949d97093152d24ea7cc559c190a98c
+      internalID: -795719196
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayerAnim_LightSwing_6
+      rect:
+        serializedVersion: 2
+        x: 1540
+        y: 0
+        width: 229
+        height: 109
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4ec898c422920b54698a5913abb7a3c6
+      internalID: -1925187278
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayerAnim_LightSwing_9
+      rect:
+        serializedVersion: 2
+        x: 1796
+        y: 0
+        width: 161
+        height: 109
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3051735209ebae14ea6df5ea3c44cb19
+      internalID: 1614170594
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayerAnim_LightSwing_10
+      rect:
+        serializedVersion: 2
+        x: 2051
+        y: 0
+        width: 161
+        height: 109
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e6c0171c10ce4bc478873d5b1627cfc6
+      internalID: -637395747
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayerAnim_LightSwing_11
+      rect:
+        serializedVersion: 2
+        x: 2309
+        y: 0
+        width: 159
+        height: 109
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 99c197740ea088146a7f2100493e1ce9
+      internalID: 136894607
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayerAnim_LightSwing_12
+      rect:
+        serializedVersion: 2
+        x: 2564
+        y: 0
+        width: 160
+        height: 109
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 16adda59b0988854b9af8ade8df02282
+      internalID: 138746473
       vertices: []
       indices: 
       edges: []
@@ -256,11 +382,22 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      DarkSoulMainPlayerVer2_0: -506372041
-      DarkSoulMainPlayerVer2_1: -1974479949
-      DarkSoulMainPlayerVer2_2: -1047329757
-      DarkSoulMainPlayerVer2_3: -1843648880
-      DarkSoulMainPlayerVer2_4: -1016624777
+      PlayerAnim_LightSwing_0: -9664130
+      PlayerAnim_LightSwing_1: 828302667
+      PlayerAnim_LightSwing_10: -637395747
+      PlayerAnim_LightSwing_11: 136894607
+      PlayerAnim_LightSwing_12: 138746473
+      PlayerAnim_LightSwing_13: 1568898668
+      PlayerAnim_LightSwing_14: -1789646718
+      PlayerAnim_LightSwing_15: -1875799954
+      PlayerAnim_LightSwing_2: 1232094238
+      PlayerAnim_LightSwing_3: 1603102063
+      PlayerAnim_LightSwing_4: -96256297
+      PlayerAnim_LightSwing_5: -795719196
+      PlayerAnim_LightSwing_6: -1925187278
+      PlayerAnim_LightSwing_7: -1278697047
+      PlayerAnim_LightSwing_8: -1599302729
+      PlayerAnim_LightSwing_9: 1614170594
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
