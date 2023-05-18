@@ -10,9 +10,16 @@ public class LayerManager : MonoBehaviour
     [Tooltip("Set this to the initial starting layer or perish")]
     [SerializeField] private int activeLayer = -1;
     public UnityEvent OnLayerSwitch;
+
+    //These are set in inspector
     [Tooltip("Size the layer shrinks to when moved back")]
-    [SerializeField] public float relativeLayerScale { get; private set; } = 0.5f;
-    [SerializeField] public float transitionLength { get; private set; } = 0.5f;
+    [SerializeField] private float backgroundScale = 0.5f;
+    [Tooltip("Time taken to move layers when switched")]
+    [SerializeField] private float transitionTime = 0.5f;
+
+    //These are unchangable except via this script or the editor
+    public float relativeLayerScale { get { return backgroundScale; } private set { backgroundScale = value;  } }
+    public float transitionLength { get { return transitionTime; } private set { transitionTime = value; } }
 
     //Awake is called before start
     private void Awake()
@@ -20,7 +27,7 @@ public class LayerManager : MonoBehaviour
         //Start Section "Replace when load save" (move this idea to the start of start so load can be in awake)
         if (activeLayer < 0 || activeLayer >= layers.Count)
         {
-            Debug.LogWarning("Warning: LayerManager appears to be set up incorrectly, layer set to frontmost as a default");
+            Debug.LogWarning("Warning: LayerManager appears to be set up incorrectly, layer set to backmost as a default");
             activeLayer = 0;
             if (layers.Count == 0)
             {
@@ -62,11 +69,12 @@ public class LayerManager : MonoBehaviour
     }
 
     [Tooltip("Change the 'active' group of objects")]
-    public void ChangeLayer([Tooltip("negative is to the cam")] int target)
+    public void ChangeLayer([Tooltip("layer index of the new active layer")] int target)
     {
         int direction = activeLayer - target;
         if (target < 0 || target >= layers.Count)
         {
+            Debug.LogWarning("Attempted to move to out of bounds layer");
             return;
         }
         for (int i = 0; i < layers.Count; i++)
