@@ -29,6 +29,16 @@ public class MainMenuManager : MonoBehaviour
     public GameObject LoadGameTextGrey;
     public bool HasGameSave;
 
+    [Header("Settings")]
+    public GameObject Settings;
+    public Animator SettingsExitAnim;
+    public bool SettingsOpen = false;
+
+    [Header("Achievements")]
+    public GameObject Achievements;
+    public Animator AchievementsExitAnim;
+    public bool AchievementsOpen=false;
+
     private void Start()
     {
         ActiveMenu = "Main";
@@ -41,6 +51,9 @@ public class MainMenuManager : MonoBehaviour
 
         LoadGameText.SetActive(HasGameSave);
         LoadGameTextGrey.SetActive(!HasGameSave);
+
+        AchievementsOpen = false;
+        Achievements.SetActive(false);
     }
     public void Up(InputAction.CallbackContext context)
     {
@@ -143,6 +156,14 @@ public class MainMenuManager : MonoBehaviour
                     NGOrder = false;
                     CanInput = true;
                     break;
+                case "Achievements":
+                    AchievementsExitAnim.SetTrigger("Active");
+                    StartCoroutine(LoadAchievements());
+                    break;
+                case "Settings":
+                    SettingsExitAnim.SetTrigger("Active");
+                    StartCoroutine(LoadSettings());
+                    break;
             }
         }
     }
@@ -172,14 +193,18 @@ public class MainMenuManager : MonoBehaviour
                 break;
 
             case 3:
-                CanInput = true;
+                StartCoroutine(LoadSettings());
                 break;
 
             case 4:
-                StartCoroutine(LoadCredits());
+                StartCoroutine(LoadAchievements());
                 break;
 
             case 5:
+               StartCoroutine(LoadCredits());
+                break;
+
+            case 6:
                 StartCoroutine(QuitGame());
                 break;
         }
@@ -205,30 +230,34 @@ public class MainMenuManager : MonoBehaviour
         switch (MainOrder)
         {
             case 0:
-                MainOrder = 5; MoveMainHighlight();
+                MainOrder = 6; MoveMainHighlight();
                 break;
 
             case 1: 
-                MainHightlightPos.anchoredPosition = new Vector2(0, -50);
+                MainHightlightPos.anchoredPosition = new Vector2(0, -20);
                 break;
 
             case 2:
-                MainHightlightPos.anchoredPosition = new Vector2(0, -80);
+                MainHightlightPos.anchoredPosition = new Vector2(0, -50);
                 break;
 
             case 3:
-                MainHightlightPos.anchoredPosition = new Vector2(0, -110);
+                MainHightlightPos.anchoredPosition = new Vector2(0, -80);
                 break;
 
             case 4:
-                MainHightlightPos.anchoredPosition = new Vector2(0, -140);
+                MainHightlightPos.anchoredPosition = new Vector2(0, -110);
                 break;
 
             case 5:
-                MainHightlightPos.anchoredPosition = new Vector2(0, -170);
+                MainHightlightPos.anchoredPosition = new Vector2(0, -140);
                 break;
 
             case 6:
+                MainHightlightPos.anchoredPosition = new Vector2(0, -170);
+                break;
+
+            case 7:
                 MainOrder = 1; MoveMainHighlight();
                 break;
         }
@@ -254,7 +283,7 @@ public class MainMenuManager : MonoBehaviour
     {
         Debug.Log("Loading New Game");
         SceneTransitionAnim.SetTrigger("Active");
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(1.2f);
         //SceneManager.LoadScene("End Credits", LoadSceneMode.Single); Load new game scene
         SceneManager.LoadScene("Main Menu", LoadSceneMode.Single);
     }
@@ -270,14 +299,34 @@ public class MainMenuManager : MonoBehaviour
     {
         Debug.Log("Loading End Credits");
         SceneTransitionAnim.SetTrigger("Active");
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(1.2f);
         SceneManager.LoadScene("End Credits", LoadSceneMode.Single);
+    }
+    IEnumerator LoadAchievements()
+    {
+        if (!AchievementsOpen) { ActiveMenu = "Achievements"; } else { ActiveMenu = "Main"; }
+        Debug.Log("Loading Achievements");
+        SceneTransitionAnim.SetTrigger("Active");
+        yield return new WaitForSeconds(1.2f);
+        if (!AchievementsOpen) { Achievements.SetActive(true); } else { Achievements.SetActive(false); }
+        CanInput = true;
+        AchievementsOpen = !AchievementsOpen;
+    }
+    IEnumerator LoadSettings()
+    {
+        if (!SettingsOpen) { ActiveMenu = "Settings"; } else { ActiveMenu = "Main"; }
+        Debug.Log("Loading Settings");
+        SceneTransitionAnim.SetTrigger("Active");
+        yield return new WaitForSeconds(1.2f);
+        if (!SettingsOpen) { Settings.SetActive(true); } else { Settings.SetActive(false); }
+        CanInput = true;
+        SettingsOpen = !SettingsOpen;
     }
     IEnumerator QuitGame()
     {
         Debug.Log("Quiting Game");
         SceneTransitionAnim.SetTrigger("Active");
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(1.2f);
         Application.Quit();
     }
 }
