@@ -30,9 +30,25 @@ public class MainMenuManager : MonoBehaviour
     public bool HasGameSave;
 
     [Header("Settings")]
-    public GameObject Settings;
+    public GameObject Settings; 
+    public RectTransform SettingsHightlightPos;
     public Animator SettingsExitAnim;
     public bool SettingsOpen = false;
+    public int SettingsOrder;
+    private bool HUDActive;
+    private bool SubtitlesActive;
+    private int AudioMasterNum;
+    private int AudioEffectsNum;
+    private int AudioAmbienceNum;
+    private int AudioMusicNum;
+    private int AudioDialogNum;
+    public TextMeshProUGUI HUDText;
+    public TextMeshProUGUI SubtitlesText;
+    public TextMeshProUGUI AudioMasterText;
+    public TextMeshProUGUI AudioEffectsText;
+    public TextMeshProUGUI AudioAmbienceText;
+    public TextMeshProUGUI udioMusicText;
+    public TextMeshProUGUI AudioDialogText;
 
     [Header("Achievements")]
     public GameObject Achievements;
@@ -67,7 +83,13 @@ public class MainMenuManager : MonoBehaviour
                     MainOrder--;
                     MoveMainHighlight();
                     break;
-           
+                case "Settings":
+                    SettingsOrder--;
+                    MoveSettingsHighlight();
+                    break;
+                default:
+                    CanInput = true;
+                    break;
             }
         }
     }
@@ -82,6 +104,10 @@ public class MainMenuManager : MonoBehaviour
                 case "Main":
                     MainOrder++;
                     MoveMainHighlight();
+                    break;
+                case "Settings":
+                    SettingsOrder++;
+                    MoveSettingsHighlight();
                     break;
                 default:
                     CanInput = true;
@@ -101,6 +127,9 @@ public class MainMenuManager : MonoBehaviour
                     NGOrder = true;
                     MoveNGHighlight();                  
                     break;
+                default:
+                    CanInput = true;
+                    break;
             }
         }
     }
@@ -115,6 +144,9 @@ public class MainMenuManager : MonoBehaviour
                 case "New Game Message":
                     NGOrder = false;
                     MoveNGHighlight();
+                    CanInput = true;
+                    break;
+                default:
                     CanInput = true;
                     break;
             }
@@ -277,7 +309,48 @@ public class MainMenuManager : MonoBehaviour
 
         CanInput = true;
     }
+    public void MoveSettingsHighlight()
+    {
+        switch (SettingsOrder)
+        {
+            case 0:
+                MainOrder = 7; MoveSettingsHighlight();
+                break;
 
+            case 1:
+                SettingsHightlightPos.anchoredPosition = new Vector2(-50, 80);
+                break;
+
+            case 2:
+                SettingsHightlightPos.anchoredPosition = new Vector2(-50, 55);
+                break;
+
+            case 3:
+                SettingsHightlightPos.anchoredPosition = new Vector2(-50, -20);
+                break;
+
+            case 4:
+                SettingsHightlightPos.anchoredPosition = new Vector2(-50, -50);
+                break;
+
+            case 5:
+                SettingsHightlightPos.anchoredPosition = new Vector2(-50, -80);
+                break;
+
+            case 6:
+                SettingsHightlightPos.anchoredPosition = new Vector2(-50, -110);
+                break;
+
+            case 7:
+                SettingsHightlightPos.anchoredPosition = new Vector2(-50, -140);
+                break;
+
+            case 8:
+                MainOrder = 1; MoveSettingsHighlight();
+                break;
+        }
+        CanInput = true;
+    }
 
     IEnumerator LoadNewGame()
     {
@@ -329,4 +402,5 @@ public class MainMenuManager : MonoBehaviour
         yield return new WaitForSeconds(1.2f);
         Application.Quit();
     }
+
 }
