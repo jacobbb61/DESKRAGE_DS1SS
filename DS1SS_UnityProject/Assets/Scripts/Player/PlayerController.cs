@@ -6,11 +6,13 @@ using static PlayerControls;
 
 public class PlayerController : MonoBehaviour, IAvatarActions
 {
-    private PlayerControls inputs;
+    public PlayerControls inputs;
     private Vector2 movement;
     public Interactable targetInteractable;
     private float dodgeTime;
-
+    private bool uiOpen = false;
+    private EnemyLock lockOn;
+    private LayerManager layerManager;
 
     //turn around if lock on target is behind player
 
@@ -42,7 +44,9 @@ public class PlayerController : MonoBehaviour, IAvatarActions
     // Start is called before the first frame update
     void Start()
     {
-
+        layerManager = FindObjectOfType<LayerManager>();
+        lockOn = GetComponent<EnemyLock>();
+        gameObject.layer = layerManager.GetLayer(layerManager.activeLayer).gameObject.layer;
     }
 
     // Update is called once per frame
@@ -125,7 +129,14 @@ public class PlayerController : MonoBehaviour, IAvatarActions
 
     void IAvatarActions.OnRollSprint(InputAction.CallbackContext context)
     {
-        if(context.performed)
+        if(uiOpen)
+        {
+            if(context.started)
+            {
+                //UIBack
+            }
+        }
+        else if(context.performed)
         {
             if(context.duration > dodgeTime)
             {
@@ -150,7 +161,7 @@ public class PlayerController : MonoBehaviour, IAvatarActions
     {
         if(context.started)
         {
-            //toggle lock on
+            lockOn.running = !lockOn.running;
         }
     }
 }
