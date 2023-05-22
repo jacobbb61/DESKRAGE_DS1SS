@@ -161,7 +161,7 @@ public class PlayerController : MonoBehaviour, IAvatarActions
     {
         if(context.started)
         {
-            lockOn.running = !lockOn.running;
+           // lockOn.running = !lockOn.running;
         }
     }
 }
