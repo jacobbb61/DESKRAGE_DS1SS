@@ -15,14 +15,14 @@ public class MainMenuManager : MonoBehaviour
 
     [Header("Main")]
     public RectTransform MainHightlightPos;
-    public Animator MainHightlightAnim; 
-    public int MainOrder = 1;
+    public Animator MainHightlightAnim;
+    private int MainOrder = 1;
 
     [Header("New Game Message")]
     public GameObject NewGameMessage;
     public RectTransform NGHightlightPos;
     public Animator NGHightlightAnim;
-    public bool NGOrder;
+    private bool NGOrder;
 
     [Header("Load Game")]
     public GameObject LoadGameText;
@@ -33,27 +33,27 @@ public class MainMenuManager : MonoBehaviour
     public GameObject Settings; 
     public RectTransform SettingsHightlightPos;
     public Animator SettingsExitAnim;
-    public bool SettingsOpen = false;
-    public int SettingsOrder;
-    private bool HUDActive;
-    private bool SubtitlesActive;
-    private int AudioMasterNum;
-    private int AudioEffectsNum;
-    private int AudioAmbienceNum;
-    private int AudioMusicNum;
-    private int AudioDialogNum;
+    private bool SettingsOpen = false;
+    private int SettingsOrder;
+    public bool HUDActive;
+    public bool SubtitlesActive;
+    public int AudioMasterNum;
+    public int AudioEffectsNum;
+    public int AudioAmbienceNum;
+    public int AudioMusicNum;
+    public int AudioDialogNum;
     public TextMeshProUGUI HUDText;
     public TextMeshProUGUI SubtitlesText;
     public TextMeshProUGUI AudioMasterText;
     public TextMeshProUGUI AudioEffectsText;
     public TextMeshProUGUI AudioAmbienceText;
-    public TextMeshProUGUI udioMusicText;
+    public TextMeshProUGUI AudioMusicText;
     public TextMeshProUGUI AudioDialogText;
 
     [Header("Achievements")]
     public GameObject Achievements;
     public Animator AchievementsExitAnim;
-    public bool AchievementsOpen=false;
+    private bool AchievementsOpen=false;
 
     private void Start()
     {
@@ -67,6 +67,9 @@ public class MainMenuManager : MonoBehaviour
 
         LoadGameText.SetActive(HasGameSave);
         LoadGameTextGrey.SetActive(!HasGameSave);
+
+        SettingsOpen = false;
+        Settings.SetActive(false);
 
         AchievementsOpen = false;
         Achievements.SetActive(false);
@@ -127,6 +130,9 @@ public class MainMenuManager : MonoBehaviour
                     NGOrder = true;
                     MoveNGHighlight();                  
                     break;
+                case "Settings":
+                    UpdateSettings(true);
+                    break;
                 default:
                     CanInput = true;
                     break;
@@ -145,6 +151,9 @@ public class MainMenuManager : MonoBehaviour
                     NGOrder = false;
                     MoveNGHighlight();
                     CanInput = true;
+                    break;
+                case "Settings":
+                    UpdateSettings(false);
                     break;
                 default:
                     CanInput = true;
@@ -314,7 +323,7 @@ public class MainMenuManager : MonoBehaviour
         switch (SettingsOrder)
         {
             case 0:
-                MainOrder = 7; MoveSettingsHighlight();
+                SettingsOrder = 7; MoveSettingsHighlight();
                 break;
 
             case 1:
@@ -346,10 +355,61 @@ public class MainMenuManager : MonoBehaviour
                 break;
 
             case 8:
-                MainOrder = 1; MoveSettingsHighlight();
+                SettingsOrder = 1; MoveSettingsHighlight();
                 break;
         }
         CanInput = true;
+    }
+
+
+    public void UpdateSettings(bool Left)
+    {
+        switch (SettingsOrder)
+        {
+            case 1:
+                HUDActive = !HUDActive;
+                break;
+            case 2:
+                SubtitlesActive = !SubtitlesActive;
+                break;
+            case 3:
+                if (Left) { AudioMasterNum--; } else { AudioMasterNum++; } ;
+                break;
+            case 4:
+                if (Left) { AudioEffectsNum--; } else { AudioEffectsNum++; };
+                break;
+            case 5:
+                if (Left) { AudioAmbienceNum--; } else { AudioAmbienceNum++; };
+                break;
+            case 6:
+                if (Left) { AudioMusicNum--; } else { AudioMusicNum++; };
+                break;
+            case 7:
+                if (Left) { AudioDialogNum--; } else { AudioDialogNum++; };
+                break;
+            default:
+                CanInput = true;
+                break;
+        }
+        AudioMasterNum = Mathf.Clamp(AudioMasterNum, 0, 10);
+        AudioEffectsNum = Mathf.Clamp(AudioEffectsNum, 0, 10);
+        AudioAmbienceNum = Mathf.Clamp(AudioAmbienceNum, 0, 10);
+        AudioMusicNum = Mathf.Clamp(AudioMusicNum, 0, 10);
+        AudioDialogNum = Mathf.Clamp(AudioDialogNum, 0, 10);
+
+        CanInput = true;
+        UpdateSettingsText();
+    }
+ 
+    public void UpdateSettingsText()
+    {
+        if (HUDActive) { HUDText.text = "ON"; } else { HUDText.text = "OFF"; }
+        if (SubtitlesActive) { SubtitlesText.text = "ON"; } else { SubtitlesText.text = "OFF"; }
+        AudioMasterText.text = AudioMasterNum.ToString();
+        AudioEffectsText.text = AudioEffectsNum.ToString();
+        AudioAmbienceText.text = AudioAmbienceNum.ToString();
+        AudioMusicText.text = AudioMusicNum.ToString();
+        AudioDialogText.text = AudioDialogNum.ToString();
     }
 
     IEnumerator LoadNewGame()
@@ -391,7 +451,9 @@ public class MainMenuManager : MonoBehaviour
         Debug.Log("Loading Settings");
         SceneTransitionAnim.SetTrigger("Active");
         yield return new WaitForSeconds(1.2f);
+        UpdateSettingsText();
         if (!SettingsOpen) { Settings.SetActive(true); } else { Settings.SetActive(false); }
+        SettingsOrder = 1;
         CanInput = true;
         SettingsOpen = !SettingsOpen;
     }

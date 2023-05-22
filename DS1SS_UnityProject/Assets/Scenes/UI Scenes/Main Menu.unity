@@ -1419,29 +1419,31 @@ MonoBehaviour:
   ActiveMenu: Main
   MainHightlightPos: {fileID: 1520790938}
   MainHightlightAnim: {fileID: 1520790941}
-  MainOrder: 1
   NewGameMessage: {fileID: 1073011079}
   NGHightlightPos: {fileID: 371926718}
   NGHightlightAnim: {fileID: 371926719}
-  NGOrder: 0
   LoadGameText: {fileID: 1670176481}
   LoadGameTextGrey: {fileID: 66875584}
   HasGameSave: 0
   Settings: {fileID: 2010522514}
   SettingsHightlightPos: {fileID: 1669747563}
   SettingsExitAnim: {fileID: 1429259386}
-  SettingsOpen: 0
-  SettingsOrder: 1
+  HUDActive: 1
+  SubtitlesActive: 1
+  AudioMasterNum: 10
+  AudioEffectsNum: 10
+  AudioAmbienceNum: 10
+  AudioMusicNum: 10
+  AudioDialogNum: 10
   HUDText: {fileID: 1132101984}
   SubtitlesText: {fileID: 1922460405}
   AudioMasterText: {fileID: 1413417134}
   AudioEffectsText: {fileID: 22131454}
   AudioAmbienceText: {fileID: 1079572227}
-  udioMusicText: {fileID: 540336820}
+  AudioMusicText: {fileID: 540336820}
   AudioDialogText: {fileID: 259562017}
   Achievements: {fileID: 464082687}
   AchievementsExitAnim: {fileID: 396862136}
-  AchievementsOpen: 0
 --- !u!4 &121354862
 Transform:
   m_ObjectHideFlags: 0
@@ -13782,7 +13784,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2010522515
 RectTransform:
   m_ObjectHideFlags: 0
