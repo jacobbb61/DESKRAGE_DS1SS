@@ -8,8 +8,12 @@ public class LayerManager : MonoBehaviour
 {
     [SerializeField] private List<Layer> layers;
     [Tooltip("Set this to the initial starting layer or perish")]
-    [SerializeField] private int activeLayer = -1;
-    public UnityEvent OnLayerSwitch;
+    [SerializeField] private int internalActiveLayer = -1;
+
+    [Tooltip("This Event is called at the start of the transition, and passes the duration into functions in it")]
+    public UnityEvent<float> OnLayerSwitch;
+
+    public int activeLayer { get { return internalActiveLayer; } private set { internalActiveLayer = value; } }
 
     //These are set in inspector
     [Tooltip("Size the layer shrinks to when moved back")]
@@ -18,17 +22,17 @@ public class LayerManager : MonoBehaviour
     [SerializeField] private float transitionTime = 0.5f;
 
     //These are unchangable except via this script or the editor
-    public float relativeLayerScale { get { return backgroundScale; } private set { backgroundScale = value;  } }
+    public float relativeLayerScale { get { return backgroundScale; } private set { backgroundScale = value; } }
     public float transitionLength { get { return transitionTime; } private set { transitionTime = value; } }
 
     //Awake is called before start
     private void Awake()
     {
         //Start Section "Replace when load save" (move this idea to the start of start so load can be in awake)
-        if (activeLayer < 0 || activeLayer >= layers.Count)
+        if (internalActiveLayer < 0 || internalActiveLayer >= layers.Count)
         {
             Debug.LogWarning("Warning: LayerManager appears to be set up incorrectly, layer set to backmost as a default");
-            activeLayer = 0;
+            internalActiveLayer = 0;
             if (layers.Count == 0)
             {
                 Debug.LogError("Error: No Layers set up. Forcing stop.");
@@ -47,7 +51,7 @@ public class LayerManager : MonoBehaviour
     {
         for (int i = 0; i < layers.Count; i++)
         {
-            int dif = activeLayer - i;
+            int dif = internalActiveLayer - i;
             StartCoroutine(layers[i].Transition(0.001f, Mathf.Pow(relativeLayerScale, dif), dif < 0 ? 0f : 1f));
         }
     }
@@ -55,49 +59,51 @@ public class LayerManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!layers[0].runningCR)
+        if (Input.GetKeyDown(KeyCode.DownArrow))
         {
-            if (Input.GetKeyDown(KeyCode.DownArrow))
-            {
-                ChangeLayer(activeLayer - 1);
-            }
-            else if (Input.GetKeyDown(KeyCode.UpArrow))
-            {
-                ChangeLayer(activeLayer + 1);
-            }
+            ChangeLayer(internalActiveLayer - 1);
         }
+        else if (Input.GetKeyDown(KeyCode.UpArrow))
+        {
+            ChangeLayer(internalActiveLayer + 1);
+        }
+
     }
 
     [Tooltip("Change the 'active' group of objects")]
     public void ChangeLayer([Tooltip("layer index of the new active layer")] int target)
     {
-        int direction = activeLayer - target;
-        if (target < 0 || target >= layers.Count)
+
+        if (!layers[0].runningCR)
         {
-            Debug.LogWarning("Attempted to move to out of bounds layer");
-            return;
+            int direction = internalActiveLayer - target;
+            if (target < 0 || target >= layers.Count)
+            {
+                Debug.LogWarning("Attempted to move to out of bounds layer");
+                return;
+            }
+            for (int i = 0; i < layers.Count; i++)
+            {
+                if (target > i)
+                {
+                    layers[i].SetInactiveAndHide(direction);
+                }
+                else if (target == i)
+                {
+                    layers[i].SetActive(direction);
+                }
+                else if (target < i)
+                {
+                    layers[i].SetInactiveAndBehind(direction);
+                }
+                else
+                {
+                    //PANIC
+                }
+            }
+            internalActiveLayer = target;
+            OnLayerSwitch.Invoke(transitionTime);
         }
-        for (int i = 0; i < layers.Count; i++)
-        {
-            if (target > i)
-            {
-                layers[i].SetInactiveAndHide(direction);
-            }
-            else if (target == i)
-            {
-                layers[i].SetActive(direction);
-            }
-            else if (target < i)
-            {
-                layers[i].SetInactiveAndBehind(direction);
-            }
-            else
-            {
-                //PANIC
-            }
-        }
-        activeLayer = target;
-        OnLayerSwitch.Invoke();
     }
 
     [Tooltip("Change the 'active' group of objects to the frontmost")]
@@ -134,4 +140,25 @@ public class LayerManager : MonoBehaviour
         return -1;
     }
 
+    public Layer GetLayer(int index)
+    {
+        if(index < layers.Count && index >=0)
+        {
+            return layers[index];
+        }
+        Debug.LogError("Attempted to get nonexistant Layer");
+        return null;
+    }
+
+    public bool TryGetLayer(out Layer result, int index)
+    {
+        if (index < layers.Count && index >= 0)
+        {
+            result = layers[index];
+            return true;
+        }
+        Debug.LogError("Attempted to get nonexistant Layer");
+        result = null;
+        return false;
+    }
 }

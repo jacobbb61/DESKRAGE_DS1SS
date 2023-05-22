@@ -125,6 +125,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Lock On"",
+                    ""type"": ""Button"",
+                    ""id"": ""abd887f7-cbe2-47b0-bcee-dfc90ecd305e"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -457,6 +466,28 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""action"": ""MiniUIMove"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7cc21836-6a9a-4d60-b9f2-52560edc8653"",
+                    ""path"": ""<Gamepad>/leftStickPress"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Lock On"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c1109d5c-1f3f-4538-a5c6-65e40816def9"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Lock On"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -526,6 +557,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_Avatar_HeavyAttack = m_Avatar.FindAction("HeavyAttack", throwIfNotFound: true);
         m_Avatar_LightAtatck = m_Avatar.FindAction("LightAtatck", throwIfNotFound: true);
         m_Avatar_MiniUIMove = m_Avatar.FindAction("MiniUIMove", throwIfNotFound: true);
+        m_Avatar_LockOn = m_Avatar.FindAction("Lock On", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Newaction = m_UI.FindAction("New action", throwIfNotFound: true);
@@ -601,6 +633,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Avatar_HeavyAttack;
     private readonly InputAction m_Avatar_LightAtatck;
     private readonly InputAction m_Avatar_MiniUIMove;
+    private readonly InputAction m_Avatar_LockOn;
     public struct AvatarActions
     {
         private @PlayerControls m_Wrapper;
@@ -616,6 +649,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         public InputAction @HeavyAttack => m_Wrapper.m_Avatar_HeavyAttack;
         public InputAction @LightAtatck => m_Wrapper.m_Avatar_LightAtatck;
         public InputAction @MiniUIMove => m_Wrapper.m_Avatar_MiniUIMove;
+        public InputAction @LockOn => m_Wrapper.m_Avatar_LockOn;
         public InputActionMap Get() { return m_Wrapper.m_Avatar; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -658,6 +692,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @MiniUIMove.started += instance.OnMiniUIMove;
             @MiniUIMove.performed += instance.OnMiniUIMove;
             @MiniUIMove.canceled += instance.OnMiniUIMove;
+            @LockOn.started += instance.OnLockOn;
+            @LockOn.performed += instance.OnLockOn;
+            @LockOn.canceled += instance.OnLockOn;
         }
 
         private void UnregisterCallbacks(IAvatarActions instance)
@@ -695,6 +732,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @MiniUIMove.started -= instance.OnMiniUIMove;
             @MiniUIMove.performed -= instance.OnMiniUIMove;
             @MiniUIMove.canceled -= instance.OnMiniUIMove;
+            @LockOn.started -= instance.OnLockOn;
+            @LockOn.performed -= instance.OnLockOn;
+            @LockOn.canceled -= instance.OnLockOn;
         }
 
         public void RemoveCallbacks(IAvatarActions instance)
@@ -780,6 +820,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         void OnHeavyAttack(InputAction.CallbackContext context);
         void OnLightAtatck(InputAction.CallbackContext context);
         void OnMiniUIMove(InputAction.CallbackContext context);
+        void OnLockOn(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

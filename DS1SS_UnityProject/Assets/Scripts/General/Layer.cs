@@ -13,7 +13,7 @@ public class Layer : MonoBehaviour
     [SerializeField] private float currentAlpha = 1;
     public bool runningCR { get; private set; } = false;
 
-
+    public int mask;
     // Start is called before the first frame update
     void Start()
     {
@@ -25,6 +25,7 @@ public class Layer : MonoBehaviour
     {
         //Move the layer to track to the camera
     }
+
 
     internal void SetInactiveAndHide(int dir)
     {

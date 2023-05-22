@@ -8,6 +8,11 @@ public class PlayerController : MonoBehaviour, IAvatarActions
 {
     private PlayerControls inputs;
     private Vector2 movement;
+    public Interactable targetInteractable;
+    private float dodgeTime;
+
+
+    //turn around if lock on target is behind player
 
     private void Awake()
     {
@@ -78,7 +83,13 @@ public class PlayerController : MonoBehaviour, IAvatarActions
 
     void IAvatarActions.OnInteract(InputAction.CallbackContext context)
     {
-        throw new System.NotImplementedException();
+        if(context.started)
+        {
+            if(targetInteractable!=null)
+            {
+                targetInteractable.Interact();
+            }
+        }
     }
 
     void IAvatarActions.OnJump(InputAction.CallbackContext context)
@@ -114,11 +125,32 @@ public class PlayerController : MonoBehaviour, IAvatarActions
 
     void IAvatarActions.OnRollSprint(InputAction.CallbackContext context)
     {
-        throw new System.NotImplementedException();
+        if(context.performed)
+        {
+            if(context.duration > dodgeTime)
+            {
+                //run
+            }
+        }
+        if(context.canceled)
+        {
+            if(context.duration <= dodgeTime)
+            {
+                //roll
+            }
+        }
     }
 
     void IAvatarActions.OnUseItem(InputAction.CallbackContext context)
     {
         throw new System.NotImplementedException();
+    }
+
+    public void OnLockOn(InputAction.CallbackContext context)
+    {
+        if(context.started)
+        {
+            //toggle lock on
+        }
     }
 }
