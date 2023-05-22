@@ -116,6 +116,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""MiniUIMove"",
+                    ""type"": ""Value"",
+                    ""id"": ""60e993ec-cf1c-48ef-9a9f-0cab7b185588"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -382,6 +391,72 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""action"": ""LightAtatck"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f624e974-b20d-4bad-99a8-a99a9ea53ea4"",
+                    ""path"": ""<Gamepad>/dpad"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MiniUIMove"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""2D Vector"",
+                    ""id"": ""5c5a270e-c8f8-446e-a276-3b3004346ecb"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MiniUIMove"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""ef2934b2-fdef-46f2-9ac3-aa46ba2c2670"",
+                    ""path"": ""<Keyboard>/upArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MiniUIMove"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""23a6d334-a5ae-459f-abb2-73c6cd4f95b0"",
+                    ""path"": ""<Keyboard>/downArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MiniUIMove"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""705ae7fb-b244-45e1-8894-4933204e3d18"",
+                    ""path"": ""<Keyboard>/leftArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MiniUIMove"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""376395ef-d86c-44ae-96c2-3187512bed73"",
+                    ""path"": ""<Keyboard>/rightArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MiniUIMove"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         },
@@ -450,6 +525,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_Avatar_Block = m_Avatar.FindAction("Block", throwIfNotFound: true);
         m_Avatar_HeavyAttack = m_Avatar.FindAction("HeavyAttack", throwIfNotFound: true);
         m_Avatar_LightAtatck = m_Avatar.FindAction("LightAtatck", throwIfNotFound: true);
+        m_Avatar_MiniUIMove = m_Avatar.FindAction("MiniUIMove", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Newaction = m_UI.FindAction("New action", throwIfNotFound: true);
@@ -524,6 +600,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Avatar_Block;
     private readonly InputAction m_Avatar_HeavyAttack;
     private readonly InputAction m_Avatar_LightAtatck;
+    private readonly InputAction m_Avatar_MiniUIMove;
     public struct AvatarActions
     {
         private @PlayerControls m_Wrapper;
@@ -538,6 +615,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         public InputAction @Block => m_Wrapper.m_Avatar_Block;
         public InputAction @HeavyAttack => m_Wrapper.m_Avatar_HeavyAttack;
         public InputAction @LightAtatck => m_Wrapper.m_Avatar_LightAtatck;
+        public InputAction @MiniUIMove => m_Wrapper.m_Avatar_MiniUIMove;
         public InputActionMap Get() { return m_Wrapper.m_Avatar; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -577,6 +655,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @LightAtatck.started += instance.OnLightAtatck;
             @LightAtatck.performed += instance.OnLightAtatck;
             @LightAtatck.canceled += instance.OnLightAtatck;
+            @MiniUIMove.started += instance.OnMiniUIMove;
+            @MiniUIMove.performed += instance.OnMiniUIMove;
+            @MiniUIMove.canceled += instance.OnMiniUIMove;
         }
 
         private void UnregisterCallbacks(IAvatarActions instance)
@@ -611,6 +692,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @LightAtatck.started -= instance.OnLightAtatck;
             @LightAtatck.performed -= instance.OnLightAtatck;
             @LightAtatck.canceled -= instance.OnLightAtatck;
+            @MiniUIMove.started -= instance.OnMiniUIMove;
+            @MiniUIMove.performed -= instance.OnMiniUIMove;
+            @MiniUIMove.canceled -= instance.OnMiniUIMove;
         }
 
         public void RemoveCallbacks(IAvatarActions instance)
@@ -695,6 +779,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         void OnBlock(InputAction.CallbackContext context);
         void OnHeavyAttack(InputAction.CallbackContext context);
         void OnLightAtatck(InputAction.CallbackContext context);
+        void OnMiniUIMove(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {
