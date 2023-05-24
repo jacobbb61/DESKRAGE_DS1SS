@@ -538,21 +538,29 @@ MonoBehaviour:
 
 
 
+    ZOiD
 
-    Erik Azev
 
 
     Sergiu
     Climenco
 
+
+
+
+    Erik Azev
+
+
+    Sergiu Climenco
+
     Darragh Lynch
 
-    Rachel Appleyard
+    Rachel
+    Appleyard
 
     Tom Grumley
 
-    Kiki
-    Oladehin
+    Kiki Oladehin
 
     Sean Dunne
 
@@ -560,20 +568,16 @@ MonoBehaviour:
 
 
 
-    ZOiD
+
+
+    External
+    testers
 
 
 
 
 
-    External testers
-
-
-
-
-
-    Peter
-    Lynch
+    Peter Lynch
 
     Hidetaka Miyazaki
 
@@ -841,7 +845,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1054376692}
   - component: {fileID: 1054376691}
-  - component: {fileID: 1054376690}
+  - component: {fileID: 1054376693}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -849,14 +853,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &1054376690
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1054376689}
-  m_Enabled: 1
 --- !u!20 &1054376691
 Camera:
   m_ObjectHideFlags: 0
@@ -915,6 +911,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1054376693
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1054376689}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attenuationObject: {fileID: 0}
 --- !u!1 &1063906023
 GameObject:
   m_ObjectHideFlags: 0
@@ -1015,8 +1024,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: "Game Director & Studio head\n\n\n\n\nLead Game Designer\n\nGame Designers
     \n\n\n\n\n\n\nLead Programmer \r\n\r\nProgrammers\r\n\r\n\n\n\n\n\nLead Artist
-    \r\n\r\nArtists\r\n\r\n\n\n\n\n\n\n\nLead QA Tester\r\n\r\nQA Testers\r\n\r\n\n\n\n\n\n\n\n\nOriginal
-    Score by\r\n\r\n\n\n\nThanks to \r\n\r\n\n\n\nSpecial thanks to\r\n\n\n\n\n\n"
+    \r\n\r\nArtists\r\n\r\n\n\n\n\n\n\nOriginal Score by\r\n\n\nOscar, Knight Of
+    Astora voiced  by\n\n\n\nLead QA Tester\r\n\r\nQA Testers\r\n\r\n\n\n\n\n\n\n\r\n\n\n\nThanks
+    to \r\n\r\n\n\n\nSpecial thanks to\r\n\n\n\n\n\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f418333ca21c5634aa18e600d77e28fb, type: 2}
   m_sharedMaterial: {fileID: 6985076942022350506, guid: f418333ca21c5634aa18e600d77e28fb, type: 2}

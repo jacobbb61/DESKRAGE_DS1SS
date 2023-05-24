@@ -1,5 +1,126 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-7906313398692216152
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/OscarVoiceLines/OscarVoiceLinesA/OscarVoiceLineA4
+  m_EditorClassIdentifier: 
+  Path: event:/OscarVoiceLines/OscarVoiceLinesA/OscarVoiceLineA4
+  Guid:
+    Data1: -391398584
+    Data2: 1138378680
+    Data3: 2038092710
+    Data4: -1300490877
+  Banks:
+  - {fileID: -5850691471946989847}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 9048
+--- !u!114 &-7587691350919769062
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/OscarVoiceLines/OscarVoiceLinesA/OscarVoiceLineA3
+  m_EditorClassIdentifier: 
+  Path: event:/OscarVoiceLines/OscarVoiceLinesA/OscarVoiceLineA3
+  Guid:
+    Data1: -1331768376
+    Data2: 1177082653
+    Data3: -103994448
+    Data4: 536408936
+  Banks:
+  - {fileID: -5850691471946989847}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 6048
+--- !u!114 &-6980251230303664966
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.bank
+  m_EditorClassIdentifier: 
+  Path: ../../DS1SS_FMOD/Build/Desktop/Master.bank
+  Name: Master
+  StudioPath: bank:/Master
+  lastModified: 638204526409706497
+  FileSizes:
+  - Name: Desktop
+    Value: 1036
+  Exists: 1
+--- !u!114 &-5850691471946989847
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Dialogue.bank
+  m_EditorClassIdentifier: 
+  Path: ../../DS1SS_FMOD/Build/Desktop/Dialogue.bank
+  Name: Dialogue
+  StudioPath: bank:/Dialogue
+  lastModified: 638204526410860300
+  FileSizes:
+  - Name: Desktop
+    Value: 286976
+  Exists: 1
+--- !u!114 &-4719436214678099313
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/OscarVoiceLines/OscarVoiceLinesA/OscarVoiceLineA1
+  m_EditorClassIdentifier: 
+  Path: event:/OscarVoiceLines/OscarVoiceLinesA/OscarVoiceLineA1
+  Guid:
+    Data1: -49538305
+    Data2: 1290299153
+    Data3: -1883739479
+    Data4: -1740846837
+  Banks:
+  - {fileID: -5850691471946989847}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 10056
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12,10 +133,66 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d32cf7c32a3ed8347bac48ef5ed56d82, type: 3}
   m_Name: FMODStudioCache
   m_EditorClassIdentifier: 
-  EditorBanks: []
-  EditorEvents: []
+  EditorBanks:
+  - {fileID: 831918068732668698}
+  - {fileID: -5850691471946989847}
+  - {fileID: -6980251230303664966}
+  EditorEvents:
+  - {fileID: -4719436214678099313}
+  - {fileID: -7906313398692216152}
+  - {fileID: -7587691350919769062}
+  - {fileID: 5076819705968615313}
   EditorParameters: []
-  MasterBanks: []
-  StringsBanks: []
-  cacheTime: 0
+  MasterBanks:
+  - {fileID: -6980251230303664966}
+  StringsBanks:
+  - {fileID: 831918068732668698}
+  cacheTime: 638204526410860300
   cacheVersion: 131604
+--- !u!114 &831918068732668698
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.strings.bank
+  m_EditorClassIdentifier: 
+  Path: ../../DS1SS_FMOD/Build/Desktop/Master.strings.bank
+  Name: Master.strings
+  StudioPath: bank:/Master.strings
+  lastModified: 638204526409706497
+  FileSizes:
+  - Name: Desktop
+    Value: 958
+  Exists: 1
+--- !u!114 &5076819705968615313
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/OscarVoiceLines/OscarVoiceLinesA/OscarVoiceLineA2
+  m_EditorClassIdentifier: 
+  Path: event:/OscarVoiceLines/OscarVoiceLinesA/OscarVoiceLineA2
+  Guid:
+    Data1: 207275739
+    Data2: 1327183744
+    Data3: 777368243
+    Data4: -148244445
+  Banks:
+  - {fileID: -5850691471946989847}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 9120

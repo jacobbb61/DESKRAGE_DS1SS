@@ -131,15 +131,15 @@ MonoBehaviour:
     HasValue: 0
   displaySortOrder: 0
   childIdentifiers:
-  - 2fea114e74ecf3c4f920e1d5cc1c4c40
-  - 46fbfdf3fc43db0458918377fd40293e
-  - 0f8eb3f400726694eb47beb1a9f94ce8
-  - b7716510a1f36934c87976f3a81dbf3d
-  - 52eb9df5db46521439908db3a29a1bbb
-  - e7a046c753c3c3d4aacc91f6597f310d
-  - 2c5177b11d81d824dbb064f9ac8527da
-  - fd7c55dab0fce234b8c25f6ffca523c1
   - c88d16e5272a4e241b0ef0ac2e53b73d
+  - fd7c55dab0fce234b8c25f6ffca523c1
+  - 2c5177b11d81d824dbb064f9ac8527da
+  - e7a046c753c3c3d4aacc91f6597f310d
+  - 52eb9df5db46521439908db3a29a1bbb
+  - b7716510a1f36934c87976f3a81dbf3d
+  - 0f8eb3f400726694eb47beb1a9f94ce8
+  - 46fbfdf3fc43db0458918377fd40293e
+  - 2fea114e74ecf3c4f920e1d5cc1c4c40
   codecChannels:
     Value: []
     HasValue: 0
@@ -225,8 +225,8 @@ MonoBehaviour:
   switchSettingsMigration: 1
   HasSourceProject: 1
   HasPlatforms: 1
-  sourceProjectPath: 
-  sourceBankPath: 
+  sourceProjectPath: ../../DS1SS_FMOD/DS1SS_FMOD.fspro
+  sourceBankPath: ../../DS1SS_FMOD/Build
   sourceBankPathUnformatted: 
   BankRefreshCooldown: 5
   ShowBankRefreshWindow: 1
@@ -247,8 +247,10 @@ MonoBehaviour:
   VirtualChannelSettings: []
   RealChannelSettings: []
   Plugins: []
-  MasterBanks: []
-  Banks: []
+  MasterBanks:
+  - Master
+  Banks:
+  - Dialogue
   BanksToLoad: []
   LiveUpdatePort: 9264
   EnableMemoryTracking: 0
@@ -261,20 +263,20 @@ MonoBehaviour:
   SharedLibraryUpdateStage: 0
   SharedLibraryTimeSinceStart: 0
   CurrentVersion: 131604
-  HideSetupWizard: 0
+  HideSetupWizard: 1
   LastEventReferenceScanVersion: 131604
   Platforms:
-  - {fileID: 7035863048722991401}
-  - {fileID: -1053955444854893665}
-  - {fileID: -6242941544013848686}
-  - {fileID: 5209937223795019898}
-  - {fileID: 7733861211575493943}
-  - {fileID: 2154043604916079046}
-  - {fileID: 1673418923556186131}
-  - {fileID: 5726900198754279319}
-  - {fileID: 6700858830718681930}
-  - {fileID: -5940498108229971872}
   - {fileID: 7001543429386620423}
+  - {fileID: -5940498108229971872}
+  - {fileID: 6700858830718681930}
+  - {fileID: 5726900198754279319}
+  - {fileID: 1673418923556186131}
+  - {fileID: 2154043604916079046}
+  - {fileID: 7733861211575493943}
+  - {fileID: 5209937223795019898}
+  - {fileID: -6242941544013848686}
+  - {fileID: -1053955444854893665}
+  - {fileID: 7035863048722991401}
   MigratedPlatforms: 0c000000150000000b0000000a00000009000000120000000800000005000000060000000200000001000000
 --- !u!114 &1673418923556186131
 MonoBehaviour:
