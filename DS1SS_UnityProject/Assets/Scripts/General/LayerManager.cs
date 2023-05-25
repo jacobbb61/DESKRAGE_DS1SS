@@ -6,6 +6,7 @@ using UnityEngine.Events;
 
 public class LayerManager : MonoBehaviour
 {
+    public static LayerManager instance { get; private set; }
     [SerializeField] private List<Layer> layers;
     [Tooltip("Set this to the initial starting layer or perish")]
     [SerializeField] private int internalActiveLayer = -1;
@@ -28,6 +29,19 @@ public class LayerManager : MonoBehaviour
     //Awake is called before start
     private void Awake()
     {
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Debug.LogError("Multiple Layer Managers Detected");
+#if UNITY_EDITOR
+            EditorApplication.isPlaying = false;//unplays your editor
+#endif
+
+            Application.Quit();
+        }
         //Start Section "Replace when load save" (move this idea to the start of start so load can be in awake)
         if (internalActiveLayer < 0 || internalActiveLayer >= layers.Count)
         {
@@ -59,6 +73,7 @@ public class LayerManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //remove when doors only
         if (Input.GetKeyDown(KeyCode.DownArrow))
         {
             ChangeLayer(internalActiveLayer - 1);
@@ -67,13 +82,12 @@ public class LayerManager : MonoBehaviour
         {
             ChangeLayer(internalActiveLayer + 1);
         }
-
+        //end remove when doors only
     }
 
     [Tooltip("Change the 'active' group of objects")]
     public void ChangeLayer([Tooltip("layer index of the new active layer")] int target)
     {
-
         if (!layers[0].runningCR)
         {
             int direction = internalActiveLayer - target;
@@ -148,6 +162,11 @@ public class LayerManager : MonoBehaviour
         }
         Debug.LogError("Attempted to get nonexistant Layer");
         return null;
+    }
+
+    public Layer GetLayer()
+    {
+        return layers[activeLayer];
     }
 
     public bool TryGetLayer(out Layer result, int index)

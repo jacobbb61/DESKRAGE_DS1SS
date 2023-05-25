@@ -4,6 +4,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
+//maybe do one of these in a future project instead of this system
+public interface IInteractable
+{
+    void Interact();
+}
+
+
 public class Interactable : MonoBehaviour
 {
     /*needs a UnityEvent to invoke when the player presses a button while in this trigger collider

@@ -4,8 +4,10 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using static PlayerControls;
 
+[RequireComponent(typeof(Rigidbody2D))]
 public class PlayerController : MonoBehaviour, IAvatarActions
 {
+    private Rigidbody2D myRb;
     public PlayerControls inputs;
     private Vector2 movement;
     public Interactable targetInteractable;
@@ -13,6 +15,13 @@ public class PlayerController : MonoBehaviour, IAvatarActions
     private bool uiOpen = false;
     private EnemyLock lockOn;
     private LayerManager layerManager;
+    [SerializeField] private int faceDirection = 1;
+    [SerializeField] private float facingSpeed;
+    [SerializeField] private float backingSpeed;
+    [SerializeField] private float runningSpeed;
+    [SerializeField] private float runningTime;
+    private bool layerSwapping;
+
 
     //turn around if lock on target is behind player
 
@@ -32,6 +41,7 @@ public class PlayerController : MonoBehaviour, IAvatarActions
             Awake();
             OnEnable();
         }
+        FindObjectOfType<LayerManager>().OnLayerSwitch.AddListener(Transition);
     }
 
     private void OnDisable()
@@ -45,7 +55,7 @@ public class PlayerController : MonoBehaviour, IAvatarActions
     void Start()
     {
         layerManager = FindObjectOfType<LayerManager>();
-        lockOn = GetComponent<EnemyLock>();
+        lockOn = GetComponent<EnemyLock>();//might be getcomponentinchildren
         gameObject.layer = layerManager.GetLayer(layerManager.activeLayer).gameObject.layer;
     }
 
@@ -109,12 +119,13 @@ public class PlayerController : MonoBehaviour, IAvatarActions
     void IAvatarActions.OnMiniUIMove(InputAction.CallbackContext context)
     {
         //this might get separated and moved later
-        throw new System.NotImplementedException();
+        //throw new System.NotImplementedException();
     }
 
     void IAvatarActions.OnMovement(InputAction.CallbackContext context)
     {
         movement = context.ReadValue<Vector2>();
+
     }
 
     void IAvatarActions.OnOpenUI(InputAction.CallbackContext context)
@@ -163,5 +174,29 @@ public class PlayerController : MonoBehaviour, IAvatarActions
         {
            // lockOn.running = !lockOn.running;
         }
+    }
+
+    internal void Transition(float t)
+    {
+        StartCoroutine(ChangeLayer(t));
+    }
+
+    internal IEnumerator ChangeLayer(float t)
+    {
+        layerSwapping = true;
+        float time = 0;
+        gameObject.layer = 9;
+        while (time < t)
+        {
+            yield return null;
+            time += Time.deltaTime;
+        }
+        gameObject.layer = layerManager.GetLayer().gameObject.layer;
+        layerSwapping = false;
+    }
+
+    private IEnumerator Roll()
+    {
+        yield return null;
     }
 }

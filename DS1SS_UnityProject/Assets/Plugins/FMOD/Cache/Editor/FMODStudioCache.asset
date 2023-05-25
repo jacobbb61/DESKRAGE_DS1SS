@@ -1,5 +1,25 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8326164821794136364
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Dialogue.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/DS1SS_FMOD/Build/Desktop/Dialogue.bank
+  Name: Dialogue
+  StudioPath: bank:/Dialogue
+  lastModified: 638206113561375052
+  FileSizes:
+  - Name: Desktop
+    Value: 286976
+  Exists: 1
 --- !u!114 &-7906313398692216152
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19,7 +39,7 @@ MonoBehaviour:
     Data3: 2038092710
     Data4: -1300490877
   Banks:
-  - {fileID: -5850691471946989847}
+  - {fileID: -8326164821794136364}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -46,7 +66,7 @@ MonoBehaviour:
     Data3: -103994448
     Data4: 536408936
   Banks:
-  - {fileID: -5850691471946989847}
+  - {fileID: -8326164821794136364}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -54,7 +74,7 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 6048
---- !u!114 &-6980251230303664966
+--- !u!114 &-6952038256496869934
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -64,35 +84,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Master.bank
+  m_Name: bank:/Master.strings.bank
   m_EditorClassIdentifier: 
-  Path: ../../DS1SS_FMOD/Build/Desktop/Master.bank
-  Name: Master
-  StudioPath: bank:/Master
-  lastModified: 638204526409706497
+  Path: Assets/DS1SS_FMOD/Build/Desktop/Master.strings.bank
+  Name: Master.strings
+  StudioPath: bank:/Master.strings
+  lastModified: 638206113561475415
   FileSizes:
   - Name: Desktop
-    Value: 1036
-  Exists: 1
---- !u!114 &-5850691471946989847
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Dialogue.bank
-  m_EditorClassIdentifier: 
-  Path: ../../DS1SS_FMOD/Build/Desktop/Dialogue.bank
-  Name: Dialogue
-  StudioPath: bank:/Dialogue
-  lastModified: 638205367661243599
-  FileSizes:
-  - Name: Desktop
-    Value: 286976
+    Value: 958
   Exists: 1
 --- !u!114 &-4719436214678099313
 MonoBehaviour:
@@ -113,7 +113,7 @@ MonoBehaviour:
     Data3: -1883739479
     Data4: -1740846837
   Banks:
-  - {fileID: -5850691471946989847}
+  - {fileID: -8326164821794136364}
   IsStream: 1
   Is3D: 0
   IsOneShot: 1
@@ -134,9 +134,9 @@ MonoBehaviour:
   m_Name: FMODStudioCache
   m_EditorClassIdentifier: 
   EditorBanks:
-  - {fileID: 831918068732668698}
-  - {fileID: -5850691471946989847}
-  - {fileID: -6980251230303664966}
+  - {fileID: -6952038256496869934}
+  - {fileID: -8326164821794136364}
+  - {fileID: 2312623076368721957}
   EditorEvents:
   - {fileID: -4719436214678099313}
   - {fileID: -7906313398692216152}
@@ -144,12 +144,12 @@ MonoBehaviour:
   - {fileID: 5076819705968615313}
   EditorParameters: []
   MasterBanks:
-  - {fileID: -6980251230303664966}
+  - {fileID: 2312623076368721957}
   StringsBanks:
-  - {fileID: 831918068732668698}
-  cacheTime: 638205367661243599
+  - {fileID: -6952038256496869934}
+  cacheTime: 638206113561475415
   cacheVersion: 131604
---- !u!114 &831918068732668698
+--- !u!114 &2312623076368721957
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -159,15 +159,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Master.strings.bank
+  m_Name: bank:/Master.bank
   m_EditorClassIdentifier: 
-  Path: ../../DS1SS_FMOD/Build/Desktop/Master.strings.bank
-  Name: Master.strings
-  StudioPath: bank:/Master.strings
-  lastModified: 638204526409706497
+  Path: Assets/DS1SS_FMOD/Build/Desktop/Master.bank
+  Name: Master
+  StudioPath: bank:/Master
+  lastModified: 638206113561435043
   FileSizes:
   - Name: Desktop
-    Value: 958
+    Value: 1036
   Exists: 1
 --- !u!114 &5076819705968615313
 MonoBehaviour:
@@ -188,7 +188,7 @@ MonoBehaviour:
     Data3: 777368243
     Data4: -148244445
   Banks:
-  - {fileID: -5850691471946989847}
+  - {fileID: -8326164821794136364}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1

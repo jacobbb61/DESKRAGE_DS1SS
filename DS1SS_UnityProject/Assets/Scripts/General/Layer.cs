@@ -26,7 +26,7 @@ public class Layer : MonoBehaviour
         //Move the layer to track to the camera
     }
 
-
+    //Honestly these three functions could be cleaner, but they work so...
     internal void SetInactiveAndHide(int dir)
     {
         if (runningCR)
@@ -67,7 +67,7 @@ public class Layer : MonoBehaviour
     }
 
 
-    [Tooltip("enable or disable all Colliders in the layer")]
+    [Tooltip("enable or disable all Colliders in the layer")] //Depreciated when player layer was changed instead
     public void CollidersToggle(bool mode)
     {
         Collider2D[] all = GetComponentsInChildren<Collider2D>();
