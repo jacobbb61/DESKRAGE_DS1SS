@@ -45,6 +45,7 @@ public class OscarManager : MonoBehaviour
     [Header("Audio Events")]
     private FMOD.Studio.EventInstance instance;
     private Coroutine RoutineToStop;
+    public StudioEventEmitter Emitter;
     public List<EventReference> StateAAudioClips = new List<EventReference>();
 
 
@@ -164,14 +165,14 @@ public class OscarManager : MonoBehaviour
         {           
             case "A":
                 if (CurrentTextLine<3) {
-                    PlayAudio(StateAAudioClips[CurrentTextLine].Path);
+                    PlayAudio(StateAAudioClips[CurrentTextLine]);
                     RoutineToStop = StartCoroutine(WaitForAudioToEnd());//start audio timer            
                     CurrentText = StateATextLines[CurrentTextLine]; //tell dialogue text what to show
                     CurrentTextLine++;
                 } 
                 else {
-                    PlayAudio(StateAAudioClips[CurrentTextLine].Path);
-                    instance.start(); //play audio);//play audio  
+                    PlayAudio(StateAAudioClips[CurrentTextLine]);
+                    //instance.start(); //play audio);//play audio  
                     CurrentTextLine = 3; // repeat the 4th line of dialog text
                     CurrentText = StateATextLines[3]; //tell dialogue text what to show
                     IsTalking = false; //done talking
@@ -180,7 +181,7 @@ public class OscarManager : MonoBehaviour
 
                 break;
             case "YES":
-                if (CurrentTextLine < 10) { PlayAudio(StateAAudioClips[CurrentTextLine].Path); CurrentText = StateYESTextLines[CurrentTextLine]; CurrentTextLine++; } 
+                if (CurrentTextLine < 10) { PlayAudio(StateAAudioClips[CurrentTextLine]); CurrentText = StateYESTextLines[CurrentTextLine]; CurrentTextLine++; } 
                 else { CurrentText = StateYESTextLines[9]; CurrentTextLine = 9; CloseDialog(); }
                 break;
             case "NO":
@@ -282,9 +283,14 @@ public class OscarManager : MonoBehaviour
     }
 
 
-    public void PlayAudio(string AudioReferenceToPlay)
+    public void PlayAudio(EventReference AudioReferenceToPlay)
     {
-        instance = FMODUnity.RuntimeManager.CreateInstance(AudioReferenceToPlay); //choose audio  
+        // Emitter.Stop();
+       // Emitter.EventReference = AudioReferenceToPlay;         Emmiter system needs spacializer on the FMOD audio clips
+        // Emitter.Play();
+
+
+        instance = FMODUnity.RuntimeManager.CreateInstance(AudioReferenceToPlay.Path); //choose audio  
         instance.start();
         instance.release(); //release audio from memory       
         Debug.Log("Audio Played");
@@ -306,7 +312,9 @@ public class OscarManager : MonoBehaviour
         else { CloseDialog(); }
     }
     public void StopAnyAudio()
-    {        
+    {
+        //Emitter.Stop();
+
         instance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE); //stop current audio
         StopCoroutine(RoutineToStop); //stop current timer
         Debug.Log("Audio Stopped");
