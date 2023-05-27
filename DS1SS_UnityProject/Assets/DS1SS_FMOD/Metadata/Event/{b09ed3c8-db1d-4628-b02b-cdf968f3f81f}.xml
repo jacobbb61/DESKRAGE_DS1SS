@@ -5,7 +5,7 @@
 			<value>OscarVoiceLineA3</value>
 		</property>
 		<property name="outputFormat">
-			<value>0</value>
+			<value>2</value>
 		</property>
 		<relationship name="folder">
 			<destination>{ab304831-25ec-44d7-af6c-d3677e34af8c}</destination>
@@ -113,6 +113,7 @@
 	<object class="MixerBusEffectChain" id="{0e742487-2d48-44f4-8427-d7021da3be3f}">
 		<relationship name="effects">
 			<destination>{7e14baab-c3e4-4d6e-bc5c-85a4a129251a}</destination>
+			<destination>{e8e6e6f6-6e0e-4769-800f-6fb926ffbd7a}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{88d06051-2a27-4426-b4ba-8ec74b5a889d}" />
@@ -124,5 +125,6 @@
 	</object>
 	<object class="MixerBusPanner" id="{d04824a4-5bba-42d3-9cb3-a682a4424d7e}" />
 	<object class="MixerBusFader" id="{7e14baab-c3e4-4d6e-bc5c-85a4a129251a}" />
+	<object class="SpatialiserEffect" id="{e8e6e6f6-6e0e-4769-800f-6fb926ffbd7a}" />
 	<object class="MixerBusFader" id="{0236e5cd-988c-4227-a64f-adb4fad45fce}" />
 </objects>

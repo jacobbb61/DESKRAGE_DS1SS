@@ -1,5 +1,5 @@
 {
-    "name": "InputControls",
+    "name": "UISceneInputControls",
     "maps": [
         {
             "name": "Player",
@@ -142,8 +142,30 @@
                 },
                 {
                     "name": "",
+                    "id": "b074d31a-4475-4a63-a290-97f5cc12ea0d",
+                    "path": "<Keyboard>/rightArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Left",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "26cf1b1a-2c0d-4509-b7a7-e14c847de340",
                     "path": "<Gamepad>/dpad/right",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Right",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8b34efa3-414d-4622-a07a-5775dc307d23",
+                    "path": "<Keyboard>/leftArrow",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -188,6 +210,17 @@
                     "name": "",
                     "id": "67436bf7-74ec-4366-b0b8-3042d5f4d1c7",
                     "path": "<Gamepad>/buttonNorth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Y",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6a3b88bb-f6e6-4bf1-a31e-9565c35452f5",
+                    "path": "",
                     "interactions": "",
                     "processors": "",
                     "groups": "",

@@ -181,6 +181,11 @@ namespace FMODUnity
 
         public void Play()
         {
+            if(hasTriggered)
+            {
+                Lookup();
+            }
+
             if (TriggerOnce && hasTriggered)
             {
                 return;

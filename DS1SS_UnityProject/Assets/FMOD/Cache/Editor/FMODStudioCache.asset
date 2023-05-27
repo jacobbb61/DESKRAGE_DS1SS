@@ -15,10 +15,10 @@ MonoBehaviour:
   Path: Assets/DS1SS_FMOD/Build/Desktop/Dialogue.bank
   Name: Dialogue
   StudioPath: bank:/Dialogue
-  lastModified: 638205367661243599
+  lastModified: 638208187352228581
   FileSizes:
   - Name: Desktop
-    Value: 286976
+    Value: 288064
   Exists: 1
 --- !u!114 &-7906313398692216152
 MonoBehaviour:
@@ -41,7 +41,7 @@ MonoBehaviour:
   Banks:
   - {fileID: -8326164821794136364}
   IsStream: 0
-  Is3D: 0
+  Is3D: 1
   IsOneShot: 1
   Parameters: []
   MinDistance: 1
@@ -68,7 +68,7 @@ MonoBehaviour:
   Banks:
   - {fileID: -8326164821794136364}
   IsStream: 0
-  Is3D: 0
+  Is3D: 1
   IsOneShot: 1
   Parameters: []
   MinDistance: 1
@@ -115,7 +115,7 @@ MonoBehaviour:
   Banks:
   - {fileID: -8326164821794136364}
   IsStream: 1
-  Is3D: 0
+  Is3D: 1
   IsOneShot: 1
   Parameters: []
   MinDistance: 1
@@ -147,7 +147,7 @@ MonoBehaviour:
   - {fileID: 2312623076368721957}
   StringsBanks:
   - {fileID: -6952038256496869934}
-  cacheTime: 638205367661243599
+  cacheTime: 638208187352228581
   cacheVersion: 131604
 --- !u!114 &2312623076368721957
 MonoBehaviour:
@@ -190,7 +190,7 @@ MonoBehaviour:
   Banks:
   - {fileID: -8326164821794136364}
   IsStream: 0
-  Is3D: 0
+  Is3D: 1
   IsOneShot: 1
   Parameters: []
   MinDistance: 1

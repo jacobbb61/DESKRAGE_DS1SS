@@ -9,29 +9,29 @@ using FMODUnity;
 public class OscarManager : MonoBehaviour
 {
     public bool CanInput = true;
+    public bool InRange = false;
 
 
     [Header("State")]
     public string CurrentState;
+    public Animator OscarAnim;
+    public List<Vector2> Locations = new List<Vector2>();
 
-    [Header("Dialog")]
+
+    [Header("Dialog UI")]
     public GameObject DialogObject;
     public TextMeshProUGUI DialogTextObject;
-    
     public string CurrentText;
-    public int CurrentTextLine=0;
+    public int CurrentTextLine = 0;
     public bool IsTalking = false;
 
-
-    [Header("Question")]
+    [Header("Question UI")]
     public GameObject QuestionObject;
     public RectTransform QuestionHightlightPos;
     public bool QuestionOrder;
     public bool QuestionOpen;
 
-
-
-    [Header("Script")]
+    [Header("Dialogue Script")]
     public List<string> StateATextLines = new List<string>();
     public List<string> StateYESTextLines = new List<string>();
     public List<string> StateNOTextLines = new List<string>();
@@ -58,7 +58,60 @@ public class OscarManager : MonoBehaviour
         IsTalking = false;
 
         CurrentTextLine = 0;
-        CurrentText = "You should not be able to see this";
+
+      //  SetLocation();
+      //  SetAnimation();
+        SetLineText();
+       
+    }
+
+    public void SetLocation() 
+    {
+        switch (CurrentState) 
+        {      
+            case "A":
+                transform.position = Locations[0];
+                break;
+            case "G":
+                transform.position = Locations[1];
+                break;
+            case "B":
+                transform.position = Locations[2];
+                break;
+            default:
+                transform.position = Locations[3];
+                break;
+        }
+    }
+
+    public void SetAnimation()
+    {
+        switch (CurrentState)
+        {
+            case "A":
+                OscarAnim.Play(""); //Sitting
+                break;
+            case "B":
+                OscarAnim.Play(""); //standing
+                break;
+            case "C":
+                OscarAnim.Play(""); //dying
+                break;
+            case "G":
+                OscarAnim.Play(""); //standing
+                break;
+            case "H":
+                OscarAnim.Play(""); //dying broken legs
+                break;
+             default:
+                OscarAnim.Play(""); //dead
+                break;
+
+        }
+    }
+    public void SetLineText()
+    {
+        CurrentText = "";
 
         StateATextLines.Add("...Oh, you... You're no Hollow, eh? Thank goodness...");
         StateATextLines.Add("...That boulder was you?...HA...I thank you for returning the favour...");
@@ -101,24 +154,23 @@ public class OscarManager : MonoBehaviour
         StateITextLines.Add("...Ah, there you are… I see you’ve felled that wretched beast... ");
         StateITextLines.Add("…Gave me quite a bit of trouble on the rooftops…");
         StateITextLines.Add("…You go on ahead… I shall catch up with you in due time…");
-
     }
 
     public void Y(InputAction.CallbackContext context)
     {
-        if (context.action.triggered && CanInput == true && QuestionOpen == false)
+        if (context.action.triggered && CanInput == true && QuestionOpen == false && InRange == true)
         {
             Debug.Log("Y Button Pressed");
             CanInput = false;
 
             if (!IsTalking) { OpenDialog(); }
             NextLine();
-           // StopAnyAudio();//stop audio and timer     
+            // StopAnyAudio();//stop audio and timer     
         }
     }
     public void A(InputAction.CallbackContext context)
     {
-        if (context.action.triggered && CanInput == true && QuestionOpen == true)
+        if (context.action.triggered && CanInput == true && QuestionOpen == true && InRange == true)
         {
             Debug.Log("A Button Pressed");
             CanInput = false;
@@ -127,7 +179,7 @@ public class OscarManager : MonoBehaviour
     }
     public void B(InputAction.CallbackContext context)
     {
-        if (context.action.triggered && CanInput == true && QuestionOpen == true)
+        if (context.action.triggered && CanInput == true && QuestionOpen == true && InRange == true)
         {
             Debug.Log("B Button Pressed");
             CanInput = false;
@@ -137,7 +189,7 @@ public class OscarManager : MonoBehaviour
     }
     public void Left(InputAction.CallbackContext context)
     {
-        if (context.action.triggered && CanInput == true && QuestionOpen == true)
+        if (context.action.triggered && CanInput == true && QuestionOpen == true && InRange == true)
         {
             CanInput = false;
             Debug.Log("Left Button Pressed");
@@ -147,7 +199,7 @@ public class OscarManager : MonoBehaviour
     }
     public void Right(InputAction.CallbackContext context)
     {
-        if (context.action.triggered && CanInput == true && QuestionOpen == true)
+        if (context.action.triggered && CanInput == true && QuestionOpen == true && InRange == true)
         {
             CanInput = false;
             Debug.Log("Right Button Pressed");
@@ -157,38 +209,44 @@ public class OscarManager : MonoBehaviour
     }
 
 
+
+
+
     public void NextLine()
     {
         if (IsTalking) { StopAnyAudio(); } //stop previous audio to play/skip to next
         IsTalking = true; //currently talking
         switch (CurrentState) //set dialog order a
-        {           
+        {
             case "A":
-                if (CurrentTextLine<3) {
+                if (CurrentTextLine < 3)
+                {
                     PlayAudio(StateAAudioClips[CurrentTextLine]);
                     RoutineToStop = StartCoroutine(WaitForAudioToEnd());//start audio timer            
                     CurrentText = StateATextLines[CurrentTextLine]; //tell dialogue text what to show
                     CurrentTextLine++;
-                } 
-                else {
+                }
+                else
+                {
                     PlayAudio(StateAAudioClips[CurrentTextLine]);
-                    //instance.start(); //play audio);//play audio  
                     CurrentTextLine = 3; // repeat the 4th line of dialog text
                     CurrentText = StateATextLines[3]; //tell dialogue text what to show
                     IsTalking = false; //done talking
                     OpenQuestion();
-                } 
+                }
 
                 break;
             case "YES":
-                if (CurrentTextLine < 10) { PlayAudio(StateAAudioClips[CurrentTextLine]); CurrentText = StateYESTextLines[CurrentTextLine]; CurrentTextLine++; } 
-                else { CurrentText = StateYESTextLines[9]; CurrentTextLine = 9; CloseDialog(); }
+                if (CurrentTextLine < 10) { CurrentText = StateYESTextLines[CurrentTextLine]; CurrentTextLine++;  }
+                else { CurrentText = StateYESTextLines[9]; CurrentTextLine = 9; CloseDialog(); IsTalking = false; }
+                if (CurrentTextLine == 8) { GiveEstus(3); }
+                if (CurrentTextLine == 9 && IsTalking) { GiveKey(); }
                 break;
             case "NO":
                 if (CurrentTextLine < 2) { CurrentText = StateNOTextLines[CurrentTextLine]; CurrentTextLine++; } else { CurrentState = "A"; CurrentTextLine = 3; CloseDialog();  }
                 break;
             case "B":
-                if (CurrentTextLine < 3) { CurrentText = StateBTextLines[CurrentTextLine]; CurrentTextLine++; } else { CurrentTextLine = 2;  CloseDialog(); }
+                if (CurrentTextLine < 3) { CurrentText = StateBTextLines[CurrentTextLine]; CurrentTextLine++; } else { CurrentTextLine = 2; CloseDialog(); }
                 break;
             case "C":
                 if (CurrentTextLine < 2) { CurrentText = StateCTextLines[CurrentTextLine]; CurrentTextLine++; } else { CloseDialog(); }
@@ -207,29 +265,25 @@ public class OscarManager : MonoBehaviour
                 break;
         }
 
-  
 
-       DialogTextObject.text = CurrentText;
-       CanInput = true;
-      
+
+        DialogTextObject.text = CurrentText;
+        CanInput = true;
+
     }
-
-
-
 
     public void CloseDialog()
     {
         StopAnyAudio();
         DialogObject.SetActive(false);
-        IsTalking = false;
         CanInput = true;
+        DialogTextObject.text = "";
     }
     public void OpenDialog()
     {
         DialogObject.SetActive(true);
-        
+        DialogTextObject.text = CurrentText; 
     }
-
     public void OpenQuestion()
     {
         QuestionObject.SetActive(true);
@@ -285,17 +339,20 @@ public class OscarManager : MonoBehaviour
 
     public void PlayAudio(EventReference AudioReferenceToPlay)
     {
-        // Emitter.Stop();
-       // Emitter.EventReference = AudioReferenceToPlay;         Emmiter system needs spacializer on the FMOD audio clips
-        // Emitter.Play();
 
+
+        Emitter.Stop();
+        Emitter.EventReference = AudioReferenceToPlay;        // Emmiter system needs spacializer on the FMOD audio clips
+        Emitter.Play();
+
+        var AudioPos = FMODUnity.RuntimeUtils.To3DAttributes(gameObject.transform.position);
 
         instance = FMODUnity.RuntimeManager.CreateInstance(AudioReferenceToPlay.Path); //choose audio  
-        instance.start();
+        instance.set3DAttributes(AudioPos);
+                                                                                       // instance.start();
         instance.release(); //release audio from memory       
         Debug.Log("Audio Played");
     }
-
     IEnumerator WaitForAudioToEnd()
     {
 
@@ -305,20 +362,48 @@ public class OscarManager : MonoBehaviour
         Debug.Log(lenght);
 
 
-        Debug.Log("Waiting");
+        Debug.Log("Waiting " + lenght);
         yield return new WaitForSeconds(lenght); //wait till end of audio
         Debug.Log("Done Waiting");
-        if (IsTalking) { NextLine(); }//play next line
-        else { CloseDialog(); }
+        if (InRange) { NextLine(); }//play next line
+        else { CloseDialog(); IsTalking = false; }
     }
     public void StopAnyAudio()
     {
-        //Emitter.Stop();
+        Emitter.Stop();
 
-        instance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE); //stop current audio
+        //  instance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE); //stop current audio
         StopCoroutine(RoutineToStop); //stop current timer
         Debug.Log("Audio Stopped");
     }
 
 
+    public void GiveEstus(int num)
+    {
+        Debug.Log("Given Estus x" + num);
+    }
+    public void GiveKey()
+    {
+        Debug.Log("Given Key");
+    }
+
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player")) //Also check if the player is on the same layer as this
+        {
+            InRange = true;
+            DialogTextObject.text = CurrentText;
+            OpenDialog();
+        }
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            InRange = false;
+            DialogObject.SetActive(false);
+            CloseQuestion();
+        }
+    }
 }
