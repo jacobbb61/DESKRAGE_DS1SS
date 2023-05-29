@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -22,6 +20,7 @@ public class Interactable : MonoBehaviour
 
     private PlayerController player;
     [SerializeField] private UnityEvent interactionEvent;
+    [SerializeField] private GameObject interactableText; // This will be the text telling the player they can interact with the object
 
     // Start is called before the first frame update
     void Start()
@@ -32,7 +31,10 @@ public class Interactable : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.E) && interactionEvent != null)
+        {
+            Interact();
+        }
     }
 
     internal void Interact()
@@ -42,13 +44,25 @@ public class Interactable : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        player.targetInteractable = this;
+        if (collision.gameObject.tag == "Player")
+        {
+            player.targetInteractable = this;
+            interactableText.SetActive(true);
+            //Debug.Log("Player enters trigger");
+        }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if(player.targetInteractable == this)
+        if (collision.gameObject.tag == "Player")
         {
-            player.targetInteractable = null;
+            if(player.targetInteractable == this)
+            {
+                player.targetInteractable = null;
+            }
+
+            interactableText.SetActive(false);
+            //Debug.Log("Player exits trigger");
         }
     }
+
 }
