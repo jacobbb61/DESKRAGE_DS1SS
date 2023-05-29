@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4758656341118550054}
   - component: {fileID: 4758656341118550049}
   - component: {fileID: 4758656341118550048}
-  - component: {fileID: 9015538154709111292}
+  - component: {fileID: -4175175949469116896}
   m_Layer: 0
   m_Name: Wall
   m_TagString: Untagged
@@ -112,7 +112,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!251 &9015538154709111292
+--- !u!251 &-4175175949469116896
 PlatformEffector2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -125,7 +125,7 @@ PlatformEffector2D:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RotationalOffset: 0
-  m_UseOneWay: 1
+  m_UseOneWay: 0
   m_UseOneWayGrouping: 0
   m_SurfaceArc: 180
   m_UseSideFriction: 0
