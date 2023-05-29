@@ -85,6 +85,7 @@ public class PlayerController : MonoBehaviour, IAvatarActions
         layerManager = FindObjectOfType<LayerManager>();
         lockOn = GetComponent<EnemyLock>();//might be getcomponentinchildren
         gameObject.layer = layerManager.GetLayer(layerManager.activeLayer).gameObject.layer;
+        gc.gameObject.layer = gameObject.layer;
     }
 
     // Update is called once per frame
@@ -272,6 +273,7 @@ public class PlayerController : MonoBehaviour, IAvatarActions
                 //UIBack
             }
         }
+        //if you want to change the time to do so go to the input manager
         if (context.interaction.ToString() == "UnityEngine.InputSystem.Interactions.TapInteraction")
         {
             if (context.performed)
