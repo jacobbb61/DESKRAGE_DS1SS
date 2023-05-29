@@ -19,14 +19,15 @@ public class PlayerController : MonoBehaviour, IAvatarActions
     [SerializeField] private float rollSpeed = 4f, rollTime = 1.3f, rollCancelTime = 1f, rollStaminaCost = 30f, rollRechargePause = 0.65f; //Distance = speed*canceltime?
     [SerializeField] private float jumpSpeed = 3f, jumpTime = 2f / 3f, jumpCancelTime = 2f / 3f, jumpStaminaCost = 30f, jumpRechargePause = 0.65f; //Distance = speed*canceltime?
     [SerializeField] private float runSpeed = 4f, runStaminaCost = 8.5f, runRechargePause = 0.65f; //Distance = speed*canceltime?
-    [SerializeField] private float backSpeed = 4f, backTime = 1.3f, backCancelTime = 1f, backStaminaCost = 30f, backRechargePause = 0.65f; //How does the player do this action???
+    [SerializeField] private float backSpeed = 4f, backTime = 1.3f, backCancelTime = 1f, backStaminaCost = 30f, backRechargePause = 0.65f; //This is what happens instead of rolling when stationary
 
     public enum PlayerMode
     {
         DEFAULT,
         RUNNING,
         ROLLING,
-        JUMPING
+        JUMPING,
+        BACKSTEPPING
     }
     [Header("Other")]
     [SerializeField]
@@ -37,7 +38,6 @@ public class PlayerController : MonoBehaviour, IAvatarActions
     [SerializeField]
     private Vector2 movement;
     public Interactable targetInteractable;
-    private float dodgeTime;
     [SerializeField]
     private float actionTime = 0;
     private bool uiOpen = false;
@@ -102,7 +102,7 @@ public class PlayerController : MonoBehaviour, IAvatarActions
             case PlayerMode.DEFAULT:
                 if (gc.grounded)
                 {
-                    if (Mathf.Abs(movement.x) > 0.01f)
+                    if (Mathf.Abs(movement.x) > 0.05f)
                     {
                         myRb.velocity = new Vector2(movement.x > 0 ? walkSpeed : -walkSpeed, myRb.velocity.y);
                         faceDirection = movement.x > 0 ? 1 : -1;
@@ -118,12 +118,12 @@ public class PlayerController : MonoBehaviour, IAvatarActions
                 }
                 break;
             case PlayerMode.RUNNING:
-                if (Mathf.Abs(movement.x) > 0.01f)
+                if (Mathf.Abs(movement.x) > 0.05f)
                 {
                     myRb.velocity = new Vector2(movement.x > 0 ? runSpeed : -runSpeed, 0f);
                     currentStamina = Mathf.Max(currentStamina - runStaminaCost * Time.deltaTime, myRb.velocity.y);
                     faceDirection = movement.x > 0 ? 1 : -1;
-                    if (currentStamina <= 0.01f)
+                    if (currentStamina <= 0.05f)
                     {
                         lastActionRechargeTime = runRechargePause;
                         mode = PlayerMode.DEFAULT;
@@ -276,7 +276,7 @@ public class PlayerController : MonoBehaviour, IAvatarActions
         {
             if (context.performed)
             {
-                if (mode == PlayerMode.DEFAULT)
+                if (mode == PlayerMode.DEFAULT && gc.grounded && currentStamina >= rollStaminaCost)
                 {
                     actionTime = 0;
                     mode = PlayerMode.ROLLING;
