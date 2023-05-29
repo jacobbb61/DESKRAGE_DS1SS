@@ -77,8 +77,19 @@ public class Layer : MonoBehaviour
         }
     }
 
+    [Tooltip("enable or disable all Effectors in the layer")] //Depreciated when player layer was changed instead
+    public void EffectorsToggle(bool mode)
+    {
+        PlatformEffector2D[] all = GetComponentsInChildren<PlatformEffector2D>();
+        foreach (PlatformEffector2D c in all)
+        {
+            c.enabled = mode;
+        }
+    }
+
     public IEnumerator Transition(float t, float s, float a)
     {
+        EffectorsToggle(s==1);
         runningCR = true;
         float timePassed = 0f;
         float initScale = currentScale;

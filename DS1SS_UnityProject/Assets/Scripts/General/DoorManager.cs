@@ -8,7 +8,7 @@ public class DoorManager : MonoBehaviour
 {
     private LayerManager layerManager;
     public bool isLocked = true;
-    [Tooltip("ID number for differentiating between door type.")]public int doorID = 0; // For differentiating between different kinds of doors
+    [Tooltip("ID number for differentiating between door type. 0 = regular, 1 = layer changing door, 2 = one-way, 3 = fog")]public int doorID = 0; // For differentiating between different kinds of doors
     public int targetLayer; // For doors that switch the player's layer
     private Collider2D doorCollider;
     private bool bossKilled;
@@ -17,7 +17,7 @@ public class DoorManager : MonoBehaviour
     void Start()
     {
         layerManager = FindObjectOfType<LayerManager>();
-        doorCollider = GetComponent<Collider2D>();
+        doorCollider = GetComponentInChildren<Collider2D>();
     }
 
     // Update is called once per frame
@@ -26,7 +26,7 @@ public class DoorManager : MonoBehaviour
         
     }
 
-    public void SwitchLayer()
+    public void UseDoor()
     {
         if (isLocked)
         {
@@ -50,6 +50,7 @@ public class DoorManager : MonoBehaviour
 
                 case 2: // One-way doors
                     {
+                        
                         break;
                     }
 

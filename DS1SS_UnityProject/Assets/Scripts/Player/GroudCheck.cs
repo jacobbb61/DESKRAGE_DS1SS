@@ -21,7 +21,7 @@ public class GroudCheck : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D other)
     {
-        if(other.gameObject.tag!="Player")
+        if(other.gameObject.tag!="Player" && other.gameObject.layer == gameObject.layer)
         {
             grounded = true;
             groundSlope = other.gameObject.transform.rotation.z;
