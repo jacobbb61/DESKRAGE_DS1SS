@@ -5,6 +5,7 @@ using UnityEngine;
 public class GroudCheck : MonoBehaviour
 {
     public bool grounded;
+    public float groundSlope; //slope of the "current" "ground" collider
 
     // Start is called before the first frame update
     void Start()
@@ -23,11 +24,13 @@ public class GroudCheck : MonoBehaviour
         if(other.gameObject.tag!="Player")
         {
             grounded = true;
+            groundSlope = other.gameObject.transform.rotation.z;
         }
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
         grounded = false;
+        groundSlope = 0;
     }
 }

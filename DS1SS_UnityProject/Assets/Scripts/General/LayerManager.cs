@@ -6,6 +6,7 @@ using UnityEngine.Events;
 
 public class LayerManager : MonoBehaviour
 {
+    public bool debug = false;
     public static LayerManager instance { get; private set; }
     [SerializeField] private List<Layer> layers;
     [Tooltip("Set this to the initial starting layer or perish")]
@@ -73,16 +74,16 @@ public class LayerManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //remove when doors only
-        if (Input.GetKeyDown(KeyCode.DownArrow))
+        //turn off debug when using doors
+        if (Input.GetKeyDown(KeyCode.DownArrow) && debug)
         {
             ChangeLayer(internalActiveLayer - 1);
         }
-        else if (Input.GetKeyDown(KeyCode.UpArrow))
+        else if (Input.GetKeyDown(KeyCode.UpArrow) && debug)
         {
             ChangeLayer(internalActiveLayer + 1);
         }
-        //end remove when doors only
+        //end debug for doors
     }
 
     [Tooltip("Change the 'active' group of objects")]
@@ -156,7 +157,7 @@ public class LayerManager : MonoBehaviour
 
     public Layer GetLayer(int index)
     {
-        if(index < layers.Count && index >=0)
+        if (index < layers.Count && index >= 0)
         {
             return layers[index];
         }
