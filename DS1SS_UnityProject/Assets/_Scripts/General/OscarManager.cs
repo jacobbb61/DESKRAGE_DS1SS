@@ -59,7 +59,7 @@ public class OscarManager : MonoBehaviour
 
         CurrentTextLine = 0;
 
-      //  SetLocation();
+        SetLocation();
       //  SetAnimation();
         SetLineText();
        

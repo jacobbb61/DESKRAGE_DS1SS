@@ -6,15 +6,15 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/LayerManagerTestScene.unity
+    path: Assets/_Scenes/LayerManagerTestScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
-    path: Assets/Scenes/UI Scenes/End Credits.unity
+    path: Assets/_Scenes/UI Scenes/End Credits.unity
     guid: f607444b6a804d94e95d3f01601fb461
   - enabled: 1
-    path: Assets/Scenes/UI Scenes/Main Menu.unity
+    path: Assets/_Scenes/UI Scenes/Main Menu.unity
     guid: f6d529cd1362b8d4bb1f4c511cd8a117
   - enabled: 1
-    path: Assets/Scenes/UI Scenes/Start Screen.unity
+    path: Assets/_Scenes/UI Scenes/Start Screen.unity
     guid: 07253c1a870b05e41ad22eb62033e330
   m_configObjects: {}
