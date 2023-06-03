@@ -10,6 +10,7 @@ public class OscarManager : MonoBehaviour
 {
     public bool CanInput = true;
     public bool InRange = false;
+    public bool IsOscarDead = false;
 
 
     [Header("State")]
@@ -47,6 +48,14 @@ public class OscarManager : MonoBehaviour
     private Coroutine RoutineToStop;
     public StudioEventEmitter Emitter;
     public List<EventReference> StateAAudioClips = new List<EventReference>();
+    public List<EventReference> StateYESAudioClips = new List<EventReference>();
+    public List<EventReference> StateNOAudioClips = new List<EventReference>();
+    public List<EventReference> StateBAudioClips = new List<EventReference>();
+    public List<EventReference> StateCAudioClips = new List<EventReference>();
+    public List<EventReference> StateDFAudioClips = new List<EventReference>();
+    public List<EventReference> StateGAudioClips = new List<EventReference>();
+    public List<EventReference> StateHAudioClips = new List<EventReference>();
+    public List<EventReference> StateIAudioClips = new List<EventReference>();
 
 
     public void Start()
@@ -228,40 +237,118 @@ public class OscarManager : MonoBehaviour
                 }
                 else
                 {
+                    OpenDialog();
                     PlayAudio(StateAAudioClips[CurrentTextLine]);
                     CurrentTextLine = 3; // repeat the 4th line of dialog text
                     CurrentText = StateATextLines[3]; //tell dialogue text what to show
                     IsTalking = false; //done talking
                     OpenQuestion();
-                }
+                } //repeats question
 
                 break;
             case "YES":
-                if (CurrentTextLine < 10) { CurrentText = StateYESTextLines[CurrentTextLine]; CurrentTextLine++;  }
-                else { CurrentText = StateYESTextLines[9]; CurrentTextLine = 9; CloseDialog(); IsTalking = false; }
+                if (CurrentTextLine < 10)
+                {
+                    PlayAudio(StateYESAudioClips[CurrentTextLine]);
+                    RoutineToStop = StartCoroutine(WaitForAudioToEnd());//start audio timer            
+                    CurrentText = StateYESTextLines[CurrentTextLine]; //tell dialogue text what to show
+                    CurrentTextLine++;
+                }
+                else
+                {
+                    
+                    CurrentTextLine = 9; // repeat the nth line of dialog text
+                    CurrentText = StateYESTextLines[9]; //tell dialogue text what to show
+                    PlayAudio(StateYESAudioClips[CurrentTextLine]);
+                    IsTalking = false; //done talking
+                    CloseDialog();
+                } //repeats
                 if (CurrentTextLine == 8) { GiveEstus(3); }
                 if (CurrentTextLine == 9 && IsTalking) { GiveKey(); }
                 break;
             case "NO":
-                if (CurrentTextLine < 2) { CurrentText = StateNOTextLines[CurrentTextLine]; CurrentTextLine++; } else { CurrentState = "A"; CurrentTextLine = 3; CloseDialog();  }
+                if (CurrentTextLine < 2)
+                {
+                    PlayAudio(StateNOAudioClips[CurrentTextLine]);
+                    RoutineToStop = StartCoroutine(WaitForAudioToEnd());//start audio timer            
+                    CurrentText = StateNOTextLines[CurrentTextLine]; //tell dialogue text what to show
+                    CurrentTextLine++;
+                } else { CurrentState = "A"; CurrentTextLine = 3; RoutineToStop = StartCoroutine(WaitForAudioToEnd()); CloseDialog();  } //reset to A question
                 break;
             case "B":
-                if (CurrentTextLine < 3) { CurrentText = StateBTextLines[CurrentTextLine]; CurrentTextLine++; } else { CurrentTextLine = 2; CloseDialog(); }
-                break;
+                if (CurrentTextLine < 3)
+                {
+                    PlayAudio(StateBAudioClips[CurrentTextLine]);
+                    RoutineToStop = StartCoroutine(WaitForAudioToEnd());//start audio timer            
+                    CurrentText = StateBTextLines[CurrentTextLine]; //tell dialogue text what to show
+                    CurrentTextLine++;
+                } else
+                {                  
+                    CurrentTextLine = 2; // repeat the nth line of dialog text
+                    CurrentText = StateBTextLines[2]; //tell dialogue text what to show
+                    PlayAudio(StateBAudioClips[CurrentTextLine]);
+                    IsTalking = false; //done talking
+                    CloseDialog(); } //repeats
+                    break;
             case "C":
-                if (CurrentTextLine < 2) { CurrentText = StateCTextLines[CurrentTextLine]; CurrentTextLine++; } else { CloseDialog(); }
+                if (CurrentTextLine < 2)
+                {
+                    PlayAudio(StateCAudioClips[CurrentTextLine]);
+                    RoutineToStop = StartCoroutine(WaitForAudioToEnd());//start audio timer            
+                    CurrentText = StateCTextLines[CurrentTextLine]; //tell dialogue text what to show
+                    CurrentTextLine++;
+                } else { CloseDialog(); IsOscarDead = true; } //dies
+                if (CurrentTextLine == 2) { GiveEstus(3); }
                 break;
             case "DF":
-                if (CurrentTextLine < 1) { CurrentText = StateDFTextLines[CurrentTextLine]; CurrentTextLine++; } else { CloseDialog(); }
+                if (CurrentTextLine < 1)
+                {
+                    PlayAudio(StateDFAudioClips[CurrentTextLine]);
+                    RoutineToStop = StartCoroutine(WaitForAudioToEnd());//start audio timer            
+                    CurrentText = StateDFTextLines[CurrentTextLine]; //tell dialogue text what to show
+                    CurrentTextLine++;
+                } else { CloseDialog(); IsOscarDead = true; } //dies
                 break;
             case "G":
-                if (CurrentTextLine < 4) { CurrentText = StateGTextLines[CurrentTextLine]; CurrentTextLine++; } else { CurrentTextLine = 3; CloseDialog(); }
+                if (CurrentTextLine < 4)
+                {
+                    PlayAudio(StateGAudioClips[CurrentTextLine]);
+                    RoutineToStop = StartCoroutine(WaitForAudioToEnd());//start audio timer            
+                    CurrentText = StateGTextLines[CurrentTextLine]; //tell dialogue text what to show
+                    CurrentTextLine++;
+                } else
+                {
+                    
+                    CurrentTextLine = 3; // repeat the nth line of dialog text
+                    CurrentText = StateGTextLines[3]; //tell dialogue text what to show
+                    PlayAudio(StateGAudioClips[CurrentTextLine]);
+                    IsTalking = false; //done talking
+                    CloseDialog();  } //repeats
                 break;
             case "H":
-                if (CurrentTextLine < 4) { CurrentText = StateHTextLines[CurrentTextLine]; CurrentTextLine++; } else { CloseDialog(); }
+                if (CurrentTextLine < 4)
+                {
+                    PlayAudio(StateHAudioClips[CurrentTextLine]);
+                    RoutineToStop = StartCoroutine(WaitForAudioToEnd());//start audio timer            
+                    CurrentText = StateHTextLines[CurrentTextLine]; //tell dialogue text what to show
+                    CurrentTextLine++;
+                } else { CloseDialog(); IsOscarDead = true; } //dies
                 break;
             case "I":
-                if (CurrentTextLine < 3) { CurrentText = StateITextLines[CurrentTextLine]; CurrentTextLine++; } else { CurrentTextLine = 2; CloseDialog(); }
+                if (CurrentTextLine < 3)
+                {
+                    PlayAudio(StateIAudioClips[CurrentTextLine]);
+                    RoutineToStop = StartCoroutine(WaitForAudioToEnd());//start audio timer            
+                    CurrentText = StateITextLines[CurrentTextLine]; //tell dialogue text what to show
+                    CurrentTextLine++;
+                } else
+                {
+                    PlayAudio(StateGAudioClips[CurrentTextLine]);
+                    CurrentTextLine = 2; // repeat the nth line of dialog text
+                    CurrentText = StateGTextLines[2]; //tell dialogue text what to show
+                    IsTalking = false; //done talking
+                    CloseDialog();
+                }
                 break;
         }
 
@@ -324,7 +411,7 @@ public class OscarManager : MonoBehaviour
             CloseQuestion();
             CurrentText = StateYESTextLines[CurrentTextLine];
             DialogTextObject.text = CurrentText;
-            CurrentTextLine = 1;
+            CurrentTextLine = 0;
         }
         else
         {
@@ -333,7 +420,7 @@ public class OscarManager : MonoBehaviour
             IsTalking = false;
             DialogObject.SetActive(false);
         }
-        CanInput = true;
+        NextLine();
     }
 
 
@@ -358,7 +445,7 @@ public class OscarManager : MonoBehaviour
 
         instance.getDescription(out FMOD.Studio.EventDescription Des);
         Des.getLength(out int lengthMili);
-        int lenght = lengthMili / 1000;
+        float lenght = (lengthMili / 1000) +1f;
         Debug.Log(lenght);
 
 
@@ -404,6 +491,7 @@ public class OscarManager : MonoBehaviour
             InRange = false;
             DialogObject.SetActive(false);
             CloseQuestion();
+            CloseDialog();
         }
     }
 }
