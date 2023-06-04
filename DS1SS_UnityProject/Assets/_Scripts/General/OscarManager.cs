@@ -8,13 +8,25 @@ using TMPro;
 using FMODUnity;
 public class OscarManager : MonoBehaviour
 {
+
+    /*
+     To kill oscar from another script, set the CurrentState to "DF", the CurrentTextLine to 0, then call the next line function
+     */
+
+
+
+
+
+
+
     public bool CanInput = true;
     public bool InRange = false;
-    public bool IsOscarDead = false;
+    public bool IsOscarDead = false; //needs to be saved
+    public bool MoveInteractionOnLoad = false; //needs to be saved
 
 
     [Header("State")]
-    public string CurrentState;
+    public string CurrentState; //needs to be saved
     public Animator OscarAnim;
     public List<Vector2> Locations = new List<Vector2>();
 
@@ -67,27 +79,100 @@ public class OscarManager : MonoBehaviour
         IsTalking = false;
 
         CurrentTextLine = 0;
+        SetLineText();
 
+
+        CheckMemory(); // check for demon killed and pursuer triggered, also updates states based on previous loads
+
+
+        if (MoveInteractionOnLoad) { NextInteraction(); }
+        SetDeath();
         SetLocation();
       //  SetAnimation();
-        SetLineText();
+       
+
        
     }
+    public void CheckMemory()
+    {
+        /*
+         * IsOscarDead = GameMemory.IsOscarDead;
+         * MoveInteractionOnLoad = GameMemory.MoveInteractionOnLoad;
+         * CurrentState = GameMemory.CurrentState;
 
+         if player kills demon 
+        {
+        if intaraction A {interaction I }
+        if interaction B or G { interaction C }
+
+        }
+
+        if player triggers pursuer 
+        {
+        if interaction I { interaction C }
+
+
+        }
+          MoveInteractionOnLoad=false;
+         */
+    }
+
+
+    public void NextInteraction()
+    {
+        switch (CurrentState) 
+        {
+            case "YES":
+                CurrentState = "B";              
+                break;
+            case "B":
+                CurrentState = "G";
+                break;
+            case "G":
+                CurrentState = "H";
+                break;
+            default:
+                break;
+        }
+        MoveInteractionOnLoad = false;
+    }
+    public void SetDeath()
+    {
+        switch (CurrentState)
+        {
+            case "C":
+                CurrentState = "E";
+                break;
+            case "F":
+                CurrentState = "E";
+                break;
+            case "H":
+                CurrentState = "E";
+                break;
+            default:
+                break;
+        }
+        if (CurrentState == "E") { IsOscarDead = true; }
+        if (CurrentState == "D") { IsOscarDead = true; }
+    }
     public void SetLocation() 
     {
         switch (CurrentState) 
         {      
             case "A":
-                transform.position = Locations[0];
+                //set layer to front
+                transform.position = Locations[0];              
                 break;
             case "G":
+                //set layer to front
                 transform.position = Locations[1];
                 break;
             case "B":
+                //set layer to front
                 transform.position = Locations[2];
                 break;
             default:
+                //set layer to middle
                 transform.position = Locations[3];
                 break;
         }
@@ -167,7 +252,7 @@ public class OscarManager : MonoBehaviour
 
     public void Y(InputAction.CallbackContext context)
     {
-        if (context.action.triggered && CanInput == true && QuestionOpen == false && InRange == true)
+        if (context.action.triggered && CanInput == true && QuestionOpen == false && InRange == true && IsOscarDead==false)
         {
             Debug.Log("Y Button Pressed");
             CanInput = false;
@@ -264,7 +349,7 @@ public class OscarManager : MonoBehaviour
                     CloseDialog();
                 } //repeats
                 if (CurrentTextLine == 8) { GiveEstus(3); }
-                if (CurrentTextLine == 9 && IsTalking) { GiveKey(); }
+                if (CurrentTextLine == 9 && IsTalking) { GiveKey(); MoveInteractionOnLoad = true; }
                 break;
             case "NO":
                 if (CurrentTextLine < 2)
@@ -288,7 +373,9 @@ public class OscarManager : MonoBehaviour
                     CurrentText = StateBTextLines[2]; //tell dialogue text what to show
                     PlayAudio(StateBAudioClips[CurrentTextLine]);
                     IsTalking = false; //done talking
-                    CloseDialog(); } //repeats
+                    CloseDialog();
+                    MoveInteractionOnLoad = true;
+                } //repeats
                     break;
             case "C":
                 if (CurrentTextLine < 2)
@@ -307,7 +394,7 @@ public class OscarManager : MonoBehaviour
                     RoutineToStop = StartCoroutine(WaitForAudioToEnd());//start audio timer            
                     CurrentText = StateDFTextLines[CurrentTextLine]; //tell dialogue text what to show
                     CurrentTextLine++;
-                } else { CloseDialog(); IsOscarDead = true; } //dies
+                } else { CloseDialog(); OscarKilled(); } //dies
                 break;
             case "G":
                 if (CurrentTextLine < 4)
@@ -318,7 +405,7 @@ public class OscarManager : MonoBehaviour
                     CurrentTextLine++;
                 } else
                 {
-                    
+                    MoveInteractionOnLoad = true;
                     CurrentTextLine = 3; // repeat the nth line of dialog text
                     CurrentText = StateGTextLines[3]; //tell dialogue text what to show
                     PlayAudio(StateGAudioClips[CurrentTextLine]);
@@ -358,6 +445,8 @@ public class OscarManager : MonoBehaviour
         CanInput = true;
 
     }
+
+
 
     public void CloseDialog()
     {
@@ -472,6 +561,30 @@ public class OscarManager : MonoBehaviour
     public void GiveKey()
     {
         Debug.Log("Given Key");
+    }
+
+    public void OscarKilled()
+    {
+        IsOscarDead = true;
+        MoveInteractionOnLoad = false;
+        switch (CurrentState)
+        {
+            case "A":
+                GiveEstus(3); //drops estus on death
+                break;
+            case "B":
+                GiveEstus(3);
+                break;
+            case "G":
+                GiveEstus(3);
+                break;
+            case "I":
+                CurrentState = "E";
+                GiveEstus(3);
+                break;
+            default:
+                break;
+        }
     }
 
 

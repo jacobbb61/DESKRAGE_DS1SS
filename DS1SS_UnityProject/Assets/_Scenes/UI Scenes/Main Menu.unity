@@ -1417,6 +1417,13 @@ MonoBehaviour:
   CanInput: 1
   SceneTransitionAnim: {fileID: 1973058050}
   ActiveMenu: Main
+  MainMenuMusic:
+    Guid:
+      Data1: -909972881
+      Data2: 1289728968
+      Data3: 1247814543
+      Data4: -2039254989
+    Path: event:/MainMenuMusic
   MainHightlightPos: {fileID: 1520790938}
   MainHightlightAnim: {fileID: 1520790941}
   NewGameMessage: {fileID: 1073011079}

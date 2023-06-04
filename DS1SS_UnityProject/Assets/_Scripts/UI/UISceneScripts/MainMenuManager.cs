@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
+using FMODUnity;
 
 public class MainMenuManager : MonoBehaviour
 {
@@ -12,6 +13,10 @@ public class MainMenuManager : MonoBehaviour
 
     public Animator SceneTransitionAnim;
     public string ActiveMenu = "Main";
+
+    public EventReference MainMenuMusic;
+ 
+    
 
     [Header("Main")]
     public RectTransform MainHightlightPos;
@@ -37,11 +42,19 @@ public class MainMenuManager : MonoBehaviour
     private int SettingsOrder;
     public bool HUDActive;
     public bool SubtitlesActive;
-    public int AudioMasterNum;
-    public int AudioEffectsNum;
-    public int AudioAmbienceNum;
-    public int AudioMusicNum;
-    public int AudioDialogNum;
+
+    public FMOD.Studio.VCA VcaMasterController;
+    public FMOD.Studio.VCA VcaEffectsController;
+    public FMOD.Studio.VCA VcaAmbienceController;
+    public FMOD.Studio.VCA VcaMusicController;
+    public FMOD.Studio.VCA VcaDialogueController;
+    
+    public float AudioMasterNum;
+    public float AudioEffectsNum;
+    public float AudioAmbienceNum;
+    public float AudioMusicNum;
+    public float AudioDialogNum;
+
     public TextMeshProUGUI HUDText;
     public TextMeshProUGUI SubtitlesText;
     public TextMeshProUGUI AudioMasterText;
@@ -57,6 +70,8 @@ public class MainMenuManager : MonoBehaviour
 
     private void Start()
     {
+
+
         ActiveMenu = "Main";
         MainOrder = 1;
         MoveMainHighlight();
@@ -73,6 +88,15 @@ public class MainMenuManager : MonoBehaviour
 
         AchievementsOpen = false;
         Achievements.SetActive(false);
+
+
+        FMOD.Studio.EventInstance instance = RuntimeManager.CreateInstance(MainMenuMusic.Path);
+        instance.start(); 
+        VcaMasterController = FMODUnity.RuntimeManager.GetVCA("vca:/MasterVCA");
+        VcaEffectsController = FMODUnity.RuntimeManager.GetVCA("vca:/EffectsVCA");
+        VcaAmbienceController = FMODUnity.RuntimeManager.GetVCA("vca:/AmbienceVCA");
+        VcaMusicController = FMODUnity.RuntimeManager.GetVCA("vca:/MusicVCA");
+        VcaDialogueController = FMODUnity.RuntimeManager.GetVCA("vca:/DialogueVCA");
     }
     public void Up(InputAction.CallbackContext context)
     {
@@ -397,8 +421,20 @@ public class MainMenuManager : MonoBehaviour
         AudioMusicNum = Mathf.Clamp(AudioMusicNum, 0, 10);
         AudioDialogNum = Mathf.Clamp(AudioDialogNum, 0, 10);
 
+
+
         CanInput = true;
         UpdateSettingsText();
+        UpdateFMODSettings();
+    }
+
+    public void UpdateFMODSettings()
+    {
+        VcaMasterController.setVolume(AudioMasterNum / 10);
+        VcaEffectsController.setVolume(AudioEffectsNum / 10);
+        VcaAmbienceController.setVolume(AudioAmbienceNum / 10);
+        VcaMusicController.setVolume(AudioMusicNum / 10);
+        VcaDialogueController.setVolume(AudioDialogNum / 10);
     }
  
     public void UpdateSettingsText()

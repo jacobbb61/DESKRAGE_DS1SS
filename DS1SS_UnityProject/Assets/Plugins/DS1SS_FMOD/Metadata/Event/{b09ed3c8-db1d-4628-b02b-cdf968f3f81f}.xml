@@ -53,7 +53,7 @@
 			<destination>{58256108-3a62-427a-8711-55d01dba48f4}</destination>
 		</relationship>
 		<relationship name="output">
-			<destination>{6bf17949-890e-4bf7-a6d0-731cc2fb0833}</destination>
+			<destination>{ee715613-cfb2-4671-8e9b-97ef368cbc26}</destination>
 		</relationship>
 	</object>
 	<object class="EventAutomatableProperties" id="{9f2b14ae-117c-49af-b390-63c207e8951f}" />
@@ -114,7 +114,6 @@
 		<relationship name="effects">
 			<destination>{7e14baab-c3e4-4d6e-bc5c-85a4a129251a}</destination>
 			<destination>{3a88146e-77eb-4eaf-be38-d0d01d22db2b}</destination>
-			<destination>{e8e6e6f6-6e0e-4769-800f-6fb926ffbd7a}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{88d06051-2a27-4426-b4ba-8ec74b5a889d}" />
@@ -127,6 +126,5 @@
 	<object class="MixerBusPanner" id="{d04824a4-5bba-42d3-9cb3-a682a4424d7e}" />
 	<object class="MixerBusFader" id="{7e14baab-c3e4-4d6e-bc5c-85a4a129251a}" />
 	<object class="SpatialiserEffect" id="{3a88146e-77eb-4eaf-be38-d0d01d22db2b}" />
-	<object class="SpatialiserEffect" id="{e8e6e6f6-6e0e-4769-800f-6fb926ffbd7a}" />
 	<object class="MixerBusFader" id="{0236e5cd-988c-4227-a64f-adb4fad45fce}" />
 </objects>
