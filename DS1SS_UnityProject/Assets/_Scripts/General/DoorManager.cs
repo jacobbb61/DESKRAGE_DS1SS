@@ -10,14 +10,13 @@ public class DoorManager : MonoBehaviour
     public bool isLocked = true;
     [Tooltip("ID number for differentiating between door type. 0 = regular, 1 = layer changing door, 2 = one-way, 3 = fog")]public int doorID = 0; // For differentiating between different kinds of doors
     public int targetLayer; // For doors that switch the player's layer
-    private Collider2D doorCollider;
+    [SerializeField] private Collider2D doorCollider;
     private bool bossKilled;
 
     // Start is called before the first frame update
     void Start()
     {
         layerManager = FindObjectOfType<LayerManager>();
-        doorCollider = GetComponentInChildren<Collider2D>();
     }
 
     // Update is called once per frame
@@ -34,32 +33,36 @@ public class DoorManager : MonoBehaviour
         }
         else
         {
-            switch(doorID)
+            switch(this.doorID)
             {
-                case 0: // Regular doors
+                case (0): // Regular doors
                     {
                         doorCollider.enabled = false;
+                        Debug.Log("Case 0");
                         break;
                     }
 
-                case 1: // Layer changing doors
+                case (1): // Layer changing doors
                     {
                         layerManager.ChangeLayer(targetLayer);
+                        Debug.Log("Case 1");
                         break;
                     }
 
-                case 2: // One-way doors
+                case (2): // One-way doors
                     {
-                        
+
+                        Debug.Log("Case 2");
                         break;
                     }
 
-                case 3: // Fog doors
+                case (3): // Fog doors
                     {
                         if (bossKilled)
                         {
                             doorCollider.enabled = false;
                         }
+                        Debug.Log("Case 3");
                         break;
                     }
                 default:
