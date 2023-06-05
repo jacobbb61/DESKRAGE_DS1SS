@@ -90,7 +90,9 @@ public class MainMenuManager : MonoBehaviour
         Achievements.SetActive(false);
 
 
-        FMOD.Studio.EventInstance instance = RuntimeManager.CreateInstance(MainMenuMusic.Path);
+        FMOD.Studio.EventInstance instance = RuntimeManager.CreateInstance(MainMenuMusic);
+        Debug.Log(MainMenuMusic);
+        //Debug.Log(MainMenuMusic.Path);
         instance.start(); 
         VcaMasterController = FMODUnity.RuntimeManager.GetVCA("vca:/MasterVCA");
         VcaEffectsController = FMODUnity.RuntimeManager.GetVCA("vca:/EffectsVCA");

@@ -521,9 +521,11 @@ public class OscarManager : MonoBehaviour
         Emitter.EventReference = AudioReferenceToPlay;        // Emmiter system needs spacializer on the FMOD audio clips
         Emitter.Play();
 
+     
+
         var AudioPos = FMODUnity.RuntimeUtils.To3DAttributes(gameObject.transform.position);
 
-        instance = FMODUnity.RuntimeManager.CreateInstance(AudioReferenceToPlay.Path); //choose audio  
+        instance = FMODUnity.RuntimeManager.CreateInstance(AudioReferenceToPlay); //choose audio  
         instance.set3DAttributes(AudioPos);
                                                                                        // instance.start();
         instance.release(); //release audio from memory       
