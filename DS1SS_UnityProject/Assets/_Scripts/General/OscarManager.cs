@@ -11,6 +11,8 @@ public class OscarManager : MonoBehaviour
 
     /*
      To kill oscar from another script, set the CurrentState to "DF", the CurrentTextLine to 0, then call the next line function
+
+    oscar still needs the layer change from locations and to check if the player is on the smae layer 
      */
 
 
