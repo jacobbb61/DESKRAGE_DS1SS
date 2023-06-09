@@ -329,6 +329,48 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: unwalk_9
+      rect:
+        serializedVersion: 2
+        x: 1152
+        y: 0
+        width: 128
+        height: 128
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b4fca42bfd6859f438dafdbf698702d1
+      internalID: -1170457439
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: unwalk_10
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 0
+        width: 128
+        height: 128
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 91efa03370d6ba541ae91fc7acff2b55
+      internalID: 471885429
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -342,6 +384,7 @@ TextureImporter:
     nameFileIdTable:
       unwalk_0: 1074967143
       unwalk_1: 1736096951
+      unwalk_10: 471885429
       unwalk_2: -2130847270
       unwalk_3: -693628037
       unwalk_4: 1690724156
@@ -349,6 +392,7 @@ TextureImporter:
       unwalk_6: -2009743084
       unwalk_7: -1483954252
       unwalk_8: 455852065
+      unwalk_9: -1170457439
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
