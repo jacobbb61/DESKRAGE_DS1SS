@@ -15,8 +15,8 @@ public class MainMenuManager : MonoBehaviour
     public string ActiveMenu = "Main";
 
     public EventReference MainMenuMusic;
- 
-    
+    private FMOD.Studio.EventInstance instance;
+
 
     [Header("Main")]
     public RectTransform MainHightlightPos;
@@ -68,7 +68,7 @@ public class MainMenuManager : MonoBehaviour
     public Animator AchievementsExitAnim;
     private bool AchievementsOpen=false;
 
-    private void Start()
+    public void Start()
     {
 
 
@@ -90,10 +90,11 @@ public class MainMenuManager : MonoBehaviour
         Achievements.SetActive(false);
 
 
-        FMOD.Studio.EventInstance instance = RuntimeManager.CreateInstance(MainMenuMusic);
+        instance = FMODUnity.RuntimeManager.CreateInstance(MainMenuMusic);
         Debug.Log(MainMenuMusic);
         //Debug.Log(MainMenuMusic.Path);
-        instance.start(); 
+        instance.start();
+       
         VcaMasterController = FMODUnity.RuntimeManager.GetVCA("vca:/MasterVCA");
         VcaEffectsController = FMODUnity.RuntimeManager.GetVCA("vca:/EffectsVCA");
         VcaAmbienceController = FMODUnity.RuntimeManager.GetVCA("vca:/AmbienceVCA");
@@ -452,11 +453,13 @@ public class MainMenuManager : MonoBehaviour
 
     IEnumerator LoadNewGame()
     {
+        instance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+        instance.release();
         Debug.Log("Loading New Game");
         SceneTransitionAnim.SetTrigger("Active");
         yield return new WaitForSeconds(1.2f);
         //SceneManager.LoadScene("End Credits", LoadSceneMode.Single); Load new game scene
-        SceneManager.LoadScene("Main Menu", LoadSceneMode.Single);
+        SceneManager.LoadScene("Build", LoadSceneMode.Single);
     }
     IEnumerator ExitNewGame()
     {     
@@ -468,6 +471,8 @@ public class MainMenuManager : MonoBehaviour
     }
     IEnumerator LoadCredits()
     {
+        instance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+        instance.release();
         Debug.Log("Loading End Credits");
         SceneTransitionAnim.SetTrigger("Active");
         yield return new WaitForSeconds(1.2f);
@@ -497,6 +502,8 @@ public class MainMenuManager : MonoBehaviour
     }
     IEnumerator QuitGame()
     {
+        instance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+        instance.release();
         Debug.Log("Quiting Game");
         SceneTransitionAnim.SetTrigger("Active");
         yield return new WaitForSeconds(1.2f);
