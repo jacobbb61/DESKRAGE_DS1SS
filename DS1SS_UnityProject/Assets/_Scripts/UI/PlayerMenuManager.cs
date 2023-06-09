@@ -412,7 +412,7 @@ public class PlayerMenuManager : MonoBehaviour
         switch (QuitOrder)
         {
             case 1:
-                Debug.Log("Quit");
+                SceneManager.LoadScene("Main Menu", LoadSceneMode.Single);
                 break;
 
             case 2:
