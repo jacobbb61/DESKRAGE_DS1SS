@@ -9,13 +9,15 @@ using FMODUnity;
 
 public class MainMenuManager : MonoBehaviour
 {
+    public static MainMenuManager Instance;
+
     public bool CanInput = true;
 
     public Animator SceneTransitionAnim;
     public string ActiveMenu = "Main";
 
     public EventReference MainMenuMusic;
-    private FMOD.Studio.EventInstance instance;
+    public FMOD.Studio.EventInstance FMODinstance;
 
 
     [Header("Main")]
@@ -23,16 +25,16 @@ public class MainMenuManager : MonoBehaviour
     public Animator MainHightlightAnim;
     private int MainOrder = 1;
 
-    [Header("New Game Message")]
-    public GameObject NewGameMessage;
-    public RectTransform NGHightlightPos;
-    public Animator NGHightlightAnim;
-    private bool NGOrder;
-
-    [Header("Load Game")]
-    public GameObject LoadGameText;
-    public GameObject LoadGameTextGrey;
-    public bool HasGameSave;
+    [Header("Character Menu")]
+    public GameObject CharacterMenu;
+    public RectTransform CharacterMenuHighlight;
+    public UICharacterSaveSlot Slot01;
+    public UICharacterSaveSlot Slot02;
+    public UICharacterSaveSlot Slot03;
+    public GameObject NoSlots;
+    public Animator CharacterMenuExitAnim;
+    private bool CharacterMenuOpen = false;
+    private int CharacterMenuOrder = 1;
 
     [Header("Settings")]
     public GameObject Settings; 
@@ -68,20 +70,25 @@ public class MainMenuManager : MonoBehaviour
     public Animator AchievementsExitAnim;
     private bool AchievementsOpen=false;
 
+    private void Awake()
+    {
+        if(Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
     public void Start()
     {
-
+        WorldSaveGameManager.Instance.LoadAllCharacterSlots();
 
         ActiveMenu = "Main";
         MainOrder = 1;
         MoveMainHighlight();
-
-        NewGameMessage.SetActive(false);
-        NGOrder = false;
-        MoveNGHighlight();
-
-        LoadGameText.SetActive(HasGameSave);
-        LoadGameTextGrey.SetActive(!HasGameSave);
 
         SettingsOpen = false;
         Settings.SetActive(false);
@@ -90,10 +97,10 @@ public class MainMenuManager : MonoBehaviour
         Achievements.SetActive(false);
 
 
-        instance = FMODUnity.RuntimeManager.CreateInstance(MainMenuMusic);
+        FMODinstance = FMODUnity.RuntimeManager.CreateInstance(MainMenuMusic);
         Debug.Log(MainMenuMusic);
         //Debug.Log(MainMenuMusic.Path);
-        instance.start();
+        FMODinstance.start();
        
         VcaMasterController = FMODUnity.RuntimeManager.GetVCA("vca:/MasterVCA");
         VcaEffectsController = FMODUnity.RuntimeManager.GetVCA("vca:/EffectsVCA");
@@ -117,6 +124,10 @@ public class MainMenuManager : MonoBehaviour
                     SettingsOrder--;
                     MoveSettingsHighlight();
                     break;
+                case "CharacterMenu":
+                    CharacterMenuOrder--;
+                    MoveCharacterMenuHighlight();
+                    break;
                 default:
                     CanInput = true;
                     break;
@@ -139,6 +150,10 @@ public class MainMenuManager : MonoBehaviour
                     SettingsOrder++;
                     MoveSettingsHighlight();
                     break;
+                case "CharacterMenu":
+                    CharacterMenuOrder++;
+                    MoveCharacterMenuHighlight();
+                    break;
                 default:
                     CanInput = true;
                     break;
@@ -153,10 +168,7 @@ public class MainMenuManager : MonoBehaviour
             Debug.Log("Left Button Pressed");
             switch (ActiveMenu)
             {
-                case "New Game Message":
-                    NGOrder = true;
-                    MoveNGHighlight();                  
-                    break;
+
                 case "Settings":
                     UpdateSettings(true);
                     break;
@@ -174,11 +186,7 @@ public class MainMenuManager : MonoBehaviour
             Debug.Log("Right Button Pressed");
             switch (ActiveMenu)
             {
-                case "New Game Message":
-                    NGOrder = false;
-                    MoveNGHighlight();
-                    CanInput = true;
-                    break;
+  
                 case "Settings":
                     UpdateSettings(false);
                     break;
@@ -196,17 +204,18 @@ public class MainMenuManager : MonoBehaviour
             Debug.Log("A Button Pressed");
             CanInput = false;
             switch (ActiveMenu)
-            { 
-                
-               case "New Game Message":
-                    SelectNG();
-                    break;
+            {             
 
                 case "Main":
                     SelectMain();                   
                     break;
+                case "NoSlots":
+                    CloseNoSlotsMessage();
+                    break;
+                case "CharacterMenu":
+                    SelectCharacterMenu();
+                    break;
 
-               
             }
         }
     }
@@ -218,12 +227,7 @@ public class MainMenuManager : MonoBehaviour
             CanInput = false;
             switch (ActiveMenu)
             {
-                case "New Game Message":
-                    ActiveMenu = "Main";
-                    NewGameMessage.SetActive(false);
-                    NGOrder = false;
-                    CanInput = true;
-                    break;
+
                 case "Achievements":
                     AchievementsExitAnim.SetTrigger("Active");
                     StartCoroutine(LoadAchievements());
@@ -231,6 +235,10 @@ public class MainMenuManager : MonoBehaviour
                 case "Settings":
                     SettingsExitAnim.SetTrigger("Active");
                     StartCoroutine(LoadSettings());
+                    break;
+                case "CharacterMenu":
+                    CharacterMenuExitAnim.SetTrigger("Active");
+                    StartCoroutine(LoadCharacterMenu());
                     break;
             }
         }
@@ -245,19 +253,11 @@ public class MainMenuManager : MonoBehaviour
         switch (MainOrder)
         {
             case 1:
-                if (HasGameSave)
-                {
-                    NewGameMessage.SetActive(true);
-                    NGOrder = false;
-                    MoveNGHighlight();
-                    CanInput = true;
-                    ActiveMenu = "New Game Message";
-                }
-                else { StartCoroutine(LoadNewGame()); }
+                StartCoroutine(LoadNewGame()); 
                 break;
 
             case 2:
-                CanInput = true;
+                StartCoroutine(LoadCharacterMenu());
                 break;
 
             case 3:
@@ -278,17 +278,26 @@ public class MainMenuManager : MonoBehaviour
         }
        
     }
-    public void SelectNG()
+
+
+    public void SelectCharacterMenu()
     {
-        NGHightlightAnim.SetTrigger("Active");
-        if (NGOrder)
+
+        switch (CharacterMenuOrder)
         {
-            StartCoroutine(LoadNewGame());
+            case 1:
+                Slot01.LoadGameFromCharacterSlot();
+                break;
+
+            case 2:
+                Slot02.LoadGameFromCharacterSlot();
+                break;
+
+            case 3:
+                Slot03.LoadGameFromCharacterSlot();
+                break;
         }
-        else
-        {
-            StartCoroutine(ExitNewGame());      
-        }
+
     }
 
 
@@ -331,20 +340,7 @@ public class MainMenuManager : MonoBehaviour
         }
         CanInput = true;
     }
-    public void MoveNGHighlight()
-    {
 
-        if (NGOrder) 
-        {
-            NGHightlightPos.anchoredPosition = new Vector2(-80, -30);
-        } 
-        else
-        {
-            NGHightlightPos.anchoredPosition = new Vector2(80, -30);
-        }
-
-        CanInput = true;
-    }
     public void MoveSettingsHighlight()
     {
         switch (SettingsOrder)
@@ -387,7 +383,32 @@ public class MainMenuManager : MonoBehaviour
         }
         CanInput = true;
     }
+    public void MoveCharacterMenuHighlight()
+    {
+        switch (CharacterMenuOrder)
+        {
+            case 0:
+                CharacterMenuOrder = 3; MoveCharacterMenuHighlight();
+                break;
 
+            case 1:
+                CharacterMenuHighlight.anchoredPosition = new Vector2(0, 150);
+                break;
+
+            case 2:
+                CharacterMenuHighlight.anchoredPosition = new Vector2(0,0);
+                break;
+
+            case 3:
+                CharacterMenuHighlight.anchoredPosition = new Vector2(0, -150);
+                break;
+
+            case 4:
+                CharacterMenuOrder = 1; MoveCharacterMenuHighlight();
+                break;
+        }
+        CanInput = true;
+    }
 
     public void UpdateSettings(bool Left)
     {
@@ -451,28 +472,40 @@ public class MainMenuManager : MonoBehaviour
         AudioDialogText.text = AudioDialogNum.ToString();
     }
 
+
+
+    public void OpenNoSlotsMessage()
+    {
+
+        NoSlots.SetActive(true);
+        ActiveMenu = "NoSlots";
+        CanInput = true;
+    }
+    public void CloseNoSlotsMessage()
+    {
+        NoSlots.SetActive(false);
+        ActiveMenu = "Main";
+        CanInput = true;
+    }
+
+
+
+
     IEnumerator LoadNewGame()
     {
-        instance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
-        instance.release();
+
         Debug.Log("Loading New Game");
         SceneTransitionAnim.SetTrigger("Active");
         yield return new WaitForSeconds(1.2f);
         //SceneManager.LoadScene("End Credits", LoadSceneMode.Single); Load new game scene
-        SceneManager.LoadScene("Build", LoadSceneMode.Single);
-    }
-    IEnumerator ExitNewGame()
-    {     
-        yield return new WaitForSeconds(0.25f);
-        ActiveMenu = "Main";
-        NewGameMessage.SetActive(false);
-        NGOrder = false;
-        CanInput = true;
+
+        WorldSaveGameManager.Instance.AttemptCreateNewGame();
+
     }
     IEnumerator LoadCredits()
     {
-        instance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
-        instance.release();
+        FMODinstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+        FMODinstance.release();
         Debug.Log("Loading End Credits");
         SceneTransitionAnim.SetTrigger("Active");
         yield return new WaitForSeconds(1.2f);
@@ -488,6 +521,18 @@ public class MainMenuManager : MonoBehaviour
         CanInput = true;
         AchievementsOpen = !AchievementsOpen;
     }
+    IEnumerator LoadCharacterMenu()
+    {
+        if (!CharacterMenuOpen) { ActiveMenu = "CharacterMenu"; } else { ActiveMenu = "Main"; }
+        Debug.Log("Loading CharacterMenu");
+        SceneTransitionAnim.SetTrigger("Active");
+        yield return new WaitForSeconds(1.2f);
+        if (!CharacterMenuOpen) { CharacterMenu.SetActive(true); } else { CharacterMenu.SetActive(false); }
+        CharacterMenuOrder = 1;
+        MoveCharacterMenuHighlight();
+        CanInput = true;
+        CharacterMenuOpen = !CharacterMenuOpen;
+    }
     IEnumerator LoadSettings()
     {
         if (!SettingsOpen) { ActiveMenu = "Settings"; } else { ActiveMenu = "Main"; }
@@ -502,8 +547,9 @@ public class MainMenuManager : MonoBehaviour
     }
     IEnumerator QuitGame()
     {
-        instance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
-        instance.release();
+        FMODinstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+        FMODinstance.release();
+        WorldSaveGameManager.Instance.SaveGame();
         Debug.Log("Quiting Game");
         SceneTransitionAnim.SetTrigger("Active");
         yield return new WaitForSeconds(1.2f);

@@ -726,7 +726,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &7250591243446976666
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1862,7 +1862,7 @@ GameObject:
   - component: {fileID: 7250591244073250873}
   - component: {fileID: 7250591244073250872}
   m_Layer: 5
-  m_Name: Display (1)
+  m_Name: TimePlayedText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4629,6 +4629,7 @@ MonoBehaviour:
   MainHightlightPos: {fileID: 7250591244328660604}
   QuitUI: {fileID: 7250591243446976665}
   QuitHightlightPos: {fileID: 7250591245004195281}
+  TimePlayedText: {fileID: 7250591244073250872}
   Settings: {fileID: 7250591244037027705}
   SettingsHightlightPos: {fileID: 7250591244200233558}
   HUDActive: 1

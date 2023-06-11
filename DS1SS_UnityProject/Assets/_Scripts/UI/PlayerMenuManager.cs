@@ -16,7 +16,7 @@ public class PlayerMenuManager : MonoBehaviour
 
     public bool CanInput = true;
     public string ActiveMenu = "Main";
-
+    public PlayerManager PM;
 
     [Header("Main")]
     public GameObject MainUI;
@@ -30,6 +30,7 @@ public class PlayerMenuManager : MonoBehaviour
     public RectTransform QuitHightlightPos;
     private int QuitOrder = 1;
     private bool QuitOpen;
+    public TextMeshProUGUI TimePlayedText;
 
 
     [Header("Settings")]
@@ -379,6 +380,14 @@ public class PlayerMenuManager : MonoBehaviour
 
     public void LoadQuit()
     {
+
+       
+        float timer = PM.TimePlayedSeconds;
+        float seconds = timer % 60;
+        float minutes = Mathf.Floor(timer / 60);
+        float hours = Mathf.Floor(minutes / 60);
+        TimePlayedText.text = hours.ToString("00") + ":" + minutes.ToString("00") + ":" + seconds.ToString("00");
+
         if (!QuitOpen) { ActiveMenu = "Quit"; QuitUI.SetActive(true);} else { ActiveMenu = "Main"; QuitUI.SetActive(false); }
         QuitOrder = 2;
         MoveQuitHighlight();
@@ -412,6 +421,7 @@ public class PlayerMenuManager : MonoBehaviour
         switch (QuitOrder)
         {
             case 1:
+                WorldSaveGameManager.Instance.SaveGame();
                 SceneManager.LoadScene("Main Menu", LoadSceneMode.Single);
                 break;
 
