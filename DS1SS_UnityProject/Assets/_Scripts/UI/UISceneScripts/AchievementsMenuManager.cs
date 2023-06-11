@@ -38,6 +38,16 @@ public class AchievementsMenuManager : MonoBehaviour
 
     void Start()
     {
+
+        IsUnlockedAchievment1 = GameSaveGameManager.Instance.GameSaveData.Achievement_1;
+        IsUnlockedAchievment2 = GameSaveGameManager.Instance.GameSaveData.Achievement_2;
+        IsUnlockedAchievment3 = GameSaveGameManager.Instance.GameSaveData.Achievement_3;
+        IsUnlockedAchievment4 = GameSaveGameManager.Instance.GameSaveData.Achievement_4;
+        IsUnlockedAchievment5 = GameSaveGameManager.Instance.GameSaveData.Achievement_5;
+        IsUnlockedAchievment6 = GameSaveGameManager.Instance.GameSaveData.Achievement_6;
+        IsUnlockedAchievment7 = GameSaveGameManager.Instance.GameSaveData.Achievement_7;
+        IsUnlockedAchievment8 = GameSaveGameManager.Instance.GameSaveData.Achievement_8;
+
         AchievementUnlocked1.SetActive(IsUnlockedAchievment1);
         AchievementUnlocked2.SetActive(IsUnlockedAchievment2);
         AchievementUnlocked3.SetActive(IsUnlockedAchievment3);

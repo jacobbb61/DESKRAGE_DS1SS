@@ -83,6 +83,9 @@ public class PlayerMenuManager : MonoBehaviour
         VcaAmbienceController = FMODUnity.RuntimeManager.GetVCA("vca:/AmbienceVCA");
         VcaMusicController = FMODUnity.RuntimeManager.GetVCA("vca:/MusicVCA");
         VcaDialogueController = FMODUnity.RuntimeManager.GetVCA("vca:/DialogueVCA");
+
+        UpdateSettings();
+        UpdateFMODSettings();
     }
 
 
@@ -90,6 +93,7 @@ public class PlayerMenuManager : MonoBehaviour
     {
         if (context.action.triggered && CanInput == true)
         {
+            GameSaveGameManager.Instance.SaveSettings(HUDActive, SubtitlesActive, AudioMasterNum, AudioEffectsNum, AudioAmbienceNum, AudioMusicNum, AudioDialogNum);
             Debug.Log("Start Button Pressed");
             CanInput = false;
             LoadMain();
@@ -143,7 +147,7 @@ public class PlayerMenuManager : MonoBehaviour
                     MoveQuitHighlight();
                     break;
                 case "Settings":
-                    UpdateSettings(true);
+                    ChangeSettings(true);
                     break;
             }
         }
@@ -165,7 +169,7 @@ public class PlayerMenuManager : MonoBehaviour
                     MoveQuitHighlight();
                     break;
                 case "Settings":
-                    UpdateSettings(false);
+                    ChangeSettings(false);
                     break;
             }
         }
@@ -206,6 +210,7 @@ public class PlayerMenuManager : MonoBehaviour
                     LoadQuit();
                     break;
                 case "Settings":
+                    GameSaveGameManager.Instance.SaveSettings(HUDActive, SubtitlesActive, AudioMasterNum, AudioEffectsNum, AudioAmbienceNum, AudioMusicNum, AudioDialogNum);
                     LoadSettings();
                     break;
                 default:
@@ -265,6 +270,7 @@ public class PlayerMenuManager : MonoBehaviour
 
     public void LoadSettings()
     {
+
         if (!SettingsOpen) { ActiveMenu = "Settings"; } else { ActiveMenu = "Main"; }
 
         UpdateSettingsText();
@@ -316,7 +322,21 @@ public class PlayerMenuManager : MonoBehaviour
         }
         CanInput = true;
     }
-    public void UpdateSettings(bool Left)
+    public void UpdateSettings()
+    {
+
+        HUDActive = GameSaveGameManager.Instance.GameSaveData.HUD;
+        SubtitlesActive = GameSaveGameManager.Instance.GameSaveData.Subtitles;
+
+        AudioMasterNum = GameSaveGameManager.Instance.GameSaveData.Master;
+        AudioEffectsNum = GameSaveGameManager.Instance.GameSaveData.Effects;
+        AudioAmbienceNum = GameSaveGameManager.Instance.GameSaveData.Ambience;
+        AudioMusicNum = GameSaveGameManager.Instance.GameSaveData.Music;
+        AudioDialogNum = GameSaveGameManager.Instance.GameSaveData.Dialog;
+
+        Debug.Log("Updated settigns");
+    }
+    public void ChangeSettings(bool Left)
     {
         switch (SettingsOrder)
         {
@@ -350,7 +370,6 @@ public class PlayerMenuManager : MonoBehaviour
         AudioAmbienceNum = Mathf.Clamp(AudioAmbienceNum, 0, 10);
         AudioMusicNum = Mathf.Clamp(AudioMusicNum, 0, 10);
         AudioDialogNum = Mathf.Clamp(AudioDialogNum, 0, 10);
-
 
 
         CanInput = true;

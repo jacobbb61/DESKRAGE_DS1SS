@@ -107,6 +107,9 @@ public class MainMenuManager : MonoBehaviour
         VcaAmbienceController = FMODUnity.RuntimeManager.GetVCA("vca:/AmbienceVCA");
         VcaMusicController = FMODUnity.RuntimeManager.GetVCA("vca:/MusicVCA");
         VcaDialogueController = FMODUnity.RuntimeManager.GetVCA("vca:/DialogueVCA");
+
+        UpdateSettings();
+        UpdateFMODSettings();
     }
     public void Up(InputAction.CallbackContext context)
     {
@@ -170,7 +173,7 @@ public class MainMenuManager : MonoBehaviour
             {
 
                 case "Settings":
-                    UpdateSettings(true);
+                    ChangeSettings(true);
                     break;
                 default:
                     CanInput = true;
@@ -188,7 +191,7 @@ public class MainMenuManager : MonoBehaviour
             {
   
                 case "Settings":
-                    UpdateSettings(false);
+                    ChangeSettings(false);
                     break;
                 default:
                     CanInput = true;
@@ -232,7 +235,8 @@ public class MainMenuManager : MonoBehaviour
                     AchievementsExitAnim.SetTrigger("Active");
                     StartCoroutine(LoadAchievements());
                     break;
-                case "Settings":
+                case "Settings":                    
+                    GameSaveGameManager.Instance.SaveSettings(HUDActive, SubtitlesActive, AudioMasterNum, AudioEffectsNum, AudioAmbienceNum, AudioMusicNum, AudioDialogNum);
                     SettingsExitAnim.SetTrigger("Active");
                     StartCoroutine(LoadSettings());
                     break;
@@ -410,7 +414,21 @@ public class MainMenuManager : MonoBehaviour
         CanInput = true;
     }
 
-    public void UpdateSettings(bool Left)
+    public void UpdateSettings()
+    {  
+        
+        HUDActive = GameSaveGameManager.Instance.GameSaveData.HUD;
+        SubtitlesActive = GameSaveGameManager.Instance.GameSaveData.Subtitles;
+
+        AudioMasterNum = GameSaveGameManager.Instance.GameSaveData.Master;
+        AudioEffectsNum = GameSaveGameManager.Instance.GameSaveData.Effects;
+        AudioAmbienceNum = GameSaveGameManager.Instance.GameSaveData.Ambience;
+        AudioMusicNum = GameSaveGameManager.Instance.GameSaveData.Music;
+        AudioDialogNum = GameSaveGameManager.Instance.GameSaveData.Dialog;
+
+        Debug.Log("Updated settigns");
+    }
+    public void ChangeSettings(bool Left)
     {
         switch (SettingsOrder)
         {
@@ -444,7 +462,6 @@ public class MainMenuManager : MonoBehaviour
         AudioAmbienceNum = Mathf.Clamp(AudioAmbienceNum, 0, 10);
         AudioMusicNum = Mathf.Clamp(AudioMusicNum, 0, 10);
         AudioDialogNum = Mathf.Clamp(AudioDialogNum, 0, 10);
-
 
 
         CanInput = true;
@@ -535,6 +552,7 @@ public class MainMenuManager : MonoBehaviour
     }
     IEnumerator LoadSettings()
     {
+
         if (!SettingsOpen) { ActiveMenu = "Settings"; } else { ActiveMenu = "Main"; }
         Debug.Log("Loading Settings");
         SceneTransitionAnim.SetTrigger("Active");
