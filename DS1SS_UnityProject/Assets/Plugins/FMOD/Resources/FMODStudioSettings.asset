@@ -250,7 +250,9 @@ MonoBehaviour:
   MasterBanks:
   - Master
   Banks:
+  - Ambience
   - Dialogue
+  - Effects
   - Music
   BanksToLoad: []
   LiveUpdatePort: 9264

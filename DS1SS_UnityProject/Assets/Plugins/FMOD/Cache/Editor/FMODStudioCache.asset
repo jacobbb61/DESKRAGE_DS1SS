@@ -312,7 +312,7 @@ MonoBehaviour:
   Path: Assets/Plugins/DS1SS_FMOD/Build/Desktop/Music.bank
   Name: Music
   StudioPath: bank:/Music
-  lastModified: 638215015969726837
+  lastModified: 638221734696024433
   FileSizes:
   - Name: Desktop
     Value: 1320032
@@ -494,7 +494,7 @@ MonoBehaviour:
   Path: Assets/Plugins/DS1SS_FMOD/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638215021660884882
+  lastModified: 638221734695707419
   FileSizes:
   - Name: Desktop
     Value: 2672
@@ -526,6 +526,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 3624
+--- !u!114 &-170414939466454261
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Music/MainMenuMusic
+  m_EditorClassIdentifier: 
+  Path: event:/Music/MainMenuMusic
+  Guid:
+    Data1: -909972881
+    Data2: 1289728968
+    Data3: 1247814543
+    Data4: -2039254989
+  Banks:
+  - {fileID: -6462242291916074447}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 112535
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -543,6 +570,8 @@ MonoBehaviour:
   - {fileID: 8848099919283206021}
   - {fileID: -1327748678376098689}
   - {fileID: -6462242291916074447}
+  - {fileID: 2748296894527687791}
+  - {fileID: 3864369050229653630}
   EditorEvents:
   - {fileID: -4719436214678099313}
   - {fileID: -7906313398692216152}
@@ -577,13 +606,13 @@ MonoBehaviour:
   - {fileID: -8855168942167885568}
   - {fileID: -7203809427162356577}
   - {fileID: 1206797683195144056}
-  - {fileID: 3889549776420351632}
+  - {fileID: -170414939466454261}
   EditorParameters: []
   MasterBanks:
   - {fileID: -1327748678376098689}
   StringsBanks:
   - {fileID: 7528302769810168109}
-  cacheTime: 638215021660904821
+  cacheTime: 638221734696054358
   cacheVersion: 131604
 --- !u!114 &365697192700480752
 MonoBehaviour:
@@ -720,6 +749,26 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 6672
+--- !u!114 &2748296894527687791
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Ambience.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/Plugins/DS1SS_FMOD/Build/Desktop/Ambience.bank
+  Name: Ambience
+  StudioPath: bank:/Ambience
+  lastModified: 638221734696054358
+  FileSizes:
+  - Name: Desktop
+    Value: 494
+  Exists: 1
 --- !u!114 &3347718556031318994
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -774,7 +823,7 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 3144
---- !u!114 &3889549776420351632
+--- !u!114 &3864369050229653630
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -783,24 +832,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/MainMenuMusic
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Effects.bank
   m_EditorClassIdentifier: 
-  Path: event:/MainMenuMusic
-  Guid:
-    Data1: -909972881
-    Data2: 1289728968
-    Data3: 1247814543
-    Data4: -2039254989
-  Banks:
-  - {fileID: -6462242291916074447}
-  IsStream: 1
-  Is3D: 0
-  IsOneShot: 0
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 112535
+  Path: Assets/Plugins/DS1SS_FMOD/Build/Desktop/Effects.bank
+  Name: Effects
+  StudioPath: bank:/Effects
+  lastModified: 638221734696044386
+  FileSizes:
+  - Name: Desktop
+    Value: 494
+  Exists: 1
 --- !u!114 &4053124621791858336
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1005,10 +1047,10 @@ MonoBehaviour:
   Path: Assets/Plugins/DS1SS_FMOD/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638215021660904821
+  lastModified: 638221734695717561
   FileSizes:
   - Name: Desktop
-    Value: 2774
+    Value: 2864
   Exists: 1
 --- !u!114 &8848099919283206021
 MonoBehaviour:

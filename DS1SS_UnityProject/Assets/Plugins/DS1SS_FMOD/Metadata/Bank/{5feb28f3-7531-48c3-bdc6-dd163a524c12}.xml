@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <objects serializationModel="Studio.02.02.00">
-	<object class="EventFolder" id="{478c9555-4e36-4aec-ad5f-ff4d4c444e38}">
+	<object class="Bank" id="{5feb28f3-7531-48c3-bdc6-dd163a524c12}">
 		<property name="name">
-			<value>OscarVoiceLines</value>
+			<value>Ambience</value>
 		</property>
 		<relationship name="folder">
-			<destination>{b1571d1f-5074-4c22-ae27-beb05227e879}</destination>
+			<destination>{ea8abd4c-97de-4ac1-942d-1713bc398cc4}</destination>
 		</relationship>
 	</object>
 </objects>

@@ -98,8 +98,6 @@ public class MainMenuManager : MonoBehaviour
 
 
         FMODinstance = FMODUnity.RuntimeManager.CreateInstance(MainMenuMusic);
-        Debug.Log(MainMenuMusic);
-        //Debug.Log(MainMenuMusic.Path);
         FMODinstance.start();
        
         VcaMasterController = FMODUnity.RuntimeManager.GetVCA("vca:/MasterVCA");
