@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-9213922501890945796
+--- !u!114 &-9077132005849577574
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/OscarVoiceLines/OscarVoiceLinesC/OscarVoiceLineC1
+  m_Name: event:/Dialog/OscarVoiceLines/OscarVoiceLinesI/OscarVoiceLineI1
   m_EditorClassIdentifier: 
-  Path: event:/OscarVoiceLines/OscarVoiceLinesC/OscarVoiceLineC1
+  Path: event:/Dialog/OscarVoiceLines/OscarVoiceLinesI/OscarVoiceLineI1
   Guid:
-    Data1: -688505620
-    Data2: 1235039885
-    Data3: -1998483541
-    Data4: 1664841908
+    Data1: -1670919974
+    Data2: 1256280278
+    Data3: -46738504
+    Data4: 1986849670
   Banks:
   - {fileID: 8848099919283206021}
   IsStream: 0
@@ -26,8 +26,8 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 5328
---- !u!114 &-8855168942167885568
+  Length: 4008
+--- !u!114 &-7493019162452559698
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -37,225 +37,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/OscarVoiceLines/OscarVoiceLinesC/OscarVoiceLineC2
+  m_Name: event:/Dialog/OscarVoiceLines/OscarVoiceLinesYes/OscarVoiceLineYES5
   m_EditorClassIdentifier: 
-  Path: event:/OscarVoiceLines/OscarVoiceLinesC/OscarVoiceLineC2
-  Guid:
-    Data1: -879153673
-    Data2: 1297178215
-    Data3: -722099826
-    Data4: 1119079110
-  Banks:
-  - {fileID: 8848099919283206021}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 5280
---- !u!114 &-8819063753705554726
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/OscarVoiceLines/OscarVoiceLinesYes/OscarVoiceLineYES10
-  m_EditorClassIdentifier: 
-  Path: event:/OscarVoiceLines/OscarVoiceLinesYes/OscarVoiceLineYES10
-  Guid:
-    Data1: -1599367896
-    Data2: 1231205351
-    Data3: 605353890
-    Data4: -1066697123
-  Banks:
-  - {fileID: 8848099919283206021}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 2640
---- !u!114 &-8201830245972994638
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/OscarVoiceLines/OscarVoiceLinesYes/OscarVoiceLineYES9
-  m_EditorClassIdentifier: 
-  Path: event:/OscarVoiceLines/OscarVoiceLinesYes/OscarVoiceLineYES9
-  Guid:
-    Data1: -1542932136
-    Data2: 1119093572
-    Data3: -12145247
-    Data4: -873779096
-  Banks:
-  - {fileID: 8848099919283206021}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 1752
---- !u!114 &-7906313398692216152
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/OscarVoiceLines/OscarVoiceLinesA/OscarVoiceLineA4
-  m_EditorClassIdentifier: 
-  Path: event:/OscarVoiceLines/OscarVoiceLinesA/OscarVoiceLineA4
-  Guid:
-    Data1: -391398584
-    Data2: 1138378680
-    Data3: 2038092710
-    Data4: -1300490877
-  Banks:
-  - {fileID: 8848099919283206021}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 4704
---- !u!114 &-7666525001640421954
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/OscarVoiceLines/OscarVoiceLinesYes/OscarVoiceLineYES6
-  m_EditorClassIdentifier: 
-  Path: event:/OscarVoiceLines/OscarVoiceLinesYes/OscarVoiceLineYES6
-  Guid:
-    Data1: 1577156658
-    Data2: 1109630012
-    Data3: 894199727
-    Data4: 2030130405
-  Banks:
-  - {fileID: 8848099919283206021}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 4872
---- !u!114 &-7587691350919769062
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/OscarVoiceLines/OscarVoiceLinesA/OscarVoiceLineA3
-  m_EditorClassIdentifier: 
-  Path: event:/OscarVoiceLines/OscarVoiceLinesA/OscarVoiceLineA3
-  Guid:
-    Data1: -1331768376
-    Data2: 1177082653
-    Data3: -103994448
-    Data4: 536408936
-  Banks:
-  - {fileID: 8848099919283206021}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 4968
---- !u!114 &-7244074435540959416
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/OscarVoiceLines/OscarVoiceLinesYes/OscarVoiceLineYES3
-  m_EditorClassIdentifier: 
-  Path: event:/OscarVoiceLines/OscarVoiceLinesYes/OscarVoiceLineYES3
-  Guid:
-    Data1: 909580187
-    Data2: 1237581630
-    Data3: 1022464157
-    Data4: -411107920
-  Banks:
-  - {fileID: 8848099919283206021}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 5016
---- !u!114 &-7203809427162356577
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/OscarVoiceLines/OscarVoiceLinesB/OscarVoiceLineB1
-  m_EditorClassIdentifier: 
-  Path: event:/OscarVoiceLines/OscarVoiceLinesB/OscarVoiceLineB1
-  Guid:
-    Data1: 347131385
-    Data2: 1129395691
-    Data3: 115464879
-    Data4: 1994414101
-  Banks:
-  - {fileID: 8848099919283206021}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 3120
---- !u!114 &-7186486959978672905
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/OscarVoiceLines/OscarVoiceLinesYes/OscarVoiceLineYES5
-  m_EditorClassIdentifier: 
-  Path: event:/OscarVoiceLines/OscarVoiceLinesYes/OscarVoiceLineYES5
+  Path: event:/Dialog/OscarVoiceLines/OscarVoiceLinesYes/OscarVoiceLineYES5
   Guid:
     Data1: -1553241039
     Data2: 1147275927
@@ -270,7 +54,7 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 4248
---- !u!114 &-6978470088710804911
+--- !u!114 &-7281614026014888387
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -280,9 +64,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/OscarVoiceLines/OscarVoiceLinesG/OscarVoiceLineG4
+  m_Name: event:/Dialog/OscarVoiceLines/OscarVoiceLinesG/OscarVoiceLineG4
   m_EditorClassIdentifier: 
-  Path: event:/OscarVoiceLines/OscarVoiceLinesG/OscarVoiceLineG4
+  Path: event:/Dialog/OscarVoiceLines/OscarVoiceLinesG/OscarVoiceLineG4
   Guid:
     Data1: -1027564385
     Data2: 1192700997
@@ -297,6 +81,87 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 2520
+--- !u!114 &-7173725599907210669
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Dialog/OscarVoiceLines/OscarVoiceLinesNo/OscarVoiceLineNo2
+  m_EditorClassIdentifier: 
+  Path: event:/Dialog/OscarVoiceLines/OscarVoiceLinesNo/OscarVoiceLineNo2
+  Guid:
+    Data1: -404356933
+    Data2: 1303188242
+    Data3: 1645209248
+    Data4: 1360792279
+  Banks:
+  - {fileID: 8848099919283206021}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 3936
+--- !u!114 &-6988143773012763706
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Dialog/OscarVoiceLines/OscarVoiceLinesYes/OscarVoiceLineYES3
+  m_EditorClassIdentifier: 
+  Path: event:/Dialog/OscarVoiceLines/OscarVoiceLinesYes/OscarVoiceLineYES3
+  Guid:
+    Data1: 909580187
+    Data2: 1237581630
+    Data3: 1022464157
+    Data4: -411107920
+  Banks:
+  - {fileID: 8848099919283206021}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 5016
+--- !u!114 &-6969003684872447350
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Dialog/OscarVoiceLines/OscarVoiceLinesA/OscarVoiceLineA2
+  m_EditorClassIdentifier: 
+  Path: event:/Dialog/OscarVoiceLines/OscarVoiceLinesA/OscarVoiceLineA2
+  Guid:
+    Data1: 207275739
+    Data2: 1327183744
+    Data3: 777368243
+    Data4: -148244445
+  Banks:
+  - {fileID: 8848099919283206021}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 5136
 --- !u!114 &-6462242291916074447
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -312,12 +177,12 @@ MonoBehaviour:
   Path: Assets/Plugins/DS1SS_FMOD/Build/Desktop/Music.bank
   Name: Music
   StudioPath: bank:/Music
-  lastModified: 638221734696024433
+  lastModified: 638221743545258124
   FileSizes:
   - Name: Desktop
     Value: 1320032
   Exists: 1
---- !u!114 &-6203270495088087630
+--- !u!114 &-6305189553039793047
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -327,14 +192,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/OscarVoiceLines/OscarVoiceLinesYes/OscarVoiceLineYES1
+  m_Name: event:/Dialog/OscarVoiceLines/OscarVoiceLinesH/OscarVoiceLineH3
   m_EditorClassIdentifier: 
-  Path: event:/OscarVoiceLines/OscarVoiceLinesYes/OscarVoiceLineYES1
+  Path: event:/Dialog/OscarVoiceLines/OscarVoiceLinesH/OscarVoiceLineH3
   Guid:
-    Data1: -1658143362
-    Data2: 1284578497
-    Data3: -1866964336
-    Data4: 2109680237
+    Data1: -231156611
+    Data2: 1308916466
+    Data3: -1229992063
+    Data4: 1629221357
   Banks:
   - {fileID: 8848099919283206021}
   IsStream: 0
@@ -343,8 +208,8 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 4344
---- !u!114 &-6017267658595037573
+  Length: 5856
+--- !u!114 &-6284659479628581261
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -354,14 +219,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/OscarVoiceLines/OscarVoiceLinesYes/OscarVoiceLineYES2
+  m_Name: event:/Dialog/OscarVoiceLines/OscarVoiceLinesYes/OscarVoiceLineYES10
   m_EditorClassIdentifier: 
-  Path: event:/OscarVoiceLines/OscarVoiceLinesYes/OscarVoiceLineYES2
+  Path: event:/Dialog/OscarVoiceLines/OscarVoiceLinesYes/OscarVoiceLineYES10
   Guid:
-    Data1: 1592123772
-    Data2: 1093406033
-    Data3: -439982970
-    Data4: 1135834419
+    Data1: -1599367896
+    Data2: 1231205351
+    Data3: 605353890
+    Data4: -1066697123
   Banks:
   - {fileID: 8848099919283206021}
   IsStream: 0
@@ -370,8 +235,8 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 4608
---- !u!114 &-5999711118685182382
+  Length: 2640
+--- !u!114 &-6105864846681400279
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -381,9 +246,117 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/OscarVoiceLines/OscarVoiceLinesB/OscarVoiceLineB3
+  m_Name: event:/Dialog/OscarVoiceLines/OscarVoiceLineFD
   m_EditorClassIdentifier: 
-  Path: event:/OscarVoiceLines/OscarVoiceLinesB/OscarVoiceLineB3
+  Path: event:/Dialog/OscarVoiceLines/OscarVoiceLineFD
+  Guid:
+    Data1: -1444323019
+    Data2: 1139706685
+    Data3: -1938873447
+    Data4: 145568239
+  Banks:
+  - {fileID: 8848099919283206021}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 3144
+--- !u!114 &-5062381532739142237
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Dialog/OscarVoiceLines/OscarVoiceLinesYes/OscarVoiceLineYES6
+  m_EditorClassIdentifier: 
+  Path: event:/Dialog/OscarVoiceLines/OscarVoiceLinesYes/OscarVoiceLineYES6
+  Guid:
+    Data1: 1577156658
+    Data2: 1109630012
+    Data3: 894199727
+    Data4: 2030130405
+  Banks:
+  - {fileID: 8848099919283206021}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 4872
+--- !u!114 &-4728992773294555403
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Dialog/OscarVoiceLines/OscarVoiceLinesH/OscarVoiceLineH4
+  m_EditorClassIdentifier: 
+  Path: event:/Dialog/OscarVoiceLines/OscarVoiceLinesH/OscarVoiceLineH4
+  Guid:
+    Data1: 687557183
+    Data2: 1230969613
+    Data3: 1130456218
+    Data4: -1606899033
+  Banks:
+  - {fileID: 8848099919283206021}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 3624
+--- !u!114 &-4681735127982638378
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Dialog/OscarVoiceLines/OscarVoiceLinesA/OscarVoiceLineA4
+  m_EditorClassIdentifier: 
+  Path: event:/Dialog/OscarVoiceLines/OscarVoiceLinesA/OscarVoiceLineA4
+  Guid:
+    Data1: -391398584
+    Data2: 1138378680
+    Data3: 2038092710
+    Data4: -1300490877
+  Banks:
+  - {fileID: 8848099919283206021}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 4704
+--- !u!114 &-4630453891574574718
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Dialog/OscarVoiceLines/OscarVoiceLinesB/OscarVoiceLineB3
+  m_EditorClassIdentifier: 
+  Path: event:/Dialog/OscarVoiceLines/OscarVoiceLinesB/OscarVoiceLineB3
   Guid:
     Data1: 1135193722
     Data2: 1329560752
@@ -398,7 +371,7 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 3504
---- !u!114 &-4719436214678099313
+--- !u!114 &-3986469654112558017
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -408,14 +381,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/OscarVoiceLines/OscarVoiceLinesA/OscarVoiceLineA1
+  m_Name: event:/Dialog/OscarVoiceLines/OscarVoiceLinesG/OscarVoiceLineG2
   m_EditorClassIdentifier: 
-  Path: event:/OscarVoiceLines/OscarVoiceLinesA/OscarVoiceLineA1
+  Path: event:/Dialog/OscarVoiceLines/OscarVoiceLinesG/OscarVoiceLineG2
   Guid:
-    Data1: -49538305
-    Data2: 1290299153
-    Data3: -1883739479
-    Data4: -1740846837
+    Data1: -789344590
+    Data2: 1278843158
+    Data3: 1979184025
+    Data4: 721067199
   Banks:
   - {fileID: 8848099919283206021}
   IsStream: 0
@@ -424,8 +397,8 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 4056
---- !u!114 &-3734889821176260526
+  Length: 5472
+--- !u!114 &-2638051280631971119
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -435,14 +408,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/OscarVoiceLines/OscarVoiceLinesNo/OscarVoiceLineNo1
+  m_Name: event:/Dialog/OscarVoiceLines/OscarVoiceLinesYes/OscarVoiceLineYES1
   m_EditorClassIdentifier: 
-  Path: event:/OscarVoiceLines/OscarVoiceLinesNo/OscarVoiceLineNo1
+  Path: event:/Dialog/OscarVoiceLines/OscarVoiceLinesYes/OscarVoiceLineYES1
   Guid:
-    Data1: -896958858
-    Data2: 1087660796
-    Data3: -2032059251
-    Data4: -1772389568
+    Data1: -1658143362
+    Data2: 1284578497
+    Data3: -1866964336
+    Data4: 2109680237
   Banks:
   - {fileID: 8848099919283206021}
   IsStream: 0
@@ -451,8 +424,8 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 4824
---- !u!114 &-1958931635047494463
+  Length: 4344
+--- !u!114 &-2599090200456157148
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -462,14 +435,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/OscarVoiceLines/OscarVoiceLinesYes/OscarVoiceLineYES4
+  m_Name: event:/Dialog/OscarVoiceLines/OscarVoiceLinesC/OscarVoiceLineC2
   m_EditorClassIdentifier: 
-  Path: event:/OscarVoiceLines/OscarVoiceLinesYes/OscarVoiceLineYES4
+  Path: event:/Dialog/OscarVoiceLines/OscarVoiceLinesC/OscarVoiceLineC2
   Guid:
-    Data1: -1875260708
-    Data2: 1113312701
-    Data3: 1396794030
-    Data4: 1844629933
+    Data1: -879153673
+    Data2: 1297178215
+    Data3: -722099826
+    Data4: 1119079110
   Banks:
   - {fileID: 8848099919283206021}
   IsStream: 0
@@ -478,7 +451,34 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 6144
+  Length: 5280
+--- !u!114 &-1543699688495702468
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Dialog/OscarVoiceLines/OscarVoiceLinesYes/OscarVoiceLineYES2
+  m_EditorClassIdentifier: 
+  Path: event:/Dialog/OscarVoiceLines/OscarVoiceLinesYes/OscarVoiceLineYES2
+  Guid:
+    Data1: 1592123772
+    Data2: 1093406033
+    Data3: -439982970
+    Data4: 1135834419
+  Banks:
+  - {fileID: 8848099919283206021}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 4608
 --- !u!114 &-1327748678376098689
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -494,12 +494,12 @@ MonoBehaviour:
   Path: Assets/Plugins/DS1SS_FMOD/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638221734695707419
+  lastModified: 638215661301903017
   FileSizes:
   - Name: Desktop
     Value: 2672
   Exists: 1
---- !u!114 &-846436144428757532
+--- !u!114 &-731366527180970617
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -509,14 +509,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/OscarVoiceLines/OscarVoiceLinesH/OscarVoiceLineH4
+  m_Name: event:/Dialog/OscarVoiceLines/OscarVoiceLinesYes/OscarVoiceLineYES8
   m_EditorClassIdentifier: 
-  Path: event:/OscarVoiceLines/OscarVoiceLinesH/OscarVoiceLineH4
+  Path: event:/Dialog/OscarVoiceLines/OscarVoiceLinesYes/OscarVoiceLineYES8
   Guid:
-    Data1: 687557183
-    Data2: 1230969613
-    Data3: 1130456218
-    Data4: -1606899033
+    Data1: 541573341
+    Data2: 1130309678
+    Data3: 1114794639
+    Data4: -1107399649
   Banks:
   - {fileID: 8848099919283206021}
   IsStream: 0
@@ -525,7 +525,61 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 3624
+  Length: 6672
+--- !u!114 &-657107134772316135
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Dialog/OscarVoiceLines/OscarVoiceLinesYes/OscarVoiceLineYES9
+  m_EditorClassIdentifier: 
+  Path: event:/Dialog/OscarVoiceLines/OscarVoiceLinesYes/OscarVoiceLineYES9
+  Guid:
+    Data1: -1542932136
+    Data2: 1119093572
+    Data3: -12145247
+    Data4: -873779096
+  Banks:
+  - {fileID: 8848099919283206021}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1752
+--- !u!114 &-176977119675968429
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Dialog/OscarVoiceLines/OscarVoiceLinesYes/OscarVoiceLineYES4
+  m_EditorClassIdentifier: 
+  Path: event:/Dialog/OscarVoiceLines/OscarVoiceLinesYes/OscarVoiceLineYES4
+  Guid:
+    Data1: -1875260708
+    Data2: 1113312701
+    Data3: 1396794030
+    Data4: 1844629933
+  Banks:
+  - {fileID: 8848099919283206021}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 6144
 --- !u!114 &-170414939466454261
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -573,48 +627,48 @@ MonoBehaviour:
   - {fileID: 2748296894527687791}
   - {fileID: 3864369050229653630}
   EditorEvents:
-  - {fileID: -4719436214678099313}
-  - {fileID: -7906313398692216152}
-  - {fileID: -7587691350919769062}
-  - {fileID: 5076819705968615313}
-  - {fileID: -8819063753705554726}
-  - {fileID: -7186486959978672905}
-  - {fileID: -7666525001640421954}
-  - {fileID: 9026055273786889438}
-  - {fileID: 3845567505116282181}
-  - {fileID: -846436144428757532}
-  - {fileID: -8201830245972994638}
-  - {fileID: 7513434624829980331}
-  - {fileID: -3734889821176260526}
-  - {fileID: -5999711118685182382}
-  - {fileID: -6017267658595037573}
-  - {fileID: 1653469144827277838}
-  - {fileID: -6203270495088087630}
-  - {fileID: 4053124621791858336}
-  - {fileID: 4748871781913330951}
-  - {fileID: -7244074435540959416}
-  - {fileID: -6978470088710804911}
-  - {fileID: 2134851898197177297}
-  - {fileID: 6213299065170463700}
-  - {fileID: 5244268698850631381}
-  - {fileID: 7283004340577957707}
-  - {fileID: 3347718556031318994}
-  - {fileID: 365697192700480752}
-  - {fileID: -1958931635047494463}
-  - {fileID: 2650047294954966903}
-  - {fileID: -9213922501890945796}
-  - {fileID: -8855168942167885568}
-  - {fileID: -7203809427162356577}
-  - {fileID: 1206797683195144056}
   - {fileID: -170414939466454261}
+  - {fileID: -6284659479628581261}
+  - {fileID: -7493019162452559698}
+  - {fileID: -5062381532739142237}
+  - {fileID: 8542885025947621178}
+  - {fileID: -6105864846681400279}
+  - {fileID: -4728992773294555403}
+  - {fileID: -4681735127982638378}
+  - {fileID: -657107134772316135}
+  - {fileID: 8769084870265556554}
+  - {fileID: 5812055640496395371}
+  - {fileID: -4630453891574574718}
+  - {fileID: -1543699688495702468}
+  - {fileID: -6305189553039793047}
+  - {fileID: -2638051280631971119}
+  - {fileID: 5869972410900141604}
+  - {fileID: 9143914201181366176}
+  - {fileID: -6988143773012763706}
+  - {fileID: -7281614026014888387}
+  - {fileID: 918737202364352235}
+  - {fileID: -3986469654112558017}
+  - {fileID: -7173725599907210669}
+  - {fileID: 3099792608040956674}
+  - {fileID: 5782485654593059877}
+  - {fileID: 9040681333469363267}
+  - {fileID: -9077132005849577574}
+  - {fileID: -6969003684872447350}
+  - {fileID: -176977119675968429}
+  - {fileID: -731366527180970617}
+  - {fileID: 2306703215671919705}
+  - {fileID: -2599090200456157148}
+  - {fileID: 2055504038599050938}
+  - {fileID: 2560653195412094223}
+  - {fileID: 6229010892212704858}
   EditorParameters: []
   MasterBanks:
   - {fileID: -1327748678376098689}
   StringsBanks:
   - {fileID: 7528302769810168109}
-  cacheTime: 638221734696054358
+  cacheTime: 638221743545258124
   cacheVersion: 131604
---- !u!114 &365697192700480752
+--- !u!114 &918737202364352235
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -624,90 +678,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/OscarVoiceLines/OscarVoiceLinesI/OscarVoiceLineI1
+  m_Name: event:/Dialog/OscarVoiceLines/OscarVoiceLinesG/OscarVoiceLineG3
   m_EditorClassIdentifier: 
-  Path: event:/OscarVoiceLines/OscarVoiceLinesI/OscarVoiceLineI1
-  Guid:
-    Data1: -1670919974
-    Data2: 1256280278
-    Data3: -46738504
-    Data4: 1986849670
-  Banks:
-  - {fileID: 8848099919283206021}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 4008
---- !u!114 &1206797683195144056
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/OscarVoiceLines/OscarVoiceLinesI/OscarVoiceLineI3
-  m_EditorClassIdentifier: 
-  Path: event:/OscarVoiceLines/OscarVoiceLinesI/OscarVoiceLineI3
-  Guid:
-    Data1: -1114479622
-    Data2: 1126522422
-    Data3: -962662522
-    Data4: -2098459639
-  Banks:
-  - {fileID: 8848099919283206021}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 3816
---- !u!114 &1653469144827277838
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/OscarVoiceLines/OscarVoiceLinesH/OscarVoiceLineH3
-  m_EditorClassIdentifier: 
-  Path: event:/OscarVoiceLines/OscarVoiceLinesH/OscarVoiceLineH3
-  Guid:
-    Data1: -231156611
-    Data2: 1308916466
-    Data3: -1229992063
-    Data4: 1629221357
-  Banks:
-  - {fileID: 8848099919283206021}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 5856
---- !u!114 &2134851898197177297
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/OscarVoiceLines/OscarVoiceLinesG/OscarVoiceLineG3
-  m_EditorClassIdentifier: 
-  Path: event:/OscarVoiceLines/OscarVoiceLinesG/OscarVoiceLineG3
+  Path: event:/Dialog/OscarVoiceLines/OscarVoiceLinesG/OscarVoiceLineG3
   Guid:
     Data1: -1132348495
     Data2: 1170128038
@@ -722,7 +695,7 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 2976
---- !u!114 &2650047294954966903
+--- !u!114 &2055504038599050938
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -732,14 +705,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/OscarVoiceLines/OscarVoiceLinesYes/OscarVoiceLineYES8
+  m_Name: event:/Dialog/OscarVoiceLines/OscarVoiceLinesB/OscarVoiceLineB1
   m_EditorClassIdentifier: 
-  Path: event:/OscarVoiceLines/OscarVoiceLinesYes/OscarVoiceLineYES8
+  Path: event:/Dialog/OscarVoiceLines/OscarVoiceLinesB/OscarVoiceLineB1
   Guid:
-    Data1: 541573341
-    Data2: 1130309678
-    Data3: 1114794639
-    Data4: -1107399649
+    Data1: 347131385
+    Data2: 1129395691
+    Data3: 115464879
+    Data4: 1994414101
   Banks:
   - {fileID: 8848099919283206021}
   IsStream: 0
@@ -748,7 +721,61 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 6672
+  Length: 3120
+--- !u!114 &2306703215671919705
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Dialog/OscarVoiceLines/OscarVoiceLinesC/OscarVoiceLineC1
+  m_EditorClassIdentifier: 
+  Path: event:/Dialog/OscarVoiceLines/OscarVoiceLinesC/OscarVoiceLineC1
+  Guid:
+    Data1: -688505620
+    Data2: 1235039885
+    Data3: -1998483541
+    Data4: 1664841908
+  Banks:
+  - {fileID: 8848099919283206021}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 5328
+--- !u!114 &2560653195412094223
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Dialog/OscarVoiceLines/OscarVoiceLinesI/OscarVoiceLineI3
+  m_EditorClassIdentifier: 
+  Path: event:/Dialog/OscarVoiceLines/OscarVoiceLinesI/OscarVoiceLineI3
+  Guid:
+    Data1: -1114479622
+    Data2: 1126522422
+    Data3: -962662522
+    Data4: -2098459639
+  Banks:
+  - {fileID: 8848099919283206021}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 3816
 --- !u!114 &2748296894527687791
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -764,12 +791,12 @@ MonoBehaviour:
   Path: Assets/Plugins/DS1SS_FMOD/Build/Desktop/Ambience.bank
   Name: Ambience
   StudioPath: bank:/Ambience
-  lastModified: 638221734696054358
+  lastModified: 638221743545148372
   FileSizes:
   - Name: Desktop
     Value: 494
   Exists: 1
---- !u!114 &3347718556031318994
+--- !u!114 &3099792608040956674
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -779,14 +806,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/OscarVoiceLines/OscarVoiceLinesB/OscarVoiceLineB2
+  m_Name: event:/Dialog/OscarVoiceLines/OscarVoiceLinesA/OscarVoiceLineA3
   m_EditorClassIdentifier: 
-  Path: event:/OscarVoiceLines/OscarVoiceLinesB/OscarVoiceLineB2
+  Path: event:/Dialog/OscarVoiceLines/OscarVoiceLinesA/OscarVoiceLineA3
   Guid:
-    Data1: -1034677030
-    Data2: 1277448865
-    Data3: 1707680131
-    Data4: 2143043230
+    Data1: -1331768376
+    Data2: 1177082653
+    Data3: -103994448
+    Data4: 536408936
   Banks:
   - {fileID: 8848099919283206021}
   IsStream: 0
@@ -795,34 +822,7 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 4272
---- !u!114 &3845567505116282181
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/OscarVoiceLines/OscarVoiceLineFD
-  m_EditorClassIdentifier: 
-  Path: event:/OscarVoiceLines/OscarVoiceLineFD
-  Guid:
-    Data1: -1444323019
-    Data2: 1139706685
-    Data3: -1938873447
-    Data4: 145568239
-  Banks:
-  - {fileID: 8848099919283206021}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 3144
+  Length: 4968
 --- !u!114 &3864369050229653630
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -838,12 +838,12 @@ MonoBehaviour:
   Path: Assets/Plugins/DS1SS_FMOD/Build/Desktop/Effects.bank
   Name: Effects
   StudioPath: bank:/Effects
-  lastModified: 638221734696044386
+  lastModified: 638221743545148372
   FileSizes:
   - Name: Desktop
     Value: 494
   Exists: 1
---- !u!114 &4053124621791858336
+--- !u!114 &5782485654593059877
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -853,144 +853,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/OscarVoiceLines/OscarVoiceLinesH/OscarVoiceLineH2
+  m_Name: event:/Dialog/OscarVoiceLines/OscarVoiceLinesI/OscarVoiceLineI2
   m_EditorClassIdentifier: 
-  Path: event:/OscarVoiceLines/OscarVoiceLinesH/OscarVoiceLineH2
-  Guid:
-    Data1: 1714699653
-    Data2: 1186815197
-    Data3: 999384488
-    Data4: -524075624
-  Banks:
-  - {fileID: 8848099919283206021}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 4368
---- !u!114 &4748871781913330951
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/OscarVoiceLines/OscarVoiceLinesH/OscarVoiceLineH1
-  m_EditorClassIdentifier: 
-  Path: event:/OscarVoiceLines/OscarVoiceLinesH/OscarVoiceLineH1
-  Guid:
-    Data1: 130527367
-    Data2: 1306044689
-    Data3: 236854167
-    Data4: 574895114
-  Banks:
-  - {fileID: 8848099919283206021}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 3600
---- !u!114 &5076819705968615313
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/OscarVoiceLines/OscarVoiceLinesA/OscarVoiceLineA2
-  m_EditorClassIdentifier: 
-  Path: event:/OscarVoiceLines/OscarVoiceLinesA/OscarVoiceLineA2
-  Guid:
-    Data1: 207275739
-    Data2: 1327183744
-    Data3: 777368243
-    Data4: -148244445
-  Banks:
-  - {fileID: 8848099919283206021}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 5136
---- !u!114 &5244268698850631381
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/OscarVoiceLines/OscarVoiceLinesNo/OscarVoiceLineNo2
-  m_EditorClassIdentifier: 
-  Path: event:/OscarVoiceLines/OscarVoiceLinesNo/OscarVoiceLineNo2
-  Guid:
-    Data1: -404356933
-    Data2: 1303188242
-    Data3: 1645209248
-    Data4: 1360792279
-  Banks:
-  - {fileID: 8848099919283206021}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 3936
---- !u!114 &6213299065170463700
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/OscarVoiceLines/OscarVoiceLinesG/OscarVoiceLineG2
-  m_EditorClassIdentifier: 
-  Path: event:/OscarVoiceLines/OscarVoiceLinesG/OscarVoiceLineG2
-  Guid:
-    Data1: -789344590
-    Data2: 1278843158
-    Data3: 1979184025
-    Data4: 721067199
-  Banks:
-  - {fileID: 8848099919283206021}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 5472
---- !u!114 &7283004340577957707
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/OscarVoiceLines/OscarVoiceLinesI/OscarVoiceLineI2
-  m_EditorClassIdentifier: 
-  Path: event:/OscarVoiceLines/OscarVoiceLinesI/OscarVoiceLineI2
+  Path: event:/Dialog/OscarVoiceLines/OscarVoiceLinesI/OscarVoiceLineI2
   Guid:
     Data1: -751519533
     Data2: 1197167751
@@ -1005,7 +870,7 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 2592
---- !u!114 &7513434624829980331
+--- !u!114 &5812055640496395371
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1015,14 +880,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/OscarVoiceLines/OscarVoiceLinesG/OscarVoiceLineG1
+  m_Name: event:/Dialog/OscarVoiceLines/OscarVoiceLinesNo/OscarVoiceLineNo1
   m_EditorClassIdentifier: 
-  Path: event:/OscarVoiceLines/OscarVoiceLinesG/OscarVoiceLineG1
+  Path: event:/Dialog/OscarVoiceLines/OscarVoiceLinesNo/OscarVoiceLineNo1
   Guid:
-    Data1: 2091935074
-    Data2: 1264676617
-    Data3: 1529291182
-    Data4: -1877014891
+    Data1: -896958858
+    Data2: 1087660796
+    Data3: -2032059251
+    Data4: -1772389568
   Banks:
   - {fileID: 8848099919283206021}
   IsStream: 0
@@ -1031,7 +896,61 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 6192
+  Length: 4824
+--- !u!114 &5869972410900141604
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Dialog/OscarVoiceLines/OscarVoiceLinesH/OscarVoiceLineH2
+  m_EditorClassIdentifier: 
+  Path: event:/Dialog/OscarVoiceLines/OscarVoiceLinesH/OscarVoiceLineH2
+  Guid:
+    Data1: 1714699653
+    Data2: 1186815197
+    Data3: 999384488
+    Data4: -524075624
+  Banks:
+  - {fileID: 8848099919283206021}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 4368
+--- !u!114 &6229010892212704858
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Dialog/OscarVoiceLines/OscarVoiceLinesA/OscarVoiceLineA1
+  m_EditorClassIdentifier: 
+  Path: event:/Dialog/OscarVoiceLines/OscarVoiceLinesA/OscarVoiceLineA1
+  Guid:
+    Data1: -49538305
+    Data2: 1290299153
+    Data3: -1883739479
+    Data4: -1740846837
+  Banks:
+  - {fileID: 8848099919283206021}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 4056
 --- !u!114 &7528302769810168109
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1047,11 +966,65 @@ MonoBehaviour:
   Path: Assets/Plugins/DS1SS_FMOD/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638221734695717561
+  lastModified: 638221743545158334
   FileSizes:
   - Name: Desktop
     Value: 2864
   Exists: 1
+--- !u!114 &8542885025947621178
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Dialog/OscarVoiceLines/OscarVoiceLinesYes/OscarVoiceLineYES7
+  m_EditorClassIdentifier: 
+  Path: event:/Dialog/OscarVoiceLines/OscarVoiceLinesYes/OscarVoiceLineYES7
+  Guid:
+    Data1: -1942950350
+    Data2: 1149788088
+    Data3: -758150507
+    Data4: -976144435
+  Banks:
+  - {fileID: 8848099919283206021}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 4896
+--- !u!114 &8769084870265556554
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Dialog/OscarVoiceLines/OscarVoiceLinesG/OscarVoiceLineG1
+  m_EditorClassIdentifier: 
+  Path: event:/Dialog/OscarVoiceLines/OscarVoiceLinesG/OscarVoiceLineG1
+  Guid:
+    Data1: 2091935074
+    Data2: 1264676617
+    Data3: 1529291182
+    Data4: -1877014891
+  Banks:
+  - {fileID: 8848099919283206021}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 6192
 --- !u!114 &8848099919283206021
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1067,12 +1040,12 @@ MonoBehaviour:
   Path: Assets/Plugins/DS1SS_FMOD/Build/Desktop/Dialogue.bank
   Name: Dialogue
   StudioPath: bank:/Dialogue
-  lastModified: 638215005606710066
+  lastModified: 638215661301893265
   FileSizes:
   - Name: Desktop
     Value: 1297216
   Exists: 1
---- !u!114 &9026055273786889438
+--- !u!114 &9040681333469363267
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1082,14 +1055,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/OscarVoiceLines/OscarVoiceLinesYes/OscarVoiceLineYES7
+  m_Name: event:/Dialog/OscarVoiceLines/OscarVoiceLinesB/OscarVoiceLineB2
   m_EditorClassIdentifier: 
-  Path: event:/OscarVoiceLines/OscarVoiceLinesYes/OscarVoiceLineYES7
+  Path: event:/Dialog/OscarVoiceLines/OscarVoiceLinesB/OscarVoiceLineB2
   Guid:
-    Data1: -1942950350
-    Data2: 1149788088
-    Data3: -758150507
-    Data4: -976144435
+    Data1: -1034677030
+    Data2: 1277448865
+    Data3: 1707680131
+    Data4: 2143043230
   Banks:
   - {fileID: 8848099919283206021}
   IsStream: 0
@@ -1098,4 +1071,31 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 4896
+  Length: 4272
+--- !u!114 &9143914201181366176
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Dialog/OscarVoiceLines/OscarVoiceLinesH/OscarVoiceLineH1
+  m_EditorClassIdentifier: 
+  Path: event:/Dialog/OscarVoiceLines/OscarVoiceLinesH/OscarVoiceLineH1
+  Guid:
+    Data1: 130527367
+    Data2: 1306044689
+    Data3: 236854167
+    Data4: 574895114
+  Banks:
+  - {fileID: 8848099919283206021}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 3600
