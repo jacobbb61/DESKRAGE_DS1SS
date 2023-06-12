@@ -8,7 +8,7 @@ public class PlayerItems : MonoBehaviour
     public List<GameObject> armor;
     public List<GameObject> keys;
     public int estusFlasks = 0;
-    private int maxFlasks = 5;
+    public int maxFlasks = 5;
 
     // Start is called before the first frame update
     void Start()

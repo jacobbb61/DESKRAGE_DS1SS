@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Interactable))]
 public class Key : MonoBehaviour
 {
     [SerializeField] private GameObject correspondingDoor;
@@ -23,17 +24,10 @@ public class Key : MonoBehaviour
         
     }
 
-    /*private void OnTriggerEnter2D(Collider2D collision)
-    {
-        door.isLocked = false;
-        Debug.Log(correspondingDoor + " unlocked");
-        gameObject.SetActive(false);
-    }*/
-
     public void PickUpKey()
     {
         door.isLocked = false;
-        Debug.Log(correspondingDoor.gameObject + " unlocked");
+        Debug.Log(this.name + " picked up. " + correspondingDoor.gameObject + " unlocked");
         playerItems.keys.Add(gameObject);
         gameObject.SetActive(false);
     }

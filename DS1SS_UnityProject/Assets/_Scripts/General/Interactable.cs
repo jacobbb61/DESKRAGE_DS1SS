@@ -19,22 +19,20 @@ public class Interactable : MonoBehaviour
     */
 
     private PlayerController player;
-    [SerializeField] private UnityEvent interactionEvent;
-    [SerializeField] private Transform interactableText; // This will be the text telling the player they can interact with the object
+    [SerializeField] private UnityEvent interactionEvent; 
 
     // Start is called before the first frame update
     void Start()
     {
         player = FindObjectOfType<PlayerController>();
-        interactableText = GameObject.FindGameObjectWithTag("Player").gameObject.transform.GetChild(3);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E) && interactionEvent != null)
+        if (Input.GetKeyDown(KeyCode.E) && player.targetInteractable != null)
         {
-            Interact();
+            this.Interact();
         }
     }
 
@@ -48,7 +46,6 @@ public class Interactable : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             player.targetInteractable = this;
-            interactableText.gameObject.SetActive(true);
             //Debug.Log("Player enters trigger");
         }
     }
@@ -61,7 +58,6 @@ public class Interactable : MonoBehaviour
                 player.targetInteractable = null;
             }
 
-            interactableText.gameObject.SetActive(false);
             //Debug.Log("Player exits trigger");
         }
     }

@@ -1,9 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 using static PlayerControls;
 
+[RequireComponent(typeof(Interactable))]
 public class DoorManager : MonoBehaviour
 {
     private LayerManager layerManager;
@@ -12,24 +15,42 @@ public class DoorManager : MonoBehaviour
     public int targetLayer; // For doors that switch the player's layer
     [SerializeField] private Collider2D doorCollider;
     private bool bossKilled;
+    [SerializeField] private Transform doorPrompt;
+    [SerializeField] private Transform doorUI;
+    [SerializeField] private TextMeshProUGUI doorUIText;
 
-    // Start is called before the first frame update
     void Start()
     {
+        doorPrompt = FindObjectOfType<Canvas>().transform.GetChild(2);
         layerManager = FindObjectOfType<LayerManager>();
+        doorUI = FindObjectOfType<Canvas>().transform.GetChild(3);
+        doorUIText = doorUI.GetComponentInChildren<TextMeshProUGUI>();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        
+        if (collision.CompareTag("Player"))
+        {
+            doorPrompt.gameObject.SetActive(true);
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            doorPrompt.gameObject.SetActive(false);
+            doorUI.gameObject.SetActive(false);
+        }
     }
 
     public void UseDoor()
     {
         if (isLocked)
         {
-            // Tell player the door is locked
+            doorPrompt.gameObject.SetActive(false);
+            doorUIText.text = "This door is locked.";
+            doorUI.gameObject.SetActive(true);
         }
         else
         {
@@ -44,6 +65,8 @@ public class DoorManager : MonoBehaviour
 
                 case (1): // Layer changing doors
                     {
+                        // Play animation, freeze player input
+                        // Prevent damage
                         layerManager.ChangeLayer(targetLayer);
                         Debug.Log("Case 1");
                         break;
@@ -51,7 +74,7 @@ public class DoorManager : MonoBehaviour
 
                 case (2): // One-way doors
                     {
-
+                        
                         Debug.Log("Case 2");
                         break;
                     }
