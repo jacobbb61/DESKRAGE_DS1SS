@@ -6,7 +6,7 @@
             "id": "2ee3ccd0-c7b9-430d-b8ed-a81a969e50c6",
             "actions": [
                 {
-                    "name": "New action",
+                    "name": "Interact",
                     "type": "Button",
                     "id": "28e88b78-d7fc-471b-b388-55babf2e63d8",
                     "expectedControlType": "Button",
@@ -19,11 +19,11 @@
                 {
                     "name": "",
                     "id": "50bec032-f032-4cc4-96d8-71aed1a9e015",
-                    "path": "",
+                    "path": "<Keyboard>/e",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "New action",
+                    "action": "Interact",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -275,7 +275,7 @@
                 {
                     "name": "",
                     "id": "6a3b88bb-f6e6-4bf1-a31e-9565c35452f5",
-                    "path": "",
+                    "path": "<Keyboard>/e",
                     "interactions": "",
                     "processors": "",
                     "groups": "",

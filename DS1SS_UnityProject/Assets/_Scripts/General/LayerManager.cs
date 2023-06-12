@@ -91,6 +91,7 @@ public class LayerManager : MonoBehaviour
     {
         if (!layers[0].runningCR)
         {
+            
             int direction = internalActiveLayer - target;
             if (target < 0 || target >= layers.Count)
             {
@@ -106,6 +107,7 @@ public class LayerManager : MonoBehaviour
                 else if (target == i)
                 {
                     layers[i].SetActive(direction);
+                    
                 }
                 else if (target < i)
                 {
