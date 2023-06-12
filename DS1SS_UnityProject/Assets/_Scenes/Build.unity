@@ -259,7 +259,6 @@ GameObject:
   - component: {fileID: 27890564}
   - component: {fileID: 27890563}
   - component: {fileID: 27890562}
-  - component: {fileID: 27890566}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -342,8 +341,8 @@ RectTransform:
   m_Children:
   - {fileID: 1628143490}
   - {fileID: 1811405172}
-  - {fileID: 945247370}
   - {fileID: 1311306435}
+  - {fileID: 945247370}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -352,20 +351,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &27890566
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 27890561}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3cbdb65219a398d408e5d4a5f922b466, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  DoorPromptObj: {fileID: 364066577}
-  DoorPromptText: {fileID: 2060709140}
 --- !u!1001 &30230690
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2199,7 +2184,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 245861248}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -30, y: -10, z: -10}
+  m_LocalPosition: {x: -76.5, y: -17, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3048,10 +3033,6 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 7
       objectReference: {fileID: 0}
-    - target: {fileID: 7309050127525556715, guid: 993aef80f3a5c344cba96245d1e5eaa6, type: 3}
-      propertyPath: m_DefaultActionMap
-      value: Player
-      objectReference: {fileID: 0}
     - target: {fileID: 9200097618393911772, guid: 993aef80f3a5c344cba96245d1e5eaa6, type: 3}
       propertyPath: m_Layer
       value: 7
@@ -3210,11 +3191,6 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 179632688337621779, guid: 993aef80f3a5c344cba96245d1e5eaa6, type: 3}
   m_PrefabInstance: {fileID: 361241955}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &364066577 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4431952063556173475, guid: 07b420480cf9d6e48812b8082f4a5176, type: 3}
-  m_PrefabInstance: {fileID: 1570737668}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &366119358
 PrefabInstance:
@@ -6283,7 +6259,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3932540448273901080, guid: 2fa546af92af58143b1c31f36cc2c4ad, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3932540448273901080, guid: 2fa546af92af58143b1c31f36cc2c4ad, type: 3}
       propertyPath: m_AnchorMax.x
@@ -8103,10 +8079,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 905833608285817017, guid: cfcb9112fd2b96b4ea62cc5a757f6c9c, type: 3}
-      propertyPath: m_Interpolate
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 905833608285817019, guid: cfcb9112fd2b96b4ea62cc5a757f6c9c, type: 3}
       propertyPath: m_Name
       value: Player (1)
@@ -8121,11 +8093,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 905833608285817022, guid: cfcb9112fd2b96b4ea62cc5a757f6c9c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -30
+      value: -76.5
       objectReference: {fileID: 0}
     - target: {fileID: 905833608285817022, guid: cfcb9112fd2b96b4ea62cc5a757f6c9c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -10
+      value: -17
       objectReference: {fileID: 0}
     - target: {fileID: 905833608285817022, guid: cfcb9112fd2b96b4ea62cc5a757f6c9c, type: 3}
       propertyPath: m_LocalPosition.z
@@ -8534,14 +8506,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 586126172}
     m_Modifications:
-    - target: {fileID: 1926253197167798278, guid: 60e1aafd226701f4c8733ead3f474ae4, type: 3}
-      propertyPath: doorID
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1926253197167798278, guid: 60e1aafd226701f4c8733ead3f474ae4, type: 3}
-      propertyPath: targetLayer
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3702622892975103697, guid: 60e1aafd226701f4c8733ead3f474ae4, type: 3}
       propertyPath: m_RootOrder
       value: 7
@@ -9190,7 +9154,7 @@ RectTransform:
   - {fileID: 1739450935}
   - {fileID: 2059171047}
   m_Father: {fileID: 27890565}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -9448,78 +9412,30 @@ MonoBehaviour:
     CharacterName: Character from save data
     xPos: 0
     yPos: 0
-    TimePlayed: 0
-    CurrentEstus: 0
-    MaxEstus: 0
+    Estus: 0
     HP: 0
-    Stamina: 0
-    DoorF: 0
-    DoorH1: 0
-    DoorH2: 0
-    DoorD2: 0
-    DoorI: 0
-    DoorWallToOscar: 0
-    DoorFloorToUnderground: 0
-    DoorFloorToBossArena: 0
-    OscarInteraction: A
-    IsOscarAlive: 0
+    TimePlayed: 0
   CharacterSlot01:
     CharacterName: Character from save data
     xPos: 0
     yPos: 0
-    TimePlayed: 0
-    CurrentEstus: 0
-    MaxEstus: 0
+    Estus: 0
     HP: 0
-    Stamina: 0
-    DoorF: 0
-    DoorH1: 0
-    DoorH2: 0
-    DoorD2: 0
-    DoorI: 0
-    DoorWallToOscar: 0
-    DoorFloorToUnderground: 0
-    DoorFloorToBossArena: 0
-    OscarInteraction: A
-    IsOscarAlive: 0
+    TimePlayed: 0
   CharacterSlot02:
     CharacterName: Character from save data
     xPos: 0
     yPos: 0
-    TimePlayed: 0
-    CurrentEstus: 0
-    MaxEstus: 0
+    Estus: 0
     HP: 0
-    Stamina: 0
-    DoorF: 0
-    DoorH1: 0
-    DoorH2: 0
-    DoorD2: 0
-    DoorI: 0
-    DoorWallToOscar: 0
-    DoorFloorToUnderground: 0
-    DoorFloorToBossArena: 0
-    OscarInteraction: A
-    IsOscarAlive: 0
+    TimePlayed: 0
   CharacterSlot03:
     CharacterName: Character from save data
     xPos: 0
     yPos: 0
-    TimePlayed: 0
-    CurrentEstus: 0
-    MaxEstus: 0
+    Estus: 0
     HP: 0
-    Stamina: 0
-    DoorF: 0
-    DoorH1: 0
-    DoorH2: 0
-    DoorD2: 0
-    DoorI: 0
-    DoorWallToOscar: 0
-    DoorFloorToUnderground: 0
-    DoorFloorToBossArena: 0
-    OscarInteraction: A
-    IsOscarAlive: 0
+    TimePlayed: 0
 --- !u!4 &1384078430
 Transform:
   m_ObjectHideFlags: 0
@@ -12047,14 +11963,6 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 7
       objectReference: {fileID: 0}
-    - target: {fileID: 2345779891185756956, guid: 993aef80f3a5c344cba96245d1e5eaa6, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7309050127525556715, guid: 993aef80f3a5c344cba96245d1e5eaa6, type: 3}
-      propertyPath: m_DefaultActionMap
-      value: Player
-      objectReference: {fileID: 0}
     - target: {fileID: 9200097618393911772, guid: 993aef80f3a5c344cba96245d1e5eaa6, type: 3}
       propertyPath: m_Layer
       value: 7
@@ -14548,17 +14456,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 812741730971134469, guid: 78e6b91324f6e744fa4318b9c57d6483, type: 3}
   m_PrefabInstance: {fileID: 2059171046}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2060709140 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1605760835102900368, guid: 07b420480cf9d6e48812b8082f4a5176, type: 3}
-  m_PrefabInstance: {fileID: 1570737668}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2092917697
 GameObject:
   m_ObjectHideFlags: 0

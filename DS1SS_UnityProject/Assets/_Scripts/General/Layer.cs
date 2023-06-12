@@ -94,7 +94,6 @@ public class Layer : MonoBehaviour
         foreach (PlatformEffector2D c in all)
         {
             c.colliderMask = mask;
-            Debug.Log(mask);
         }
     }
 

@@ -40,7 +40,7 @@ public class Interactable : MonoBehaviour
     {
         interactionEvent.Invoke();
     }
-    /*
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
@@ -60,6 +60,6 @@ public class Interactable : MonoBehaviour
 
             //Debug.Log("Player exits trigger");
         }
-    }*/
+    }
 
 }

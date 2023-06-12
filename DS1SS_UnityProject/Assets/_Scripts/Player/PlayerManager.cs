@@ -28,7 +28,7 @@ public class PlayerManager : MonoBehaviour
         CurrentCharacterData.yPos = transform.position.y;
         CurrentCharacterData.xPos = transform.position.x;
 
-        CurrentCharacterData.CurrentEstus = CurrentEstus;
+        CurrentCharacterData.Estus = CurrentEstus;
         CurrentCharacterData.HP = CurrentHP;
         CurrentCharacterData.TimePlayed = TimePlayedSeconds;
     }
@@ -38,7 +38,7 @@ public class PlayerManager : MonoBehaviour
         Vector2 MyPos = new Vector2 (CurrentCharacterData.xPos, CurrentCharacterData.yPos);
         transform.position = MyPos;
         CurrentHP = CurrentCharacterData.HP;
-        CurrentEstus = CurrentCharacterData.CurrentEstus;
+        CurrentEstus = CurrentCharacterData.Estus;
         TimePlayedSeconds = CurrentCharacterData.TimePlayed;
         Debug.Log("my pos");
     }
