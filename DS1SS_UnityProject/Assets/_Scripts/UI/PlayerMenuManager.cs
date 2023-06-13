@@ -67,6 +67,7 @@ public class PlayerMenuManager : MonoBehaviour
 
     private void Start()
     {
+        PM = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerManager>();
 
         MainOpen = false;
         MainUI.SetActive(false);
@@ -440,8 +441,7 @@ public class PlayerMenuManager : MonoBehaviour
         switch (QuitOrder)
         {
             case 1:
-                WorldSaveGameManager.Instance.SaveGame();
-                SceneManager.LoadScene("Main Menu", LoadSceneMode.Single);
+                StartCoroutine(Quiting());
                 break;
 
             case 2:
@@ -452,4 +452,11 @@ public class PlayerMenuManager : MonoBehaviour
         CanInput = true;
     }
 
+    IEnumerator Quiting()
+    {
+        WorldSaveGameManager.Instance.Player = PM;
+        WorldSaveGameManager.Instance.SaveGame();
+        yield return new WaitForSeconds(.5f);
+        SceneManager.LoadScene("Main Menu", LoadSceneMode.Single);
+    }
 }

@@ -6617,6 +6617,19 @@ MonoBehaviour:
     Estus: 0
     HP: 0
     TimePlayed: 0
+    EnemyBehaviour_01: 
+    EnemyHealth_01: 0
+    EnemyPosX_01: 0
+    EnemyPosY_01: 0
+    EnemyBehaviour_02: 
+    EnemyHealth_02: 0
+    EnemyPosX_02: 0
+    EnemyPosY_02: 0
+    EnemyBehaviour_03: 
+    EnemyHealth_03: 0
+    EnemyPosX_03: 0
+    EnemyPosY_03: 0
+  EnemySaveManagerList: []
   CharacterSlot01:
     CharacterName: 
     xPos: 0
@@ -6624,6 +6637,18 @@ MonoBehaviour:
     Estus: 0
     HP: 0
     TimePlayed: 0
+    EnemyBehaviour_01: 
+    EnemyHealth_01: 0
+    EnemyPosX_01: 0
+    EnemyPosY_01: 0
+    EnemyBehaviour_02: 
+    EnemyHealth_02: 0
+    EnemyPosX_02: 0
+    EnemyPosY_02: 0
+    EnemyBehaviour_03: 
+    EnemyHealth_03: 0
+    EnemyPosX_03: 0
+    EnemyPosY_03: 0
   CharacterSlot02:
     CharacterName: 
     xPos: 0
@@ -6631,6 +6656,18 @@ MonoBehaviour:
     Estus: 0
     HP: 0
     TimePlayed: 0
+    EnemyBehaviour_01: 
+    EnemyHealth_01: 0
+    EnemyPosX_01: 0
+    EnemyPosY_01: 0
+    EnemyBehaviour_02: 
+    EnemyHealth_02: 0
+    EnemyPosX_02: 0
+    EnemyPosY_02: 0
+    EnemyBehaviour_03: 
+    EnemyHealth_03: 0
+    EnemyPosX_03: 0
+    EnemyPosY_03: 0
   CharacterSlot03:
     CharacterName: 
     xPos: 0
@@ -6638,6 +6675,18 @@ MonoBehaviour:
     Estus: 0
     HP: 0
     TimePlayed: 0
+    EnemyBehaviour_01: 
+    EnemyHealth_01: 0
+    EnemyPosX_01: 0
+    EnemyPosY_01: 0
+    EnemyBehaviour_02: 
+    EnemyHealth_02: 0
+    EnemyPosX_02: 0
+    EnemyPosY_02: 0
+    EnemyBehaviour_03: 
+    EnemyHealth_03: 0
+    EnemyPosX_03: 0
+    EnemyPosY_03: 0
 --- !u!4 &657132616
 Transform:
   m_ObjectHideFlags: 0
@@ -12569,27 +12618,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1367420732}
   m_CullTransparentMesh: 1
---- !u!1 &1373290958 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 905833608285817019, guid: cfcb9112fd2b96b4ea62cc5a757f6c9c, type: 3}
+--- !u!114 &1373290959 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1663175262777994673, guid: cfcb9112fd2b96b4ea62cc5a757f6c9c, type: 3}
   m_PrefabInstance: {fileID: 37522818}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1373290959
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1373290958}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 467cdd6b965f5274d967a6a69f9fddc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CurrentEstus: 0
-  CurrentHP: 0
-  TimePlayedSeconds: 0
-  Name: jacob
 --- !u!1 &1398279481
 GameObject:
   m_ObjectHideFlags: 0

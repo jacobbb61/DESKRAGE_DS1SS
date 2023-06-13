@@ -22,6 +22,9 @@ public class WorldSaveGameManager : MonoBehaviour
     public CharacterSaveData CurrentCharacterData;
     private string SaveFileName;
 
+    [Header("Current Character Data")]
+    public GameObject[] EnemySaveManagerList;
+    public GameObject[] DoorSaveManagerList;
 
     [Header("Character Slots")]
     public CharacterSaveData CharacterSlot01;
@@ -147,7 +150,40 @@ public class WorldSaveGameManager : MonoBehaviour
         SaveFileDataWriter.SaveFileName = SaveFileName;
 
         //Pass the player info, from game, to thier save file
+        Player = null;
+        Player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerManager>();
         Player.SaveGameDataToCurrentCharacterData(ref CurrentCharacterData);
+
+        //if we are saving from the build scene do below, if not skip 
+        if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Build"))
+        {     
+            //get list of EnemySaveManagers
+            EnemySaveManagerList = null;
+            EnemySaveManagerList = GameObject.FindGameObjectsWithTag("Enemy");
+            if (EnemySaveManagerList != null)
+            {
+                foreach (GameObject Enemy in EnemySaveManagerList)
+                {
+                    //Pass each enemy data,from file, to the player in game 
+                    Enemy.GetComponent<EnemySaveManager>().SaveGameDataToCurrentCharacterData(ref CurrentCharacterData);
+                }
+            }
+
+            //get list of doors
+            DoorSaveManagerList = null;
+            DoorSaveManagerList = GameObject.FindGameObjectsWithTag("Door");
+            {
+                foreach (GameObject Door in DoorSaveManagerList)
+                {
+                    //Pass each door data,from file, to the player in game 
+                    Door.GetComponent<DoorSaveManager>().SaveGameDataToCurrentCharacterData(ref CurrentCharacterData);
+                }
+            }
+        }
+        //clear the list of enemys
+        EnemySaveManagerList = null;
+        //clear the list of doors
+        DoorSaveManagerList = null;
 
         // write the ifno onto a json file, saved to this machine
         SaveFileDataWriter.CreateNewCharacterSaveFile(CurrentCharacterData);
@@ -176,7 +212,35 @@ public class WorldSaveGameManager : MonoBehaviour
         MainMenuManager.Instance.FMODinstance.release();
         SceneManager.LoadScene("Build", LoadSceneMode.Single);
         yield return new WaitForSeconds(.1f);
+
+        // pass the player info, from file, to the player in game
+        Player = null;
+        Player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerManager>();
         Player.LoadGameFromDataToCurrentCharacterData(ref CurrentCharacterData);
+
+        //get list of all EnemySaveManager scripts in the scene 
+        //Pass each enemy data,from file, to the player in game
+        EnemySaveManagerList = null;
+        EnemySaveManagerList = GameObject.FindGameObjectsWithTag("Enemy");
+        if (EnemySaveManagerList != null)
+        {
+            foreach (GameObject Enemy in EnemySaveManagerList)
+            {
+                Enemy.GetComponent<EnemySaveManager>().LoadGameFromDataToCurrentCharacterData(ref CurrentCharacterData);
+            }
+        }
+        //get list of all DoorSaveManager scripts in the scene 
+        //Pass each door data,from file, to the player in game
+        DoorSaveManagerList = null;
+        DoorSaveManagerList = GameObject.FindGameObjectsWithTag("Door");
+        if (DoorSaveManagerList != null)
+        {
+            foreach (GameObject Door in DoorSaveManagerList)
+            {
+                //Pass each enemy data,from file, to the player in game 
+                Door.GetComponent<DoorSaveManager>().LoadGameFromDataToCurrentCharacterData(ref CurrentCharacterData);
+            }
+        }
 
         yield return null;
     }

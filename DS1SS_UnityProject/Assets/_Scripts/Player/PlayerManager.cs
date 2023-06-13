@@ -9,13 +9,11 @@ public class PlayerManager : MonoBehaviour
     public float CurrentHP;
     public float TimePlayedSeconds;
     public string Name = "";
-
     private void Start()
     {
         WorldSaveGameManager.Instance.Player = this;
-        
-    }
 
+    }
     private void Update()
     {
         if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Build")) { TimePlayedSeconds += Time.deltaTime; }

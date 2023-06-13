@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 905833608285817016}
   - component: {fileID: 905833608285817017}
   - component: {fileID: 905833608285817018}
+  - component: {fileID: 1663175262777994673}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -169,6 +170,22 @@ MonoBehaviour:
   faceDirection: 1
   layerSwapping: 0
   lastActionRechargeTime: 0
+--- !u!114 &1663175262777994673
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 905833608285817019}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 467cdd6b965f5274d967a6a69f9fddc8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CurrentEstus: 0
+  CurrentHP: 0
+  TimePlayedSeconds: 0
+  Name: jacob
 --- !u!1 &905833608691470373
 GameObject:
   m_ObjectHideFlags: 0

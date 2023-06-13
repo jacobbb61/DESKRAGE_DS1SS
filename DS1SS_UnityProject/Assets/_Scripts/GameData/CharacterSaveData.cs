@@ -22,4 +22,24 @@ public class CharacterSaveData
     public float HP;
     public float TimePlayed;
 
+
+    [Header("Enemy Data")]
+    public string EnemyBehaviour_01;
+    public float EnemyHealth_01;
+    public float EnemyPosX_01;
+    public float EnemyPosY_01;
+
+    public string EnemyBehaviour_02;
+    public float EnemyHealth_02;
+    public float EnemyPosX_02;
+    public float EnemyPosY_02;
+
+    public string EnemyBehaviour_03;
+    public float EnemyHealth_03;
+    public float EnemyPosX_03;
+    public float EnemyPosY_03;
+
+    [Header("Door Data")]
+    public string DoorState_A1;
+    public string DoorState_A2;
 }
