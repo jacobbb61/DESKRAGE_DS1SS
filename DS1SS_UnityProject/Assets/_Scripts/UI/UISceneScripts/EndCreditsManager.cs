@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
+using FMODUnity;
 
 public class EndCreditsManager : MonoBehaviour
 {
@@ -12,6 +13,9 @@ public class EndCreditsManager : MonoBehaviour
     public bool CanSkip = false;
     public Animator SkipPromptAnim;
     public Animator SceneTransitionAnim;
+
+    public EventReference PressCancel;
+    public FMOD.Studio.EventInstance FMODinstance;
 
     void Start()
     {
@@ -59,6 +63,7 @@ public class EndCreditsManager : MonoBehaviour
     {
         SkipPromptAnim.SetTrigger("Active");
         SceneTransitionAnim.SetTrigger("Active");
+        FMODUnity.RuntimeManager.PlayOneShot(PressCancel);
         yield return new WaitForSeconds(1.5f);
         SceneManager.LoadScene("Main Menu", LoadSceneMode.Single);
 

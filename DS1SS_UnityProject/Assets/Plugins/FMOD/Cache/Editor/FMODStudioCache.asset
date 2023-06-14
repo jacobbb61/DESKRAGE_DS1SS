@@ -27,6 +27,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 4008
+--- !u!114 &-8549335655400262941
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Effects/UI SFX/Select
+  m_EditorClassIdentifier: 
+  Path: event:/Effects/UI SFX/Select
+  Guid:
+    Data1: -85761932
+    Data2: 1274904204
+    Data3: 1206334867
+    Data4: 145636924
+  Banks:
+  - {fileID: 3864369050229653630}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 313
 --- !u!114 &-7493019162452559698
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -177,10 +204,10 @@ MonoBehaviour:
   Path: Assets/Plugins/DS1SS_FMOD/Build/Desktop/Music.bank
   Name: Music
   StudioPath: bank:/Music
-  lastModified: 638221734696024433
+  lastModified: 638223484894808819
   FileSizes:
   - Name: Desktop
-    Value: 1320032
+    Value: 1320224
   Exists: 1
 --- !u!114 &-6305189553039793047
 MonoBehaviour:
@@ -290,6 +317,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 4872
+--- !u!114 &-4954331158049712707
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Effects/UI SFX/Cancel
+  m_EditorClassIdentifier: 
+  Path: event:/Effects/UI SFX/Cancel
+  Guid:
+    Data1: -1716528186
+    Data2: 1236644138
+    Data3: -834325584
+    Data4: -1282867774
+  Banks:
+  - {fileID: 3864369050229653630}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 862
 --- !u!114 &-4728992773294555403
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -494,7 +548,7 @@ MonoBehaviour:
   Path: Assets/Plugins/DS1SS_FMOD/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638221734695707419
+  lastModified: 638223457512657480
   FileSizes:
   - Name: Desktop
     Value: 2672
@@ -553,6 +607,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 1752
+--- !u!114 &-299047884494292097
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Effects/UI SFX/Move
+  m_EditorClassIdentifier: 
+  Path: event:/Effects/UI SFX/Move
+  Guid:
+    Data1: -111466621
+    Data2: 1197806073
+    Data3: 657791376
+    Data4: -1103901562
+  Banks:
+  - {fileID: 3864369050229653630}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 78
 --- !u!114 &-176977119675968429
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -661,12 +742,17 @@ MonoBehaviour:
   - {fileID: 2055504038599050938}
   - {fileID: 2560653195412094223}
   - {fileID: 6229010892212704858}
+  - {fileID: 3669732785340959735}
+  - {fileID: 1493815082578954116}
+  - {fileID: -8549335655400262941}
+  - {fileID: -299047884494292097}
+  - {fileID: -4954331158049712707}
   EditorParameters: []
   MasterBanks:
   - {fileID: -1327748678376098689}
   StringsBanks:
   - {fileID: 7528302769810168109}
-  cacheTime: 638221734696054358
+  cacheTime: 638223484894808819
   cacheVersion: 131604
 --- !u!114 &918737202364352235
 MonoBehaviour:
@@ -695,6 +781,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 2976
+--- !u!114 &1493815082578954116
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Effects/UI SFX/StartGame
+  m_EditorClassIdentifier: 
+  Path: event:/Effects/UI SFX/StartGame
+  Guid:
+    Data1: 63629417
+    Data2: 1321518142
+    Data3: 604196736
+    Data4: -85629740
+  Banks:
+  - {fileID: 3864369050229653630}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1123
 --- !u!114 &2055504038599050938
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -823,6 +936,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 4968
+--- !u!114 &3669732785340959735
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Effects/UI SFX/Ok
+  m_EditorClassIdentifier: 
+  Path: event:/Effects/UI SFX/Ok
+  Guid:
+    Data1: 2034212367
+    Data2: 1139489680
+    Data3: 2032545932
+    Data4: -587010951
+  Banks:
+  - {fileID: 3864369050229653630}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1724
 --- !u!114 &3864369050229653630
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -838,10 +978,10 @@ MonoBehaviour:
   Path: Assets/Plugins/DS1SS_FMOD/Build/Desktop/Effects.bank
   Name: Effects
   StudioPath: bank:/Effects
-  lastModified: 638221734696044386
+  lastModified: 638223457512607648
   FileSizes:
   - Name: Desktop
-    Value: 494
+    Value: 37312
   Exists: 1
 --- !u!114 &5782485654593059877
 MonoBehaviour:
@@ -966,10 +1106,10 @@ MonoBehaviour:
   Path: Assets/Plugins/DS1SS_FMOD/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638221734695717561
+  lastModified: 638223457512672491
   FileSizes:
   - Name: Desktop
-    Value: 2864
+    Value: 3084
   Exists: 1
 --- !u!114 &8542885025947621178
 MonoBehaviour:

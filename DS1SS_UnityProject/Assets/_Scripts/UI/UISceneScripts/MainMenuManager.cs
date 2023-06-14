@@ -17,6 +17,10 @@ public class MainMenuManager : MonoBehaviour
     public string ActiveMenu = "Main";
 
     public EventReference MainMenuMusic;
+    public EventReference PressSelect;
+    public EventReference PressMove;
+    public EventReference PressOk;
+    public EventReference PressCancel;
     public FMOD.Studio.EventInstance FMODinstance;
 
 
@@ -99,7 +103,8 @@ public class MainMenuManager : MonoBehaviour
 
         FMODinstance = FMODUnity.RuntimeManager.CreateInstance(MainMenuMusic);
         FMODinstance.start();
-       
+        FMODinstance.release();
+
         VcaMasterController = FMODUnity.RuntimeManager.GetVCA("vca:/MasterVCA");
         VcaEffectsController = FMODUnity.RuntimeManager.GetVCA("vca:/EffectsVCA");
         VcaAmbienceController = FMODUnity.RuntimeManager.GetVCA("vca:/AmbienceVCA");
@@ -113,6 +118,7 @@ public class MainMenuManager : MonoBehaviour
     {
         if (context.action.triggered && CanInput == true)
         {
+            PlayAudioPressMove();
             CanInput = false;
             Debug.Log("Up Button Pressed");
             switch (ActiveMenu)
@@ -139,6 +145,7 @@ public class MainMenuManager : MonoBehaviour
     {
         if (context.action.triggered && CanInput == true)
         {
+            PlayAudioPressMove();
             CanInput = false;
             Debug.Log("Down Button Pressed");
             switch (ActiveMenu)
@@ -165,6 +172,7 @@ public class MainMenuManager : MonoBehaviour
     {
         if (context.action.triggered && CanInput == true)
         {
+            PlayAudioPressSelect();
             CanInput = false;
             Debug.Log("Left Button Pressed");
             switch (ActiveMenu)
@@ -183,6 +191,7 @@ public class MainMenuManager : MonoBehaviour
     {
         if (context.action.triggered && CanInput == true)
         {
+            PlayAudioPressSelect();
             CanInput = false;
             Debug.Log("Right Button Pressed");
             switch (ActiveMenu)
@@ -202,6 +211,7 @@ public class MainMenuManager : MonoBehaviour
     {
         if (context.action.triggered && CanInput == true)
         {
+            PlayAudioPressOk();
             Debug.Log("A Button Pressed");
             CanInput = false;
             switch (ActiveMenu)
@@ -226,6 +236,7 @@ public class MainMenuManager : MonoBehaviour
         {
             Debug.Log("B Button Pressed");
             CanInput = false;
+            PlayAudioPressCancel();
             switch (ActiveMenu)
             {
 
@@ -572,4 +583,26 @@ public class MainMenuManager : MonoBehaviour
         Application.Quit();
     }
 
+
+
+
+
+
+
+    public void PlayAudioPressSelect()
+    {
+        FMODUnity.RuntimeManager.PlayOneShot(PressSelect);
+    }
+    public void PlayAudioPressMove()
+    {
+        FMODUnity.RuntimeManager.PlayOneShot(PressMove);
+    }
+    public void PlayAudioPressOk()
+    {
+        FMODUnity.RuntimeManager.PlayOneShot(PressOk);
+    }
+    public void PlayAudioPressCancel()
+    {
+        FMODUnity.RuntimeManager.PlayOneShot(PressCancel);
+    }
 }

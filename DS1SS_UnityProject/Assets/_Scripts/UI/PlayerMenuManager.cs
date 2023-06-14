@@ -18,6 +18,12 @@ public class PlayerMenuManager : MonoBehaviour
     public string ActiveMenu = "Main";
     public PlayerManager PM;
 
+    public EventReference PressSelect;
+    public EventReference PressMove;
+    public EventReference PressOk;
+    public EventReference PressCancel;
+    public FMOD.Studio.EventInstance FMODinstance;
+
     [Header("Main")]
     public GameObject MainUI;
     public RectTransform MainHightlightPos;
@@ -105,6 +111,7 @@ public class PlayerMenuManager : MonoBehaviour
     {
         if (context.action.triggered && CanInput == true && MainOpen)
         {
+            PlayAudioPressMove();
             CanInput = false;
             Debug.Log("Up Button Pressed");
             switch (ActiveMenu)
@@ -120,6 +127,7 @@ public class PlayerMenuManager : MonoBehaviour
     {
         if (context.action.triggered && CanInput == true && MainOpen)
         {
+            PlayAudioPressMove();
             CanInput = false;
             Debug.Log("Down Button Pressed");
             switch (ActiveMenu)
@@ -142,13 +150,16 @@ public class PlayerMenuManager : MonoBehaviour
                 case "Main":
                     MainOrder--;
                     MoveMainHighlight();
+                    PlayAudioPressMove();
                     break;
                 case "Quit":
                     QuitOrder--;
                     MoveQuitHighlight();
+                    PlayAudioPressMove();
                     break;
                 case "Settings":
                     ChangeSettings(true);
+                    PlayAudioPressSelect();
                     break;
             }
         }
@@ -164,13 +175,16 @@ public class PlayerMenuManager : MonoBehaviour
                 case "Main":
                     MainOrder++;
                     MoveMainHighlight();
+                    PlayAudioPressMove();
                     break;
                 case "Quit":
                     QuitOrder++;
                     MoveQuitHighlight();
+                    PlayAudioPressMove();
                     break;
                 case "Settings":
-                    ChangeSettings(false);
+                    ChangeSettings(false);                  
+                    PlayAudioPressSelect();
                     break;
             }
         }
@@ -180,6 +194,7 @@ public class PlayerMenuManager : MonoBehaviour
     {
         if (context.action.triggered && CanInput == true && MainOpen)
         {
+            PlayAudioPressOk();
             Debug.Log("A Button Pressed");
             CanInput = false;
             switch (ActiveMenu)
@@ -200,6 +215,7 @@ public class PlayerMenuManager : MonoBehaviour
     {
         if (context.action.triggered && CanInput == true && MainOpen)
         {
+            PlayAudioPressCancel();
             Debug.Log("B Button Pressed");
             CanInput = false;
             switch (ActiveMenu)
@@ -223,9 +239,10 @@ public class PlayerMenuManager : MonoBehaviour
 
     public void LoadMain()
     {
-        if (!MainOpen) { ActiveMenu = "Main"; MainUI.SetActive(true); } else { ActiveMenu = "Closed"; MainUI.SetActive(false);
+        if (!MainOpen) { ActiveMenu = "Main"; MainUI.SetActive(true); PlayAudioPressOk(); } else { ActiveMenu = "Closed"; MainUI.SetActive(false);
             QuitUI.SetActive(false);
             Settings.SetActive(false);
+            PlayAudioPressCancel();
         }
         MainOrder = 1;
         CanInput = true;
@@ -458,5 +475,24 @@ public class PlayerMenuManager : MonoBehaviour
         WorldSaveGameManager.Instance.SaveGame();
         yield return new WaitForSeconds(.5f);
         SceneManager.LoadScene("Main Menu", LoadSceneMode.Single);
+    }
+
+
+
+    public void PlayAudioPressSelect()
+    {
+        FMODUnity.RuntimeManager.PlayOneShot(PressSelect);
+    }
+    public void PlayAudioPressMove()
+    {
+        FMODUnity.RuntimeManager.PlayOneShot(PressMove);
+    }
+    public void PlayAudioPressOk()
+    {
+        FMODUnity.RuntimeManager.PlayOneShot(PressOk);
+    }
+    public void PlayAudioPressCancel()
+    {
+        FMODUnity.RuntimeManager.PlayOneShot(PressCancel);
     }
 }

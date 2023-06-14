@@ -6,6 +6,9 @@ namespace FMODUnity
     [AddComponentMenu("FMOD Studio/FMOD Studio Listener")]
     public class StudioListener : MonoBehaviour
     {
+
+        public static StudioListener Instance;
+
         [SerializeField]
         private GameObject attenuationObject = null;
 
@@ -52,6 +55,26 @@ namespace FMODUnity
             }
             return result;
         }
+
+
+        public void Awake()
+        {
+            if (Instance != null && Instance != this)
+            {
+                Destroy(this);
+            }
+            else
+            {
+                Instance = this;
+            }
+        }
+        private void Start()
+        {
+            attenuationObject = GameObject.FindGameObjectWithTag("Player");
+        }
+
+
+
 
         private static void AddListener(StudioListener listener)
         {

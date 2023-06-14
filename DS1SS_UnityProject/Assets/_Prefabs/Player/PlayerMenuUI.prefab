@@ -726,7 +726,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &7250591243446976666
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4626,6 +4626,34 @@ MonoBehaviour:
   CanInput: 1
   ActiveMenu: Main
   PM: {fileID: 0}
+  PressSelect:
+    Guid:
+      Data1: -85761932
+      Data2: 1274904204
+      Data3: 1206334867
+      Data4: 145636924
+    Path: event:/Effects/UI SFX/Select
+  PressMove:
+    Guid:
+      Data1: -111466621
+      Data2: 1197806073
+      Data3: 657791376
+      Data4: -1103901562
+    Path: event:/Effects/UI SFX/Move
+  PressOk:
+    Guid:
+      Data1: 2034212367
+      Data2: 1139489680
+      Data3: 2032545932
+      Data4: -587010951
+    Path: event:/Effects/UI SFX/Ok
+  PressCancel:
+    Guid:
+      Data1: -1716528186
+      Data2: 1236644138
+      Data3: -834325584
+      Data4: -1282867774
+    Path: event:/Effects/UI SFX/Cancel
   MainUI: {fileID: 7250591245214435665}
   MainHightlightPos: {fileID: 7250591244328660604}
   QuitUI: {fileID: 7250591243446976665}
