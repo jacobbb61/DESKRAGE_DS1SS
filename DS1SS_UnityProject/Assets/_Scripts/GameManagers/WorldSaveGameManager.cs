@@ -98,6 +98,8 @@ public class WorldSaveGameManager : MonoBehaviour
         { //if this character slot is not take then we are going to use it
             CurrentCharacterSlotBeingUsed = CharacterSlot.CharacterSlot_01;
             CurrentCharacterData = new CharacterSaveData();
+            CurrentCharacterData.xPos = -77f;
+            CurrentCharacterData.yPos = -17f;
             StartCoroutine(LoadWorldScene());
             return;
         }
@@ -108,6 +110,8 @@ public class WorldSaveGameManager : MonoBehaviour
         { //if this character slot is not take then we are going to use it
             CurrentCharacterSlotBeingUsed = CharacterSlot.CharacterSlot_02;
             CurrentCharacterData = new CharacterSaveData();
+            CurrentCharacterData.xPos = -77f;
+            CurrentCharacterData.yPos = -17f;
             StartCoroutine(LoadWorldScene());
             return;
         }
@@ -118,6 +122,8 @@ public class WorldSaveGameManager : MonoBehaviour
         { //if this character slot is not take then we are going to use it
             CurrentCharacterSlotBeingUsed = CharacterSlot.CharacterSlot_03;
             CurrentCharacterData = new CharacterSaveData();
+            CurrentCharacterData.xPos = -77f;
+            CurrentCharacterData.yPos = -17f;
             StartCoroutine(LoadWorldScene());
             return;
         }

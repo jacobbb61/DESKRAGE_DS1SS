@@ -1342,12 +1342,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsDead: 0
-  Health: 0
+  Health: 24
   MaxHealth: 24
   HealthBarSlider: {fileID: 1863682826}
   Anim: {fileID: 151822836}
   Assets: {fileID: 730067517}
-  OriginPosition: {x: 17, y: -2.86}
+  OriginPosition: {x: 17, y: -2.86, z: 0}
 --- !u!95 &151822836
 Animator:
   serializedVersion: 5
