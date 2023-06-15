@@ -126,8 +126,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isLocked: 0
-  doorID: 2
+  doorID: 1
   targetLayer: 2
+  doorCollider: {fileID: 0}
+  doorPrompt: {fileID: 0}
+  doorUI: {fileID: 0}
+  doorUIText: {fileID: 0}
 --- !u!114 &5054251922971769875
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -155,4 +159,3 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  interactableText: {fileID: 0}

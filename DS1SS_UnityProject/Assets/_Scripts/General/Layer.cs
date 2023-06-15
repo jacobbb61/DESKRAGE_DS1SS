@@ -17,13 +17,17 @@ public class Layer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        mask = 1 << gameObject.layer;
         EffectorsSetup();
     }
 
     // Update is called once per frame
     void Update()
     {
-        //Move the layer to track to the camera
+        //my position needs to be offset like so
+        //the distance from 0,0,0 to the camera (transform.parent.position to camera) * scale
+        if(!runningCR)
+        transform.position = transform.parent.position + (Camera.main.transform.position - transform.parent.position)*(1-currentScale);
     }
 
     //Honestly these three functions could be cleaner, but they work so...
@@ -109,6 +113,7 @@ public class Layer : MonoBehaviour
             currentScale = Mathf.Lerp(initScale, s, timePassed / t);
             currentAlpha = Mathf.Lerp(initAlpha, a, timePassed / t);
             gameObject.transform.localScale = Vector3.one * currentScale;
+            transform.position = transform.parent.position + (Camera.main.transform.position - transform.parent.position) * (1 - currentScale);//this takes over setting the position based on the camera
             foreach (SpriteRenderer r in rends)
             {
                 r.color = new Color(r.color.r, r.color.g, r.color.b, currentAlpha);

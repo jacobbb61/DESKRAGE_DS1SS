@@ -140,9 +140,10 @@ public class LayerManager : MonoBehaviour
     {
         Transform thing = target.transform;
         Layer answer;
+        int traverseCount = 0;
         while (thing != null)
         {
-            if (target.TryGetComponent<Layer>(out answer))
+            if (thing.gameObject.TryGetComponent<Layer>(out answer))
             {
                 return layers.FindIndex(i => i.Equals(answer));
             }
@@ -150,8 +151,9 @@ public class LayerManager : MonoBehaviour
             {
                 thing = thing.parent;
             }
+            traverseCount++;
         }
-        Debug.LogWarning("LayerNotFound");
+        Debug.LogWarning("Layer Not Found for " + target.name + " with local pos" + target.transform.localPosition + " after " + traverseCount + "traversals");
         return -1;
     }
 

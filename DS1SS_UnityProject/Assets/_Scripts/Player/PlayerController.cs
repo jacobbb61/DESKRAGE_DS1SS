@@ -21,13 +21,22 @@ public class PlayerController : MonoBehaviour, IAvatarActions
     [SerializeField] private float runSpeed = 4f, runStaminaCost = 8.5f, runRechargePause = 0.65f; //Distance = speed*canceltime?
     [SerializeField] private float backSpeed = 4f, backTime = 1.3f, backCancelTime = 1f, backStaminaCost = 30f, backRechargePause = 0.65f; //This is what happens instead of rolling when stationary
 
+
+    [Header("Attack Values")]
+    [SerializeField] private float lightAttackFieldDuration = 0.5f;
+    [SerializeField] private float lightAttackWindupTime, lightAttackWindDownTime;
+
     public enum PlayerMode
     {
         DEFAULT,
         RUNNING,
         ROLLING,
         JUMPING,
-        BACKSTEPPING
+        BACKSTEPPING,
+        LIGHTATTACK,
+        HEAVYATTACK,
+        BLOCK,
+        PARRY
     }
     [Header("Other")]
     [SerializeField]
@@ -199,6 +208,7 @@ public class PlayerController : MonoBehaviour, IAvatarActions
             if (targetInteractable != null)
             {
                 targetInteractable.Interact();
+                //Debug.Log("Interacted");
             }
         }
     }

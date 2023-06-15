@@ -19,12 +19,27 @@ public class DoorManager : MonoBehaviour
     [SerializeField] private Transform doorUI;
     [SerializeField] private TextMeshProUGUI doorUIText;
 
+    private void Awake()
+    {
+        Collider2D[] overlaps = Physics2D.OverlapPointAll(transform.position);
+        DoorManager otherDoor;
+        foreach (Collider2D c in overlaps)
+        {
+            if (c.gameObject.TryGetComponent<DoorManager>(out otherDoor) && otherDoor != this)
+            {
+                targetLayer = FindObjectOfType<LayerManager>().GetLayerFromObject(c.gameObject);
+            }
+        }
+    }
+
     void Start()
     {
         doorPrompt = FindObjectOfType<Canvas>().transform.GetChild(2);
         layerManager = FindObjectOfType<LayerManager>();
         doorUI = FindObjectOfType<Canvas>().transform.GetChild(3);
         doorUIText = doorUI.GetComponentInChildren<TextMeshProUGUI>();
+        
+        
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -59,7 +74,7 @@ public class DoorManager : MonoBehaviour
                 case (0): // Regular doors
                     {
                         doorCollider.enabled = false;
-                        Debug.Log("Case 0");
+                        Debug.Log("Door Case 0");
                         break;
                     }
 
@@ -68,14 +83,14 @@ public class DoorManager : MonoBehaviour
                         // Play animation, freeze player input
                         // Prevent damage
                         layerManager.ChangeLayer(targetLayer);
-                        Debug.Log("Case 1");
+                        Debug.Log("Door Case 1");
                         break;
                     }
 
                 case (2): // One-way doors
                     {
                         
-                        Debug.Log("Case 2");
+                        Debug.Log("Door Case 2");
                         break;
                     }
 
@@ -85,7 +100,7 @@ public class DoorManager : MonoBehaviour
                         {
                             doorCollider.enabled = false;
                         }
-                        Debug.Log("Case 3");
+                        Debug.Log("Door Case 3");
                         break;
                     }
                 default:
