@@ -198,7 +198,7 @@ public class PlayerControllerV2 : MonoBehaviour
     public void Y(InputAction.CallbackContext context)
     {
         Debug.Log("Y");
-        if (CanMove && IsGrounded && Interactable != null && !IsUiOpen)
+        if (CanMove && !IsRolling && !IsJumping && !IsRunning && Interactable != null && !IsUiOpen)
         {
             if (context.action.triggered)
             {
@@ -276,14 +276,14 @@ public class PlayerControllerV2 : MonoBehaviour
             if (MovementInputDirection < -0.2f) { PlayerDirection = -1; }
             if (!IsRunning)
             {
-                MyRb.velocity = new Vector2(MovementInputDirection * WalkSpeed, VerticalSpeed);
+                MyRb.velocity = new Vector2(MovementInputDirection * WalkSpeed, -VerticalSpeed);
                 IsStaminaRegen = true;                
                 Anim.Play("Prototype_Walking");
             }
             else if (IsRunning && Stamina > 0)
             {
                 Stamina -= Time.deltaTime * 8.5f; IsStaminaRegen = false;
-                MyRb.velocity = new Vector2(MovementInputDirection * RunSpeed, VerticalSpeed);
+                MyRb.velocity = new Vector2(MovementInputDirection * RunSpeed, -VerticalSpeed);
                 Anim.Play("Prototype_Running");
             }
         }
@@ -302,8 +302,8 @@ public class PlayerControllerV2 : MonoBehaviour
     }    
     public void GroundCheck()
     {
-        RaycastHit2D hitA = Physics2D.Raycast(GroundCheckPosA.position, Vector2.down, .1f);
-        RaycastHit2D hitB = Physics2D.Raycast(GroundCheckPosB.position, Vector2.down, .1f);
+        RaycastHit2D hitA = Physics2D.Raycast(GroundCheckPosA.position, Vector2.down, .25f);
+        RaycastHit2D hitB = Physics2D.Raycast(GroundCheckPosB.position, Vector2.down, .25f);
         
 
         if(hitA.collider != null)
