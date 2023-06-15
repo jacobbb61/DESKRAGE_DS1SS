@@ -378,7 +378,7 @@ MonoBehaviour:
   RollTime: 1
   BackstepSpeed: 5
   BackstepTime: 0.5
-  JumpVerticalSpeed: 6
+  JumpVerticalSpeed: 7
   JumpHorizontalSpeed: 4
   JumpRunHorizontalSpeed: 4
   JumpTime: 1
@@ -420,6 +420,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TimePlayedSeconds: 0
   Name: 
+  LastBonfireVisited: 0
 --- !u!114 &1065959576863444070
 MonoBehaviour:
   m_ObjectHideFlags: 0
