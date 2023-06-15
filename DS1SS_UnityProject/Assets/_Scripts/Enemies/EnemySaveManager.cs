@@ -103,7 +103,6 @@ public class EnemySaveManager : MonoBehaviour
         {
             case "Dummy":
                 GetComponent<UndeadDummy>().Health = EnemyHealth_This;
-                GetComponent<UndeadDummy>().ManualStart();
                 break;
             case "A":
 

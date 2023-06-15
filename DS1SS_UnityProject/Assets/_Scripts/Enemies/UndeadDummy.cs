@@ -17,7 +17,7 @@ public class UndeadDummy : MonoBehaviour
     public Vector3 OriginPosition;
          
 
-    public void ManualStart()
+    public void Start()
     {
         if (Health <= 0) { Dead(); }
         HealthBarSlider.value = Health;
