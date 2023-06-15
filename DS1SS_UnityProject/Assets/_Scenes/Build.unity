@@ -6035,17 +6035,9 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6595229263072959817, guid: 5bce8272093059641ad8d3ab28c85500, type: 3}
-      propertyPath: JumpTime
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6595229263072959817, guid: 5bce8272093059641ad8d3ab28c85500, type: 3}
       propertyPath: LayerManager
       value: 
       objectReference: {fileID: 801581927}
-    - target: {fileID: 6595229263072959817, guid: 5bce8272093059641ad8d3ab28c85500, type: 3}
-      propertyPath: JumpVerticalSpeed
-      value: 6.5
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5bce8272093059641ad8d3ab28c85500, type: 3}
 --- !u!1 &779564136 stripped

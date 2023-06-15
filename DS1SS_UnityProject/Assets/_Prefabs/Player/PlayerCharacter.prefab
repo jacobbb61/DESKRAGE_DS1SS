@@ -378,10 +378,10 @@ MonoBehaviour:
   RollTime: 1
   BackstepSpeed: 5
   BackstepTime: 0.5
-  JumpVerticalSpeed: 7
+  JumpVerticalSpeed: 7.5
   JumpHorizontalSpeed: 4
-  JumpRunHorizontalSpeed: 4
-  JumpTime: 1
+  JumpRunHorizontalSpeed: 5
+  JumpTime: 1.2
   FallSpeed: 3
   AirborneControl: 1
   IsAttackStepping: 0

@@ -276,14 +276,14 @@ public class PlayerControllerV2 : MonoBehaviour
             if (MovementInputDirection < -0.2f) { PlayerDirection = -1; }
             if (!IsRunning)
             {
-                MyRb.velocity = new Vector2(MovementInputDirection * WalkSpeed, MyRb.velocity.y);
+                MyRb.velocity = new Vector2(MovementInputDirection * WalkSpeed, VerticalSpeed);
                 IsStaminaRegen = true;                
                 Anim.Play("Prototype_Walking");
             }
             else if (IsRunning && Stamina > 0)
             {
                 Stamina -= Time.deltaTime * 8.5f; IsStaminaRegen = false;
-                MyRb.velocity = new Vector2(MovementInputDirection * RunSpeed, MyRb.velocity.y);
+                MyRb.velocity = new Vector2(MovementInputDirection * RunSpeed, VerticalSpeed);
                 Anim.Play("Prototype_Running");
             }
         }
@@ -437,6 +437,7 @@ public class PlayerControllerV2 : MonoBehaviour
     {
         CanMove = true;
         IsRolling = false;
+        IsRunning = false;
         IsJumping = false;
         VerticalSpeed = FallSpeed;
         MyRb.velocity = Vector2.zero;
