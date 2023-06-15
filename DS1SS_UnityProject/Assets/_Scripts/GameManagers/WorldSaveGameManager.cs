@@ -25,6 +25,7 @@ public class WorldSaveGameManager : MonoBehaviour
     [Header("Current Character Data")]
     public GameObject[] EnemySaveManagerList;
     public GameObject[] DoorSaveManagerList;
+    public GameObject[] BonfireList;
 
     [Header("Character Slots")]
     public CharacterSaveData CharacterSlot01;
@@ -164,7 +165,7 @@ public class WorldSaveGameManager : MonoBehaviour
             {
                 foreach (GameObject Enemy in EnemySaveManagerList)
                 {
-                    //Pass each enemy data,from file, to the player in game 
+                    //Pass each enemy data,from game to file
                     Enemy.GetComponent<EnemySaveManager>().SaveGameDataToCurrentCharacterData(ref CurrentCharacterData);
                 }
             }
@@ -175,8 +176,20 @@ public class WorldSaveGameManager : MonoBehaviour
             {
                 foreach (GameObject Door in DoorSaveManagerList)
                 {
-                    //Pass each door data,from file, to the player in game 
+                    //Pass each door data,from game to file
                     Door.GetComponent<DoorSaveManager>().SaveGameDataToCurrentCharacterData(ref CurrentCharacterData);
+                }
+            }
+            //get list of all Bonfire scripts in the scene 
+            //Pass each door data,from game, to the player in game
+            BonfireList = null;
+            BonfireList = GameObject.FindGameObjectsWithTag("Bonfire");
+            if (BonfireList != null)
+            {
+                foreach (GameObject Bonfire in BonfireList)
+                {
+                    //Pass each enemy data,from game to file
+                    Bonfire.GetComponent<Bonfire>().SaveGameDataToCurrentCharacterData(ref CurrentCharacterData);
                 }
             }
         }
@@ -239,6 +252,18 @@ public class WorldSaveGameManager : MonoBehaviour
             {
                 //Pass each enemy data,from file, to the player in game 
                 Door.GetComponent<DoorSaveManager>().LoadGameFromDataToCurrentCharacterData(ref CurrentCharacterData);
+            }
+        }
+        //get list of all Bonfire scripts in the scene 
+        //Pass each door data,from file, to the player in game
+        BonfireList = null;
+        BonfireList = GameObject.FindGameObjectsWithTag("Bonfire");
+        if (BonfireList != null)
+        {
+            foreach (GameObject Bonfire in BonfireList)
+            {
+                //Pass each enemy data,from file, to the player in game 
+                Bonfire.GetComponent<Bonfire>().LoadGameFromDataToCurrentCharacterData(ref CurrentCharacterData);
             }
         }
 

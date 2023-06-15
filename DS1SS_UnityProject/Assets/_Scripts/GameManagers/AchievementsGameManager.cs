@@ -39,7 +39,7 @@ public class AchievementsGameManager : MonoBehaviour
     // call the below function when an achievement is unlocked, for example on the asylum door to section 2 write "AchievementsGameManager.Instance.UnlockedAchievement(1);"
     public void UnlockedAchievement(int num)
     {  
-        AchievementObj = GameObject.FindGameObjectWithTag("AchievementAnim");
+        AchievementObj = GameObject.FindGameObjectWithTag("Canvas").GetComponent<CanvasManager>().AchievementObj;
         AchievementSymbol = AchievementObj.GetComponentInChildren<RawImage>();
         AchievementTitle = AchievementObj.GetComponentInChildren<TextMeshProUGUI>();
 

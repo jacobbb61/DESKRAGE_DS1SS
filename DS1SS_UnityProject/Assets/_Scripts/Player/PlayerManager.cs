@@ -5,18 +5,21 @@ using UnityEngine.SceneManagement;
 
 public class PlayerManager : MonoBehaviour
 {
-    public int CurrentEstus;
-    public float CurrentHP;
+
     public float TimePlayedSeconds;
     public string Name = "";
 
+    public int LastBonfireVisited;
+
     private LayerManagerV2 Layer;
+    private PlayerControllerV2 PC;
     private void Start()
     {
         WorldSaveGameManager.Instance.Player = this;
         if (SceneManager.GetActiveScene().name == "Build")
         {
             Layer = GameObject.FindGameObjectWithTag("LayerManager").GetComponent<LayerManagerV2>();
+            PC = GetComponent<PlayerControllerV2>();
         }
     }
     private void Update()
@@ -32,8 +35,14 @@ public class PlayerManager : MonoBehaviour
         CurrentCharacterData.xPos = transform.position.x;
         CurrentCharacterData.PlayerLayer = Layer.CurrentLayer;
 
-        CurrentCharacterData.Estus = CurrentEstus;
-        CurrentCharacterData.HP = CurrentHP;
+        CurrentCharacterData.Estus = PC.CurrentEstus;
+        CurrentCharacterData.MaxEstus = PC.MaxEstus;
+        CurrentCharacterData.HP = PC.Health;
+
+        CurrentCharacterData.LastBonfireVisited = LastBonfireVisited;
+
+
+
         CurrentCharacterData.TimePlayed = TimePlayedSeconds;
     }
     public void LoadGameFromDataToCurrentCharacterData(ref CharacterSaveData CurrentCharacterData)
@@ -45,9 +54,12 @@ public class PlayerManager : MonoBehaviour
         Layer.CurrentLayer= CurrentCharacterData.PlayerLayer;
         Layer.LoadLayer(CurrentCharacterData.PlayerLayer);
 
-        CurrentHP = CurrentCharacterData.HP;
-        CurrentEstus = CurrentCharacterData.Estus;
+        PC.Health = CurrentCharacterData.HP;
+        PC.CurrentEstus = CurrentCharacterData.Estus;
+        PC.MaxEstus = CurrentCharacterData.MaxEstus;
+
+        LastBonfireVisited = CurrentCharacterData.LastBonfireVisited;
+
         TimePlayedSeconds = CurrentCharacterData.TimePlayed;
-        Debug.Log("my pos");
     }
 }

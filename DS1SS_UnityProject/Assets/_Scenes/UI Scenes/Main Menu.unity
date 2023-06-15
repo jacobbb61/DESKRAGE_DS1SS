@@ -6577,21 +6577,26 @@ MonoBehaviour:
     CharacterName: 
     xPos: 0
     yPos: 0
+    PlayerLayer: 
     Estus: 0
     HP: 0
     TimePlayed: 0
-    EnemyBehaviour_01: 
-    EnemyHealth_01: 0
-    EnemyPosX_01: 0
-    EnemyPosY_01: 0
-    EnemyBehaviour_02: 
-    EnemyHealth_02: 0
-    EnemyPosX_02: 0
-    EnemyPosY_02: 0
-    EnemyBehaviour_03: 
-    EnemyHealth_03: 0
-    EnemyPosX_03: 0
-    EnemyPosY_03: 0
+    EnemyBehaviour_1: 
+    EnemyHealth_1: 0
+    EnemyPosX_1: 0
+    EnemyPosY_1: 0
+    EnemyBehaviour_2: 
+    EnemyHealth_2: 0
+    EnemyPosX_2: 0
+    EnemyPosY_2: 0
+    EnemyBehaviour_3: 
+    EnemyHealth_3: 0
+    EnemyPosX_3: 0
+    EnemyPosY_3: 0
+    EnemyBehaviour_100: 
+    EnemyHealth_100: 0
+    EnemyPosX_100: 0
+    EnemyPosY_100: 0
     DoorState_A1: 
     DoorState_A2: 
   EnemySaveManagerList: []
@@ -6600,63 +6605,78 @@ MonoBehaviour:
     CharacterName: 
     xPos: 0
     yPos: 0
+    PlayerLayer: 
     Estus: 0
     HP: 0
     TimePlayed: 0
-    EnemyBehaviour_01: 
-    EnemyHealth_01: 0
-    EnemyPosX_01: 0
-    EnemyPosY_01: 0
-    EnemyBehaviour_02: 
-    EnemyHealth_02: 0
-    EnemyPosX_02: 0
-    EnemyPosY_02: 0
-    EnemyBehaviour_03: 
-    EnemyHealth_03: 0
-    EnemyPosX_03: 0
-    EnemyPosY_03: 0
+    EnemyBehaviour_1: 
+    EnemyHealth_1: 0
+    EnemyPosX_1: 0
+    EnemyPosY_1: 0
+    EnemyBehaviour_2: 
+    EnemyHealth_2: 0
+    EnemyPosX_2: 0
+    EnemyPosY_2: 0
+    EnemyBehaviour_3: 
+    EnemyHealth_3: 0
+    EnemyPosX_3: 0
+    EnemyPosY_3: 0
+    EnemyBehaviour_100: 
+    EnemyHealth_100: 0
+    EnemyPosX_100: 0
+    EnemyPosY_100: 0
     DoorState_A1: 
     DoorState_A2: 
   CharacterSlot02:
     CharacterName: 
     xPos: 0
     yPos: 0
+    PlayerLayer: 
     Estus: 0
     HP: 0
     TimePlayed: 0
-    EnemyBehaviour_01: 
-    EnemyHealth_01: 0
-    EnemyPosX_01: 0
-    EnemyPosY_01: 0
-    EnemyBehaviour_02: 
-    EnemyHealth_02: 0
-    EnemyPosX_02: 0
-    EnemyPosY_02: 0
-    EnemyBehaviour_03: 
-    EnemyHealth_03: 0
-    EnemyPosX_03: 0
-    EnemyPosY_03: 0
+    EnemyBehaviour_1: 
+    EnemyHealth_1: 0
+    EnemyPosX_1: 0
+    EnemyPosY_1: 0
+    EnemyBehaviour_2: 
+    EnemyHealth_2: 0
+    EnemyPosX_2: 0
+    EnemyPosY_2: 0
+    EnemyBehaviour_3: 
+    EnemyHealth_3: 0
+    EnemyPosX_3: 0
+    EnemyPosY_3: 0
+    EnemyBehaviour_100: 
+    EnemyHealth_100: 0
+    EnemyPosX_100: 0
+    EnemyPosY_100: 0
     DoorState_A1: 
     DoorState_A2: 
   CharacterSlot03:
     CharacterName: 
     xPos: 0
     yPos: 0
+    PlayerLayer: 
     Estus: 0
     HP: 0
     TimePlayed: 0
-    EnemyBehaviour_01: 
-    EnemyHealth_01: 0
-    EnemyPosX_01: 0
-    EnemyPosY_01: 0
-    EnemyBehaviour_02: 
-    EnemyHealth_02: 0
-    EnemyPosX_02: 0
-    EnemyPosY_02: 0
-    EnemyBehaviour_03: 
-    EnemyHealth_03: 0
-    EnemyPosX_03: 0
-    EnemyPosY_03: 0
+    EnemyBehaviour_1: 
+    EnemyHealth_1: 0
+    EnemyPosX_1: 0
+    EnemyPosY_1: 0
+    EnemyBehaviour_2: 
+    EnemyHealth_2: 0
+    EnemyPosX_2: 0
+    EnemyPosY_2: 0
+    EnemyBehaviour_3: 
+    EnemyHealth_3: 0
+    EnemyPosX_3: 0
+    EnemyPosY_3: 0
+    EnemyBehaviour_100: 
+    EnemyHealth_100: 0
+    EnemyPosX_100: 0
+    EnemyPosY_100: 0
     DoorState_A1: 
     DoorState_A2: 
 --- !u!4 &657132616
@@ -7932,6 +7952,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1065959576863444072, guid: 5bce8272093059641ad8d3ab28c85500, type: 3}
+      propertyPath: m_Constraints
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 1065959576863444075, guid: 5bce8272093059641ad8d3ab28c85500, type: 3}
       propertyPath: m_RootOrder
       value: 8
@@ -10696,7 +10720,7 @@ Camera:
   m_GameObject: {fileID: 1232027733}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
+  m_ClearFlags: 2
   m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
@@ -10714,7 +10738,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 12
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2

@@ -150,6 +150,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05c0e1e763c7d024e9b7f72f93600254, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  HitStartPos: {fileID: 7531493749407576679}
 --- !u!1 &1065959575759866114
 GameObject:
   m_ObjectHideFlags: 0
@@ -263,6 +264,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1065959575374467200}
+  - {fileID: 7531493749407576679}
   m_Father: {fileID: 1065959576863444075}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -349,10 +351,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 407094d1d99044f46b72a6b52648bfcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HP: 0
-  Stamina: 100
+  Health: 80
+  MaxHealth: 100
+  Stamina: 80
+  MaxStamina: 100
   CurrentEstus: 0
-  MaxEstus: 0
+  MaxEstus: 3
   MovementInputDirection: 0
   PlayerDirection: 1
   DodgeDirection: 0
@@ -380,6 +384,21 @@ MonoBehaviour:
   JumpTime: 1
   FallSpeed: 3
   AirborneControl: 1
+  IsAttackStepping: 0
+  CanAttack: 1
+  CanFollowUp: 0
+  LightAttackTime: 1
+  LightFollowUpAttackTime: 1
+  HeavyAttackTime: 1.35
+  HeavyFollowUpAttackTime: 1
+  LightAttackStep: 2
+  HeavyAttackStep: 3
+  LightAttackDamage: 6
+  HeavyAttackDamage: 9
+  LightAttackRange: 1.75
+  LightAttackFollowUpRange: 1.75
+  HeavyAttackRange: 1.75
+  HeavyAttackFollowUpRange: 1.75
   LayerManager: {fileID: 0}
   Assets: {fileID: 1065959576549058040}
   Anim: {fileID: 1065959575374467966}
@@ -399,8 +418,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 467cdd6b965f5274d967a6a69f9fddc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CurrentEstus: 0
-  CurrentHP: 0
   TimePlayedSeconds: 0
   Name: 
 --- !u!114 &1065959576863444070
@@ -544,6 +561,22 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 236c4b89-b691-43b7-a8cd-a75ff49f6e5e
     m_ActionName: UI /Y[/XInputControllerWindows/buttonNorth]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6595229263072959817}
+        m_TargetAssemblyTypeName: PlayerControllerV2, Assembly-CSharp
+        m_MethodName: RB
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 10dcf732-a674-41d3-96af-ae6f12f59cf7
+    m_ActionName: Player/RB[/Mouse/leftButton,/XInputControllerWindows/rightShoulder]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -628,5 +661,36 @@ Transform:
   - {fileID: 1065959575192577548}
   - {fileID: 1065959576714209544}
   m_Father: {fileID: 1065959576863444075}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &6690098835814988810
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7531493749407576679}
+  m_Layer: 0
+  m_Name: HitStart
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7531493749407576679
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6690098835814988810}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.125, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1065959576549058041}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

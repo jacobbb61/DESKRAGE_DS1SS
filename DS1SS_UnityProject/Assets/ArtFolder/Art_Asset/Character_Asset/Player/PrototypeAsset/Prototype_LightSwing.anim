@@ -97,9 +97,9 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 0.41666666
-    functionName: LightSwing
+    functionName: LightAttack
     data: 
-    objectReferenceParameter: {fileID: 11500000, guid: 36695c1670bb08349ac74077ffc76e08, type: 3}
+    objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 5
     messageOptions: 0

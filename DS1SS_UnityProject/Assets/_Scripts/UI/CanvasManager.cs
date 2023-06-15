@@ -13,6 +13,12 @@ public class CanvasManager : MonoBehaviour
 
     public GameObject DoorPrompt;
     public GameObject DoorUI;
+    public GameObject AchievementObj;
+    public GameObject ItemPrompt;
+
     public TextMeshProUGUI DoorDescription;
+    public TextMeshProUGUI ItemProptDescription;
+
+    public Animator BonfireAnim;
 
 }

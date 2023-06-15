@@ -9,10 +9,12 @@ public class PlayerControllerV2 : MonoBehaviour
 {
 
     [Header("Player Stats")]
-    public float HP;
+    public float Health;
+    public float MaxHealth;
     public float Stamina;
-    public float CurrentEstus;
-    public float MaxEstus;
+    public float MaxStamina;
+    public int CurrentEstus;
+    public int MaxEstus;
 
     [Header("stuff for jacob")]
     public float MovementInputDirection;
@@ -48,6 +50,30 @@ public class PlayerControllerV2 : MonoBehaviour
     public float FallSpeed;
     public float AirborneControl;
 
+
+    [Header("Combat states")]
+    public bool IsAttackStepping;
+    public bool CanAttack;
+    public bool CanFollowUp;
+    private bool SwapLightAnim;
+
+    [Header("Combat Data to edit")]
+    public float LightAttackTime;
+    public float LightFollowUpAttackTime;
+    public float HeavyAttackTime;
+    public float HeavyFollowUpAttackTime;
+    public float LightAttackStep;
+    public float HeavyAttackStep;
+
+    [Header("DAMAGE Data to edit")]
+    public float LightAttackDamage;
+    public float HeavyAttackDamage;
+    public float LightAttackRange;
+    public float LightAttackFollowUpRange;
+    public float HeavyAttackRange;
+    public float HeavyAttackFollowUpRange;
+
+
     [Header("variables")]
     public GameObject LayerManager;
     public GameObject Assets;
@@ -57,6 +83,8 @@ public class PlayerControllerV2 : MonoBehaviour
 
     private Coroutine WaitToRunCoroutine;
     private Coroutine JumpingCoroutine;
+    private Coroutine LightAttackCoroutine;
+    private Coroutine HeavyAttackCoroutine;
 
     public Rigidbody2D MyRb;
     private Collider2D MyCol;
@@ -182,18 +210,48 @@ public class PlayerControllerV2 : MonoBehaviour
 
     public void RT(InputAction.CallbackContext context)
     {
-        Debug.Log("RT");
-        if (CanMove && IsGrounded && !IsUiOpen)
+
+        if (CanMove && IsGrounded && !IsUiOpen && !CanFollowUp && CanAttack && Stamina > 0)
         {
             if (context.action.triggered)
             {
-                CanMove = false;
-                Anim.Play("Prototype_LightSwing");
+                HeavyAttackCoroutine = StartCoroutine(HeavyAttack());
+                Stamina -= 35f;
+            }
+        }
+        if (IsGrounded && !IsUiOpen && CanFollowUp && CanAttack && Stamina > 0)
+        {
+            if (context.action.triggered)
+            {
+                if (HeavyAttackCoroutine != null) { StopCoroutine(HeavyAttackCoroutine); }
+                StartCoroutine(HeavyAttackFollowUp());
+                Stamina -= 30f;
             }
         }
 
     }
+    public void RB(InputAction.CallbackContext context)
+    {
 
+        if (CanMove && IsGrounded && !IsUiOpen && !CanFollowUp && CanAttack && Stamina > 0)
+        {
+            if (context.action.triggered)
+            {
+                LightAttackCoroutine = StartCoroutine(LightAttack());
+                Stamina -= 25f;
+            }
+        }
+        if (IsGrounded && !IsUiOpen && CanFollowUp && CanAttack && Stamina > 0)
+        {
+            if (context.action.triggered)
+            {
+                if (LightAttackCoroutine != null) { StopCoroutine(LightAttackCoroutine); }
+                StartCoroutine(LightAttackFollowUp());
+                Stamina -= 20f;
+            }
+        }
+
+    }
 
 
     public void Update()
@@ -211,7 +269,7 @@ public class PlayerControllerV2 : MonoBehaviour
             Anim.Play("Prototype_Idle");  
         }
 
-        if (IsGrounded && CanMove && IsMovingInput )
+        if (IsGrounded && CanMove && IsMovingInput)
         {
             
             if (MovementInputDirection > 0.2f) { PlayerDirection = 1; }
@@ -394,10 +452,88 @@ public class PlayerControllerV2 : MonoBehaviour
         IsStaminaRegen = true;
     }
 
-
-
-    public void LightAttack()
+    void AttackStart()
     {
-        Debug.Log("Attack");
+        CanMove = false;
+        CanAttack = false;
+        IsStaminaRegen = false;
+        IsAttackStepping = true; 
+        CanFollowUp = false;
+    }
+
+    IEnumerator LightAttack()
+    {
+        AttackStart();
+        Anim.Play("Prototype_LightSwing");
+        AttackStepMove(LightAttackStep);
+        yield return new WaitForSeconds(LightAttackTime-0.35f);
+        CanFollowUp = true;
+        IsAttackStepping = false; 
+        CanMove = true;
+        CanAttack = true;
+        yield return new WaitForSeconds(0.35f);
+        CanFollowUp = false;
+        StartCoroutine(StaminaRegenPause());
+    }
+    IEnumerator LightAttackFollowUp()
+    {
+        AttackStart();
+        Anim.Play("Prototype_LightSwingFollowUp");
+        AttackStepMove(LightAttackStep);
+        yield return new WaitForSeconds(LightFollowUpAttackTime);
+        IsAttackStepping = false; 
+        CanMove = true;
+        CanAttack = true;
+        StartCoroutine(StaminaRegenPause());
+    }
+
+    IEnumerator HeavyAttack()
+    {
+        AttackStart();
+        Anim.Play("Prototype_HeavyAttack");
+        AttackStepMove(HeavyAttackStep);
+        CanFollowUp = false;
+        yield return new WaitForSeconds(HeavyAttackTime - 0.35f);
+        CanFollowUp = true;
+        IsAttackStepping = false; 
+        CanMove = true;
+        CanAttack = true;
+        yield return new WaitForSeconds(0.35f);
+        CanFollowUp = false;
+        StartCoroutine(StaminaRegenPause());
+    }
+    IEnumerator HeavyAttackFollowUp()
+    {
+        AttackStart();
+        Anim.Play("Prototype_HeavyFollowUpAttack");
+        AttackStepMove(HeavyAttackStep);
+        yield return new WaitForSeconds(HeavyFollowUpAttackTime);
+        IsAttackStepping = false; 
+        CanMove = true;
+        CanAttack = true;
+        StartCoroutine(StaminaRegenPause());
+    }
+
+    void AttackStepMove(float StepDistance)
+    {
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.zero);
+
+
+        if (hit.collider != null)
+        {
+            if (!hit.transform.CompareTag("Enemy"))
+            {
+                MyRb.velocity = new Vector2(PlayerDirection * StepDistance, MyRb.velocity.y / 10);
+            }
+            else
+            {
+                MyRb.velocity = Vector2.zero;
+            }
+            
+        }
+        else
+        {
+            MyRb.velocity = new Vector2(PlayerDirection * StepDistance, MyRb.velocity.y / 10);
+        }
     }
 }
