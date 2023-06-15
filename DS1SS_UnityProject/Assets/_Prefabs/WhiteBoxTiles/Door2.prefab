@@ -12,10 +12,11 @@ GameObject:
   - component: {fileID: 3702622892975103702}
   - component: {fileID: 3702622892975103703}
   - component: {fileID: 1926253197167798278}
-  - component: {fileID: 5054251922971769875}
+  - component: {fileID: 436300435429700708}
+  - component: {fileID: 7961372400324709466}
   m_Layer: 0
   m_Name: Door2
-  m_TagString: Untagged
+  m_TagString: Door
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -100,7 +101,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 0.125}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -111,7 +112,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1.5, y: 0.75}
   m_EdgeRadius: 0
 --- !u!114 &1926253197167798278
 MonoBehaviour:
@@ -125,14 +126,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 724da3a72b4a09a43baef7ed0ab40d30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  layerManager: {fileID: 0}
   isLocked: 0
-  doorID: 1
-  targetLayer: 2
+  doorType: 1
+  targetLayer: 0
+  CanvasManager: {fileID: 0}
   doorCollider: {fileID: 0}
   doorPrompt: {fileID: 0}
   doorUI: {fileID: 0}
   doorUIText: {fileID: 0}
---- !u!114 &5054251922971769875
+--- !u!114 &436300435429700708
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -141,10 +144,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 3702622892975103701}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7bdde5536f1d05d4998cbb1ea2075886, type: 3}
+  m_Script: {fileID: 11500000, guid: afd467bec2beb294aacebe8a777640e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactionEvent:
+  DoorTag_This: 
+  DoorState_This: 
+--- !u!114 &7961372400324709466
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3702622892975103701}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c07e0dd330881234fab7100d93377685, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1926253197167798278}

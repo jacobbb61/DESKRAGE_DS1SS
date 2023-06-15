@@ -7,6 +7,10 @@ TagManager:
   - Enemy
   - AchievementAnim
   - Door
+  - LayerManager
+  - Canvas
+  - Ground
+  - Slope
   layers:
   - Default
   - TransparentFX
@@ -43,4 +47,13 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: BackSortingLayer
+    uniqueID: 1099989109
+    locked: 0
+  - name: MiddleSortingLayer
+    uniqueID: 24380851
+    locked: 0
+  - name: FrontSortingLayer
+    uniqueID: 1334263109
     locked: 0

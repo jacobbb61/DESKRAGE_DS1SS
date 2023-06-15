@@ -17,6 +17,7 @@ public class PlayerMenuManager : MonoBehaviour
     public bool CanInput = true;
     public string ActiveMenu = "Main";
     public PlayerManager PM;
+    public PlayerControllerV2 PC;
 
     public EventReference PressSelect;
     public EventReference PressMove;
@@ -239,10 +240,11 @@ public class PlayerMenuManager : MonoBehaviour
 
     public void LoadMain()
     {
-        if (!MainOpen) { ActiveMenu = "Main"; MainUI.SetActive(true); PlayAudioPressOk(); } else { ActiveMenu = "Closed"; MainUI.SetActive(false);
+        if (!MainOpen) { ActiveMenu = "Main"; MainUI.SetActive(true); PlayAudioPressOk(); PC.IsUiOpen = true; } else { ActiveMenu = "Closed"; MainUI.SetActive(false);
             QuitUI.SetActive(false);
             Settings.SetActive(false);
             PlayAudioPressCancel();
+            PC.IsUiOpen = false;
         }
         MainOrder = 1;
         CanInput = true;

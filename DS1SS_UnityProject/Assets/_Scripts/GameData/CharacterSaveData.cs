@@ -16,6 +16,7 @@ public class CharacterSaveData
     [Header("World Position")]
     public float xPos;
     public float yPos;
+    public string PlayerLayer;
 
     [Header("Stuff")]
     public int Estus;

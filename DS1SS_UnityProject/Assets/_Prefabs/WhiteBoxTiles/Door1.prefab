@@ -174,11 +174,12 @@ GameObject:
   m_Component:
   - component: {fileID: 5629198404077043928}
   - component: {fileID: 2345779891185756956}
-  - component: {fileID: 1441365279230616166}
   - component: {fileID: 8685334512840945355}
+  - component: {fileID: 7142405828820393844}
+  - component: {fileID: 3946059020622692453}
   m_Layer: 0
   m_Name: Door Trigger
-  m_TagString: Untagged
+  m_TagString: Door
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -222,9 +223,9 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 3, y: 1}
+  m_Size: {x: 3, y: 0.75}
   m_EdgeRadius: 0
---- !u!114 &1441365279230616166
+--- !u!114 &8685334512840945355
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -233,10 +234,31 @@ MonoBehaviour:
   m_GameObject: {fileID: 9200097618393911772}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7bdde5536f1d05d4998cbb1ea2075886, type: 3}
+  m_Script: {fileID: 11500000, guid: 724da3a72b4a09a43baef7ed0ab40d30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactionEvent:
+  layerManager: {fileID: 0}
+  isLocked: 0
+  doorType: 0
+  targetLayer: 0
+  CanvasManager: {fileID: 0}
+  doorCollider: {fileID: 85965639734094285}
+  doorPrompt: {fileID: 0}
+  doorUI: {fileID: 0}
+  doorUIText: {fileID: 0}
+--- !u!114 &7142405828820393844
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9200097618393911772}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c07e0dd330881234fab7100d93377685, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 8685334512840945355}
@@ -251,8 +273,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  interactableText: {fileID: 0}
---- !u!114 &8685334512840945355
+--- !u!114 &3946059020622692453
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -261,10 +282,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 9200097618393911772}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 724da3a72b4a09a43baef7ed0ab40d30, type: 3}
+  m_Script: {fileID: 11500000, guid: afd467bec2beb294aacebe8a777640e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
-  doorID: 0
-  targetLayer: 0
-  doorCollider: {fileID: 85965639734094285}
+  DoorTag_This: 
+  DoorState_This: 

@@ -88,7 +88,7 @@ public class SaveFileDataWriter
             // deserialize the data from json back to a unity file
             CharacterData = JsonUtility.FromJson<CharacterSaveData>(DataToLoad);
             }
-        catch(Exception EX)
+        catch(Exception)
         {
                 Debug.LogError("Failed to load save data");
         }

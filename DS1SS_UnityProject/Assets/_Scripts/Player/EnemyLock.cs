@@ -8,12 +8,12 @@ public class EnemyLock : MonoBehaviour
     [SerializeField] private Transform nearestEnemyPos;
     [SerializeField] private GameObject player;
     private bool enemyToRight;
-    private PlayerController playerController;
+   // private PlayerController playerController;
     public bool running;
 
     private void Start()
     {
-        playerController = GetComponent<PlayerController>();
+       // playerController = GetComponent<PlayerController>();
         player = GameObject.FindGameObjectWithTag("Player");
         enemies = GameObject.FindGameObjectsWithTag("Enemy"); // Assigns all enemy tagged objects into array
         nearestEnemyPos = player.transform;

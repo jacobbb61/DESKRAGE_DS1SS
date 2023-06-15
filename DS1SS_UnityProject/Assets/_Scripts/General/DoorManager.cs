@@ -4,21 +4,22 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
-using static PlayerControls;
 
-[RequireComponent(typeof(Interactable))]
 public class DoorManager : MonoBehaviour
 {
-    private LayerManager layerManager;
+    public LayerManagerV2 layerManager;
     public bool isLocked = true;
-    [Tooltip("ID number for differentiating between door type. 0 = regular, 1 = layer changing door, 2 = one-way, 3 = fog")][SerializeField] private int doorID = 0; // For differentiating between different kinds of doors
+    [Tooltip("ID number for differentiating between door type. 0 = regular, 1 = layer changing door, 2 = one-way, 3 = fog")][SerializeField] private int doorType; // For differentiating between different kinds of doors
     public int targetLayer; // For doors that switch the player's layer
-    [SerializeField] private Collider2D doorCollider;
     private bool bossKilled;
-    [SerializeField] private Transform doorPrompt;
-    [SerializeField] private Transform doorUI;
+
+    [SerializeField] private CanvasManager CanvasManager;
+    [SerializeField] private Collider2D doorCollider; 
+    [SerializeField] private GameObject doorPrompt;
+    [SerializeField] private GameObject doorUI;
     [SerializeField] private TextMeshProUGUI doorUIText;
 
+    /*
     private void Awake()
     {
         Collider2D[] overlaps = Physics2D.OverlapPointAll(transform.position);
@@ -30,23 +31,25 @@ public class DoorManager : MonoBehaviour
                 targetLayer = FindObjectOfType<LayerManager>().GetLayerFromObject(c.gameObject);
             }
         }
-    }
+    }*/
 
     void Start()
     {
-        doorPrompt = FindObjectOfType<Canvas>().transform.GetChild(2);
-        layerManager = FindObjectOfType<LayerManager>();
-        doorUI = FindObjectOfType<Canvas>().transform.GetChild(3);
-        doorUIText = doorUI.GetComponentInChildren<TextMeshProUGUI>();
-        
-        
+        layerManager = GameObject.FindGameObjectWithTag("LayerManager").GetComponent<LayerManagerV2>();
+
+        CanvasManager = GameObject.FindGameObjectWithTag("Canvas").GetComponent<CanvasManager>();
+        doorPrompt = CanvasManager.DoorPrompt;
+        doorUI = CanvasManager.DoorUI;
+        doorUIText = CanvasManager.DoorDescription;
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
-            doorPrompt.gameObject.SetActive(true);
+            doorPrompt.SetActive(true);
+            collision.GetComponent<PlayerControllerV2>().Interactable = GetComponent<InteractableV2>();
         }
     }
 
@@ -54,8 +57,9 @@ public class DoorManager : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            doorPrompt.gameObject.SetActive(false);
-            doorUI.gameObject.SetActive(false);
+            doorPrompt.SetActive(false);
+            doorUI.SetActive(false);
+            collision.GetComponent<PlayerControllerV2>().Interactable = null;
         }
     }
 
@@ -63,13 +67,13 @@ public class DoorManager : MonoBehaviour
     {
         if (isLocked)
         {
-            doorPrompt.gameObject.SetActive(false);
+            doorPrompt.SetActive(false);
             doorUIText.text = "This door is locked.";
-            doorUI.gameObject.SetActive(true);
+            doorUI.SetActive(true);
         }
         else
         {
-            switch(this.doorID)
+            switch(doorType)
             {
                 case (0): // Regular doors
                     {
@@ -105,7 +109,7 @@ public class DoorManager : MonoBehaviour
                     }
                 default:
                     {
-                        Debug.LogError("Error: door ID (" + doorID + ") is invalid. Reassign this value in the inspector");
+                        Debug.LogError("Error: door ID (" + doorType + ") is invalid. Reassign this value in the inspector");
                         break;
                     }
             }
