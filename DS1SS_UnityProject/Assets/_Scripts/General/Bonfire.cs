@@ -68,7 +68,7 @@ public class Bonfire : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             BonfirePromptUI.SetActive(true);
-            GameObject.FindGameObjectWithTag("Canvas").GetComponent<CanvasManager>().ItemProptDescription.text = "Light flame";
+            GameObject.FindGameObjectWithTag("Canvas").GetComponent<CanvasManager>().ItemProptDescription.text = "Y : Light flame";
             collision.GetComponent<PlayerControllerV2>().Interactable = GetComponent<InteractableV2>();
         }
     }

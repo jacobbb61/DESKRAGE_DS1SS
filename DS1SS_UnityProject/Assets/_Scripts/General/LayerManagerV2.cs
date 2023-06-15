@@ -56,6 +56,9 @@ public class LayerManagerV2 : MonoBehaviour
                 Player.GetComponent<SortingGroup>().sortingLayerName = "FrontSortingLayer";
                 CurrentLayer = "Front";
                 break;
+            default:
+                LoadLayer("Middle");
+                break;
         }
     }
     public void EnviornmentLayer(int layer)

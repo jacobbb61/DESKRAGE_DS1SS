@@ -100,6 +100,7 @@ public class WorldSaveGameManager : MonoBehaviour
             CurrentCharacterData = new CharacterSaveData();
             CurrentCharacterData.xPos = -77f;
             CurrentCharacterData.yPos = -17f;
+            CurrentCharacterData.PlayerLayer = "Middle";
             StartCoroutine(LoadWorldScene());
             return;
         }
@@ -112,6 +113,7 @@ public class WorldSaveGameManager : MonoBehaviour
             CurrentCharacterData = new CharacterSaveData();
             CurrentCharacterData.xPos = -77f;
             CurrentCharacterData.yPos = -17f;
+            CurrentCharacterData.PlayerLayer = "Middle";
             StartCoroutine(LoadWorldScene());
             return;
         }
@@ -124,6 +126,7 @@ public class WorldSaveGameManager : MonoBehaviour
             CurrentCharacterData = new CharacterSaveData();
             CurrentCharacterData.xPos = -77f;
             CurrentCharacterData.yPos = -17f;
+            CurrentCharacterData.PlayerLayer = "Middle";
             StartCoroutine(LoadWorldScene());
             return;
         }
