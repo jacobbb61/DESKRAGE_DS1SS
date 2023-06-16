@@ -28,21 +28,26 @@ public class Bonfire : MonoBehaviour
     }
 
 
-
-    public void UseBonfire()
+    public void InteractBonfire()
     {
+        StartCoroutine(UseThisBonfire());
+    }
+    IEnumerator UseThisBonfire()
+    {
+
+        PM.LastBonfireVisited = BonfireTagNum;
         PC.MyRb.velocity = Vector2.zero;
         if (BonfireEverUsed) { Anim.Play("BonfireLitActivate"); }
         else { Anim.Play("BonfireLitFirstTime"); BonfireEverUsed = true; }
-        PM.LastBonfireVisited = BonfireTagNum;
-
-        StartCoroutine(WaitForAnim());
+        
+        yield return new WaitForSeconds(1);
+        BonfireRest();
     }
 
 
-    IEnumerator WaitForAnim()
+    public void BonfireRest()
     {
-        yield return new WaitForSeconds(1);
+       
         PC.Health = PC.MaxHealth;
         PC.Stamina = PC.MaxStamina;
         // replenish estus

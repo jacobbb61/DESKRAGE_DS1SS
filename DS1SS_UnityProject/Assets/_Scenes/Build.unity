@@ -368,6 +368,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerStaminaSlider: {fileID: 945247371}
+  PlayerHealthSlider: {fileID: 945247372}
   DoorPrompt: {fileID: 1004661150}
   DoorUI: {fileID: 1362905845}
   AchievementObj: {fileID: 2059171048}
@@ -375,6 +376,7 @@ MonoBehaviour:
   DoorDescription: {fileID: 1601195197}
   ItemProptDescription: {fileID: 1603397442}
   BonfireAnim: {fileID: 1714879143}
+  YouDiedAnim: {fileID: 1747715373}
 --- !u!1001 &30230690
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1163,7 +1165,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2764210261204811548, guid: 19be11158c9776f42bc6656ae61c0efc, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.7899294
+      value: 4.5399294
       objectReference: {fileID: 0}
     - target: {fileID: 2764210261204811548, guid: 19be11158c9776f42bc6656ae61c0efc, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1204,6 +1206,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2764210261204811548, guid: 19be11158c9776f42bc6656ae61c0efc, type: 3}
   m_PrefabInstance: {fileID: 90306529}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &90306531 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2764210261204811547, guid: 19be11158c9776f42bc6656ae61c0efc, type: 3}
+  m_PrefabInstance: {fileID: 90306529}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 402a1de1091f7ba4e8ef6f4104b82fde, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &91391738
 GameObject:
   m_ObjectHideFlags: 0
@@ -2346,7 +2359,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 245861248}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -74.75, y: -17, z: -10}
+  m_LocalPosition: {x: 65.53, y: -9.49, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3194,7 +3207,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!210 &351590354
 SortingGroup:
   m_ObjectHideFlags: 0
@@ -3796,15 +3809,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3070811769569695166, guid: 76bd35b508641af49badff0f2f1968f3, type: 3}
       propertyPath: m_LocalScale.x
-      value: 12.884433
+      value: 12.812281
       objectReference: {fileID: 0}
     - target: {fileID: 3070811769569695166, guid: 76bd35b508641af49badff0f2f1968f3, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -41.39
+      value: -41.4215
       objectReference: {fileID: 0}
     - target: {fileID: 3070811769569695166, guid: 76bd35b508641af49badff0f2f1968f3, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -15.52
+      value: -15.537
       objectReference: {fileID: 0}
     - target: {fileID: 3070811769569695166, guid: 76bd35b508641af49badff0f2f1968f3, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3837,6 +3850,22 @@ PrefabInstance:
     - target: {fileID: 3070811769569695166, guid: 76bd35b508641af49badff0f2f1968f3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 28.414
+      objectReference: {fileID: 0}
+    - target: {fileID: 7511733644036209313, guid: 76bd35b508641af49badff0f2f1968f3, type: 3}
+      propertyPath: m_Size.x
+      value: 1.0043551
+      objectReference: {fileID: 0}
+    - target: {fileID: 7511733644036209313, guid: 76bd35b508641af49badff0f2f1968f3, type: 3}
+      propertyPath: m_Size.y
+      value: 0.100000024
+      objectReference: {fileID: 0}
+    - target: {fileID: 7511733644036209313, guid: 76bd35b508641af49badff0f2f1968f3, type: 3}
+      propertyPath: m_Offset.x
+      value: 0.0021775812
+      objectReference: {fileID: 0}
+    - target: {fileID: 7511733644036209313, guid: 76bd35b508641af49badff0f2f1968f3, type: 3}
+      propertyPath: m_Offset.y
+      value: 0.45
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 76bd35b508641af49badff0f2f1968f3, type: 3}
@@ -4124,11 +4153,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3070811769569695166, guid: 76bd35b508641af49badff0f2f1968f3, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 62.3421
+      value: 62.351
       objectReference: {fileID: 0}
     - target: {fileID: 3070811769569695166, guid: 76bd35b508641af49badff0f2f1968f3, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -9.1128
+      value: -9.042
       objectReference: {fileID: 0}
     - target: {fileID: 3070811769569695166, guid: 76bd35b508641af49badff0f2f1968f3, type: 3}
       propertyPath: m_LocalPosition.z
@@ -4161,6 +4190,14 @@ PrefabInstance:
     - target: {fileID: 3070811769569695166, guid: 76bd35b508641af49badff0f2f1968f3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: -45
+      objectReference: {fileID: 0}
+    - target: {fileID: 7511733644036209313, guid: 76bd35b508641af49badff0f2f1968f3, type: 3}
+      propertyPath: m_Size.y
+      value: 0.10514665
+      objectReference: {fileID: 0}
+    - target: {fileID: 7511733644036209313, guid: 76bd35b508641af49badff0f2f1968f3, type: 3}
+      propertyPath: m_Offset.y
+      value: 0.44742668
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 76bd35b508641af49badff0f2f1968f3, type: 3}
@@ -4397,11 +4434,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6721941171679317670, guid: 7e49140c2ad88ef449a24c4b000fd30e, type: 3}
       propertyPath: m_LocalScale.x
-      value: 40
+      value: 41
       objectReference: {fileID: 0}
     - target: {fileID: 6721941171679317670, guid: 7e49140c2ad88ef449a24c4b000fd30e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -67
+      value: -67.5
       objectReference: {fileID: 0}
     - target: {fileID: 6721941171679317670, guid: 7e49140c2ad88ef449a24c4b000fd30e, type: 3}
       propertyPath: m_LocalPosition.y
@@ -5885,14 +5922,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 1065959575374467200, guid: 5bce8272093059641ad8d3ab28c85500, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1065959575374467203, guid: 5bce8272093059641ad8d3ab28c85500, type: 3}
-      propertyPath: m_Layer
-      value: 2
-      objectReference: {fileID: 0}
+    - target: {fileID: 1065959575374467201, guid: 5bce8272093059641ad8d3ab28c85500, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 1662773395, guid: b1c4ef114c83d844dbbbb73352c22752, type: 3}
     - target: {fileID: 1065959575759866114, guid: 5bce8272093059641ad8d3ab28c85500, type: 3}
       propertyPath: m_Layer
       value: 2
@@ -5905,17 +5938,37 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 1065959576863444070, guid: 5bce8272093059641ad8d3ab28c85500, type: 3}
+      propertyPath: m_ActionEvents.Array.size
+      value: 17
+      objectReference: {fileID: 0}
+    - target: {fileID: 1065959576863444070, guid: 5bce8272093059641ad8d3ab28c85500, type: 3}
+      propertyPath: m_ActionEvents.Array.data[15].m_ActionId
+      value: e5746827-3d49-46fa-88f4-f92092ead19b
+      objectReference: {fileID: 0}
+    - target: {fileID: 1065959576863444070, guid: 5bce8272093059641ad8d3ab28c85500, type: 3}
+      propertyPath: m_ActionEvents.Array.data[16].m_ActionId
+      value: 2353280c-d69a-4d45-b042-ef5e95abf612
+      objectReference: {fileID: 0}
+    - target: {fileID: 1065959576863444070, guid: 5bce8272093059641ad8d3ab28c85500, type: 3}
+      propertyPath: m_ActionEvents.Array.data[15].m_ActionName
+      value: Player/LockOn[/XInputControllerWindows/leftStickPress,/Keyboard/r]
+      objectReference: {fileID: 0}
+    - target: {fileID: 1065959576863444070, guid: 5bce8272093059641ad8d3ab28c85500, type: 3}
+      propertyPath: m_ActionEvents.Array.data[16].m_ActionName
+      value: UI /AnyKey[/Keyboard/anyKey]
+      objectReference: {fileID: 0}
     - target: {fileID: 1065959576863444075, guid: 5bce8272093059641ad8d3ab28c85500, type: 3}
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1065959576863444075, guid: 5bce8272093059641ad8d3ab28c85500, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -74.75
+      value: 65.53
       objectReference: {fileID: 0}
     - target: {fileID: 1065959576863444075, guid: 5bce8272093059641ad8d3ab28c85500, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -17
+      value: -9.49
       objectReference: {fileID: 0}
     - target: {fileID: 1065959576863444075, guid: 5bce8272093059641ad8d3ab28c85500, type: 3}
       propertyPath: m_LocalPosition.z
@@ -5960,6 +6013,26 @@ PrefabInstance:
     - target: {fileID: 1065959577099873994, guid: 5bce8272093059641ad8d3ab28c85500, type: 3}
       propertyPath: m_Layer
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3137671597447383463, guid: 5bce8272093059641ad8d3ab28c85500, type: 3}
+      propertyPath: Bonfire_1
+      value: 
+      objectReference: {fileID: 877253441}
+    - target: {fileID: 3137671597447383463, guid: 5bce8272093059641ad8d3ab28c85500, type: 3}
+      propertyPath: Bonfire_2
+      value: 
+      objectReference: {fileID: 90306531}
+    - target: {fileID: 3137671597447383463, guid: 5bce8272093059641ad8d3ab28c85500, type: 3}
+      propertyPath: Bonfire_3
+      value: 
+      objectReference: {fileID: 1412082023}
+    - target: {fileID: 6595229263072959817, guid: 5bce8272093059641ad8d3ab28c85500, type: 3}
+      propertyPath: Health
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 6595229263072959817, guid: 5bce8272093059641ad8d3ab28c85500, type: 3}
+      propertyPath: CurrentEstus
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6595229263072959817, guid: 5bce8272093059641ad8d3ab28c85500, type: 3}
       propertyPath: LayerManager
@@ -6636,7 +6709,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2764210261204811548, guid: 19be11158c9776f42bc6656ae61c0efc, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.1980715
+      value: -1.4480715
       objectReference: {fileID: 0}
     - target: {fileID: 2764210261204811548, guid: 19be11158c9776f42bc6656ae61c0efc, type: 3}
       propertyPath: m_LocalPosition.z
@@ -6677,6 +6750,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2764210261204811548, guid: 19be11158c9776f42bc6656ae61c0efc, type: 3}
   m_PrefabInstance: {fileID: 877253439}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &877253441 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2764210261204811547, guid: 19be11158c9776f42bc6656ae61c0efc, type: 3}
+  m_PrefabInstance: {fileID: 877253439}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 402a1de1091f7ba4e8ef6f4104b82fde, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &895657432
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7032,6 +7116,17 @@ RectTransform:
 --- !u!114 &945247371 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1541886448737713461, guid: 2fa546af92af58143b1c31f36cc2c4ad, type: 3}
+  m_PrefabInstance: {fileID: 945247369}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &945247372 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 376909679133948892, guid: 2fa546af92af58143b1c31f36cc2c4ad, type: 3}
   m_PrefabInstance: {fileID: 945247369}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
@@ -8003,7 +8098,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!210 &1035395858
 SortingGroup:
   m_ObjectHideFlags: 0
@@ -8473,7 +8568,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3070811769569695166, guid: 76bd35b508641af49badff0f2f1968f3, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -87.1404
+      value: -88.1404
       objectReference: {fileID: 0}
     - target: {fileID: 3070811769569695166, guid: 76bd35b508641af49badff0f2f1968f3, type: 3}
       propertyPath: m_LocalPosition.y
@@ -9260,11 +9355,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4758656341118550054, guid: 3efb3b25cfee7d24ea1d762a81e50723, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 189.5
+      value: 188.5
       objectReference: {fileID: 0}
     - target: {fileID: 4758656341118550054, guid: 3efb3b25cfee7d24ea1d762a81e50723, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -27.5
+      value: -28.5
       objectReference: {fileID: 0}
     - target: {fileID: 4758656341118550054, guid: 3efb3b25cfee7d24ea1d762a81e50723, type: 3}
       propertyPath: m_LocalPosition.z
@@ -10100,6 +10195,8 @@ MonoBehaviour:
     BonfireEverUsed_1: 0
     BonfireEverUsed_2: 0
     BonfireEverUsed_3: 0
+    DoorState_A1: 
+    DoorState_A2: 
     EnemyBehaviour_1: 
     EnemyHealth_1: 0
     EnemyPosX_1: 0
@@ -10112,12 +10209,94 @@ MonoBehaviour:
     EnemyHealth_3: 0
     EnemyPosX_3: 0
     EnemyPosY_3: 0
+    EnemyBehaviour_4: 
+    EnemyHealth_4: 0
+    EnemyPosX_4: 0
+    EnemyPosY_4: 0
+    EnemyBehaviour_5: 
+    EnemyHealth_5: 0
+    EnemyPosX_5: 0
+    EnemyPosY_5: 0
+    EnemyBehaviour_6: 
+    EnemyHealth_6: 0
+    EnemyPosX_6: 0
+    EnemyPosY_6: 0
+    EnemyBehaviour_7: 
+    EnemyHealth_7: 0
+    EnemyPosX_7: 0
+    EnemyPosY_7: 0
+    EnemyBehaviour_8: 
+    EnemyHealth_8: 0
+    EnemyPosX_8: 0
+    EnemyPosY_8: 0
+    EnemyBehaviour_9: 
+    EnemyHealth_9: 0
+    EnemyPosX_9: 0
+    EnemyPosY_9: 0
+    EnemyBehaviour_10: 
+    EnemyHealth_10: 0
+    EnemyPosX_10: 0
+    EnemyPosY_10: 0
+    EnemyBehaviour_11: 
+    EnemyHealth_11: 0
+    EnemyPosX_11: 0
+    EnemyPosY_11: 0
+    EnemyBehaviour_12: 
+    EnemyHealth_12: 0
+    EnemyPosX_12: 0
+    EnemyPosY_12: 0
+    EnemyBehaviour_13: 
+    EnemyHealth_13: 0
+    EnemyPosX_13: 0
+    EnemyPosY_13: 0
+    EnemyBehaviour_14: 
+    EnemyHealth_14: 0
+    EnemyPosX_14: 0
+    EnemyPosY_14: 0
+    EnemyBehaviour_15: 
+    EnemyHealth_15: 0
+    EnemyPosX_15: 0
+    EnemyPosY_15: 0
+    EnemyBehaviour_16: 
+    EnemyHealth_16: 0
+    EnemyPosX_16: 0
+    EnemyPosY_16: 0
+    EnemyBehaviour_17: 
+    EnemyHealth_17: 0
+    EnemyPosX_17: 0
+    EnemyPosY_17: 0
+    EnemyBehaviour_18: 
+    EnemyHealth_18: 0
+    EnemyPosX_18: 0
+    EnemyPosY_18: 0
+    EnemyBehaviour_19: 
+    EnemyHealth_19: 0
+    EnemyPosX_19: 0
+    EnemyPosY_19: 0
+    EnemyBehaviour_20: 
+    EnemyHealth_20: 0
+    EnemyPosX_20: 0
+    EnemyPosY_20: 0
+    EnemyBehaviour_21: 
+    EnemyHealth_21: 0
+    EnemyPosX_21: 0
+    EnemyPosY_21: 0
+    EnemyBehaviour_22: 
+    EnemyHealth_22: 0
+    EnemyPosX_22: 0
+    EnemyPosY_22: 0
+    EnemyBehaviour_23: 
+    EnemyHealth_23: 0
+    EnemyPosX_23: 0
+    EnemyPosY_23: 0
+    EnemyBehaviour_24: 
+    EnemyHealth_24: 0
+    EnemyPosX_24: 0
+    EnemyPosY_24: 0
     EnemyBehaviour_100: 
     EnemyHealth_100: 0
     EnemyPosX_100: 0
     EnemyPosY_100: 0
-    DoorState_A1: 
-    DoorState_A2: 
   EnemySaveManagerList: []
   DoorSaveManagerList: []
   BonfireList: []
@@ -10134,6 +10313,8 @@ MonoBehaviour:
     BonfireEverUsed_1: 0
     BonfireEverUsed_2: 0
     BonfireEverUsed_3: 0
+    DoorState_A1: 
+    DoorState_A2: 
     EnemyBehaviour_1: 
     EnemyHealth_1: 0
     EnemyPosX_1: 0
@@ -10146,12 +10327,94 @@ MonoBehaviour:
     EnemyHealth_3: 0
     EnemyPosX_3: 0
     EnemyPosY_3: 0
+    EnemyBehaviour_4: 
+    EnemyHealth_4: 0
+    EnemyPosX_4: 0
+    EnemyPosY_4: 0
+    EnemyBehaviour_5: 
+    EnemyHealth_5: 0
+    EnemyPosX_5: 0
+    EnemyPosY_5: 0
+    EnemyBehaviour_6: 
+    EnemyHealth_6: 0
+    EnemyPosX_6: 0
+    EnemyPosY_6: 0
+    EnemyBehaviour_7: 
+    EnemyHealth_7: 0
+    EnemyPosX_7: 0
+    EnemyPosY_7: 0
+    EnemyBehaviour_8: 
+    EnemyHealth_8: 0
+    EnemyPosX_8: 0
+    EnemyPosY_8: 0
+    EnemyBehaviour_9: 
+    EnemyHealth_9: 0
+    EnemyPosX_9: 0
+    EnemyPosY_9: 0
+    EnemyBehaviour_10: 
+    EnemyHealth_10: 0
+    EnemyPosX_10: 0
+    EnemyPosY_10: 0
+    EnemyBehaviour_11: 
+    EnemyHealth_11: 0
+    EnemyPosX_11: 0
+    EnemyPosY_11: 0
+    EnemyBehaviour_12: 
+    EnemyHealth_12: 0
+    EnemyPosX_12: 0
+    EnemyPosY_12: 0
+    EnemyBehaviour_13: 
+    EnemyHealth_13: 0
+    EnemyPosX_13: 0
+    EnemyPosY_13: 0
+    EnemyBehaviour_14: 
+    EnemyHealth_14: 0
+    EnemyPosX_14: 0
+    EnemyPosY_14: 0
+    EnemyBehaviour_15: 
+    EnemyHealth_15: 0
+    EnemyPosX_15: 0
+    EnemyPosY_15: 0
+    EnemyBehaviour_16: 
+    EnemyHealth_16: 0
+    EnemyPosX_16: 0
+    EnemyPosY_16: 0
+    EnemyBehaviour_17: 
+    EnemyHealth_17: 0
+    EnemyPosX_17: 0
+    EnemyPosY_17: 0
+    EnemyBehaviour_18: 
+    EnemyHealth_18: 0
+    EnemyPosX_18: 0
+    EnemyPosY_18: 0
+    EnemyBehaviour_19: 
+    EnemyHealth_19: 0
+    EnemyPosX_19: 0
+    EnemyPosY_19: 0
+    EnemyBehaviour_20: 
+    EnemyHealth_20: 0
+    EnemyPosX_20: 0
+    EnemyPosY_20: 0
+    EnemyBehaviour_21: 
+    EnemyHealth_21: 0
+    EnemyPosX_21: 0
+    EnemyPosY_21: 0
+    EnemyBehaviour_22: 
+    EnemyHealth_22: 0
+    EnemyPosX_22: 0
+    EnemyPosY_22: 0
+    EnemyBehaviour_23: 
+    EnemyHealth_23: 0
+    EnemyPosX_23: 0
+    EnemyPosY_23: 0
+    EnemyBehaviour_24: 
+    EnemyHealth_24: 0
+    EnemyPosX_24: 0
+    EnemyPosY_24: 0
     EnemyBehaviour_100: 
     EnemyHealth_100: 0
     EnemyPosX_100: 0
     EnemyPosY_100: 0
-    DoorState_A1: 
-    DoorState_A2: 
   CharacterSlot02:
     CharacterName: Character from save data
     xPos: 0
@@ -10165,6 +10428,8 @@ MonoBehaviour:
     BonfireEverUsed_1: 0
     BonfireEverUsed_2: 0
     BonfireEverUsed_3: 0
+    DoorState_A1: 
+    DoorState_A2: 
     EnemyBehaviour_1: 
     EnemyHealth_1: 0
     EnemyPosX_1: 0
@@ -10177,12 +10442,94 @@ MonoBehaviour:
     EnemyHealth_3: 0
     EnemyPosX_3: 0
     EnemyPosY_3: 0
+    EnemyBehaviour_4: 
+    EnemyHealth_4: 0
+    EnemyPosX_4: 0
+    EnemyPosY_4: 0
+    EnemyBehaviour_5: 
+    EnemyHealth_5: 0
+    EnemyPosX_5: 0
+    EnemyPosY_5: 0
+    EnemyBehaviour_6: 
+    EnemyHealth_6: 0
+    EnemyPosX_6: 0
+    EnemyPosY_6: 0
+    EnemyBehaviour_7: 
+    EnemyHealth_7: 0
+    EnemyPosX_7: 0
+    EnemyPosY_7: 0
+    EnemyBehaviour_8: 
+    EnemyHealth_8: 0
+    EnemyPosX_8: 0
+    EnemyPosY_8: 0
+    EnemyBehaviour_9: 
+    EnemyHealth_9: 0
+    EnemyPosX_9: 0
+    EnemyPosY_9: 0
+    EnemyBehaviour_10: 
+    EnemyHealth_10: 0
+    EnemyPosX_10: 0
+    EnemyPosY_10: 0
+    EnemyBehaviour_11: 
+    EnemyHealth_11: 0
+    EnemyPosX_11: 0
+    EnemyPosY_11: 0
+    EnemyBehaviour_12: 
+    EnemyHealth_12: 0
+    EnemyPosX_12: 0
+    EnemyPosY_12: 0
+    EnemyBehaviour_13: 
+    EnemyHealth_13: 0
+    EnemyPosX_13: 0
+    EnemyPosY_13: 0
+    EnemyBehaviour_14: 
+    EnemyHealth_14: 0
+    EnemyPosX_14: 0
+    EnemyPosY_14: 0
+    EnemyBehaviour_15: 
+    EnemyHealth_15: 0
+    EnemyPosX_15: 0
+    EnemyPosY_15: 0
+    EnemyBehaviour_16: 
+    EnemyHealth_16: 0
+    EnemyPosX_16: 0
+    EnemyPosY_16: 0
+    EnemyBehaviour_17: 
+    EnemyHealth_17: 0
+    EnemyPosX_17: 0
+    EnemyPosY_17: 0
+    EnemyBehaviour_18: 
+    EnemyHealth_18: 0
+    EnemyPosX_18: 0
+    EnemyPosY_18: 0
+    EnemyBehaviour_19: 
+    EnemyHealth_19: 0
+    EnemyPosX_19: 0
+    EnemyPosY_19: 0
+    EnemyBehaviour_20: 
+    EnemyHealth_20: 0
+    EnemyPosX_20: 0
+    EnemyPosY_20: 0
+    EnemyBehaviour_21: 
+    EnemyHealth_21: 0
+    EnemyPosX_21: 0
+    EnemyPosY_21: 0
+    EnemyBehaviour_22: 
+    EnemyHealth_22: 0
+    EnemyPosX_22: 0
+    EnemyPosY_22: 0
+    EnemyBehaviour_23: 
+    EnemyHealth_23: 0
+    EnemyPosX_23: 0
+    EnemyPosY_23: 0
+    EnemyBehaviour_24: 
+    EnemyHealth_24: 0
+    EnemyPosX_24: 0
+    EnemyPosY_24: 0
     EnemyBehaviour_100: 
     EnemyHealth_100: 0
     EnemyPosX_100: 0
     EnemyPosY_100: 0
-    DoorState_A1: 
-    DoorState_A2: 
   CharacterSlot03:
     CharacterName: Character from save data
     xPos: 0
@@ -10196,6 +10543,8 @@ MonoBehaviour:
     BonfireEverUsed_1: 0
     BonfireEverUsed_2: 0
     BonfireEverUsed_3: 0
+    DoorState_A1: 
+    DoorState_A2: 
     EnemyBehaviour_1: 
     EnemyHealth_1: 0
     EnemyPosX_1: 0
@@ -10208,12 +10557,94 @@ MonoBehaviour:
     EnemyHealth_3: 0
     EnemyPosX_3: 0
     EnemyPosY_3: 0
+    EnemyBehaviour_4: 
+    EnemyHealth_4: 0
+    EnemyPosX_4: 0
+    EnemyPosY_4: 0
+    EnemyBehaviour_5: 
+    EnemyHealth_5: 0
+    EnemyPosX_5: 0
+    EnemyPosY_5: 0
+    EnemyBehaviour_6: 
+    EnemyHealth_6: 0
+    EnemyPosX_6: 0
+    EnemyPosY_6: 0
+    EnemyBehaviour_7: 
+    EnemyHealth_7: 0
+    EnemyPosX_7: 0
+    EnemyPosY_7: 0
+    EnemyBehaviour_8: 
+    EnemyHealth_8: 0
+    EnemyPosX_8: 0
+    EnemyPosY_8: 0
+    EnemyBehaviour_9: 
+    EnemyHealth_9: 0
+    EnemyPosX_9: 0
+    EnemyPosY_9: 0
+    EnemyBehaviour_10: 
+    EnemyHealth_10: 0
+    EnemyPosX_10: 0
+    EnemyPosY_10: 0
+    EnemyBehaviour_11: 
+    EnemyHealth_11: 0
+    EnemyPosX_11: 0
+    EnemyPosY_11: 0
+    EnemyBehaviour_12: 
+    EnemyHealth_12: 0
+    EnemyPosX_12: 0
+    EnemyPosY_12: 0
+    EnemyBehaviour_13: 
+    EnemyHealth_13: 0
+    EnemyPosX_13: 0
+    EnemyPosY_13: 0
+    EnemyBehaviour_14: 
+    EnemyHealth_14: 0
+    EnemyPosX_14: 0
+    EnemyPosY_14: 0
+    EnemyBehaviour_15: 
+    EnemyHealth_15: 0
+    EnemyPosX_15: 0
+    EnemyPosY_15: 0
+    EnemyBehaviour_16: 
+    EnemyHealth_16: 0
+    EnemyPosX_16: 0
+    EnemyPosY_16: 0
+    EnemyBehaviour_17: 
+    EnemyHealth_17: 0
+    EnemyPosX_17: 0
+    EnemyPosY_17: 0
+    EnemyBehaviour_18: 
+    EnemyHealth_18: 0
+    EnemyPosX_18: 0
+    EnemyPosY_18: 0
+    EnemyBehaviour_19: 
+    EnemyHealth_19: 0
+    EnemyPosX_19: 0
+    EnemyPosY_19: 0
+    EnemyBehaviour_20: 
+    EnemyHealth_20: 0
+    EnemyPosX_20: 0
+    EnemyPosY_20: 0
+    EnemyBehaviour_21: 
+    EnemyHealth_21: 0
+    EnemyPosX_21: 0
+    EnemyPosY_21: 0
+    EnemyBehaviour_22: 
+    EnemyHealth_22: 0
+    EnemyPosX_22: 0
+    EnemyPosY_22: 0
+    EnemyBehaviour_23: 
+    EnemyHealth_23: 0
+    EnemyPosX_23: 0
+    EnemyPosY_23: 0
+    EnemyBehaviour_24: 
+    EnemyHealth_24: 0
+    EnemyPosX_24: 0
+    EnemyPosY_24: 0
     EnemyBehaviour_100: 
     EnemyHealth_100: 0
     EnemyPosX_100: 0
     EnemyPosY_100: 0
-    DoorState_A1: 
-    DoorState_A2: 
 --- !u!4 &1384078430
 Transform:
   m_ObjectHideFlags: 0
@@ -10324,7 +10755,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2764210261204811548, guid: 19be11158c9776f42bc6656ae61c0efc, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.7899294
+      value: 4.5399294
       objectReference: {fileID: 0}
     - target: {fileID: 2764210261204811548, guid: 19be11158c9776f42bc6656ae61c0efc, type: 3}
       propertyPath: m_LocalPosition.z
@@ -10365,6 +10796,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2764210261204811548, guid: 19be11158c9776f42bc6656ae61c0efc, type: 3}
   m_PrefabInstance: {fileID: 1412082021}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1412082023 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2764210261204811547, guid: 19be11158c9776f42bc6656ae61c0efc, type: 3}
+  m_PrefabInstance: {fileID: 1412082021}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 402a1de1091f7ba4e8ef6f4104b82fde, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1433387954
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12481,13 +12923,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1172749136770960572, guid: ef80ff7bf63a70144acde33c6799fa50, type: 3}
       propertyPath: m_fontColor32.rgba
-      value: 1119832
+      value: 4278192784
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ef80ff7bf63a70144acde33c6799fa50, type: 3}
 --- !u!224 &1747715372 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1172749136031940124, guid: ef80ff7bf63a70144acde33c6799fa50, type: 3}
+  m_PrefabInstance: {fileID: 1747715371}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1747715373 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 1172749136031940125, guid: ef80ff7bf63a70144acde33c6799fa50, type: 3}
   m_PrefabInstance: {fileID: 1747715371}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1763931335
@@ -14900,6 +15347,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 14618311}
     m_Modifications:
+    - target: {fileID: 6721941171679317668, guid: 7e49140c2ad88ef449a24c4b000fd30e, type: 3}
+      propertyPath: m_Size.y
+      value: 0.16865012
+      objectReference: {fileID: 0}
+    - target: {fileID: 6721941171679317668, guid: 7e49140c2ad88ef449a24c4b000fd30e, type: 3}
+      propertyPath: m_Offset.y
+      value: 0.41567492
+      objectReference: {fileID: 0}
     - target: {fileID: 6721941171679317670, guid: 7e49140c2ad88ef449a24c4b000fd30e, type: 3}
       propertyPath: m_RootOrder
       value: 2

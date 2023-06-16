@@ -10,6 +10,12 @@ public class PlayerManager : MonoBehaviour
     public string Name = "";
 
     public int LastBonfireVisited;
+    public Bonfire Bonfire_1;
+    public Bonfire Bonfire_2;
+    public Bonfire Bonfire_3;
+
+
+
 
     private LayerManagerV2 Layer;
     private PlayerControllerV2 PC;

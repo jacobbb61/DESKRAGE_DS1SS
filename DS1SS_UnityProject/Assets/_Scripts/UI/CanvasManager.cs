@@ -7,9 +7,7 @@ using TMPro;
 public class CanvasManager : MonoBehaviour
 {
     public Slider PlayerStaminaSlider;
-
-
-
+    public Slider PlayerHealthSlider;
 
     public GameObject DoorPrompt;
     public GameObject DoorUI;
@@ -20,5 +18,6 @@ public class CanvasManager : MonoBehaviour
     public TextMeshProUGUI ItemProptDescription;
 
     public Animator BonfireAnim;
+    public Animator YouDiedAnim;
 
 }

@@ -41,6 +41,8 @@ public class UndeadDummy : MonoBehaviour
 
     public void TakeDamage(float Damage, bool Staggered)
     {
+        if (!IsDead)
+        {
             Health -= Damage;
 
             HealthBarSlider.value = Health;
@@ -54,9 +56,10 @@ public class UndeadDummy : MonoBehaviour
                 Anim.Play("UndeadDummyHit");
             }
 
-        
 
-        if (Health <=0) { StartCoroutine(Death()); }
+
+            if (Health <= 0) { StartCoroutine(Death()); }
+        }
     }
 
     IEnumerator Death()

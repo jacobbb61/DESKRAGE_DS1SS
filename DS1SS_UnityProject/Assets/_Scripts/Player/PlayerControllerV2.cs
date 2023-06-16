@@ -35,6 +35,8 @@ public class PlayerControllerV2 : MonoBehaviour
     public bool IsIdleAnim;
     public float Speed;
     public float VerticalSpeed;
+    public bool FootAOnSlope;
+    public bool FootBOnSlope;
 
     [Header("Movement Data to edit")]
     public float WalkSpeed;
@@ -52,12 +54,15 @@ public class PlayerControllerV2 : MonoBehaviour
 
 
     [Header("Combat states")]
+    public bool IsHealing;
     public bool IsAttackStepping;
     public bool CanAttack;
     public bool CanFollowUp;
     private bool SwapLightAnim;
 
     [Header("Combat Data to edit")]
+    public float UseEstusTime;
+    public float EstusHealAmount;
     public float LightAttackTime;
     public float LightFollowUpAttackTime;
     public float HeavyAttackTime;
@@ -88,28 +93,64 @@ public class PlayerControllerV2 : MonoBehaviour
 
     public Rigidbody2D MyRb;
     private Collider2D MyCol;
+    private PlayerManager PM;
 
     public InteractableV2 Interactable;
 
     //UI
-    private CanvasManager CanvasManager;
+    private CanvasManager CM;
     private Slider StaminaSlider;
+    private Slider HealthSlider;
 
     private void Start()
     {
+        PM = GetComponent<PlayerManager>();
         MyRb = GetComponent<Rigidbody2D>();
         MyCol = GetComponent<CapsuleCollider2D>();
         Speed = WalkSpeed;
         VerticalSpeed = FallSpeed;
         if (SceneManager.GetActiveScene().name == "Build")
         {
-            CanvasManager = GameObject.FindGameObjectWithTag("Canvas").GetComponent<CanvasManager>();
-            StaminaSlider = CanvasManager.PlayerStaminaSlider;
+            CM = GameObject.FindGameObjectWithTag("Canvas").GetComponent<CanvasManager>();
+            StaminaSlider = CM.PlayerStaminaSlider;
+            HealthSlider = CM.PlayerHealthSlider;
         }
         StartCoroutine(StaminaRegenPause());        
     }
 
-
+    IEnumerator PlayerDead()
+    {
+        CanMove = false;
+        CanAttack = false;
+        IsMovingInput = false;
+        MyRb.velocity = Vector2.zero;
+        CM.YouDiedAnim.Play("YouDied");
+        yield return new WaitForSeconds(4.5f);
+       
+        switch (PM.LastBonfireVisited)
+        {
+            case 1:
+                transform.position = PM.Bonfire_1.transform.position;
+                PM.Bonfire_1.BonfireRest();
+                break;
+            case 2:
+                transform.position = PM.Bonfire_1.transform.position;
+                PM.Bonfire_2.BonfireRest();
+                break;
+            case 3:
+                transform.position = PM.Bonfire_1.transform.position;
+                PM.Bonfire_3.BonfireRest();
+                break;
+            default:
+                transform.position = new Vector2(-90,-18);
+                PM.Bonfire_1.BonfireRest();
+                break;
+        }
+        yield return new WaitForSeconds(1f);
+        CanMove = true;
+        CanAttack = true;
+        IsMovingInput = true;
+    }
     public void Move(InputAction.CallbackContext context)
     {
 
@@ -138,7 +179,7 @@ public class PlayerControllerV2 : MonoBehaviour
     }
     public void B(InputAction.CallbackContext context)
     {
-        if(CanMove && !IsUiOpen)
+        if(CanMove && !IsUiOpen && !IsHealing)
         {
 
             if (context.action.WasPerformedThisFrame())
@@ -178,7 +219,7 @@ public class PlayerControllerV2 : MonoBehaviour
     }
     public void A(InputAction.CallbackContext context)
     {
-        if (CanMove && !IsUiOpen)
+        if (CanMove && !IsUiOpen && !IsHealing)
         {
 
             if (context.action.WasPerformedThisFrame())
@@ -198,11 +239,24 @@ public class PlayerControllerV2 : MonoBehaviour
     public void Y(InputAction.CallbackContext context)
     {
         Debug.Log("Y");
-        if (CanMove && !IsRolling && !IsJumping && !IsRunning && Interactable != null && !IsUiOpen)
+        if (CanMove && !IsRolling && !IsJumping && !IsRunning && Interactable != null && !IsUiOpen && !IsHealing)
         {
             if (context.action.triggered)
             {
                 Interactable.InvokeEvent();
+            }
+        }
+
+    }
+
+    public void X(InputAction.CallbackContext context)
+    {
+        Debug.Log("X");
+        if (CanMove && !IsRolling && !IsJumping && !IsRunning && !IsUiOpen && !IsHealing)
+        {
+            if (context.action.triggered && CurrentEstus>0)
+            {
+                StartCoroutine(UseEstus());
             }
         }
 
@@ -256,6 +310,7 @@ public class PlayerControllerV2 : MonoBehaviour
 
     public void Update()
     {
+        if (Health <= 0) { StartCoroutine(PlayerDead()); }
         GroundCheck();
         UpdateUI();
         if (IsStaminaRegen) { StaminaRegen(); }
@@ -302,24 +357,25 @@ public class PlayerControllerV2 : MonoBehaviour
     }    
     public void GroundCheck()
     {
-        RaycastHit2D hitA = Physics2D.Raycast(GroundCheckPosA.position, Vector2.down, .25f);
-        RaycastHit2D hitB = Physics2D.Raycast(GroundCheckPosB.position, Vector2.down, .25f);
-        
+        RaycastHit2D hitA = Physics2D.Raycast(GroundCheckPosA.position, Vector2.down, .45f);
+        RaycastHit2D hitB = Physics2D.Raycast(GroundCheckPosB.position, Vector2.down, .45f);
 
-        if(hitA.collider != null)
+        if (hitA.collider != null)
         {
             if (hitA.transform.CompareTag("Ground"))
             {
                 IsGrounded = true;
+                FootAOnSlope = false;
             }
             else if (hitA.transform.CompareTag("Slope"))
             {
                 IsGrounded = true;
-                OnSlope();
+                FootAOnSlope = true;
             }
             else 
             {
                 IsGrounded = false;
+                FootAOnSlope = false;
             }
         }
         if (hitB.collider != null)
@@ -327,35 +383,123 @@ public class PlayerControllerV2 : MonoBehaviour
             if (hitB.transform.CompareTag("Ground"))
             {
                 IsGrounded = true;
+                FootBOnSlope = false;
             }
             else if (hitB.transform.CompareTag("Slope"))
             {
                 IsGrounded = true;
-                OnSlope();
+                FootBOnSlope = true;
             }
             else
             {
                 IsGrounded = false;
+                FootBOnSlope = false;
             }
-
         }
         if (hitA.collider == null && hitB.collider == null)
         {
             IsGrounded = false;
         }
-        if (IsGrounded) { VerticalSpeed = 0.5f; } else { VerticalSpeed = FallSpeed; }
-    }
-    void OnSlope()
-    {
-        if (IsGrounded && !IsMovingInput && !IsJumping && !IsRolling) 
-        { 
-            MyRb.velocity = Vector2.zero; 
-            MyRb.constraints = RigidbodyConstraints2D.FreezeAll; 
-        } 
-        else 
+        if(FootAOnSlope && FootBOnSlope && hitA.transform != null) { OnSlope(hitA.transform); }
+        else if (FootAOnSlope && !FootBOnSlope && hitA.transform != null) { OnSlope(hitA.transform); }
+        else if (!FootAOnSlope && FootBOnSlope && hitB.transform != null) { OnSlope( hitB.transform); }
+        else if(!FootAOnSlope && !FootBOnSlope)
         {
-            MyRb.constraints = RigidbodyConstraints2D.None;
-            MyRb.constraints = RigidbodyConstraints2D.FreezeRotation;
+            //not on slope reset speeds
+            WalkSpeed = 1.5f;
+            RunSpeed = 5f;
+
+            if (IsGrounded) { VerticalSpeed = 0.5f; } else { VerticalSpeed = FallSpeed; }
+        }
+
+
+
+    }
+    void OnSlope(Transform Slope)
+    {
+
+        float SlopeAngle = Slope.transform.transform.eulerAngles.z;
+        Debug.Log(Slope.transform.transform.eulerAngles.z);
+        if (SlopeAngle <= 35 && SlopeAngle < 60)
+        {
+            // right  a 35 or less slope
+            if (PlayerDirection == 1)
+            { //going against slope
+                Debug.Log("Going up 30 right");
+                WalkSpeed = 2.5f;
+                RunSpeed = 5.5f;
+                if (IsMovingInput) { VerticalSpeed = 0f; } else { MyRb.velocity = Vector2.zero; }
+            }
+            else
+            {//going with slope
+                Debug.Log("Going down 30 right");
+               WalkSpeed = 1;
+                RunSpeed = 4f;
+                if (IsMovingInput) { VerticalSpeed = 5f; } else { MyRb.velocity = Vector2.zero; }
+                if (FootAOnSlope && !FootBOnSlope) { WalkSpeed = 2f; VerticalSpeed = 1.75f; } 
+                if(!FootAOnSlope && FootBOnSlope) { WalkSpeed = 1.75f; VerticalSpeed = 1.75f; }
+            }
+
+        }
+        else if(SlopeAngle > 35 && SlopeAngle <60)
+        {
+            // right  a 35 or MORE slope
+            if (PlayerDirection == 1)
+            { //going against slope
+                Debug.Log("Going up 45 right");
+                WalkSpeed = 2.5f;
+                RunSpeed = 7f; 
+               if (IsMovingInput) { VerticalSpeed = 0f;} else { MyRb.velocity = Vector2.zero; }
+            }
+            else
+            {//going with slope
+                Debug.Log("Going down 45 right");
+                WalkSpeed = .5f;
+                RunSpeed = 3f;
+                if (IsMovingInput) { VerticalSpeed = 5f; } else { MyRb.velocity = Vector2.zero; }
+                if (FootAOnSlope && !FootBOnSlope) { WalkSpeed = 2f; VerticalSpeed = 1.75f; }
+                if (!FootAOnSlope && FootBOnSlope) { WalkSpeed = 1.75f; VerticalSpeed = 1.75f; }
+            }
+        }
+        if (SlopeAngle >= 325 && SlopeAngle >300)
+        {
+            // left a 35 or less slope
+            if (PlayerDirection == 1)
+            { //going against slope
+                Debug.Log("Going down 30 left");
+                WalkSpeed = 1;
+                RunSpeed = 4f;
+                if (IsMovingInput) { VerticalSpeed = 5f; } else { MyRb.velocity = Vector2.zero; }
+                if (FootAOnSlope && !FootBOnSlope) { WalkSpeed = 2f; VerticalSpeed = 1.75f; }
+                if (!FootAOnSlope && FootBOnSlope) { WalkSpeed = 1.75f; VerticalSpeed = 1.75f; } 
+            }
+            else
+            {//going with slope
+                Debug.Log("Going up 30 left");
+                WalkSpeed = 2.5f;
+                RunSpeed = 5.5f;
+                if (IsMovingInput) { VerticalSpeed = 0f;  } else { MyRb.velocity = Vector2.zero; }
+            }
+        }
+        else if (SlopeAngle < 325 && SlopeAngle >300)
+        {
+            // left a 35 or MORE slope
+            if (PlayerDirection == 1)
+            { //going against slope
+                Debug.Log("Going down 45 left");
+                WalkSpeed = .5f;
+                RunSpeed = 3f;
+                if (IsMovingInput) { VerticalSpeed = 5f; } else { MyRb.velocity = Vector2.zero; }
+                if (FootAOnSlope && !FootBOnSlope) { WalkSpeed = 2f; VerticalSpeed = 1.75f; }
+                if (!FootAOnSlope && FootBOnSlope) { WalkSpeed = 1.75f; VerticalSpeed = 1.75f; }
+            }
+            else
+            {//going with slope
+                Debug.Log("Going up 45 left");
+                WalkSpeed = 2.5f;
+                RunSpeed = 7f;
+                if (IsMovingInput) { VerticalSpeed = 0f;  } else { MyRb.velocity = Vector2.zero; }
+            }
         }
     }
 
@@ -363,6 +507,7 @@ public class PlayerControllerV2 : MonoBehaviour
     public void UpdateUI()
     {
         if (StaminaSlider != null) { StaminaSlider.value = Stamina; }
+        if (HealthSlider != null) { HealthSlider.value = Health; }
     }
 
     public void StaminaRegen()
@@ -422,8 +567,8 @@ public class PlayerControllerV2 : MonoBehaviour
         if (!IsRunning) { MyRb.velocity = new Vector2(MovementInputDirection * JumpHorizontalSpeed, JumpVerticalSpeed); }
         else { MyRb.velocity = new Vector2(MovementInputDirection * JumpRunHorizontalSpeed, JumpVerticalSpeed); }
 
-        yield return new WaitForSeconds(.1f);
-
+        yield return new WaitForSeconds(.25f);
+  
         if (IsGrounded)
         {
             FinishJump();
@@ -537,4 +682,23 @@ public class PlayerControllerV2 : MonoBehaviour
             MyRb.velocity = new Vector2(PlayerDirection * StepDistance, MyRb.velocity.y / 10);
         }
     }
+
+    IEnumerator UseEstus()
+    {
+        MyRb.velocity = Vector2.zero;
+        Anim.Play("Prototype_UseEstus");
+        CanMove = false;
+        CanAttack = false;
+        CanFollowUp = false;
+        yield return new WaitForSeconds(UseEstusTime);
+
+        Health += EstusHealAmount;
+        Health = Mathf.Clamp(Health, 0, 100);
+        CurrentEstus--;
+
+        CanMove = true;
+        CanAttack = true;
+        CanFollowUp = true;
+    }
+
 }
