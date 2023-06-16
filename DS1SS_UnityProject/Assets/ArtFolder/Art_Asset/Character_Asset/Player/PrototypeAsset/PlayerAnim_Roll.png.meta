@@ -166,9 +166,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 411
-        y: 19
+        y: 0
         width: 83
-        height: 89
+        height: 108
       alignment: 9
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -183,33 +183,12 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerAnim_Roll_2
-      rect:
-        serializedVersion: 2
-        x: 617
-        y: 12
-        width: 21
-        height: 9
-      alignment: 9
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 8254e9a7160880d4f94d1dba7767773f
-      internalID: 790268341
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: PlayerAnim_Roll_3
       rect:
         serializedVersion: 2
-        x: 639
+        x: 619
         y: 0
-        width: 86
+        width: 106
         height: 89
       alignment: 9
       pivot: {x: 0.5, y: 0}
@@ -229,9 +208,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 848
-        y: 8
+        y: 0
         width: 134
-        height: 65
+        height: 73
       alignment: 9
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -430,27 +409,6 @@ TextureImporter:
       bones: []
       spriteID: 47b6f69c40acb604abc14e9bc6b03580
       internalID: 1028820606
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: PlayerAnim_Roll_14
-      rect:
-        serializedVersion: 2
-        x: 450
-        y: 0
-        width: 24
-        height: 15
-      alignment: 9
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d72375a492facc94885311f31c476da9
-      internalID: 1605812889
       vertices: []
       indices: 
       edges: []
