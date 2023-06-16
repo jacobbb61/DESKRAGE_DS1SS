@@ -215,7 +215,35 @@ public class PlayerControllerV2 : MonoBehaviour
                 }
             }
         }
+        if (CanFollowUp)
+        {        
+            if (context.action.WasReleasedThisFrame())
+            {
+                if (IsWaitingToRun) { StopCoroutine(WaitToRunCoroutine); IsWaitingToRun = false; }
+                if (IsGrounded)
+                {
+                    if (!IsRunning) // trigger roll
+                    {
 
+                        IsRunning = false;
+                        CanMove = false;
+                        if (MovementInputDirection == 1) { DodgeDirection = 1; }
+                        else if (MovementInputDirection == -1) { DodgeDirection = -1; }
+                        if (MovementInputDirection == 0) { StartCoroutine(Backstep()); Debug.Log("Backstep"); Stamina -= 15f; }
+                        else { StartCoroutine(Roll()); Debug.Log("Roll"); Stamina -= 30f; }
+                    }
+                    else
+                    {
+                        IsRunning = false;
+                    }
+                }
+                else
+                {
+                    IsRunning = false;
+                    IsRolling = false;
+                }
+            }
+        }
     }
     public void A(InputAction.CallbackContext context)
     {
@@ -273,11 +301,13 @@ public class PlayerControllerV2 : MonoBehaviour
                 Stamina -= 35f;
             }
         }
-        if (IsGrounded && !IsUiOpen && CanFollowUp && CanAttack && Stamina > 0)
+        if (IsGrounded && !IsUiOpen && CanFollowUp && Stamina > 0)
         {
             if (context.action.triggered)
             {
                 if (HeavyAttackCoroutine != null) { StopCoroutine(HeavyAttackCoroutine); }
+                if (MovementInputDirection > 0.2f) { PlayerDirection = 1; }
+                if (MovementInputDirection < -0.2f) { PlayerDirection = -1; }
                 StartCoroutine(HeavyAttackFollowUp());
                 Stamina -= 30f;
             }
@@ -295,11 +325,13 @@ public class PlayerControllerV2 : MonoBehaviour
                 Stamina -= 25f;
             }
         }
-        if (IsGrounded && !IsUiOpen && CanFollowUp && CanAttack && Stamina > 0)
+        if (IsGrounded && !IsUiOpen && CanFollowUp && Stamina > 0)
         {
             if (context.action.triggered)
             {
                 if (LightAttackCoroutine != null) { StopCoroutine(LightAttackCoroutine); }
+                if (MovementInputDirection > 0.2f) { PlayerDirection = 1; }
+                if (MovementInputDirection < -0.2f) { PlayerDirection = -1; }
                 StartCoroutine(LightAttackFollowUp());
                 Stamina -= 20f;
             }
@@ -321,7 +353,7 @@ public class PlayerControllerV2 : MonoBehaviour
         else if (PlayerDirection ==-1) { Assets.transform.localScale = new Vector3(-1, 1, 1); }
         if (IsGrounded && CanMove && IsIdleAnim && !IsMovingInput)
         {
-            Anim.Play("Prototype_Idle");  
+            Anim.Play("PlayerAnim_Idle");  
         }
 
         if (IsGrounded && CanMove && IsMovingInput)
@@ -333,13 +365,13 @@ public class PlayerControllerV2 : MonoBehaviour
             {
                 MyRb.velocity = new Vector2(MovementInputDirection * WalkSpeed, -VerticalSpeed);
                 IsStaminaRegen = true;                
-                Anim.Play("Prototype_Walking");
+                Anim.Play("PlayerAnim_WalkForward");
             }
             else if (IsRunning && Stamina > 0)
             {
                 Stamina -= Time.deltaTime * 8.5f; IsStaminaRegen = false;
                 MyRb.velocity = new Vector2(MovementInputDirection * RunSpeed, -VerticalSpeed);
-                Anim.Play("Prototype_Running");
+                Anim.Play("PlayerAnim_Run");
             }
         }
        
@@ -419,7 +451,6 @@ public class PlayerControllerV2 : MonoBehaviour
     {
 
         float SlopeAngle = Slope.transform.transform.eulerAngles.z;
-        Debug.Log(Slope.transform.transform.eulerAngles.z);
         if (SlopeAngle <= 35 && SlopeAngle < 60)
         {
             // right  a 35 or less slope
@@ -446,15 +477,13 @@ public class PlayerControllerV2 : MonoBehaviour
             // right  a 35 or MORE slope
             if (PlayerDirection == 1)
             { //going against slope
-                Debug.Log("Going up 45 right");
-                WalkSpeed = 2.5f;
+                WalkSpeed = 3f;
                 RunSpeed = 7f; 
                if (IsMovingInput) { VerticalSpeed = 0f;} else { MyRb.velocity = Vector2.zero; }
             }
             else
             {//going with slope
-                Debug.Log("Going down 45 right");
-                WalkSpeed = .5f;
+                WalkSpeed = 0.5f;
                 RunSpeed = 3f;
                 if (IsMovingInput) { VerticalSpeed = 5f; } else { MyRb.velocity = Vector2.zero; }
                 if (FootAOnSlope && !FootBOnSlope) { WalkSpeed = 2f; VerticalSpeed = 1.75f; }
@@ -466,7 +495,6 @@ public class PlayerControllerV2 : MonoBehaviour
             // left a 35 or less slope
             if (PlayerDirection == 1)
             { //going against slope
-                Debug.Log("Going down 30 left");
                 WalkSpeed = 1;
                 RunSpeed = 4f;
                 if (IsMovingInput) { VerticalSpeed = 5f; } else { MyRb.velocity = Vector2.zero; }
@@ -475,7 +503,6 @@ public class PlayerControllerV2 : MonoBehaviour
             }
             else
             {//going with slope
-                Debug.Log("Going up 30 left");
                 WalkSpeed = 2.5f;
                 RunSpeed = 5.5f;
                 if (IsMovingInput) { VerticalSpeed = 0f;  } else { MyRb.velocity = Vector2.zero; }
@@ -486,8 +513,7 @@ public class PlayerControllerV2 : MonoBehaviour
             // left a 35 or MORE slope
             if (PlayerDirection == 1)
             { //going against slope
-                Debug.Log("Going down 45 left");
-                WalkSpeed = .5f;
+                WalkSpeed = 0.5f;
                 RunSpeed = 3f;
                 if (IsMovingInput) { VerticalSpeed = 5f; } else { MyRb.velocity = Vector2.zero; }
                 if (FootAOnSlope && !FootBOnSlope) { WalkSpeed = 2f; VerticalSpeed = 1.75f; }
@@ -495,8 +521,7 @@ public class PlayerControllerV2 : MonoBehaviour
             }
             else
             {//going with slope
-                Debug.Log("Going up 45 left");
-                WalkSpeed = 2.5f;
+                WalkSpeed = 3f;
                 RunSpeed = 7f;
                 if (IsMovingInput) { VerticalSpeed = 0f;  } else { MyRb.velocity = Vector2.zero; }
             }
@@ -531,7 +556,7 @@ public class PlayerControllerV2 : MonoBehaviour
         IsIdleAnim = false;
         CanMove = false;
         IsStaminaRegen = false;
-        Anim.Play("Prototype_Roll");
+        Anim.Play("PlayerAnim_Roll");
 
         yield return new WaitForSeconds(RollTime);
         CanMove = true;
@@ -547,7 +572,7 @@ public class PlayerControllerV2 : MonoBehaviour
     {
         IsBackStepping = true;
         IsIdleAnim = false;
-        Anim.Play("Prototype_BackStep");
+        Anim.Play("PlayerAnim_BackStep");
         IsStaminaRegen = false;
 
         yield return new WaitForSeconds(BackstepTime);
@@ -561,14 +586,14 @@ public class PlayerControllerV2 : MonoBehaviour
     IEnumerator Jump()
     {
         IsIdleAnim = false;
-        Anim.Play("Prototype_Jumping");
+        Anim.Play("PlayerAnim_JumpEnter");
         IsJumping = true;
         IsStaminaRegen = false;
         if (!IsRunning) { MyRb.velocity = new Vector2(MovementInputDirection * JumpHorizontalSpeed, JumpVerticalSpeed); }
         else { MyRb.velocity = new Vector2(MovementInputDirection * JumpRunHorizontalSpeed, JumpVerticalSpeed); }
 
         yield return new WaitForSeconds(.25f);
-  
+        Anim.Play("PlayerAnim_JumpIdle");
         if (IsGrounded)
         {
             FinishJump();
@@ -588,7 +613,7 @@ public class PlayerControllerV2 : MonoBehaviour
         MyRb.velocity = Vector2.zero;
         DodgeDirection = 0;
         IsIdleAnim = true;
-        Anim.Play("Prototype_Idle");
+        Anim.Play("PlayerAnim_JumpLand");
         StartCoroutine(StaminaRegenPause());
     }
     IEnumerator StaminaRegenPause()
@@ -610,21 +635,22 @@ public class PlayerControllerV2 : MonoBehaviour
     IEnumerator LightAttack()
     {
         AttackStart();
-        Anim.Play("Prototype_LightSwing");
+        Anim.Play("PlayerAnim_LightSwing");
         AttackStepMove(LightAttackStep);
-        yield return new WaitForSeconds(LightAttackTime-0.35f);
+        yield return new WaitForSeconds(LightAttackTime-1.2f);
         CanFollowUp = true;
         IsAttackStepping = false; 
+        
+        yield return new WaitForSeconds(1.2f);
         CanMove = true;
         CanAttack = true;
-        yield return new WaitForSeconds(0.35f);
         CanFollowUp = false;
         StartCoroutine(StaminaRegenPause());
     }
     IEnumerator LightAttackFollowUp()
     {
         AttackStart();
-        Anim.Play("Prototype_LightSwingFollowUp");
+        Anim.Play("PlayerAnim_LightSwingFollowUpAttack");
         AttackStepMove(LightAttackStep);
         yield return new WaitForSeconds(LightFollowUpAttackTime);
         IsAttackStepping = false; 
@@ -636,22 +662,23 @@ public class PlayerControllerV2 : MonoBehaviour
     IEnumerator HeavyAttack()
     {
         AttackStart();
-        Anim.Play("Prototype_HeavyAttack");
+        Anim.Play("PlayerAnim_HeavySwing");
         AttackStepMove(HeavyAttackStep);
         CanFollowUp = false;
-        yield return new WaitForSeconds(HeavyAttackTime - 0.35f);
+        yield return new WaitForSeconds(HeavyAttackTime - 1.4f);
         CanFollowUp = true;
         IsAttackStepping = false; 
+        
+        yield return new WaitForSeconds(1.4f);
         CanMove = true;
         CanAttack = true;
-        yield return new WaitForSeconds(0.35f);
         CanFollowUp = false;
         StartCoroutine(StaminaRegenPause());
     }
     IEnumerator HeavyAttackFollowUp()
     {
         AttackStart();
-        Anim.Play("Prototype_HeavyFollowUpAttack");
+        Anim.Play("PlayerAnim_HeavySwingFollowUpAttack");
         AttackStepMove(HeavyAttackStep);
         yield return new WaitForSeconds(HeavyFollowUpAttackTime);
         IsAttackStepping = false; 
@@ -686,7 +713,7 @@ public class PlayerControllerV2 : MonoBehaviour
     IEnumerator UseEstus()
     {
         MyRb.velocity = Vector2.zero;
-        Anim.Play("Prototype_UseEstus");
+        Anim.Play("PlayerAnim_EstusUse");
         CanMove = false;
         CanAttack = false;
         CanFollowUp = false;

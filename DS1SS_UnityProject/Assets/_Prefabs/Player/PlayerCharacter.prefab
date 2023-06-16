@@ -75,7 +75,7 @@ Animator:
   m_GameObject: {fileID: 1065959575374467203}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 7cb9551da876dc1449227f06adaa669a, type: 2}
+  m_Controller: {fileID: 9100000, guid: c171560afb2579146b030223687527f1, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -307,18 +307,18 @@ MonoBehaviour:
   CanFollowUp: 0
   UseEstusTime: 0.4
   EstusHealAmount: 30
-  LightAttackTime: 1
-  LightFollowUpAttackTime: 1
-  HeavyAttackTime: 1.35
-  HeavyFollowUpAttackTime: 1
+  LightAttackTime: 1.8
+  LightFollowUpAttackTime: 1.8
+  HeavyAttackTime: 2.4
+  HeavyFollowUpAttackTime: 2
   LightAttackStep: 2
   HeavyAttackStep: 3
   LightAttackDamage: 6
   HeavyAttackDamage: 9
   LightAttackRange: 1.75
   LightAttackFollowUpRange: 1.75
-  HeavyAttackRange: 1.75
-  HeavyAttackFollowUpRange: 1.75
+  HeavyAttackRange: 2
+  HeavyAttackFollowUpRange: 2
   LayerManager: {fileID: 0}
   Assets: {fileID: 1065959576549058040}
   Anim: {fileID: 1065959575374467966}
@@ -513,6 +513,14 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 10dcf732-a674-41d3-96af-ae6f12f59cf7
     m_ActionName: Player/RB[/Mouse/leftButton,/XInputControllerWindows/rightShoulder]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: e5746827-3d49-46fa-88f4-f92092ead19b
+    m_ActionName: Player/LockOn[/XInputControllerWindows/leftStickPress,/Keyboard/r]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 2353280c-d69a-4d45-b042-ef5e95abf612
+    m_ActionName: UI /AnyKey[/Keyboard/anyKey]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
