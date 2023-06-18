@@ -16,6 +16,7 @@ public class CanvasManager : MonoBehaviour
 
     public TextMeshProUGUI DoorDescription;
     public TextMeshProUGUI ItemProptDescription;
+    public TextMeshProUGUI EstusCountText;
 
     public Animator BonfireAnim;
     public Animator YouDiedAnim;

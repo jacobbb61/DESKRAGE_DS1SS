@@ -31,17 +31,29 @@ public class Bonfire : MonoBehaviour
     public void InteractBonfire()
     {
         StartCoroutine(UseThisBonfire());
+        
+
     }
     IEnumerator UseThisBonfire()
     {
-
-        PM.LastBonfireVisited = BonfireTagNum;
         PC.MyRb.velocity = Vector2.zero;
+        PM.LastBonfireVisited = BonfireTagNum;
+
+        PC.CanMove = false;
+        PC.CanAttack = false;
+        PC.CanFollowUp = false;
+        PC.Anim.Play("PlayerAnim_BonfireInteract");
+
+        yield return new WaitForSeconds(1);
+
         if (BonfireEverUsed) { Anim.Play("BonfireLitActivate"); }
         else { Anim.Play("BonfireLitFirstTime"); BonfireEverUsed = true; }
         
         yield return new WaitForSeconds(1);
         BonfireRest();
+        PC.Anim.Play("PlayerAnim_Idle");
+        PC.CanMove = true;
+        PC.CanAttack = true;
     }
 
 

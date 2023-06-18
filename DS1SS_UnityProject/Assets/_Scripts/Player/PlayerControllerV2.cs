@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using TMPro;
 
 public class PlayerControllerV2 : MonoBehaviour
 {
@@ -61,7 +62,6 @@ public class PlayerControllerV2 : MonoBehaviour
     private bool SwapLightAnim;
 
     [Header("Combat Data to edit")]
-    public float UseEstusTime;
     public float EstusHealAmount;
     public float LightAttackTime;
     public float LightFollowUpAttackTime;
@@ -101,6 +101,7 @@ public class PlayerControllerV2 : MonoBehaviour
     private CanvasManager CM;
     private Slider StaminaSlider;
     private Slider HealthSlider;
+    private TextMeshProUGUI EstusCountText;
 
     private void Start()
     {
@@ -114,6 +115,7 @@ public class PlayerControllerV2 : MonoBehaviour
             CM = GameObject.FindGameObjectWithTag("Canvas").GetComponent<CanvasManager>();
             StaminaSlider = CM.PlayerStaminaSlider;
             HealthSlider = CM.PlayerHealthSlider;
+            EstusCountText = CM.EstusCountText;
         }
         StartCoroutine(StaminaRegenPause());        
     }
@@ -285,6 +287,10 @@ public class PlayerControllerV2 : MonoBehaviour
             if (context.action.triggered && CurrentEstus>0)
             {
                 StartCoroutine(UseEstus());
+            } 
+            if(context.action.triggered && CurrentEstus == 0)
+            {
+                StartCoroutine(UseEmptyEstus());
             }
         }
 
@@ -533,6 +539,7 @@ public class PlayerControllerV2 : MonoBehaviour
     {
         if (StaminaSlider != null) { StaminaSlider.value = Stamina; }
         if (HealthSlider != null) { HealthSlider.value = Health; }
+        if (EstusCountText != null) { EstusCountText.text = CurrentEstus.ToString(); }
     }
 
     public void StaminaRegen()
@@ -717,12 +724,24 @@ public class PlayerControllerV2 : MonoBehaviour
         CanMove = false;
         CanAttack = false;
         CanFollowUp = false;
-        yield return new WaitForSeconds(UseEstusTime);
+        yield return new WaitForSeconds(1);
 
         Health += EstusHealAmount;
         Health = Mathf.Clamp(Health, 0, 100);
         CurrentEstus--;
-
+        yield return new WaitForSeconds(.5f);
+        CanMove = true;
+        CanAttack = true;
+        CanFollowUp = true;
+    }
+    IEnumerator UseEmptyEstus()
+    {
+        MyRb.velocity = Vector2.zero;
+        Anim.Play("PlayerAnim_EstusUseEmpty");
+        CanMove = false;
+        CanAttack = false;
+        CanFollowUp = false;
+        yield return new WaitForSeconds(1.5f);
         CanMove = true;
         CanAttack = true;
         CanFollowUp = true;
