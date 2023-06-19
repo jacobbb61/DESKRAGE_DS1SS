@@ -26,19 +26,24 @@ public class DoorManager : MonoBehaviour
 
     private DoorSaveManager doorSaveManager;
 
+    public Animator Anim;
 
 
-
-
-
-    void Start()
+    private void Start()
     {
+        
         layerManager = GameObject.FindGameObjectWithTag("LayerManager").GetComponent<LayerManagerV2>();
         CanvasManager = GameObject.FindGameObjectWithTag("Canvas").GetComponent<CanvasManager>();
         doorSaveManager = GetComponent<DoorSaveManager>();
         doorPrompt = CanvasManager.DoorPrompt;
         doorUI = CanvasManager.DoorUI;
         doorUIText = CanvasManager.DoorDescription;
+    }
+
+
+
+    public void ManualStart()
+    {
 
         if (doorType == 1)
         {
@@ -49,10 +54,12 @@ public class DoorManager : MonoBehaviour
                 case "Open":
                     //anim.Play("CellDoorOpenIdle");
                     doorCollider.enabled = false;
+                    Anim.Play("PerpendicularDoorOpenIdle");
                     break;
                 case "Closed":
                     //anim.Play("CellDoorOpenIdle");
                     doorCollider.enabled = true;
+                    Anim.Play("PerpendicularDoorClosedIdle");
                     break;
                 case "Locked":
                     //anim.Play("CellDoorOpenIdle");
@@ -75,16 +82,20 @@ public class DoorManager : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+
         if (collision.CompareTag("Player"))
         {
-            
+            CanvasManager = GameObject.FindGameObjectWithTag("Canvas").GetComponent<CanvasManager>();
+            doorPrompt = CanvasManager.DoorPrompt;
+            doorUI = CanvasManager.DoorUI;
+            doorUIText = CanvasManager.DoorDescription;
 
             switch (CurrentDoorState_This)
             {
                 
                 case "Open":
                    
-                    if (doorType == 1) { doorPrompt.SetActive(true); }
+                    if (doorType == 0) { doorPrompt.SetActive(true); }
                     else { doorPrompt.SetActive(false); }
                     
                     break;
@@ -128,8 +139,15 @@ public class DoorManager : MonoBehaviour
                     doorCollider.enabled = false;
                     break;
                 case "Closed":
-                    doorCollider.enabled = false; 
-                    //play anim
+                    doorCollider.enabled = false;
+                    CurrentDoorState_This = "Open";
+                    Anim.Play("PerpendicularDoorOpenIdle");
+
+                    if (doorSaveManager.DoorTag_This == "N")
+                    {
+                        AchievementsGameManager.Instance.UnlockedAchievement(1);
+                    }
+
                     break;
             }
         }

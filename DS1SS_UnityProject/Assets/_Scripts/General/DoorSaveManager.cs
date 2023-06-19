@@ -121,5 +121,6 @@ public class DoorSaveManager : MonoBehaviour
         }
 
         GetComponent<DoorManager>().CurrentDoorState_This = DoorState_This;
+        GetComponent<DoorManager>().ManualStart();
     }
 }

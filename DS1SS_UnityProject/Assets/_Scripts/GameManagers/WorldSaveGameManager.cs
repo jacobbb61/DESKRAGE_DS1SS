@@ -279,6 +279,8 @@ public class WorldSaveGameManager : MonoBehaviour
 
     public void HardCodeNewGameCharacterSlot(CharacterSaveData CurrentCharacterData)
     {
+        CurrentCharacterData.FinishedGame = false;
+
         // player world position
         CurrentCharacterData.xPos = -90f;
         CurrentCharacterData.yPos = -18f;
@@ -367,8 +369,8 @@ public class WorldSaveGameManager : MonoBehaviour
 
         CurrentCharacterData.EnemyBehaviour_100 = "";
         CurrentCharacterData.EnemyHealth_100 = 24;
-        CurrentCharacterData.EnemyPosX_100 = 17;
-        CurrentCharacterData.EnemyPosY_100 = -2.86f;
+        CurrentCharacterData.EnemyPosX_100 = 90;
+        CurrentCharacterData.EnemyPosY_100 = 6f;
 
     }
 }

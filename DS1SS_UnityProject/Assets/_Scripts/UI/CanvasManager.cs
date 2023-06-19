@@ -23,5 +23,6 @@ public class CanvasManager : MonoBehaviour
 
     public Animator BonfireAnim;
     public Animator YouDiedAnim;
+    public Animator SceneTransitionAnim;
 
 }

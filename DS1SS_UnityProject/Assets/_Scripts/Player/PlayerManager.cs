@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class PlayerManager : MonoBehaviour
 {
-
+    public bool FinishedGame = false;
     public float TimePlayedSeconds;
     public string Name = "";
 
@@ -36,7 +36,7 @@ public class PlayerManager : MonoBehaviour
 
     public void SaveGameDataToCurrentCharacterData(ref CharacterSaveData CurrentCharacterData)
     {
-        CurrentCharacterData.CharacterName = "character from player manager";
+        CurrentCharacterData.FinishedGame = FinishedGame;
         CurrentCharacterData.yPos = transform.position.y;
         CurrentCharacterData.xPos = transform.position.x;
         CurrentCharacterData.PlayerLayer = Layer.CurrentLayer;

@@ -576,7 +576,7 @@ public class MainMenuManager : MonoBehaviour
     {
         FMODinstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
         FMODinstance.release();
-        WorldSaveGameManager.Instance.SaveGame();
+        GameSaveGameManager.Instance.SaveGameData();
         Debug.Log("Quiting Game");
         SceneTransitionAnim.SetTrigger("Active");
         yield return new WaitForSeconds(1.2f);

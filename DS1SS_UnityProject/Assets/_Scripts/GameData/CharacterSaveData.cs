@@ -9,8 +9,7 @@ using UnityEngine;
 public class CharacterSaveData 
 {
 
-    [Header("CharacterName")]
-    public string CharacterName = "Character from save data";
+    public bool FinishedGame;
 
     // only save basic variables, no objects or vectors
     [Header("World Position")]
