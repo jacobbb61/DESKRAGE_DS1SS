@@ -14,7 +14,7 @@ public class CanvasManager : MonoBehaviour
     public GameObject AchievementObj;
     public GameObject ItemPrompt;
     public GameObject TutorialPrompt;
-    public GameObject TutorialUI;
+    public GameObject TutorialMessage;
 
     public TextMeshProUGUI DoorDescription;
     public TextMeshProUGUI ItemProptDescription;

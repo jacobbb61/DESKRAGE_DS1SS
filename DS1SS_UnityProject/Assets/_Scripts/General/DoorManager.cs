@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
+[RequireComponent(typeof(InteractableV2))]
 public class DoorManager : MonoBehaviour
 {
     public LayerManagerV2 layerManager;
