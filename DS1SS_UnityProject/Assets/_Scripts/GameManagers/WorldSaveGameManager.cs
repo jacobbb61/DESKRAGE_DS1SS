@@ -297,11 +297,24 @@ public class WorldSaveGameManager : MonoBehaviour
         CurrentCharacterData.BonfireEverUsed_3 = false;
 
         //door data
-        CurrentCharacterData.DoorState_A1 = "";
-        CurrentCharacterData.DoorState_A2 = "";
+    CurrentCharacterData.DoorState_A = "Open";
+    CurrentCharacterData.DoorState_C = "Locked";
+    CurrentCharacterData.DoorState_E = "Closed";
+    CurrentCharacterData.DoorState_F1 = "Open";
+    CurrentCharacterData.DoorState_H = "Closed";
+    CurrentCharacterData.DoorState_J2 = "OneSided";
+    CurrentCharacterData.DoorState_K = "Closed";
+    CurrentCharacterData.DoorState_M1 = "Open";
+    CurrentCharacterData.DoorState_M2 = "Open";
+    CurrentCharacterData.DoorState_N = "Closed";
+    CurrentCharacterData.DoorState_O = "Closed";
+    CurrentCharacterData.DoorState_P = "Closed";
+    CurrentCharacterData.DoorState_S = "Locked";
+    CurrentCharacterData.DoorState_T = "Closed";
+    CurrentCharacterData.DoorState_U = "Closed";
 
-        //enemy data
-        CurrentCharacterData.EnemyBehaviour_1 = "";
+    //enemy data
+    CurrentCharacterData.EnemyBehaviour_1 = "";
         CurrentCharacterData.EnemyHealth_1 = 24;
         CurrentCharacterData.EnemyPosX_1 = 0;
         CurrentCharacterData.EnemyPosY_1 = 0;

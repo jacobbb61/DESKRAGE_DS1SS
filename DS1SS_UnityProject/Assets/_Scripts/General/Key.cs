@@ -20,15 +20,9 @@ public class Key : MonoBehaviour
 
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void PickUpKey()
     {
-        door.isLocked = false;
+       // door.isLocked = false;
         Debug.Log(this.name + " picked up. " + correspondingDoor.gameObject + " unlocked");
         playerItems.keys.Add(gameObject);
         gameObject.SetActive(false);

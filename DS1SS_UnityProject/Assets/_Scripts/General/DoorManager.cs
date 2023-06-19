@@ -10,33 +10,23 @@ using UnityEngine.UI;
 public class DoorManager : MonoBehaviour
 {
     public LayerManagerV2 layerManager;
-    public bool isLocked = true;
-    [Tooltip("ID number for differentiating between door type. 0 = regular, 1 = layer changing door, 2 = one-way, 3 = fog")][SerializeField] private int doorType; // For differentiating between different kinds of doors
+    [Tooltip("ID number for differentiating between door type. 0 = regular, 1 = layer changing door")][SerializeField] private int doorType; // For differentiating between different kinds of doors
     [Tooltip("Only used for layer changing doors (ID 1)")]public int targetLayer; // For doors that switch the player's layer
     private bool inBossFight;
-    public string currentState;
 
-    /*[SerializeField]*/ private CanvasManager CanvasManager;
+
+
+    public string CurrentDoorState_This;
+
+     private CanvasManager CanvasManager;
     [SerializeField] private Collider2D doorCollider; 
-    /*[SerializeField]*/ private GameObject doorPrompt;
-    /*[SerializeField]*/ private GameObject doorUI;
-    /*[SerializeField]*/ private TextMeshProUGUI doorUIText;
+     private GameObject doorPrompt;
+     private GameObject doorUI;
+     private TextMeshProUGUI doorUIText;
 
     private DoorSaveManager doorSaveManager;
 
-    /*
-    private void Awake()
-    {
-        Collider2D[] overlaps = Physics2D.OverlapPointAll(transform.position);
-        DoorManager otherDoor;
-        foreach (Collider2D c in overlaps)
-        {
-            if (c.gameObject.TryGetComponent<DoorManager>(out otherDoor) && otherDoor != this)
-            {
-                targetLayer = FindObjectOfType<LayerManager>().GetLayerFromObject(c.gameObject);
-            }
-        }
-    }*/
+
 
 
 
@@ -45,37 +35,66 @@ public class DoorManager : MonoBehaviour
     {
         layerManager = GameObject.FindGameObjectWithTag("LayerManager").GetComponent<LayerManagerV2>();
         CanvasManager = GameObject.FindGameObjectWithTag("Canvas").GetComponent<CanvasManager>();
+        doorSaveManager = GetComponent<DoorSaveManager>();
         doorPrompt = CanvasManager.DoorPrompt;
         doorUI = CanvasManager.DoorUI;
         doorUIText = CanvasManager.DoorDescription;
 
-        if (isLocked)
+        if (doorType == 1)
         {
-            currentState = "Locked";
-        }
-        else
-        {
-            currentState = "Unlocked";
-        }
-        /*
-         switch(doorstate_this){
+            switch (CurrentDoorState_This)
+            {
 
-        case "open":
-        anim.Play("CellDoorOpenIdle");
-        doorcollider=false;
-        break;
 
+                case "Open":
+                    //anim.Play("CellDoorOpenIdle");
+                    doorCollider.enabled = false;
+                    break;
+                case "Closed":
+                    //anim.Play("CellDoorOpenIdle");
+                    doorCollider.enabled = true;
+                    break;
+                case "Locked":
+                    //anim.Play("CellDoorOpenIdle");
+                    doorCollider.enabled = true;
+                    break;
+                case "OneSided":
+                    //anim.Play("CellDoorOpenIdle");
+                    doorCollider.enabled = true;
+                    break;
+                case "Fog":
+                    //anim.Play("CellDoorOpenIdle");
+                    doorCollider.enabled = true;
+                    break;
+            }
         }
 
          
-        */
+        
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
-            doorPrompt.SetActive(true);
+            
+
+            switch (CurrentDoorState_This)
+            {
+                
+                case "Open":
+                   
+                    if (doorType == 1) { doorPrompt.SetActive(true); }
+                    else { doorPrompt.SetActive(false); }
+                    
+                    break;
+
+                default:
+                    doorPrompt.SetActive(true);
+                    break;
+            }
+
+
             collision.GetComponent<PlayerControllerV2>().Interactable = GetComponent<InteractableV2>();
         }
     }
@@ -86,6 +105,7 @@ public class DoorManager : MonoBehaviour
         {
             doorPrompt.SetActive(false);
             doorUI.SetActive(false);
+            doorUIText.text = "Should not see this";
             collision.GetComponent<PlayerControllerV2>().Interactable = null;
         }
     }
@@ -93,99 +113,55 @@ public class DoorManager : MonoBehaviour
     public void UseDoor()
     {
 
-        /*
-        switch (doorSaveManager.DoorTag_This)
+        doorPrompt.SetActive(false);
+        if (doorType == 1) //perpendicular 
         {
-            case "1":
-                //playermanager.cellkey
-                //if true {unlock  doorsavemanager.doorstate_this = "Open";}
-                //else {locked}
-                break;
-            case "7":
-                //playermanager.oscar door broken
-                //if true {unlock doorsavemanager.doorstate_this = "Locked";}
-                //else {locked}
-                break;
-        }*/
+            switch (CurrentDoorState_This)
+            {
 
-
-        if (isLocked)
-        {
-            doorPrompt.SetActive(false);
-            doorUIText.text = "This door is locked.";
-            doorUI.SetActive(true);
+                case "Locked":
+                    doorUI.SetActive(true);
+                    doorUIText.text = "Locked";
+                    break;
+                case "Fog":
+                    doorUI.SetActive(true);
+                    doorCollider.enabled = false;
+                    break;
+                case "Closed":
+                    doorCollider.enabled = false; 
+                    //play anim
+                    break;
+            }
         }
         else
         {
-            switch(doorType)
+            switch (CurrentDoorState_This) //layer
             {
-                case (0): // Regular doors
-                    {
+                case "Locked":
+                    doorUI.SetActive(true);
+                    doorUIText.text = "Locked";
+                    break;
+                case "OneSided":
+                    doorUI.SetActive(true);
+                    doorUIText.text = "Does not open from this side";
+                    break;
+                case "Fog":
+                    
+                    layerManager.ChangeLayer(targetLayer);
+                    break;
+                case "Open":
 
-                        // Play door animation
-                        // Play player animation, freeze player input, call Wait()
-                        // Prevent damage
-                        doorCollider.enabled = false;
-                        currentState = "Opened";
-                        Debug.Log("Door Case 0");
-                        break;
-                    }
+                    layerManager.ChangeLayer(targetLayer);
 
-                case (1): // Layer changing doors
+                    if (doorSaveManager.DoorTag_This == "J1")
                     {
-                        // Play door animation
-                        // Play player animation, freeze player input, call Wait()
-                        // Prevent damage
-                        layerManager.ChangeLayer(targetLayer);
-                        Debug.Log("Door Case 1");
-                        break;
-                    }
-
-                case (2): // One-way doors
-                    {
-                        if (this.gameObject.name == "Wrong Side Trigger")
-                        {
-                            doorUIText.text = "This door is barred from the other side.";
-                            doorUI.SetActive(true);
-                        }
-                        else
-                        {
-                            // Play door animation
-                            // Play player animation, freeze player input, call Wait()
-                            // Prevent damage
-                            doorCollider.enabled = false;
-                            currentState = "Opened";
-                        }
-                        Debug.Log("Door Case 2");
-                        break;
+                        GetComponent<UnlockDoor>().UnlockOtherDoor();
                     }
 
-                case (3): // Fog doors
-                    {
-                        if (!inBossFight)
-                        {
-                            doorCollider.enabled = false;
-                            // Play player animation, freeze player input, call Wait()
-                            // Prevent damage
-                            doorCollider.enabled = true;
-                            currentState = "ActiveFog";
-                            inBossFight = true;
-                        }
-                        if (inBossFight)
-                        {
-                            doorUIText.text = "You cannot leave right now.";
-                            doorUI.SetActive(true);
-                        }
-                        Debug.Log("Door Case 3");
-                        break;
-                    }
-                default:
-                    {
-                        Debug.LogError("Error: door ID (" + doorType + ") is invalid. Reassign this value in the inspector");
-                        break;
-                    }
+                    break;
             }
-        }
+        }                       
+        
     }
 
     private IEnumerator Wait(int waitSeconds)

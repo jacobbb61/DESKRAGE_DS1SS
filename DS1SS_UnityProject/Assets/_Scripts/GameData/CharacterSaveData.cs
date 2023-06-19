@@ -34,8 +34,21 @@ public class CharacterSaveData
     public bool BonfireEverUsed_3;
 
     [Header("Door Data")]
-    public string DoorState_A1;
-    public string DoorState_A2;
+    public string DoorState_A;
+    public string DoorState_C;
+    public string DoorState_E;
+    public string DoorState_F1;
+    public string DoorState_H;
+    public string DoorState_J2;
+    public string DoorState_K;
+    public string DoorState_M1;
+    public string DoorState_M2;
+    public string DoorState_N;
+    public string DoorState_O;
+    public string DoorState_P;
+    public string DoorState_S;
+    public string DoorState_T;
+    public string DoorState_U;
 
     [Header("Enemy Data")]
     public string EnemyBehaviour_1;
