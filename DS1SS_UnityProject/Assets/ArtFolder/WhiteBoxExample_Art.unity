@@ -373,9 +373,12 @@ MonoBehaviour:
   DoorUI: {fileID: 1362905845}
   AchievementObj: {fileID: 2059171048}
   ItemPrompt: {fileID: 1603397443}
+  TutorialPrompt: {fileID: 0}
+  TutorialMessage: {fileID: 0}
   DoorDescription: {fileID: 1601195197}
   ItemProptDescription: {fileID: 1603397442}
   EstusCountText: {fileID: 1164443800}
+  TutorialText: {fileID: 0}
   BonfireAnim: {fileID: 1714879143}
   YouDiedAnim: {fileID: 1747715373}
 --- !u!1001 &30230690
@@ -932,6 +935,7 @@ Transform:
   - {fileID: 151822837}
   - {fileID: 877253440}
   - {fileID: 90306530}
+  - {fileID: 1562612260}
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -10287,6 +10291,7 @@ MonoBehaviour:
     MaxEstus: 0
     HP: 0
     TimePlayed: 0
+    CellKey: 0
     LastBonfireVisited: 0
     BonfireEverUsed_1: 0
     BonfireEverUsed_2: 0
@@ -10405,6 +10410,7 @@ MonoBehaviour:
     MaxEstus: 0
     HP: 0
     TimePlayed: 0
+    CellKey: 0
     LastBonfireVisited: 0
     BonfireEverUsed_1: 0
     BonfireEverUsed_2: 0
@@ -10520,6 +10526,7 @@ MonoBehaviour:
     MaxEstus: 0
     HP: 0
     TimePlayed: 0
+    CellKey: 0
     LastBonfireVisited: 0
     BonfireEverUsed_1: 0
     BonfireEverUsed_2: 0
@@ -10635,6 +10642,7 @@ MonoBehaviour:
     MaxEstus: 0
     HP: 0
     TimePlayed: 0
+    CellKey: 0
     LastBonfireVisited: 0
     BonfireEverUsed_1: 0
     BonfireEverUsed_2: 0
@@ -11464,6 +11472,38 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4758656341118550054, guid: 3efb3b25cfee7d24ea1d762a81e50723, type: 3}
   m_PrefabInstance: {fileID: 1530500502}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1562612259
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1562612260}
+  m_Layer: 0
+  m_Name: ArtAssets
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1562612260
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1562612259}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1819284024}
+  m_Father: {fileID: 62328102}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1570737668
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13771,6 +13811,90 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 179632688337621779, guid: 993aef80f3a5c344cba96245d1e5eaa6, type: 3}
   m_PrefabInstance: {fileID: 1815118290}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1819284023
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1819284024}
+  - component: {fileID: 1819284025}
+  m_Layer: 0
+  m_Name: JailRoom_Merged
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1819284024
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1819284023}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 23.033306, y: 3.6619291, z: 0.8387477}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1562612260}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!212 &1819284025
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1819284023}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 24380851
+  m_SortingLayer: 2
+  m_SortingOrder: 10
+  m_Sprite: {fileID: 21300000, guid: a03e8703c9e97fe4f9214540eca5f69f, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 79, y: 17}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!1001 &1828630981
 PrefabInstance:
   m_ObjectHideFlags: 0
