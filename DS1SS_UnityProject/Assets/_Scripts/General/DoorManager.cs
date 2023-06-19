@@ -21,6 +21,8 @@ public class DoorManager : MonoBehaviour
     /*[SerializeField]*/ private GameObject doorUI;
     /*[SerializeField]*/ private TextMeshProUGUI doorUIText;
 
+    private DoorSaveManager doorSaveManager;
+
     /*
     private void Awake()
     {
@@ -34,6 +36,9 @@ public class DoorManager : MonoBehaviour
             }
         }
     }*/
+
+
+
 
     void Start()
     {
@@ -51,6 +56,18 @@ public class DoorManager : MonoBehaviour
         {
             currentState = "Unlocked";
         }
+        /*
+         switch(doorstate_this){
+
+        case "open":
+        anim.Play("CellDoorOpenIdle");
+        doorcollider=false;
+        break;
+
+        }
+
+         
+        */
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -74,6 +91,23 @@ public class DoorManager : MonoBehaviour
 
     public void UseDoor()
     {
+
+        /*
+        switch (doorSaveManager.DoorTag_This)
+        {
+            case "1":
+                //playermanager.cellkey
+                //if true {unlock  doorsavemanager.doorstate_this = "Open";}
+                //else {locked}
+                break;
+            case "7":
+                //playermanager.oscar door broken
+                //if true {unlock doorsavemanager.doorstate_this = "Locked";}
+                //else {locked}
+                break;
+        }*/
+
+
         if (isLocked)
         {
             doorPrompt.SetActive(false);

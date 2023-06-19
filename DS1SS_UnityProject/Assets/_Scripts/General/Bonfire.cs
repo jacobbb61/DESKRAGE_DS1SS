@@ -19,6 +19,7 @@ public class Bonfire : MonoBehaviour
 
     void Start()
     {
+
         PM = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerManager>();
         PC = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerControllerV2>();
         EnemySaveManagerList = GameObject.FindGameObjectsWithTag("Enemy");
@@ -34,6 +35,7 @@ public class Bonfire : MonoBehaviour
         
 
     }
+
     IEnumerator UseThisBonfire()
     {
         PC.MyRb.velocity = Vector2.zero;

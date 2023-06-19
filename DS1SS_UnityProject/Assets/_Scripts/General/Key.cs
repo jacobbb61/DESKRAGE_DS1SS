@@ -16,6 +16,8 @@ public class Key : MonoBehaviour
         door = correspondingDoor.GetComponent<DoorManager>();
         itemName = gameObject.name;
         playerItems = FindObjectOfType<PlayerItems>();
+
+
     }
 
     // Update is called once per frame
@@ -30,5 +32,7 @@ public class Key : MonoBehaviour
         Debug.Log(this.name + " picked up. " + correspondingDoor.gameObject + " unlocked");
         playerItems.keys.Add(gameObject);
         gameObject.SetActive(false);
+
+        //player manager. cellkey = true;
     }
 }

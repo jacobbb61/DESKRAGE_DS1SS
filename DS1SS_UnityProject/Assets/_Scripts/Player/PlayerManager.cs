@@ -14,7 +14,7 @@ public class PlayerManager : MonoBehaviour
     public Bonfire Bonfire_2;
     public Bonfire Bonfire_3;
 
-
+    public bool CellKey;
 
 
     private LayerManagerV2 Layer;
@@ -50,6 +50,8 @@ public class PlayerManager : MonoBehaviour
 
 
         CurrentCharacterData.TimePlayed = TimePlayedSeconds;
+
+        CurrentCharacterData.CellKey = CellKey;
     }
     public void LoadGameFromDataToCurrentCharacterData(ref CharacterSaveData CurrentCharacterData)
     {
@@ -67,5 +69,7 @@ public class PlayerManager : MonoBehaviour
         LastBonfireVisited = CurrentCharacterData.LastBonfireVisited;
 
         TimePlayedSeconds = CurrentCharacterData.TimePlayed;
+
+        CellKey = CurrentCharacterData.CellKey;
     }
 }

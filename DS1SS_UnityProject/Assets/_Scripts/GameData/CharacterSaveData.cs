@@ -24,6 +24,9 @@ public class CharacterSaveData
     public float HP;
     public float TimePlayed;
 
+    [Header("Items")]
+    public bool CellKey;
+
     [Header("Bonfires")]
     public int LastBonfireVisited;
     public bool BonfireEverUsed_1;
