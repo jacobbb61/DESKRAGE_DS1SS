@@ -226,6 +226,7 @@ GameObject:
   - component: {fileID: 1065959576863444075}
   - component: {fileID: 6595229263072959817}
   - component: {fileID: 3137671597447383463}
+  - component: {fileID: 6847898321215821318}
   - component: {fileID: 1065959576863444070}
   - component: {fileID: 1065959576863444073}
   - component: {fileID: 1065959576863444072}
@@ -301,12 +302,13 @@ MonoBehaviour:
   JumpTime: 1
   FallSpeed: 3
   AirborneControl: 1
+  IsLockedOn: 0
+  IsBlocking: 0
   IsHealing: 0
   IsAttackStepping: 0
   CanAttack: 1
   CanFollowUp: 0
-  UseEstusTime: 0.4
-  EstusHealAmount: 30
+  EstusHealAmount: 40
   LightAttackTime: 1.8
   LightFollowUpAttackTime: 1.8
   HeavyAttackTime: 2.4
@@ -338,12 +340,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 467cdd6b965f5274d967a6a69f9fddc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  FinishedGame: 0
   TimePlayedSeconds: 0
   Name: 
   LastBonfireVisited: 0
   Bonfire_1: {fileID: 0}
   Bonfire_2: {fileID: 0}
   Bonfire_3: {fileID: 0}
+  CellKey: 0
+--- !u!114 &6847898321215821318
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1065959576863444077}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a8e31fc29ddc8c42b922c75925ed617, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AllEnemies: []
+  LayerEnemies: []
+  nearestEnemyPos: {fileID: 0}
+  EnemyDistance: 0
+  Pc: {fileID: 6595229263072959817}
+  LockOnSymbol: {fileID: 0}
+  enemyToRight: 0
+  LockedOn: 0
+  running: 0
 --- !u!114 &1065959576863444070
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -514,13 +539,57 @@ MonoBehaviour:
     m_ActionId: 10dcf732-a674-41d3-96af-ae6f12f59cf7
     m_ActionName: Player/RB[/Mouse/leftButton,/XInputControllerWindows/rightShoulder]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6595229263072959817}
+        m_TargetAssemblyTypeName: PlayerControllerV2, Assembly-CSharp
+        m_MethodName: LockOn
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: e5746827-3d49-46fa-88f4-f92092ead19b
     m_ActionName: Player/LockOn[/XInputControllerWindows/leftStickPress,/Keyboard/r]
   - m_PersistentCalls:
       m_Calls: []
     m_ActionId: 2353280c-d69a-4d45-b042-ef5e95abf612
     m_ActionName: UI /AnyKey[/Keyboard/anyKey]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6595229263072959817}
+        m_TargetAssemblyTypeName: PlayerControllerV2, Assembly-CSharp
+        m_MethodName: LT
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 4ee2e67e-cf76-4b69-8191-7da63fdf9e6b
+    m_ActionName: Player/LT[/Keyboard/f,/XInputControllerWindows/leftTrigger]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6595229263072959817}
+        m_TargetAssemblyTypeName: PlayerControllerV2, Assembly-CSharp
+        m_MethodName: LB
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: fff3ec5d-67d0-4c3b-82a0-f841283f05c4
+    m_ActionName: Player/LB[/Keyboard/q,/XInputControllerWindows/leftShoulder]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player

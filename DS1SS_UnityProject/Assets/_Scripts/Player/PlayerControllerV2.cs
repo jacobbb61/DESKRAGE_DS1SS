@@ -55,6 +55,8 @@ public class PlayerControllerV2 : MonoBehaviour
 
 
     [Header("Combat states")]
+    public bool IsLockedOn;
+    public bool IsBlocking;
     public bool IsHealing;
     public bool IsAttackStepping;
     public bool CanAttack;
@@ -94,6 +96,7 @@ public class PlayerControllerV2 : MonoBehaviour
     public Rigidbody2D MyRb;
     private Collider2D MyCol;
     private PlayerManager PM;
+    private EnemyLock EnemyLock;
 
     public InteractableV2 Interactable;
 
@@ -108,6 +111,7 @@ public class PlayerControllerV2 : MonoBehaviour
         PM = GetComponent<PlayerManager>();
         MyRb = GetComponent<Rigidbody2D>();
         MyCol = GetComponent<CapsuleCollider2D>();
+        EnemyLock = GetComponent<EnemyLock>();
         Speed = WalkSpeed;
         VerticalSpeed = FallSpeed;
         if (SceneManager.GetActiveScene().name == "Build")
@@ -153,6 +157,30 @@ public class PlayerControllerV2 : MonoBehaviour
         CanAttack = true;
         IsMovingInput = true;
     }
+
+    public void PlayerTakeDamage(float Damage, bool Knockdown, int KnockDownDirection) // -1 to left, 1 to right, 0 is the direction the player is on relative to the enemy
+    {
+        if (!IsRolling)
+        {
+            if (!Knockdown)
+            {
+                if (!IsBlocking)
+                {
+                    Stamina -= Health;
+                }
+                else
+                {
+                    Health -= Damage;
+                }
+            }
+            else
+            {
+                Health -= Damage;
+                //knock down player
+            }
+        }
+    }
+
     public void Move(InputAction.CallbackContext context)
     {
 
@@ -181,7 +209,8 @@ public class PlayerControllerV2 : MonoBehaviour
     }
     public void B(InputAction.CallbackContext context)
     {
-        if(CanMove && !IsUiOpen && !IsHealing)
+        if (IsBlocking) { CanMove = true; }
+        if (CanMove && !IsUiOpen && !IsHealing)
         {
 
             if (context.action.WasPerformedThisFrame())
@@ -249,6 +278,7 @@ public class PlayerControllerV2 : MonoBehaviour
     }
     public void A(InputAction.CallbackContext context)
     {
+        if (IsBlocking) { CanMove = true; }
         if (CanMove && !IsUiOpen && !IsHealing)
         {
 
@@ -296,9 +326,23 @@ public class PlayerControllerV2 : MonoBehaviour
 
     }
 
+    public void LockOn(InputAction.CallbackContext context)
+    {
+        Debug.Log("LockOn");
+        if (!IsUiOpen)
+        {
+            if (context.action.triggered)
+            {
+                EnemyLock.ToggleLockOn(); ;
+            }    
+        }
+
+    }
+
+
     public void RT(InputAction.CallbackContext context)
     {
-
+        if (IsBlocking) { CanMove = true; }
         if (CanMove && IsGrounded && !IsUiOpen && !CanFollowUp && CanAttack && Stamina > 0)
         {
             if (context.action.triggered)
@@ -322,6 +366,7 @@ public class PlayerControllerV2 : MonoBehaviour
     }
     public void RB(InputAction.CallbackContext context)
     {
+        
 
         if (CanMove && IsGrounded && !IsUiOpen && !CanFollowUp && CanAttack && Stamina > 0)
         {
@@ -343,8 +388,32 @@ public class PlayerControllerV2 : MonoBehaviour
             }
         }
 
+
     }
 
+    public void LT(InputAction.CallbackContext context)
+    {
+
+      
+
+    }
+    public void LB(InputAction.CallbackContext context)
+    {
+        if (IsBlocking)
+        {
+            if (context.action.triggered)
+            {
+                ToggleBlock();
+            }
+        }
+        if (CanMove && IsGrounded && !IsUiOpen && CanAttack && Stamina > 0 && !IsBlocking)
+        {
+            if (context.action.triggered)
+            {
+                ToggleBlock();
+            }
+        }
+    }
 
     public void Update()
     {
@@ -352,11 +421,28 @@ public class PlayerControllerV2 : MonoBehaviour
         GroundCheck();
         UpdateUI();
         if (IsStaminaRegen) { StaminaRegen(); }
-        if (Stamina <= 0 && IsGrounded) { StartCoroutine(StaminaRegenPause()); IsRunning = false; }
+        if (Stamina <= 0 && IsGrounded) 
+        { 
+            StartCoroutine(StaminaRegenPause()); 
+            IsRunning = false;
+            if (IsBlocking) { StartCoroutine(Stagger()); } //stagger player
+        }
 
+        if (IsLockedOn && !IsRolling && !IsRunning && !IsJumping)
+        {
+            if (EnemyLock.enemyToRight)
+            {
+                PlayerDirection = -1;
+            }
+            else
+            {
+                PlayerDirection = 1;
+            }
+        }
+            
+        if (PlayerDirection == 1) { Assets.transform.localScale = new Vector3(1, 1, 1); }            
+        else if (PlayerDirection == -1) { Assets.transform.localScale = new Vector3(-1, 1, 1); }
 
-        if (PlayerDirection ==1 ) { Assets.transform.localScale = new Vector3(1, 1, 1); }
-        else if (PlayerDirection ==-1) { Assets.transform.localScale = new Vector3(-1, 1, 1); }
         if (IsGrounded && CanMove && IsIdleAnim && !IsMovingInput)
         {
             Anim.Play("PlayerAnim_Idle");  
@@ -365,13 +451,14 @@ public class PlayerControllerV2 : MonoBehaviour
         if (IsGrounded && CanMove && IsMovingInput)
         {
             
-            if (MovementInputDirection > 0.2f) { PlayerDirection = 1; }
-            if (MovementInputDirection < -0.2f) { PlayerDirection = -1; }
+            if (MovementInputDirection > 0.2f && !IsLockedOn) { PlayerDirection = 1; }
+            if (MovementInputDirection < -0.2f && !IsLockedOn) { PlayerDirection = -1; }
             if (!IsRunning)
             {
                 MyRb.velocity = new Vector2(MovementInputDirection * WalkSpeed, -VerticalSpeed);
-                IsStaminaRegen = true;                
-                Anim.Play("PlayerAnim_WalkForward");
+                IsStaminaRegen = true;
+                if (!IsLockedOn) { Anim.Play("PlayerAnim_WalkForward"); }
+                else { Anim.Play("PlayerAnim_WalkBackward"); }
             }
             else if (IsRunning && Stamina > 0)
             {
@@ -460,7 +547,7 @@ public class PlayerControllerV2 : MonoBehaviour
         if (SlopeAngle <= 35 && SlopeAngle < 60)
         {
             // right  a 35 or less slope
-            if (PlayerDirection == 1)
+            if (MovementInputDirection == 1)
             { //going against slope
                 Debug.Log("Going up 30 right");
                 WalkSpeed = 2.5f;
@@ -481,7 +568,7 @@ public class PlayerControllerV2 : MonoBehaviour
         else if(SlopeAngle > 35 && SlopeAngle <60)
         {
             // right  a 35 or MORE slope
-            if (PlayerDirection == 1)
+            if (MovementInputDirection == 1)
             { //going against slope
                 WalkSpeed = 3f;
                 RunSpeed = 7f; 
@@ -499,7 +586,7 @@ public class PlayerControllerV2 : MonoBehaviour
         if (SlopeAngle >= 325 && SlopeAngle >300)
         {
             // left a 35 or less slope
-            if (PlayerDirection == 1)
+            if (MovementInputDirection == 1)
             { //going against slope
                 WalkSpeed = 1;
                 RunSpeed = 4f;
@@ -517,7 +604,7 @@ public class PlayerControllerV2 : MonoBehaviour
         else if (SlopeAngle < 325 && SlopeAngle >300)
         {
             // left a 35 or MORE slope
-            if (PlayerDirection == 1)
+            if (MovementInputDirection == 1)
             { //going against slope
                 WalkSpeed = 0.5f;
                 RunSpeed = 3f;
@@ -564,6 +651,13 @@ public class PlayerControllerV2 : MonoBehaviour
         CanMove = false;
         IsStaminaRegen = false;
         Anim.Play("PlayerAnim_Roll");
+
+        if (MovementInputDirection > 0.2f) { PlayerDirection = 1; }
+        if (MovementInputDirection < -0.2f) { PlayerDirection = -1; }
+
+        if (PlayerDirection == 1) { Assets.transform.localScale = new Vector3(1, 1, 1); }
+        else if (PlayerDirection == -1) { Assets.transform.localScale = new Vector3(-1, 1, 1); }
+
 
         yield return new WaitForSeconds(RollTime);
         CanMove = true;
@@ -637,6 +731,7 @@ public class PlayerControllerV2 : MonoBehaviour
         IsStaminaRegen = false;
         IsAttackStepping = true; 
         CanFollowUp = false;
+        IsBlocking = false;
     }
 
     IEnumerator LightAttack()
@@ -715,6 +810,53 @@ public class PlayerControllerV2 : MonoBehaviour
         {
             MyRb.velocity = new Vector2(PlayerDirection * StepDistance, MyRb.velocity.y / 10);
         }
+    }
+
+    IEnumerator Stagger()
+    {
+        Anim.Play("PlayerAnim_StaggerGettingHit");
+        CanFollowUp = false;
+        CanMove = false;
+        CanAttack = false;
+        IsBlocking = false;
+
+        yield return new WaitForSeconds(1f);
+        CanFollowUp = true;
+        CanMove = true;
+        CanAttack = true;
+    }
+
+    void ToggleBlock()
+    {
+        if (!IsBlocking)
+        {
+            StartCoroutine(EnterBlock());
+        }
+        else
+        {
+            StartCoroutine(ExitBlock());
+        }
+    }
+    void HoldBlock()
+    {
+        IsBlocking = true;
+        Anim.Play("PlayerAnim_ShieldBlockHold");
+    }
+    IEnumerator EnterBlock()
+    {
+        Anim.Play("PlayerAnim_ShieldBlockEnter");
+        CanFollowUp = false;
+        CanMove = false;
+        yield return new WaitForSeconds(0.5f);
+        HoldBlock();
+    }
+    IEnumerator ExitBlock()
+    {
+        Anim.Play("PlayerAnim_ShieldBlockExit");
+        yield return new WaitForSeconds(0.25f);
+        CanFollowUp = true;
+        CanMove = true;
+        IsBlocking = false;
     }
 
     IEnumerator UseEstus()

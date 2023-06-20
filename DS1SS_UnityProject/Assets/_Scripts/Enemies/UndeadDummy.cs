@@ -27,8 +27,9 @@ public class UndeadDummy : MonoBehaviour
 
     public void Respawn()
     {
-        IsDead = true;
+        IsDead = false;
         Assets.SetActive(true);
+        gameObject.SetActive(true);
         Health = MaxHealth;
         HealthBarSlider.value = Health;
         transform.localPosition = OriginPosition;
@@ -76,5 +77,6 @@ public class UndeadDummy : MonoBehaviour
     {
         IsDead = true;
         Assets.SetActive(false);
+        gameObject.SetActive(false);
     }
 }

@@ -26,6 +26,13 @@ public class LayerManagerV2 : MonoBehaviour
     public void ChangeLayer(int layer)
     {
         StartCoroutine(PlayerLayer(layer));
+
+       if(Player.GetComponent<EnemyLock>().LockedOn)
+        {
+            Player.GetComponent<EnemyLock>().LockedOn = false;
+            PC.IsLockedOn = Player.GetComponent<EnemyLock>().LockedOn;
+            Player.GetComponent<EnemyLock>().LockOnSymbol.SetActive(Player.GetComponent<EnemyLock>().LockedOn);
+        }
     }
 
 
