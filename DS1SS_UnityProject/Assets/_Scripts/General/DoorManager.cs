@@ -38,6 +38,37 @@ public class DoorManager : MonoBehaviour
         doorPrompt = CanvasManager.DoorPrompt;
         doorUI = CanvasManager.DoorUI;
         doorUIText = CanvasManager.DoorDescription;
+        if (doorType == 1)
+        {
+            switch (CurrentDoorState_This)
+            {
+
+
+                case "Open":
+                    //anim.Play("CellDoorOpenIdle");
+                    doorCollider.enabled = false;
+                    Anim.Play("PerpendicularDoorOpenIdle");
+                    
+                    break;
+                case "Closed":
+                    //anim.Play("CellDoorOpenIdle");
+                    doorCollider.enabled = true;
+                    Anim.Play("PerpendicularDoorClosedIdle");
+                    break;
+                case "Locked":
+                    //anim.Play("CellDoorOpenIdle");
+                    doorCollider.enabled = true;
+                    break;
+                case "OneSided":
+                    //anim.Play("CellDoorOpenIdle");
+                    doorCollider.enabled = true;
+                    break;
+                case "Fog":
+                    //anim.Play("CellDoorOpenIdle");
+                    doorCollider.enabled = true;
+                    break;
+            }
+        }
     }
 
 
@@ -55,6 +86,7 @@ public class DoorManager : MonoBehaviour
                     //anim.Play("CellDoorOpenIdle");
                     doorCollider.enabled = false;
                     Anim.Play("PerpendicularDoorOpenIdle");
+                    
                     break;
                 case "Closed":
                     //anim.Play("CellDoorOpenIdle");
@@ -142,7 +174,7 @@ public class DoorManager : MonoBehaviour
                     doorCollider.enabled = false;
                     CurrentDoorState_This = "Open";
                     Anim.Play("PerpendicularDoorOpenIdle");
-
+                    
                     if (doorSaveManager.DoorTag_This == "N")
                     {
                         AchievementsGameManager.Instance.UnlockedAchievement(1);

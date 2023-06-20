@@ -226,7 +226,9 @@ public class MainMenuManager : MonoBehaviour
                 case "CharacterMenu":
                     SelectCharacterMenu();
                     break;
-
+                default:
+                    CanInput = true;
+                    break;
             }
         }
     }
@@ -252,6 +254,9 @@ public class MainMenuManager : MonoBehaviour
                 case "CharacterMenu":
                     CharacterMenuExitAnim.SetTrigger("Active");
                     StartCoroutine(LoadCharacterMenu());
+                    break;
+                default:
+                    CanInput = true;
                     break;
             }
         }
@@ -299,15 +304,27 @@ public class MainMenuManager : MonoBehaviour
         switch (CharacterMenuOrder)
         {
             case 1:
-                Slot01.LoadGameFromCharacterSlot();
+                if (Slot01.gameObject.activeInHierarchy)
+                {
+                    Slot01.LoadGameFromCharacterSlot();
+                }
+                else { CanInput = true; }
                 break;
 
             case 2:
-                Slot02.LoadGameFromCharacterSlot();
+                if (Slot02.gameObject.activeInHierarchy)
+                {
+                    Slot02.LoadGameFromCharacterSlot();
+                }
+                else { CanInput = true; }
                 break;
 
             case 3:
-                Slot03.LoadGameFromCharacterSlot();
+                if (Slot03.gameObject.activeInHierarchy)
+                {
+                    Slot03.LoadGameFromCharacterSlot();
+                }
+                else { CanInput = true; }
                 break;
         }
 

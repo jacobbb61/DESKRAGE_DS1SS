@@ -10,6 +10,7 @@ public class CharacterSaveData
 {
 
     public bool FinishedGame;
+    public bool StartedGame;
 
     // only save basic variables, no objects or vectors
     [Header("World Position")]

@@ -34,7 +34,6 @@ public class PlayerControllerV2 : MonoBehaviour
     public bool IsMovingInput;
     private bool IsWaitingToRun;
     public bool IsIdleAnim;
-    public float Speed;
     public float VerticalSpeed;
     public bool FootAOnSlope;
     public bool FootBOnSlope;
@@ -112,7 +111,6 @@ public class PlayerControllerV2 : MonoBehaviour
         MyRb = GetComponent<Rigidbody2D>();
         MyCol = GetComponent<CapsuleCollider2D>();
         EnemyLock = GetComponent<EnemyLock>();
-        Speed = WalkSpeed;
         VerticalSpeed = FallSpeed;
         if (SceneManager.GetActiveScene().name == "Build")
         {
@@ -531,7 +529,7 @@ public class PlayerControllerV2 : MonoBehaviour
         else if(!FootAOnSlope && !FootBOnSlope)
         {
             //not on slope reset speeds
-            WalkSpeed = 1.5f;
+            WalkSpeed = 2f;
             RunSpeed = 5f;
 
             if (IsGrounded) { VerticalSpeed = 0.5f; } else { VerticalSpeed = FallSpeed; }
@@ -550,17 +548,17 @@ public class PlayerControllerV2 : MonoBehaviour
             if (MovementInputDirection == 1)
             { //going against slope
                 Debug.Log("Going up 30 right");
-                WalkSpeed = 2.5f;
+                WalkSpeed = 3f;
                 RunSpeed = 5.5f;
                 if (IsMovingInput) { VerticalSpeed = 0f; } else { MyRb.velocity = Vector2.zero; }
             }
             else
             {//going with slope
                 Debug.Log("Going down 30 right");
-               WalkSpeed = 1;
+                WalkSpeed = 1.5f;
                 RunSpeed = 4f;
                 if (IsMovingInput) { VerticalSpeed = 5f; } else { MyRb.velocity = Vector2.zero; }
-                if (FootAOnSlope && !FootBOnSlope) { WalkSpeed = 2f; VerticalSpeed = 1.75f; } 
+                if (FootAOnSlope && !FootBOnSlope) { WalkSpeed = 1.75f; VerticalSpeed = 1.75f; } 
                 if(!FootAOnSlope && FootBOnSlope) { WalkSpeed = 1.75f; VerticalSpeed = 1.75f; }
             }
 
@@ -570,16 +568,16 @@ public class PlayerControllerV2 : MonoBehaviour
             // right  a 35 or MORE slope
             if (MovementInputDirection == 1)
             { //going against slope
-                WalkSpeed = 3f;
+                WalkSpeed = 3.5f;
                 RunSpeed = 7f; 
                if (IsMovingInput) { VerticalSpeed = 0f;} else { MyRb.velocity = Vector2.zero; }
             }
             else
             {//going with slope
-                WalkSpeed = 0.5f;
+                WalkSpeed = 1.5f;
                 RunSpeed = 3f;
                 if (IsMovingInput) { VerticalSpeed = 5f; } else { MyRb.velocity = Vector2.zero; }
-                if (FootAOnSlope && !FootBOnSlope) { WalkSpeed = 2f; VerticalSpeed = 1.75f; }
+                if (FootAOnSlope && !FootBOnSlope) { WalkSpeed = 1.75f; VerticalSpeed = 1.75f; }
                 if (!FootAOnSlope && FootBOnSlope) { WalkSpeed = 1.75f; VerticalSpeed = 1.75f; }
             }
         }
@@ -588,15 +586,15 @@ public class PlayerControllerV2 : MonoBehaviour
             // left a 35 or less slope
             if (MovementInputDirection == 1)
             { //going against slope
-                WalkSpeed = 1;
+                WalkSpeed = 1.5f;
                 RunSpeed = 4f;
                 if (IsMovingInput) { VerticalSpeed = 5f; } else { MyRb.velocity = Vector2.zero; }
-                if (FootAOnSlope && !FootBOnSlope) { WalkSpeed = 2f; VerticalSpeed = 1.75f; }
+                if (FootAOnSlope && !FootBOnSlope) { WalkSpeed = 1.75f; VerticalSpeed = 1.75f; }
                 if (!FootAOnSlope && FootBOnSlope) { WalkSpeed = 1.75f; VerticalSpeed = 1.75f; } 
             }
             else
             {//going with slope
-                WalkSpeed = 2.5f;
+                WalkSpeed = 3f;
                 RunSpeed = 5.5f;
                 if (IsMovingInput) { VerticalSpeed = 0f;  } else { MyRb.velocity = Vector2.zero; }
             }
@@ -605,16 +603,16 @@ public class PlayerControllerV2 : MonoBehaviour
         {
             // left a 35 or MORE slope
             if (MovementInputDirection == 1)
-            { //going against slope
-                WalkSpeed = 0.5f;
+            { //going with slope
+                WalkSpeed = 1.5f;
                 RunSpeed = 3f;
                 if (IsMovingInput) { VerticalSpeed = 5f; } else { MyRb.velocity = Vector2.zero; }
-                if (FootAOnSlope && !FootBOnSlope) { WalkSpeed = 2f; VerticalSpeed = 1.75f; }
+                if (FootAOnSlope && !FootBOnSlope) { WalkSpeed = 1.75f; VerticalSpeed = 1.75f; }
                 if (!FootAOnSlope && FootBOnSlope) { WalkSpeed = 1.75f; VerticalSpeed = 1.75f; }
             }
             else
-            {//going with slope
-                WalkSpeed = 3f;
+            {//going against slope
+                WalkSpeed = 3.5f;
                 RunSpeed = 7f;
                 if (IsMovingInput) { VerticalSpeed = 0f;  } else { MyRb.velocity = Vector2.zero; }
             }

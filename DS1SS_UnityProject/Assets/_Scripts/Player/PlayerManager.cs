@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class PlayerManager : MonoBehaviour
 {
     public bool FinishedGame = false;
+    public bool StartedGame;
     public float TimePlayedSeconds;
     public string Name = "";
 
@@ -26,6 +27,7 @@ public class PlayerManager : MonoBehaviour
         {
             Layer = GameObject.FindGameObjectWithTag("LayerManager").GetComponent<LayerManagerV2>();
             PC = GetComponent<PlayerControllerV2>();
+            StartedGame = true;
         }
     }
     private void Update()
@@ -37,6 +39,7 @@ public class PlayerManager : MonoBehaviour
     public void SaveGameDataToCurrentCharacterData(ref CharacterSaveData CurrentCharacterData)
     {
         CurrentCharacterData.FinishedGame = FinishedGame;
+        CurrentCharacterData.StartedGame = StartedGame;
         CurrentCharacterData.yPos = transform.position.y;
         CurrentCharacterData.xPos = transform.position.x;
         CurrentCharacterData.PlayerLayer = Layer.CurrentLayer;

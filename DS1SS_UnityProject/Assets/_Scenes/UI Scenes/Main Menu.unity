@@ -1521,10 +1521,6 @@ MonoBehaviour:
       m_Calls: []
   m_ActionEvents:
   - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 28e88b78-d7fc-471b-b388-55babf2e63d8
-    m_ActionName: Player/New action
-  - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 121354861}
         m_TargetAssemblyTypeName: MainMenuManager, Assembly-CSharp
@@ -1628,6 +1624,50 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 236c4b89-b691-43b7-a8cd-a75ff49f6e5e
     m_ActionName: UI /Y[/XInputControllerWindows/buttonNorth]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 3155e660-c8dc-47bc-8d24-8ba74ba461ea
+    m_ActionName: Player/Y[/Keyboard/e,/XInputControllerWindows/buttonNorth]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 14da7b48-5050-415d-b449-0239ca66ffb1
+    m_ActionName: Player/X[/XInputControllerWindows/buttonWest,/Keyboard/f]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 5f671c7d-e909-4833-8574-8570854bd5e8
+    m_ActionName: Player/B[/Keyboard/shift,/XInputControllerWindows/buttonEast]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 9fca1d51-655b-4157-9c2c-488daa06bfb7
+    m_ActionName: Player/A[/Keyboard/space,/XInputControllerWindows/buttonSouth]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 9bd09b67-0e0b-4b74-a695-9a8507772160
+    m_ActionName: Player/Move[/XInputControllerWindows/leftStick,/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 503e8d25-6d85-46bc-b037-67d704198c19
+    m_ActionName: Player/RT[/Mouse/rightButton,/XInputControllerWindows/rightTrigger]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 10dcf732-a674-41d3-96af-ae6f12f59cf7
+    m_ActionName: Player/RB[/Mouse/leftButton,/XInputControllerWindows/rightShoulder]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 4ee2e67e-cf76-4b69-8191-7da63fdf9e6b
+    m_ActionName: Player/LT[/Keyboard/f,/XInputControllerWindows/leftTrigger]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: fff3ec5d-67d0-4c3b-82a0-f841283f05c4
+    m_ActionName: Player/LB[/Keyboard/q,/XInputControllerWindows/leftShoulder]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: e5746827-3d49-46fa-88f4-f92092ead19b
+    m_ActionName: Player/LockOn[/XInputControllerWindows/leftStickPress,/Keyboard/r]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 2353280c-d69a-4d45-b042-ef5e95abf612
+    m_ActionName: UI /AnyKey[/Keyboard/anyKey]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: 'UI '
@@ -6574,13 +6614,34 @@ MonoBehaviour:
   _LoadGame: 0
   CurrentCharacterSlotBeingUsed: 0
   CurrentCharacterData:
-    CharacterName: 
+    FinishedGame: 0
     xPos: 0
     yPos: 0
     PlayerLayer: 
     Estus: 0
+    MaxEstus: 0
     HP: 0
     TimePlayed: 0
+    CellKey: 0
+    LastBonfireVisited: 0
+    BonfireEverUsed_1: 0
+    BonfireEverUsed_2: 0
+    BonfireEverUsed_3: 0
+    DoorState_A: 
+    DoorState_C: 
+    DoorState_E: 
+    DoorState_F1: 
+    DoorState_H: 
+    DoorState_J2: 
+    DoorState_K: 
+    DoorState_M1: 
+    DoorState_M2: 
+    DoorState_N: 
+    DoorState_O: 
+    DoorState_P: 
+    DoorState_S: 
+    DoorState_T: 
+    DoorState_U: 
     EnemyBehaviour_1: 
     EnemyHealth_1: 0
     EnemyPosX_1: 0
@@ -6593,22 +6654,126 @@ MonoBehaviour:
     EnemyHealth_3: 0
     EnemyPosX_3: 0
     EnemyPosY_3: 0
+    EnemyBehaviour_4: 
+    EnemyHealth_4: 0
+    EnemyPosX_4: 0
+    EnemyPosY_4: 0
+    EnemyBehaviour_5: 
+    EnemyHealth_5: 0
+    EnemyPosX_5: 0
+    EnemyPosY_5: 0
+    EnemyBehaviour_6: 
+    EnemyHealth_6: 0
+    EnemyPosX_6: 0
+    EnemyPosY_6: 0
+    EnemyBehaviour_7: 
+    EnemyHealth_7: 0
+    EnemyPosX_7: 0
+    EnemyPosY_7: 0
+    EnemyBehaviour_8: 
+    EnemyHealth_8: 0
+    EnemyPosX_8: 0
+    EnemyPosY_8: 0
+    EnemyBehaviour_9: 
+    EnemyHealth_9: 0
+    EnemyPosX_9: 0
+    EnemyPosY_9: 0
+    EnemyBehaviour_10: 
+    EnemyHealth_10: 0
+    EnemyPosX_10: 0
+    EnemyPosY_10: 0
+    EnemyBehaviour_11: 
+    EnemyHealth_11: 0
+    EnemyPosX_11: 0
+    EnemyPosY_11: 0
+    EnemyBehaviour_12: 
+    EnemyHealth_12: 0
+    EnemyPosX_12: 0
+    EnemyPosY_12: 0
+    EnemyBehaviour_13: 
+    EnemyHealth_13: 0
+    EnemyPosX_13: 0
+    EnemyPosY_13: 0
+    EnemyBehaviour_14: 
+    EnemyHealth_14: 0
+    EnemyPosX_14: 0
+    EnemyPosY_14: 0
+    EnemyBehaviour_15: 
+    EnemyHealth_15: 0
+    EnemyPosX_15: 0
+    EnemyPosY_15: 0
+    EnemyBehaviour_16: 
+    EnemyHealth_16: 0
+    EnemyPosX_16: 0
+    EnemyPosY_16: 0
+    EnemyBehaviour_17: 
+    EnemyHealth_17: 0
+    EnemyPosX_17: 0
+    EnemyPosY_17: 0
+    EnemyBehaviour_18: 
+    EnemyHealth_18: 0
+    EnemyPosX_18: 0
+    EnemyPosY_18: 0
+    EnemyBehaviour_19: 
+    EnemyHealth_19: 0
+    EnemyPosX_19: 0
+    EnemyPosY_19: 0
+    EnemyBehaviour_20: 
+    EnemyHealth_20: 0
+    EnemyPosX_20: 0
+    EnemyPosY_20: 0
+    EnemyBehaviour_21: 
+    EnemyHealth_21: 0
+    EnemyPosX_21: 0
+    EnemyPosY_21: 0
+    EnemyBehaviour_22: 
+    EnemyHealth_22: 0
+    EnemyPosX_22: 0
+    EnemyPosY_22: 0
+    EnemyBehaviour_23: 
+    EnemyHealth_23: 0
+    EnemyPosX_23: 0
+    EnemyPosY_23: 0
+    EnemyBehaviour_24: 
+    EnemyHealth_24: 0
+    EnemyPosX_24: 0
+    EnemyPosY_24: 0
     EnemyBehaviour_100: 
     EnemyHealth_100: 0
     EnemyPosX_100: 0
     EnemyPosY_100: 0
-    DoorState_A1: 
-    DoorState_A2: 
   EnemySaveManagerList: []
   DoorSaveManagerList: []
+  BonfireList: []
   CharacterSlot01:
-    CharacterName: 
+    FinishedGame: 0
     xPos: 0
     yPos: 0
     PlayerLayer: 
     Estus: 0
+    MaxEstus: 0
     HP: 0
     TimePlayed: 0
+    CellKey: 0
+    LastBonfireVisited: 0
+    BonfireEverUsed_1: 0
+    BonfireEverUsed_2: 0
+    BonfireEverUsed_3: 0
+    DoorState_A: 
+    DoorState_C: 
+    DoorState_E: 
+    DoorState_F1: 
+    DoorState_H: 
+    DoorState_J2: 
+    DoorState_K: 
+    DoorState_M1: 
+    DoorState_M2: 
+    DoorState_N: 
+    DoorState_O: 
+    DoorState_P: 
+    DoorState_S: 
+    DoorState_T: 
+    DoorState_U: 
     EnemyBehaviour_1: 
     EnemyHealth_1: 0
     EnemyPosX_1: 0
@@ -6621,20 +6786,123 @@ MonoBehaviour:
     EnemyHealth_3: 0
     EnemyPosX_3: 0
     EnemyPosY_3: 0
+    EnemyBehaviour_4: 
+    EnemyHealth_4: 0
+    EnemyPosX_4: 0
+    EnemyPosY_4: 0
+    EnemyBehaviour_5: 
+    EnemyHealth_5: 0
+    EnemyPosX_5: 0
+    EnemyPosY_5: 0
+    EnemyBehaviour_6: 
+    EnemyHealth_6: 0
+    EnemyPosX_6: 0
+    EnemyPosY_6: 0
+    EnemyBehaviour_7: 
+    EnemyHealth_7: 0
+    EnemyPosX_7: 0
+    EnemyPosY_7: 0
+    EnemyBehaviour_8: 
+    EnemyHealth_8: 0
+    EnemyPosX_8: 0
+    EnemyPosY_8: 0
+    EnemyBehaviour_9: 
+    EnemyHealth_9: 0
+    EnemyPosX_9: 0
+    EnemyPosY_9: 0
+    EnemyBehaviour_10: 
+    EnemyHealth_10: 0
+    EnemyPosX_10: 0
+    EnemyPosY_10: 0
+    EnemyBehaviour_11: 
+    EnemyHealth_11: 0
+    EnemyPosX_11: 0
+    EnemyPosY_11: 0
+    EnemyBehaviour_12: 
+    EnemyHealth_12: 0
+    EnemyPosX_12: 0
+    EnemyPosY_12: 0
+    EnemyBehaviour_13: 
+    EnemyHealth_13: 0
+    EnemyPosX_13: 0
+    EnemyPosY_13: 0
+    EnemyBehaviour_14: 
+    EnemyHealth_14: 0
+    EnemyPosX_14: 0
+    EnemyPosY_14: 0
+    EnemyBehaviour_15: 
+    EnemyHealth_15: 0
+    EnemyPosX_15: 0
+    EnemyPosY_15: 0
+    EnemyBehaviour_16: 
+    EnemyHealth_16: 0
+    EnemyPosX_16: 0
+    EnemyPosY_16: 0
+    EnemyBehaviour_17: 
+    EnemyHealth_17: 0
+    EnemyPosX_17: 0
+    EnemyPosY_17: 0
+    EnemyBehaviour_18: 
+    EnemyHealth_18: 0
+    EnemyPosX_18: 0
+    EnemyPosY_18: 0
+    EnemyBehaviour_19: 
+    EnemyHealth_19: 0
+    EnemyPosX_19: 0
+    EnemyPosY_19: 0
+    EnemyBehaviour_20: 
+    EnemyHealth_20: 0
+    EnemyPosX_20: 0
+    EnemyPosY_20: 0
+    EnemyBehaviour_21: 
+    EnemyHealth_21: 0
+    EnemyPosX_21: 0
+    EnemyPosY_21: 0
+    EnemyBehaviour_22: 
+    EnemyHealth_22: 0
+    EnemyPosX_22: 0
+    EnemyPosY_22: 0
+    EnemyBehaviour_23: 
+    EnemyHealth_23: 0
+    EnemyPosX_23: 0
+    EnemyPosY_23: 0
+    EnemyBehaviour_24: 
+    EnemyHealth_24: 0
+    EnemyPosX_24: 0
+    EnemyPosY_24: 0
     EnemyBehaviour_100: 
     EnemyHealth_100: 0
     EnemyPosX_100: 0
     EnemyPosY_100: 0
-    DoorState_A1: 
-    DoorState_A2: 
   CharacterSlot02:
-    CharacterName: 
+    FinishedGame: 0
     xPos: 0
     yPos: 0
     PlayerLayer: 
     Estus: 0
+    MaxEstus: 0
     HP: 0
     TimePlayed: 0
+    CellKey: 0
+    LastBonfireVisited: 0
+    BonfireEverUsed_1: 0
+    BonfireEverUsed_2: 0
+    BonfireEverUsed_3: 0
+    DoorState_A: 
+    DoorState_C: 
+    DoorState_E: 
+    DoorState_F1: 
+    DoorState_H: 
+    DoorState_J2: 
+    DoorState_K: 
+    DoorState_M1: 
+    DoorState_M2: 
+    DoorState_N: 
+    DoorState_O: 
+    DoorState_P: 
+    DoorState_S: 
+    DoorState_T: 
+    DoorState_U: 
     EnemyBehaviour_1: 
     EnemyHealth_1: 0
     EnemyPosX_1: 0
@@ -6647,20 +6915,123 @@ MonoBehaviour:
     EnemyHealth_3: 0
     EnemyPosX_3: 0
     EnemyPosY_3: 0
+    EnemyBehaviour_4: 
+    EnemyHealth_4: 0
+    EnemyPosX_4: 0
+    EnemyPosY_4: 0
+    EnemyBehaviour_5: 
+    EnemyHealth_5: 0
+    EnemyPosX_5: 0
+    EnemyPosY_5: 0
+    EnemyBehaviour_6: 
+    EnemyHealth_6: 0
+    EnemyPosX_6: 0
+    EnemyPosY_6: 0
+    EnemyBehaviour_7: 
+    EnemyHealth_7: 0
+    EnemyPosX_7: 0
+    EnemyPosY_7: 0
+    EnemyBehaviour_8: 
+    EnemyHealth_8: 0
+    EnemyPosX_8: 0
+    EnemyPosY_8: 0
+    EnemyBehaviour_9: 
+    EnemyHealth_9: 0
+    EnemyPosX_9: 0
+    EnemyPosY_9: 0
+    EnemyBehaviour_10: 
+    EnemyHealth_10: 0
+    EnemyPosX_10: 0
+    EnemyPosY_10: 0
+    EnemyBehaviour_11: 
+    EnemyHealth_11: 0
+    EnemyPosX_11: 0
+    EnemyPosY_11: 0
+    EnemyBehaviour_12: 
+    EnemyHealth_12: 0
+    EnemyPosX_12: 0
+    EnemyPosY_12: 0
+    EnemyBehaviour_13: 
+    EnemyHealth_13: 0
+    EnemyPosX_13: 0
+    EnemyPosY_13: 0
+    EnemyBehaviour_14: 
+    EnemyHealth_14: 0
+    EnemyPosX_14: 0
+    EnemyPosY_14: 0
+    EnemyBehaviour_15: 
+    EnemyHealth_15: 0
+    EnemyPosX_15: 0
+    EnemyPosY_15: 0
+    EnemyBehaviour_16: 
+    EnemyHealth_16: 0
+    EnemyPosX_16: 0
+    EnemyPosY_16: 0
+    EnemyBehaviour_17: 
+    EnemyHealth_17: 0
+    EnemyPosX_17: 0
+    EnemyPosY_17: 0
+    EnemyBehaviour_18: 
+    EnemyHealth_18: 0
+    EnemyPosX_18: 0
+    EnemyPosY_18: 0
+    EnemyBehaviour_19: 
+    EnemyHealth_19: 0
+    EnemyPosX_19: 0
+    EnemyPosY_19: 0
+    EnemyBehaviour_20: 
+    EnemyHealth_20: 0
+    EnemyPosX_20: 0
+    EnemyPosY_20: 0
+    EnemyBehaviour_21: 
+    EnemyHealth_21: 0
+    EnemyPosX_21: 0
+    EnemyPosY_21: 0
+    EnemyBehaviour_22: 
+    EnemyHealth_22: 0
+    EnemyPosX_22: 0
+    EnemyPosY_22: 0
+    EnemyBehaviour_23: 
+    EnemyHealth_23: 0
+    EnemyPosX_23: 0
+    EnemyPosY_23: 0
+    EnemyBehaviour_24: 
+    EnemyHealth_24: 0
+    EnemyPosX_24: 0
+    EnemyPosY_24: 0
     EnemyBehaviour_100: 
     EnemyHealth_100: 0
     EnemyPosX_100: 0
     EnemyPosY_100: 0
-    DoorState_A1: 
-    DoorState_A2: 
   CharacterSlot03:
-    CharacterName: 
+    FinishedGame: 0
     xPos: 0
     yPos: 0
     PlayerLayer: 
     Estus: 0
+    MaxEstus: 0
     HP: 0
     TimePlayed: 0
+    CellKey: 0
+    LastBonfireVisited: 0
+    BonfireEverUsed_1: 0
+    BonfireEverUsed_2: 0
+    BonfireEverUsed_3: 0
+    DoorState_A: 
+    DoorState_C: 
+    DoorState_E: 
+    DoorState_F1: 
+    DoorState_H: 
+    DoorState_J2: 
+    DoorState_K: 
+    DoorState_M1: 
+    DoorState_M2: 
+    DoorState_N: 
+    DoorState_O: 
+    DoorState_P: 
+    DoorState_S: 
+    DoorState_T: 
+    DoorState_U: 
     EnemyBehaviour_1: 
     EnemyHealth_1: 0
     EnemyPosX_1: 0
@@ -6673,12 +7044,94 @@ MonoBehaviour:
     EnemyHealth_3: 0
     EnemyPosX_3: 0
     EnemyPosY_3: 0
+    EnemyBehaviour_4: 
+    EnemyHealth_4: 0
+    EnemyPosX_4: 0
+    EnemyPosY_4: 0
+    EnemyBehaviour_5: 
+    EnemyHealth_5: 0
+    EnemyPosX_5: 0
+    EnemyPosY_5: 0
+    EnemyBehaviour_6: 
+    EnemyHealth_6: 0
+    EnemyPosX_6: 0
+    EnemyPosY_6: 0
+    EnemyBehaviour_7: 
+    EnemyHealth_7: 0
+    EnemyPosX_7: 0
+    EnemyPosY_7: 0
+    EnemyBehaviour_8: 
+    EnemyHealth_8: 0
+    EnemyPosX_8: 0
+    EnemyPosY_8: 0
+    EnemyBehaviour_9: 
+    EnemyHealth_9: 0
+    EnemyPosX_9: 0
+    EnemyPosY_9: 0
+    EnemyBehaviour_10: 
+    EnemyHealth_10: 0
+    EnemyPosX_10: 0
+    EnemyPosY_10: 0
+    EnemyBehaviour_11: 
+    EnemyHealth_11: 0
+    EnemyPosX_11: 0
+    EnemyPosY_11: 0
+    EnemyBehaviour_12: 
+    EnemyHealth_12: 0
+    EnemyPosX_12: 0
+    EnemyPosY_12: 0
+    EnemyBehaviour_13: 
+    EnemyHealth_13: 0
+    EnemyPosX_13: 0
+    EnemyPosY_13: 0
+    EnemyBehaviour_14: 
+    EnemyHealth_14: 0
+    EnemyPosX_14: 0
+    EnemyPosY_14: 0
+    EnemyBehaviour_15: 
+    EnemyHealth_15: 0
+    EnemyPosX_15: 0
+    EnemyPosY_15: 0
+    EnemyBehaviour_16: 
+    EnemyHealth_16: 0
+    EnemyPosX_16: 0
+    EnemyPosY_16: 0
+    EnemyBehaviour_17: 
+    EnemyHealth_17: 0
+    EnemyPosX_17: 0
+    EnemyPosY_17: 0
+    EnemyBehaviour_18: 
+    EnemyHealth_18: 0
+    EnemyPosX_18: 0
+    EnemyPosY_18: 0
+    EnemyBehaviour_19: 
+    EnemyHealth_19: 0
+    EnemyPosX_19: 0
+    EnemyPosY_19: 0
+    EnemyBehaviour_20: 
+    EnemyHealth_20: 0
+    EnemyPosX_20: 0
+    EnemyPosY_20: 0
+    EnemyBehaviour_21: 
+    EnemyHealth_21: 0
+    EnemyPosX_21: 0
+    EnemyPosY_21: 0
+    EnemyBehaviour_22: 
+    EnemyHealth_22: 0
+    EnemyPosX_22: 0
+    EnemyPosY_22: 0
+    EnemyBehaviour_23: 
+    EnemyHealth_23: 0
+    EnemyPosX_23: 0
+    EnemyPosY_23: 0
+    EnemyBehaviour_24: 
+    EnemyHealth_24: 0
+    EnemyPosX_24: 0
+    EnemyPosY_24: 0
     EnemyBehaviour_100: 
     EnemyHealth_100: 0
     EnemyPosX_100: 0
     EnemyPosY_100: 0
-    DoorState_A1: 
-    DoorState_A2: 
 --- !u!4 &657132616
 Transform:
   m_ObjectHideFlags: 0
@@ -7952,6 +8405,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1065959576863444070, guid: 5bce8272093059641ad8d3ab28c85500, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1065959576863444072, guid: 5bce8272093059641ad8d3ab28c85500, type: 3}
       propertyPath: m_Constraints
       value: 7
