@@ -21,13 +21,18 @@ AnimationClip:
   - curve:
     - time: 0
       value: {fileID: 815001223, guid: bc7fa47a53dcabf4888e4454a98d33b9, type: 3}
+<<<<<<< HEAD
 <<<<<<< Updated upstream
     - time: 0.083333336
+=======
+    - time: 0.11666667
+>>>>>>> parent of 35f6140 (PlayerAnimation Tweak)
       value: {fileID: -252591449, guid: bc7fa47a53dcabf4888e4454a98d33b9, type: 3}
-    - time: 0.16666667
-      value: {fileID: -523244541, guid: bc7fa47a53dcabf4888e4454a98d33b9, type: 3}
     - time: 0.23333333
+      value: {fileID: -523244541, guid: bc7fa47a53dcabf4888e4454a98d33b9, type: 3}
+    - time: 0.35
       value: {fileID: 1265666287, guid: bc7fa47a53dcabf4888e4454a98d33b9, type: 3}
+<<<<<<< HEAD
     - time: 0.31666666
 =======
 <<<<<<< HEAD
@@ -48,6 +53,9 @@ AnimationClip:
     - time: 0.31666666
 >>>>>>> 35f6140c13d5aafdf7e6e9121b24feca3477d56b
 >>>>>>> Stashed changes
+=======
+    - time: 0.46666667
+>>>>>>> parent of 35f6140 (PlayerAnimation Tweak)
       value: {fileID: 2119473963, guid: bc7fa47a53dcabf4888e4454a98d33b9, type: 3}
     attribute: m_Sprite
     path: 
@@ -78,6 +86,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
+<<<<<<< HEAD
 <<<<<<< Updated upstream
     m_StopTime: 0.33333334
 =======
@@ -87,6 +96,9 @@ AnimationClip:
     m_StopTime: 0.33333334
 >>>>>>> 35f6140c13d5aafdf7e6e9121b24feca3477d56b
 >>>>>>> Stashed changes
+=======
+    m_StopTime: 0.48333335
+>>>>>>> parent of 35f6140 (PlayerAnimation Tweak)
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
