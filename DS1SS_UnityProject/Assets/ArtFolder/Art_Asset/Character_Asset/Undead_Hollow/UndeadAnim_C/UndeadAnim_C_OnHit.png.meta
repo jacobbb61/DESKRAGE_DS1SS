@@ -350,6 +350,27 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: UndeadAnim_C_OnHit_10
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 0
+        width: 128
+        height: 128
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7362478331056044e93291b315234cbd
+      internalID: 743547647
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -363,6 +384,7 @@ TextureImporter:
     nameFileIdTable:
       UndeadAnim_C_OnHit_0: 2009322101
       UndeadAnim_C_OnHit_1: 907725459
+      UndeadAnim_C_OnHit_10: 743547647
       UndeadAnim_C_OnHit_2: 1224513259
       UndeadAnim_C_OnHit_3: 231931496
       UndeadAnim_C_OnHit_4: 563372863
