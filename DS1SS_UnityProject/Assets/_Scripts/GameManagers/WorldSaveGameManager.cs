@@ -98,9 +98,7 @@ public class WorldSaveGameManager : MonoBehaviour
         { //if this character slot is not take then we are going to use it
             CurrentCharacterSlotBeingUsed = CharacterSlot.CharacterSlot_01;
             CurrentCharacterData = new CharacterSaveData();
-            CurrentCharacterData.xPos = -77f;
-            CurrentCharacterData.yPos = -17f;
-            CurrentCharacterData.PlayerLayer = "Middle";
+            HardCodeNewGameCharacterSlot(CurrentCharacterData);
             StartCoroutine(LoadWorldScene());
             return;
         }
@@ -111,9 +109,7 @@ public class WorldSaveGameManager : MonoBehaviour
         { //if this character slot is not take then we are going to use it
             CurrentCharacterSlotBeingUsed = CharacterSlot.CharacterSlot_02;
             CurrentCharacterData = new CharacterSaveData();
-            CurrentCharacterData.xPos = -77f;
-            CurrentCharacterData.yPos = -17f;
-            CurrentCharacterData.PlayerLayer = "Middle";
+            HardCodeNewGameCharacterSlot(CurrentCharacterData);
             StartCoroutine(LoadWorldScene());
             return;
         }
@@ -124,9 +120,7 @@ public class WorldSaveGameManager : MonoBehaviour
         { //if this character slot is not take then we are going to use it
             CurrentCharacterSlotBeingUsed = CharacterSlot.CharacterSlot_03;
             CurrentCharacterData = new CharacterSaveData();
-            CurrentCharacterData.xPos = -77f;
-            CurrentCharacterData.yPos = -17f;
-            CurrentCharacterData.PlayerLayer = "Middle";
+            HardCodeNewGameCharacterSlot(CurrentCharacterData);
             StartCoroutine(LoadWorldScene());
             return;
         }
@@ -277,5 +271,106 @@ public class WorldSaveGameManager : MonoBehaviour
         }
 
         yield return null;
+    }
+
+
+
+
+
+    public void HardCodeNewGameCharacterSlot(CharacterSaveData CurrentCharacterData)
+    {
+        CurrentCharacterData.FinishedGame = false;
+
+        // player world position
+        CurrentCharacterData.xPos = -90f;
+        CurrentCharacterData.yPos = -18f;
+        CurrentCharacterData.PlayerLayer = "Middle";
+
+        //player stuff
+        CurrentCharacterData.Estus = 0;
+        CurrentCharacterData.MaxEstus = 0;
+        CurrentCharacterData.HP = 100;
+        CurrentCharacterData.TimePlayed = 0;
+
+        //bonfires
+        CurrentCharacterData.LastBonfireVisited = 0;
+        CurrentCharacterData.BonfireEverUsed_1 = false;
+        CurrentCharacterData.BonfireEverUsed_2 = false;
+        CurrentCharacterData.BonfireEverUsed_3 = false;
+
+        //door data
+    CurrentCharacterData.DoorState_A = "Open";
+    CurrentCharacterData.DoorState_C = "Locked";
+    CurrentCharacterData.DoorState_E = "Closed";
+    CurrentCharacterData.DoorState_F1 = "Open";
+    CurrentCharacterData.DoorState_H = "Closed";
+    CurrentCharacterData.DoorState_J2 = "OneSided";
+    CurrentCharacterData.DoorState_K = "Closed";
+    CurrentCharacterData.DoorState_M1 = "Open";
+    CurrentCharacterData.DoorState_M2 = "Open";
+    CurrentCharacterData.DoorState_N = "Closed";
+    CurrentCharacterData.DoorState_O = "Closed";
+    CurrentCharacterData.DoorState_P = "Closed";
+    CurrentCharacterData.DoorState_S = "Locked";
+    CurrentCharacterData.DoorState_T = "Closed";
+    CurrentCharacterData.DoorState_U = "Closed";
+
+    //enemy data
+    CurrentCharacterData.EnemyBehaviour_1 = "";
+        CurrentCharacterData.EnemyHealth_1 = 24;
+        CurrentCharacterData.EnemyPosX_1 = 0;
+        CurrentCharacterData.EnemyPosY_1 = 0;
+
+        CurrentCharacterData.EnemyBehaviour_2 = "";
+        CurrentCharacterData.EnemyHealth_2 = 24;
+        CurrentCharacterData.EnemyPosX_2 = 0;
+        CurrentCharacterData.EnemyPosY_2 = 0;
+
+        CurrentCharacterData.EnemyBehaviour_3 = "";
+        CurrentCharacterData.EnemyHealth_3 = 24;
+        CurrentCharacterData.EnemyPosX_3 = 0;
+        CurrentCharacterData.EnemyPosY_3 = 0;
+
+        CurrentCharacterData.EnemyBehaviour_3 = "";
+        CurrentCharacterData.EnemyHealth_3 = 24;
+        CurrentCharacterData.EnemyPosX_3 = 0;
+        CurrentCharacterData.EnemyPosY_3 = 0;
+
+        CurrentCharacterData.EnemyBehaviour_4 = "";
+        CurrentCharacterData.EnemyHealth_4 = 24;
+        CurrentCharacterData.EnemyPosX_4 = 0;
+        CurrentCharacterData.EnemyPosY_4 = 0;
+
+        CurrentCharacterData.EnemyBehaviour_5 = "";
+        CurrentCharacterData.EnemyHealth_5 = 24;
+        CurrentCharacterData.EnemyPosX_5 = 0;
+        CurrentCharacterData.EnemyPosY_5 = 0;
+
+        CurrentCharacterData.EnemyBehaviour_6 = "";
+        CurrentCharacterData.EnemyHealth_6 = 24;
+        CurrentCharacterData.EnemyPosX_6 = 0;
+        CurrentCharacterData.EnemyPosY_6 = 0;
+
+        CurrentCharacterData.EnemyBehaviour_7 = "";
+        CurrentCharacterData.EnemyHealth_7 = 24;
+        CurrentCharacterData.EnemyPosX_7 = 0;
+        CurrentCharacterData.EnemyPosY_7 = 0;
+
+        CurrentCharacterData.EnemyBehaviour_8 = "";
+        CurrentCharacterData.EnemyHealth_8 = 24;
+        CurrentCharacterData.EnemyPosX_8 = 0;
+        CurrentCharacterData.EnemyPosY_8 = 0;
+
+        CurrentCharacterData.EnemyBehaviour_9 = "";
+        CurrentCharacterData.EnemyHealth_9 = 24;
+        CurrentCharacterData.EnemyPosX_9 = 0;
+        CurrentCharacterData.EnemyPosY_9 = 0;
+
+
+        CurrentCharacterData.EnemyBehaviour_100 = "";
+        CurrentCharacterData.EnemyHealth_100 = 24;
+        CurrentCharacterData.EnemyPosX_100 = 90;
+        CurrentCharacterData.EnemyPosY_100 = 6f;
+
     }
 }

@@ -97,12 +97,13 @@ public class EnemySaveManager : MonoBehaviour
                 break;
         }
 
-        transform.position = new Vector2(EnemyPosX_This, EnemyPosY_This);
+        transform.localPosition = new Vector2(EnemyPosX_This, EnemyPosY_This);
 
         switch (EnemyVariant)
         {
             case "Dummy":
                 GetComponent<UndeadDummy>().Health = EnemyHealth_This;
+                GetComponent<UndeadDummy>().IsDead = false;
                 break;
             case "A":
 

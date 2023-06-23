@@ -16,19 +16,17 @@ public class Key : MonoBehaviour
         door = correspondingDoor.GetComponent<DoorManager>();
         itemName = gameObject.name;
         playerItems = FindObjectOfType<PlayerItems>();
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+
     }
 
     public void PickUpKey()
     {
-        door.isLocked = false;
+       // door.isLocked = false;
         Debug.Log(this.name + " picked up. " + correspondingDoor.gameObject + " unlocked");
         playerItems.keys.Add(gameObject);
         gameObject.SetActive(false);
+
+        //player manager. cellkey = true;
     }
 }

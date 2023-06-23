@@ -19,6 +19,7 @@ public class Bonfire : MonoBehaviour
 
     void Start()
     {
+
         PM = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerManager>();
         PC = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerControllerV2>();
         EnemySaveManagerList = GameObject.FindGameObjectsWithTag("Enemy");
@@ -28,21 +29,39 @@ public class Bonfire : MonoBehaviour
     }
 
 
+    public void InteractBonfire()
+    {
+        StartCoroutine(UseThisBonfire());
+        
 
-    public void UseBonfire()
+    }
+
+    IEnumerator UseThisBonfire()
     {
         PC.MyRb.velocity = Vector2.zero;
-        if (BonfireEverUsed) { Anim.Play("BonfireLitActivate"); }
-        else { Anim.Play("BonfireLitFirstTime"); BonfireEverUsed = true; }
         PM.LastBonfireVisited = BonfireTagNum;
 
-        StartCoroutine(WaitForAnim());
+        PC.CanMove = false;
+        PC.CanAttack = false;
+        PC.CanFollowUp = false;
+        PC.Anim.Play("PlayerAnim_BonfireInteract");
+
+        yield return new WaitForSeconds(1);
+
+        if (BonfireEverUsed) { Anim.Play("BonfireLitActivate"); }
+        else { Anim.Play("BonfireLitFirstTime"); BonfireEverUsed = true; }
+        
+        yield return new WaitForSeconds(1);
+        BonfireRest();
+        PC.Anim.Play("PlayerAnim_Idle");
+        PC.CanMove = true;
+        PC.CanAttack = true;
     }
 
 
-    IEnumerator WaitForAnim()
+    public void BonfireRest()
     {
-        yield return new WaitForSeconds(1);
+       
         PC.Health = PC.MaxHealth;
         PC.Stamina = PC.MaxStamina;
         // replenish estus

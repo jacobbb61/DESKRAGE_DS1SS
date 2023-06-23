@@ -26,6 +26,13 @@ public class LayerManagerV2 : MonoBehaviour
     public void ChangeLayer(int layer)
     {
         StartCoroutine(PlayerLayer(layer));
+
+        if(Player.GetComponent<EnemyLock>().LockedOn)
+        {
+            Player.GetComponent<EnemyLock>().LockedOn = false;
+            PC.IsLockedOn = Player.GetComponent<EnemyLock>().LockedOn;
+            Player.GetComponent<EnemyLock>().LockOnSymbol.SetActive(Player.GetComponent<EnemyLock>().LockedOn);
+        }
     }
 
 
@@ -89,6 +96,18 @@ public class LayerManagerV2 : MonoBehaviour
                 CurrentLayer = "Front";
                 break;
         }
+
+
+        GameObject [] DoorSaveManagerList = null;
+        DoorSaveManagerList = GameObject.FindGameObjectsWithTag("Door");
+        {
+            foreach (GameObject Door in DoorSaveManagerList)
+            {
+                //Pass each door data,from game to file
+                Door.GetComponent<DoorManager>().ManualStart();
+            }
+        }
+
     }
 
     public IEnumerator PlayerLayer(int layer)
@@ -100,7 +119,6 @@ public class LayerManagerV2 : MonoBehaviour
         PC.IsMovingInput = false;
         PC.MyRb.velocity = Vector2.zero;
         PC.MyRb.constraints = RigidbodyConstraints2D.FreezeAll;
-        PC.Speed=0f;
         PC.VerticalSpeed=0f;
         //trigger anim to change layer
         yield return new WaitForSeconds(.25f);

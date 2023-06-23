@@ -5,11 +5,18 @@ using UnityEngine.SceneManagement;
 
 public class PlayerManager : MonoBehaviour
 {
-
+    public bool FinishedGame = false;
+    public bool StartedGame;
     public float TimePlayedSeconds;
     public string Name = "";
 
     public int LastBonfireVisited;
+    public Bonfire Bonfire_1;
+    public Bonfire Bonfire_2;
+    public Bonfire Bonfire_3;
+
+    public bool CellKey;
+
 
     private LayerManagerV2 Layer;
     private PlayerControllerV2 PC;
@@ -20,6 +27,7 @@ public class PlayerManager : MonoBehaviour
         {
             Layer = GameObject.FindGameObjectWithTag("LayerManager").GetComponent<LayerManagerV2>();
             PC = GetComponent<PlayerControllerV2>();
+            StartedGame = true;
         }
     }
     private void Update()
@@ -30,7 +38,8 @@ public class PlayerManager : MonoBehaviour
 
     public void SaveGameDataToCurrentCharacterData(ref CharacterSaveData CurrentCharacterData)
     {
-        CurrentCharacterData.CharacterName = "character from player manager";
+        CurrentCharacterData.FinishedGame = FinishedGame;
+        CurrentCharacterData.StartedGame = StartedGame;
         CurrentCharacterData.yPos = transform.position.y;
         CurrentCharacterData.xPos = transform.position.x;
         CurrentCharacterData.PlayerLayer = Layer.CurrentLayer;
@@ -44,6 +53,8 @@ public class PlayerManager : MonoBehaviour
 
 
         CurrentCharacterData.TimePlayed = TimePlayedSeconds;
+
+        CurrentCharacterData.CellKey = CellKey;
     }
     public void LoadGameFromDataToCurrentCharacterData(ref CharacterSaveData CurrentCharacterData)
     {
@@ -61,5 +72,7 @@ public class PlayerManager : MonoBehaviour
         LastBonfireVisited = CurrentCharacterData.LastBonfireVisited;
 
         TimePlayedSeconds = CurrentCharacterData.TimePlayed;
+
+        CellKey = CurrentCharacterData.CellKey;
     }
 }

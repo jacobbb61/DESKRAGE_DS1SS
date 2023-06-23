@@ -8,7 +8,11 @@ public class EndOfLevelTrigger : MonoBehaviour
 
     public bool LevelEnd = false;
     public float EndAnimLenght;
-    public Animator EndOfLevelAnimator;
+    public Animator SceneTransitionAnim;
+    public PlayerManager PM;
+    public PlayerControllerV2 PC;
+    public PlayerMenuManager PUI;
+
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -21,11 +25,19 @@ public class EndOfLevelTrigger : MonoBehaviour
 
     IEnumerator EndLevel()
     {
-        LevelEnd = true;
-        //Player Inputs OFF
-        //Trigger EndLevel Animation
-        //Trigger EndLevel Audio
+        PC.CanAttack = false;
+        PC.CanFollowUp = false;
+        PC.CanMove = false;
+        PUI.CanInput = false;
+        PM.FinishedGame = true;
+
+        SceneTransitionAnim.SetTrigger("Exit");
+
+        WorldSaveGameManager.Instance.SaveGame();
+
+
         yield return new WaitForSeconds(EndAnimLenght); //Wait for end of level anim to fade to black
         SceneManager.LoadScene("End Credits", LoadSceneMode.Single);
     }
+
 }

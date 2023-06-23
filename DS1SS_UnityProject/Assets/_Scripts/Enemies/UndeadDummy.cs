@@ -27,8 +27,9 @@ public class UndeadDummy : MonoBehaviour
 
     public void Respawn()
     {
-        IsDead = true;
+        IsDead = false;
         Assets.SetActive(true);
+        gameObject.SetActive(true);
         Health = MaxHealth;
         HealthBarSlider.value = Health;
         transform.localPosition = OriginPosition;
@@ -41,6 +42,8 @@ public class UndeadDummy : MonoBehaviour
 
     public void TakeDamage(float Damage, bool Staggered)
     {
+        if (!IsDead)
+        {
             Health -= Damage;
 
             HealthBarSlider.value = Health;
@@ -54,9 +57,10 @@ public class UndeadDummy : MonoBehaviour
                 Anim.Play("UndeadDummyHit");
             }
 
-        
 
-        if (Health <=0) { StartCoroutine(Death()); }
+
+            if (Health <= 0) { StartCoroutine(Death()); }
+        }
     }
 
     IEnumerator Death()
@@ -73,5 +77,6 @@ public class UndeadDummy : MonoBehaviour
     {
         IsDead = true;
         Assets.SetActive(false);
+        gameObject.SetActive(false);
     }
 }

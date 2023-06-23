@@ -11,6 +11,10 @@ public class PlayerAnimationEvents : MonoBehaviour
     {
         PC = GetComponentInParent < PlayerControllerV2 > ();
     }
+
+
+
+
     public void LightAttack()
     {
         RaycastHit2D hit = Physics2D.Raycast(HitStartPos.position, new Vector2(PC.PlayerDirection, 0), PC.LightAttackRange);

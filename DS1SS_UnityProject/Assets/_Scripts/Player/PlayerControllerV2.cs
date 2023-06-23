@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using TMPro;
 
 public class PlayerControllerV2 : MonoBehaviour
 {
@@ -33,8 +34,9 @@ public class PlayerControllerV2 : MonoBehaviour
     public bool IsMovingInput;
     private bool IsWaitingToRun;
     public bool IsIdleAnim;
-    public float Speed;
     public float VerticalSpeed;
+    public bool FootAOnSlope;
+    public bool FootBOnSlope;
 
     [Header("Movement Data to edit")]
     public float WalkSpeed;
@@ -52,12 +54,16 @@ public class PlayerControllerV2 : MonoBehaviour
 
 
     [Header("Combat states")]
+    public bool IsLockedOn;
+    public bool IsBlocking;
+    public bool IsHealing;
     public bool IsAttackStepping;
     public bool CanAttack;
     public bool CanFollowUp;
     private bool SwapLightAnim;
 
     [Header("Combat Data to edit")]
+    public float EstusHealAmount;
     public float LightAttackTime;
     public float LightFollowUpAttackTime;
     public float HeavyAttackTime;
@@ -88,27 +94,90 @@ public class PlayerControllerV2 : MonoBehaviour
 
     public Rigidbody2D MyRb;
     private Collider2D MyCol;
+    private PlayerManager PM;
+    private EnemyLock EnemyLock;
 
     public InteractableV2 Interactable;
 
     //UI
-    private CanvasManager CanvasManager;
+    private CanvasManager CM;
     private Slider StaminaSlider;
+    private Slider HealthSlider;
+    private TextMeshProUGUI EstusCountText;
 
     private void Start()
     {
+        PM = GetComponent<PlayerManager>();
         MyRb = GetComponent<Rigidbody2D>();
         MyCol = GetComponent<CapsuleCollider2D>();
-        Speed = WalkSpeed;
+        EnemyLock = GetComponent<EnemyLock>();
         VerticalSpeed = FallSpeed;
         if (SceneManager.GetActiveScene().name == "Build")
         {
-            CanvasManager = GameObject.FindGameObjectWithTag("Canvas").GetComponent<CanvasManager>();
-            StaminaSlider = CanvasManager.PlayerStaminaSlider;
+            CM = GameObject.FindGameObjectWithTag("Canvas").GetComponent<CanvasManager>();
+            StaminaSlider = CM.PlayerStaminaSlider;
+            HealthSlider = CM.PlayerHealthSlider;
+            EstusCountText = CM.EstusCountText;
         }
         StartCoroutine(StaminaRegenPause());        
     }
 
+    IEnumerator PlayerDead()
+    {
+        CanMove = false;
+        CanAttack = false;
+        IsMovingInput = false;
+        MyRb.velocity = Vector2.zero;
+        CM.YouDiedAnim.Play("YouDied");
+        yield return new WaitForSeconds(4.5f);
+       
+        switch (PM.LastBonfireVisited)
+        {
+            case 1:
+                transform.position = PM.Bonfire_1.transform.position;
+                PM.Bonfire_1.BonfireRest();
+                break;
+            case 2:
+                transform.position = PM.Bonfire_1.transform.position;
+                PM.Bonfire_2.BonfireRest();
+                break;
+            case 3:
+                transform.position = PM.Bonfire_1.transform.position;
+                PM.Bonfire_3.BonfireRest();
+                break;
+            default:
+                transform.position = new Vector2(-90,-18);
+                PM.Bonfire_1.BonfireRest();
+                break;
+        }
+        yield return new WaitForSeconds(1f);
+        CanMove = true;
+        CanAttack = true;
+        IsMovingInput = true;
+    }
+
+    public void PlayerTakeDamage(float Damage, bool Knockdown, int KnockDownDirection) // -1 to left, 1 to right, 0 is the direction the player is on relative to the enemy
+    {
+        if (!IsRolling)
+        {
+            if (!Knockdown)
+            {
+                if (!IsBlocking)
+                {
+                    Stamina -= Health;
+                }
+                else
+                {
+                    Health -= Damage;
+                }
+            }
+            else
+            {
+                Health -= Damage;
+                //knock down player
+            }
+        }
+    }
 
     public void Move(InputAction.CallbackContext context)
     {
@@ -138,7 +207,8 @@ public class PlayerControllerV2 : MonoBehaviour
     }
     public void B(InputAction.CallbackContext context)
     {
-        if(CanMove && !IsUiOpen)
+        if (IsBlocking) { CanMove = true; }
+        if (CanMove && !IsUiOpen && !IsHealing)
         {
 
             if (context.action.WasPerformedThisFrame())
@@ -174,11 +244,40 @@ public class PlayerControllerV2 : MonoBehaviour
                 }
             }
         }
+        if (CanFollowUp)
+        {        
+            if (context.action.WasReleasedThisFrame())
+            {
+                if (IsWaitingToRun) { StopCoroutine(WaitToRunCoroutine); IsWaitingToRun = false; }
+                if (IsGrounded)
+                {
+                    if (!IsRunning) // trigger roll
+                    {
 
+                        IsRunning = false;
+                        CanMove = false;
+                        if (MovementInputDirection == 1) { DodgeDirection = 1; }
+                        else if (MovementInputDirection == -1) { DodgeDirection = -1; }
+                        if (MovementInputDirection == 0) { StartCoroutine(Backstep()); Debug.Log("Backstep"); Stamina -= 15f; }
+                        else { StartCoroutine(Roll()); Debug.Log("Roll"); Stamina -= 30f; }
+                    }
+                    else
+                    {
+                        IsRunning = false;
+                    }
+                }
+                else
+                {
+                    IsRunning = false;
+                    IsRolling = false;
+                }
+            }
+        }
     }
     public void A(InputAction.CallbackContext context)
     {
-        if (CanMove && !IsUiOpen)
+        if (IsBlocking) { CanMove = true; }
+        if (CanMove && !IsUiOpen && !IsHealing)
         {
 
             if (context.action.WasPerformedThisFrame())
@@ -198,7 +297,7 @@ public class PlayerControllerV2 : MonoBehaviour
     public void Y(InputAction.CallbackContext context)
     {
         Debug.Log("Y");
-        if (CanMove && !IsRolling && !IsJumping && !IsRunning && Interactable != null && !IsUiOpen)
+        if (CanMove && !IsRolling && !IsJumping && !IsRunning && Interactable != null && !IsUiOpen && !IsHealing)
         {
             if (context.action.triggered)
             {
@@ -208,9 +307,40 @@ public class PlayerControllerV2 : MonoBehaviour
 
     }
 
+    public void X(InputAction.CallbackContext context)
+    {
+        Debug.Log("X");
+        if (CanMove && !IsRolling && !IsJumping && !IsRunning && !IsUiOpen && !IsHealing)
+        {
+            if (context.action.triggered && CurrentEstus>0)
+            {
+                StartCoroutine(UseEstus());
+            } 
+            if(context.action.triggered && CurrentEstus == 0)
+            {
+                StartCoroutine(UseEmptyEstus());
+            }
+        }
+
+    }
+
+    public void LockOn(InputAction.CallbackContext context)
+    {
+        Debug.Log("LockOn");
+        if (!IsUiOpen)
+        {
+            if (context.action.triggered)
+            {
+                EnemyLock.ToggleLockOn(); ;
+            }    
+        }
+
+    }
+
+
     public void RT(InputAction.CallbackContext context)
     {
-
+        if (IsBlocking) { CanMove = true; }
         if (CanMove && IsGrounded && !IsUiOpen && !CanFollowUp && CanAttack && Stamina > 0)
         {
             if (context.action.triggered)
@@ -219,11 +349,13 @@ public class PlayerControllerV2 : MonoBehaviour
                 Stamina -= 35f;
             }
         }
-        if (IsGrounded && !IsUiOpen && CanFollowUp && CanAttack && Stamina > 0)
+        if (IsGrounded && !IsUiOpen && CanFollowUp && Stamina > 0)
         {
             if (context.action.triggered)
             {
                 if (HeavyAttackCoroutine != null) { StopCoroutine(HeavyAttackCoroutine); }
+                if (MovementInputDirection > 0.2f) { PlayerDirection = 1; }
+                if (MovementInputDirection < -0.2f) { PlayerDirection = -1; }
                 StartCoroutine(HeavyAttackFollowUp());
                 Stamina -= 30f;
             }
@@ -232,6 +364,7 @@ public class PlayerControllerV2 : MonoBehaviour
     }
     public void RB(InputAction.CallbackContext context)
     {
+        
 
         if (CanMove && IsGrounded && !IsUiOpen && !CanFollowUp && CanAttack && Stamina > 0)
         {
@@ -241,50 +374,95 @@ public class PlayerControllerV2 : MonoBehaviour
                 Stamina -= 25f;
             }
         }
-        if (IsGrounded && !IsUiOpen && CanFollowUp && CanAttack && Stamina > 0)
+        if (IsGrounded && !IsUiOpen && CanFollowUp && Stamina > 0)
         {
             if (context.action.triggered)
             {
                 if (LightAttackCoroutine != null) { StopCoroutine(LightAttackCoroutine); }
+                if (MovementInputDirection > 0.2f) { PlayerDirection = 1; }
+                if (MovementInputDirection < -0.2f) { PlayerDirection = -1; }
                 StartCoroutine(LightAttackFollowUp());
                 Stamina -= 20f;
             }
         }
 
+
     }
 
+    public void LT(InputAction.CallbackContext context)
+    {
+
+      
+
+    }
+    public void LB(InputAction.CallbackContext context)
+    {
+        if (IsBlocking)
+        {
+            if (context.action.triggered)
+            {
+                ToggleBlock();
+            }
+        }
+        if (CanMove && IsGrounded && !IsUiOpen && CanAttack && Stamina > 0 && !IsBlocking)
+        {
+            if (context.action.triggered)
+            {
+                ToggleBlock();
+            }
+        }
+    }
 
     public void Update()
     {
+        if (Health <= 0) { StartCoroutine(PlayerDead()); }
         GroundCheck();
         UpdateUI();
         if (IsStaminaRegen) { StaminaRegen(); }
-        if (Stamina <= 0 && IsGrounded) { StartCoroutine(StaminaRegenPause()); IsRunning = false; }
+        if (Stamina <= 0 && IsGrounded) 
+        { 
+            StartCoroutine(StaminaRegenPause()); 
+            IsRunning = false;
+            if (IsBlocking) { StartCoroutine(Stagger()); } //stagger player
+        }
 
+        if (IsLockedOn && !IsRolling && !IsRunning && !IsJumping)
+        {
+            if (EnemyLock.enemyToRight)
+            {
+                PlayerDirection = -1;
+            }
+            else
+            {
+                PlayerDirection = 1;
+            }
+        }
+            
+        if (PlayerDirection == 1) { Assets.transform.localScale = new Vector3(1, 1, 1); }            
+        else if (PlayerDirection == -1) { Assets.transform.localScale = new Vector3(-1, 1, 1); }
 
-        if (PlayerDirection ==1 ) { Assets.transform.localScale = new Vector3(1, 1, 1); }
-        else if (PlayerDirection ==-1) { Assets.transform.localScale = new Vector3(-1, 1, 1); }
         if (IsGrounded && CanMove && IsIdleAnim && !IsMovingInput)
         {
-            Anim.Play("Prototype_Idle");  
+            Anim.Play("PlayerAnim_Idle");  
         }
 
         if (IsGrounded && CanMove && IsMovingInput)
         {
             
-            if (MovementInputDirection > 0.2f) { PlayerDirection = 1; }
-            if (MovementInputDirection < -0.2f) { PlayerDirection = -1; }
+            if (MovementInputDirection > 0.2f && !IsLockedOn) { PlayerDirection = 1; }
+            if (MovementInputDirection < -0.2f && !IsLockedOn) { PlayerDirection = -1; }
             if (!IsRunning)
             {
                 MyRb.velocity = new Vector2(MovementInputDirection * WalkSpeed, -VerticalSpeed);
-                IsStaminaRegen = true;                
-                Anim.Play("Prototype_Walking");
+                IsStaminaRegen = true;
+                if (!IsLockedOn) { Anim.Play("PlayerAnim_WalkForward"); }
+                else { Anim.Play("PlayerAnim_WalkBackward"); }
             }
             else if (IsRunning && Stamina > 0)
             {
                 Stamina -= Time.deltaTime * 8.5f; IsStaminaRegen = false;
                 MyRb.velocity = new Vector2(MovementInputDirection * RunSpeed, -VerticalSpeed);
-                Anim.Play("Prototype_Running");
+                Anim.Play("PlayerAnim_Run");
             }
         }
        
@@ -302,24 +480,25 @@ public class PlayerControllerV2 : MonoBehaviour
     }    
     public void GroundCheck()
     {
-        RaycastHit2D hitA = Physics2D.Raycast(GroundCheckPosA.position, Vector2.down, .25f);
-        RaycastHit2D hitB = Physics2D.Raycast(GroundCheckPosB.position, Vector2.down, .25f);
-        
+        RaycastHit2D hitA = Physics2D.Raycast(GroundCheckPosA.position, Vector2.down, .45f);
+        RaycastHit2D hitB = Physics2D.Raycast(GroundCheckPosB.position, Vector2.down, .45f);
 
-        if(hitA.collider != null)
+        if (hitA.collider != null)
         {
             if (hitA.transform.CompareTag("Ground"))
             {
                 IsGrounded = true;
+                FootAOnSlope = false;
             }
             else if (hitA.transform.CompareTag("Slope"))
             {
                 IsGrounded = true;
-                OnSlope();
+                FootAOnSlope = true;
             }
             else 
             {
                 IsGrounded = false;
+                FootAOnSlope = false;
             }
         }
         if (hitB.collider != null)
@@ -327,35 +506,116 @@ public class PlayerControllerV2 : MonoBehaviour
             if (hitB.transform.CompareTag("Ground"))
             {
                 IsGrounded = true;
+                FootBOnSlope = false;
             }
             else if (hitB.transform.CompareTag("Slope"))
             {
                 IsGrounded = true;
-                OnSlope();
+                FootBOnSlope = true;
             }
             else
             {
                 IsGrounded = false;
+                FootBOnSlope = false;
             }
-
         }
         if (hitA.collider == null && hitB.collider == null)
         {
             IsGrounded = false;
         }
-        if (IsGrounded) { VerticalSpeed = 0.5f; } else { VerticalSpeed = FallSpeed; }
-    }
-    void OnSlope()
-    {
-        if (IsGrounded && !IsMovingInput && !IsJumping && !IsRolling) 
-        { 
-            MyRb.velocity = Vector2.zero; 
-            MyRb.constraints = RigidbodyConstraints2D.FreezeAll; 
-        } 
-        else 
+        if(FootAOnSlope && FootBOnSlope && hitA.transform != null) { OnSlope(hitA.transform); }
+        else if (FootAOnSlope && !FootBOnSlope && hitA.transform != null) { OnSlope(hitA.transform); }
+        else if (!FootAOnSlope && FootBOnSlope && hitB.transform != null) { OnSlope( hitB.transform); }
+        else if(!FootAOnSlope && !FootBOnSlope)
         {
-            MyRb.constraints = RigidbodyConstraints2D.None;
-            MyRb.constraints = RigidbodyConstraints2D.FreezeRotation;
+            //not on slope reset speeds
+            WalkSpeed = 2f;
+            RunSpeed = 5f;
+
+            if (IsGrounded) { VerticalSpeed = 0.5f; } else { VerticalSpeed = FallSpeed; }
+        }
+
+
+
+    }
+    void OnSlope(Transform Slope)
+    {
+
+        float SlopeAngle = Slope.transform.transform.eulerAngles.z;
+        if (SlopeAngle <= 35 && SlopeAngle < 60)
+        {
+            // right  a 35 or less slope
+            if (MovementInputDirection == 1)
+            { //going against slope
+                Debug.Log("Going up 30 right");
+                WalkSpeed = 3f;
+                RunSpeed = 5.5f;
+                if (IsMovingInput) { VerticalSpeed = 0f; } else { MyRb.velocity = Vector2.zero; }
+            }
+            else
+            {//going with slope
+                Debug.Log("Going down 30 right");
+                WalkSpeed = 1.5f;
+                RunSpeed = 4f;
+                if (IsMovingInput) { VerticalSpeed = 5f; } else { MyRb.velocity = Vector2.zero; }
+                if (FootAOnSlope && !FootBOnSlope) { WalkSpeed = 1.75f; VerticalSpeed = 1.75f; } 
+                if(!FootAOnSlope && FootBOnSlope) { WalkSpeed = 1.75f; VerticalSpeed = 1.75f; }
+            }
+
+        }
+        else if(SlopeAngle > 35 && SlopeAngle <60)
+        {
+            // right  a 35 or MORE slope
+            if (MovementInputDirection == 1)
+            { //going against slope
+                WalkSpeed = 3.5f;
+                RunSpeed = 7f; 
+               if (IsMovingInput) { VerticalSpeed = 0f;} else { MyRb.velocity = Vector2.zero; }
+            }
+            else
+            {//going with slope
+                WalkSpeed = 1.5f;
+                RunSpeed = 3f;
+                if (IsMovingInput) { VerticalSpeed = 5f; } else { MyRb.velocity = Vector2.zero; }
+                if (FootAOnSlope && !FootBOnSlope) { WalkSpeed = 1.75f; VerticalSpeed = 1.75f; }
+                if (!FootAOnSlope && FootBOnSlope) { WalkSpeed = 1.75f; VerticalSpeed = 1.75f; }
+            }
+        }
+        if (SlopeAngle >= 325 && SlopeAngle >300)
+        {
+            // left a 35 or less slope
+            if (MovementInputDirection == 1)
+            { //going against slope
+                WalkSpeed = 1.5f;
+                RunSpeed = 4f;
+                if (IsMovingInput) { VerticalSpeed = 5f; } else { MyRb.velocity = Vector2.zero; }
+                if (FootAOnSlope && !FootBOnSlope) { WalkSpeed = 1.75f; VerticalSpeed = 1.75f; }
+                if (!FootAOnSlope && FootBOnSlope) { WalkSpeed = 1.75f; VerticalSpeed = 1.75f; } 
+            }
+            else
+            {//going with slope
+                WalkSpeed = 3f;
+                RunSpeed = 5.5f;
+                if (IsMovingInput) { VerticalSpeed = 0f;  } else { MyRb.velocity = Vector2.zero; }
+            }
+        }
+        else if (SlopeAngle < 325 && SlopeAngle >300)
+        {
+            // left a 35 or MORE slope
+            if (MovementInputDirection == 1)
+            { //going with slope
+                WalkSpeed = 1.5f;
+                RunSpeed = 3f;
+                if (IsMovingInput) { VerticalSpeed = 5f; } else { MyRb.velocity = Vector2.zero; }
+                if (FootAOnSlope && !FootBOnSlope) { WalkSpeed = 1.75f; VerticalSpeed = 1.75f; }
+                if (!FootAOnSlope && FootBOnSlope) { WalkSpeed = 1.75f; VerticalSpeed = 1.75f; }
+            }
+            else
+            {//going against slope
+                WalkSpeed = 3.5f;
+                RunSpeed = 7f;
+                if (IsMovingInput) { VerticalSpeed = 0f;  } else { MyRb.velocity = Vector2.zero; }
+            }
         }
     }
 
@@ -363,6 +623,8 @@ public class PlayerControllerV2 : MonoBehaviour
     public void UpdateUI()
     {
         if (StaminaSlider != null) { StaminaSlider.value = Stamina; }
+        if (HealthSlider != null) { HealthSlider.value = Health; }
+        if (EstusCountText != null) { EstusCountText.text = CurrentEstus.ToString(); }
     }
 
     public void StaminaRegen()
@@ -386,7 +648,14 @@ public class PlayerControllerV2 : MonoBehaviour
         IsIdleAnim = false;
         CanMove = false;
         IsStaminaRegen = false;
-        Anim.Play("Prototype_Roll");
+        Anim.Play("PlayerAnim_Roll");
+
+        if (MovementInputDirection > 0.2f) { PlayerDirection = 1; }
+        if (MovementInputDirection < -0.2f) { PlayerDirection = -1; }
+
+        if (PlayerDirection == 1) { Assets.transform.localScale = new Vector3(1, 1, 1); }
+        else if (PlayerDirection == -1) { Assets.transform.localScale = new Vector3(-1, 1, 1); }
+
 
         yield return new WaitForSeconds(RollTime);
         CanMove = true;
@@ -402,7 +671,7 @@ public class PlayerControllerV2 : MonoBehaviour
     {
         IsBackStepping = true;
         IsIdleAnim = false;
-        Anim.Play("Prototype_BackStep");
+        Anim.Play("PlayerAnim_BackStep");
         IsStaminaRegen = false;
 
         yield return new WaitForSeconds(BackstepTime);
@@ -416,14 +685,14 @@ public class PlayerControllerV2 : MonoBehaviour
     IEnumerator Jump()
     {
         IsIdleAnim = false;
-        Anim.Play("Prototype_Jumping");
+        Anim.Play("PlayerAnim_JumpEnter");
         IsJumping = true;
         IsStaminaRegen = false;
         if (!IsRunning) { MyRb.velocity = new Vector2(MovementInputDirection * JumpHorizontalSpeed, JumpVerticalSpeed); }
         else { MyRb.velocity = new Vector2(MovementInputDirection * JumpRunHorizontalSpeed, JumpVerticalSpeed); }
 
-        yield return new WaitForSeconds(.1f);
-
+        yield return new WaitForSeconds(.25f);
+        Anim.Play("PlayerAnim_JumpIdle");
         if (IsGrounded)
         {
             FinishJump();
@@ -443,7 +712,7 @@ public class PlayerControllerV2 : MonoBehaviour
         MyRb.velocity = Vector2.zero;
         DodgeDirection = 0;
         IsIdleAnim = true;
-        Anim.Play("Prototype_Idle");
+        Anim.Play("PlayerAnim_JumpLand");
         StartCoroutine(StaminaRegenPause());
     }
     IEnumerator StaminaRegenPause()
@@ -460,26 +729,28 @@ public class PlayerControllerV2 : MonoBehaviour
         IsStaminaRegen = false;
         IsAttackStepping = true; 
         CanFollowUp = false;
+        IsBlocking = false;
     }
 
     IEnumerator LightAttack()
     {
         AttackStart();
-        Anim.Play("Prototype_LightSwing");
+        Anim.Play("PlayerAnim_LightSwing");
         AttackStepMove(LightAttackStep);
-        yield return new WaitForSeconds(LightAttackTime-0.35f);
+        yield return new WaitForSeconds(LightAttackTime-1.2f);
         CanFollowUp = true;
         IsAttackStepping = false; 
+        
+        yield return new WaitForSeconds(1.2f);
         CanMove = true;
         CanAttack = true;
-        yield return new WaitForSeconds(0.35f);
         CanFollowUp = false;
         StartCoroutine(StaminaRegenPause());
     }
     IEnumerator LightAttackFollowUp()
     {
         AttackStart();
-        Anim.Play("Prototype_LightSwingFollowUp");
+        Anim.Play("PlayerAnim_LightSwingFollowUpAttack");
         AttackStepMove(LightAttackStep);
         yield return new WaitForSeconds(LightFollowUpAttackTime);
         IsAttackStepping = false; 
@@ -491,22 +762,23 @@ public class PlayerControllerV2 : MonoBehaviour
     IEnumerator HeavyAttack()
     {
         AttackStart();
-        Anim.Play("Prototype_HeavyAttack");
+        Anim.Play("PlayerAnim_HeavySwing");
         AttackStepMove(HeavyAttackStep);
         CanFollowUp = false;
-        yield return new WaitForSeconds(HeavyAttackTime - 0.35f);
+        yield return new WaitForSeconds(HeavyAttackTime - 1.4f);
         CanFollowUp = true;
         IsAttackStepping = false; 
+        
+        yield return new WaitForSeconds(1.4f);
         CanMove = true;
         CanAttack = true;
-        yield return new WaitForSeconds(0.35f);
         CanFollowUp = false;
         StartCoroutine(StaminaRegenPause());
     }
     IEnumerator HeavyAttackFollowUp()
     {
         AttackStart();
-        Anim.Play("Prototype_HeavyFollowUpAttack");
+        Anim.Play("PlayerAnim_HeavySwingFollowUpAttack");
         AttackStepMove(HeavyAttackStep);
         yield return new WaitForSeconds(HeavyFollowUpAttackTime);
         IsAttackStepping = false; 
@@ -537,4 +809,82 @@ public class PlayerControllerV2 : MonoBehaviour
             MyRb.velocity = new Vector2(PlayerDirection * StepDistance, MyRb.velocity.y / 10);
         }
     }
+
+    IEnumerator Stagger()
+    {
+        Anim.Play("PlayerAnim_StaggerGettingHit");
+        CanFollowUp = false;
+        CanMove = false;
+        CanAttack = false;
+        IsBlocking = false;
+
+        yield return new WaitForSeconds(1f);
+        CanFollowUp = true;
+        CanMove = true;
+        CanAttack = true;
+    }
+
+    void ToggleBlock()
+    {
+        if (!IsBlocking)
+        {
+            StartCoroutine(EnterBlock());
+        }
+        else
+        {
+            StartCoroutine(ExitBlock());
+        }
+    }
+    void HoldBlock()
+    {
+        IsBlocking = true;
+        Anim.Play("PlayerAnim_ShieldBlockHold");
+    }
+    IEnumerator EnterBlock()
+    {
+        Anim.Play("PlayerAnim_ShieldBlockEnter");
+        CanFollowUp = false;
+        CanMove = false;
+        yield return new WaitForSeconds(0.5f);
+        HoldBlock();
+    }
+    IEnumerator ExitBlock()
+    {
+        Anim.Play("PlayerAnim_ShieldBlockExit");
+        yield return new WaitForSeconds(0.25f);
+        CanFollowUp = true;
+        CanMove = true;
+        IsBlocking = false;
+    }
+
+    IEnumerator UseEstus()
+    {
+        MyRb.velocity = Vector2.zero;
+        Anim.Play("PlayerAnim_EstusUse");
+        CanMove = false;
+        CanAttack = false;
+        CanFollowUp = false;
+        yield return new WaitForSeconds(1);
+
+        Health += EstusHealAmount;
+        Health = Mathf.Clamp(Health, 0, 100);
+        CurrentEstus--;
+        yield return new WaitForSeconds(.5f);
+        CanMove = true;
+        CanAttack = true;
+        CanFollowUp = true;
+    }
+    IEnumerator UseEmptyEstus()
+    {
+        MyRb.velocity = Vector2.zero;
+        Anim.Play("PlayerAnim_EstusUseEmpty");
+        CanMove = false;
+        CanAttack = false;
+        CanFollowUp = false;
+        yield return new WaitForSeconds(1.5f);
+        CanMove = true;
+        CanAttack = true;
+        CanFollowUp = true;
+    }
+
 }

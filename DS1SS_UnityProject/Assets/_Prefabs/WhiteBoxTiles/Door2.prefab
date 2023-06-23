@@ -76,7 +76,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 10
+  m_SortingOrder: 9
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 0, g: 0.19265223, b: 1, a: 1}
   m_FlipX: 0
@@ -127,14 +127,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   layerManager: {fileID: 0}
-  isLocked: 0
   doorType: 1
   targetLayer: 0
-  CanvasManager: {fileID: 0}
-  doorCollider: {fileID: 0}
-  doorPrompt: {fileID: 0}
-  doorUI: {fileID: 0}
-  doorUIText: {fileID: 0}
+  CurrentDoorState_This: 
+  doorCollider: {fileID: 3702622892975103703}
+  Anim: {fileID: 0}
 --- !u!114 &436300435429700708
 MonoBehaviour:
   m_ObjectHideFlags: 0
