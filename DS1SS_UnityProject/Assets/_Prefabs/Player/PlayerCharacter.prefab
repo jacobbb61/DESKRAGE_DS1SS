@@ -286,7 +286,6 @@ MonoBehaviour:
   IsJumping: 0
   IsMovingInput: 0
   IsIdleAnim: 1
-  Speed: 0
   VerticalSpeed: 0
   FootAOnSlope: 0
   FootBOnSlope: 0
@@ -317,10 +316,10 @@ MonoBehaviour:
   HeavyAttackStep: 3
   LightAttackDamage: 6
   HeavyAttackDamage: 9
-  LightAttackRange: 1.75
-  LightAttackFollowUpRange: 1.75
-  HeavyAttackRange: 2
-  HeavyAttackFollowUpRange: 2
+  LightAttackRange: 2.2
+  LightAttackFollowUpRange: 2.2
+  HeavyAttackRange: 2.5
+  HeavyAttackFollowUpRange: 2.5
   LayerManager: {fileID: 0}
   Assets: {fileID: 1065959576549058040}
   Anim: {fileID: 1065959575374467966}
@@ -701,7 +700,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6690098835814988810}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.375, y: 0, z: 0}
+  m_LocalPosition: {x: -0.653, y: 0.901, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

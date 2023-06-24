@@ -26,6 +26,7 @@ public class PlayerAnimationEvents : MonoBehaviour
             if (hit.transform.CompareTag("Enemy"))
             {
                 hit.transform.GetComponent<UndeadDummy>().TakeDamage(PC.LightAttackDamage, false);
+                Debug.Log("Hit Dummy");
             }
         }
     }

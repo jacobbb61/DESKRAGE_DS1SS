@@ -60,6 +60,7 @@ public class PlayerControllerV2 : MonoBehaviour
     public bool IsAttackStepping;
     public bool CanAttack;
     public bool CanFollowUp;
+    public bool CanRollOut;
     private bool SwapLightAnim;
 
     [Header("Combat Data to edit")]
@@ -244,7 +245,7 @@ public class PlayerControllerV2 : MonoBehaviour
                 }
             }
         }
-        if (CanFollowUp)
+        if (CanRollOut)
         {        
             if (context.action.WasReleasedThisFrame())
             {
@@ -739,10 +740,12 @@ public class PlayerControllerV2 : MonoBehaviour
         AttackStepMove(LightAttackStep);
         yield return new WaitForSeconds(LightAttackTime-1.2f);
         CanFollowUp = true;
+        CanRollOut = true;
         IsAttackStepping = false; 
         
         yield return new WaitForSeconds(1.2f);
         CanMove = true;
+        CanRollOut = false;
         CanAttack = true;
         CanFollowUp = false;
         StartCoroutine(StaminaRegenPause());
@@ -752,7 +755,10 @@ public class PlayerControllerV2 : MonoBehaviour
         AttackStart();
         Anim.Play("PlayerAnim_LightSwingFollowUpAttack");
         AttackStepMove(LightAttackStep);
-        yield return new WaitForSeconds(LightFollowUpAttackTime);
+        yield return new WaitForSeconds(LightFollowUpAttackTime-1);
+        CanRollOut = true;
+        yield return new WaitForSeconds(1);
+        CanRollOut = false;
         IsAttackStepping = false; 
         CanMove = true;
         CanAttack = true;
@@ -767,10 +773,12 @@ public class PlayerControllerV2 : MonoBehaviour
         CanFollowUp = false;
         yield return new WaitForSeconds(HeavyAttackTime - 1.4f);
         CanFollowUp = true;
+        CanRollOut = true;
         IsAttackStepping = false; 
         
         yield return new WaitForSeconds(1.4f);
         CanMove = true;
+        CanRollOut = false;
         CanAttack = true;
         CanFollowUp = false;
         StartCoroutine(StaminaRegenPause());
@@ -780,7 +788,10 @@ public class PlayerControllerV2 : MonoBehaviour
         AttackStart();
         Anim.Play("PlayerAnim_HeavySwingFollowUpAttack");
         AttackStepMove(HeavyAttackStep);
-        yield return new WaitForSeconds(HeavyFollowUpAttackTime);
+        yield return new WaitForSeconds(HeavyFollowUpAttackTime - 1);
+        CanRollOut = true;
+        yield return new WaitForSeconds(1);
+        CanRollOut = false;
         IsAttackStepping = false; 
         CanMove = true;
         CanAttack = true;

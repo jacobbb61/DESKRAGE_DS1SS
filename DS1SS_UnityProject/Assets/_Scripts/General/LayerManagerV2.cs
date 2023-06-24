@@ -14,6 +14,11 @@ public class LayerManagerV2 : MonoBehaviour
     public GameObject FrontLayer;
     public GameObject Player;
 
+
+    public GameObject Bonfire_1;
+    public GameObject Bonfire_2;
+    public GameObject Bonfire_3;
+
     private PlayerControllerV2 PC;
 
 

@@ -25,7 +25,7 @@ public class WorldSaveGameManager : MonoBehaviour
     [Header("Current Character Data")]
     public GameObject[] EnemySaveManagerList;
     public GameObject[] DoorSaveManagerList;
-    public GameObject[] BonfireList;
+    public GameObject BonfireList;
 
     [Header("Character Slots")]
     public CharacterSaveData CharacterSlot01;
@@ -186,15 +186,11 @@ public class WorldSaveGameManager : MonoBehaviour
             //get list of all Bonfire scripts in the scene 
             //Pass each door data,from game, to the player in game
             BonfireList = null;
-            BonfireList = GameObject.FindGameObjectsWithTag("Bonfire");
-            if (BonfireList != null)
-            {
-                foreach (GameObject Bonfire in BonfireList)
-                {
-                    //Pass each enemy data,from game to file
-                    Bonfire.GetComponent<Bonfire>().SaveGameDataToCurrentCharacterData(ref CurrentCharacterData);
-                }
-            }
+            BonfireList = GameObject.FindGameObjectWithTag("LayerManager");
+            BonfireList.GetComponent<LayerManagerV2>().Bonfire_1.GetComponent<Bonfire>().SaveGameDataToCurrentCharacterData(ref CurrentCharacterData);
+            BonfireList.GetComponent<LayerManagerV2>().Bonfire_2.GetComponent<Bonfire>().SaveGameDataToCurrentCharacterData(ref CurrentCharacterData);
+            BonfireList.GetComponent<LayerManagerV2>().Bonfire_3.GetComponent<Bonfire>().SaveGameDataToCurrentCharacterData(ref CurrentCharacterData);
+                       
         }
         //clear the list of enemys
         EnemySaveManagerList = null;
@@ -260,15 +256,10 @@ public class WorldSaveGameManager : MonoBehaviour
         //get list of all Bonfire scripts in the scene 
         //Pass each door data,from file, to the player in game
         BonfireList = null;
-        BonfireList = GameObject.FindGameObjectsWithTag("Bonfire");
-        if (BonfireList != null)
-        {
-            foreach (GameObject Bonfire in BonfireList)
-            {
-                //Pass each enemy data,from file, to the player in game 
-                Bonfire.GetComponent<Bonfire>().LoadGameFromDataToCurrentCharacterData(ref CurrentCharacterData);
-            }
-        }
+        BonfireList = GameObject.FindGameObjectWithTag("LayerManager");
+        BonfireList.GetComponent<LayerManagerV2>().Bonfire_1.GetComponent<Bonfire>().LoadGameFromDataToCurrentCharacterData(ref CurrentCharacterData);
+        BonfireList.GetComponent<LayerManagerV2>().Bonfire_2.GetComponent<Bonfire>().LoadGameFromDataToCurrentCharacterData(ref CurrentCharacterData);
+        BonfireList.GetComponent<LayerManagerV2>().Bonfire_3.GetComponent<Bonfire>().LoadGameFromDataToCurrentCharacterData(ref CurrentCharacterData);
 
         yield return null;
     }
@@ -370,7 +361,7 @@ public class WorldSaveGameManager : MonoBehaviour
         CurrentCharacterData.EnemyBehaviour_100 = "";
         CurrentCharacterData.EnemyHealth_100 = 24;
         CurrentCharacterData.EnemyPosX_100 = 90;
-        CurrentCharacterData.EnemyPosY_100 = 6f;
+        CurrentCharacterData.EnemyPosY_100 = 6.15f;
 
     }
 }

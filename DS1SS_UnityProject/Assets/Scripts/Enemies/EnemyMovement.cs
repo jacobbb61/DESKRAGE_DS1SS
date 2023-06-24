@@ -27,14 +27,14 @@ public class EnemyMovement : MonoBehaviour
     bool attacked;
     bool blocking;
 
-    PlayerController player;
+    PlayerControllerV2 player;
     void Start()
     {
 
         enemyBody = GetComponent<Rigidbody2D>();
         myArt = GetComponent<SpriteRenderer>();
-        if(FindAnyObjectByType<PlayerController>() != null)
-            player = FindAnyObjectByType<PlayerController>();
+        if(FindAnyObjectByType<PlayerControllerV2>() != null)
+            player = FindAnyObjectByType<PlayerControllerV2>();
 
         origin = transform.position;
 

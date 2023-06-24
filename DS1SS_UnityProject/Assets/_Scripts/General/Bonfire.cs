@@ -22,7 +22,7 @@ public class Bonfire : MonoBehaviour
 
         PM = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerManager>();
         PC = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerControllerV2>();
-        EnemySaveManagerList = GameObject.FindGameObjectsWithTag("Enemy");
+       // EnemySaveManagerList = GameObject.FindGameObjectsWithTag("Enemy");
 
         Anim = GameObject.FindGameObjectWithTag("Canvas").GetComponent<CanvasManager>().BonfireAnim;
         BonfirePromptUI = GameObject.FindGameObjectWithTag("Canvas").GetComponent<CanvasManager>().ItemPrompt;
