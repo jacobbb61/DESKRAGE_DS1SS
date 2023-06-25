@@ -6991,6 +6991,9 @@ MonoBehaviour:
   MiddleLayer: {fileID: 62328100}
   FrontLayer: {fileID: 351590353}
   Player: {fileID: 779564136}
+  Bonfire_1: {fileID: 0}
+  Bonfire_2: {fileID: 0}
+  Bonfire_3: {fileID: 0}
 --- !u!1001 &816051695
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11544,7 +11547,7 @@ MonoBehaviour:
     EnemyPosY_100: 0
   EnemySaveManagerList: []
   DoorSaveManagerList: []
-  BonfireList: []
+  BonfireList: {fileID: 0}
   CharacterSlot01:
     FinishedGame: 0
     StartedGame: 0

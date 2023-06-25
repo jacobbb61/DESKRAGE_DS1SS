@@ -548,14 +548,14 @@ public class PlayerControllerV2 : MonoBehaviour
             // right  a 35 or less slope
             if (MovementInputDirection == 1)
             { //going against slope
-                Debug.Log("Going up 30 right");
+                
                 WalkSpeed = 3f;
                 RunSpeed = 5.5f;
                 if (IsMovingInput) { VerticalSpeed = 0f; } else { MyRb.velocity = Vector2.zero; }
             }
             else
             {//going with slope
-                Debug.Log("Going down 30 right");
+                
                 WalkSpeed = 1.5f;
                 RunSpeed = 4f;
                 if (IsMovingInput) { VerticalSpeed = 5f; } else { MyRb.velocity = Vector2.zero; }

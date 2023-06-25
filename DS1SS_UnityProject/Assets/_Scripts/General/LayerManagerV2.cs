@@ -51,6 +51,7 @@ public class LayerManagerV2 : MonoBehaviour
                 FrontLayer.SetActive(false);
                 Player.GetComponent<SortingGroup>().sortingLayerName = "BackSortingLayer";
                 CurrentLayer = "Back";
+                CurrentLayerNumber = 0;
                 break;
 
             case "Middle":
@@ -59,6 +60,7 @@ public class LayerManagerV2 : MonoBehaviour
                 FrontLayer.SetActive(false);
                 Player.GetComponent<SortingGroup>().sortingLayerName = "MiddleSortingLayer";
                 CurrentLayer = "Middle";
+                CurrentLayerNumber = 1;
                 break;
 
             case "Front":
@@ -67,6 +69,7 @@ public class LayerManagerV2 : MonoBehaviour
                 FrontLayer.SetActive(true);
                 Player.GetComponent<SortingGroup>().sortingLayerName = "FrontSortingLayer";
                 CurrentLayer = "Front";
+                CurrentLayerNumber = 2;
                 break;
             default:
                 LoadLayer("Middle");
@@ -83,6 +86,7 @@ public class LayerManagerV2 : MonoBehaviour
                 FrontLayer.SetActive(false);
                 Player.GetComponent<SortingGroup>().sortingLayerName = "BackSortingLayer";
                 CurrentLayer = "Back";
+                CurrentLayerNumber = 0;
                 break;
 
             case 1:
@@ -91,6 +95,7 @@ public class LayerManagerV2 : MonoBehaviour
                 FrontLayer.SetActive(false);
                 Player.GetComponent<SortingGroup>().sortingLayerName = "MiddleSortingLayer";
                 CurrentLayer = "Middle";
+                CurrentLayerNumber = 1;
                 break;
 
             case 2:
@@ -99,6 +104,7 @@ public class LayerManagerV2 : MonoBehaviour
                 FrontLayer.SetActive(true);
                 Player.GetComponent<SortingGroup>().sortingLayerName = "FrontSortingLayer";
                 CurrentLayer = "Front";
+                CurrentLayerNumber = 2;
                 break;
         }
 
