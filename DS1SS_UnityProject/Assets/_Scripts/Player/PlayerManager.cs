@@ -15,7 +15,9 @@ public class PlayerManager : MonoBehaviour
     public Bonfire Bonfire_2;
     public Bonfire Bonfire_3;
 
-    public bool CellKey;
+    public bool AKey; // Cell key
+    public bool KKey;
+    public bool SKey;
 
 
     private LayerManagerV2 Layer;
@@ -54,7 +56,9 @@ public class PlayerManager : MonoBehaviour
 
         CurrentCharacterData.TimePlayed = TimePlayedSeconds;
 
-        CurrentCharacterData.CellKey = CellKey;
+        CurrentCharacterData.AKey = AKey;
+        CurrentCharacterData.KKey = KKey;
+        CurrentCharacterData.SKey = SKey;
     }
     public void LoadGameFromDataToCurrentCharacterData(ref CharacterSaveData CurrentCharacterData)
     {
@@ -73,6 +77,8 @@ public class PlayerManager : MonoBehaviour
 
         TimePlayedSeconds = CurrentCharacterData.TimePlayed;
 
-        CellKey = CurrentCharacterData.CellKey;
+        AKey = CurrentCharacterData.AKey;
+        KKey = CurrentCharacterData.KKey;
+        SKey = CurrentCharacterData.SKey;
     }
 }

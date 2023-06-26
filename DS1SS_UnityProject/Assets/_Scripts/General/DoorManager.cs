@@ -28,6 +28,8 @@ public class DoorManager : MonoBehaviour
 
     public Animator Anim;
 
+    private PlayerManager playerManager;
+
 
     private void Start()
     {
@@ -35,6 +37,7 @@ public class DoorManager : MonoBehaviour
         layerManager = GameObject.FindGameObjectWithTag("LayerManager").GetComponent<LayerManagerV2>();
         CanvasManager = GameObject.FindGameObjectWithTag("Canvas").GetComponent<CanvasManager>();
         doorSaveManager = GetComponent<DoorSaveManager>();
+        playerManager = FindObjectOfType<PlayerManager>();
         doorPrompt = CanvasManager.DoorPrompt;
         doorUI = CanvasManager.DoorUI;
         doorUIText = CanvasManager.DoorDescription;
@@ -163,52 +166,130 @@ public class DoorManager : MonoBehaviour
             {
 
                 case "Locked":
-                    doorUI.SetActive(true);
-                    doorUIText.text = "Locked";
-                    break;
-                case "Fog":
-                    doorUI.SetActive(true);
-                    doorCollider.enabled = false;
-                    break;
-                case "Closed":
-                    doorCollider.enabled = false;
-                    CurrentDoorState_This = "Open";
-                    Anim.Play("PerpendicularDoorOpenIdle");
-                    
-                    if (doorSaveManager.DoorTag_This == "N")
                     {
-                        AchievementsGameManager.Instance.UnlockedAchievement(1);
+                        doorUI.SetActive(true);
+                        doorUIText.text = "Locked";
+                        break;
                     }
+                case "Fog":
+                    {
+                        doorUI.SetActive(true);
+                        doorCollider.enabled = false;
+                        break;
+                    }
+                case "Closed":
+                    {
+                        doorCollider.enabled = false;
+                        CurrentDoorState_This = "Open";
+                        Anim.Play("PerpendicularDoorOpenIdle");
 
-                    break;
+                        if (doorSaveManager.DoorTag_This == "N")
+                        {
+                            AchievementsGameManager.Instance.UnlockedAchievement(1);
+                        }
+
+                        break;
+                    }
             }
         }
         else
         {
             switch (CurrentDoorState_This) //layer
             {
-                case "Locked":
-                    doorUI.SetActive(true);
-                    doorUIText.text = "Locked";
-                    break;
-                case "OneSided":
-                    doorUI.SetActive(true);
-                    doorUIText.text = "Does not open from this side";
-                    break;
-                case "Fog":
-                    
-                    layerManager.ChangeLayer(targetLayer);
-                    break;
-                case "Open":
-
-                    layerManager.ChangeLayer(targetLayer);
-
-                    if (doorSaveManager.DoorTag_This == "J1")
+                case "Locked": // this is where i make changes
                     {
-                        GetComponent<UnlockDoor>().UnlockOtherDoor();
+                        switch (doorSaveManager.DoorTag_This) // This gets the tag of the door and checks if it has the corresponding key to unlock
+                        {
+                            case "A":
+                                {
+                                    if (playerManager.AKey == true)
+                                    {
+                                        doorUI.SetActive(true);
+                                        doorUIText.text = "Door unlocked";
+                                        //Anim.Play("");
+                                        //Wait();
+                                        doorCollider.enabled = false;
+                                        CurrentDoorState_This = "Open";
+                                    }
+                                    else
+                                    {
+                                        doorUI.SetActive(true);
+                                        doorUIText.text = "Locked";
+                                    }
+                                    break;
+                                }
+
+                            case "K":
+                                {
+                                    if (playerManager.KKey == true)
+                                    {
+                                        doorUI.SetActive(true);
+                                        doorUIText.text = "Door unlocked";
+                                        //Anim.Play("");
+                                        //Wait();
+                                        doorCollider.enabled = false;
+                                        CurrentDoorState_This = "Open";
+                                    }
+                                    else
+                                    {
+                                        doorUI.SetActive(true);
+                                        doorUIText.text = "Locked";
+                                    }
+                                    break;
+                                }
+
+                            case "S":
+                                {
+                                    if (playerManager.SKey == true)
+                                    {
+                                        doorUI.SetActive(true);
+                                        doorUIText.text = "Door unlocked";
+                                        //Anim.Play("");
+                                        //Wait();
+                                        doorCollider.enabled = false;
+                                        CurrentDoorState_This = "Open";
+                                    }
+                                    else
+                                    {
+                                        doorUI.SetActive(true);
+                                        doorUIText.text = "Locked";
+                                    }
+                                    break;
+                                }
+
+                            default:
+                                {
+                                    doorUI.SetActive(true);
+                                    doorUIText.text = "Locked";
+                                    break;
+                                }
+                        }
+                        break;
                     }
 
-                    break;
+                case "OneSided":
+                    {
+                        doorUI.SetActive(true);
+                        doorUIText.text = "Does not open from this side";
+                        break;
+                    }
+
+                case "Fog":
+                    {
+                        layerManager.ChangeLayer(targetLayer);
+                        break;
+                    }
+
+                case "Open":
+                    {
+                        layerManager.ChangeLayer(targetLayer);
+
+                        if (doorSaveManager.DoorTag_This == "J1")
+                        {
+                            GetComponent<UnlockDoor>().UnlockOtherDoor();
+                        }
+                        break;
+                    }
             }
         }                       
         
