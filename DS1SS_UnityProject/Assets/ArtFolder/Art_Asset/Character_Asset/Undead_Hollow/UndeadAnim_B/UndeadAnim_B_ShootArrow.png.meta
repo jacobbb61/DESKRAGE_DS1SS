@@ -149,7 +149,7 @@ TextureImporter:
         width: 42
         height: 116
       alignment: 9
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: 0.55, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -167,10 +167,10 @@ TextureImporter:
         serializedVersion: 2
         x: 422
         y: 0
-        width: 64
+        width: 70
         height: 114
       alignment: 9
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: 0.55, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -186,12 +186,12 @@ TextureImporter:
       name: UndeadAnim_B_ShootArrow_2
       rect:
         serializedVersion: 2
-        x: 674
+        x: 662
         y: 0
-        width: 68
+        width: 80
         height: 116
       alignment: 9
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: 0.52, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -207,12 +207,12 @@ TextureImporter:
       name: UndeadAnim_B_ShootArrow_3
       rect:
         serializedVersion: 2
-        x: 931
+        x: 920
         y: 0
-        width: 67
+        width: 78
         height: 117
       alignment: 9
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: 0.49, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -228,12 +228,12 @@ TextureImporter:
       name: UndeadAnim_B_ShootArrow_4
       rect:
         serializedVersion: 2
-        x: 1182
+        x: 1170
         y: 0
-        width: 76
+        width: 88
         height: 118
       alignment: 9
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: 0.49, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -249,12 +249,12 @@ TextureImporter:
       name: UndeadAnim_B_ShootArrow_5
       rect:
         serializedVersion: 2
-        x: 1435
+        x: 1411
         y: 0
-        width: 79
+        width: 103
         height: 118
       alignment: 9
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: 0.55, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -270,12 +270,12 @@ TextureImporter:
       name: UndeadAnim_B_ShootArrow_6
       rect:
         serializedVersion: 2
-        x: 1692
+        x: 1669
         y: 0
-        width: 78
+        width: 101
         height: 118
       alignment: 9
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: 0.55, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -291,12 +291,12 @@ TextureImporter:
       name: UndeadAnim_B_ShootArrow_7
       rect:
         serializedVersion: 2
-        x: 1948
+        x: 1930
         y: 0
-        width: 78
+        width: 96
         height: 118
       alignment: 9
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: 0.52, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -312,12 +312,12 @@ TextureImporter:
       name: UndeadAnim_B_ShootArrow_8
       rect:
         serializedVersion: 2
-        x: 2204
+        x: 2200
         y: 0
-        width: 78
+        width: 82
         height: 118
       alignment: 9
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: 0.43, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -333,12 +333,12 @@ TextureImporter:
       name: UndeadAnim_B_ShootArrow_9
       rect:
         serializedVersion: 2
-        x: 2460
+        x: 2457
         y: 0
-        width: 78
+        width: 81
         height: 118
       alignment: 9
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: 0.43, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -354,12 +354,12 @@ TextureImporter:
       name: UndeadAnim_B_ShootArrow_10
       rect:
         serializedVersion: 2
-        x: 2716
+        x: 2713
         y: 0
-        width: 78
+        width: 81
         height: 118
       alignment: 9
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: 0.43, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -375,12 +375,12 @@ TextureImporter:
       name: UndeadAnim_B_ShootArrow_11
       rect:
         serializedVersion: 2
-        x: 2971
+        x: 2969
         y: 0
-        width: 84
+        width: 86
         height: 118
       alignment: 9
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: 0.43, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -401,7 +401,7 @@ TextureImporter:
         width: 84
         height: 122
       alignment: 9
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: 0.43, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -417,12 +417,12 @@ TextureImporter:
       name: UndeadAnim_B_ShootArrow_13
       rect:
         serializedVersion: 2
-        x: 3475
+        x: 3484
         y: 0
-        width: 93
+        width: 84
         height: 126
       alignment: 9
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: 0.43, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -438,12 +438,12 @@ TextureImporter:
       name: UndeadAnim_B_ShootArrow_15
       rect:
         serializedVersion: 2
-        x: 3741
+        x: 4004
         y: 0
-        width: 75
-        height: 118
+        width: 64
+        height: 117
       alignment: 9
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: 0.45, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -459,12 +459,12 @@ TextureImporter:
       name: UndeadAnim_B_ShootArrow_16
       rect:
         serializedVersion: 2
-        x: 4004
+        x: 4261
         y: 0
-        width: 64
+        width: 59
         height: 117
       alignment: 9
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: 0.55, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -480,12 +480,12 @@ TextureImporter:
       name: UndeadAnim_B_ShootArrow_17
       rect:
         serializedVersion: 2
-        x: 4261
+        x: 4526
         y: 0
-        width: 59
-        height: 117
+        width: 44
+        height: 116
       alignment: 9
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: 0.55, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -498,22 +498,22 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: UndeadAnim_B_ShootArrow_18
+      name: UndeadAnim_B_ShootArrow_14
       rect:
         serializedVersion: 2
-        x: 4526
+        x: 3741
         y: 0
-        width: 44
-        height: 116
+        width: 75
+        height: 118
       alignment: 9
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: 0.49, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a691ecaa86a964246b519599696dd860
-      internalID: -1109200590
+      spriteID: 2715cff94c5825a43b4d315d06f69d66
+      internalID: 1728691729
       vertices: []
       indices: 
       edges: []
@@ -539,7 +539,6 @@ TextureImporter:
       UndeadAnim_B_ShootArrow_15: 2098408618
       UndeadAnim_B_ShootArrow_16: 1878272900
       UndeadAnim_B_ShootArrow_17: -1021002089
-      UndeadAnim_B_ShootArrow_18: -1109200590
       UndeadAnim_B_ShootArrow_2: 1728924190
       UndeadAnim_B_ShootArrow_3: -1061608957
       UndeadAnim_B_ShootArrow_4: -286686522
