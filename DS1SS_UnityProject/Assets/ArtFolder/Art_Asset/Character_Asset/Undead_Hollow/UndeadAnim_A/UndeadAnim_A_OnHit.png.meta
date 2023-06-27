@@ -141,7 +141,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: undmgtake_0
+      name: UndeadAnim_A_OnHit_0
       rect:
         serializedVersion: 2
         x: 0
@@ -149,20 +149,20 @@ TextureImporter:
         width: 128
         height: 128
       alignment: 9
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: 0.55, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 29965e0353cf5cf4d9e9104f1f64871f
-      internalID: -1548104313
+      spriteID: 7817112f838e4c74883132ba11210907
+      internalID: -1602795182
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: undmgtake_1
+      name: UndeadAnim_A_OnHit_1
       rect:
         serializedVersion: 2
         x: 128
@@ -170,20 +170,20 @@ TextureImporter:
         width: 128
         height: 128
       alignment: 9
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: 0.55, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4765bbaf27a4ee148b42108cd9ee30b2
-      internalID: -1736347789
+      spriteID: 6dcbb9f30b748f24f8c30b075c79f633
+      internalID: 1927717632
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: undmgtake_2
+      name: UndeadAnim_A_OnHit_2
       rect:
         serializedVersion: 2
         x: 256
@@ -191,20 +191,20 @@ TextureImporter:
         width: 128
         height: 128
       alignment: 9
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: 0.55, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d2322990ae238a247900beff65fe23fc
-      internalID: 1170571718
+      spriteID: d11ea5fa720db40488b67e83475e5410
+      internalID: 910460930
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: undmgtake_3
+      name: UndeadAnim_A_OnHit_3
       rect:
         serializedVersion: 2
         x: 384
@@ -212,20 +212,20 @@ TextureImporter:
         width: 128
         height: 128
       alignment: 9
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: 0.55, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e29ae6ac8894fb14396991b3d2100fce
-      internalID: -1980547972
+      spriteID: bdbcdceddc4805444908b08cdb4a236a
+      internalID: 763202331
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: undmgtake_4
+      name: UndeadAnim_A_OnHit_4
       rect:
         serializedVersion: 2
         x: 512
@@ -233,20 +233,20 @@ TextureImporter:
         width: 128
         height: 128
       alignment: 9
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: 0.55, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f16eef8490db81f428b88e0bf445b6ab
-      internalID: -1149025569
+      spriteID: dbbd0dd15e8bfe446933a541b0ac172c
+      internalID: -1305562471
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: undmgtake_5
+      name: UndeadAnim_A_OnHit_5
       rect:
         serializedVersion: 2
         x: 640
@@ -254,20 +254,20 @@ TextureImporter:
         width: 128
         height: 128
       alignment: 9
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: 0.55, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 85ab3beaf57e4964795e48814542f107
-      internalID: 1164761512
+      spriteID: bad5be28f6507754583c6466aa930dcc
+      internalID: -1047956693
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: undmgtake_6
+      name: UndeadAnim_A_OnHit_6
       rect:
         serializedVersion: 2
         x: 768
@@ -275,20 +275,20 @@ TextureImporter:
         width: 128
         height: 128
       alignment: 9
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: 0.55, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 10200b22cf3d7be4896742de640b04dc
-      internalID: 2037390503
+      spriteID: 2a4c5cfe784db1949af47c6ad593066f
+      internalID: -592296275
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: undmgtake_7
+      name: UndeadAnim_A_OnHit_7
       rect:
         serializedVersion: 2
         x: 896
@@ -296,20 +296,20 @@ TextureImporter:
         width: 128
         height: 128
       alignment: 9
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: 0.55, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e18a0b66dfb8899498051599aaa53a6a
-      internalID: 1152283668
+      spriteID: fb76e3c160544b7419d26df31e062470
+      internalID: 640410049
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: undmgtake_8
+      name: UndeadAnim_A_OnHit_8
       rect:
         serializedVersion: 2
         x: 1024
@@ -317,20 +317,20 @@ TextureImporter:
         width: 128
         height: 128
       alignment: 9
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: 0.55, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3a8aa98b51be5a94ca5459af64ac03c0
-      internalID: -611379192
+      spriteID: 091b4d613a397cf408e09d5402050455
+      internalID: -1547393077
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: undmgtake_9
+      name: UndeadAnim_A_OnHit_9
       rect:
         serializedVersion: 2
         x: 1152
@@ -338,20 +338,20 @@ TextureImporter:
         width: 128
         height: 128
       alignment: 9
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: 0.55, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3d3c270c1d2572841b3e91554ccda1c7
-      internalID: -1045906473
+      spriteID: cdcb1d80a2a22754f97bd62c8f5ff23f
+      internalID: -1667853595
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: undmgtake_10
+      name: UndeadAnim_A_OnHit_10
       rect:
         serializedVersion: 2
         x: 1280
@@ -359,14 +359,14 @@ TextureImporter:
         width: 128
         height: 128
       alignment: 9
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: 0.55, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d190e3a8422463543a03336287db304f
-      internalID: -1094120406
+      spriteID: c5689e4050f0dd74782e42a3f05bc638
+      internalID: -398360475
       vertices: []
       indices: 
       edges: []
@@ -382,17 +382,17 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      undmgtake_0: -1548104313
-      undmgtake_1: -1736347789
-      undmgtake_10: -1094120406
-      undmgtake_2: 1170571718
-      undmgtake_3: -1980547972
-      undmgtake_4: -1149025569
-      undmgtake_5: 1164761512
-      undmgtake_6: 2037390503
-      undmgtake_7: 1152283668
-      undmgtake_8: -611379192
-      undmgtake_9: -1045906473
+      UndeadAnim_A_OnHit_0: -1602795182
+      UndeadAnim_A_OnHit_1: 1927717632
+      UndeadAnim_A_OnHit_10: -398360475
+      UndeadAnim_A_OnHit_2: 910460930
+      UndeadAnim_A_OnHit_3: 763202331
+      UndeadAnim_A_OnHit_4: -1305562471
+      UndeadAnim_A_OnHit_5: -1047956693
+      UndeadAnim_A_OnHit_6: -592296275
+      UndeadAnim_A_OnHit_7: 640410049
+      UndeadAnim_A_OnHit_8: -1547393077
+      UndeadAnim_A_OnHit_9: -1667853595
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

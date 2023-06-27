@@ -141,7 +141,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: unwalk_0
+      name: UndeadAnim_A_Walk_0
       rect:
         serializedVersion: 2
         x: 0
@@ -149,20 +149,20 @@ TextureImporter:
         width: 128
         height: 128
       alignment: 9
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: 0.55, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c2e1e0c522e6ec64aba5be31b67ec023
-      internalID: 1074967143
+      spriteID: cf34a4bbf3610bd45ba816dd49dd20b0
+      internalID: 1653173614
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: unwalk_1
+      name: UndeadAnim_A_Walk_1
       rect:
         serializedVersion: 2
         x: 128
@@ -170,20 +170,20 @@ TextureImporter:
         width: 128
         height: 128
       alignment: 9
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: 0.55, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ed1a7239f88c7ee4d83e4c11f610c567
-      internalID: 1736096951
+      spriteID: e99ab867ced5e29429dbe0dedbe0e965
+      internalID: -35620083
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: unwalk_2
+      name: UndeadAnim_A_Walk_2
       rect:
         serializedVersion: 2
         x: 256
@@ -191,20 +191,20 @@ TextureImporter:
         width: 128
         height: 128
       alignment: 9
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: 0.55, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: eeea8acd6301400479402e3f1945cec1
-      internalID: -2130847270
+      spriteID: ad3e2ada942bf9747ac314239864ef73
+      internalID: -488006703
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: unwalk_3
+      name: UndeadAnim_A_Walk_3
       rect:
         serializedVersion: 2
         x: 384
@@ -212,20 +212,20 @@ TextureImporter:
         width: 128
         height: 128
       alignment: 9
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: 0.55, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 25ccacfaa2e758943a54169ecb34afd8
-      internalID: -693628037
+      spriteID: 7872d7e3bd445024fa76c76f781cbba6
+      internalID: -592266140
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: unwalk_4
+      name: UndeadAnim_A_Walk_4
       rect:
         serializedVersion: 2
         x: 512
@@ -233,20 +233,20 @@ TextureImporter:
         width: 128
         height: 128
       alignment: 9
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: 0.55, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 10cec08903fcf7b498fc59ccc68dcd3f
-      internalID: 1690724156
+      spriteID: 3b3731f5f445efd4db85a3ae3de07569
+      internalID: -119087150
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: unwalk_5
+      name: UndeadAnim_A_Walk_5
       rect:
         serializedVersion: 2
         x: 640
@@ -254,20 +254,20 @@ TextureImporter:
         width: 128
         height: 128
       alignment: 9
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: 0.55, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ad558dd5b50173e4bbf394d85e43a963
-      internalID: 319722451
+      spriteID: 1cbf1d065b3813e48bd0e9eaea8f3bb1
+      internalID: -610086642
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: unwalk_6
+      name: UndeadAnim_A_Walk_6
       rect:
         serializedVersion: 2
         x: 768
@@ -275,20 +275,20 @@ TextureImporter:
         width: 128
         height: 128
       alignment: 9
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: 0.55, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ca39d937354665e41b105c3bef4c6bf8
-      internalID: -2009743084
+      spriteID: 0ca3b67d7cb12904ab6e797792891bf8
+      internalID: 371198532
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: unwalk_7
+      name: UndeadAnim_A_Walk_7
       rect:
         serializedVersion: 2
         x: 896
@@ -296,20 +296,20 @@ TextureImporter:
         width: 128
         height: 128
       alignment: 9
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: 0.55, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6d728687a2d733d4d830ed571ec3d7d0
-      internalID: -1483954252
+      spriteID: af1de7d3cee93944ab0e8370a3467871
+      internalID: -939470986
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: unwalk_8
+      name: UndeadAnim_A_Walk_8
       rect:
         serializedVersion: 2
         x: 1024
@@ -317,20 +317,20 @@ TextureImporter:
         width: 128
         height: 128
       alignment: 9
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: 0.55, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ab9da4f734c586a4793d7ba334ba05e0
-      internalID: 455852065
+      spriteID: 73270a8596edd49409c007c1d9a83186
+      internalID: 2089181375
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: unwalk_9
+      name: UndeadAnim_A_Walk_9
       rect:
         serializedVersion: 2
         x: 1152
@@ -338,20 +338,20 @@ TextureImporter:
         width: 128
         height: 128
       alignment: 9
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: 0.55, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b4fca42bfd6859f438dafdbf698702d1
-      internalID: -1170457439
+      spriteID: 2c60a8ebbfaa0b547a24457a57d3ae09
+      internalID: -714023305
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: unwalk_10
+      name: UndeadAnim_A_Walk_10
       rect:
         serializedVersion: 2
         x: 1280
@@ -359,14 +359,14 @@ TextureImporter:
         width: 128
         height: 128
       alignment: 9
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: 0.55, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 91efa03370d6ba541ae91fc7acff2b55
-      internalID: 471885429
+      spriteID: 9277d913852565b489dbf97d2b8d6959
+      internalID: 1306431375
       vertices: []
       indices: 
       edges: []
@@ -382,17 +382,17 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      unwalk_0: 1074967143
-      unwalk_1: 1736096951
-      unwalk_10: 471885429
-      unwalk_2: -2130847270
-      unwalk_3: -693628037
-      unwalk_4: 1690724156
-      unwalk_5: 319722451
-      unwalk_6: -2009743084
-      unwalk_7: -1483954252
-      unwalk_8: 455852065
-      unwalk_9: -1170457439
+      UndeadAnim_A_Walk_0: 1653173614
+      UndeadAnim_A_Walk_1: -35620083
+      UndeadAnim_A_Walk_10: 1306431375
+      UndeadAnim_A_Walk_2: -488006703
+      UndeadAnim_A_Walk_3: -592266140
+      UndeadAnim_A_Walk_4: -119087150
+      UndeadAnim_A_Walk_5: -610086642
+      UndeadAnim_A_Walk_6: 371198532
+      UndeadAnim_A_Walk_7: -939470986
+      UndeadAnim_A_Walk_8: 2089181375
+      UndeadAnim_A_Walk_9: -714023305
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

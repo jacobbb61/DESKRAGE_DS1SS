@@ -141,7 +141,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: unidle_0
+      name: UndeadAnim_A_Idle_0
       rect:
         serializedVersion: 2
         x: 0
@@ -149,20 +149,20 @@ TextureImporter:
         width: 128
         height: 128
       alignment: 9
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: 0.55, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 529c61fe4bf9f854ea6da56221893faf
-      internalID: -976965535
+      spriteID: 43be23621c018094c96e8dc38e08e843
+      internalID: -729898127
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: unidle_1
+      name: UndeadAnim_A_Idle_1
       rect:
         serializedVersion: 2
         x: 128
@@ -170,41 +170,41 @@ TextureImporter:
         width: 128
         height: 128
       alignment: 9
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: 0.55, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7115782d1fec20f44b9e438479a5fa48
-      internalID: 1457494137
+      spriteID: 8515a15bad4789241ad6af20f791ef92
+      internalID: 374798368
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: unidle_2
+      name: UndeadAnim_A_Idle_2
       rect:
         serializedVersion: 2
-        x: 257
+        x: 256
         y: 0
         width: 128
         height: 128
       alignment: 9
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: 0.55, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6b7f7ba3ed158094699a07373825d812
-      internalID: -1905571331
+      spriteID: 65f2c8f7157d2a34fbb2dd0f0a68040b
+      internalID: 660436332
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: unidle_3
+      name: UndeadAnim_A_Idle_3
       rect:
         serializedVersion: 2
         x: 384
@@ -212,20 +212,20 @@ TextureImporter:
         width: 128
         height: 128
       alignment: 9
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: 0.55, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: eb153b4f2e2d54048baacfb273c65e47
-      internalID: 962843755
+      spriteID: 732cb272a68df0740b45befd1cfd516f
+      internalID: 1825278648
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: unidle_4
+      name: UndeadAnim_A_Idle_4
       rect:
         serializedVersion: 2
         x: 512
@@ -233,20 +233,20 @@ TextureImporter:
         width: 128
         height: 128
       alignment: 9
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: 0.55, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 07a0f9984c9cbf848871695bc8759ed7
-      internalID: 1810887408
+      spriteID: ff5f70a8872c2b34bb3e644ec4e75623
+      internalID: 1142695272
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: unidle_5
+      name: UndeadAnim_A_Idle_5
       rect:
         serializedVersion: 2
         x: 640
@@ -254,20 +254,20 @@ TextureImporter:
         width: 128
         height: 128
       alignment: 9
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: 0.55, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 147596b3661ee824e89491a8e180add4
-      internalID: -78864461
+      spriteID: bfa0d643c790bdc439f5cf502c5c3b02
+      internalID: 793364518
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: unidle_6
+      name: UndeadAnim_A_Idle_6
       rect:
         serializedVersion: 2
         x: 768
@@ -275,20 +275,20 @@ TextureImporter:
         width: 128
         height: 128
       alignment: 9
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: 0.55, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 909399fa202e01a4ab00c1b42d8b66c6
-      internalID: 2050338223
+      spriteID: e493c397c9b9403418e9f6fd77f188dc
+      internalID: -2092039312
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: unidle_7
+      name: UndeadAnim_A_Idle_7
       rect:
         serializedVersion: 2
         x: 896
@@ -296,20 +296,20 @@ TextureImporter:
         width: 128
         height: 128
       alignment: 9
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: 0.55, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 934aed64d26553f429947435f62683e9
-      internalID: 559399837
+      spriteID: 456f178ad114c824f8a2fb706ef98f66
+      internalID: -16961308
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: unidle_8
+      name: UndeadAnim_A_Idle_8
       rect:
         serializedVersion: 2
         x: 1024
@@ -317,20 +317,20 @@ TextureImporter:
         width: 128
         height: 128
       alignment: 9
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: 0.55, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 025b5b35026cc7348a93c2a4f22d2255
-      internalID: 1717360423
+      spriteID: 9fa4ec70740df6f46bd4dcc89db95dac
+      internalID: 1840400389
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: unidle_9
+      name: UndeadAnim_A_Idle_9
       rect:
         serializedVersion: 2
         x: 1152
@@ -338,14 +338,14 @@ TextureImporter:
         width: 128
         height: 128
       alignment: 9
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: 0.55, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e3a49ad030907cc498642ca7736489d3
-      internalID: -143492097
+      spriteID: 431b38bf971975b4ea9c3cdf335e23ec
+      internalID: 1281955736
       vertices: []
       indices: 
       edges: []
@@ -361,16 +361,16 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      unidle_0: -976965535
-      unidle_1: 1457494137
-      unidle_2: -1905571331
-      unidle_3: 962843755
-      unidle_4: 1810887408
-      unidle_5: -78864461
-      unidle_6: 2050338223
-      unidle_7: 559399837
-      unidle_8: 1717360423
-      unidle_9: -143492097
+      UndeadAnim_A_Idle_0: -729898127
+      UndeadAnim_A_Idle_1: 374798368
+      UndeadAnim_A_Idle_2: 660436332
+      UndeadAnim_A_Idle_3: 1825278648
+      UndeadAnim_A_Idle_4: 1142695272
+      UndeadAnim_A_Idle_5: 793364518
+      UndeadAnim_A_Idle_6: -2092039312
+      UndeadAnim_A_Idle_7: -16961308
+      UndeadAnim_A_Idle_8: 1840400389
+      UndeadAnim_A_Idle_9: 1281955736
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
