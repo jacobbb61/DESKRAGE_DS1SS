@@ -119,8 +119,10 @@ public class PlayerControllerV2 : MonoBehaviour
             StaminaSlider = CM.PlayerStaminaSlider;
             HealthSlider = CM.PlayerHealthSlider;
             EstusCountText = CM.EstusCountText;
+            UpdateUI();
         }
-        StartCoroutine(StaminaRegenPause());        
+        StartCoroutine(StaminaRegenPause());
+        
     }
 
     IEnumerator PlayerDead()
@@ -130,6 +132,7 @@ public class PlayerControllerV2 : MonoBehaviour
         IsMovingInput = false;
         MyRb.velocity = Vector2.zero;
         CM.YouDiedAnim.Play("YouDied");
+        Anim.Play("PlayerAnim_Death");
         yield return new WaitForSeconds(4.5f);
        
         switch (PM.LastBonfireVisited)
@@ -155,6 +158,7 @@ public class PlayerControllerV2 : MonoBehaviour
         CanMove = true;
         CanAttack = true;
         IsMovingInput = true;
+        Anim.Play("PlayerAnim_Idle");
     }
 
     public void PlayerTakeDamage(float Damage, bool Knockdown, int KnockDownDirection) // -1 to left, 1 to right, 0 is the direction the player is on relative to the enemy
@@ -163,7 +167,7 @@ public class PlayerControllerV2 : MonoBehaviour
         {
             if (!Knockdown)
             {
-                if (!IsBlocking)
+                if (IsBlocking)
                 {
                     Stamina -= Health;
                 }

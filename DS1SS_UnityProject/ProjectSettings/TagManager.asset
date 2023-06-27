@@ -11,6 +11,8 @@ TagManager:
   - Ground
   - Slope
   - Bonfire
+  - HitBox
+  - PlayerHitBox
   layers:
   - Default
   - TransparentFX
@@ -21,7 +23,7 @@ TagManager:
   - Front Layer
   - Mid Layer
   - Back Layer
-  - Transition Layer
+  - Enemy Layer
   - 
   - 
   - 

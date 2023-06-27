@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PlayerAnimationEvents : MonoBehaviour
 {
@@ -22,12 +23,16 @@ public class PlayerAnimationEvents : MonoBehaviour
 
         if (hit.collider != null)
         {
-            Debug.Log(hit.transform.name);
+            
             if (hit.transform.CompareTag("Enemy"))
             {
-                hit.transform.GetComponent<UndeadDummy>().TakeDamage(PC.LightAttackDamage, false);
-                Debug.Log("Hit Dummy");
+                hit.transform.GetComponent<EnemySaveManager>().TakeLightDamageEvent.Invoke();
             }
+            else
+            {
+                Debug.Log(hit.transform.name);
+            }
+
         }
     }
     public void LightAttackFollowUp()
@@ -37,10 +42,14 @@ public class PlayerAnimationEvents : MonoBehaviour
 
         if (hit.collider != null)
         {
-            Debug.Log(hit.transform.name);
+
             if (hit.transform.CompareTag("Enemy"))
             {
-                hit.transform.GetComponent<UndeadDummy>().TakeDamage(PC.LightAttackDamage, false);
+                hit.transform.GetComponent<EnemySaveManager>().TakeLightDamageEvent.Invoke();
+            }
+            else
+            {
+                Debug.Log(hit.transform.name);
             }
         }
     }
@@ -51,10 +60,14 @@ public class PlayerAnimationEvents : MonoBehaviour
 
         if (hit.collider != null)
         {
-            Debug.Log(hit.transform.name);
+
             if (hit.transform.CompareTag("Enemy"))
             {
-                hit.transform.GetComponent<UndeadDummy>().TakeDamage(PC.HeavyAttackDamage, true);
+                hit.transform.GetComponent<EnemySaveManager>().TakeHeavyDamageEvent.Invoke();
+            }
+            else
+            {
+                Debug.Log(hit.transform.name);
             }
         }
     }
@@ -65,10 +78,14 @@ public class PlayerAnimationEvents : MonoBehaviour
 
         if (hit.collider != null)
         {
-            Debug.Log(hit.transform.name);
+
             if (hit.transform.CompareTag("Enemy"))
             {
-                hit.transform.GetComponent<UndeadDummy>().TakeDamage(PC.HeavyAttackDamage, true);
+                hit.transform.GetComponent<EnemySaveManager>().TakeHeavyDamageEvent.Invoke();
+            }
+            else
+            {
+                Debug.Log(hit.transform.name);
             }
         }
     }

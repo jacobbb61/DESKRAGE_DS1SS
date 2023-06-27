@@ -307,25 +307,20 @@ public class WorldSaveGameManager : MonoBehaviour
     CurrentCharacterData.DoorState_U = "Closed";
 
     //enemy data
-    CurrentCharacterData.EnemyBehaviour_1 = "";
-        CurrentCharacterData.EnemyHealth_1 = 24;
-        CurrentCharacterData.EnemyPosX_1 = 0;
-        CurrentCharacterData.EnemyPosY_1 = 0;
+    CurrentCharacterData.EnemyBehaviour_1 = "Idle";
+        CurrentCharacterData.EnemyHealth_1 = 11;
+        CurrentCharacterData.EnemyPosX_1 = 70;
+        CurrentCharacterData.EnemyPosY_1 = 7.28f;
 
-        CurrentCharacterData.EnemyBehaviour_2 = "";
-        CurrentCharacterData.EnemyHealth_2 = 24;
-        CurrentCharacterData.EnemyPosX_2 = 0;
-        CurrentCharacterData.EnemyPosY_2 = 0;
+        CurrentCharacterData.EnemyBehaviour_2 = "Idle";
+        CurrentCharacterData.EnemyHealth_2 = 11;
+        CurrentCharacterData.EnemyPosX_2 = 75;
+        CurrentCharacterData.EnemyPosY_2 = 7.28f;
 
-        CurrentCharacterData.EnemyBehaviour_3 = "";
-        CurrentCharacterData.EnemyHealth_3 = 24;
-        CurrentCharacterData.EnemyPosX_3 = 0;
-        CurrentCharacterData.EnemyPosY_3 = 0;
-
-        CurrentCharacterData.EnemyBehaviour_3 = "";
-        CurrentCharacterData.EnemyHealth_3 = 24;
-        CurrentCharacterData.EnemyPosX_3 = 0;
-        CurrentCharacterData.EnemyPosY_3 = 0;
+        CurrentCharacterData.EnemyBehaviour_3 = "Idle";
+        CurrentCharacterData.EnemyHealth_3 = 11;
+        CurrentCharacterData.EnemyPosX_3 = 80;
+        CurrentCharacterData.EnemyPosY_3 = 7.28f;
 
         CurrentCharacterData.EnemyBehaviour_4 = "";
         CurrentCharacterData.EnemyHealth_4 = 24;

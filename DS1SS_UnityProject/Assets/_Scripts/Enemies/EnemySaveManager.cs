@@ -8,6 +8,8 @@ public class EnemySaveManager : MonoBehaviour
 {
 
     public UnityEvent RespawnEvent;
+    public UnityEvent TakeLightDamageEvent;
+    public UnityEvent TakeHeavyDamageEvent;
 
     [Header("Enemy Identity")]
     public int EnemyTag_This;
@@ -21,11 +23,10 @@ public class EnemySaveManager : MonoBehaviour
 
     //public int EnemyDirection_This;
 
-
     public void SaveGameDataToCurrentCharacterData(ref CharacterSaveData CurrentCharacterData)
     {
 
-        // EnemyBehaviour_This = donnacha code
+        
 
         EnemyPosX_This = transform.position.x;
         EnemyPosY_This = transform.position.y;
@@ -36,7 +37,9 @@ public class EnemySaveManager : MonoBehaviour
                 EnemyHealth_This = GetComponent<UndeadDummy>().Health;
                 break;
             case "A":
-
+                EnemyBehaviour_This = GetComponent<Undead_A>().Behaviour;
+                EnemyHealth_This = GetComponent<Undead_A>().Health;
+                EnemyBehaviour_This = GetComponent<Undead_A>().Behaviour;
                 break;
             case "B":
 
@@ -62,6 +65,12 @@ public class EnemySaveManager : MonoBehaviour
                 CurrentCharacterData.EnemyHealth_2 = EnemyHealth_This;
                 CurrentCharacterData.EnemyPosX_2 = EnemyPosX_This;
                 CurrentCharacterData.EnemyPosY_2 = EnemyPosY_This;
+                break;
+            case 3:
+                CurrentCharacterData.EnemyBehaviour_3 = EnemyBehaviour_This;
+                CurrentCharacterData.EnemyHealth_3 = EnemyHealth_This;
+                CurrentCharacterData.EnemyPosX_3 = EnemyPosX_This;
+                CurrentCharacterData.EnemyPosY_3 = EnemyPosY_This;
                 break;
             case 100:
                 CurrentCharacterData.EnemyBehaviour_100 = EnemyBehaviour_This;
@@ -89,6 +98,12 @@ public class EnemySaveManager : MonoBehaviour
                 EnemyPosX_This = CurrentCharacterData.EnemyPosX_2;
                 EnemyPosY_This = CurrentCharacterData.EnemyPosY_2;
                 break;
+            case 3:
+                EnemyBehaviour_This = CurrentCharacterData.EnemyBehaviour_3;
+                EnemyHealth_This = CurrentCharacterData.EnemyHealth_3;
+                EnemyPosX_This = CurrentCharacterData.EnemyPosX_3;
+                EnemyPosY_This = CurrentCharacterData.EnemyPosY_3;
+                break;
             case 100:
                 EnemyBehaviour_This = CurrentCharacterData.EnemyBehaviour_100;
                 EnemyHealth_This = CurrentCharacterData.EnemyHealth_100;
@@ -97,16 +112,19 @@ public class EnemySaveManager : MonoBehaviour
                 break;
         }
 
-        transform.localPosition = new Vector2(EnemyPosX_This, EnemyPosY_This);
+        transform.position = new Vector2(EnemyPosX_This, EnemyPosY_This);
 
         switch (EnemyVariant)
         {
             case "Dummy":
+               
                 GetComponent<UndeadDummy>().Health = EnemyHealth_This;
                 GetComponent<UndeadDummy>().IsDead = false;
                 break;
             case "A":
-
+                GetComponent<Undead_A>().Behaviour = EnemyBehaviour_This;
+                GetComponent<Undead_A>().Health = EnemyHealth_This;
+                GetComponent<Undead_A>().IsDead = false;
                 break;
             case "B":
 
