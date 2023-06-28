@@ -18,7 +18,8 @@ public class PlayerAnimationEvents : MonoBehaviour
 
     public void LightAttack()
     {
-        RaycastHit2D hit = Physics2D.Raycast(HitStartPos.position, new Vector2(PC.PlayerDirection, 0), PC.LightAttackRange);
+        int layerMask = ~(LayerMask.GetMask("Player"));
+        RaycastHit2D hit = Physics2D.Raycast(HitStartPos.position, new Vector2(PC.PlayerDirection, 0), PC.LightAttackRange, layerMask);
 
 
         if (hit.collider != null)
@@ -30,14 +31,15 @@ public class PlayerAnimationEvents : MonoBehaviour
             }
             else
             {
-                Debug.Log(hit.transform.name);
+                Debug.Log("Player hit" + hit.transform.name);
             }
 
         }
     }
     public void LightAttackFollowUp()
     {
-        RaycastHit2D hit = Physics2D.Raycast(HitStartPos.position, new Vector2(PC.PlayerDirection, 0), PC.LightAttackFollowUpRange);
+        int layerMask = ~(LayerMask.GetMask("Player"));
+        RaycastHit2D hit = Physics2D.Raycast(HitStartPos.position, new Vector2(PC.PlayerDirection, 0), PC.LightAttackFollowUpRange, layerMask);
 
 
         if (hit.collider != null)
@@ -49,13 +51,14 @@ public class PlayerAnimationEvents : MonoBehaviour
             }
             else
             {
-                Debug.Log(hit.transform.name);
+                Debug.Log("Player hit" + hit.transform.name);
             }
         }
     }
     public void HeavyAttack()
     {
-        RaycastHit2D hit = Physics2D.Raycast(HitStartPos.position, new Vector2(PC.PlayerDirection, 0), PC.HeavyAttackRange);
+        int layerMask = ~(LayerMask.GetMask("Player"));
+        RaycastHit2D hit = Physics2D.Raycast(HitStartPos.position, new Vector2(PC.PlayerDirection, 0), PC.HeavyAttackRange, layerMask);
 
 
         if (hit.collider != null)
@@ -67,13 +70,14 @@ public class PlayerAnimationEvents : MonoBehaviour
             }
             else
             {
-                Debug.Log(hit.transform.name);
+                Debug.Log("Player hit" + hit.transform.name);
             }
         }
     }
     public void HeavyAttackFollowUp()
     {
-        RaycastHit2D hit = Physics2D.Raycast(HitStartPos.position, new Vector2(PC.PlayerDirection, 0), PC.HeavyAttackFollowUpRange);
+        int layerMask = ~(LayerMask.GetMask("Player"));
+        RaycastHit2D hit = Physics2D.Raycast(HitStartPos.position, new Vector2(PC.PlayerDirection, 0), PC.HeavyAttackFollowUpRange, layerMask);
 
 
         if (hit.collider != null)
@@ -85,7 +89,7 @@ public class PlayerAnimationEvents : MonoBehaviour
             }
             else
             {
-                Debug.Log(hit.transform.name);
+                Debug.Log("Player hit" + hit.transform.name);
             }
         }
     }

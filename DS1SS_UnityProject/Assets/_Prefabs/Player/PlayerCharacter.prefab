@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1065959575192577548}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: A
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 1065959575374467966}
   - component: {fileID: 1065959575374467201}
   - component: {fileID: 8358082389795210412}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: PlayerAnim
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -124,9 +124,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 100
+  m_SortingLayerID: 24380851
+  m_SortingLayer: 2
+  m_SortingOrder: 10
   m_Sprite: {fileID: 1662773395, guid: b1c4ef114c83d844dbbbb73352c22752, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -160,7 +160,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1065959576549058041}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: PlayerAssets
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -193,7 +193,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1065959576714209544}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: B
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -231,7 +231,7 @@ GameObject:
   - component: {fileID: 1065959576863444073}
   - component: {fileID: 1065959576863444072}
   - component: {fileID: 1065959576863444071}
-  m_Layer: 2
+  m_Layer: 10
   m_Name: PlayerCharacter
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -268,11 +268,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 407094d1d99044f46b72a6b52648bfcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Health: 80
+  Health: 20
   MaxHealth: 100
   Stamina: 80
   MaxStamina: 100
-  CurrentEstus: 0
+  CurrentEstus: 3
   MaxEstus: 3
   MovementInputDirection: 0
   PlayerDirection: 1
@@ -612,8 +612,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 1, y: 2}
+  m_Offset: {x: 0, y: -0.15}
+  m_Size: {x: 1, y: 1.7}
   m_Direction: 0
 --- !u!50 &1065959576863444072
 Rigidbody2D:
@@ -644,9 +644,9 @@ SortingGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1065959576863444077}
   m_Enabled: 1
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 10
+  m_SortingLayerID: 24380851
+  m_SortingLayer: 2
+  m_SortingOrder: 11
 --- !u!1 &1065959577099873994
 GameObject:
   m_ObjectHideFlags: 0
@@ -656,7 +656,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1065959577099873995}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: GroundCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -689,7 +689,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7531493749407576679}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: HitStart
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -721,7 +721,7 @@ GameObject:
   m_Component:
   - component: {fileID: 528583623710192539}
   - component: {fileID: 4125214417230465857}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: PlayerHitbox
   m_TagString: PlayerHitBox
   m_Icon: {fileID: 0}

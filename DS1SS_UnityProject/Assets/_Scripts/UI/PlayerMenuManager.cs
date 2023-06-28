@@ -475,7 +475,7 @@ public class PlayerMenuManager : MonoBehaviour
     {
         WorldSaveGameManager.Instance.Player = PM;
         WorldSaveGameManager.Instance.SaveGame();
-        yield return new WaitForSeconds(.5f);
+        yield return new WaitForSeconds(1.5f);
         SceneManager.LoadScene("Main Menu", LoadSceneMode.Single);
     }
 

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 179632688337621780}
   - component: {fileID: 4638701453398582779}
   - component: {fileID: 1117873118704686403}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Door1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -284,7 +284,7 @@ GameObject:
   - component: {fileID: 8685334512840945355}
   - component: {fileID: 7142405828820393844}
   - component: {fileID: 3946059020622692453}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Door Trigger
   m_TagString: Door
   m_Icon: {fileID: 0}
@@ -330,7 +330,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 3, y: 0.52248096}
+  m_Size: {x: 3, y: 0.85}
   m_EdgeRadius: 0
 --- !u!114 &8685334512840945355
 MonoBehaviour:

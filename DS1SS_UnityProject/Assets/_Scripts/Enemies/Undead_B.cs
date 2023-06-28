@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Undead_A : MonoBehaviour
+public class Undead_B : MonoBehaviour
 {
 
     [Header("Stats")]
@@ -13,7 +13,6 @@ public class Undead_A : MonoBehaviour
     public int LookDirection;
 
     [Header("Move and Detect Data")]
-    public float Speed;
     public float ForwardDetectionRange;
     public float BackwardsDetectionRange;
     public float AttackTriggerRange;
@@ -23,10 +22,7 @@ public class Undead_A : MonoBehaviour
     public float AttackAnimationTime;
     public float AttackCoolDownTime;
     public float StaggerTime;
-    public float AttackRange;
     public float AttackDamage;
-
-    public float CombatTime;
 
     [Header("Bools")]
     public bool SeePlayer;
@@ -41,6 +37,7 @@ public class Undead_A : MonoBehaviour
     private Coroutine AttackingCoroutine;
 
     public GameObject Assets;
+    public GameObject Arrow;
     public GameObject Eyes;
     public Transform HitStartPos;
     public Slider HealthSlider;
@@ -74,45 +71,28 @@ public class Undead_A : MonoBehaviour
     }
 
     void Update()
-    {   
+    {
         UpdateUI();
-        IsByOriginPosition();
         if (Health <= 0) { StartCoroutine(Death()); }
         else
         {
-            IsDead = false;
             switch (Behaviour)
             {
                 case "Idle":
                     LookForPlayer();
-                    Anim.Play("UndeadAnim_A_Idle");
+                    Anim.Play("UndeadAnim_B_Idle");
                     if (SeePlayer) { Behaviour = "Hostile"; }
-                    if (!IsAtOrigin) { Behaviour = "Returning"; }
                     break;
                 case "Hostile":
-                    CombatTime += Time.deltaTime;
                     LookForPlayer();
-                    if (IsInAttackRange()) { Behaviour = "Attacking"; }
-                    else
-                    {
-                        FacePlayer();
-                        Walk();
-                    }
-                    if (!SeePlayer && !IsAtOrigin && CombatTime>4) {Behaviour = "Returning"; CombatTime = 0; }
+                    if (SeePlayer && IsInAttackRange()) { Behaviour = "Attacking"; }
+                    if (!SeePlayer) { Behaviour = "Idle";}
                     break;
-                case "Attacking":        
-                    if (!IsAttacking) { AttackingCoroutine =  StartCoroutine(Attack()); } 
+                case "Attacking":
+                    if (!IsAttacking) { AttackingCoroutine = StartCoroutine(Attack()); }
                     break;
                 case "Staggered":
                     StartCoroutine(Staggered());
-                    break;
-                case "Parried":
-                    break;
-                case "Returning":
-                    LookForPlayer();
-                    if (SeePlayer) { Behaviour = "Hostile"; }                  
-                    if (!IsAtOrigin) { FaceOrigin(); WalkToOrigin(); }
-                    else { Behaviour = "Idle"; }
                     break;
                 case "Dead":
                     Dead();
@@ -129,7 +109,7 @@ public class Undead_A : MonoBehaviour
         Behaviour = "Dead";
         if (IsAttacking) { StopCoroutine(AttackingCoroutine); }
         HealthSlider.value = 0;
-        Anim.Play("UndeadAnim_A_Death");
+        Anim.Play("UndeadAnim_B_Death");
         yield return new WaitForSeconds(3);
 
         Dead();
@@ -154,8 +134,8 @@ public class Undead_A : MonoBehaviour
         Behaviour = "Staggered";
     }
     IEnumerator Staggered()
-    {  
-        Anim.Play("UndeadAnim_A_GettingHit");
+    {
+        Anim.Play("UndeadAnim_B_GettingHit");
         yield return new WaitForSeconds(StaggerTime);
         Behaviour = "Hostile";
     }
@@ -188,15 +168,15 @@ public class Undead_A : MonoBehaviour
         }
 
 
-        
-        
+
+
         if (Vector3.Distance(Eyes.transform.position, Player.transform.position) < Range)
         {
             int layerMask = ~(LayerMask.GetMask("Ignore Raycast"));
             RaycastHit2D hit = Physics2D.Raycast(Eyes.transform.position, (Player.transform.position - Eyes.transform.position), Range, layerMask);
             if (hit.transform != null)
             {
-                Debug.Log("Undead A hit" + hit.transform.name);
+                Debug.Log(hit.transform.name);
                 if (hit.transform.CompareTag("Player"))
                 {
                     SeePlayer = true;
@@ -206,11 +186,11 @@ public class Undead_A : MonoBehaviour
                     SeePlayer = false;
                 }
 
-            } 
+            }
             else
-                {
-                    SeePlayer = false;
-                }
+            {
+                SeePlayer = false;
+            }
         }
         else
         {
@@ -219,7 +199,7 @@ public class Undead_A : MonoBehaviour
     }
     void FacePlayer()
     {
-        if(transform.position.x > Player.transform.position.x)
+        if (transform.position.x > Player.transform.position.x)
         {
             LookDirection = 1;
         }
@@ -231,53 +211,11 @@ public class Undead_A : MonoBehaviour
         if (LookDirection == 1) { Assets.transform.localScale = new Vector3(2, 2, 2); }
         else if (LookDirection == -1) { Assets.transform.localScale = new Vector3(-2, 2, 2); }
     }
-
-    void Walk()
-    {
-        RB.velocity = new Vector2(-Speed * LookDirection, -5);      
-        Anim.Play("UndeadAnim_A_Walk");
-    }
-
-    void IsByOriginPosition()
-    {
-        if (Vector3.Distance(transform.localPosition, OriginPosition) < 2)
-        {
-            IsAtOrigin = true;
-        }
-        else
-        {
-            IsAtOrigin = false;
-        }
-    }
-
-
-    void FaceOrigin()
-    {
-        if (transform.position.x > OriginPosition.x)
-        {
-            LookDirection = -1;
-        }
-        else
-        {
-            LookDirection = 1;
-        }
-
-        if (LookDirection == 1) { Assets.transform.localScale = new Vector3(2, 2, 2); }
-        else if (LookDirection == -1) { Assets.transform.localScale = new Vector3(-2, 2, 2); }
-    }
-    void WalkToOrigin()
-    {
-        RB.velocity = new Vector2(-Speed * LookDirection, -5);
-        Anim.Play("UndeadAnim_A_Walk");
-    }
-
-
 
     bool IsInAttackRange()
     {
         if (Vector3.Distance(Eyes.transform.position, Player.transform.position) < AttackTriggerRange)
         {
-            Anim.Play("UndeadAnim_A_Idle");
             return true;
         }
         else
@@ -289,32 +227,23 @@ public class Undead_A : MonoBehaviour
     IEnumerator Attack()
     {
         IsAttacking = true;
-        yield return new WaitForSeconds(TimeBeforeAttack);
         FacePlayer();
-        Anim.Play("UndeadAnim_A_SwingAttack");
+        Anim.Play("UndeadAnim_B_ShootingArrow");
         yield return new WaitForSeconds(AttackAnimationTime);
-        Anim.Play("UndeadAnim_A_Idle");
+        Anim.Play("UndeadAnim_B_Idle");
         yield return new WaitForSeconds(AttackCoolDownTime);
         IsAttacking = false;
-        Behaviour = "Hostile";
+        Behaviour = "Idle";
     }
 
-    public void AttackStep()
+    public void ReleaseArrow()
     {
-        RB.velocity = new Vector2((-Speed -1) * LookDirection, -5);
+       GameObject arrow = Instantiate(Arrow);
+        arrow.transform.position = HitStartPos.position;
+        arrow.GetComponent<Arrow>().Direction = -LookDirection;
+        arrow.GetComponent<Arrow>().ManualStart();
+        arrow.GetComponent<Arrow>().Flying = true;
     }
 
-    public void AttackRegister()
-    {
-        RaycastHit2D hit = Physics2D.Raycast(HitStartPos.position, new Vector2(-LookDirection, 0), AttackRange);
 
-
-        if (hit.collider != null)
-        {
-            if (hit.transform.CompareTag("Player"))
-            {
-                hit.transform.GetComponent<PlayerControllerV2>().PlayerTakeDamage(AttackDamage, false, 0);
-            }
-        }
-    }
 }
