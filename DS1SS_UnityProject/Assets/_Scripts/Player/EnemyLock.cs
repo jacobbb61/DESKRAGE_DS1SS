@@ -40,6 +40,7 @@ public class EnemyLock : MonoBehaviour
             }
 
             EnemyDistance = Vector3.Distance(transform.position, EnemyLockPos.position);
+           
             if (EnemyDistance >= 20)
             {
                 LockedOn = false;
@@ -74,39 +75,28 @@ public class EnemyLock : MonoBehaviour
         AllEnemies = GameObject.FindGameObjectsWithTag("Enemy");
         LayerEnemies = new List<GameObject>();
         foreach (GameObject enemy in AllEnemies)
-        {
-            if (enemy.GetComponentInChildren<SpriteRenderer>().sortingLayerName == Pc.gameObject.GetComponent<SortingGroup>().sortingLayerName)
-            {
+        {         
                 if (enemy.activeInHierarchy)
                 {
                     LayerEnemies.Add(enemy);
-                }
-            }         
+                }                
         }
 
         Transform trans = null; // Used for enemy transform
-        float nearestDistance = Mathf.Infinity;
         foreach (GameObject enemy in LayerEnemies)
         {
-                EnemyDistance = Vector3.Distance(transform.position, enemy.transform.position); // Distance between attached gameobject and enemy
-
+            EnemyDistance = Vector3.Distance(transform.position, enemy.transform.position); // Distance between attached gameobject and enemy
+            Debug.Log(enemy.name + " is " + EnemyDistance + " far away");
             if (EnemyDistance < 20)
             {
-                nearestDistance = EnemyDistance;
                 trans = enemy.transform; // Sets transform to closest enemy's transform
-                LockOnSymbol.GetComponent<SpriteRenderer>().sortingLayerName = enemy.GetComponentInChildren<SpriteRenderer>().sortingLayerName;
-                EnemyLockPos = enemy.GetComponentInChildren<TextMeshProUGUI>().transform;
+                EnemyLockPos = enemy.transform;
                 EnemyLockedOnTo = enemy;
+
                 LockedOn = true;
                 Pc.IsLockedOn = true;
                 LockOnSymbol.SetActive(true);      
-            }
-            else
-            {
-                LockedOn = false;
-                Pc.IsLockedOn = false;
-                LockOnSymbol.SetActive(false);
-            }
+            }  
         }
 
         LayerEnemies = null;

@@ -332,8 +332,8 @@ public class WorldSaveGameManager : MonoBehaviour
 
         CurrentCharacterData.EnemyBehaviour_3 = "Idle";
         CurrentCharacterData.EnemyHealth_3 = 11;
-        CurrentCharacterData.EnemyPosX_3 = 80;
-        CurrentCharacterData.EnemyPosY_3 = 7.28f;
+        CurrentCharacterData.EnemyPosX_3 = 50;
+        CurrentCharacterData.EnemyPosY_3 = 4.2f;
         CurrentCharacterData.EnemyDirection_3 = -1;
 
         CurrentCharacterData.EnemyBehaviour_4 = "";
@@ -344,14 +344,14 @@ public class WorldSaveGameManager : MonoBehaviour
 
         CurrentCharacterData.EnemyBehaviour_5 = "";
         CurrentCharacterData.EnemyHealth_5 = 24;
-        CurrentCharacterData.EnemyPosX_5 = 0;
-        CurrentCharacterData.EnemyPosY_5 = 0;
+        CurrentCharacterData.EnemyPosX_5 = 110;
+        CurrentCharacterData.EnemyPosY_5 = 23.2f;
         CurrentCharacterData.EnemyDirection_5 = -1;
 
         CurrentCharacterData.EnemyBehaviour_6 = "";
-        CurrentCharacterData.EnemyHealth_6 = 24;
-        CurrentCharacterData.EnemyPosX_6 = 0;
-        CurrentCharacterData.EnemyPosY_6 = 0;
+        CurrentCharacterData.EnemyHealth_6 = 11;
+        CurrentCharacterData.EnemyPosX_6 = 123;
+        CurrentCharacterData.EnemyPosY_6 = 23.2f;
         CurrentCharacterData.EnemyDirection_6 = -1;
 
         CurrentCharacterData.EnemyBehaviour_7 = "";
@@ -373,15 +373,15 @@ public class WorldSaveGameManager : MonoBehaviour
         CurrentCharacterData.EnemyDirection_9 = 1;
 
         CurrentCharacterData.EnemyBehaviour_10 = "";
-        CurrentCharacterData.EnemyHealth_10 = 24;
-        CurrentCharacterData.EnemyPosX_10 = 0;
-        CurrentCharacterData.EnemyPosY_10 = 0;
+        CurrentCharacterData.EnemyHealth_10 = 11;
+        CurrentCharacterData.EnemyPosX_10 = 156;
+        CurrentCharacterData.EnemyPosY_10 = 5.2f;
         CurrentCharacterData.EnemyDirection_10 = -1;
 
         CurrentCharacterData.EnemyBehaviour_11 = "";
-        CurrentCharacterData.EnemyHealth_11 = 24;
-        CurrentCharacterData.EnemyPosX_11 = 0;
-        CurrentCharacterData.EnemyPosY_11 = 0;
+        CurrentCharacterData.EnemyHealth_11 = 11;
+        CurrentCharacterData.EnemyPosX_11 = 171;
+        CurrentCharacterData.EnemyPosY_11 = 9;
         CurrentCharacterData.EnemyDirection_11 = -1;
 
         CurrentCharacterData.EnemyBehaviour_12 = "";
@@ -403,9 +403,9 @@ public class WorldSaveGameManager : MonoBehaviour
         CurrentCharacterData.EnemyDirection_14 = -1;
 
         CurrentCharacterData.EnemyBehaviour_15 = "";
-        CurrentCharacterData.EnemyHealth_15 = 24;
-        CurrentCharacterData.EnemyPosX_15 = 0;
-        CurrentCharacterData.EnemyPosY_15 = 0;
+        CurrentCharacterData.EnemyHealth_15 = 11;
+        CurrentCharacterData.EnemyPosX_15 = 203;
+        CurrentCharacterData.EnemyPosY_15 = 17.2f;
         CurrentCharacterData.EnemyDirection_15 = -1;
 
         CurrentCharacterData.EnemyBehaviour_16 = "";
@@ -418,12 +418,12 @@ public class WorldSaveGameManager : MonoBehaviour
         CurrentCharacterData.EnemyHealth_17 = 11;
         CurrentCharacterData.EnemyPosX_17 = 235.5f;
         CurrentCharacterData.EnemyPosY_17 = 17.45f;
-        CurrentCharacterData.EnemyDirection_17 = -1;
+        CurrentCharacterData.EnemyDirection_17 = 1;
 
         CurrentCharacterData.EnemyBehaviour_18 = "";
-        CurrentCharacterData.EnemyHealth_18 = 24;
-        CurrentCharacterData.EnemyPosX_18 = 0;
-        CurrentCharacterData.EnemyPosY_18 = 0;
+        CurrentCharacterData.EnemyHealth_18 = 11;
+        CurrentCharacterData.EnemyPosX_18 = 172;
+        CurrentCharacterData.EnemyPosY_18 = -5.85f;
         CurrentCharacterData.EnemyDirection_18 = -1;
 
         CurrentCharacterData.EnemyBehaviour_19 = "";
@@ -439,15 +439,15 @@ public class WorldSaveGameManager : MonoBehaviour
         CurrentCharacterData.EnemyDirection_20 = 1;
 
         CurrentCharacterData.EnemyBehaviour_21 = "";
-        CurrentCharacterData.EnemyHealth_21 = 24;
-        CurrentCharacterData.EnemyPosX_21 = 0;
-        CurrentCharacterData.EnemyPosY_21 = 0;
+        CurrentCharacterData.EnemyHealth_21 = 11;
+        CurrentCharacterData.EnemyPosX_21 = 161;
+        CurrentCharacterData.EnemyPosY_21 = -14.7f;
         CurrentCharacterData.EnemyDirection_21 = -1;
 
         CurrentCharacterData.EnemyBehaviour_22 = "";
-        CurrentCharacterData.EnemyHealth_22 = 24;
-        CurrentCharacterData.EnemyPosX_22 = 0;
-        CurrentCharacterData.EnemyPosY_22 = 0;
+        CurrentCharacterData.EnemyHealth_22 = 11;
+        CurrentCharacterData.EnemyPosX_22 = 171;
+        CurrentCharacterData.EnemyPosY_22 = -14.7f;
         CurrentCharacterData.EnemyDirection_22 = -1;
 
         CurrentCharacterData.EnemyBehaviour_23 = "";
