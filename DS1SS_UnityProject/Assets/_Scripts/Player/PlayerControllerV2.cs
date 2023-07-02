@@ -10,6 +10,7 @@ public class PlayerControllerV2 : MonoBehaviour
 {
 
     [Header("Player Stats")]
+    public string State;
     public float Health;
     public float MaxHealth;
     public float Stamina;
@@ -20,7 +21,7 @@ public class PlayerControllerV2 : MonoBehaviour
     [Header("stuff for jacob")]
     public float MovementInputDirection;
     public float PlayerDirection;
-    public float DodgeDirection;
+    public float JumpDirection;
     public bool IsUiOpen = false;
 
     [Header("movement states")]
@@ -31,8 +32,10 @@ public class PlayerControllerV2 : MonoBehaviour
     public bool IsBackStepping;
     public bool IsRunning;
     public bool IsJumping;
+    private bool IsLanding;
     public bool IsMovingInput;
     private bool IsWaitingToRun;
+    private bool DontDondgeOnThisRelease;
     public bool IsIdleAnim;
     public float VerticalSpeed;
     public bool FootAOnSlope;
@@ -41,10 +44,19 @@ public class PlayerControllerV2 : MonoBehaviour
     [Header("Movement Data to edit")]
     public float WalkSpeed;
     public float RunSpeed;
+
     public float RollSpeed;
+    public float RollUpSlopeSpeed;
+    public float RollDownSlopeSpeed;
+    private float OriginalRollSpeed;
     public float RollTime;
+
     public float BackstepSpeed;
+    public float BackstepUpSlopeSpeed;
+    public float BackstepDownSlopeSpeed;
+    private float OriginalBackstepSpeed;
     public float BackstepTime;
+
     public float JumpVerticalSpeed;
     public float JumpHorizontalSpeed;
     public float JumpRunHorizontalSpeed;
@@ -57,10 +69,12 @@ public class PlayerControllerV2 : MonoBehaviour
     public bool IsLockedOn;
     public bool IsBlocking;
     public bool IsHealing;
-    public bool IsAttackStepping;
+    public bool IsPlunging;
     public bool CanAttack;
     public bool CanFollowUp;
-    public bool CanRollOut;
+
+    public bool CanRollOut; //important
+
     private bool SwapLightAnim;
 
     [Header("Combat Data to edit")]
@@ -69,8 +83,7 @@ public class PlayerControllerV2 : MonoBehaviour
     public float LightFollowUpAttackTime;
     public float HeavyAttackTime;
     public float HeavyFollowUpAttackTime;
-    public float LightAttackStep;
-    public float HeavyAttackStep;
+    public float StepDistance;
 
     [Header("DAMAGE Data to edit")]
     public float LightAttackDamage;
@@ -89,9 +102,19 @@ public class PlayerControllerV2 : MonoBehaviour
     public Transform GroundCheckPosB;
 
     private Coroutine WaitToRunCoroutine;
+
     private Coroutine JumpingCoroutine;
+    private Coroutine RollingCoroutine;
+    private Coroutine BacksteppingCoroutine;
+    private Coroutine StaggerCoroutine;
+    private Coroutine EstusUseCoroutine;
+
     private Coroutine LightAttackCoroutine;
+    private Coroutine LightAttackFollowUpCoroutine;
     private Coroutine HeavyAttackCoroutine;
+    private Coroutine HeavyAttackFollowUpCoroutine;
+
+    private Coroutine CancelThisCoroutine;
 
     public Rigidbody2D MyRb;
     private Collider2D MyCol;
@@ -105,7 +128,9 @@ public class PlayerControllerV2 : MonoBehaviour
     private Slider StaminaSlider;
     private Slider HealthSlider;
     private TextMeshProUGUI EstusCountText;
-
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     private void Start()
     {
         PM = GetComponent<PlayerManager>();
@@ -113,6 +138,8 @@ public class PlayerControllerV2 : MonoBehaviour
         MyCol = GetComponent<CapsuleCollider2D>();
         EnemyLock = GetComponent<EnemyLock>();
         VerticalSpeed = FallSpeed;
+        OriginalBackstepSpeed = BackstepSpeed;
+        OriginalRollSpeed = RollSpeed;
         if (SceneManager.GetActiveScene().name == "Build")
         {
             CM = GameObject.FindGameObjectWithTag("Canvas").GetComponent<CanvasManager>();
@@ -125,6 +152,9 @@ public class PlayerControllerV2 : MonoBehaviour
         
     }
 
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     IEnumerator PlayerDead()
     {
         CanMove = false;
@@ -184,151 +214,248 @@ public class PlayerControllerV2 : MonoBehaviour
         }
     }
 
+    public void PlayerFinishInteraction()
+    {
+        if (MovementInputDirection == 0) { State = "Idle"; } else { State = "Walking"; }
+    }
+
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////
+    public void A(InputAction.CallbackContext context)
+    {
+        if (!IsJumping && IsGrounded)
+        {
+            switch (State)
+            {
+                case "Idle":
+                    ProcessInput_A(context);
+                    break;
+                case "Walking":
+                    ProcessInput_A(context);
+                    break;
+                case "Running":
+                    ProcessInput_A(context);
+                    break;
+                case "Blocking":
+                    ProcessInput_A(context); IsBlocking = false;
+                    break;
+            }
+        }
+    }
+    void ProcessInput_A(InputAction.CallbackContext context)
+    {
+        if (context.action.WasPerformedThisFrame())
+        {
+
+            if (JumpingCoroutine != null) { StopCoroutine(JumpingCoroutine); }
+
+
+            if (MovementInputDirection > 0.4f) { PlayerDirection = 1; JumpDirection = 1; }
+            else if (MovementInputDirection < -0.4f) { PlayerDirection = -1; JumpDirection = -1; }
+            else  { JumpDirection = 0; }
+            FaceTowardsInput();
+
+            State = "Jumping";
+         
+            JumpingCoroutine = StartCoroutine(Jump());
+            
+            Stamina -= 30f;
+        }
+    }
+    //////////////////////////////////////////////////////////////
+    public void B(InputAction.CallbackContext context)
+    {
+        if (CanRollOut && CancelThisCoroutine!=null) 
+        {
+            ProcessInput_B_Cancel();
+            StopCoroutine(CancelThisCoroutine);   
+        }
+        else
+        {
+            switch (State)
+            {
+                case "Idle":
+                    ProcessInput_B(context);
+                    break;
+                case "Walking":
+                    ProcessInput_B(context);
+                    break;
+                case "Running":
+                    ProcessInput_B(context);
+                    break;
+                case "Blocking":
+                    ProcessInput_B(context); IsBlocking = false;
+                    break;
+                default:
+                    if (context.action.WasPerformedThisFrame())
+                    {
+                        DontDondgeOnThisRelease = true;
+                    }
+                    break;
+            }
+        }
+    }
+    void ProcessInput_B(InputAction.CallbackContext context)
+    {
+   
+        if (context.action.WasPerformedThisFrame())
+        {
+            WaitToRunCoroutine = StartCoroutine(WaitToRun());
+
+        }
+
+        if (context.action.WasReleasedThisFrame())
+        {    
+            if (IsWaitingToRun) { StopCoroutine(WaitToRunCoroutine); IsWaitingToRun = false; }
+
+            if (State == "Running")
+            {                
+                StartCoroutine(StaminaRegenPause());
+                if (MovementInputDirection == 0) { State = "Idle"; } else { State = "Walking"; }
+            }
+            else if (State != "Running" && DontDondgeOnThisRelease == false)
+            {
+                if (MovementInputDirection == 0) // trigger backstep
+                {
+                    StartBackStep();
+                }
+                else // trigger roll
+                {
+                    StartRoll();
+                }
+                
+            }
+         DontDondgeOnThisRelease = false;
+
+        }
+
+    }
+    void ProcessInput_B_Cancel()
+    {
+        if (MovementInputDirection == 0) { StartBackStep(); }
+        else { StartRoll(); }
+        CanFollowUp = false;
+        CanRollOut = false;
+    }
+    void StartRoll()
+    {
+        if (MovementInputDirection > 0.2f) { PlayerDirection = 1; }
+        if (MovementInputDirection < -0.2f) { PlayerDirection = -1; }
+
+        if (PlayerDirection == 1) { Assets.transform.localScale = new Vector3(1, 1, 1); }
+        else if (PlayerDirection == -1) { Assets.transform.localScale = new Vector3(-1, 1, 1); }
+
+        RollingCoroutine =  StartCoroutine(Roll());
+
+        Stamina -= 30f;
+        State = "Rolling";
+    }
+    void StartBackStep()
+    {
+       BacksteppingCoroutine = StartCoroutine(Backstep()); 
+
+        Stamina -= 15f;
+        State = "BackStepping";
+    }
+    //////////////////////////////////////////////////////////////
+    public void X(InputAction.CallbackContext context)
+    {
+        switch (State)
+        {
+            case "Idle":
+                ProcessInput_X(context);
+                break;
+            case "Walking":
+                ProcessInput_X(context);
+                break;
+            case "Blocking":
+                ProcessInput_X(context); IsBlocking = false;
+                break;
+            default:
+                break;
+        }
+    }
+    void ProcessInput_X(InputAction.CallbackContext context)
+    {
+            if (context.action.triggered && CurrentEstus>0)
+            {
+            State = "Estus";
+            EstusUseCoroutine = StartCoroutine(UseEstus());
+            } 
+            if(context.action.triggered && CurrentEstus == 0)
+            {
+            State = "Estus";
+            EstusUseCoroutine = StartCoroutine(UseEmptyEstus());
+            }
+    }
+    //////////////////////////////////////////////////////////////
+    public void Y(InputAction.CallbackContext context)
+    {
+        switch (State)
+        {
+            case "Idle":
+                ProcessInput_Y(context);
+                break;
+            case "Walking":
+                ProcessInput_Y(context);
+                break;
+            case "Running":
+                ProcessInput_Y(context);
+                break;
+            case "Blocking":
+                ProcessInput_Y(context);
+                break;
+            default:
+                break;
+        }
+    }
+    void ProcessInput_Y(InputAction.CallbackContext context)
+    {
+        if (context.action.triggered)
+        {
+           
+            if (Interactable != null)
+            { 
+                 State = "Interacting";
+                Interactable.InvokeEvent(); 
+            }
+
+        }
+    }
+    //////////////////////////////////////////////////////////////
     public void Move(InputAction.CallbackContext context)
     {
 
-            if (context.performed)
-            {
-                Vector2 MovementInput;
-                MovementInput = context.ReadValue<Vector2>();
-            if (MovementInput.x > 0.2f)
+            Vector2 MovementInput;
+            MovementInput = context.ReadValue<Vector2>();
+            if (MovementInput.x > 0.4f)
             {
                 MovementInputDirection = 1;
                 IsMovingInput = true;
             }
-            if (MovementInput.x < -0.2f)
+            if (MovementInput.x < -0.4f)
             {
                 MovementInputDirection = -1;
                 IsMovingInput = true;
             }
-        }
         
+
         if (context.canceled)
         {
             MovementInputDirection = 0;
             IsMovingInput = false;
-            MyRb.velocity = Vector2.zero;
         }
-    }
-    public void B(InputAction.CallbackContext context)
-    {
-        if (IsBlocking) { CanMove = true; }
-        if (CanMove && !IsUiOpen && !IsHealing)
+
+        switch (State)
         {
-
-            if (context.action.WasPerformedThisFrame())
-            {
-
-                WaitToRunCoroutine = StartCoroutine(WaitToRun()); 
-                
-            }
-            if (context.action.WasReleasedThisFrame())
-            {
-                if (IsWaitingToRun) { StopCoroutine(WaitToRunCoroutine); IsWaitingToRun = false; }
-                if (IsGrounded)
-                {
-                    if (!IsRunning) // trigger roll
-                    {
-                        
-                        IsRunning = false;
-                        CanMove = false;
-                        if (MovementInputDirection == 1) { DodgeDirection = 1; }
-                        else if (MovementInputDirection == -1) { DodgeDirection = -1; }
-                        if (MovementInputDirection == 0) { StartCoroutine(Backstep()); Debug.Log("Backstep");  Stamina -= 15f; }
-                        else { StartCoroutine(Roll()); Debug.Log("Roll"); Stamina -= 30f; }
-                    }
-                    else
-                    {
-                        IsRunning = false;
-                    }
-                }
-                else
-                {
-                    IsRunning = false;
-                    IsRolling = false;
-                }
-            }
-        }
-        if (CanRollOut)
-        {        
-            if (context.action.WasReleasedThisFrame())
-            {
-                if (IsWaitingToRun) { StopCoroutine(WaitToRunCoroutine); IsWaitingToRun = false; }
-                if (IsGrounded)
-                {
-                    if (!IsRunning) // trigger roll
-                    {
-
-                        IsRunning = false;
-                        CanMove = false;
-                        if (MovementInputDirection == 1) { DodgeDirection = 1; }
-                        else if (MovementInputDirection == -1) { DodgeDirection = -1; }
-                        if (MovementInputDirection == 0) { StartCoroutine(Backstep()); Debug.Log("Backstep"); Stamina -= 15f; }
-                        else { StartCoroutine(Roll()); Debug.Log("Roll"); Stamina -= 30f; }
-                    }
-                    else
-                    {
-                        IsRunning = false;
-                    }
-                }
-                else
-                {
-                    IsRunning = false;
-                    IsRolling = false;
-                }
-            }
+            case "Idle":
+                if (IsGrounded && IsMovingInput) State = "Walking";
+                break;
         }
     }
-    public void A(InputAction.CallbackContext context)
-    {
-        if (IsBlocking) { CanMove = true; }
-        if (CanMove && !IsUiOpen && !IsHealing)
-        {
-
-            if (context.action.WasPerformedThisFrame())
-            {
-                if (IsGrounded)
-                {
-                    DodgeDirection = MovementInputDirection;
-                    JumpingCoroutine = StartCoroutine(Jump());
-                    Stamina -= 30f;
-                    CanMove = false;
-                    VerticalSpeed = 0;
-                }
-            }
-        }
-
-    }
-    public void Y(InputAction.CallbackContext context)
-    {
-        Debug.Log("Y");
-        if (CanMove && !IsRolling && !IsJumping && !IsRunning && Interactable != null && !IsUiOpen && !IsHealing)
-        {
-            if (context.action.triggered)
-            {
-                Interactable.InvokeEvent();
-            }
-        }
-
-    }
-
-    public void X(InputAction.CallbackContext context)
-    {
-        Debug.Log("X");
-        if (CanMove && !IsRolling && !IsJumping && !IsRunning && !IsUiOpen && !IsHealing)
-        {
-            if (context.action.triggered && CurrentEstus>0)
-            {
-                StartCoroutine(UseEstus());
-            } 
-            if(context.action.triggered && CurrentEstus == 0)
-            {
-                StartCoroutine(UseEmptyEstus());
-            }
-        }
-
-    }
-
+    //////////////////////////////////////////////////////////////
     public void LockOn(InputAction.CallbackContext context)
     {
         Debug.Log("LockOn");
@@ -341,98 +468,431 @@ public class PlayerControllerV2 : MonoBehaviour
         }
 
     }
-
-
+    //////////////////////////////////////////////////////////////
     public void RT(InputAction.CallbackContext context)
     {
-        if (IsBlocking) { CanMove = true; }
-        if (CanMove && IsGrounded && !IsUiOpen && !CanFollowUp && CanAttack && Stamina > 0)
+        if (Stamina >= 0)
         {
-            if (context.action.triggered)
+            if (CanFollowUp)
             {
-                HeavyAttackCoroutine = StartCoroutine(HeavyAttack());
-                Stamina -= 35f;
+                ProcessInput_RT_Cancel();
             }
-        }
-        if (IsGrounded && !IsUiOpen && CanFollowUp && Stamina > 0)
-        {
-            if (context.action.triggered)
+            else
             {
-                if (HeavyAttackCoroutine != null) { StopCoroutine(HeavyAttackCoroutine); }
-                if (MovementInputDirection > 0.2f) { PlayerDirection = 1; }
-                if (MovementInputDirection < -0.2f) { PlayerDirection = -1; }
-                StartCoroutine(HeavyAttackFollowUp());
-                Stamina -= 30f;
+                switch (State)
+                {
+                    case "Idle":
+                        ProcessInput_RT(context);
+                        break;
+                    case "Walking":
+                        ProcessInput_RT(context);
+                        break;
+                    case "Running":
+                        ProcessInput_RT(context);
+                        break;
+                    case "Blocking":
+                        ProcessInput_RT(context); IsBlocking = false;
+                        break;                    
+                    case "Falling":
+                        ProcessInput_RT_Plunge(context);
+                        break;
+                    default:
+                        break;
+                }
             }
-        }
+        }     
 
     }
+    void ProcessInput_RT(InputAction.CallbackContext context)
+    {
+        if (context.action.triggered)
+        {
+            if (!IsLockedOn)
+            {
+                if (MovementInputDirection > 0.2f) { PlayerDirection = 1; }
+                if (MovementInputDirection < -0.2f) { PlayerDirection = -1; }
+                FaceTowardsInput();
+            }
+            else
+            {
+                FaceTowardsEnemy();
+            }
+            HeavyAttackCoroutine = StartCoroutine(HeavyAttack());
+            Stamina -= 35f;
+        }
+    }
+    void ProcessInput_RT_Cancel()
+    {
+        if (HeavyAttackCoroutine != null) { StopCoroutine(HeavyAttackCoroutine); }
+
+        if (!IsLockedOn)
+        {
+            if (MovementInputDirection > 0.2f) { PlayerDirection = 1; }
+            if (MovementInputDirection < -0.2f) { PlayerDirection = -1; }
+            FaceTowardsInput();
+        }
+        else
+        {
+            FaceTowardsEnemy();
+        }
+        HeavyAttackFollowUpCoroutine = StartCoroutine(HeavyAttackFollowUp());
+        Stamina -= 30f;
+        CanFollowUp = false;
+    }
+    void ProcessInput_RT_Plunge(InputAction.CallbackContext context) 
+    {
+        if (context.action.triggered && IsPlunging==false)
+        {
+            StartCoroutine(EnterPlunge());
+            Stamina -= 35f;
+        }
+    }
+    //////////////////////////////////////////////////////////////
     public void RB(InputAction.CallbackContext context)
     {
-        
-
-        if (CanMove && IsGrounded && !IsUiOpen && !CanFollowUp && CanAttack && Stamina > 0)
+        if (Stamina >= 0)
         {
-            if (context.action.triggered)
+            if (CanFollowUp)
             {
-                LightAttackCoroutine = StartCoroutine(LightAttack());
-                Stamina -= 25f;
+                ProcessInput_RB_Cancel();
+            }
+            else
+            {
+                switch (State)
+                {
+                    case "Idle":
+                        ProcessInput_RB(context);
+                        break;
+                    case "Walking":
+                        ProcessInput_RB(context);
+                        break;
+                    case "Running":
+                        ProcessInput_RB(context);
+                        break;
+                    case "Blocking":
+                        ProcessInput_RB(context); IsBlocking = false;
+                        break;
+                    default:
+                        break;
+                }
             }
         }
-        if (IsGrounded && !IsUiOpen && CanFollowUp && Stamina > 0)
+    }
+    void ProcessInput_RB(InputAction.CallbackContext context)
+    {
+        if (context.action.triggered)
         {
-            if (context.action.triggered)
+            if (!IsLockedOn)
             {
-                if (LightAttackCoroutine != null) { StopCoroutine(LightAttackCoroutine); }
                 if (MovementInputDirection > 0.2f) { PlayerDirection = 1; }
                 if (MovementInputDirection < -0.2f) { PlayerDirection = -1; }
-                StartCoroutine(LightAttackFollowUp());
-                Stamina -= 20f;
+                FaceTowardsInput();
             }
+            else
+            {
+                FaceTowardsEnemy();
+            }
+            LightAttackCoroutine = StartCoroutine(LightAttack());
+            Stamina -= 25f;
         }
-
-
     }
-
+    void ProcessInput_RB_Cancel()
+    {
+        if (LightAttackCoroutine != null) { StopCoroutine(LightAttackCoroutine); }
+        if (!IsLockedOn)
+        {
+            if (MovementInputDirection > 0.2f) { PlayerDirection = 1; }
+            if (MovementInputDirection < -0.2f) { PlayerDirection = -1; }
+            FaceTowardsInput();
+        }
+        else
+        {
+            FaceTowardsEnemy();
+        }
+        
+        LightAttackFollowUpCoroutine = StartCoroutine(LightAttackFollowUp());
+        Stamina -= 20f;
+        CanFollowUp = false;
+    }
+    //////////////////////////////////////////////////////////////
     public void LT(InputAction.CallbackContext context)
     {
 
-      
+        if (Stamina >= 0)
+        {
+            switch (State)
+            {
+                case "Idle":
+                    ProcessInput_LT(context);
+                    break;
+                case "Walking":
+                    ProcessInput_LT(context);
+                    break;
+                case "Running":
+                    ProcessInput_LT(context);
+                    break;
+                case "Blocking":
+                    ProcessInput_LT(context); IsBlocking = false;
+                    break;
+                default:
+                    break;
+            }
+        }
 
     }
+    void ProcessInput_LT(InputAction.CallbackContext context)
+    {
+        if (context.action.triggered)
+        {
+            if (!IsLockedOn)
+            {
+                if (MovementInputDirection > 0.2f) { PlayerDirection = 1; }
+                if (MovementInputDirection < -0.2f) { PlayerDirection = -1; }
+                FaceTowardsInput();
+            }
+            else
+            {
+                FaceTowardsEnemy();
+            }
+            StartCoroutine(Parry());
+            Stamina -= 15f;
+        }
+    }
+    //////////////////////////////////////////////////////////////
     public void LB(InputAction.CallbackContext context)
     {
-        if (IsBlocking)
+        if (Stamina >= 0)
         {
-            if (context.action.triggered)
+            switch (State)
             {
-                ToggleBlock();
+                case "Idle":
+                    ProcessInput_LB(context);
+                    break;
+                case "Walking":
+                    ProcessInput_LB(context);
+                    break;
+                case "Running":
+                    ProcessInput_LB(context);
+                    break;
+                case "Blocking":
+                    ProcessInput_LB(context);
+                    break;
+                default:
+                    break;
             }
         }
-        if (CanMove && IsGrounded && !IsUiOpen && CanAttack && Stamina > 0 && !IsBlocking)
+    }  
+    void ProcessInput_LB(InputAction.CallbackContext context)
+    {
+        if (context.action.WasPressedThisFrame())
         {
-            if (context.action.triggered)
+            if (!IsLockedOn)
             {
-                ToggleBlock();
+                if (MovementInputDirection > 0.2f) { PlayerDirection = 1; }
+                if (MovementInputDirection < -0.2f) { PlayerDirection = -1; }
+                FaceTowardsInput();
             }
+            else
+            {
+                FaceTowardsEnemy();
+            }
+            StartCoroutine(EnterBlock());
+        }
+        if (context.action.WasReleasedThisFrame())
+        {
+            StartCoroutine(ExitBlock());
         }
     }
+    //////////////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     public void Update()
-    {
+    {   
         if (Health <= 0) { StartCoroutine(PlayerDead()); }
         GroundCheck();
         UpdateUI();
         if (IsStaminaRegen) { StaminaRegen(); }
-        if (Stamina <= 0 && IsGrounded) 
-        { 
-            StartCoroutine(StaminaRegenPause()); 
-            IsRunning = false;
-            if (IsBlocking) { StartCoroutine(Stagger()); } //stagger player
+
+        switch (State) 
+        {
+            case "Idle": 
+                Idle();
+                break;
+            case "Walking": 
+                Walking();          
+                break;
+            case "Running": 
+                Running();
+                break;
+            case "Rolling":
+                Rolling();
+                break;
+            case "BackStepping":
+                BackStepping();
+                break;
+            case "Jumping":
+                Jumping();
+                break;
+            case "Falling":
+                Falling();
+                break;
+            case "Attacking":
+                Attacking();
+                break;
+            case "Blocking":
+                Blocking();
+                break;
+            case "Estus":
+
+                break;            
+            case "Interacting":
+
+                break;
+            case "MenuOpen":
+                MenuOpen();
+                break;
+            default:
+                Debug.LogError("Player state unknown, default to idle");
+                State = "Idle";
+                break;
+        }
+    }
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    void Idle()
+    {
+        Anim.Play("PlayerAnim_Idle");
+        if (IsLockedOn) { FaceTowardsEnemy(); } else { FaceTowardsInput(); }
+    }
+
+    void Walking()
+    {
+        if (MovementInputDirection > 0.2f && !IsLockedOn) { PlayerDirection = 1; }
+        if (MovementInputDirection < -0.2f && !IsLockedOn) { PlayerDirection = -1; }
+        if (IsLockedOn) { FaceTowardsEnemy(); } else { FaceTowardsInput(); }    
+
+        
+
+        MyRb.velocity = new Vector2(MovementInputDirection * WalkSpeed, -VerticalSpeed);
+
+        if (!IsLockedOn) { Anim.Play("PlayerAnim_WalkForward"); }
+        else { Anim.Play("PlayerAnim_WalkBackward"); }
+        
+        
+        if (MovementInputDirection == 0) { State = "Idle"; }
+    }
+
+    void Running()
+    {      
+        if (Stamina <= 0) //ran out of stamina, break run
+        {
+            StartCoroutine(StaminaRegenPause());
+            if (MovementInputDirection == 0) { State = "Idle"; } else { State = "Walking"; }
+        }
+        else
+        {
+            if (MovementInputDirection > 0.2f) { PlayerDirection = 1; Anim.Play("PlayerAnim_Run"); Stamina -= Time.deltaTime * 8.5f; }
+            if (MovementInputDirection < -0.2f) { PlayerDirection = -1; Anim.Play("PlayerAnim_Run"); Stamina -= Time.deltaTime * 8.5f; }
+            if (MovementInputDirection > -0.2f && MovementInputDirection < 0.2f) { Anim.Play("PlayerAnim_Idle"); DontDondgeOnThisRelease = true;  }
+
+            FaceTowardsInput(); 
+
+           
+            IsStaminaRegen = false;
+
+            MyRb.velocity = new Vector2(MovementInputDirection * RunSpeed, -VerticalSpeed);
+        }
+        IsLockedOn = false;        
+    }
+
+    void Rolling()
+    {
+
+        if (IsGrounded)
+        {
+            MyRb.velocity = new Vector2(PlayerDirection * RollSpeed, -VerticalSpeed);
+        }
+        else
+        {
+            MyRb.velocity = new Vector2(PlayerDirection * RollSpeed, -5);
         }
 
-        if (IsLockedOn && !IsRolling && !IsRunning && !IsJumping)
+    }
+    void BackStepping()
+    {
+        if (IsGrounded) { MyRb.velocity = new Vector2(-PlayerDirection * BackstepSpeed, -VerticalSpeed); }
+        else { MyRb.velocity = new Vector2(-PlayerDirection * BackstepSpeed, -5); }
+        
+    }
+
+    void Jumping()
+    {
+        IsJumping = true;
+        IsGrounded = false;
+        FootAOnSlope = false;
+        FootBOnSlope = false;
+        IsStaminaRegen = false;
+    }
+    void Falling()
+    {     
+        
+
+        if (MovementInputDirection > 0.2f) { PlayerDirection = 1; }
+        if (MovementInputDirection < -0.2f) { PlayerDirection = -1; }
+        FaceTowardsInput();
+
+        if (!IsRunning) { MyRb.velocity = new Vector2(MovementInputDirection * AirborneControl, MyRb.velocity.y); }
+        else { MyRb.velocity = new Vector2(MovementInputDirection * (AirborneControl + 5), MyRb.velocity.y); }
+
+        VerticalSpeed = 5 + (Time.deltaTime*100);
+
+
+        if (IsGrounded && !IsJumping && !IsLanding)
         {
+            StartCoroutine(Land());
+            IsLanding = true;
+            IsPlunging = false;
+        }
+        if (!IsGrounded && !IsLanding)
+        {
+            if (IsPlunging)
+            {
+                Anim.Play("PlayerAnim_Plunge");
+                PlungeAttackRegester();
+            }
+            else
+            {
+                Anim.Play("PlayerAnim_JumpIdle");
+            }
+        }
+
+
+    }
+    void Attacking()
+    {
+
+    }
+
+    void Blocking()
+    {
+        if (Stamina <= 0) //ran out of stamina, break blocking and stagger
+        {
+           StartCoroutine(Stagger());
+        }
+    }
+    void MenuOpen()
+    {
+
+    }
+
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    void FaceTowardsEnemy()
+    {
             if (EnemyLock.enemyToRight)
             {
                 PlayerDirection = -1;
@@ -441,107 +901,87 @@ public class PlayerControllerV2 : MonoBehaviour
             {
                 PlayerDirection = 1;
             }
-        }
-            
-        if (PlayerDirection == 1) { Assets.transform.localScale = new Vector3(1, 1, 1); }            
+        if (PlayerDirection == 1) { Assets.transform.localScale = new Vector3(1, 1, 1); }
         else if (PlayerDirection == -1) { Assets.transform.localScale = new Vector3(-1, 1, 1); }
-
-        if (IsGrounded && CanMove && IsIdleAnim && !IsMovingInput)
-        {
-            Anim.Play("PlayerAnim_Idle");  
-        }
-
-        if (IsGrounded && CanMove && IsMovingInput)
-        {
-            
-            if (MovementInputDirection > 0.2f && !IsLockedOn) { PlayerDirection = 1; }
-            if (MovementInputDirection < -0.2f && !IsLockedOn) { PlayerDirection = -1; }
-            if (!IsRunning)
-            {
-                MyRb.velocity = new Vector2(MovementInputDirection * WalkSpeed, -VerticalSpeed);
-                IsStaminaRegen = true;
-                if (!IsLockedOn) { Anim.Play("PlayerAnim_WalkForward"); }
-                else { Anim.Play("PlayerAnim_WalkBackward"); }
-            }
-            else if (IsRunning && Stamina > 0)
-            {
-                Stamina -= Time.deltaTime * 8.5f; IsStaminaRegen = false;
-                MyRb.velocity = new Vector2(MovementInputDirection * RunSpeed, -VerticalSpeed);
-                Anim.Play("PlayerAnim_Run");
-            }
-        }
-       
-        if(!IsGrounded && IsJumping && !IsRolling && !IsBackStepping)
-        {
-            if (!IsRunning) { MyRb.velocity = new Vector2(MovementInputDirection * AirborneControl, MyRb.velocity.y); }
-            else { MyRb.velocity = new Vector2(MovementInputDirection * AirborneControl *4, MyRb.velocity.y); }
-            if (MovementInputDirection > 0.2f) { PlayerDirection = 1; }
-            if (MovementInputDirection < -0.2f) { PlayerDirection = -1; }
-        }
-        if(IsGrounded && IsRolling) { MyRb.velocity = new Vector2(DodgeDirection * RollSpeed, MyRb.velocity.y / 10); }
-        if(IsGrounded && IsBackStepping) { MyRb.velocity = new Vector2(-PlayerDirection * BackstepSpeed, MyRb.velocity.y / 10); }
-
-
-    }    
-    public void GroundCheck()
+    }
+    void FaceTowardsInput()
     {
-        RaycastHit2D hitA = Physics2D.Raycast(GroundCheckPosA.position, Vector2.down, .45f);
-        RaycastHit2D hitB = Physics2D.Raycast(GroundCheckPosB.position, Vector2.down, .45f);
+        if (PlayerDirection == 1) { Assets.transform.localScale = new Vector3(1, 1, 1); }
+        else if (PlayerDirection == -1) { Assets.transform.localScale = new Vector3(-1, 1, 1); }
+    }
 
-        if (hitA.collider != null)
+
+
+    void GroundCheck()
+    {
+        if (!IsJumping)
         {
-            if (hitA.transform.CompareTag("Ground"))
+            int layerMask = ~(LayerMask.GetMask("Enemy"));
+            RaycastHit2D hitA = Physics2D.Raycast(GroundCheckPosA.position, Vector2.down, .45f, layerMask);
+            RaycastHit2D hitB = Physics2D.Raycast(GroundCheckPosB.position, Vector2.down, .45f, layerMask);
+
+            if (hitA.collider != null)
             {
-                IsGrounded = true;
-                FootAOnSlope = false;
+                if (hitA.transform.CompareTag("Ground"))
+                {
+                    IsGrounded = true;
+                    FootAOnSlope = false;
+                }
+                else if (hitA.transform.CompareTag("Slope"))
+                {
+                    IsGrounded = true;
+                    FootAOnSlope = true;
+                }
+                else
+                {
+                    IsGrounded = false;
+                    FootAOnSlope = false;
+                }
             }
-            else if (hitA.transform.CompareTag("Slope"))
+            if (hitB.collider != null)
             {
-                IsGrounded = true;
-                FootAOnSlope = true;
+                if (hitB.transform.CompareTag("Ground"))
+                {
+                    IsGrounded = true;
+                    FootBOnSlope = false;
+                }
+                else if (hitB.transform.CompareTag("Slope"))
+                {
+                    IsGrounded = true;
+                    FootBOnSlope = true;
+                }
+                else
+                {
+                    IsGrounded = false;
+                    FootBOnSlope = false;
+                }
             }
-            else 
+            if (hitA.collider == null && hitB.collider == null)
             {
                 IsGrounded = false;
-                FootAOnSlope = false;
             }
-        }
-        if (hitB.collider != null)
-        {
-            if (hitB.transform.CompareTag("Ground"))
+
+            if (!IsGrounded && State != "Rolling" && State != "BackStepping")
             {
-                IsGrounded = true;
-                FootBOnSlope = false;
+                State = "Falling";
+                Anim.Play("PlayerAnim_JumpIdle");
+                VerticalSpeed = 4f;
             }
-            else if (hitB.transform.CompareTag("Slope"))
+            else { VerticalSpeed = FallSpeed; }
+
+
+            if (FootAOnSlope && FootBOnSlope && hitA.transform != null) { OnSlope(hitA.transform); }
+            else if (FootAOnSlope && !FootBOnSlope && hitA.transform != null) { OnSlope(hitA.transform); }
+            else if (!FootAOnSlope && FootBOnSlope && hitB.transform != null) { OnSlope(hitB.transform); }
+            else if (!FootAOnSlope && !FootBOnSlope)
             {
-                IsGrounded = true;
-                FootBOnSlope = true;
+                //not on slope reset speeds
+                WalkSpeed = 2f;
+                RunSpeed = 5f;
             }
-            else
-            {
-                IsGrounded = false;
-                FootBOnSlope = false;
-            }
+
         }
-        if (hitA.collider == null && hitB.collider == null)
-        {
-            IsGrounded = false;
-        }
-        if(FootAOnSlope && FootBOnSlope && hitA.transform != null) { OnSlope(hitA.transform); }
-        else if (FootAOnSlope && !FootBOnSlope && hitA.transform != null) { OnSlope(hitA.transform); }
-        else if (!FootAOnSlope && FootBOnSlope && hitB.transform != null) { OnSlope( hitB.transform); }
-        else if(!FootAOnSlope && !FootBOnSlope)
-        {
-            //not on slope reset speeds
-            WalkSpeed = 2f;
-            RunSpeed = 5f;
-
-            if (IsGrounded) { VerticalSpeed = 0.5f; } else { VerticalSpeed = FallSpeed; }
-        }
-
-
-
+        
     }
     void OnSlope(Transform Slope)
     {
@@ -555,7 +995,11 @@ public class PlayerControllerV2 : MonoBehaviour
                 
                 WalkSpeed = 3f;
                 RunSpeed = 5.5f;
-                if (IsMovingInput) { VerticalSpeed = 0f; } else { MyRb.velocity = Vector2.zero; }
+                if (IsMovingInput)
+                {
+                    VerticalSpeed = 0f;
+                }
+                else { MyRb.velocity = Vector2.zero; }
             }
             else
             {//going with slope
@@ -563,8 +1007,8 @@ public class PlayerControllerV2 : MonoBehaviour
                 WalkSpeed = 1.5f;
                 RunSpeed = 4f;
                 if (IsMovingInput) { VerticalSpeed = 5f; } else { MyRb.velocity = Vector2.zero; }
-                if (FootAOnSlope && !FootBOnSlope) { WalkSpeed = 1.75f; VerticalSpeed = 1.75f; } 
-                if(!FootAOnSlope && FootBOnSlope) { WalkSpeed = 1.75f; VerticalSpeed = 1.75f; }
+                if (FootAOnSlope && !FootBOnSlope) { WalkSpeed = 1.75f; if (IsMovingInput) { VerticalSpeed = 1.75f; } else { VerticalSpeed = 0f; } }
+                if(!FootAOnSlope && FootBOnSlope) { WalkSpeed = 1.75f; if (IsMovingInput) { VerticalSpeed = 1.75f; } else { VerticalSpeed = 0f; } }
             }
 
         }
@@ -574,16 +1018,20 @@ public class PlayerControllerV2 : MonoBehaviour
             if (MovementInputDirection == 1)
             { //going against slope
                 WalkSpeed = 3.5f;
-                RunSpeed = 7f; 
-               if (IsMovingInput) { VerticalSpeed = 0f;} else { MyRb.velocity = Vector2.zero; }
+                RunSpeed = 7f;
+                if (IsMovingInput)
+                {
+                    VerticalSpeed = 0f;
+                }
+                else { MyRb.velocity = Vector2.zero; }
             }
             else
             {//going with slope
                 WalkSpeed = 1.5f;
                 RunSpeed = 3f;
                 if (IsMovingInput) { VerticalSpeed = 5f; } else { MyRb.velocity = Vector2.zero; }
-                if (FootAOnSlope && !FootBOnSlope) { WalkSpeed = 1.75f; VerticalSpeed = 1.75f; }
-                if (!FootAOnSlope && FootBOnSlope) { WalkSpeed = 1.75f; VerticalSpeed = 1.75f; }
+                if (FootAOnSlope && !FootBOnSlope) { WalkSpeed = 1.75f; if (IsMovingInput) { VerticalSpeed = 1.75f; } else { VerticalSpeed = 0f; } }
+                if (!FootAOnSlope && FootBOnSlope) { WalkSpeed = 1.75f; if (IsMovingInput) { VerticalSpeed = 1.75f; } else { VerticalSpeed = 0f; } }
             }
         }
         if (SlopeAngle >= 325 && SlopeAngle >300)
@@ -593,15 +1041,19 @@ public class PlayerControllerV2 : MonoBehaviour
             { //going against slope
                 WalkSpeed = 1.5f;
                 RunSpeed = 4f;
-                if (IsMovingInput) { VerticalSpeed = 5f; } else { MyRb.velocity = Vector2.zero; }
-                if (FootAOnSlope && !FootBOnSlope) { WalkSpeed = 1.75f; VerticalSpeed = 1.75f; }
-                if (!FootAOnSlope && FootBOnSlope) { WalkSpeed = 1.75f; VerticalSpeed = 1.75f; } 
+                if (IsMovingInput)
+                {
+                    VerticalSpeed = 0f;
+                }
+                else { MyRb.velocity = Vector2.zero; }
+                if (FootAOnSlope && !FootBOnSlope) { WalkSpeed = 1.75f; if (IsMovingInput) { VerticalSpeed = 1.75f; } else { VerticalSpeed = 0f; } }
+                if (!FootAOnSlope && FootBOnSlope) { WalkSpeed = 1.75f; if (IsMovingInput) { VerticalSpeed = 1.75f; } else { VerticalSpeed = 0f; } } 
             }
             else
             {//going with slope
                 WalkSpeed = 3f;
                 RunSpeed = 5.5f;
-                if (IsMovingInput) { VerticalSpeed = 0f;  } else { MyRb.velocity = Vector2.zero; }
+                if (IsMovingInput) { VerticalSpeed = 5f; } else { MyRb.velocity = Vector2.zero; } 
             }
         }
         else if (SlopeAngle < 325 && SlopeAngle >300)
@@ -611,114 +1063,35 @@ public class PlayerControllerV2 : MonoBehaviour
             { //going with slope
                 WalkSpeed = 1.5f;
                 RunSpeed = 3f;
-                if (IsMovingInput) { VerticalSpeed = 5f; } else { MyRb.velocity = Vector2.zero; }
-                if (FootAOnSlope && !FootBOnSlope) { WalkSpeed = 1.75f; VerticalSpeed = 1.75f; }
-                if (!FootAOnSlope && FootBOnSlope) { WalkSpeed = 1.75f; VerticalSpeed = 1.75f; }
+                if (IsMovingInput) { VerticalSpeed = 5f; } else { MyRb.velocity = Vector2.zero; } 
+                if (FootAOnSlope && !FootBOnSlope) { WalkSpeed = 1.75f; if (IsMovingInput) { VerticalSpeed = 1.75f; } else { VerticalSpeed = 0f; } }
+                if (!FootAOnSlope && FootBOnSlope) { WalkSpeed = 1.75f; if (IsMovingInput) { VerticalSpeed = 1.75f; } else { VerticalSpeed = 0f; } }
             }
             else
             {//going against slope
                 WalkSpeed = 3.5f;
                 RunSpeed = 7f;
-                if (IsMovingInput) { VerticalSpeed = 0f;  } else { MyRb.velocity = Vector2.zero; }
+                if (IsMovingInput)
+                {
+                    VerticalSpeed = 0f;
+                }
+                else { MyRb.velocity = Vector2.zero; }
             }
         }
     }
 
 
-    public void UpdateUI()
+    void UpdateUI()
     {
         if (StaminaSlider != null) { StaminaSlider.value = Stamina; }
         if (HealthSlider != null) { HealthSlider.value = Health; }
         if (EstusCountText != null) { EstusCountText.text = CurrentEstus.ToString(); }
     }
-
-    public void StaminaRegen()
+    void StaminaRegen()
     {
         Stamina = Mathf.Clamp(Stamina, 0, 100);
         if (Stamina < 100) { Stamina += Time.deltaTime * 30; } else { Stamina = 100; IsStaminaRegen = false; }
 
-    }
-
-    IEnumerator WaitToRun()
-    {
-        IsWaitingToRun = true;
-        yield return new WaitForSeconds(.25f);
-        Debug.Log("Run");
-        if (!IsRolling) { IsRunning = true; }
-        IsWaitingToRun = false;
-    }
-    IEnumerator Roll()
-    {
-        IsRolling = true;
-        IsIdleAnim = false;
-        CanMove = false;
-        IsStaminaRegen = false;
-        Anim.Play("PlayerAnim_Roll");
-
-        if (MovementInputDirection > 0.2f) { PlayerDirection = 1; }
-        if (MovementInputDirection < -0.2f) { PlayerDirection = -1; }
-
-        if (PlayerDirection == 1) { Assets.transform.localScale = new Vector3(1, 1, 1); }
-        else if (PlayerDirection == -1) { Assets.transform.localScale = new Vector3(-1, 1, 1); }
-
-
-        yield return new WaitForSeconds(RollTime);
-        CanMove = true;
-        IsRolling = false;
-        DodgeDirection = 0;
-        MyRb.velocity = Vector2.zero;   
-        if (!IsMovingInput) { MovementInputDirection = 0; }
-        StartCoroutine(StaminaRegenPause());
-        yield return new WaitForSeconds(.4f);
-        IsIdleAnim = true;
-    }
-    IEnumerator Backstep()
-    {
-        IsBackStepping = true;
-        IsIdleAnim = false;
-        Anim.Play("PlayerAnim_BackStep");
-        IsStaminaRegen = false;
-
-        yield return new WaitForSeconds(BackstepTime);
-        CanMove = true;
-        IsBackStepping = false;
-        MyRb.velocity = Vector2.zero;
-        StartCoroutine(StaminaRegenPause());
-        yield return new WaitForSeconds(.25f);
-        IsIdleAnim = true;
-    }
-    IEnumerator Jump()
-    {
-        IsIdleAnim = false;
-        Anim.Play("PlayerAnim_JumpEnter");
-        IsJumping = true;
-        IsStaminaRegen = false;
-        if (!IsRunning) { MyRb.velocity = new Vector2(MovementInputDirection * JumpHorizontalSpeed, JumpVerticalSpeed); }
-        else { MyRb.velocity = new Vector2(MovementInputDirection * JumpRunHorizontalSpeed, JumpVerticalSpeed); }
-
-        yield return new WaitForSeconds(.25f);
-        Anim.Play("PlayerAnim_JumpIdle");
-        if (IsGrounded)
-        {
-            FinishJump();
-            StopCoroutine(JumpingCoroutine);
-        }
-
-        yield return new WaitForSeconds(JumpTime);
-        FinishJump();
-    }
-    void FinishJump()
-    {
-        CanMove = true;
-        IsRolling = false;
-        IsRunning = false;
-        IsJumping = false;
-        VerticalSpeed = FallSpeed;
-        MyRb.velocity = Vector2.zero;
-        DodgeDirection = 0;
-        IsIdleAnim = true;
-        Anim.Play("PlayerAnim_JumpLand");
-        StartCoroutine(StaminaRegenPause());
     }
     IEnumerator StaminaRegenPause()
     {
@@ -727,82 +1100,196 @@ public class PlayerControllerV2 : MonoBehaviour
         IsStaminaRegen = true;
     }
 
-    void AttackStart()
+
+
+    IEnumerator WaitToRun()
     {
-        CanMove = false;
-        CanAttack = false;
-        IsStaminaRegen = false;
-        IsAttackStepping = true; 
-        CanFollowUp = false;
-        IsBlocking = false;
+        IsWaitingToRun = true;
+
+        yield return new WaitForSeconds(.25f);
+
+        if (State != "Rolling") { State = "Running";}
+
+        IsWaitingToRun = false;
     }
+    IEnumerator Roll()
+    {
+        IsStaminaRegen = false;
+        Anim.Play("PlayerAnim_Roll");
+
+        yield return new WaitForSeconds(RollTime);
+
+        MyRb.velocity = Vector2.zero;  
+
+        if (IsMovingInput) 
+        {
+            State = "Walking"; 
+        } 
+        else
+        {
+            State = "Idle";
+        }
+
+        StartCoroutine(StaminaRegenPause()); 
+   
+    }
+    IEnumerator Backstep()
+    {
+ 
+        IsStaminaRegen = false;
+        Anim.Play("PlayerAnim_BackStep");     
+
+        yield return new WaitForSeconds(BackstepTime);
+
+        MyRb.velocity = Vector2.zero;
+
+       
+
+        if (IsMovingInput)
+        {
+            State = "Walking";
+        }
+        else
+        {
+            State = "Idle";
+        }
+
+        StartCoroutine(StaminaRegenPause());
+    }
+    IEnumerator Jump()
+    {
+        
+        Anim.Play("PlayerAnim_JumpEnter");
+
+        if (MovementInputDirection == 0)
+        {
+            MyRb.velocity = new Vector2(0, JumpVerticalSpeed + 2);
+        }
+        else
+        {
+            MyRb.velocity = new Vector2(JumpDirection * JumpRunHorizontalSpeed, JumpVerticalSpeed);
+        }
+
+        yield return new WaitForSeconds(.25f);
+
+        IsJumping = false;
+    
+        State = "Falling";
+       
+        
+
+    }
+    IEnumerator Land()
+    {
+        StartCoroutine(StaminaRegenPause());
+
+        if (JumpingCoroutine != null) { StopCoroutine(JumpingCoroutine); }
+
+        Anim.Play("PlayerAnim_JumpLand");
+
+        yield return new WaitForSeconds(.5f);
+
+        IsLanding = false;
+        VerticalSpeed = FallSpeed;
+        if (IsMovingInput) { State = "Walking"; } else { State = "Idle"; }     
+    }
+
+
 
     IEnumerator LightAttack()
     {
-        AttackStart();
-        Anim.Play("PlayerAnim_LightSwing");
-        AttackStepMove(LightAttackStep);
-        yield return new WaitForSeconds(LightAttackTime-1.2f);
-        CanFollowUp = true;
-        CanRollOut = true;
-        IsAttackStepping = false; 
-        
-        yield return new WaitForSeconds(1.2f);
-        CanMove = true;
-        CanRollOut = false;
-        CanAttack = true;
+        State = "Attacking";
+
+        IsStaminaRegen = false;
         CanFollowUp = false;
+
+        Anim.Play("PlayerAnim_LightSwing");
+
+        yield return new WaitForSeconds(LightAttackTime-1.2f);
+   
+        CanRollOut = true; CancelThisCoroutine = LightAttackCoroutine;
+        CanFollowUp = true;  
+
+        yield return new WaitForSeconds(1.2f);
+
+        CanRollOut = false; CancelThisCoroutine = null;
+        CanFollowUp = false;
+
         StartCoroutine(StaminaRegenPause());
+
+        if (MovementInputDirection == 0) { State = "Idle"; } else { State = "Walking"; }
     }
     IEnumerator LightAttackFollowUp()
     {
-        AttackStart();
-        Anim.Play("PlayerAnim_LightSwingFollowUpAttack");
-        AttackStepMove(LightAttackStep);
-        yield return new WaitForSeconds(LightFollowUpAttackTime-1);
-        CanRollOut = true;
-        yield return new WaitForSeconds(1);
+        State = "Attacking";
+
+        IsStaminaRegen = false;
+        CanFollowUp = false;
         CanRollOut = false;
-        IsAttackStepping = false; 
-        CanMove = true;
-        CanAttack = true;
+
+        Anim.Play("PlayerAnim_LightSwingFollowUpAttack");
+
+        yield return new WaitForSeconds(LightFollowUpAttackTime-1);
+
+        CanRollOut = true; CancelThisCoroutine = LightAttackFollowUpCoroutine;
+
+        yield return new WaitForSeconds(1);
+
+        CanRollOut = false; CancelThisCoroutine = null;
+
         StartCoroutine(StaminaRegenPause());
+
+        if (MovementInputDirection == 0) { State = "Idle"; } else { State = "Walking"; }
     }
 
     IEnumerator HeavyAttack()
     {
-        AttackStart();
+        State = "Attacking";
+
+        IsStaminaRegen = false;
+        CanFollowUp = false;
+
         Anim.Play("PlayerAnim_HeavySwing");
-        AttackStepMove(HeavyAttackStep);
-        CanFollowUp = false;
+
         yield return new WaitForSeconds(HeavyAttackTime - 1.4f);
-        CanFollowUp = true;
-        CanRollOut = true;
-        IsAttackStepping = false; 
         
+        CanRollOut = true; CancelThisCoroutine = HeavyAttackCoroutine;
+        CanFollowUp = true;
+
         yield return new WaitForSeconds(1.4f);
-        CanMove = true;
-        CanRollOut = false;
-        CanAttack = true;
-        CanFollowUp = false;
+
+        CanRollOut = false; CancelThisCoroutine = null;
+        CanFollowUp = false; 
+
         StartCoroutine(StaminaRegenPause());
+
+        if (MovementInputDirection == 0) { State = "Idle"; } else { State = "Walking"; }
     }
     IEnumerator HeavyAttackFollowUp()
     {
-        AttackStart();
-        Anim.Play("PlayerAnim_HeavySwingFollowUpAttack");
-        AttackStepMove(HeavyAttackStep);
-        yield return new WaitForSeconds(HeavyFollowUpAttackTime - 1);
-        CanRollOut = true;
-        yield return new WaitForSeconds(1);
+        State = "Attacking";
+
+        IsStaminaRegen = false;
+        CanFollowUp = false;
         CanRollOut = false;
-        IsAttackStepping = false; 
-        CanMove = true;
-        CanAttack = true;
+
+        Anim.Play("PlayerAnim_HeavySwingFollowUpAttack");
+
+        yield return new WaitForSeconds(HeavyFollowUpAttackTime - 1);
+
+        CanRollOut = true; CancelThisCoroutine = HeavyAttackFollowUpCoroutine;
+
+        yield return new WaitForSeconds(1);
+
+        CanRollOut = false; CancelThisCoroutine = null;
+
+
         StartCoroutine(StaminaRegenPause());
+
+        if (MovementInputDirection == 0) { State = "Idle"; } else { State = "Walking"; }
     }
 
-    void AttackStepMove(float StepDistance)
+    public void AttackStep()
     {
         RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.zero);
 
@@ -811,7 +1298,7 @@ public class PlayerControllerV2 : MonoBehaviour
         {
             if (!hit.transform.CompareTag("Enemy"))
             {
-                MyRb.velocity = new Vector2(PlayerDirection * StepDistance, MyRb.velocity.y / 10);
+                MyRb.velocity = new Vector2(PlayerDirection * StepDistance, 0);
             }
             else
             {
@@ -821,85 +1308,126 @@ public class PlayerControllerV2 : MonoBehaviour
         }
         else
         {
-            MyRb.velocity = new Vector2(PlayerDirection * StepDistance, MyRb.velocity.y / 10);
+            MyRb.velocity = new Vector2(PlayerDirection * StepDistance, 0);
         }
     }
 
     IEnumerator Stagger()
     {
         Anim.Play("PlayerAnim_StaggerGettingHit");
-        CanFollowUp = false;
-        CanMove = false;
-        CanAttack = false;
-        IsBlocking = false;
+        State = "Stagger";
+
+        yield return new WaitForSeconds(0.75f);
+
+        CanRollOut = true; CancelThisCoroutine = StaggerCoroutine;
+
+        yield return new WaitForSeconds(0.25f);
+
+        CanRollOut = false; CancelThisCoroutine = null;
+
+        if (MovementInputDirection == 0) { State = "Idle"; } else { State = "Walking"; }
+    }
+
+    IEnumerator Parry()
+    {
+        Anim.Play("PlayerAnim_Parry");
+        State = "Attacking";
+
 
         yield return new WaitForSeconds(1f);
-        CanFollowUp = true;
-        CanMove = true;
-        CanAttack = true;
+
+        if (MovementInputDirection == 0) { State = "Idle"; } else { State = "Walking"; }
     }
 
-    void ToggleBlock()
-    {
-        if (!IsBlocking)
-        {
-            StartCoroutine(EnterBlock());
-        }
-        else
-        {
-            StartCoroutine(ExitBlock());
-        }
-    }
+
     void HoldBlock()
     {
         IsBlocking = true;
+
         Anim.Play("PlayerAnim_ShieldBlockHold");
     }
     IEnumerator EnterBlock()
     {
+        State = "Blocking";
+
         Anim.Play("PlayerAnim_ShieldBlockEnter");
-        CanFollowUp = false;
-        CanMove = false;
+
         yield return new WaitForSeconds(0.5f);
+
         HoldBlock();
     }
     IEnumerator ExitBlock()
     {
         Anim.Play("PlayerAnim_ShieldBlockExit");
+
         yield return new WaitForSeconds(0.25f);
-        CanFollowUp = true;
-        CanMove = true;
+
         IsBlocking = false;
+
+        if (MovementInputDirection == 0) { State = "Idle"; } else { State = "Walking"; }
     }
 
     IEnumerator UseEstus()
     {
         MyRb.velocity = Vector2.zero;
         Anim.Play("PlayerAnim_EstusUse");
-        CanMove = false;
-        CanAttack = false;
-        CanFollowUp = false;
         yield return new WaitForSeconds(1);
 
         Health += EstusHealAmount;
         Health = Mathf.Clamp(Health, 0, 100);
         CurrentEstus--;
+        CanRollOut = true;
+        CancelThisCoroutine = EstusUseCoroutine;
         yield return new WaitForSeconds(.5f);
-        CanMove = true;
-        CanAttack = true;
-        CanFollowUp = true;
+        CancelThisCoroutine = null;
+        CanRollOut = false;
+        if (MovementInputDirection == 0) { State = "Idle"; } else { State = "Walking"; }
     }
     IEnumerator UseEmptyEstus()
     {
         MyRb.velocity = Vector2.zero;
         Anim.Play("PlayerAnim_EstusUseEmpty");
-        CanMove = false;
-        CanAttack = false;
-        CanFollowUp = false;
-        yield return new WaitForSeconds(1.5f);
-        CanMove = true;
-        CanAttack = true;
-        CanFollowUp = true;
+        yield return new WaitForSeconds(1f);
+        CanRollOut = true;
+        CancelThisCoroutine = EstusUseCoroutine;
+        yield return new WaitForSeconds(.5f);
+        CancelThisCoroutine = null;
+        CanRollOut = false;
+        if (MovementInputDirection == 0) { State = "Idle"; } else { State = "Walking"; }
     }
 
+    IEnumerator EnterPlunge()
+    {
+        Anim.Play("PlayerAnim_Plunge");
+
+        yield return new WaitForSeconds(.5f);
+
+        IsPlunging = true;
+    }
+
+    void PlungeAttackRegester()
+    {
+        int layerMask = ~(LayerMask.GetMask("Player"));
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, new Vector2(0, -1), HeavyAttackFollowUpRange, layerMask);
+
+
+        if (hit.collider != null)
+        {
+
+            if (hit.transform.CompareTag("Demon"))
+            {
+                hit.transform.GetComponent<EnemySaveManager>().ParryEvent.Invoke();
+                IsPlunging = false;
+            }
+            else if (hit.transform.CompareTag("Pursuer"))
+            {
+                hit.transform.GetComponent<EnemySaveManager>().ParryEvent.Invoke();
+                IsPlunging = false;
+            }
+            else
+            {
+                Debug.Log("Player hit" + hit.transform.name);
+            }
+        }
+    }
 }

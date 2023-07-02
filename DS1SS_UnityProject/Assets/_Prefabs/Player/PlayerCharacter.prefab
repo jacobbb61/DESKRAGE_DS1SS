@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1065959575192577548}
-  m_Layer: 10
+  m_Layer: 6
   m_Name: A
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 1065959575374467966}
   - component: {fileID: 1065959575374467201}
   - component: {fileID: 8358082389795210412}
-  m_Layer: 10
+  m_Layer: 6
   m_Name: PlayerAnim
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -160,7 +160,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1065959576549058041}
-  m_Layer: 10
+  m_Layer: 6
   m_Name: PlayerAssets
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -193,7 +193,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1065959576714209544}
-  m_Layer: 10
+  m_Layer: 6
   m_Name: B
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -268,6 +268,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 407094d1d99044f46b72a6b52648bfcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  State: 
   Health: 20
   MaxHealth: 100
   Stamina: 80
@@ -276,7 +277,7 @@ MonoBehaviour:
   MaxEstus: 3
   MovementInputDirection: 0
   PlayerDirection: 1
-  DodgeDirection: 0
+  JumpDirection: 0
   IsUiOpen: 0
   IsGrounded: 0
   IsStaminaRegen: 0
@@ -293,19 +294,23 @@ MonoBehaviour:
   WalkSpeed: 2
   RunSpeed: 5
   RollSpeed: 5
+  RollUpSlopeSpeed: 8
+  RollDownSlopeSpeed: 2
   RollTime: 1
   BackstepSpeed: 5
+  BackstepUpSlopeSpeed: 20
+  BackstepDownSlopeSpeed: 2
   BackstepTime: 0.5
   JumpVerticalSpeed: 7.5
-  JumpHorizontalSpeed: 4
-  JumpRunHorizontalSpeed: 5
+  JumpHorizontalSpeed: 4.5
+  JumpRunHorizontalSpeed: 6
   JumpTime: 1
-  FallSpeed: 3
-  AirborneControl: 1
+  FallSpeed: 0.5
+  AirborneControl: 2
   IsLockedOn: 0
   IsBlocking: 0
   IsHealing: 0
-  IsAttackStepping: 0
+  IsPlunging: 0
   CanAttack: 1
   CanFollowUp: 0
   CanRollOut: 0
@@ -314,8 +319,7 @@ MonoBehaviour:
   LightFollowUpAttackTime: 1.8
   HeavyAttackTime: 2.4
   HeavyFollowUpAttackTime: 2
-  LightAttackStep: 2
-  HeavyAttackStep: 3
+  StepDistance: 4
   LightAttackDamage: 6
   HeavyAttackDamage: 9
   LightAttackRange: 2.2
@@ -656,7 +660,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1065959577099873995}
-  m_Layer: 10
+  m_Layer: 6
   m_Name: GroundCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -689,7 +693,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7531493749407576679}
-  m_Layer: 10
+  m_Layer: 6
   m_Name: HitStart
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -721,7 +725,7 @@ GameObject:
   m_Component:
   - component: {fileID: 528583623710192539}
   - component: {fileID: 4125214417230465857}
-  m_Layer: 10
+  m_Layer: 6
   m_Name: PlayerHitbox
   m_TagString: PlayerHitBox
   m_Icon: {fileID: 0}
