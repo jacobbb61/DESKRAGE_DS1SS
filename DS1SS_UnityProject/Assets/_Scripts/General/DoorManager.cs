@@ -12,7 +12,7 @@ public class DoorManager : MonoBehaviour
     public LayerManagerV2 layerManager;
     [Tooltip("ID number for differentiating between door type. 0 = regular, 1 = layer changing door")][SerializeField] private int doorType; // For differentiating between different kinds of doors
     [Tooltip("Only used for layer changing doors (ID 1)")]public int targetLayer; // For doors that switch the player's layer
-    private bool inBossFight;
+    public bool inBossFight;
 
 
 
@@ -196,7 +196,7 @@ public class DoorManager : MonoBehaviour
         {
             switch (CurrentDoorState_This) //layer
             {
-                case "Locked": // this is where i make changes
+                case "Locked":
                     {
                         switch (doorSaveManager.DoorTag_This) // This gets the tag of the door and checks if it has the corresponding key to unlock
                         {
@@ -295,7 +295,7 @@ public class DoorManager : MonoBehaviour
         
     }
 
-    private IEnumerator Wait(int waitSeconds)
+    private IEnumerator Wait(float waitSeconds)
     {
         yield return new WaitForSeconds(waitSeconds);
     }
