@@ -14,9 +14,13 @@ public class Undead_C : MonoBehaviour
 
     [Header("Move and Detect Data")]
     public float Speed;
+    public float BaseSpeed;
     public float ForwardDetectionRange;
     public float BackwardsDetectionRange;
     public float AttackTriggerRange;
+    public float VerticalSpeed;
+    public float FallSpeed;
+
 
     [Header("Combat Data")]
     public float TimeBeforeAttack;
@@ -33,7 +37,10 @@ public class Undead_C : MonoBehaviour
     public bool IsAttacking;
     public bool IsDead;
     public bool IsAtOrigin;
-
+    public bool IsGrounded;
+    public bool IsOnSlope;
+    public bool FootAOnSlope;
+    public bool FootBOnSlope;
 
     private Animator Anim;
     private GameObject Player;
@@ -42,6 +49,10 @@ public class Undead_C : MonoBehaviour
 
     public GameObject Assets;
     public GameObject Eyes;
+
+    public Transform GroundCheckPosA;
+    public Transform GroundCheckPosB;
+
     public Transform HitStartPos;
     public Slider HealthSlider;
     public Vector3 OriginPosition;
@@ -87,7 +98,7 @@ public class Undead_C : MonoBehaviour
                     LookForPlayer();
                     Anim.Play("UndeadAnim_C_Idle");
                     if (SeePlayer) { Behaviour = "Hostile"; }
-                    if (!IsAtOrigin) { Behaviour = "Returning"; }
+                    if (!IsAtOrigin) { Behaviour = "Returning"; } else { RB.velocity = Vector2.zero; }
                     break;
                 case "Hostile":
                     CombatTime += Time.deltaTime;
@@ -100,22 +111,25 @@ public class Undead_C : MonoBehaviour
                     }
                     if (!SeePlayer && !IsAtOrigin && CombatTime>4) {Behaviour = "Returning"; CombatTime = 0; }
                     break;
-                case "Attacking":        
+                case "Attacking":
+                    GroundCheck();
                     if (!IsAttacking) { AttackingCoroutine =  StartCoroutine(Attack()); } 
                     break;
                 case "Staggered":
                     StartCoroutine(Staggered());
+                    RB.velocity = Vector2.zero;
                     break;
                 case "Parried":
                     break;
                 case "Returning":
                     LookForPlayer();
                     if (SeePlayer) { Behaviour = "Hostile"; }                  
-                    if (!IsAtOrigin) { FaceOrigin(); WalkToOrigin(); }
+                    if (!IsAtOrigin) { FaceOrigin(); WalkToOrigin(); GroundCheck(); }
                     else { Behaviour = "Idle"; }
                     break;
                 case "Dead":
                     Dead();
+                    RB.velocity = Vector2.zero;
                     break;
                 default:
                     Behaviour = "Idle";
@@ -123,6 +137,8 @@ public class Undead_C : MonoBehaviour
             }
         }
     }
+
+
 
     IEnumerator Death()
     {
@@ -197,7 +213,7 @@ public class Undead_C : MonoBehaviour
             
             if (hit.transform != null)
             {
-                Debug.Log("Undead C sees" + hit.transform.name);
+                
                 
                 if (hit.transform.CompareTag("Player"))
                 {
@@ -205,6 +221,7 @@ public class Undead_C : MonoBehaviour
                 }
                 else
                 {
+                    Debug.Log("Undead C sees" + hit.transform.name);
                     SeePlayer = false;
                 }
 
@@ -234,10 +251,141 @@ public class Undead_C : MonoBehaviour
         else if (LookDirection == -1) { Assets.transform.localScale = new Vector3(-2, 2, 2); }
     }
 
+
+    void GroundCheck()
+    {
+        int layerMask = ~(LayerMask.GetMask("Player"));
+        RaycastHit2D hitA = Physics2D.Raycast(GroundCheckPosA.position, Vector2.down, .45f, layerMask);
+            RaycastHit2D hitB = Physics2D.Raycast(GroundCheckPosB.position, Vector2.down, .45f, layerMask);
+
+            if (hitA.collider != null)
+            {
+                if (hitA.transform.CompareTag("Ground"))
+                {
+                    IsGrounded = true;
+                    FootAOnSlope = false;
+                }
+                else if (hitA.transform.CompareTag("Slope"))
+                {
+                    IsGrounded = true;
+                    FootAOnSlope = true;
+                }
+                else
+                {
+                    IsGrounded = false;
+                    FootAOnSlope = false;
+                }
+            }
+            if (hitB.collider != null)
+            {
+                if (hitB.transform.CompareTag("Ground"))
+                {
+                    IsGrounded = true;
+                    FootBOnSlope = false;
+                }
+                else if (hitB.transform.CompareTag("Slope"))
+                {
+                    IsGrounded = true;
+                    FootBOnSlope = true;
+                }
+                else
+                {
+                    IsGrounded = false;
+                    FootBOnSlope = false;
+                }
+            }
+            if (hitA.collider == null && hitB.collider == null)
+            {
+                IsGrounded = false;
+            }
+
+
+            
+                if (FootAOnSlope && FootBOnSlope && hitA.transform != null) { OnSlope(hitA.transform); }
+                else if (FootAOnSlope && !FootBOnSlope && hitA.transform != null) { OnSlope(hitA.transform); }
+                else if (!FootAOnSlope && FootBOnSlope && hitB.transform != null) { OnSlope(hitB.transform); }
+                else if (!FootAOnSlope && !FootBOnSlope)
+                {
+                    //not on slope reset speeds
+                    Speed = BaseSpeed;
+                   if (IsGrounded) { VerticalSpeed = 0.5f; } else { VerticalSpeed = FallSpeed; }
+                }
+                 
+    }
+
+    void OnSlope(Transform Slope)
+    {
+
+        float SlopeAngle = Slope.transform.transform.eulerAngles.z;
+        if (SlopeAngle <= 35 && SlopeAngle < 60)
+        {
+            // right  a 35 or less slope
+            if (LookDirection == 1)
+            { //going against slope
+                Speed = 1f;
+            }
+            else
+            {//going with slope
+
+                Speed = 4f;
+                if (FootAOnSlope && !FootBOnSlope) { Speed = 2.5f; VerticalSpeed = 0f; }
+                if (!FootAOnSlope && FootBOnSlope) { Speed = 2.5f; VerticalSpeed = 0f; }
+            }
+
+        }
+        else if (SlopeAngle > 35 && SlopeAngle < 60)
+        {
+            // right  a 35 or MORE slope
+            if (LookDirection == 1)
+            { //going against slope
+                Speed = 4.5f;
+            }
+            else
+            {//going with slope
+                Speed = 1f;
+                if (FootAOnSlope && !FootBOnSlope) { Speed = 2.5f; VerticalSpeed = 0f; }
+                if (!FootAOnSlope && FootBOnSlope) { Speed = 2.5f; VerticalSpeed = 0f; }
+            }
+        }
+        if (SlopeAngle >= 325 && SlopeAngle > 300)
+        {
+            // left a 35 or less slope
+            if (LookDirection == 1)
+            { //going against slope
+                Speed = 1f;
+                if (FootAOnSlope && !FootBOnSlope) { Speed = 2.5f; VerticalSpeed = 0f; }
+                if (!FootAOnSlope && FootBOnSlope) { Speed = 2.5f; VerticalSpeed = 0f; }
+            }
+            else
+            {//going with slope
+                Speed = 4f;
+            }
+        }
+        else if (SlopeAngle < 325 && SlopeAngle > 300)
+        {
+            // left a 35 or MORE slope
+            if (LookDirection == 1)
+            { //going with slope
+                Speed = 1f;
+
+                if (FootAOnSlope && !FootBOnSlope) { Speed = 2.5f; VerticalSpeed = 0f; }
+                if (!FootAOnSlope && FootBOnSlope) { Speed = 2.5f; VerticalSpeed = 0f; }
+            }
+            else
+            {//going against slope
+                Speed = 4.5f;
+            }
+        }
+    }
+
     void Walk()
     {
-        RB.velocity = new Vector2(-Speed * LookDirection, -5);      
-        Anim.Play("UndeadAnim_C_Walk");
+        GroundCheck();
+        if (IsGrounded)
+        {
+            RB.velocity = new Vector2(-Speed * LookDirection, -VerticalSpeed);
+            Anim.Play("UndeadAnim_C_Walk");
+        }
     }
 
     void IsByOriginPosition()
@@ -291,6 +439,7 @@ public class Undead_C : MonoBehaviour
     IEnumerator Attack()
     {
         IsAttacking = true;
+        RB.velocity = Vector2.zero;
         yield return new WaitForSeconds(TimeBeforeAttack);
         FacePlayer();
         Anim.Play("UndeadAnim_C_SwingAttack");
@@ -303,7 +452,7 @@ public class Undead_C : MonoBehaviour
 
     public void AttackStep()
     {
-        RB.velocity = new Vector2((-Speed -1) * LookDirection, -5);
+        RB.velocity = new Vector2((-Speed -1) * LookDirection, -VerticalSpeed);
     }
 
     public void AttackRegister()

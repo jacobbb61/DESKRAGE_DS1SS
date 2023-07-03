@@ -93,4 +93,29 @@ public class PlayerAnimationEvents : MonoBehaviour
             }
         }
     }
+
+    public void AttackStep()
+    {
+        PC.AttackStep();
+    }
+
+    public void Parry()
+    {
+        int layerMask = ~(LayerMask.GetMask("Player"));
+        RaycastHit2D hit = Physics2D.Raycast(HitStartPos.position, new Vector2(PC.PlayerDirection, 0), PC.HeavyAttackFollowUpRange, layerMask);
+
+
+        if (hit.collider != null)
+        {
+
+            if (hit.transform.CompareTag("Enemy"))
+            {
+                hit.transform.GetComponent<EnemySaveManager>().ParryEvent.Invoke();
+            }
+            else
+            {
+                Debug.Log("Player hit" + hit.transform.name);
+            }
+        }
+    }
 }
