@@ -347,8 +347,10 @@ MonoBehaviour:
   layerManager: {fileID: 0}
   doorType: 0
   targetLayer: 0
+  inBossFight: 0
   CurrentDoorState_This: 
   doorCollider: {fileID: 4638701453398582779}
+  doorSaveManager: {fileID: 3946059020622692453}
   Anim: {fileID: 844125993245501478}
 --- !u!114 &7142405828820393844
 MonoBehaviour:
@@ -391,3 +393,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DoorTag_This: 
   DoorState_This: 
+  BoulderManager: {fileID: 0}

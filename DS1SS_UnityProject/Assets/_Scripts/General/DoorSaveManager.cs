@@ -11,7 +11,7 @@ public class DoorSaveManager : MonoBehaviour
     [Header("Door Data")]
     public string DoorState_This;
 
-
+    public BoulderManager BoulderManager;
 
     public void SaveGameDataToCurrentCharacterData(ref CharacterSaveData CurrentCharacterData)
     {
@@ -41,6 +41,7 @@ public class DoorSaveManager : MonoBehaviour
                 break;
             case "H":
                 CurrentCharacterData.DoorState_H = DoorState_This;
+                if(BoulderManager != null) { CurrentCharacterData.BoulderUsed = BoulderManager.BoulderUsed; }
                 break;
             case "J2":
                 CurrentCharacterData.DoorState_J2 = DoorState_This;
@@ -94,6 +95,7 @@ public class DoorSaveManager : MonoBehaviour
                 break;
             case "H":
                 DoorState_This = CurrentCharacterData.DoorState_H;
+                if (BoulderManager != null) { BoulderManager.BoulderUsed = CurrentCharacterData.BoulderUsed; }
                 break;
             case "J2":
                 DoorState_This = CurrentCharacterData.DoorState_J2;

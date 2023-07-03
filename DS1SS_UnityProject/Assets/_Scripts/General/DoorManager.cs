@@ -24,7 +24,7 @@ public class DoorManager : MonoBehaviour
      private GameObject doorUI;
      private TextMeshProUGUI doorUIText;
 
-    private DoorSaveManager doorSaveManager;
+    public DoorSaveManager doorSaveManager;
 
     public Animator Anim;
 
@@ -113,7 +113,8 @@ public class DoorManager : MonoBehaviour
             }
         }
 
-         
+         if(doorSaveManager.DoorTag_This == "N") { GetComponent<DoorOcludingSection>().ManualStart(); }
+         if(doorSaveManager.DoorTag_This == "H") { GetComponent<DoorOcludingSection>().ManualStart(); }
         
     }
 
@@ -253,6 +254,9 @@ public class DoorManager : MonoBehaviour
                         {
                             AchievementsGameManager.Instance.UnlockedAchievement(1);
                         }
+
+                        if (doorSaveManager.DoorTag_This == "N") { GetComponent<DoorOcludingSection>().RevealArea(); }
+                        if (doorSaveManager.DoorTag_This == "H") { GetComponent<DoorOcludingSection>().RevealArea(); }
 
                         break;
                     }
