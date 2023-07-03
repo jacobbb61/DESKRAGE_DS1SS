@@ -29,6 +29,7 @@ public class DoorManager : MonoBehaviour
     public Animator Anim;
 
     private PlayerManager playerManager;
+    private PlayerControllerV2 PC;
 
 
     private void Start()
@@ -38,6 +39,7 @@ public class DoorManager : MonoBehaviour
         CanvasManager = GameObject.FindGameObjectWithTag("Canvas").GetComponent<CanvasManager>();
         doorSaveManager = GetComponent<DoorSaveManager>();
         playerManager = FindObjectOfType<PlayerManager>();
+        PC = FindObjectOfType<PlayerControllerV2>();
         doorPrompt = CanvasManager.DoorPrompt;
         doorUI = CanvasManager.DoorUI;
         doorUIText = CanvasManager.DoorDescription;
@@ -162,9 +164,9 @@ public class DoorManager : MonoBehaviour
         doorPrompt.SetActive(false);
         if (doorType == 1) //perpendicular 
         {
+            PC.PlayerFinishInteraction();
             switch (CurrentDoorState_This)
-            {
-
+            {      
                 case "Locked":
                     {
                         doorUI.SetActive(true);

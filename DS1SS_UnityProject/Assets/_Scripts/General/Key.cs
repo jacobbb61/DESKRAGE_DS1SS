@@ -20,7 +20,6 @@ public class Key : MonoBehaviour
         itemName = gameObject.name;
         playerManager = FindObjectOfType<PlayerManager>();
 
-
     }
 
     public void PickUpKey()
