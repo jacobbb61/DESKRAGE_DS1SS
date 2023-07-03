@@ -238,7 +238,7 @@ public class Undead_B : MonoBehaviour
 
     public void ReleaseArrow()
     {
-       GameObject arrow = Instantiate(Arrow);
+        GameObject arrow = Instantiate(Arrow);
         arrow.transform.position = HitStartPos.position;
         arrow.GetComponent<Arrow>().Direction = -LookDirection;
         arrow.GetComponent<Arrow>().ManualStart();

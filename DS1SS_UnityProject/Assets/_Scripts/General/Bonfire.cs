@@ -52,6 +52,7 @@ public class Bonfire : MonoBehaviour
         else { Anim.Play("BonfireLitFirstTime"); BonfireEverUsed = true; }
         
         yield return new WaitForSeconds(1);
+        PC.PlayerFinishInteraction();
         BonfireRest();
         PC.Anim.Play("PlayerAnim_Idle");
         PC.CanMove = true;

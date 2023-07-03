@@ -23,6 +23,7 @@ public class Arrow : MonoBehaviour
     static float t = 0.0f;
     public void ManualStart()
     {
+        /*
         t = 0;
         if (Direction == -1)
         {
@@ -52,10 +53,12 @@ public class Arrow : MonoBehaviour
             minimum = 3.5f;
         }
         Debug.Log(dis);
+        */
     }
 
     void Update()
     {
+        /*
         if (Flying)
         {
             VerticalSpeed = Mathf.Lerp(minimum, maximum, t);
@@ -71,6 +74,7 @@ public class Arrow : MonoBehaviour
                 transform.Rotate(new Vector3(0, 0, Time.deltaTime * -RotationSpeed));
             }
         }
+        */
 
     }
     private void OnTriggerEnter2D(Collider2D collision)

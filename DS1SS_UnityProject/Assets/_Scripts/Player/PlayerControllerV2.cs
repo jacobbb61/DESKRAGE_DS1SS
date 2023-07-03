@@ -418,7 +418,7 @@ public class PlayerControllerV2 : MonoBehaviour
            
             if (Interactable != null)
             { 
-                 State = "Interacting";
+                State = "Interacting";
                 Interactable.InvokeEvent(); 
             }
 

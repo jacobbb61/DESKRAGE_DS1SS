@@ -7,6 +7,10 @@ public class BossArena : MonoBehaviour
     [SerializeField] DoorManager[] doors;
     public bool bossDead = false;
 
+    public bool InBossFight;
+
+    public bool ArenaIsActive;
+
     private void Update()
     {
         if (bossDead)

@@ -136,6 +136,7 @@ public class LayerManagerV2 : MonoBehaviour
         EnviornmentLayer(layer);
         yield return new WaitForSeconds(.25f);
         //give back control
+        PC.PlayerFinishInteraction();
         PC.MyRb.constraints = RigidbodyConstraints2D.None;
         PC.MyRb.constraints = RigidbodyConstraints2D.FreezeRotation;
         PC.CanMove = true;

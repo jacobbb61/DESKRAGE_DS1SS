@@ -7,10 +7,13 @@ public class TutorialTextDisplay : MonoBehaviour
 {
     private CanvasManager canvasManager;
     public string displayText;
+    private PlayerControllerV2 PC;
+
 
     private void Start()
     {
         canvasManager = FindObjectOfType<CanvasManager>();
+        PC = FindObjectOfType<PlayerControllerV2>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -39,5 +42,6 @@ public class TutorialTextDisplay : MonoBehaviour
         canvasManager.TutorialPrompt.SetActive(false);
         canvasManager.TutorialText.text = displayText;
         canvasManager.TutorialMessage.SetActive(true);
+        PC.PlayerFinishInteraction();
     }
 }
