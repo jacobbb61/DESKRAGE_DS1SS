@@ -26,6 +26,11 @@ public class OscarManager : MonoBehaviour
     public bool IsOscarDead = false; //needs to be saved
     public bool MoveInteractionOnLoad = false; //needs to be saved
 
+    public PlayerControllerV2 PC;
+    public InteractableV2 Interactable;
+    public SpriteRenderer Assets;
+    public GameObject MiddleLayerObject;
+    public GameObject FrontLayerObject;
 
     [Header("State")]
     public string CurrentState; //needs to be saved
@@ -71,9 +76,9 @@ public class OscarManager : MonoBehaviour
     public List<EventReference> StateHAudioClips = new List<EventReference>();
     public List<EventReference> StateIAudioClips = new List<EventReference>();
 
-
     public void Start()
     {
+
         QuestionOpen = false;
         QuestionObject.SetActive(false);
 
@@ -83,6 +88,33 @@ public class OscarManager : MonoBehaviour
         CurrentTextLine = 0;
         SetLineText();
 
+    }
+    public void ManualStart()
+    {
+
+        QuestionOpen = false;
+        QuestionObject.SetActive(false);
+
+        DialogObject.SetActive(false);
+        IsTalking = false;
+
+        CurrentTextLine = 0;
+        SetLineText();
+
+        SetDeath();
+        SetLocation();
+      //  SetAnimation();  
+    }
+
+    public void Reload()
+    {
+        QuestionOpen = false;
+        QuestionObject.SetActive(false);
+
+        DialogObject.SetActive(false);
+        IsTalking = false;
+
+        CurrentTextLine = 0;
 
         CheckMemory(); // check for demon killed and pursuer triggered, also updates states based on previous loads
 
@@ -90,11 +122,10 @@ public class OscarManager : MonoBehaviour
         if (MoveInteractionOnLoad) { NextInteraction(); }
         SetDeath();
         SetLocation();
-      //  SetAnimation();
-       
-
-       
+        //  SetAnimation();  
     }
+
+
     public void CheckMemory()
     {
         /*
@@ -162,20 +193,41 @@ public class OscarManager : MonoBehaviour
         switch (CurrentState) 
         {      
             case "A":
-                //set layer to front
+                transform.parent = FrontLayerObject.transform;
+                Assets.sortingLayerName = "FrontSortingLayer";
                 transform.position = Locations[0];              
                 break;
             case "G":
-                //set layer to front
+                transform.parent = FrontLayerObject.transform;
+                Assets.sortingLayerName = "FrontSortingLayer";
                 transform.position = Locations[1];
                 break;
             case "B":
-                //set layer to front
+                transform.parent = FrontLayerObject.transform;
+                Assets.sortingLayerName = "FrontSortingLayer";
                 transform.position = Locations[2];
                 break;
-            default:
-                //set layer to middle
+
+            case "I":
+                transform.parent = MiddleLayerObject.transform;
+                Assets.sortingLayerName = "MiddleSortingLayer";
                 transform.position = Locations[3];
+                break;
+
+            case "H":
+                transform.parent = MiddleLayerObject.transform;
+                Assets.sortingLayerName = "MiddleSortingLayer";
+                transform.position = Locations[4];
+                break;
+            case "E":
+                transform.parent = MiddleLayerObject.transform;
+                Assets.sortingLayerName = "MiddleSortingLayer";
+                transform.position = Locations[4];
+                break;
+            case "C":
+                transform.parent = MiddleLayerObject.transform;
+                Assets.sortingLayerName = "MiddleSortingLayer";
+                transform.position = Locations[4];
                 break;
         }
     }
@@ -252,17 +304,16 @@ public class OscarManager : MonoBehaviour
         StateITextLines.Add("…You go on ahead… I shall catch up with you in due time…");
     }
 
-    public void Y(InputAction.CallbackContext context)
+    public void Y()
     {
-        if (context.action.triggered && CanInput == true && QuestionOpen == false && InRange == true && IsOscarDead==false)
-        {
+
             Debug.Log("Y Button Pressed");
             CanInput = false;
 
             if (!IsTalking) { OpenDialog(); }
             NextLine();
             // StopAnyAudio();//stop audio and timer     
-        }
+
     }
     public void A(InputAction.CallbackContext context)
     {
@@ -310,6 +361,7 @@ public class OscarManager : MonoBehaviour
 
     public void NextLine()
     {
+        PC.PlayerFinishInteraction();
         if (IsTalking) { StopAnyAudio(); } //stop previous audio to play/skip to next
         IsTalking = true; //currently talking
         switch (CurrentState) //set dialog order a
@@ -452,10 +504,10 @@ public class OscarManager : MonoBehaviour
 
     public void CloseDialog()
     {
-        StopAnyAudio();
+        StopAnyAudio(); 
+        DialogTextObject.text = "";
         DialogObject.SetActive(false);
         CanInput = true;
-        DialogTextObject.text = "";
     }
     public void OpenDialog()
     {
@@ -464,6 +516,8 @@ public class OscarManager : MonoBehaviour
     }
     public void OpenQuestion()
     {
+        PC.State = "Interacting";
+        PC.Anim.Play("PlayerAnim_Idle");
         QuestionObject.SetActive(true);
         QuestionOpen = true;
         QuestionOrder = true;
@@ -473,6 +527,7 @@ public class OscarManager : MonoBehaviour
     }
     public void CloseQuestion()
     {
+        PC.PlayerFinishInteraction();
         QuestionObject.SetActive(false);
         QuestionOpen = false;
         //Player can roll, sprint or jump
@@ -494,6 +549,7 @@ public class OscarManager : MonoBehaviour
     }
     public void ChooseQuestion()
     {
+        PC.PlayerFinishInteraction();
         CurrentTextLine = 0;
         StopAnyAudio();
         if (QuestionOrder)
@@ -509,7 +565,6 @@ public class OscarManager : MonoBehaviour
             CurrentState = "NO";
             CloseQuestion();
             IsTalking = false;
-            DialogObject.SetActive(false);
         }
         NextLine();
     }
@@ -599,6 +654,7 @@ public class OscarManager : MonoBehaviour
             InRange = true;
             DialogTextObject.text = CurrentText;
             OpenDialog();
+            PC.Interactable = Interactable;
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
@@ -609,6 +665,20 @@ public class OscarManager : MonoBehaviour
             DialogObject.SetActive(false);
             CloseQuestion();
             CloseDialog();
+            PC.Interactable = null;
         }
+    }
+
+    public void SaveGameDataToCurrentCharacterData(ref CharacterSaveData CurrentCharacterData)
+    {
+        CurrentCharacterData.OscarState = CurrentState;
+        CurrentCharacterData.MoveInteractionOnLoad = MoveInteractionOnLoad;
+        CurrentCharacterData.IsOscarDead = IsOscarDead;
+    }
+    public void LoadGameFromDataToCurrentCharacterData(ref CharacterSaveData CurrentCharacterData)
+    {
+        CurrentState = CurrentCharacterData.OscarState;
+        MoveInteractionOnLoad = CurrentCharacterData.MoveInteractionOnLoad;
+        IsOscarDead = CurrentCharacterData.IsOscarDead;
     }
 }

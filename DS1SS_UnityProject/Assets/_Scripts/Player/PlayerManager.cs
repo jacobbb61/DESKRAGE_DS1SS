@@ -20,6 +20,10 @@ public class PlayerManager : MonoBehaviour
     public bool SKey;
 
 
+    public BoulderManager BoulderManager;
+    public OscarManager OscarManager;
+
+
     private LayerManagerV2 Layer;
     private PlayerControllerV2 PC;
     private void Start()
@@ -59,6 +63,9 @@ public class PlayerManager : MonoBehaviour
         CurrentCharacterData.AKey = AKey;
         CurrentCharacterData.KKey = KKey;
         CurrentCharacterData.SKey = SKey;
+
+        CurrentCharacterData.BoulderUsed = BoulderManager.BoulderUsed;
+
     }
     public void LoadGameFromDataToCurrentCharacterData(ref CharacterSaveData CurrentCharacterData)
     {
@@ -80,5 +87,7 @@ public class PlayerManager : MonoBehaviour
         AKey = CurrentCharacterData.AKey;
         KKey = CurrentCharacterData.KKey;
         SKey = CurrentCharacterData.SKey;
+
+        BoulderManager.BoulderUsed = CurrentCharacterData.BoulderUsed;
     }
 }

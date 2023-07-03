@@ -161,20 +161,6 @@ public class WorldSaveGameManager : MonoBehaviour
         //if we are saving from the build scene do below, if not skip 
         if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Build"))
         {     
-            //get list of EnemySaveManagers
-            EnemySaveManagerList = null;
-            /*
-            EnemySaveManagerList = GameObject.FindGameObjectsWithTag("Enemy");
-            if (EnemySaveManagerList != null)
-            {
-                foreach (GameObject Enemy in EnemySaveManagerList)
-                {
-                    //Pass each enemy data,from game to file
-                    Enemy.GetComponent<EnemySaveManager>().SaveGameDataToCurrentCharacterData(ref CurrentCharacterData);
-                }
-            }*/
-
-            //get list of doors
             DoorSaveManagerList = null;
             DoorSaveManagerList = GameObject.FindGameObjectsWithTag("Door");
             {
@@ -192,6 +178,8 @@ public class WorldSaveGameManager : MonoBehaviour
             BonfireList.GetComponent<LayerManagerV2>().Bonfire_2.GetComponent<Bonfire>().SaveGameDataToCurrentCharacterData(ref CurrentCharacterData);
             BonfireList.GetComponent<LayerManagerV2>().Bonfire_3.GetComponent<Bonfire>().SaveGameDataToCurrentCharacterData(ref CurrentCharacterData);
 
+            //get list of EnemySaveManagers
+            EnemySaveManagerList = null;
             EnemySaveManagerList = BonfireList.GetComponent<LayerManagerV2>().Bonfire_1.GetComponent<Bonfire>().EnemySaveManagerList;
             if (EnemySaveManagerList != null)
             {
@@ -201,6 +189,8 @@ public class WorldSaveGameManager : MonoBehaviour
                     Enemy.GetComponent<EnemySaveManager>().SaveGameDataToCurrentCharacterData(ref CurrentCharacterData);
                 }
             }
+
+            Player.GetComponent<PlayerManager>().OscarManager.SaveGameDataToCurrentCharacterData(ref CurrentCharacterData);
 
         }
         //clear the list of enemys
@@ -272,6 +262,9 @@ public class WorldSaveGameManager : MonoBehaviour
         BonfireList.GetComponent<LayerManagerV2>().Bonfire_2.GetComponent<Bonfire>().LoadGameFromDataToCurrentCharacterData(ref CurrentCharacterData);
         BonfireList.GetComponent<LayerManagerV2>().Bonfire_3.GetComponent<Bonfire>().LoadGameFromDataToCurrentCharacterData(ref CurrentCharacterData);
 
+        Player.GetComponent<PlayerManager>().OscarManager.LoadGameFromDataToCurrentCharacterData(ref CurrentCharacterData);
+        Player.GetComponent<PlayerManager>().OscarManager.ManualStart();
+
         yield return null;
     }
 
@@ -301,6 +294,7 @@ public class WorldSaveGameManager : MonoBehaviour
         CurrentCharacterData.BonfireEverUsed_3 = false;
 
         //door data
+    CurrentCharacterData.BoulderUsed = false;
     CurrentCharacterData.DoorState_A = "Open";
     CurrentCharacterData.DoorState_C = "Locked";
     CurrentCharacterData.DoorState_E = "Closed";
@@ -317,7 +311,12 @@ public class WorldSaveGameManager : MonoBehaviour
     CurrentCharacterData.DoorState_T = "Closed";
     CurrentCharacterData.DoorState_U = "Closed";
 
-    //enemy data
+        //Oscar data
+        CurrentCharacterData.OscarState = "A";
+        CurrentCharacterData.MoveInteractionOnLoad = false;
+        CurrentCharacterData.IsOscarDead = false;
+
+        //enemy data
         CurrentCharacterData.EnemyBehaviour_1 = "Idle";
         CurrentCharacterData.EnemyHealth_1 = 3;
         CurrentCharacterData.EnemyPosX_1 = 4;

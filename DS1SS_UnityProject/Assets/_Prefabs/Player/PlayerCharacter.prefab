@@ -302,11 +302,11 @@ MonoBehaviour:
   BackstepDownSlopeSpeed: 2
   BackstepTime: 0.5
   JumpVerticalSpeed: 7.5
-  JumpHorizontalSpeed: 4.5
+  JumpHorizontalSpeed: 5
   JumpRunHorizontalSpeed: 6
   JumpTime: 1
   FallSpeed: 0.5
-  AirborneControl: 2
+  AirborneControl: 3
   IsLockedOn: 0
   IsBlocking: 0
   IsHealing: 0

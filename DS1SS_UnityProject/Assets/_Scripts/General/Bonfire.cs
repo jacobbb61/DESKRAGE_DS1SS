@@ -7,6 +7,7 @@ public class Bonfire : MonoBehaviour
 {
     private PlayerManager PM;
     private PlayerControllerV2 PC;
+    public OscarManager OM;
 
     public int BonfireTagNum;
     public bool BonfireEverUsed;
@@ -75,6 +76,8 @@ public class Bonfire : MonoBehaviour
                 Enemy.GetComponent<EnemySaveManager>().RespawnEvent.Invoke();
             }
         }
+        //upadate oscar
+        OM.Reload();
     }
 
 

@@ -101,7 +101,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.125}
+  m_Offset: {x: 0, y: 0.25}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -112,7 +112,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.5, y: 0.75}
+  m_Size: {x: 1.5, y: 0.50471497}
   m_EdgeRadius: 0
 --- !u!114 &1926253197167798278
 MonoBehaviour:
@@ -129,6 +129,7 @@ MonoBehaviour:
   layerManager: {fileID: 0}
   doorType: 1
   targetLayer: 0
+  inBossFight: 0
   CurrentDoorState_This: 
   doorCollider: {fileID: 3702622892975103703}
   Anim: {fileID: 0}

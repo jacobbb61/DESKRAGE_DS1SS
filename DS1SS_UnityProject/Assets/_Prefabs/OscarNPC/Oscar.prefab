@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4769806069682803568}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: 6EstusItem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40,7 +40,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4029986165306237454}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: 3EstusItem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -72,13 +72,13 @@ GameObject:
   m_Component:
   - component: {fileID: 5828070884245676001}
   - component: {fileID: 5828070884245676030}
+  - component: {fileID: 5568107500476862235}
   - component: {fileID: 5828070884245676000}
   - component: {fileID: 5828070884245676003}
   - component: {fileID: 862873101779281156}
-  - component: {fileID: 5589312545361649308}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Oscar
-  m_TagString: Untagged
+  m_TagString: Oscar
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -117,13 +117,16 @@ MonoBehaviour:
   InRange: 0
   IsOscarDead: 0
   MoveInteractionOnLoad: 0
+  PC: {fileID: 0}
+  Interactable: {fileID: 5568107500476862235}
   CurrentState: A
-  OscarAnim: {fileID: 5589312545361649308}
+  OscarAnim: {fileID: 0}
   Locations:
-  - {x: -4, y: 0}
-  - {x: -2, y: 0}
-  - {x: 2, y: 0}
-  - {x: 4, y: 0}
+  - {x: -5, y: 0}
+  - {x: -3.5, y: 0}
+  - {x: 6.75, y: -7.5}
+  - {x: 66.5, y: -9.5}
+  - {x: 82.25, y: -9.75}
   DialogObject: {fileID: 0}
   DialogTextObject: {fileID: 0}
   CurrentText: 
@@ -350,6 +353,33 @@ MonoBehaviour:
       Data3: -962662522
       Data4: -2098459639
     Path: event:/OscarVoiceLines/OscarVoiceLinesI/OscarVoiceLineI3
+--- !u!114 &5568107500476862235
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5828070884245676031}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c07e0dd330881234fab7100d93377685, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5828070884245676030}
+        m_TargetAssemblyTypeName: OscarManager, Assembly-CSharp
+        m_MethodName: Y
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &5828070884245676000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -375,10 +405,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_ActionEvents:
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 28e88b78-d7fc-471b-b388-55babf2e63d8
-    m_ActionName: Player/New action
   - m_PersistentCalls:
       m_Calls: []
     m_ActionId: 4b95c619-8b76-4720-bb99-29c964b9978b
@@ -471,6 +497,50 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 236c4b89-b691-43b7-a8cd-a75ff49f6e5e
     m_ActionName: UI /Y[/XInputControllerWindows/buttonNorth]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 3155e660-c8dc-47bc-8d24-8ba74ba461ea
+    m_ActionName: Player/Y[/Keyboard/e,/XInputControllerWindows/buttonNorth]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 14da7b48-5050-415d-b449-0239ca66ffb1
+    m_ActionName: Player/X[/XInputControllerWindows/buttonWest,/Keyboard/f]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 5f671c7d-e909-4833-8574-8570854bd5e8
+    m_ActionName: Player/B[/Keyboard/shift,/XInputControllerWindows/buttonEast]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 9fca1d51-655b-4157-9c2c-488daa06bfb7
+    m_ActionName: Player/A[/Keyboard/space,/XInputControllerWindows/buttonSouth]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 9bd09b67-0e0b-4b74-a695-9a8507772160
+    m_ActionName: Player/Move[/XInputControllerWindows/leftStick,/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 503e8d25-6d85-46bc-b037-67d704198c19
+    m_ActionName: Player/RT[/Mouse/rightButton,/XInputControllerWindows/rightTrigger]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 10dcf732-a674-41d3-96af-ae6f12f59cf7
+    m_ActionName: Player/RB[/Mouse/leftButton,/XInputControllerWindows/rightShoulder]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: e5746827-3d49-46fa-88f4-f92092ead19b
+    m_ActionName: Player/LockOn[/XInputControllerWindows/leftStickPress,/Keyboard/r]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 2353280c-d69a-4d45-b042-ef5e95abf612
+    m_ActionName: UI /AnyKey[/Keyboard/anyKey]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 4ee2e67e-cf76-4b69-8191-7da63fdf9e6b
+    m_ActionName: Player/LT[/Keyboard/f,/XInputControllerWindows/leftTrigger,/XInputControllerWindows1/leftTrigger]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: fff3ec5d-67d0-4c3b-82a0-f841283f05c4
+    m_ActionName: Player/LB[/Keyboard/q,/XInputControllerWindows/leftShoulder,/XInputControllerWindows1/leftShoulder]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: 'UI '
@@ -495,7 +565,7 @@ MonoBehaviour:
       Data2: 1290299153
       Data3: -1883739479
       Data4: -1740846837
-    Path: event:/OscarVoiceLines/OscarVoiceLinesA/OscarVoiceLineA1
+    Path: event:/Dialog/OscarVoiceLines/OscarVoiceLinesA/OscarVoiceLineA1
   Event: 
   PlayEvent: 0
   StopEvent: 0
@@ -533,27 +603,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 3, y: 3}
   m_EdgeRadius: 0
---- !u!95 &5589312545361649308
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5828070884245676031}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &5828070884769839136
 GameObject:
   m_ObjectHideFlags: 0
@@ -564,7 +613,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5828070884769839139}
   - component: {fileID: 5828070884769839138}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Triangle
   m_TagString: Untagged
   m_Icon: {fileID: 0}

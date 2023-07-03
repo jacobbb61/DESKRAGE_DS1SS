@@ -28,6 +28,8 @@ public class CharacterSaveData
     public bool AKey;
     public bool KKey;
     public bool SKey;
+    public bool EstusItem_3;
+    public bool EstusItem_6;
 
     [Header("Bonfires")]
     public int LastBonfireVisited;
@@ -36,6 +38,7 @@ public class CharacterSaveData
     public bool BonfireEverUsed_3;
 
     [Header("Door Data")]
+    public bool BoulderUsed;
     public string DoorState_A;
     public string DoorState_C;
     public string DoorState_E;
@@ -51,6 +54,12 @@ public class CharacterSaveData
     public string DoorState_S;
     public string DoorState_T;
     public string DoorState_U;
+
+    [Header("Oscar Data")]
+    public string OscarState;
+    public bool MoveInteractionOnLoad;
+    public bool IsOscarDead;
+
 
     [Header("Enemy Data")]
     public string EnemyBehaviour_1;

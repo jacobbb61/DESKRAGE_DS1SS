@@ -70,8 +70,10 @@ public class PlayerControllerV2 : MonoBehaviour
     public bool IsBlocking;
     public bool IsHealing;
     public bool IsPlunging;
+    public bool CanUseSecondEstus;
     public bool CanAttack;
     public bool CanFollowUp;
+    public bool CanFollowUpAgain;
 
     public bool CanRollOut; //important
 
@@ -362,19 +364,27 @@ public class PlayerControllerV2 : MonoBehaviour
     //////////////////////////////////////////////////////////////
     public void X(InputAction.CallbackContext context)
     {
-        switch (State)
+        if (CanUseSecondEstus && CurrentEstus>0)
         {
-            case "Idle":
-                ProcessInput_X(context);
-                break;
-            case "Walking":
-                ProcessInput_X(context);
-                break;
-            case "Blocking":
-                ProcessInput_X(context); IsBlocking = false;
-                break;
-            default:
-                break;
+            State = "Estus";
+            EstusUseCoroutine = StartCoroutine(UseEstus());
+        }
+        else
+        {
+            switch (State)
+            {
+                case "Idle":
+                    ProcessInput_X(context);
+                    break;
+                case "Walking":
+                    ProcessInput_X(context);
+                    break;
+                case "Blocking":
+                    ProcessInput_X(context); IsBlocking = false;
+                    break;
+                default:
+                    break;
+            }
         }
     }
     void ProcessInput_X(InputAction.CallbackContext context)
@@ -477,6 +487,10 @@ public class PlayerControllerV2 : MonoBehaviour
             {
                 ProcessInput_RT_Cancel();
             }
+            else if (CanFollowUpAgain)
+            {
+                ProcessInput_RT_CancelAgain();
+            }
             else
             {
                 switch (State)
@@ -539,6 +553,24 @@ public class PlayerControllerV2 : MonoBehaviour
         Stamina -= 30f;
         CanFollowUp = false;
     }
+    void ProcessInput_RT_CancelAgain()
+    {
+        if (HeavyAttackFollowUpCoroutine != null) { StopCoroutine(HeavyAttackFollowUpCoroutine); }
+
+        if (!IsLockedOn)
+        {
+            if (MovementInputDirection > 0.2f) { PlayerDirection = 1; }
+            if (MovementInputDirection < -0.2f) { PlayerDirection = -1; }
+            FaceTowardsInput();
+        }
+        else
+        {
+            FaceTowardsEnemy();
+        }
+        HeavyAttackCoroutine = StartCoroutine(HeavyAttack());
+        Stamina -= 30f;
+        CanFollowUpAgain = false;
+    }
     void ProcessInput_RT_Plunge(InputAction.CallbackContext context) 
     {
         if (context.action.triggered && IsPlunging==false)
@@ -555,6 +587,10 @@ public class PlayerControllerV2 : MonoBehaviour
             if (CanFollowUp)
             {
                 ProcessInput_RB_Cancel();
+            }
+            else if (CanFollowUpAgain)
+            {
+                ProcessInput_RB_CancelAgain();
             }
             else
             {
@@ -613,6 +649,24 @@ public class PlayerControllerV2 : MonoBehaviour
         LightAttackFollowUpCoroutine = StartCoroutine(LightAttackFollowUp());
         Stamina -= 20f;
         CanFollowUp = false;
+    }
+    void ProcessInput_RB_CancelAgain()
+    {
+        if (LightAttackFollowUpCoroutine != null) { StopCoroutine(LightAttackFollowUpCoroutine); }
+        if (!IsLockedOn)
+        {
+            if (MovementInputDirection > 0.2f) { PlayerDirection = 1; }
+            if (MovementInputDirection < -0.2f) { PlayerDirection = -1; }
+            FaceTowardsInput();
+        }
+        else
+        {
+            FaceTowardsEnemy();
+        }
+
+        LightAttackCoroutine = StartCoroutine(LightAttack());
+        Stamina -= 20f;
+        CanFollowUpAgain = false;
     }
     //////////////////////////////////////////////////////////////
     public void LT(InputAction.CallbackContext context)
@@ -844,10 +898,17 @@ public class PlayerControllerV2 : MonoBehaviour
         if (MovementInputDirection < -0.2f) { PlayerDirection = -1; }
         FaceTowardsInput();
 
-        if (!IsRunning) { MyRb.velocity = new Vector2(MovementInputDirection * AirborneControl, MyRb.velocity.y); }
-        else { MyRb.velocity = new Vector2(MovementInputDirection * (AirborneControl + 5), MyRb.velocity.y); }
+        MyRb.velocity = new Vector2(MyRb.velocity.x, MyRb.velocity.y);
+        if (!IsRunning) 
+        { 
+            MyRb.velocity = new Vector2(MovementInputDirection * AirborneControl, MyRb.velocity.y);
+        }
+        else 
+        { 
+            MyRb.velocity = new Vector2(MovementInputDirection * (AirborneControl + 1), MyRb.velocity.y); 
+        }
 
-        VerticalSpeed = 5 + (Time.deltaTime*100);
+        VerticalSpeed = 5 + (Time.deltaTime*10);
 
 
         if (IsGrounded && !IsJumping && !IsLanding)
@@ -885,7 +946,8 @@ public class PlayerControllerV2 : MonoBehaviour
     }
     void MenuOpen()
     {
-
+        Anim.Play("PlayerAnim_Idle");
+        if (IsUiOpen == false) { if (MovementInputDirection == 0) { State = "Idle"; } else { State = "Walking"; } }
     }
 
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1043,7 +1105,7 @@ public class PlayerControllerV2 : MonoBehaviour
                 RunSpeed = 4f;
                 if (IsMovingInput)
                 {
-                    VerticalSpeed = 0f;
+                    VerticalSpeed = 5f;
                 }
                 else { MyRb.velocity = Vector2.zero; }
                 if (FootAOnSlope && !FootBOnSlope) { WalkSpeed = 1.75f; if (IsMovingInput) { VerticalSpeed = 1.75f; } else { VerticalSpeed = 0f; } }
@@ -1053,7 +1115,7 @@ public class PlayerControllerV2 : MonoBehaviour
             {//going with slope
                 WalkSpeed = 3f;
                 RunSpeed = 5.5f;
-                if (IsMovingInput) { VerticalSpeed = 5f; } else { MyRb.velocity = Vector2.zero; } 
+                if (IsMovingInput) { VerticalSpeed = 0f; } else { MyRb.velocity = Vector2.zero; } 
             }
         }
         else if (SlopeAngle < 325 && SlopeAngle >300)
@@ -1163,7 +1225,7 @@ public class PlayerControllerV2 : MonoBehaviour
 
         if (MovementInputDirection == 0)
         {
-            MyRb.velocity = new Vector2(0, JumpVerticalSpeed + 2);
+            MyRb.velocity = new Vector2(0, JumpVerticalSpeed +1);
         }
         else
         {
@@ -1232,10 +1294,12 @@ public class PlayerControllerV2 : MonoBehaviour
         yield return new WaitForSeconds(LightFollowUpAttackTime-1);
 
         CanRollOut = true; CancelThisCoroutine = LightAttackFollowUpCoroutine;
+        CanFollowUpAgain = true;
 
         yield return new WaitForSeconds(1);
 
         CanRollOut = false; CancelThisCoroutine = null;
+        CanFollowUpAgain = false;
 
         StartCoroutine(StaminaRegenPause());
 
@@ -1278,11 +1342,12 @@ public class PlayerControllerV2 : MonoBehaviour
         yield return new WaitForSeconds(HeavyFollowUpAttackTime - 1);
 
         CanRollOut = true; CancelThisCoroutine = HeavyAttackFollowUpCoroutine;
+        CanFollowUpAgain = true;
 
         yield return new WaitForSeconds(1);
 
         CanRollOut = false; CancelThisCoroutine = null;
-
+        CanFollowUpAgain = false;
 
         StartCoroutine(StaminaRegenPause());
 
@@ -1378,9 +1443,14 @@ public class PlayerControllerV2 : MonoBehaviour
         CurrentEstus--;
         CanRollOut = true;
         CancelThisCoroutine = EstusUseCoroutine;
+        CanUseSecondEstus = true;
+
         yield return new WaitForSeconds(.5f);
+
         CancelThisCoroutine = null;
         CanRollOut = false;
+        CanUseSecondEstus = false;
+
         if (MovementInputDirection == 0) { State = "Idle"; } else { State = "Walking"; }
     }
     IEnumerator UseEmptyEstus()

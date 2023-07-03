@@ -99,12 +99,16 @@ public class PlayerMenuManager : MonoBehaviour
 
     public void Open(InputAction.CallbackContext context)
     {
-        if (context.action.triggered && CanInput == true)
+        if (PC.State == "Idle" || PC.State == "Walking" || PC.State == "Running" || PC.State == "MenuOpen")
         {
-            GameSaveGameManager.Instance.SaveSettings(HUDActive, SubtitlesActive, AudioMasterNum, AudioEffectsNum, AudioAmbienceNum, AudioMusicNum, AudioDialogNum);
-            Debug.Log("Start Button Pressed");
-            CanInput = false;
-            LoadMain();
+            if (context.action.triggered && CanInput == true)
+            {
+                GameSaveGameManager.Instance.SaveSettings(HUDActive, SubtitlesActive, AudioMasterNum, AudioEffectsNum, AudioAmbienceNum, AudioMusicNum, AudioDialogNum);
+                Debug.Log("Start Button Pressed");
+                CanInput = false;
+                PC.State = "MenuOpen";
+                LoadMain();
+            }
         }
     }
 
