@@ -14,7 +14,7 @@ public class CollapseBridge : MonoBehaviour
 
     // The bridge referenced in this script must have a collider and kinematic rigidbody
 
-    void Start()
+    public void ManualStart()
     {
         rb = bridge.GetComponent<Rigidbody2D>();
         playerRB = GameObject.FindGameObjectWithTag("Player").GetComponent<Rigidbody2D>();
@@ -63,6 +63,7 @@ public class CollapseBridge : MonoBehaviour
             bridgeCollider.enabled = false;
             // Wait();
             // this.gameObject.SetActive(false);
+            currentState = "Open";
         }
     }
 

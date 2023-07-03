@@ -20,11 +20,54 @@ public class Key : MonoBehaviour
         itemName = gameObject.name;
         playerManager = FindObjectOfType<PlayerManager>();
 
+        switch (targetDoorTag)
+        {
+            case "A":
+                {
+                    if (playerManager.AKey == true)
+                    {
+                        gameObject.SetActive(false);
+                    }
+                    else
+                    {
+                        gameObject.SetActive(true);
+                    }
+                    break;
+                }
+            case "K":
+                {
+                    if (playerManager.KKey == true)
+                    {
+                        gameObject.SetActive(false);
+                    }
+                    else
+                    {
+                        gameObject.SetActive(true);
+                    }
+                    break;
+                }
+            case "S":
+                {
+                    if (playerManager.SKey == true)
+                    {
+                        gameObject.SetActive(false);
+                    }
+                    else
+                    {
+                        gameObject.SetActive(true);
+                    }
+                    break;
+                }
+            default:
+                {
+                    // PANIC
+                    break;
+                }
+        }
     }
 
     public void PickUpKey()
     {
-        // door.isLocked = false;
         switch (targetDoorTag)
         {
             case "A":

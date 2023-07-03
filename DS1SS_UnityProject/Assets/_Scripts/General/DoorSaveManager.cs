@@ -15,7 +15,14 @@ public class DoorSaveManager : MonoBehaviour
 
     public void SaveGameDataToCurrentCharacterData(ref CharacterSaveData CurrentCharacterData)
     {
-        DoorState_This = GetComponent<DoorManager>().CurrentDoorState_This;
+        if (DoorState_This == "O" || DoorState_This == "P")
+        {
+            DoorState_This = GetComponent<CollapseBridge>().currentState;
+        }
+        else
+        {
+            DoorState_This = GetComponent<DoorManager>().CurrentDoorState_This;
+        }
 
         switch (DoorTag_This)
         {
@@ -103,10 +110,10 @@ public class DoorSaveManager : MonoBehaviour
             case "N":
                 DoorState_This = CurrentCharacterData.DoorState_N;
                 break;
-            case "O":
+            case "O": // Breakable floor
                 DoorState_This = CurrentCharacterData.DoorState_O;
                 break;
-            case "P":
+            case "P": // Bridge
                 DoorState_This = CurrentCharacterData.DoorState_P;
                 break;
             case "S":
@@ -119,8 +126,15 @@ public class DoorSaveManager : MonoBehaviour
                 DoorState_This = CurrentCharacterData.DoorState_U;
                 break;
         }
-
-        GetComponent<DoorManager>().CurrentDoorState_This = DoorState_This;
-        GetComponent<DoorManager>().ManualStart();
+        if (DoorState_This == "O" || DoorState_This == "P")
+        {
+            GetComponent<CollapseBridge>().currentState = DoorState_This;
+            GetComponent<CollapseBridge>().ManualStart();
+        }
+        else
+        {
+            GetComponent<DoorManager>().CurrentDoorState_This = DoorState_This;
+            GetComponent<DoorManager>().ManualStart();
+        }
     }
 }

@@ -169,8 +169,72 @@ public class DoorManager : MonoBehaviour
             {      
                 case "Locked":
                     {
-                        doorUI.SetActive(true);
-                        doorUIText.text = "Locked";
+                        switch (doorSaveManager.DoorTag_This) // This gets the tag of the door and checks if it has the corresponding key to unlock
+                        {
+                            case "A":
+                                {
+                                    if (playerManager.AKey == true)
+                                    {
+                                        doorUI.SetActive(true);
+                                        doorUIText.text = "Door unlocked";
+                                        //Anim.Play("");
+                                        //Wait();
+                                        doorCollider.enabled = false;
+                                        CurrentDoorState_This = "Open";
+                                    }
+                                    else
+                                    {
+                                        doorUI.SetActive(true);
+                                        doorUIText.text = "Locked";
+                                    }
+                                    break;
+                                }
+
+                            case "K":
+                                {
+                                    if (playerManager.KKey == true)
+                                    {
+                                        doorUI.SetActive(true);
+                                        doorUIText.text = "Door unlocked";
+                                        //Anim.Play("");
+                                        //Wait();
+                                        doorCollider.enabled = false;
+                                        CurrentDoorState_This = "Open";
+                                    }
+                                    else
+                                    {
+                                        doorUI.SetActive(true);
+                                        doorUIText.text = "Locked";
+                                    }
+                                    break;
+                                }
+
+                            case "S":
+                                {
+                                    if (playerManager.SKey == true)
+                                    {
+                                        doorUI.SetActive(true);
+                                        doorUIText.text = "Door unlocked";
+                                        //Anim.Play("");
+                                        //Wait();
+                                        doorCollider.enabled = false;
+                                        CurrentDoorState_This = "Open";
+                                    }
+                                    else
+                                    {
+                                        doorUI.SetActive(true);
+                                        doorUIText.text = "Locked";
+                                    }
+                                    break;
+                                }
+
+                            default:
+                                {
+                                    doorUI.SetActive(true);
+                                    doorUIText.text = "Locked";
+                                    break;
+                                }
+                        }
                         break;
                     }
                 case "Fog":
