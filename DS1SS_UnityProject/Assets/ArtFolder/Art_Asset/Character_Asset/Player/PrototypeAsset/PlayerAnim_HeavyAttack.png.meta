@@ -67,7 +67,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 8192
+    maxTextureSize: 16384
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -144,7 +144,7 @@ TextureImporter:
       name: PlayerAnim_HeavyAttack_0
       rect:
         serializedVersion: 2
-        x: 155
+        x: 230
         y: 0
         width: 83
         height: 112
@@ -165,10 +165,10 @@ TextureImporter:
       name: PlayerAnim_HeavyAttack_1
       rect:
         serializedVersion: 2
-        x: 495
+        x: 651
         y: 0
-        width: 69
-        height: 99
+        width: 67
+        height: 106
       alignment: 9
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -186,12 +186,12 @@ TextureImporter:
       name: PlayerAnim_HeavyAttack_2
       rect:
         serializedVersion: 2
-        x: 823
+        x: 1049
         y: 0
-        width: 73
-        height: 110
+        width: 69
+        height: 99
       alignment: 9
-      pivot: {x: 0.38, y: 0}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -207,10 +207,10 @@ TextureImporter:
       name: PlayerAnim_HeavyAttack_3
       rect:
         serializedVersion: 2
-        x: 1136
+        x: 1452
         y: 0
-        width: 84
-        height: 112
+        width: 73
+        height: 110
       alignment: 9
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -228,12 +228,12 @@ TextureImporter:
       name: PlayerAnim_HeavyAttack_4
       rect:
         serializedVersion: 2
-        x: 1430
+        x: 1840
         y: 0
-        width: 115
-        height: 116
+        width: 84
+        height: 112
       alignment: 9
-      pivot: {x: 0.41, y: 0}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -249,12 +249,12 @@ TextureImporter:
       name: PlayerAnim_HeavyAttack_5
       rect:
         serializedVersion: 2
-        x: 1703
+        x: 2209
         y: 0
-        width: 157
-        height: 92
+        width: 115
+        height: 116
       alignment: 9
-      pivot: {x: 0.44, y: 0}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -270,12 +270,12 @@ TextureImporter:
       name: PlayerAnim_HeavyAttack_6
       rect:
         serializedVersion: 2
-        x: 2006
+        x: 2557
         y: 0
-        width: 179
-        height: 98
+        width: 157
+        height: 92
       alignment: 9
-      pivot: {x: 0.2, y: 0}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -288,57 +288,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerAnim_HeavyAttack_9
-      rect:
-        serializedVersion: 2
-        x: 2327
-        y: 0
-        width: 103
-        height: 98
-      alignment: 9
-      pivot: {x: 0.44, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e77dfc67b37aa444894ecbfc4391822d
-      internalID: 955121561
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: PlayerAnim_HeavyAttack_11
-      rect:
-        serializedVersion: 2
-        x: 2658
-        y: 0
-        width: 76
-        height: 98
-      alignment: 9
-      pivot: {x: 0.56, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b748d1a10f720914189f86158fa380a2
-      internalID: -1558300702
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: PlayerAnim_HeavyAttack_12
       rect:
         serializedVersion: 2
-        x: 3007
+        x: 3683
         y: 0
-        width: 56
+        width: 130
         height: 98
       alignment: 9
-      pivot: {x: 0.38, y: 0}
+      pivot: {x: 0.74, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -351,36 +309,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerAnim_HeavyAttack_13
-      rect:
-        serializedVersion: 2
-        x: 3315
-        y: 0
-        width: 85
-        height: 103
-      alignment: 9
-      pivot: {x: 0.58, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ac8d5684bf2bb614591f82ee46eb13a4
-      internalID: 1315205076
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: PlayerAnim_HeavyAttack_14
       rect:
         serializedVersion: 2
-        x: 3631
+        x: 4086
         y: 0
-        width: 90
-        height: 102
+        width: 131
+        height: 98
       alignment: 9
-      pivot: {x: 0.65, y: 0}
+      pivot: {x: 0.74, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -393,36 +330,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerAnim_HeavyAttack_15
-      rect:
-        serializedVersion: 2
-        x: 3988
-        y: 0
-        width: 79
-        height: 92
-      alignment: 9
-      pivot: {x: 0.68, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 52bd86f14e5fb6a4d98a2ae680282258
-      internalID: 990218788
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: PlayerAnim_HeavyAttack_16
       rect:
         serializedVersion: 2
-        x: 4341
+        x: 4948
         y: 0
-        width: 109
-        height: 94
+        width: 85
+        height: 103
       alignment: 9
-      pivot: {x: 0.41, y: 0}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -438,12 +354,12 @@ TextureImporter:
       name: PlayerAnim_HeavyAttack_17
       rect:
         serializedVersion: 2
-        x: 4678
+        x: 5339
         y: 0
-        width: 243
-        height: 88
+        width: 90
+        height: 102
       alignment: 9
-      pivot: {x: 0.47, y: 0}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -459,12 +375,12 @@ TextureImporter:
       name: PlayerAnim_HeavyAttack_18
       rect:
         serializedVersion: 2
-        x: 5006
+        x: 5741
         y: 0
-        width: 244
-        height: 93
+        width: 94
+        height: 101
       alignment: 9
-      pivot: {x: 0.61, y: 0}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -480,12 +396,12 @@ TextureImporter:
       name: PlayerAnim_HeavyAttack_19
       rect:
         serializedVersion: 2
-        x: 5391
+        x: 6150
         y: 0
-        width: 188
-        height: 92
+        width: 101
+        height: 104
       alignment: 9
-      pivot: {x: 0.58, y: 0}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -501,12 +417,12 @@ TextureImporter:
       name: PlayerAnim_HeavyAttack_20
       rect:
         serializedVersion: 2
-        x: 5720
+        x: 6590
         y: 0
-        width: 188
-        height: 92
+        width: 69
+        height: 110
       alignment: 9
-      pivot: {x: 0.59, y: 0}
+      pivot: {x: 0.38, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -522,12 +438,12 @@ TextureImporter:
       name: PlayerAnim_HeavyAttack_21
       rect:
         serializedVersion: 2
-        x: 6072
+        x: 7000
         y: 0
-        width: 165
-        height: 92
+        width: 83
+        height: 112
       alignment: 9
-      pivot: {x: 0.57, y: 0}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -543,12 +459,12 @@ TextureImporter:
       name: PlayerAnim_HeavyAttack_22
       rect:
         serializedVersion: 2
-        x: 6401
+        x: 7387
         y: 0
-        width: 165
+        width: 79
         height: 92
       alignment: 9
-      pivot: {x: 0.59, y: 0}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -564,12 +480,12 @@ TextureImporter:
       name: PlayerAnim_HeavyAttack_23
       rect:
         serializedVersion: 2
-        x: 6730
+        x: 7790
         y: 0
-        width: 158
-        height: 92
+        width: 91
+        height: 94
       alignment: 9
-      pivot: {x: 0.61, y: 0}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -585,12 +501,12 @@ TextureImporter:
       name: PlayerAnim_HeavyAttack_24
       rect:
         serializedVersion: 2
-        x: 7059
+        x: 8190
         y: 0
-        width: 145
+        width: 109
         height: 92
       alignment: 9
-      pivot: {x: 0.65, y: 0}
+      pivot: {x: 0.44, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -606,7 +522,217 @@ TextureImporter:
       name: PlayerAnim_HeavyAttack_25
       rect:
         serializedVersion: 2
-        x: 7393
+        x: 8489
+        y: 0
+        width: 291
+        height: 93
+      alignment: 9
+      pivot: {x: 0.56, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bd1d3fd4f0495f14a89738b957430bfd
+      internalID: -603660185
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayerAnim_HeavyAttack_7
+      rect:
+        serializedVersion: 2
+        x: 2864
+        y: 0
+        width: 250
+        height: 98
+      alignment: 9
+      pivot: {x: 0.44, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cfbe3cfaba99def439b394781090decc
+      internalID: -218824433
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayerAnim_HeavyAttack_26
+      rect:
+        serializedVersion: 2
+        x: 8988
+        y: 0
+        width: 188
+        height: 92
+      alignment: 9
+      pivot: {x: 0.34, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b1fa3534ee95cfd41b1582f1e1e250d3
+      internalID: 1119423045
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayerAnim_HeavyAttack_27
+      rect:
+        serializedVersion: 2
+        x: 9392
+        y: 0
+        width: 188
+        height: 92
+      alignment: 9
+      pivot: {x: 0.35, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a129d4b7406614742ad26aec162dd2ff
+      internalID: 1724508875
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayerAnim_HeavyAttack_28
+      rect:
+        serializedVersion: 2
+        x: 9818
+        y: 0
+        width: 165
+        height: 92
+      alignment: 9
+      pivot: {x: 0.26, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2db5e131c12fd444192828e796c75da2
+      internalID: 1337858328
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayerAnim_HeavyAttack_29
+      rect:
+        serializedVersion: 2
+        x: 10223
+        y: 0
+        width: 165
+        height: 92
+      alignment: 9
+      pivot: {x: 0.25, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 432fa964175ffc64ab512bfb88be901e
+      internalID: -1114109279
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayerAnim_HeavyAttack_30
+      rect:
+        serializedVersion: 2
+        x: 10627
+        y: 0
+        width: 158
+        height: 92
+      alignment: 9
+      pivot: {x: 0.28, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dd2ec217ef43ea84eac75ad4da160b18
+      internalID: -852353252
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayerAnim_HeavyAttack_31
+      rect:
+        serializedVersion: 2
+        x: 11031
+        y: 0
+        width: 145
+        height: 92
+      alignment: 9
+      pivot: {x: 0.3, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 18c005bd07347874c9dfd9e7c33cec27
+      internalID: -1526105283
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayerAnim_HeavyAttack_32
+      rect:
+        serializedVersion: 2
+        x: 11448
+        y: 0
+        width: 90
+        height: 102
+      alignment: 9
+      pivot: {x: 0.47, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c3675d180176cc54395b4aeaeaded96c
+      internalID: 287426781
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayerAnim_HeavyAttack_33
+      rect:
+        serializedVersion: 2
+        x: 11849
+        y: 0
+        width: 87
+        height: 105
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dde6ec4aeecee234789b48ddfdaa8ba9
+      internalID: 491122851
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayerAnim_HeavyAttack_34
+      rect:
+        serializedVersion: 2
+        x: 12252
         y: 0
         width: 83
         height: 112
@@ -617,8 +743,50 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bd1d3fd4f0495f14a89738b957430bfd
-      internalID: -603660185
+      spriteID: 92cc0774a86e6a647b269846ffde7a6e
+      internalID: -664272725
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayerAnim_HeavyAttack_10
+      rect:
+        serializedVersion: 2
+        x: 3263
+        y: 0
+        width: 167
+        height: 98
+      alignment: 9
+      pivot: {x: 0.68, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a8f552f83f673e44bb9c25daa451dda7
+      internalID: -1209638658
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayerAnim_HeavyAttack_15
+      rect:
+        serializedVersion: 2
+        x: 4565
+        y: 0
+        width: 56
+        height: 98
+      alignment: 9
+      pivot: {x: 0.41, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 45d00ae30be15474583a3da085dd57b1
+      internalID: 990218788
       vertices: []
       indices: 
       edges: []
@@ -658,6 +826,15 @@ TextureImporter:
       PlayerAnim_HeavyAttack_28: 1337858328
       PlayerAnim_HeavyAttack_29: -1114109279
       PlayerAnim_HeavyAttack_3: 992170176
+      PlayerAnim_HeavyAttack_30: -852353252
+      PlayerAnim_HeavyAttack_31: -1526105283
+      PlayerAnim_HeavyAttack_32: 287426781
+      PlayerAnim_HeavyAttack_33: 491122851
+      PlayerAnim_HeavyAttack_34: -664272725
+      PlayerAnim_HeavyAttack_35: -874880462
+      PlayerAnim_HeavyAttack_36: -1616078521
+      PlayerAnim_HeavyAttack_37: 1363724124
+      PlayerAnim_HeavyAttack_38: 1969836037
       PlayerAnim_HeavyAttack_4: -2031352405
       PlayerAnim_HeavyAttack_5: -1460814055
       PlayerAnim_HeavyAttack_6: 464513878
