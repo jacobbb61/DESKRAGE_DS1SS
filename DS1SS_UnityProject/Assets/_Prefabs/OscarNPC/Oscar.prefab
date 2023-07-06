@@ -117,8 +117,13 @@ MonoBehaviour:
   InRange: 0
   IsOscarDead: 0
   MoveInteractionOnLoad: 0
+  OfferEstus_3: 0
+  OfferEstus_6: 0
   PC: {fileID: 0}
   Interactable: {fileID: 5568107500476862235}
+  Assets: {fileID: 5828070884769839138}
+  MiddleLayerObject: {fileID: 0}
+  FrontLayerObject: {fileID: 0}
   CurrentState: A
   OscarAnim: {fileID: 0}
   Locations:
@@ -136,6 +141,14 @@ MonoBehaviour:
   QuestionHightlightPos: {fileID: 0}
   QuestionOrder: 0
   QuestionOpen: 0
+  ItemPopUp: {fileID: 0}
+  ItemSymbol: {fileID: 0}
+  ItemName: {fileID: 0}
+  ItemQuantity: {fileID: 0}
+  EstusSymbol: {fileID: 2800000, guid: e522483400c8f70438b61a03da29d6f7, type: 3}
+  EstusName: Estus Flask
+  KeySymbol: {fileID: 2800000, guid: cf7467c540afdeb449a4d86dd1dda06f, type: 3}
+  KeyName: Key to place WOW!
   StateATextLines: []
   StateYESTextLines: []
   StateNOTextLines: []

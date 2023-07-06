@@ -1501,4 +1501,18 @@ public class PlayerControllerV2 : MonoBehaviour
             }
         }
     }
+
+    public void GiveEstus(int num)
+    {
+        if (num == 6)
+        {
+            MaxEstus = 6;
+        }
+        if (num == 3)
+        {
+           if (MaxEstus == 3) { MaxEstus = 6; CurrentEstus = 6; }
+           else if (MaxEstus == 0) { MaxEstus = 3; CurrentEstus = 3; }
+        }
+       // Debug.Log("Max was " + MaxEstus + "is now " + num); 
+    }
 }

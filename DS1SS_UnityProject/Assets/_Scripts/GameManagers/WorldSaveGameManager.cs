@@ -313,6 +313,7 @@ public class WorldSaveGameManager : MonoBehaviour
 
         //Oscar data
         CurrentCharacterData.OscarState = "A";
+        CurrentCharacterData.CurrentTextLine = 0;
         CurrentCharacterData.MoveInteractionOnLoad = false;
         CurrentCharacterData.IsOscarDead = false;
 

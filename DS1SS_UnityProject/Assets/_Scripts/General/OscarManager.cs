@@ -25,6 +25,8 @@ public class OscarManager : MonoBehaviour
     public bool InRange = false;
     public bool IsOscarDead = false; //needs to be saved
     public bool MoveInteractionOnLoad = false; //needs to be saved
+    public bool OfferEstus_3 = false; //needs to be saved
+    public bool OfferEstus_6 = false; //needs to be saved
 
     public PlayerControllerV2 PC;
     public InteractableV2 Interactable;
@@ -50,6 +52,18 @@ public class OscarManager : MonoBehaviour
     public RectTransform QuestionHightlightPos;
     public bool QuestionOrder;
     public bool QuestionOpen;
+
+    [Header("Item UI")]
+    public GameObject ItemPopUp;
+    public RawImage ItemSymbol;
+    public TextMeshProUGUI ItemName;
+    public TextMeshProUGUI ItemQuantity;
+
+    public Texture EstusSymbol;
+    public string EstusName;
+    public Texture KeySymbol;
+    public string KeyName;
+
 
     [Header("Dialogue Script")]
     public List<string> StateATextLines = new List<string>();
@@ -313,6 +327,12 @@ public class OscarManager : MonoBehaviour
             if (!IsTalking) { OpenDialog(); }
             NextLine();
             // StopAnyAudio();//stop audio and timer     
+
+        if (IsOscarDead)
+        {
+            if (PC.MaxEstus == 3) { GiveEstus(3); }
+            else if (PC.MaxEstus == 0) { GiveEstus(6); }
+        }
 
     }
     public void A(InputAction.CallbackContext context)
@@ -615,35 +635,39 @@ public class OscarManager : MonoBehaviour
 
     public void GiveEstus(int num)
     {
-        Debug.Log("Given Estus x" + num);
+      PC.GiveEstus(num);
+      ItemSymbol.texture = EstusSymbol;
+      ItemName.text = EstusName;
+      ItemQuantity.text = num.ToString();
+      StartCoroutine(UIPopUp());
     }
     public void GiveKey()
     {
         Debug.Log("Given Key");
+        PC.GetComponent<PlayerManager>().KKey = true;
+        ItemSymbol.texture = KeySymbol;
+        ItemName.text = KeyName;
+        ItemQuantity.text = "1";
+        StartCoroutine(UIPopUp());
     }
+
+    IEnumerator UIPopUp()
+    {
+
+        ItemPopUp.SetActive(true);
+        yield return new WaitForSeconds(3f);
+        ItemPopUp.SetActive(false);
+
+    }
+
+
 
     public void OscarKilled()
     {
         IsOscarDead = true;
         MoveInteractionOnLoad = false;
-        switch (CurrentState)
-        {
-            case "A":
-                GiveEstus(3); //drops estus on death
-                break;
-            case "B":
-                GiveEstus(3);
-                break;
-            case "G":
-                GiveEstus(3);
-                break;
-            case "I":
-                CurrentState = "E";
-                GiveEstus(3);
-                break;
-            default:
-                break;
-        }
+        if (PC.MaxEstus == 3) { GiveEstus(3); }
+        else if (PC.MaxEstus == 0) { GiveEstus(6); }
     }
 
 
@@ -674,11 +698,13 @@ public class OscarManager : MonoBehaviour
         CurrentCharacterData.OscarState = CurrentState;
         CurrentCharacterData.MoveInteractionOnLoad = MoveInteractionOnLoad;
         CurrentCharacterData.IsOscarDead = IsOscarDead;
+        CurrentCharacterData.CurrentTextLine = CurrentTextLine;
     }
     public void LoadGameFromDataToCurrentCharacterData(ref CharacterSaveData CurrentCharacterData)
     {
         CurrentState = CurrentCharacterData.OscarState;
         MoveInteractionOnLoad = CurrentCharacterData.MoveInteractionOnLoad;
         IsOscarDead = CurrentCharacterData.IsOscarDead;
+        CurrentTextLine = CurrentCharacterData.CurrentTextLine;
     }
 }

@@ -268,13 +268,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 407094d1d99044f46b72a6b52648bfcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  State: 
-  Health: 20
+  State: Idle
+  Health: 100
   MaxHealth: 100
-  Stamina: 80
+  Stamina: 100
   MaxStamina: 100
-  CurrentEstus: 3
-  MaxEstus: 3
+  CurrentEstus: 0
+  MaxEstus: 0
   MovementInputDirection: 0
   PlayerDirection: 1
   JumpDirection: 0
@@ -311,8 +311,10 @@ MonoBehaviour:
   IsBlocking: 0
   IsHealing: 0
   IsPlunging: 0
+  CanUseSecondEstus: 0
   CanAttack: 1
   CanFollowUp: 0
+  CanFollowUpAgain: 0
   CanRollOut: 0
   EstusHealAmount: 40
   LightAttackTime: 1.8
@@ -356,6 +358,8 @@ MonoBehaviour:
   AKey: 0
   KKey: 0
   SKey: 0
+  BoulderManager: {fileID: 0}
+  OscarManager: {fileID: 0}
 --- !u!114 &6847898321215821318
 MonoBehaviour:
   m_ObjectHideFlags: 0

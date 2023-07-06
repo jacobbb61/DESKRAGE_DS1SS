@@ -57,9 +57,9 @@ public class CharacterSaveData
 
     [Header("Oscar Data")]
     public string OscarState;
+    public int CurrentTextLine;
     public bool MoveInteractionOnLoad;
     public bool IsOscarDead;
-
 
     [Header("Enemy Data")]
     public string EnemyBehaviour_1;
