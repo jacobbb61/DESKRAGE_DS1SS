@@ -63,6 +63,8 @@ public class AsylumDemon : MonoBehaviour
         HealthSlider.maxValue = MaxHealth;
 
         if (Health > 0) { IsDead = false; } else { Dead(); Behaviour = "Dead"; }
+
+        if (IsActive) { UIAssets.SetActive(true); }else { UIAssets.SetActive(false); }
     }
 
     public void Respawn()
@@ -89,7 +91,7 @@ public class AsylumDemon : MonoBehaviour
             {
                 case "Idle":
                     FacePlayer();
-                    if (IsActive) { Behaviour = "Hostile"; }
+                    if (IsActive) { Behaviour = "Hostile"; UIAssets.SetActive(true); }
                     Anim.Play("AsylumDemonAnim_Idle");
                     break;
                 case "Hostile":

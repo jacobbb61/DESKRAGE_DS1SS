@@ -87,8 +87,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 4401275331580959328}
-        m_TargetAssemblyTypeName: Undead_A, Assembly-CSharp
-        m_MethodName: AttackStep
+        m_TargetAssemblyTypeName: Undead_C, Assembly-CSharp
+        m_MethodName: StartAttackStep
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -100,7 +100,19 @@ MonoBehaviour:
         m_CallState: 2
   Attack3Triggered:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 4401275331580959328}
+        m_TargetAssemblyTypeName: Undead_C, Assembly-CSharp
+        m_MethodName: StopAttackStep
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   Attack4Triggered:
     m_PersistentCalls:
       m_Calls: []
@@ -275,13 +287,14 @@ MonoBehaviour:
   MaxHealth: 11
   Behaviour: 
   LookDirection: 1
-  Speed: 3.5
-  BaseSpeed: 3.5
+  Speed: 3
+  BaseSpeed: 3
   ForwardDetectionRange: 10
   BackwardsDetectionRange: 2
   AttackTriggerRange: 3
   VerticalSpeed: 0.5
   FallSpeed: 5
+  SlopeDir: 
   TimeBeforeAttack: 0.1
   AttackAnimationTime: 2
   AttackCoolDownTime: 0.5
@@ -291,6 +304,7 @@ MonoBehaviour:
   CombatTime: 0
   SeePlayer: 0
   IsAttacking: 0
+  IsAttackStepping: 0
   IsDead: 0
   IsAtOrigin: 0
   IsGrounded: 0

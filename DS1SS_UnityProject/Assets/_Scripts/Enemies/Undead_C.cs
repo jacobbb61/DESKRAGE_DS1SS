@@ -20,6 +20,7 @@ public class Undead_C : MonoBehaviour
     public float AttackTriggerRange;
     public float VerticalSpeed;
     public float FallSpeed;
+    public string SlopeDir;
 
 
     [Header("Combat Data")]
@@ -32,9 +33,12 @@ public class Undead_C : MonoBehaviour
 
     public float CombatTime;
 
+    public List<Collider2D> Overlap;
+
     [Header("Bools")]
     public bool SeePlayer;
     public bool IsAttacking;
+    public bool IsAttackStepping;
     public bool IsDead;
     public bool IsAtOrigin;
     public bool IsGrounded;
@@ -88,6 +92,7 @@ public class Undead_C : MonoBehaviour
     {   
         UpdateUI();
         IsByOriginPosition();
+        GroundCheck();
         if (Health <= 0) { StartCoroutine(Death()); }
         else
         {
@@ -103,23 +108,34 @@ public class Undead_C : MonoBehaviour
                 case "Hostile":
                     CombatTime += Time.deltaTime;
                     LookForPlayer();
-                    if (IsInAttackRange()) { Behaviour = "Attacking"; }
-                    else
+                    if (SeePlayer && IsInAttackRange()) { Behaviour = "Attacking"; }
+                    else if (SeePlayer)
                     {
                         FacePlayer();
                         Walk();
                     }
-                    if (!SeePlayer && !IsAtOrigin && CombatTime>4) {Behaviour = "Returning"; CombatTime = 0; }
+                    else
+                    {
+                        Anim.Play("UndeadAnim_C_Idle");
+                        RB.velocity = Vector2.zero;
+                    }
+                    
+                    if (!SeePlayer && !IsAtOrigin && CombatTime>8) {Behaviour = "Returning"; CombatTime = 0; }
                     break;
                 case "Attacking":
-                    GroundCheck();
-                    if (!IsAttacking) { AttackingCoroutine =  StartCoroutine(Attack()); } 
+                    if (!IsAttacking) { AttackingCoroutine =  StartCoroutine(Attack()); }
+                    if (!IsAttackStepping)
+                    {
+                        RB.velocity = new Vector2(0, -VerticalSpeed);
+                    }
                     break;
                 case "Staggered":
                     StartCoroutine(Staggered());
                     RB.velocity = Vector2.zero;
                     break;
                 case "Parried":
+                    break;
+                case "BackStep":
                     break;
                 case "Returning":
                     LookForPlayer();
@@ -322,14 +338,16 @@ public class Undead_C : MonoBehaviour
             // right  a 35 or less slope
             if (LookDirection == 1)
             { //going against slope
-                Speed = 1f;
+                Speed = 2f; SlopeDir = "a";
+                if (FootAOnSlope && !FootBOnSlope) { VerticalSpeed = 0f; }
+                else if (!FootAOnSlope && FootBOnSlope) { VerticalSpeed = 0f; }
+                else { VerticalSpeed = 5f; }
             }
             else
             {//going with slope
 
-                Speed = 4f;
-                if (FootAOnSlope && !FootBOnSlope) { Speed = 2.5f; VerticalSpeed = 0f; }
-                if (!FootAOnSlope && FootBOnSlope) { Speed = 2.5f; VerticalSpeed = 0f; }
+                Speed = 4.5f; SlopeDir = "b";
+                VerticalSpeed = 0f; 
             }
 
         }
@@ -338,11 +356,11 @@ public class Undead_C : MonoBehaviour
             // right  a 35 or MORE slope
             if (LookDirection == 1)
             { //going against slope
-                Speed = 4.5f;
+                Speed = 5f; SlopeDir = "c";
             }
             else
             {//going with slope
-                Speed = 1f;
+                Speed = 1f; SlopeDir = "d";
                 if (FootAOnSlope && !FootBOnSlope) { Speed = 2.5f; VerticalSpeed = 0f; }
                 if (!FootAOnSlope && FootBOnSlope) { Speed = 2.5f; VerticalSpeed = 0f; }
             }
@@ -352,35 +370,32 @@ public class Undead_C : MonoBehaviour
             // left a 35 or less slope
             if (LookDirection == 1)
             { //going against slope
-                Speed = 1f;
+                Speed = 1f; SlopeDir = "e";
                 if (FootAOnSlope && !FootBOnSlope) { Speed = 2.5f; VerticalSpeed = 0f; }
                 if (!FootAOnSlope && FootBOnSlope) { Speed = 2.5f; VerticalSpeed = 0f; }
             }
             else
             {//going with slope
-                Speed = 4f;
+                Speed = 4f; SlopeDir = "f";
             }
         }
         else if (SlopeAngle < 325 && SlopeAngle > 300)
         {
             // left a 35 or MORE slope
             if (LookDirection == 1)
-            { //going with slope
-                Speed = 1f;
-
-                if (FootAOnSlope && !FootBOnSlope) { Speed = 2.5f; VerticalSpeed = 0f; }
-                if (!FootAOnSlope && FootBOnSlope) { Speed = 2.5f; VerticalSpeed = 0f; }
+            { //going against slope
+                Speed = 3f; SlopeDir = "g";
+                 VerticalSpeed = 0f; 
             }
             else
-            {//going against slope
-                Speed = 4.5f;
+            {//going with slope
+                Speed = 4.5f; SlopeDir = "h";
             }
         }
     }
 
     void Walk()
     {
-        GroundCheck();
         if (IsGrounded)
         {
             RB.velocity = new Vector2(-Speed * LookDirection, -VerticalSpeed);
@@ -403,13 +418,13 @@ public class Undead_C : MonoBehaviour
 
     void FaceOrigin()
     {
-        if (transform.position.x > OriginPosition.x)
+        if (transform.localPosition.x > OriginPosition.x)
         {
-            LookDirection = -1;
+            LookDirection = 1;
         }
         else
         {
-            LookDirection = 1;
+            LookDirection = -1;
         }
 
         if (LookDirection == 1) { Assets.transform.localScale = new Vector3(2, 2, 2); }
@@ -417,7 +432,9 @@ public class Undead_C : MonoBehaviour
     }
     void WalkToOrigin()
     {
-        RB.velocity = new Vector2(-Speed * LookDirection, -5);
+        FaceOrigin();
+        Speed = BaseSpeed;
+        RB.velocity = new Vector2(-Speed * LookDirection, -VerticalSpeed);
         Anim.Play("UndeadAnim_C_Walk");
     }
 
@@ -439,7 +456,6 @@ public class Undead_C : MonoBehaviour
     IEnumerator Attack()
     {
         IsAttacking = true;
-        RB.velocity = Vector2.zero;
         yield return new WaitForSeconds(TimeBeforeAttack);
         FacePlayer();
         Anim.Play("UndeadAnim_C_SwingAttack");
@@ -448,11 +464,20 @@ public class Undead_C : MonoBehaviour
         yield return new WaitForSeconds(AttackCoolDownTime);
         IsAttacking = false;
         Behaviour = "Hostile";
+        FacePlayer();
     }
 
-    public void AttackStep()
+    public void StartAttackStep()
     {
-        RB.velocity = new Vector2((-Speed -1) * LookDirection, -VerticalSpeed);
+
+        RB.velocity = new Vector2(-Speed * LookDirection, -VerticalSpeed);
+        IsAttackStepping = true;
+
+    }
+    public void StopAttackStep()
+    {
+        RB.velocity = Vector2.zero;
+        IsAttackStepping = false;
     }
 
     public void AttackRegister()
@@ -467,6 +492,68 @@ public class Undead_C : MonoBehaviour
             {
                 hit.transform.GetComponent<PlayerControllerV2>().PlayerTakeDamage(AttackDamage, false, 0);
             }
+        }
+    }
+
+    bool IsOnEnemy()
+    {
+
+        Collider2D coll = GetComponent<Collider2D>();
+        ContactFilter2D filter = new ContactFilter2D().NoFilter();
+        List<Collider2D> results = new List<Collider2D>();
+        if (Physics2D.OverlapCollider(coll, filter, Overlap) > 0)
+        {
+            Debug.Log(Overlap);
+        }
+
+
+        RaycastHit2D hit = Physics2D.Raycast(HitStartPos.position, Vector2.down, 0.1f);
+  
+        if (hit.collider != null)
+        {
+            if (hit.transform.CompareTag("Enemy"))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        else
+        {
+            return false;
+        }
+    }
+    IEnumerator StepBack()
+    {
+        Behaviour = "BackStep";
+        RB.velocity = new Vector2(0,0);
+        Anim.Play("UndeadAnim_C_Idle");
+        yield return new WaitForSeconds(1f);
+        Behaviour = "Hostile";
+    }
+    bool IsByWall()
+    {
+
+        int layerMask = ~(LayerMask.GetMask("Enemy"));
+        RaycastHit2D hit = Physics2D.Raycast(Vector2.zero, new Vector2(LookDirection, 0), 1.5f, layerMask);
+
+
+        if (hit.collider != null)
+        {
+            if (hit.transform.CompareTag("Wall"))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        else
+        {
+            return false;
         }
     }
 }

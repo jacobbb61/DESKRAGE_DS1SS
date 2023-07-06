@@ -1,5 +1,67 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &699634638198850258
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2719514958336874655}
+  m_Layer: 0
+  m_Name: GroundCheckPosB
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2719514958336874655
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 699634638198850258}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.3, y: -0.95, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6729981753912794568}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &6331212151112166073
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8488795320099415708}
+  m_Layer: 0
+  m_Name: GroundCheckPosA
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8488795320099415708
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6331212151112166073}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.3, y: -0.95, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6729981753912794568}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6729981753912794574
 GameObject:
   m_ObjectHideFlags: 0
@@ -36,6 +98,8 @@ Transform:
   - {fileID: 7300559950057106275}
   - {fileID: 6729981754439168587}
   - {fileID: 6729981755404304189}
+  - {fileID: 8488795320099415708}
+  - {fileID: 2719514958336874655}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -55,10 +119,14 @@ MonoBehaviour:
   MaxHealth: 3
   Behaviour: 
   LookDirection: 1
-  Speed: 3.5
+  Speed: 1.5
+  BaseSpeed: 1.5
   ForwardDetectionRange: 8
   BackwardsDetectionRange: 2
   AttackTriggerRange: 2
+  VerticalSpeed: 0
+  FallSpeed: 0
+  SlopeDir: 
   TimeBeforeAttack: 0.5
   AttackAnimationTime: 2
   AttackCoolDownTime: 1
@@ -68,10 +136,17 @@ MonoBehaviour:
   CombatTime: 0
   SeePlayer: 0
   IsAttacking: 0
+  IsAttackStepping: 0
   IsDead: 0
   IsAtOrigin: 0
+  IsGrounded: 0
+  IsOnSlope: 0
+  FootAOnSlope: 0
+  FootBOnSlope: 0
   Assets: {fileID: 6729981754875089220}
   Eyes: {fileID: 6729981755404304190}
+  GroundCheckPosA: {fileID: 8488795320099415708}
+  GroundCheckPosB: {fileID: 2719514958336874655}
   HitStartPos: {fileID: 6729981753930603875}
   HealthSlider: {fileID: 8076404684593113949}
   OriginPosition: {x: 70, y: 7.2, z: 0}
@@ -132,6 +207,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  ParryEvent:
+    m_PersistentCalls:
+      m_Calls: []
   EnemyTag_This: 1
   EnemyVariant: A
   EnemyBehaviour_This: 
@@ -353,7 +431,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 6729981753912794569}
         m_TargetAssemblyTypeName: Undead_A, Assembly-CSharp
-        m_MethodName: AttackStep
+        m_MethodName: StartAttackStep
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -365,7 +443,19 @@ MonoBehaviour:
         m_CallState: 2
   Attack3Triggered:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6729981753912794569}
+        m_TargetAssemblyTypeName: Undead_A, Assembly-CSharp
+        m_MethodName: StopAttackStep
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   Attack4Triggered:
     m_PersistentCalls:
       m_Calls: []

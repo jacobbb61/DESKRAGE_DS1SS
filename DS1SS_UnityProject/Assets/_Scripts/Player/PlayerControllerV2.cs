@@ -978,9 +978,10 @@ public class PlayerControllerV2 : MonoBehaviour
     {
         if (!IsJumping)
         {
+            
             int layerMask = ~(LayerMask.GetMask("Enemy"));
-            RaycastHit2D hitA = Physics2D.Raycast(GroundCheckPosA.position, Vector2.down, .45f, layerMask);
-            RaycastHit2D hitB = Physics2D.Raycast(GroundCheckPosB.position, Vector2.down, .45f, layerMask);
+            RaycastHit2D hitA = Physics2D.Raycast(GroundCheckPosA.position, Vector2.down, .65f, layerMask);
+            RaycastHit2D hitB = Physics2D.Raycast(GroundCheckPosB.position, Vector2.down, .65f, layerMask);
 
             if (hitA.collider != null)
             {
