@@ -168,8 +168,8 @@ MonoBehaviour:
   HitStartPos: {fileID: 4444569763040051539}
   HealthSlider: {fileID: 0}
   OriginPosition: {x: 0, y: 0, z: 0}
-  Health: 100
-  MaxHealth: 100
+  Health: 144
+  MaxHealth: 144
   Behaviour: Idle
   LookDirection: 1
   CurrnetLookDirection: 0
@@ -269,7 +269,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!1 &4444569763903382794
 GameObject:
   m_ObjectHideFlags: 0

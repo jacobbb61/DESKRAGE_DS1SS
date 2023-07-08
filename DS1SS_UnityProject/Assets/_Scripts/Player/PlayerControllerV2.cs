@@ -575,7 +575,7 @@ public class PlayerControllerV2 : MonoBehaviour
     {
         if (context.action.triggered && IsPlunging==false)
         {
-            StartCoroutine(EnterPlunge());
+            IsPlunging = true;
             Stamina -= 35f;
         }
     }
@@ -1471,15 +1471,6 @@ public class PlayerControllerV2 : MonoBehaviour
         if (MovementInputDirection == 0) { State = "Idle"; } else { State = "Walking"; }
     }
 
-    IEnumerator EnterPlunge()
-    {
-        Anim.Play("PlayerAnim_Plunge");
-
-        yield return new WaitForSeconds(.5f);
-
-        IsPlunging = true;
-    }
-
     void PlungeAttackRegester()
     {
         int layerMask = ~(LayerMask.GetMask("Player"));
@@ -1491,7 +1482,7 @@ public class PlayerControllerV2 : MonoBehaviour
 
             if (hit.transform.CompareTag("Demon"))
             {
-                hit.transform.GetComponent<EnemySaveManager>().ParryEvent.Invoke();
+                hit.transform.GetComponent<AsylumDemon>().TakePlungeDamage();
                 IsPlunging = false;
             }
             else if (hit.transform.CompareTag("Pursuer"))
