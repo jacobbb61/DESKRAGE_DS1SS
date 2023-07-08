@@ -14,7 +14,14 @@ public class PlayerAnimationEvents : MonoBehaviour
     }
 
 
-
+    public void RollStart()
+    {
+        PC.IsRolling = true;
+    }
+    public void RollEnd()
+    {
+        PC.IsRolling = false;
+    }
 
     public void LightAttack()
     {
@@ -29,7 +36,10 @@ public class PlayerAnimationEvents : MonoBehaviour
             {
                 hit.transform.GetComponent<EnemySaveManager>().TakeLightDamageEvent.Invoke();
             }
-            else
+            else if (hit.transform.CompareTag("Demon"))
+            {
+                hit.transform.GetComponent<AsylumDemon>().TakeLightDamage();
+            } else
             {
                 Debug.Log("Player hit" + hit.transform.name);
             }
@@ -48,6 +58,10 @@ public class PlayerAnimationEvents : MonoBehaviour
             if (hit.transform.CompareTag("Enemy"))
             {
                 hit.transform.GetComponent<EnemySaveManager>().TakeLightDamageEvent.Invoke();
+            }
+            else if (hit.transform.CompareTag("Demon"))
+            {
+                hit.transform.GetComponent<AsylumDemon>().TakeLightDamage();
             }
             else
             {
@@ -68,6 +82,10 @@ public class PlayerAnimationEvents : MonoBehaviour
             {
                 hit.transform.GetComponent<EnemySaveManager>().TakeHeavyDamageEvent.Invoke();
             }
+            else if (hit.transform.CompareTag("Demon"))
+            {
+                hit.transform.GetComponent<AsylumDemon>().TakeHeavyDamage();
+            }
             else
             {
                 Debug.Log("Player hit" + hit.transform.name);
@@ -86,6 +104,10 @@ public class PlayerAnimationEvents : MonoBehaviour
             if (hit.transform.CompareTag("Enemy"))
             {
                 hit.transform.GetComponent<EnemySaveManager>().TakeHeavyDamageEvent.Invoke();
+            }
+            else if (hit.transform.CompareTag("Demon"))
+            {
+                hit.transform.GetComponent<AsylumDemon>().TakeHeavyDamage();
             }
             else
             {

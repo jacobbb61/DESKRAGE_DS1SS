@@ -1268,12 +1268,12 @@ public class PlayerControllerV2 : MonoBehaviour
 
         Anim.Play("PlayerAnim_LightSwing");
 
-        yield return new WaitForSeconds(LightAttackTime-1.2f);
+        yield return new WaitForSeconds(LightAttackTime-.25f);
    
         CanRollOut = true; CancelThisCoroutine = LightAttackCoroutine;
         CanFollowUp = true;  
 
-        yield return new WaitForSeconds(1.2f);
+        yield return new WaitForSeconds(.25f);
 
         CanRollOut = false; CancelThisCoroutine = null;
         CanFollowUp = false;
@@ -1292,12 +1292,12 @@ public class PlayerControllerV2 : MonoBehaviour
 
         Anim.Play("PlayerAnim_LightSwingFollowUpAttack");
 
-        yield return new WaitForSeconds(LightFollowUpAttackTime-1);
+        yield return new WaitForSeconds(LightFollowUpAttackTime-.25f);
 
         CanRollOut = true; CancelThisCoroutine = LightAttackFollowUpCoroutine;
         CanFollowUpAgain = true;
 
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(.25f);
 
         CanRollOut = false; CancelThisCoroutine = null;
         CanFollowUpAgain = false;
@@ -1316,12 +1316,12 @@ public class PlayerControllerV2 : MonoBehaviour
 
         Anim.Play("PlayerAnim_HeavySwing");
 
-        yield return new WaitForSeconds(HeavyAttackTime - 1.4f);
+        yield return new WaitForSeconds(HeavyAttackTime - .5f);
         
         CanRollOut = true; CancelThisCoroutine = HeavyAttackCoroutine;
         CanFollowUp = true;
 
-        yield return new WaitForSeconds(1.4f);
+        yield return new WaitForSeconds(.5f);
 
         CanRollOut = false; CancelThisCoroutine = null;
         CanFollowUp = false; 
@@ -1340,12 +1340,12 @@ public class PlayerControllerV2 : MonoBehaviour
 
         Anim.Play("PlayerAnim_HeavySwingFollowUpAttack");
 
-        yield return new WaitForSeconds(HeavyFollowUpAttackTime - 1);
+        yield return new WaitForSeconds(HeavyFollowUpAttackTime - .2f);
 
         CanRollOut = true; CancelThisCoroutine = HeavyAttackFollowUpCoroutine;
         CanFollowUpAgain = true;
 
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(.2f);
 
         CanRollOut = false; CancelThisCoroutine = null;
         CanFollowUpAgain = false;
@@ -1357,18 +1357,22 @@ public class PlayerControllerV2 : MonoBehaviour
 
     public void AttackStep()
     {
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.zero);
-
+        int layerMask = ~(LayerMask.GetMask("Player"));
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, new Vector2(0, 1), .5f, layerMask);
 
         if (hit.collider != null)
         {
-            if (!hit.transform.CompareTag("Enemy"))
+            if (hit.transform.CompareTag("Enemy"))
             {
-                MyRb.velocity = new Vector2(PlayerDirection * StepDistance, 0);
+                MyRb.velocity = Vector2.zero;
+            }
+            else if (hit.transform.CompareTag("Demon"))
+            {
+              MyRb.velocity = Vector2.zero;                  
             }
             else
             {
-                MyRb.velocity = Vector2.zero;
+                MyRb.velocity = new Vector2(PlayerDirection * StepDistance, 0);
             }
             
         }

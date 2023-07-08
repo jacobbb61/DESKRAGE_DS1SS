@@ -41,13 +41,13 @@ AnimationClip:
       value: {fileID: 847847084, guid: 7778f1d1a63d6f743bca2c28aff45a0a, type: 3}
     - time: 0.96666664
       value: {fileID: -1052637751, guid: 7778f1d1a63d6f743bca2c28aff45a0a, type: 3}
-    - time: 1.1666666
+    - time: 1.3666667
       value: {fileID: 2123872375, guid: 7778f1d1a63d6f743bca2c28aff45a0a, type: 3}
-    - time: 1.25
+    - time: 1.4166666
       value: {fileID: 344929847, guid: 7778f1d1a63d6f743bca2c28aff45a0a, type: 3}
-    - time: 1.35
+    - time: 1.4666667
       value: {fileID: -633355706, guid: 7778f1d1a63d6f743bca2c28aff45a0a, type: 3}
-    - time: 1.45
+    - time: 1.5
       value: {fileID: -555940621, guid: 7778f1d1a63d6f743bca2c28aff45a0a, type: 3}
     - time: 2.1166666
       value: {fileID: -555940621, guid: 7778f1d1a63d6f743bca2c28aff45a0a, type: 3}
@@ -125,4 +125,18 @@ AnimationClip:
   m_EulerEditorCurves: []
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
-  m_Events: []
+  m_Events:
+  - time: 0.96666664
+    functionName: Turn
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 1.5
+    functionName: Attack1
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0

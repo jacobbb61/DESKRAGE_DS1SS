@@ -4,7 +4,19 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class AsylumDemon : MonoBehaviour
-{
+{   
+    private Animator Anim;
+    private GameObject Player;
+    private Rigidbody2D RB;
+    private Coroutine AttackingCoroutine;
+
+    public GameObject Assets;
+    public GameObject UIAssets;
+    public Transform HitStartPos;
+    public Slider HealthSlider;
+    public Vector3 OriginPosition;
+
+
     [Header("Stats")]
     public float Health;
     public float MaxHealth;
@@ -18,34 +30,78 @@ public class AsylumDemon : MonoBehaviour
     [Header("Bools")]
     public bool IsActive;
     public bool IsAttacking;
+    public bool IsCoolingDown;
     public bool IsDead;
 
-    [Header("Move and Detect Data")]
-    public float Speed;
-    public float AttackTriggerRange;
-
     [Header("Combat Data")]
+    public float Speed;
     public float TimeToTurn;
-    public float TimeBeforeAttack;
-    public float AttackAnimationTime;
-    public float AttackCoolDownTime;
     public float StaggerTime;
-    public float AttackRange;
-    public float AttackDamage;
+    public float CloseTriggerRange;
 
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    private Animator Anim;
-    private GameObject Player;
-    private Rigidbody2D RB;
-    private Coroutine AttackingCoroutine;
+    [Header("Hammer Drive")]
+    public float HD_AttackDamage;
+    public float HD_AttackRangeDistnace;
+    public float HD_AttackAnimationTime;
+    public float HD_AttackCoolDownTime;
+    public Transform HD_HitStartPos;
 
-    public GameObject Assets;
-    public GameObject UIAssets;
-    public Transform HitStartPos;
-    public Slider HealthSlider;
-    public Vector3 OriginPosition;
+    [Header("Ranged Hammer")]
+    public float RH_AttackDamage;
+    public float RH_AttackRangeDistnace;
+    public float RH_AttackAnimationTime;
+    public float RH_AttackCoolDownTime;
+    public Transform RH_HitStartPos;
 
+    [Header("Ground Pound")]
+    public float GP_AttackDamage;
+    public float GP_AttackRangeDistnace;
+    public float GP_AttackAnimationTime;
+    public float GP_AttackCoolDownTime;
+    public Transform GP_HitStartPos;
 
+    [Header("Hammer Sweep")]
+    public float HSP_AttackDamage;
+    public float HSP_AttackRangeDistnace;
+    public float HSP_AttackAnimationTime;
+    public float HSP_AttackCoolDownTime;
+    public Transform HSP_HitStartPos;
+
+    [Header("Hammer Swing")]
+    public float HSG_AttackDamage;
+    public float HSG_AttackRangeDistnace;
+    public float HSG_AttackAnimationTime;
+    public float HSG_AttackCoolDownTime;
+    public Transform HSG_HitStartPos;
+
+    [Header("Hammer Back Swing")]
+    public float HBS_AttackDamage;
+    public float HBS_AttackRangeDistnace;
+    public float HBS_AttackAnimationTime;
+    public float HBS_AttackCoolDownTime;
+    public Transform HBS_HitStartPos;
+
+    [Header("Leaping Hammer Smash")]
+    public float LH_AttackDamage;
+    public float LH_AttackRangeDistnace;
+    public float LH_AttackAnimationTime;
+    public float LH_AttackCoolDownTime;
+    public Transform LH_HitStartPos;
+
+    [Header("Double Hammer Swing")]
+    public float DHS_AttackDamage;
+    public float DHS_AttackRangeDistnace;
+    public float DHS_AttackAnimationTime;
+    public float DHS_AttackCoolDownTime;
+    public Transform DHS_HitStartPos;
+
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// start
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     void Start()
     {
         Anim = GetComponentInChildren<Animator>();
@@ -67,19 +123,9 @@ public class AsylumDemon : MonoBehaviour
         if (IsActive) { UIAssets.SetActive(true); }else { UIAssets.SetActive(false); }
     }
 
-    public void Respawn()
-    {
-        if (IsDead == false)
-        {
-            Assets.SetActive(true);
-            gameObject.SetActive(true);
-            Health = MaxHealth;
-            HealthSlider.value = Health;
-            transform.localPosition = OriginPosition;
-            Behaviour = "Idle";
-        }
-    }
-
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// updates
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     void Update()
     {
         UpdateUI();
@@ -95,15 +141,29 @@ public class AsylumDemon : MonoBehaviour
                     Anim.Play("AsylumDemonAnim_Idle");
                     break;
                 case "Hostile":
-                    
-                        FacePlayer();
-                    if (IsFacingPlayer) { Walk(); }
-                    
+
+                    FacePlayer();
+
+                    if (IsFacingPlayer && !IsByPlayer()) {  Walk(); }
+                    else { Anim.Play("AsylumDemonAnim_Idle"); }
+
+
+                    if (!IsCoolingDown)
+                    {
+                        if (IsInCloseRange()) { ChooseCloseRangeAttack(); } else
+                        {
+                           // ChooseLongRangeAttack();
+                        }
+                    }
+
                     break;
                 case "Attacking":
-                    if (!IsAttacking) { AttackingCoroutine = StartCoroutine(Attack()); }
+
                     break;
                 case "Parried":
+                    break;
+                case "Dying":
+                    
                     break;
                 case "Dead":
                     Dead();
@@ -115,26 +175,40 @@ public class AsylumDemon : MonoBehaviour
         }
     }
 
+    void UpdateUI()
+    {
+        HealthSlider.value = Health;
+    }
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// death
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     IEnumerator Death()
     {
-        Behaviour = "Dead";
+        Behaviour = "Dying";
+        
+        Anim.Play("AsylumDemonAnim_Death");
+
         if (IsAttacking) { StopCoroutine(AttackingCoroutine); }
+
         HealthSlider.value = 0;
-        //Anim.Play("UndeadAnim_A_Death");
+        
         yield return new WaitForSeconds(3);
 
+        Behaviour = "Dead";
         Dead();
 
     }
-
     public void Dead()
     {
+        
         Health = 0;
         IsDead = true;
         Assets.SetActive(false);
         gameObject.SetActive(false);
     }
-
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// take damage
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public void TakeLightDamage()
     {
         Health -= 6;
@@ -143,11 +217,10 @@ public class AsylumDemon : MonoBehaviour
     {
         Health -= 9;
     }
-    void UpdateUI()
-    {
-        HealthSlider.value = Health;
-    }
 
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// movement
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     void FacePlayer()
     {
         if (IsTurning == false)
@@ -166,6 +239,10 @@ public class AsylumDemon : MonoBehaviour
                 IsFacingPlayer = false;
                 StartCoroutine(Turn());
             }
+            else
+            {
+                IsFacingPlayer = true;
+            }
         }
     }
 
@@ -181,6 +258,21 @@ public class AsylumDemon : MonoBehaviour
         CurrnetLookDirection = LookDirection;
         IsFacingPlayer = true;
     }
+    public void InstantTurn()
+    {
+        if (transform.position.x > Player.transform.position.x)
+        {
+            LookDirection = 1;
+        }
+        else
+        {
+            LookDirection = -1;
+        }
+        if (LookDirection == 1) { Assets.transform.localScale = new Vector3(1, 1, 1); }
+        else if (LookDirection == -1) { Assets.transform.localScale = new Vector3(-1, 1, 1); }
+        CurrnetLookDirection = LookDirection;
+        IsFacingPlayer = true;
+    }
 
     void Walk()
     {
@@ -188,9 +280,40 @@ public class AsylumDemon : MonoBehaviour
         Anim.Play("AsylumDemonAnim_Walk");
     }
 
-    bool IsInAttackRange()
+    public void AttackStep()
     {
-        if (Vector3.Distance(transform.position, Player.transform.position) < AttackTriggerRange)
+        RB.velocity = new Vector2((-Speed - 1) * LookDirection, -5);
+    }
+
+    bool IsByPlayer()
+    {
+        if (Vector3.Distance(transform.position, Player.transform.position) < 4)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// attack triggers
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    bool IsInCloseRange()
+    {
+        if (Vector3.Distance(transform.position, Player.transform.position) < CloseTriggerRange)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    bool IsBehind()
+    {
+        if (Vector3.Distance(transform.position, Player.transform.position) < CloseTriggerRange)
         {
             Anim.Play("AsylumDemonAnim_Idle");
             return true;
@@ -200,35 +323,101 @@ public class AsylumDemon : MonoBehaviour
             return false;
         }
     }
-
-    IEnumerator Attack()
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// attack pick
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    
+    void ChooseCloseRangeAttack()
     {
-        IsAttacking = true;
-        yield return new WaitForSeconds(TimeBeforeAttack);
-        FacePlayer();
-        //Anim.Play("UndeadAnim_A_SwingAttack");
-        yield return new WaitForSeconds(AttackAnimationTime);
-        //Anim.Play("UndeadAnim_A_Idle");
-        yield return new WaitForSeconds(AttackCoolDownTime);
-        IsAttacking = false;
-        Behaviour = "Hostile";
-    }
-
-    public void AttackStep()
-    {
-        RB.velocity = new Vector2((-Speed - 1) * LookDirection, -5);
-    }
-
-    public void AttackRegister()
-    {
-        RaycastHit2D hit = Physics2D.Raycast(HitStartPos.position, new Vector2(-LookDirection, 0), AttackRange);
-
-
-        if (hit.collider != null)
+        int attack = Random.Range(1, 5);
+        Debug.Log("Close Attack " + attack);
+        switch (attack)
         {
-            if (hit.transform.CompareTag("Player"))
+            case 1: //Hammer Swing
+                AttackingCoroutine = StartCoroutine(HD_Attack());
+                break;
+
+            case 2: //Double Hammer Swing
+                AttackingCoroutine = StartCoroutine(HD_Attack());
+                break;
+
+            case 3: //Ground Pound
+                AttackingCoroutine = StartCoroutine(HD_Attack());
+                break;
+
+            case 4: //Hammer Sweep
+                AttackingCoroutine = StartCoroutine(HD_Attack());
+                break;
+
+            case 5: //Hammer Drive
+                AttackingCoroutine = StartCoroutine(HD_Attack());
+                break;
+
+        }
+    }
+    void ChooseLongRangeAttack()
+    {
+        int attack = Random.Range(1, 2);
+        Debug.Log("Long Attack " + attack);
+        switch (attack)
+        {
+            case 1: //Ranged Hammer
+                AttackingCoroutine = StartCoroutine(HD_Attack());
+                break;
+
+            case 2: //Leaping Hammer Swing
+                AttackingCoroutine = StartCoroutine(HD_Attack());
+                break;
+
+        }
+    }
+
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// Hammer Drive
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    IEnumerator HD_Attack()
+    {
+        Behaviour = "Attacking";
+        IsCoolingDown = false;
+
+        Anim.Play("AsylumDemonAnim_HammerDrive");
+
+
+        yield return new WaitForSeconds(HD_AttackAnimationTime);
+
+        Behaviour = "Hostile";
+        IsCoolingDown = true;
+        Anim.Play("AsylumDemonAnim_Idle");
+
+        yield return new WaitForSeconds(HD_AttackCoolDownTime);
+        IsCoolingDown = false;
+
+    }
+
+
+
+    public void HD_AttackRegister()
+    {
+        RaycastHit2D hit1 = Physics2D.Raycast(HD_HitStartPos.position, new Vector2(-1, 0), HD_AttackRangeDistnace/2);
+        RaycastHit2D hit2 = Physics2D.Raycast(HD_HitStartPos.position, new Vector2(1, 0), HD_AttackRangeDistnace/2);
+
+        bool hitplayer = false;
+
+        if (hit1.collider != null)
+        {
+            if (hit1.transform.CompareTag("Player"))
             {
-                hit.transform.GetComponent<PlayerControllerV2>().PlayerTakeDamage(AttackDamage, false, 0);
+                hit1.transform.GetComponent<PlayerControllerV2>().PlayerTakeDamage(HD_AttackDamage, false, 0);
+                hitplayer = true;
+            }
+        }
+        
+        if(hit2.collider != null && hitplayer == false)
+        {
+            if (hit2.transform.CompareTag("Player"))
+            {
+                hit2.transform.GetComponent<PlayerControllerV2>().PlayerTakeDamage(HD_AttackDamage, false, 0);
             }
         }
     }
