@@ -211,7 +211,7 @@ public class PlayerControllerV2 : MonoBehaviour
             else
             {
                 Health -= Damage;
-                //knock down player
+                StaggerCoroutine = StartCoroutine(Stagger());
             }
         }
     }
@@ -800,8 +800,11 @@ public class PlayerControllerV2 : MonoBehaviour
                 break;
             case "Estus":
 
-                break;            
+                break;
             case "Interacting":
+
+                break;
+            case "Stagger":
 
                 break;
             case "MenuOpen":

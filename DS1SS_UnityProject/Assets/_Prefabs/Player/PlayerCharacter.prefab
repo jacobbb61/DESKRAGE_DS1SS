@@ -42,6 +42,7 @@ GameObject:
   - component: {fileID: 1065959575374467200}
   - component: {fileID: 1065959575374467966}
   - component: {fileID: 1065959575374467201}
+  - component: {fileID: 610513288314884985}
   - component: {fileID: 8358082389795210412}
   m_Layer: 6
   m_Name: PlayerAnim
@@ -138,6 +139,81 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &610513288314884985
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1065959575374467203}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 429bb3f5a64de5349b091f7228ed4511, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Audio1Ref:
+    Guid:
+      Data1: 63629417
+      Data2: 1321518142
+      Data3: 604196736
+      Data4: -85629740
+    Path: event:/Effects/UI SFX/StartGame
+  Audio2Ref:
+    Guid:
+      Data1: 2034212367
+      Data2: 1139489680
+      Data3: 2032545932
+      Data4: -587010951
+    Path: event:/Effects/UI SFX/Ok
+  Audio3Ref:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  Audio4Ref:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  Audio5Ref:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  Audio6Ref:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  Audio7Ref:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  Audio8Ref:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  Audio9Ref:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
 --- !u!114 &8358082389795210412
 MonoBehaviour:
   m_ObjectHideFlags: 0

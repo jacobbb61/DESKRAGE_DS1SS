@@ -177,7 +177,7 @@ public class AsylumDemon : MonoBehaviour
 
     void UpdateUI()
     {
-        HealthSlider.value = Health;
+            HealthSlider.value = Health;
     }
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// death
@@ -412,7 +412,7 @@ public class AsylumDemon : MonoBehaviour
         {
             if (hit1.transform.CompareTag("Player"))
             {
-                hit1.transform.GetComponent<PlayerControllerV2>().PlayerTakeDamage(HD_AttackDamage, false, 0);
+                hit1.transform.GetComponent<PlayerControllerV2>().PlayerTakeDamage(HD_AttackDamage, true, 0);
                 hitplayer = true;
             }
         }
@@ -421,7 +421,7 @@ public class AsylumDemon : MonoBehaviour
         {
             if (hit2.transform.CompareTag("Player"))
             {
-                hit2.transform.GetComponent<PlayerControllerV2>().PlayerTakeDamage(HD_AttackDamage, false, 0);
+                hit2.transform.GetComponent<PlayerControllerV2>().PlayerTakeDamage(HD_AttackDamage, true, 0);
             }
         }
     }

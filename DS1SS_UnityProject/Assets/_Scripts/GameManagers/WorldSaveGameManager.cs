@@ -202,6 +202,19 @@ public class WorldSaveGameManager : MonoBehaviour
         SaveFileDataWriter.CreateNewCharacterSaveFile(CurrentCharacterData);
     }
 
+    public void DeleteGame(CharacterSlot characterSlot)
+    {
+        // choose a file to delete based on name
+        SaveFileName = DecideCharacterSaveFileNameBasedOnCharacterSlotBeingUsed(characterSlot);
+
+        SaveFileDataWriter = new SaveFileDataWriter();
+
+        SaveFileDataWriter.SaveDataDirectoryPath = Application.persistentDataPath;
+        SaveFileDataWriter.SaveFileName = SaveFileName;
+
+        SaveFileDataWriter.DeleteSaveFile();
+    }
+
 
     // load all character slots on device when starting game
     public void LoadAllCharacterSlots()

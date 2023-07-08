@@ -12,4 +12,5 @@ public enum CharacterSlot
     CharacterSlot_01,
     CharacterSlot_02,
     CharacterSlot_03,
+    NO_Slot,
 }

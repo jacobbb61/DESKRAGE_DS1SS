@@ -40,6 +40,9 @@ public class MainMenuManager : MonoBehaviour
     private bool CharacterMenuOpen = false;
     private int CharacterMenuOrder = 1;
 
+    public CharacterSlot CurrentSelectedSlot = CharacterSlot.NO_Slot;
+    public GameObject DeleteSlotPopUp;
+
     [Header("Settings")]
     public GameObject Settings; 
     public RectTransform SettingsHightlightPos;
@@ -226,6 +229,9 @@ public class MainMenuManager : MonoBehaviour
                 case "CharacterMenu":
                     SelectCharacterMenu();
                     break;
+                case "DeleteSlot":
+                    DeletCharacterSlot();
+                    break;
                 default:
                     CanInput = true;
                     break;
@@ -253,7 +259,11 @@ public class MainMenuManager : MonoBehaviour
                     break;
                 case "CharacterMenu":
                     CharacterMenuExitAnim.SetTrigger("Active");
+                    CurrentSelectedSlot = CharacterSlot.NO_Slot;
                     StartCoroutine(LoadCharacterMenu());
+                    break;
+                case "DeleteSlot":
+                    CloseDeleteSlot();
                     break;
                 default:
                     CanInput = true;
@@ -261,7 +271,24 @@ public class MainMenuManager : MonoBehaviour
             }
         }
     }
-
+    public void Y(InputAction.CallbackContext context)
+    {
+        if (context.action.triggered && CanInput == true)
+        {
+            Debug.Log("Y Button Pressed");
+            CanInput = false;
+            
+            switch (ActiveMenu)
+            {
+                case "CharacterMenu":
+                    AttemotToDeletSlot();
+                    break;
+                default:
+                    CanInput = true;
+                    break;
+            }
+        }
+    }
 
 
 
@@ -307,6 +334,7 @@ public class MainMenuManager : MonoBehaviour
                 if (Slot01.gameObject.activeInHierarchy)
                 {
                     Slot01.LoadGameFromCharacterSlot();
+                    CurrentSelectedSlot = CharacterSlot.CharacterSlot_01;
                 }
                 else { CanInput = true; }
                 break;
@@ -315,14 +343,16 @@ public class MainMenuManager : MonoBehaviour
                 if (Slot02.gameObject.activeInHierarchy)
                 {
                     Slot02.LoadGameFromCharacterSlot();
+                    CurrentSelectedSlot = CharacterSlot.CharacterSlot_02;
                 }
-                else { CanInput = true; }
+                else { CanInput = true;  }
                 break;
 
             case 3:
                 if (Slot03.gameObject.activeInHierarchy)
                 {
                     Slot03.LoadGameFromCharacterSlot();
+                    CurrentSelectedSlot = CharacterSlot.CharacterSlot_03;
                 }
                 else { CanInput = true; }
                 break;
@@ -422,15 +452,30 @@ public class MainMenuManager : MonoBehaviour
                 break;
 
             case 1:
-                CharacterMenuHighlight.anchoredPosition = new Vector2(0, 150);
+                CharacterMenuHighlight.anchoredPosition = new Vector2(0, 150); 
+                if (Slot01.gameObject.activeInHierarchy)
+                {
+                    CurrentSelectedSlot = CharacterSlot.CharacterSlot_01;
+                }
+                else { CurrentSelectedSlot = CharacterSlot.NO_Slot; }
                 break;
 
             case 2:
                 CharacterMenuHighlight.anchoredPosition = new Vector2(0,0);
+                if (Slot02.gameObject.activeInHierarchy)
+                {
+                    CurrentSelectedSlot = CharacterSlot.CharacterSlot_02;
+                }
+                else { CurrentSelectedSlot = CharacterSlot.NO_Slot; }
                 break;
 
             case 3:
                 CharacterMenuHighlight.anchoredPosition = new Vector2(0, -150);
+                if (Slot03.gameObject.activeInHierarchy)
+                {
+                    CurrentSelectedSlot = CharacterSlot.CharacterSlot_03;
+                }
+                else { CurrentSelectedSlot = CharacterSlot.NO_Slot; }
                 break;
 
             case 4:
@@ -531,8 +576,63 @@ public class MainMenuManager : MonoBehaviour
         CanInput = true;
     }
 
+    public void AttemotToDeletSlot()
+    {
+        if (CurrentSelectedSlot != CharacterSlot.NO_Slot)
+        {
+            PlayAudioPressOk();
+            DeleteSlotPopUp.SetActive(true);
+            ActiveMenu = "DeleteSlot";
 
+            switch (CharacterMenuOrder)
+            {
+                case 1:
+                    DeleteSlotPopUp.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, 150);
+                    break;
 
+                case 2:
+                    DeleteSlotPopUp.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, 0);
+                    break;
+
+                case 3:
+                    DeleteSlotPopUp.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, -150);
+                    break;
+            }
+        }
+        else
+        {
+            PlayAudioPressCancel();
+        }
+        CanInput = true;
+    }
+    public void CloseDeleteSlot()
+    {
+        DeleteSlotPopUp.SetActive(false);
+        ActiveMenu = "CharacterMenu";
+        CanInput = true;
+    }
+
+    public void DeletCharacterSlot()
+    {
+        switch (CharacterMenuOrder)
+        {
+            case 1:
+                Slot01.gameObject.SetActive(false);
+                break;
+
+            case 2:
+                Slot02.gameObject.SetActive(false);
+                break;
+
+            case 3:
+                Slot03.gameObject.SetActive(false);
+                break;
+        }
+        DeleteSlotPopUp.SetActive(false);
+        ActiveMenu = "CharacterMenu";
+        WorldSaveGameManager.Instance.DeleteGame(CurrentSelectedSlot);
+        CanInput = true;
+    }
 
     IEnumerator LoadNewGame()
     {
