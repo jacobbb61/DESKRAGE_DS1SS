@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <objects serializationModel="Studio.02.02.00">
-	<object class="AudioFile" id="{a1695c81-2d11-4f2d-9b8a-57332659a334}">
+	<object class="AudioFile" id="{43e54765-3cd1-43c3-a0df-30b4b9873a5c}">
 		<property name="assetPath">
-			<value>Player/Damage/voice-m-fallindead.wav.mp3</value>
+			<value>Enemy/Hollows/p000000051.wav.mp3</value>
 		</property>
 		<property name="frequencyInKHz">
-			<value>22.0499992</value>
+			<value>44.0999985</value>
 		</property>
 		<property name="channelCount">
 			<value>1</value>
 		</property>
 		<property name="length">
-			<value>2.7167346938775512</value>
+			<value>1.1493877551020408</value>
 		</property>
 		<relationship name="masterAssetFolder">
 			<destination>{62778189-5269-43bd-8b21-d1bef2a14ef8}</destination>

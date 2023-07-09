@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <objects serializationModel="Studio.02.02.00">
-	<object class="AudioFile" id="{3ff98484-68bf-4bf1-8d79-d3b61db1286d}">
+	<object class="AudioFile" id="{61b36092-4589-4e41-9604-bb0328c8f911}">
 		<property name="assetPath">
-			<value>Player/Damage/voice-mx-dead.wav.mp3</value>
+			<value>Enemy/Hollows/p0000000041d.wav.mp3</value>
 		</property>
 		<property name="frequencyInKHz">
 			<value>22.0499992</value>
@@ -11,7 +11,7 @@
 			<value>1</value>
 		</property>
 		<property name="length">
-			<value>1.9853061224489796</value>
+			<value>3.1869387755102041</value>
 		</property>
 		<relationship name="masterAssetFolder">
 			<destination>{62778189-5269-43bd-8b21-d1bef2a14ef8}</destination>
