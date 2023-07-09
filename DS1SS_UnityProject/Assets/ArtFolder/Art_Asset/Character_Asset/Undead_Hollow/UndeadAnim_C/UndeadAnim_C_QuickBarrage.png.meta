@@ -1,0 +1,907 @@
+fileFormatVersion: 2
+guid: 5f317cf4a0a37f644b7fd77f6acf5c92
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 128
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 16384
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: UndeadAnim_C_QuickBarrage_0
+      rect:
+        serializedVersion: 2
+        x: 179
+        y: 0
+        width: 39
+        height: 113
+      alignment: 9
+      pivot: {x: 0.45, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 73762254078112c40adeb96c2120fa9b
+      internalID: -2080920127
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UndeadAnim_C_QuickBarrage_1
+      rect:
+        serializedVersion: 2
+        x: 423
+        y: 0
+        width: 45
+        height: 116
+      alignment: 9
+      pivot: {x: 0.45, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 56404df633512f348ac1180294dd7dbd
+      internalID: -1014840685
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UndeadAnim_C_QuickBarrage_2
+      rect:
+        serializedVersion: 2
+        x: 684
+        y: 0
+        width: 41
+        height: 126
+      alignment: 9
+      pivot: {x: 0.45, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 15ebeed751cd8b049b00c681e7fd0642
+      internalID: 746103267
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UndeadAnim_C_QuickBarrage_3
+      rect:
+        serializedVersion: 2
+        x: 925
+        y: 0
+        width: 82
+        height: 126
+      alignment: 9
+      pivot: {x: 0.29, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 87d1aa916ba48d94e97f7b9502b9dde8
+      internalID: 799763336
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UndeadAnim_C_QuickBarrage_4
+      rect:
+        serializedVersion: 2
+        x: 1170
+        y: 0
+        width: 67
+        height: 111
+      alignment: 9
+      pivot: {x: 0.27, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3b5fd652acabb64449a7de18ac4576f4
+      internalID: 1656254083
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UndeadAnim_C_QuickBarrage_5
+      rect:
+        serializedVersion: 2
+        x: 1402
+        y: 0
+        width: 73
+        height: 119
+      alignment: 9
+      pivot: {x: 0.51, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 649ae741f8c168441a8f40fc0f9ff739
+      internalID: 2140743628
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UndeadAnim_C_QuickBarrage_6
+      rect:
+        serializedVersion: 2
+        x: 1675
+        y: 0
+        width: 52
+        height: 100
+      alignment: 9
+      pivot: {x: 0.45, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6f1759f937c20f6439c07c0bc4777386
+      internalID: -1781092034
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UndeadAnim_C_QuickBarrage_7
+      rect:
+        serializedVersion: 2
+        x: 1922
+        y: 0
+        width: 61
+        height: 94
+      alignment: 9
+      pivot: {x: 0.45, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f3b65a976262ddd47b4ad7da7956d784
+      internalID: 1047833593
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UndeadAnim_C_QuickBarrage_8
+      rect:
+        serializedVersion: 2
+        x: 2181
+        y: 0
+        width: 58
+        height: 90
+      alignment: 9
+      pivot: {x: 0.45, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6164a537658fd5844bd75960b13a9dfa
+      internalID: -284742025
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UndeadAnim_C_QuickBarrage_9
+      rect:
+        serializedVersion: 2
+        x: 2446
+        y: 0
+        width: 49
+        height: 98
+      alignment: 9
+      pivot: {x: 0.45, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8be38fa6d65702643b47b23768561e83
+      internalID: -637224932
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UndeadAnim_C_QuickBarrage_10
+      rect:
+        serializedVersion: 2
+        x: 2703
+        y: 0
+        width: 76
+        height: 104
+      alignment: 9
+      pivot: {x: 0.24, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 229a24f9cebc6f6499c15839c0f385a0
+      internalID: 399959191
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UndeadAnim_C_QuickBarrage_11
+      rect:
+        serializedVersion: 2
+        x: 2959
+        y: 0
+        width: 96
+        height: 102
+      alignment: 9
+      pivot: {x: 0.21, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 411011e1e3c8bde4f87d9f1224069d52
+      internalID: 2098100123
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UndeadAnim_C_QuickBarrage_12
+      rect:
+        serializedVersion: 2
+        x: 3208
+        y: 0
+        width: 55
+        height: 99
+      alignment: 9
+      pivot: {x: 0.45, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 30d418f6398342e4681be9e5404e67a1
+      internalID: -1347985218
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UndeadAnim_C_QuickBarrage_13
+      rect:
+        serializedVersion: 2
+        x: 3426
+        y: 0
+        width: 93
+        height: 98
+      alignment: 9
+      pivot: {x: 0.66, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a35cd34b143e92642bd450e4c7ed2583
+      internalID: -945530339
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UndeadAnim_C_QuickBarrage_14
+      rect:
+        serializedVersion: 2
+        x: 3689
+        y: 0
+        width: 86
+        height: 106
+      alignment: 9
+      pivot: {x: 0.66, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fbdfdfa68e810db45935c6aa41ab057f
+      internalID: -479304554
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UndeadAnim_C_QuickBarrage_15
+      rect:
+        serializedVersion: 2
+        x: 3957
+        y: 0
+        width: 74
+        height: 89
+      alignment: 9
+      pivot: {x: 0.6, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c27e7a98babcf4444a379ae584b8dcf9
+      internalID: -141542005
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UndeadAnim_C_QuickBarrage_16
+      rect:
+        serializedVersion: 2
+        x: 4239
+        y: 0
+        width: 48
+        height: 94
+      alignment: 9
+      pivot: {x: 0.39, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8aef11fd6f808074d94405b120b750af
+      internalID: 333599037
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UndeadAnim_C_QuickBarrage_17
+      rect:
+        serializedVersion: 2
+        x: 4495
+        y: 0
+        width: 66
+        height: 93
+      alignment: 9
+      pivot: {x: 0.27, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e0da4b8a9dbbe9e4a8ca8b79460dbcbe
+      internalID: 963617649
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UndeadAnim_C_QuickBarrage_18
+      rect:
+        serializedVersion: 2
+        x: 4745
+        y: 0
+        width: 82
+        height: 95
+      alignment: 9
+      pivot: {x: 0.3, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bf1f682431b1205418fc00616d0c2190
+      internalID: -475843633
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UndeadAnim_C_QuickBarrage_19
+      rect:
+        serializedVersion: 2
+        x: 5003
+        y: 0
+        width: 52
+        height: 96
+      alignment: 9
+      pivot: {x: 0.45, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c0c8c9b4007555243a1f62a774275c7b
+      internalID: 755451844
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UndeadAnim_C_QuickBarrage_20
+      rect:
+        serializedVersion: 2
+        x: 5246
+        y: 0
+        width: 65
+        height: 90
+      alignment: 9
+      pivot: {x: 0.54, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 35a2b3e8d0afa204ebdfdfdf7749496c
+      internalID: -1666234069
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UndeadAnim_C_QuickBarrage_21
+      rect:
+        serializedVersion: 2
+        x: 5482
+        y: 0
+        width: 85
+        height: 84
+      alignment: 9
+      pivot: {x: 0.7, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2e79c7ad064568947b565d18948130d1
+      internalID: 52367208
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UndeadAnim_C_QuickBarrage_22
+      rect:
+        serializedVersion: 2
+        x: 5748
+        y: 0
+        width: 75
+        height: 77
+      alignment: 9
+      pivot: {x: 0.63, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 72f59971e7e353b46a14b2e22507f44c
+      internalID: 1131237609
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UndeadAnim_C_QuickBarrage_23
+      rect:
+        serializedVersion: 2
+        x: 6008
+        y: 0
+        width: 71
+        height: 79
+      alignment: 9
+      pivot: {x: 0.57, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aa802e07a9db5fe4882805895ac941f7
+      internalID: -1189180747
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UndeadAnim_C_QuickBarrage_24
+      rect:
+        serializedVersion: 2
+        x: 6281
+        y: 0
+        width: 70
+        height: 96
+      alignment: 9
+      pivot: {x: 0.33, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 39049b89ff3bf1240bd2066d4a598d38
+      internalID: -567206308
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UndeadAnim_C_QuickBarrage_25
+      rect:
+        serializedVersion: 2
+        x: 6531
+        y: 0
+        width: 81
+        height: 106
+      alignment: 9
+      pivot: {x: 0.39, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c7fb91f81bc573f498e8aca5eeab41df
+      internalID: 57760126
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UndeadAnim_C_QuickBarrage_26
+      rect:
+        serializedVersion: 2
+        x: 6778
+        y: 0
+        width: 81
+        height: 110
+      alignment: 9
+      pivot: {x: 0.57, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 11c518a8dcb4b5842a050375077d4406
+      internalID: 1631303738
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UndeadAnim_C_QuickBarrage_27
+      rect:
+        serializedVersion: 2
+        x: 7060
+        y: 0
+        width: 51
+        height: 110
+      alignment: 9
+      pivot: {x: 0.33, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4991e3573670b1044ade8b3505fce982
+      internalID: -1627349053
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UndeadAnim_C_QuickBarrage_28
+      rect:
+        serializedVersion: 2
+        x: 7328
+        y: 0
+        width: 41
+        height: 112
+      alignment: 9
+      pivot: {x: 0.57, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f050c1bbbb017724f8f88da0c119f9ef
+      internalID: -397668425
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UndeadAnim_C_QuickBarrage_29
+      rect:
+        serializedVersion: 2
+        x: 7590
+        y: 0
+        width: 50
+        height: 113
+      alignment: 9
+      pivot: {x: 0.66, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0f13f4c87ddd5be46939730fe83f2b97
+      internalID: -380142905
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UndeadAnim_C_QuickBarrage_30
+      rect:
+        serializedVersion: 2
+        x: 7844
+        y: 0
+        width: 55
+        height: 115
+      alignment: 9
+      pivot: {x: 0.57, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9c7dc3a442481b54b869710c63bac5b2
+      internalID: 637359720
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UndeadAnim_C_QuickBarrage_31
+      rect:
+        serializedVersion: 2
+        x: 8099
+        y: 0
+        width: 59
+        height: 114
+      alignment: 9
+      pivot: {x: 0.54, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fc3a64efd7202794bb68d413af5e0c1f
+      internalID: -185706429
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UndeadAnim_C_QuickBarrage_32
+      rect:
+        serializedVersion: 2
+        x: 8364
+        y: 0
+        width: 44
+        height: 112
+      alignment: 9
+      pivot: {x: 0.54, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6890955a3c7b14c4b9bb96c5c0d8b0f9
+      internalID: 419375366
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UndeadAnim_C_QuickBarrage_33
+      rect:
+        serializedVersion: 2
+        x: 8629
+        y: 0
+        width: 35
+        height: 112
+      alignment: 9
+      pivot: {x: 0.45, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3f1c85e70807f7741a437d5df4e3428e
+      internalID: 1225533325
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      UndeadAnim_C_QuickBarrage_0: -2080920127
+      UndeadAnim_C_QuickBarrage_1: -1014840685
+      UndeadAnim_C_QuickBarrage_10: 399959191
+      UndeadAnim_C_QuickBarrage_11: 2098100123
+      UndeadAnim_C_QuickBarrage_12: -1347985218
+      UndeadAnim_C_QuickBarrage_13: -945530339
+      UndeadAnim_C_QuickBarrage_14: -479304554
+      UndeadAnim_C_QuickBarrage_15: -141542005
+      UndeadAnim_C_QuickBarrage_16: 333599037
+      UndeadAnim_C_QuickBarrage_17: 963617649
+      UndeadAnim_C_QuickBarrage_18: -475843633
+      UndeadAnim_C_QuickBarrage_19: 755451844
+      UndeadAnim_C_QuickBarrage_2: 746103267
+      UndeadAnim_C_QuickBarrage_20: -1666234069
+      UndeadAnim_C_QuickBarrage_21: 52367208
+      UndeadAnim_C_QuickBarrage_22: 1131237609
+      UndeadAnim_C_QuickBarrage_23: -1189180747
+      UndeadAnim_C_QuickBarrage_24: -567206308
+      UndeadAnim_C_QuickBarrage_25: 57760126
+      UndeadAnim_C_QuickBarrage_26: 1631303738
+      UndeadAnim_C_QuickBarrage_27: -1627349053
+      UndeadAnim_C_QuickBarrage_28: -397668425
+      UndeadAnim_C_QuickBarrage_29: -380142905
+      UndeadAnim_C_QuickBarrage_3: 799763336
+      UndeadAnim_C_QuickBarrage_30: 637359720
+      UndeadAnim_C_QuickBarrage_31: -185706429
+      UndeadAnim_C_QuickBarrage_32: 419375366
+      UndeadAnim_C_QuickBarrage_33: 1225533325
+      UndeadAnim_C_QuickBarrage_4: 1656254083
+      UndeadAnim_C_QuickBarrage_5: 2140743628
+      UndeadAnim_C_QuickBarrage_6: -1781092034
+      UndeadAnim_C_QuickBarrage_7: 1047833593
+      UndeadAnim_C_QuickBarrage_8: -284742025
+      UndeadAnim_C_QuickBarrage_9: -637224932
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
