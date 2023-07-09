@@ -14,12 +14,17 @@ public class EndCreditsManager : MonoBehaviour
     public Animator SkipPromptAnim;
     public Animator SceneTransitionAnim;
 
+    public EventReference EndCreditsSong;
     public EventReference PressCancel;
     public FMOD.Studio.EventInstance FMODinstance;
 
     void Start()
     {
         StartCoroutine(EndCredits());
+
+        FMODinstance = FMODUnity.RuntimeManager.CreateInstance(EndCreditsSong);
+        FMODinstance.start();
+        FMODinstance.release();
     }
 
     IEnumerator EndCredits()
@@ -61,6 +66,8 @@ public class EndCreditsManager : MonoBehaviour
 
     IEnumerator SkipCredits()
     {
+        FMODinstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+        FMODinstance.release();
         SkipPromptAnim.SetTrigger("Active");
         SceneTransitionAnim.SetTrigger("Active");
         FMODUnity.RuntimeManager.PlayOneShot(PressCancel);

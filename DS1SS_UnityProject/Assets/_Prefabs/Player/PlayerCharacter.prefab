@@ -202,18 +202,18 @@ MonoBehaviour:
     Path: 
   Audio8Ref:
     Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
+      Data1: 1069122748
+      Data2: 1317838744
+      Data3: 436730278
+      Data4: -814525657
+    Path: event:/Player/Damage
   Audio9Ref:
     Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
+      Data1: 1536091416
+      Data2: 1132977384
+      Data3: 1994861241
+      Data4: -631453580
+    Path: event:/Player/WalkRun
 --- !u!114 &8358082389795210412
 MonoBehaviour:
   m_ObjectHideFlags: 0

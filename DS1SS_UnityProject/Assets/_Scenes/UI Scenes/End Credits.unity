@@ -844,6 +844,13 @@ MonoBehaviour:
   CanSkip: 0
   SkipPromptAnim: {fileID: 286183241}
   SceneTransitionAnim: {fileID: 1365905880}
+  EndCreditsSong:
+    Guid:
+      Data1: -2138890804
+      Data2: 1088953656
+      Data3: 1356615082
+      Data4: 36431899
+    Path: event:/Music/NamlessSong
   PressCancel:
     Guid:
       Data1: -1716528186
@@ -876,10 +883,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_ActionEvents:
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 28e88b78-d7fc-471b-b388-55babf2e63d8
-    m_ActionName: Player/New action
   - m_PersistentCalls:
       m_Calls: []
     m_ActionId: 4b95c619-8b76-4720-bb99-29c964b9978b
@@ -972,6 +975,50 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 236c4b89-b691-43b7-a8cd-a75ff49f6e5e
     m_ActionName: UI /Y[/XInputControllerWindows/buttonNorth]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 3155e660-c8dc-47bc-8d24-8ba74ba461ea
+    m_ActionName: Player/Y[/Keyboard/e]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 14da7b48-5050-415d-b449-0239ca66ffb1
+    m_ActionName: Player/X[/Keyboard/f]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 5f671c7d-e909-4833-8574-8570854bd5e8
+    m_ActionName: Player/B[/Keyboard/shift]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 9fca1d51-655b-4157-9c2c-488daa06bfb7
+    m_ActionName: Player/A[/Keyboard/space]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 9bd09b67-0e0b-4b74-a695-9a8507772160
+    m_ActionName: Player/Move[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 503e8d25-6d85-46bc-b037-67d704198c19
+    m_ActionName: Player/RT[/Mouse/rightButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 10dcf732-a674-41d3-96af-ae6f12f59cf7
+    m_ActionName: Player/RB[/Mouse/leftButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 4ee2e67e-cf76-4b69-8191-7da63fdf9e6b
+    m_ActionName: Player/LT[/Keyboard/x]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: fff3ec5d-67d0-4c3b-82a0-f841283f05c4
+    m_ActionName: Player/LB[/Keyboard/q]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: e5746827-3d49-46fa-88f4-f92092ead19b
+    m_ActionName: Player/LockOn[/Keyboard/r]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 2353280c-d69a-4d45-b042-ef5e95abf612
+    m_ActionName: UI /AnyKey[/Keyboard/anyKey]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: 'UI '
@@ -987,6 +1034,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1054376692}
   - component: {fileID: 1054376691}
+  - component: {fileID: 1054376693}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1052,6 +1100,39 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1054376693
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1054376689}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_RenderShadows: 1
+  m_RequiresDepthTextureOption: 2
+  m_RequiresOpaqueTextureOption: 2
+  m_CameraType: 0
+  m_Cameras: []
+  m_RendererIndex: -1
+  m_VolumeLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  m_VolumeTrigger: {fileID: 0}
+  m_VolumeFrameworkUpdateModeOption: 2
+  m_RenderPostProcessing: 0
+  m_Antialiasing: 0
+  m_AntialiasingQuality: 2
+  m_StopNaN: 0
+  m_Dithering: 0
+  m_ClearDepth: 1
+  m_AllowXRRendering: 1
+  m_RequiresDepthTexture: 0
+  m_RequiresColorTexture: 0
+  m_Version: 2
 --- !u!1 &1063906023
 GameObject:
   m_ObjectHideFlags: 0
