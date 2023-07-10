@@ -330,6 +330,9 @@ public class WorldSaveGameManager : MonoBehaviour
         CurrentCharacterData.MoveInteractionOnLoad = false;
         CurrentCharacterData.IsOscarDead = false;
 
+        //Boss date
+        CurrentCharacterData.DemonArenaState = "FirstTime";
+
         //enemy data
         CurrentCharacterData.EnemyBehaviour_1 = "Idle";
         CurrentCharacterData.EnemyHealth_1 = 3;

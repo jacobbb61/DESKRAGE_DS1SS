@@ -23,6 +23,8 @@ public class PlayerManager : MonoBehaviour
     public BoulderManager BoulderManager;
     public OscarManager OscarManager;
 
+    public AsylumDemonArena DemonArena;
+
 
     private LayerManagerV2 Layer;
     private PlayerControllerV2 PC;
@@ -66,6 +68,13 @@ public class PlayerManager : MonoBehaviour
 
         CurrentCharacterData.BoulderUsed = BoulderManager.BoulderUsed;
 
+
+
+        if (DemonArena.currentState == "Active") { DemonArena.currentState = "Idle"; }
+
+        CurrentCharacterData.DemonArenaState = DemonArena.currentState;
+
+
     }
     public void LoadGameFromDataToCurrentCharacterData(ref CharacterSaveData CurrentCharacterData)
     {
@@ -89,5 +98,7 @@ public class PlayerManager : MonoBehaviour
         SKey = CurrentCharacterData.SKey;
 
         BoulderManager.BoulderUsed = CurrentCharacterData.BoulderUsed;
+
+        if (DemonArena != null) { DemonArena.currentState = CurrentCharacterData.DemonArenaState; }
     }
 }

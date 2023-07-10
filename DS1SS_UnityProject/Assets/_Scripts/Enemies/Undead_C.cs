@@ -237,7 +237,7 @@ public class Undead_C : MonoBehaviour
                 }
                 else
                 {
-                    Debug.Log("Undead C sees" + hit.transform.name);
+                    //Debug.Log("Undead C sees" + hit.transform.name);
                     SeePlayer = false;
                 }
 

@@ -14,6 +14,9 @@ public class DoorManager : MonoBehaviour
     [Tooltip("Only used for layer changing doors (ID 1)")]public int targetLayer; // For doors that switch the player's layer
     public bool inBossFight;
 
+    public AsylumDemonArena DemonArena;
+    public bool isPursuerDoor;
+
 
 
     public string CurrentDoorState_This;
@@ -21,7 +24,9 @@ public class DoorManager : MonoBehaviour
      private CanvasManager CanvasManager;
     [SerializeField] private Collider2D doorCollider; 
      private GameObject doorPrompt;
+     private GameObject fogDoorPrompt;
      private GameObject doorUI;
+     public GameObject FogAssets;
      private TextMeshProUGUI doorUIText;
 
     public DoorSaveManager doorSaveManager;
@@ -50,27 +55,34 @@ public class DoorManager : MonoBehaviour
 
 
                 case "Open":
-                    //anim.Play("CellDoorOpenIdle");
                     doorCollider.enabled = false;
-                    Anim.Play("PerpendicularDoorOpenIdle");
-                    
+                    if (Anim.isActiveAndEnabled) { Anim.Play("PerpendicularDoorOpenIdle"); }
+                    FogAssets.SetActive(false);
                     break;
                 case "Closed":
-                    //anim.Play("CellDoorOpenIdle");
                     doorCollider.enabled = true;
-                    Anim.Play("PerpendicularDoorClosedIdle");
+                    if (Anim.isActiveAndEnabled) { Anim.Play("PerpendicularDoorClosedIdle"); }
+                    FogAssets.SetActive(false);
                     break;
                 case "Locked":
-                    //anim.Play("CellDoorOpenIdle");
                     doorCollider.enabled = true;
+                    if (Anim.isActiveAndEnabled) { Anim.Play("PerpendicularDoorClosedIdle"); }
+                    FogAssets.SetActive(false);
                     break;
                 case "OneSided":
-                    //anim.Play("CellDoorOpenIdle");
                     doorCollider.enabled = true;
+                    if (Anim.isActiveAndEnabled) { Anim.Play("PerpendicularDoorClosedIdle"); }
+                    FogAssets.SetActive(false);
                     break;
                 case "Fog":
-                    //anim.Play("CellDoorOpenIdle");
                     doorCollider.enabled = true;
+                    if (Anim.isActiveAndEnabled) { Anim.Play("PerpendicularDoorClosedIdle"); }
+                    FogAssets.SetActive(true);
+                    break;
+                case "FogEnter":
+                    doorCollider.enabled = true;
+                    if (Anim.isActiveAndEnabled) { Anim.Play("PerpendicularDoorClosedIdle"); }
+                    FogAssets.SetActive(true);
                     break;
             }
         }
@@ -85,30 +97,51 @@ public class DoorManager : MonoBehaviour
         {
             switch (CurrentDoorState_This)
             {
-
-
                 case "Open":
-                    //anim.Play("CellDoorOpenIdle");
                     doorCollider.enabled = false;
-                    Anim.Play("PerpendicularDoorOpenIdle");
-                    
+                    if (Anim.isActiveAndEnabled) { Anim.Play("PerpendicularDoorOpenIdle"); }
+                    FogAssets.SetActive(false);
                     break;
                 case "Closed":
-                    //anim.Play("CellDoorOpenIdle");
                     doorCollider.enabled = true;
-                    Anim.Play("PerpendicularDoorClosedIdle");
+                    if (Anim.isActiveAndEnabled) { Anim.Play("PerpendicularDoorClosedIdle"); }
+                    FogAssets.SetActive(false);
                     break;
                 case "Locked":
-                    //anim.Play("CellDoorOpenIdle");
                     doorCollider.enabled = true;
+                    if (Anim.isActiveAndEnabled) { Anim.Play("PerpendicularDoorClosedIdle"); }
+                    FogAssets.SetActive(false);
                     break;
                 case "OneSided":
-                    //anim.Play("CellDoorOpenIdle");
                     doorCollider.enabled = true;
+                    if (Anim.isActiveAndEnabled) { Anim.Play("PerpendicularDoorClosedIdle"); }
+                    FogAssets.SetActive(false);
                     break;
                 case "Fog":
-                    //anim.Play("CellDoorOpenIdle");
                     doorCollider.enabled = true;
+                    if (Anim.isActiveAndEnabled) { Anim.Play("PerpendicularDoorClosedIdle"); }
+                    FogAssets.SetActive(true);
+                    break;
+                case "FogEnter":
+                    doorCollider.enabled = true;
+                    if (Anim.isActiveAndEnabled) { Anim.Play("PerpendicularDoorClosedIdle"); }
+                    FogAssets.SetActive(true);
+                    break;
+            }
+        }
+        else
+        {
+            switch (CurrentDoorState_This)
+            {
+
+                case "Fog":
+                    FogAssets.SetActive(true);
+                    break;
+                case "FogEnter":
+                    FogAssets.SetActive(true);
+                    break;
+                default:
+                    FogAssets.SetActive(false);
                     break;
             }
         }
@@ -125,6 +158,7 @@ public class DoorManager : MonoBehaviour
         {
             CanvasManager = GameObject.FindGameObjectWithTag("Canvas").GetComponent<CanvasManager>();
             doorPrompt = CanvasManager.DoorPrompt;
+            fogDoorPrompt = CanvasManager.FogDoorPrompt;
             doorUI = CanvasManager.DoorUI;
             doorUIText = CanvasManager.DoorDescription;
 
@@ -136,6 +170,12 @@ public class DoorManager : MonoBehaviour
                     if (doorType == 0) { doorPrompt.SetActive(true); }
                     else { doorPrompt.SetActive(false); }
                     
+                    break;
+                case "FogEnter":
+
+                    if (doorType == 0) { fogDoorPrompt.SetActive(true); }
+                    else { fogDoorPrompt.SetActive(false); }
+
                     break;
 
                 default:
@@ -153,6 +193,7 @@ public class DoorManager : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             doorPrompt.SetActive(false);
+            fogDoorPrompt.SetActive(false);
             doorUI.SetActive(false);
             doorUIText.text = "Should not see this";
             collision.GetComponent<PlayerControllerV2>().Interactable = null;
@@ -238,9 +279,16 @@ public class DoorManager : MonoBehaviour
                         }
                         break;
                     }
-                case "Fog":
+                case "FogEnter":
                     {
-                        doorUI.SetActive(true);
+                        //move player in
+                        //trigger boss fight
+                        if (doorSaveManager.DoorTag_This == "E") 
+                        {
+                            WorldSaveGameManager.Instance.Player = playerManager;
+                            WorldSaveGameManager.Instance.SaveGame();
+                            DemonArena.EnterArena(); playerManager.gameObject.transform.position = DemonArena.transform.position; 
+                        }
                         doorCollider.enabled = false;
                         break;
                     }
@@ -249,6 +297,13 @@ public class DoorManager : MonoBehaviour
                         doorCollider.enabled = false;
                         CurrentDoorState_This = "Open";
                         Anim.Play("PerpendicularDoorOpenIdle");
+
+                        if (doorSaveManager.DoorTag_This == "E" && DemonArena.currentState == "FirstTime") 
+                        {
+                            WorldSaveGameManager.Instance.Player = playerManager;
+                            WorldSaveGameManager.Instance.SaveGame();
+                            DemonArena.EnterArena(); playerManager.gameObject.transform.position = DemonArena.transform.position; 
+                        }
 
                         if (doorSaveManager.DoorTag_This == "N")
                         {
@@ -344,15 +399,26 @@ public class DoorManager : MonoBehaviour
                         break;
                     }
 
-                case "Fog":
+                case "FogEnter":
                     {
                         layerManager.ChangeLayer(targetLayer);
-                        break;
+                        WorldSaveGameManager.Instance.Player = playerManager;
+                        WorldSaveGameManager.Instance.SaveGame();
+                        if (doorSaveManager.DoorTag_This == "M1")
+                        {
+                            DemonArena.EnterArena();
+                        }
+                            break;
                     }
 
                 case "Open":
                     {
                         layerManager.ChangeLayer(targetLayer);
+
+                        if (doorSaveManager.DoorTag_This == "F1")
+                        {
+                            DemonArena.SwitchState("Idle");
+                        }
 
                         if (doorSaveManager.DoorTag_This == "J1")
                         {

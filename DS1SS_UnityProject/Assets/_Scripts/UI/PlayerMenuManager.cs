@@ -477,8 +477,12 @@ public class PlayerMenuManager : MonoBehaviour
 
     IEnumerator Quiting()
     {
+        if (PM.DemonArena.inBossFight==false) // or pursuer active
+        {
         WorldSaveGameManager.Instance.Player = PM;
         WorldSaveGameManager.Instance.SaveGame();
+        }
+
         yield return new WaitForSeconds(1.5f);
         SceneManager.LoadScene("Main Menu", LoadSceneMode.Single);
     }

@@ -61,6 +61,10 @@ public class CharacterSaveData
     public bool MoveInteractionOnLoad;
     public bool IsOscarDead;
 
+    [Header("Boss Data")]
+    public string DemonArenaState;
+
+
     [Header("Enemy Data")]
     public string EnemyBehaviour_1;
     public float EnemyHealth_1;

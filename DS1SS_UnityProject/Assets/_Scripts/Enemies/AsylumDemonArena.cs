@@ -9,18 +9,26 @@ public class AsylumDemonArena : MonoBehaviour
     public bool arenaIsActive;
     public string currentState;
 
+    public GameObject BossUI;
+
+    public AsylumDemon Boss;
+
     private void Start()
     {
-        SwitchState("FirstTime");
+        SwitchState(currentState);
+        doors[0].DemonArena = this;
+        for (int i = 0; i < doors.Length; i++)
+        {
+            doors[i].DemonArena = this;
+        }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    public void EnterArena() //called from door manager
     {
-        if (collision.CompareTag("Player"))
-        {
             for (int i = 0; i < doors.Length; i++)
             {
                 doors[i].inBossFight = true;
+            doors[i].ManualStart();
             }
 
             if (currentState == "FirstTime" || currentState == "Idle")
@@ -35,22 +43,7 @@ public class AsylumDemonArena : MonoBehaviour
                 // Play boss music
                 // Achievement and saving stuff
             }
-        }
     }
-
-    /*private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Player"))
-        {
-            if (!bossDead)
-            {
-                arenaIsActive = false;
-                SwitchState("Idle");
-            }
-            //Saving stuff
-        }
-    }*/
-
     IEnumerator Wait(float timeToWait)
     {
         yield return new WaitForSeconds(timeToWait);
@@ -69,15 +62,27 @@ public class AsylumDemonArena : MonoBehaviour
                     doors[2].SwitchDoorState("Open"); //Door M1
                     doors[3].SwitchDoorState("OneSided"); //Door M2
                     doors[4].SwitchDoorState("Locked"); //Door N
+                    inBossFight = false;
+                    arenaIsActive = false;
+                    BossUI.SetActive(false);
+                    Boss.IsActive = false;
+                    Boss.IsDead = false;
+                    Boss.Health = Boss.MaxHealth;
                     break;
                 }
             case "Idle":
                 {
-                    doors[0].SwitchDoorState("Fog"/*FogEnter not implemented yet*/); //Door E
+                    doors[0].SwitchDoorState("FogEnter"/*FogEnter not implemented yet*/); //Door E
                     doors[1].SwitchDoorState("Open"); //Door F1
-                    doors[2].SwitchDoorState("Fog"/*FogEnter not implemented yet*/); //Door M1
+                    doors[2].SwitchDoorState("FogEnter"/*FogEnter not implemented yet*/); //Door M1
                     doors[3].SwitchDoorState("Fog"); //Door M2
                     doors[4].SwitchDoorState("Fog"); //Door N
+                    inBossFight = false;
+                    arenaIsActive = false;
+                    BossUI.SetActive(false);
+                    Boss.IsActive = false;
+                    Boss.IsDead = false;
+                    Boss.Health = Boss.MaxHealth;
                     break;
                 }
             case "Active":
@@ -87,6 +92,12 @@ public class AsylumDemonArena : MonoBehaviour
                     doors[2].SwitchDoorState("Fog"); //Door M1
                     doors[3].SwitchDoorState("Fog"); //Door M2
                     doors[4].SwitchDoorState("Fog"); //Door N
+                    inBossFight = true;
+                    arenaIsActive = true;
+                    BossUI.SetActive(true);
+                    Boss.IsActive = true;
+                    Boss.IsDead = false;
+                    Boss.Health = Boss.MaxHealth;
                     break;
                 }
             case "Open":
@@ -96,8 +107,17 @@ public class AsylumDemonArena : MonoBehaviour
                     doors[2].SwitchDoorState("Open"); //Door M1
                     doors[3].SwitchDoorState("Open"); //Door M2
                     doors[4].SwitchDoorState("Closed"); //Door N
+                    inBossFight = false;
+                    arenaIsActive = false;
+                    BossUI.SetActive(false);
+                    Boss.IsActive = false;
+                    Boss.IsDead = true;
                     break;
                 }
+        }
+        for (int i = 0; i < doors.Length; i++)
+        {
+            doors[i].ManualStart();
         }
     }
 

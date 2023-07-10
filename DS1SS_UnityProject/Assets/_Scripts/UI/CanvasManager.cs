@@ -10,6 +10,7 @@ public class CanvasManager : MonoBehaviour
     public Slider PlayerHealthSlider;
 
     public GameObject DoorPrompt;
+    public GameObject FogDoorPrompt;
     public GameObject DoorUI;
     public GameObject AchievementObj;
     public GameObject ItemPrompt;
