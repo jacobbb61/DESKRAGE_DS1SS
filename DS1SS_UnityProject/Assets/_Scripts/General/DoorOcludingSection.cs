@@ -20,7 +20,7 @@ public class DoorOcludingSection : MonoBehaviour
                 }
                 break;
             case "O":
-                if (GetComponent<DoorManager>().CurrentDoorState_This == "Open")
+                if (GetComponent<CollapseBridge>().currentState == "Broken")
                 {
                     Open();
                 }

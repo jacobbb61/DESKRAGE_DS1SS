@@ -290,7 +290,7 @@ public class WorldSaveGameManager : MonoBehaviour
         CurrentCharacterData.FinishedGame = false;
 
         // player world position
-        CurrentCharacterData.xPos = -90f;
+        CurrentCharacterData.xPos = -88.5f;
         CurrentCharacterData.yPos = -18f;
         CurrentCharacterData.PlayerLayer = "Middle";
 
@@ -308,17 +308,17 @@ public class WorldSaveGameManager : MonoBehaviour
 
         //door data
     CurrentCharacterData.BoulderUsed = false;
-    CurrentCharacterData.DoorState_A = "Open";
+    CurrentCharacterData.DoorState_A = "Locked";
     CurrentCharacterData.DoorState_C = "Locked";
     CurrentCharacterData.DoorState_E = "Closed";
     CurrentCharacterData.DoorState_F1 = "Open";
     CurrentCharacterData.DoorState_H = "Closed";
     CurrentCharacterData.DoorState_J2 = "OneSided";
-    CurrentCharacterData.DoorState_K = "Closed";
+    CurrentCharacterData.DoorState_K = "Locked";
     CurrentCharacterData.DoorState_M1 = "Open";
     CurrentCharacterData.DoorState_M2 = "Open";
     CurrentCharacterData.DoorState_N = "Closed";
-    CurrentCharacterData.DoorState_O = "Closed";
+    CurrentCharacterData.DoorState_O = "UnBroken";
     CurrentCharacterData.DoorState_P = "Closed";
     CurrentCharacterData.DoorState_S = "Locked";
     CurrentCharacterData.DoorState_T = "Closed";

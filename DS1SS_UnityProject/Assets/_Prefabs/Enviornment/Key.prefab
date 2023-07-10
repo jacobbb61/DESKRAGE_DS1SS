@@ -59,9 +59,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7701851951999570276}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0.70710576, w: 0.70710784}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.63761, y: 0.63761, z: 0.63761}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6260106640955990394}
@@ -134,6 +134,13 @@ MonoBehaviour:
   correspondingDoor: {fileID: 0}
   itemName: 
   targetDoorTag: 
+  ItemPopUp: {fileID: 0}
+  ItemSymbol: {fileID: 0}
+  ItemName: {fileID: 0}
+  ItemQuantity: {fileID: 0}
+  KeySymbol: {fileID: 0}
+  AKeyName: 
+  SKeyName: 
 --- !u!61 &8301863512522672329
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -158,7 +165,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 0.5}
+  m_Size: {x: 2, y: 2}
   m_EdgeRadius: 0
 --- !u!114 &872717247998719885
 MonoBehaviour:

@@ -18,7 +18,8 @@ public class PlayerManager : MonoBehaviour
     public bool AKey; // Cell key
     public bool KKey;
     public bool SKey;
-
+    public Key AKeyScript;
+    public Key SKeyScript;
 
     public BoulderManager BoulderManager;
     public OscarManager OscarManager;
@@ -96,6 +97,9 @@ public class PlayerManager : MonoBehaviour
         AKey = CurrentCharacterData.AKey;
         KKey = CurrentCharacterData.KKey;
         SKey = CurrentCharacterData.SKey;
+
+        AKeyScript.ManualStart();
+        SKeyScript.ManualStart();
 
         BoulderManager.BoulderUsed = CurrentCharacterData.BoulderUsed;
 

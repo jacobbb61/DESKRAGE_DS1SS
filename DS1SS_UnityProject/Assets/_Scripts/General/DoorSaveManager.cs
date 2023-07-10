@@ -15,7 +15,7 @@ public class DoorSaveManager : MonoBehaviour
 
     public void SaveGameDataToCurrentCharacterData(ref CharacterSaveData CurrentCharacterData)
     {
-        if (DoorState_This == "O" || DoorState_This == "P")
+        if (DoorTag_This == "O" || DoorTag_This == "P")
         {
             DoorState_This = GetComponent<CollapseBridge>().currentState;
         }
@@ -128,7 +128,7 @@ public class DoorSaveManager : MonoBehaviour
                 DoorState_This = CurrentCharacterData.DoorState_U;
                 break;
         }
-        if (DoorState_This == "O" || DoorState_This == "P")
+        if (DoorTag_This == "O" || DoorTag_This == "P")
         {
             GetComponent<CollapseBridge>().currentState = DoorState_This;
             GetComponent<CollapseBridge>().ManualStart();

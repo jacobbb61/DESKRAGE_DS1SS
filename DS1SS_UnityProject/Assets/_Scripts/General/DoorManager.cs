@@ -66,7 +66,7 @@ public class DoorManager : MonoBehaviour
                     break;
                 case "Locked":
                     doorCollider.enabled = true;
-                    if (Anim.isActiveAndEnabled) { Anim.Play("PerpendicularDoorClosedIdle"); }
+                    Anim.Play("PerpendicularDoorClosedIdle"); 
                     FogAssets.SetActive(false);
                     break;
                 case "OneSided":

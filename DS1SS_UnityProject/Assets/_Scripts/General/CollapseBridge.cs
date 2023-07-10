@@ -7,25 +7,61 @@ public class CollapseBridge : MonoBehaviour
     [SerializeField] private GameObject bridge;
     //private Rigidbody2D rb;
     public string currentState;
-    private int floorHealth = 3;
+  
     //private Rigidbody2D playerRB;
-    private Collider2D bridgeCollider;
+    public Collider2D Collider;
+    public DoorOcludingSection DoorOcludingSection;
     [Tooltip("True = this gameobject is a bridge. False = this gameobject is a collapsable floor.")]public bool isBridge;
+
+    public GameObject FloorAssets_UnBroken;
+    public GameObject FloorAssets_Broken1;
+    public GameObject FloorAssets_Broken2;
+    public GameObject FloorAssets_BrokenCompletely;
+
+    public GameObject BridgeAssets_UnBroken;
+    public GameObject BridgeAssets_Broken;
 
     // The bridge referenced in this script must have a collider and kinematic rigidbody
 
     public void ManualStart()
     {
-        //rb = bridge.GetComponent<Rigidbody2D>();
-        //playerRB = GameObject.FindGameObjectWithTag("Player").GetComponent<Rigidbody2D>();
-        bridgeCollider = GetComponent<Collider2D>();
         if (!isBridge)
         {
-            currentState = "Unbroken";
+            switch (currentState)
+            {
+                case "UnBroken":
+                    assetsOff();
+                    FloorAssets_UnBroken.SetActive(true);
+                    break;
+                case "Breaking1":
+                    assetsOff();
+                    FloorAssets_Broken1.SetActive(true);
+                    break;
+                case "Breaking2":
+                    assetsOff();
+                    FloorAssets_Broken2.SetActive(true);
+                    break;
+                case "Broken":
+                    assetsOff();
+                    FloorAssets_BrokenCompletely.SetActive(true);
+                    DoorOcludingSection.Open();
+                    break;
+
+            }
         }
         else
         {
-            currentState = "Closed";
+            switch (currentState)
+            {
+                case "Closed":
+                    BridgeAssets_UnBroken.SetActive(true);
+                    BridgeAssets_Broken.SetActive(false);
+                    break;
+                case "Open":
+                    BridgeAssets_Broken.SetActive(true);
+                    BridgeAssets_UnBroken.SetActive(false);
+                    break;
+            }
         }
     }
 
@@ -33,53 +69,48 @@ public class CollapseBridge : MonoBehaviour
     {
         if (collision.CompareTag("Player") && !isBridge /* && playerRB.velocity.y < 0*/)
         {
-            floorHealth--;
-            if (floorHealth == 2)
+
+            switch (currentState)
             {
-                currentState = "Breaking1";
-            }
-            else if (floorHealth == 1)
-            {
-                currentState = "Breaking 2";
-            }
-            else
-            {
-                // PANIC
+                case "UnBroken":
+                    assetsOff();
+                    currentState = "Breaking1";
+                    FloorAssets_Broken1.SetActive(true);
+                    break;
+                case "Breaking1":
+                    assetsOff();
+                    currentState = "Breaking2";
+                    FloorAssets_Broken2.SetActive(true);
+                    break;
+                case "Breaking2":
+                    assetsOff();
+                    currentState = "Broken";
+                    FloorAssets_BrokenCompletely.SetActive(true);
+                    DoorOcludingSection.RevealArea();
+                    Collider.enabled = false;
+                    break;
             }
         }
         else if (collision.CompareTag("Player") && isBridge)
         {
             // Play animation
-            bridgeCollider.enabled = false;
+            Collider.enabled = false;
             // Wait();
-            this.gameObject.SetActive(false);
             currentState = "Open";
+            BridgeAssets_UnBroken.SetActive(false);
+            BridgeAssets_Broken.SetActive(true);
         }
 
-        if (floorHealth <= 0 && !isBridge)
-        {
-            //rb.isKinematic = false;
-            gameObject.SetActive(false);
-            currentState = "Broken";
-        }
 
-        if (floorHealth > 3)
-        {
-            floorHealth = 3;
-        }
     }
 
-    /*private void OnCollisionEnter2D(Collision2D collision)
+    void assetsOff()
     {
-        if (collision.gameObject.tag != ("Player"))
-        {
-            this.gameObject.SetActive(false);
-            currentState = "Broken";
-        }
-    }*/
-
-    IEnumerator Wait(float waitSeconds)
-    {
-        yield return new WaitForSeconds(waitSeconds);
+        FloorAssets_UnBroken.SetActive(false);
+        FloorAssets_Broken1.SetActive(false);
+        FloorAssets_Broken2.SetActive(false);
+        FloorAssets_BrokenCompletely.SetActive(false);
     }
+
+
 }
