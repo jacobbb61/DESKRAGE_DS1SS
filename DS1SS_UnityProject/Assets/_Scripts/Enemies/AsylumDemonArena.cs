@@ -13,7 +13,7 @@ public class AsylumDemonArena : MonoBehaviour
 
     public AsylumDemon Boss;
 
-    private void Start()
+    public void ManualStart()
     {
         SwitchState(currentState);
         doors[0].DemonArena = this;
@@ -21,6 +21,7 @@ public class AsylumDemonArena : MonoBehaviour
         {
             doors[i].DemonArena = this;
         }
+        Boss.ManualStart();
     }
 
     public void EnterArena() //called from door manager
@@ -112,6 +113,7 @@ public class AsylumDemonArena : MonoBehaviour
                     BossUI.SetActive(false);
                     Boss.IsActive = false;
                     Boss.IsDead = true;
+                    Boss.gameObject.SetActive(false);
                     break;
                 }
         }

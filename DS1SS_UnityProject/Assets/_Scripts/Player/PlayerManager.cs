@@ -99,6 +99,6 @@ public class PlayerManager : MonoBehaviour
 
         BoulderManager.BoulderUsed = CurrentCharacterData.BoulderUsed;
 
-        if (DemonArena != null) { DemonArena.currentState = CurrentCharacterData.DemonArenaState; }
+        if (DemonArena != null) { DemonArena.currentState = CurrentCharacterData.DemonArenaState; DemonArena.ManualStart(); }
     }
 }
