@@ -5,10 +5,10 @@ using UnityEngine;
 public class CollapseBridge : MonoBehaviour
 {
     [SerializeField] private GameObject bridge;
-    private Rigidbody2D rb;
+    //private Rigidbody2D rb;
     public string currentState;
     private int floorHealth = 3;
-    private Rigidbody2D playerRB;
+    //private Rigidbody2D playerRB;
     private Collider2D bridgeCollider;
     [Tooltip("True = this gameobject is a bridge. False = this gameobject is a collapsable floor.")]public bool isBridge;
 
@@ -16,8 +16,8 @@ public class CollapseBridge : MonoBehaviour
 
     public void ManualStart()
     {
-        rb = bridge.GetComponent<Rigidbody2D>();
-        playerRB = GameObject.FindGameObjectWithTag("Player").GetComponent<Rigidbody2D>();
+        //rb = bridge.GetComponent<Rigidbody2D>();
+        //playerRB = GameObject.FindGameObjectWithTag("Player").GetComponent<Rigidbody2D>();
         bridgeCollider = GetComponent<Collider2D>();
         if (!isBridge)
         {
@@ -26,21 +26,6 @@ public class CollapseBridge : MonoBehaviour
         else
         {
             currentState = "Closed";
-        }
-    }
-
-    private void Update()
-    {
-        if (floorHealth <= 0 && !isBridge)
-        {
-            rb.isKinematic = false;
-            gameObject.SetActive(false);
-            currentState = "Broken";
-        }
-
-        if (floorHealth > 3)
-        {
-            floorHealth = 3;
         }
     }
 
@@ -67,19 +52,31 @@ public class CollapseBridge : MonoBehaviour
             // Play animation
             bridgeCollider.enabled = false;
             // Wait();
-            // this.gameObject.SetActive(false);
+            this.gameObject.SetActive(false);
             currentState = "Open";
+        }
+
+        if (floorHealth <= 0 && !isBridge)
+        {
+            //rb.isKinematic = false;
+            gameObject.SetActive(false);
+            currentState = "Broken";
+        }
+
+        if (floorHealth > 3)
+        {
+            floorHealth = 3;
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    /*private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag != ("Player"))
         {
             this.gameObject.SetActive(false);
             currentState = "Broken";
         }
-    }
+    }*/
 
     IEnumerator Wait(float waitSeconds)
     {

@@ -40,6 +40,7 @@ public class Arrow : MonoBehaviour
             transform.eulerAngles = new Vector3(0, 0, 190);
         }
 
+        //float vertDis;
         float dis = Vector3.Distance(transform.position, GameObject.FindGameObjectWithTag("Player").transform.position);
 
         if (dis <= 5)

@@ -5,7 +5,6 @@ using UnityEngine;
 public class AsylumDemonArena : MonoBehaviour
 {
     [Tooltip("Doors in this array should be E, F1, M1, M2 and N, in that order")][SerializeField] DoorManager[] doors = new DoorManager[5];
-    public bool bossDead;
     public bool inBossFight;
     public bool arenaIsActive;
     public string currentState;
@@ -24,19 +23,22 @@ public class AsylumDemonArena : MonoBehaviour
                 doors[i].inBossFight = true;
             }
 
-            if (!bossDead)
+            if (currentState == "FirstTime" || currentState == "Idle")
             {
                 SwitchState("Active");
                 inBossFight = true;
                 arenaIsActive = true;
             }
-            // Display boss health
-            // Play boss music
-            // Achievement and saving stuff
+            if (inBossFight)
+            {
+                // Display boss health
+                // Play boss music
+                // Achievement and saving stuff
+            }
         }
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
+    /*private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
@@ -47,7 +49,7 @@ public class AsylumDemonArena : MonoBehaviour
             }
             //Saving stuff
         }
-    }
+    }*/
 
     IEnumerator Wait(float timeToWait)
     {
@@ -101,7 +103,7 @@ public class AsylumDemonArena : MonoBehaviour
 
     public void BossKilled() //Called by boss script
     {
-        bossDead = true;
+
         arenaIsActive = false;
         for (int i = 0; i < doors.Length; i++)
         {

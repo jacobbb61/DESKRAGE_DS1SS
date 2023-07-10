@@ -34,7 +34,7 @@ public class Key : MonoBehaviour
                     }
                     break;
                 }
-            case "K":
+            /*case "K":
                 {
                     if (playerManager.KKey == true)
                     {
@@ -45,7 +45,7 @@ public class Key : MonoBehaviour
                         gameObject.SetActive(true);
                     }
                     break;
-                }
+                }*/
             case "S":
                 {
                     if (playerManager.SKey == true)
