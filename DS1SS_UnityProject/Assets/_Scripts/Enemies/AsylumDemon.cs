@@ -9,6 +9,7 @@ public class AsylumDemon : MonoBehaviour
     private GameObject Player;
     private Rigidbody2D RB;
     private Coroutine AttackingCoroutine;
+    [SerializeField] private AsylumDemonArena arenaManager;
 
     public GameObject Assets;
     public GameObject UIAssets;
@@ -200,7 +201,7 @@ public class AsylumDemon : MonoBehaviour
     }
     public void Dead()
     {
-        
+        arenaManager.BossKilled();
         Health = 0;
         IsDead = true;
         Assets.SetActive(false);

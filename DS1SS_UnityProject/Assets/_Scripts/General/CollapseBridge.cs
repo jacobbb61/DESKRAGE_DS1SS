@@ -37,6 +37,11 @@ public class CollapseBridge : MonoBehaviour
             gameObject.SetActive(false);
             currentState = "Broken";
         }
+
+        if (floorHealth > 3)
+        {
+            floorHealth = 3;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

@@ -1,10 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.AnimatedValues;
 using UnityEngine;
 
 public class Arrow : MonoBehaviour
 {
-
     public int Direction;
     public float Speed;
     public float VerticalSpeed;
@@ -21,9 +21,15 @@ public class Arrow : MonoBehaviour
 
     // starting value for the Lerp
     static float t = 0.0f;
+    public Transform target;
+
+    public void Start()
+    {
+        target = GameObject.FindGameObjectWithTag("Player").transform;
+    }
+
     public void ManualStart()
     {
-        /*
         t = 0;
         if (Direction == -1)
         {
@@ -53,12 +59,10 @@ public class Arrow : MonoBehaviour
             minimum = 3.5f;
         }
         Debug.Log(dis);
-        */
     }
 
     void Update()
     {
-        /*
         if (Flying)
         {
             VerticalSpeed = Mathf.Lerp(minimum, maximum, t);
@@ -74,8 +78,6 @@ public class Arrow : MonoBehaviour
                 transform.Rotate(new Vector3(0, 0, Time.deltaTime * -RotationSpeed));
             }
         }
-        */
-
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {

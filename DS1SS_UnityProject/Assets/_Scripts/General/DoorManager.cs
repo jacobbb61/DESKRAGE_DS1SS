@@ -369,4 +369,10 @@ public class DoorManager : MonoBehaviour
     {
         yield return new WaitForSeconds(waitSeconds);
     }
+
+    public void SwitchDoorState(string state) //Used by boss arena manager
+    {
+        CurrentDoorState_This = state;
+        //Visual updates will go here also
+    }
 }
