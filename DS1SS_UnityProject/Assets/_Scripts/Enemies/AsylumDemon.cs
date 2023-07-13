@@ -33,6 +33,7 @@ public class AsylumDemon : MonoBehaviour
     public bool IsAttacking;
     public bool IsCoolingDown;
     public bool IsDead;
+    public bool HasBeenPlunged;
 
     [Header("Combat Data")]
     public float Speed;
@@ -108,21 +109,22 @@ public class AsylumDemon : MonoBehaviour
     {
         Anim = GetComponentInChildren<Animator>();
         RB = GetComponent<Rigidbody2D>();
-        Player = GameObject.FindGameObjectWithTag("Player");
+        Player = GameObject.FindGameObjectWithTag("Player"); 
+        HealthSlider.maxValue = MaxHealth;
+        HealthSlider.value = Health;
     }
     public void ManualStart()
     {
-
+        HasBeenPlunged = false;
         if (Behaviour == null) { Behaviour = "Idle"; }
 
         if (LookDirection == 1) { Assets.transform.localScale = new Vector3(1, 1, 1); }
         else if (LookDirection == -1) { Assets.transform.localScale = new Vector3(-1, 1, 1); }
         CurrnetLookDirection = LookDirection;
 
+        transform.localPosition = OriginPosition;
 
         IsAttacking = false;
-
-        HealthSlider.maxValue = MaxHealth;
 
         if(arenaManager.currentState == "Open") { Dead(); Behaviour = "Dead"; }
 
@@ -136,7 +138,6 @@ public class AsylumDemon : MonoBehaviour
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     void Update()
     {
-        UpdateUI();
         if (Health <= 0) { StartCoroutine(Death()); }
         else
         {
@@ -144,12 +145,10 @@ public class AsylumDemon : MonoBehaviour
             switch (Behaviour)
             {
                 case "Idle":
-                    FacePlayer();
-                    if (IsActive) { Behaviour = "Hostile"; UIAssets.SetActive(true); }
                     Anim.Play("AsylumDemonAnim_Idle");
                     break;
                 case "Hostile":
-
+                    
                     FacePlayer();
 
                     if (IsFacingPlayer && !IsByPlayer()) {  Walk(); }
@@ -198,8 +197,8 @@ public class AsylumDemon : MonoBehaviour
 
         if (IsAttacking) { StopCoroutine(AttackingCoroutine); }
 
-        HealthSlider.value = 0;
-        
+        HealthSlider.value = 0; UpdateUI();
+
         yield return new WaitForSeconds(3);
 
         Behaviour = "Dead";
@@ -208,26 +207,28 @@ public class AsylumDemon : MonoBehaviour
     }
     public void Dead()
     {
-        arenaManager.BossKilled();
+        if (arenaManager.currentState != "Open") { arenaManager.BossKilled(); }
         Health = 0;
         IsDead = true;
         Assets.SetActive(false);
         gameObject.SetActive(false);
+        
     }
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// take damage
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public void TakeLightDamage()
     {
-        Health -= 6;
+        Health -= 6; UpdateUI();
     }
     public void TakeHeavyDamage()
     {
-        Health -= 9;
+        Health -= 9; UpdateUI();
     }
     public void TakePlungeDamage()
     {
-        Health -= 50;
+        if (HasBeenPlunged == false) { Health -= 50; HasBeenPlunged = true; }
+        UpdateUI();
     }
 
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

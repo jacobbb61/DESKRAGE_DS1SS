@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1065959575192577551}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.15, y: 0.025, z: 0}
+  m_LocalPosition: {x: -0.19, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -284,7 +284,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1065959576714209547}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.15, y: 0.025, z: 0}
+  m_LocalPosition: {x: 0.19, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -304,7 +304,7 @@ GameObject:
   - component: {fileID: 3137671597447383463}
   - component: {fileID: 6847898321215821318}
   - component: {fileID: 1065959576863444070}
-  - component: {fileID: 1065959576863444073}
+  - component: {fileID: 1401414291421678972}
   - component: {fileID: 1065959576863444072}
   - component: {fileID: 1065959576863444071}
   m_Layer: 6
@@ -383,10 +383,13 @@ MonoBehaviour:
   JumpTime: 1
   FallSpeed: 0.5
   AirborneControl: 3
+  TimeFalling: 0
+  IsImmune: 0
   IsLockedOn: 0
   IsBlocking: 0
   IsHealing: 0
   IsPlunging: 0
+  CanPlunge: 0
   CanUseSecondEstus: 0
   CanAttack: 1
   CanFollowUp: 0
@@ -434,8 +437,12 @@ MonoBehaviour:
   AKey: 0
   KKey: 0
   SKey: 0
+  AKeyScript: {fileID: 0}
+  SKeyScript: {fileID: 0}
   BoulderManager: {fileID: 0}
   OscarManager: {fileID: 0}
+  DemonArena: {fileID: 0}
+  Layer: {fileID: 0}
 --- !u!114 &6847898321215821318
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -683,8 +690,8 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!70 &1065959576863444073
-CapsuleCollider2D:
+--- !u!61 &1401414291421678972
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -696,9 +703,19 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.15}
-  m_Size: {x: 1, y: 1.7}
-  m_Direction: 0
+  m_Offset: {x: 0, y: -0.1}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.6, y: 1.75}
+  m_EdgeRadius: 0
 --- !u!50 &1065959576863444072
 Rigidbody2D:
   serializedVersion: 4

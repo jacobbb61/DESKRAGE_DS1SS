@@ -237,12 +237,9 @@ public class WorldSaveGameManager : MonoBehaviour
         MainMenuManager.Instance.FMODinstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
         MainMenuManager.Instance.FMODinstance.release();
         SceneManager.LoadScene("Build", LoadSceneMode.Single);
-        yield return new WaitForSeconds(.1f);
+        yield return new WaitForSeconds(.5f);
 
-        // pass the player info, from file, to the player in game
-        Player = null;
-        Player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerManager>();
-        Player.LoadGameFromDataToCurrentCharacterData(ref CurrentCharacterData);
+
 
         //get list of all EnemySaveManager scripts in the scene 
         //Pass each enemy data,from file, to the player in game
@@ -278,6 +275,13 @@ public class WorldSaveGameManager : MonoBehaviour
         Player.GetComponent<PlayerManager>().OscarManager.LoadGameFromDataToCurrentCharacterData(ref CurrentCharacterData);
         Player.GetComponent<PlayerManager>().OscarManager.ManualStart();
 
+
+        // pass the player info, from file, to the player in game
+        Player = null;
+        Player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerManager>();
+        Player.LoadGameFromDataToCurrentCharacterData(ref CurrentCharacterData);
+
+
         yield return null;
     }
 
@@ -312,7 +316,7 @@ public class WorldSaveGameManager : MonoBehaviour
     CurrentCharacterData.DoorState_C = "Locked";
     CurrentCharacterData.DoorState_E = "Closed";
     CurrentCharacterData.DoorState_F1 = "Open";
-    CurrentCharacterData.DoorState_H = "Closed";
+    CurrentCharacterData.DoorState_H = "Locked";
     CurrentCharacterData.DoorState_J2 = "OneSided";
     CurrentCharacterData.DoorState_K = "Locked";
     CurrentCharacterData.DoorState_M1 = "Open";

@@ -482,8 +482,12 @@ public class PlayerMenuManager : MonoBehaviour
         WorldSaveGameManager.Instance.Player = PM;
         WorldSaveGameManager.Instance.SaveGame();
         }
+        else
+        {
+            PM.DemonArena.StopMusic();
+        }
 
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(2f);
         SceneManager.LoadScene("Main Menu", LoadSceneMode.Single);
     }
 

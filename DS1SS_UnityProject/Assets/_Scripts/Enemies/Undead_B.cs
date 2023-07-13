@@ -240,6 +240,13 @@ public class Undead_B : MonoBehaviour
     {
         GameObject arrow = Instantiate(Arrow);
         arrow.transform.position = HitStartPos.position;
+
+        LayerManagerV2 Layer = Player.GetComponent<PlayerManager>().Layer;
+       
+        if (Layer.CurrentLayerNumber == 0) { arrow.transform.parent = Layer.BackLayer.transform; }
+        if (Layer.CurrentLayerNumber == 1) { arrow.transform.parent = Layer.MiddleLayer.transform; }
+        if (Layer.CurrentLayerNumber == 2) { arrow.transform.parent = Layer.FrontLayer.transform; }
+
         arrow.GetComponent<Arrow>().Direction = -LookDirection;
         arrow.GetComponent<Arrow>().ManualStart();
         arrow.GetComponent<Arrow>().Flying = true;

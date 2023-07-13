@@ -56,12 +56,12 @@ public class DoorManager : MonoBehaviour
 
                 case "Open":
                     doorCollider.enabled = false;
-                    if (Anim.isActiveAndEnabled) { Anim.Play("PerpendicularDoorOpenIdle"); }
+                    if (Anim.gameObject.activeInHierarchy) { Anim.Play("PerpendicularDoorOpenIdle"); }
                     FogAssets.SetActive(false);
                     break;
                 case "Closed":
                     doorCollider.enabled = true;
-                    if (Anim.isActiveAndEnabled) { Anim.Play("PerpendicularDoorClosedIdle"); }
+                    if (Anim.gameObject.activeInHierarchy) { Anim.Play("PerpendicularDoorClosedIdle"); }
                     FogAssets.SetActive(false);
                     break;
                 case "Locked":
@@ -71,17 +71,17 @@ public class DoorManager : MonoBehaviour
                     break;
                 case "OneSided":
                     doorCollider.enabled = true;
-                    if (Anim.isActiveAndEnabled) { Anim.Play("PerpendicularDoorClosedIdle"); }
+                    if (Anim.gameObject.activeInHierarchy) { Anim.Play("PerpendicularDoorClosedIdle"); }
                     FogAssets.SetActive(false);
                     break;
                 case "Fog":
                     doorCollider.enabled = true;
-                    if (Anim.isActiveAndEnabled) { Anim.Play("PerpendicularDoorClosedIdle"); }
+                    if (Anim.gameObject.activeInHierarchy) { Anim.Play("PerpendicularDoorClosedIdle"); }
                     FogAssets.SetActive(true);
                     break;
                 case "FogEnter":
                     doorCollider.enabled = true;
-                    if (Anim.isActiveAndEnabled) { Anim.Play("PerpendicularDoorClosedIdle"); }
+                    if (Anim.gameObject.activeInHierarchy) { Anim.Play("PerpendicularDoorClosedIdle"); }
                     FogAssets.SetActive(true);
                     break;
             }
@@ -99,32 +99,34 @@ public class DoorManager : MonoBehaviour
             {
                 case "Open":
                     doorCollider.enabled = false;
-                    if (Anim.isActiveAndEnabled) { Anim.Play("PerpendicularDoorOpenIdle"); }
+                    if (Anim.gameObject.activeInHierarchy) { Anim.Play("PerpendicularDoorOpenIdle"); }
                     FogAssets.SetActive(false);
+                    if (doorSaveManager.DoorTag_This == "N") { GetComponent<DoorOcludingSection>().Open(); }
+                    if (doorSaveManager.DoorTag_This == "H") { GetComponent<DoorOcludingSection>().Open(); }
                     break;
                 case "Closed":
                     doorCollider.enabled = true;
-                    if (Anim.isActiveAndEnabled) { Anim.Play("PerpendicularDoorClosedIdle"); }
+                    if (Anim.gameObject.activeInHierarchy) { Anim.Play("PerpendicularDoorClosedIdle"); }
                     FogAssets.SetActive(false);
                     break;
                 case "Locked":
                     doorCollider.enabled = true;
-                    if (Anim.isActiveAndEnabled) { Anim.Play("PerpendicularDoorClosedIdle"); }
+                    if (Anim.gameObject.activeInHierarchy) { Anim.Play("PerpendicularDoorClosedIdle"); }
                     FogAssets.SetActive(false);
                     break;
                 case "OneSided":
                     doorCollider.enabled = true;
-                    if (Anim.isActiveAndEnabled) { Anim.Play("PerpendicularDoorClosedIdle"); }
+                    if (Anim.gameObject.activeInHierarchy) { Anim.Play("PerpendicularDoorClosedIdle"); }
                     FogAssets.SetActive(false);
                     break;
                 case "Fog":
                     doorCollider.enabled = true;
-                    if (Anim.isActiveAndEnabled) { Anim.Play("PerpendicularDoorClosedIdle"); }
+                    if (Anim.gameObject.activeInHierarchy) { Anim.Play("PerpendicularDoorClosedIdle"); }
                     FogAssets.SetActive(true);
                     break;
                 case "FogEnter":
                     doorCollider.enabled = true;
-                    if (Anim.isActiveAndEnabled) { Anim.Play("PerpendicularDoorClosedIdle"); }
+                    if (Anim.gameObject.activeInHierarchy) { Anim.Play("PerpendicularDoorClosedIdle"); }
                     FogAssets.SetActive(true);
                     break;
             }
@@ -202,10 +204,11 @@ public class DoorManager : MonoBehaviour
 
     public void UseDoor()
     {
-
+        Debug.Log("A");
         doorPrompt.SetActive(false);
         if (doorType == 1) //perpendicular 
         {
+            Debug.Log("B");
             PC.PlayerFinishInteraction();
             switch (CurrentDoorState_This)
             {      
@@ -219,7 +222,7 @@ public class DoorManager : MonoBehaviour
                                     {
                                         doorUI.SetActive(true);
                                         doorUIText.text = "Door unlocked";
-                                        //Anim.Play("");
+                                        Anim.Play("PerpendicularDoorOpenIdle");
                                         //Wait();
                                         doorCollider.enabled = false;
                                         CurrentDoorState_This = "Open";
@@ -238,7 +241,7 @@ public class DoorManager : MonoBehaviour
                                     {
                                         doorUI.SetActive(true);
                                         doorUIText.text = "Door unlocked";
-                                        //Anim.Play("");
+                                        Anim.Play("PerpendicularDoorOpenIdle");
                                         //Wait();
                                         doorCollider.enabled = false;
                                         CurrentDoorState_This = "Open";
@@ -257,7 +260,7 @@ public class DoorManager : MonoBehaviour
                                     {
                                         doorUI.SetActive(true);
                                         doorUIText.text = "Door unlocked";
-                                        //Anim.Play("");
+                                        Anim.Play("PerpendicularDoorOpenIdle");
                                         //Wait();
                                         doorCollider.enabled = false;
                                         CurrentDoorState_This = "Open";
@@ -294,6 +297,7 @@ public class DoorManager : MonoBehaviour
                     }
                 case "Closed":
                     {
+                        Debug.Log("C");
                         doorCollider.enabled = false;
                         CurrentDoorState_This = "Open";
                         Anim.Play("PerpendicularDoorOpenIdle");
@@ -396,6 +400,7 @@ public class DoorManager : MonoBehaviour
                     {
                         doorUI.SetActive(true);
                         doorUIText.text = "Does not open from this side";
+                        PC.PlayerFinishInteraction();
                         break;
                     }
 
@@ -417,7 +422,7 @@ public class DoorManager : MonoBehaviour
 
                         if (doorSaveManager.DoorTag_This == "F1")
                         {
-                            DemonArena.SwitchState("Idle");
+                            if (DemonArena.currentState == "Active") { DemonArena.SwitchState("Idle"); }
                         }
 
                         if (doorSaveManager.DoorTag_This == "J1")
@@ -439,6 +444,5 @@ public class DoorManager : MonoBehaviour
     public void SwitchDoorState(string state) //Used by boss arena manager
     {
         CurrentDoorState_This = state;
-        //Visual updates will go here also
     }
 }

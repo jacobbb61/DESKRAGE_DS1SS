@@ -628,7 +628,8 @@ public class OscarManager : MonoBehaviour
         Emitter.Stop();
 
         //  instance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE); //stop current audio
-        StopCoroutine(RoutineToStop); //stop current timer
+        if (RoutineToStop != null) {StopCoroutine(RoutineToStop); } //stop current timer
+        
         Debug.Log("Audio Stopped");
     }
 
