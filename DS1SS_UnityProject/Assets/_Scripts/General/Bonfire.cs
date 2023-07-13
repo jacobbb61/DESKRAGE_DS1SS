@@ -76,6 +76,13 @@ public class Bonfire : MonoBehaviour
                 Enemy.GetComponent<EnemySaveManager>().RespawnEvent.Invoke();
             }
         }
+
+        if (PM.DemonArena.currentState == "Active") //player died to demon
+        {
+            PM.DemonArena.SwitchState("Idle");
+            PM.DemonArena.ManualStart();
+        }
+
         //upadate oscar
         OM.Reload();
     }

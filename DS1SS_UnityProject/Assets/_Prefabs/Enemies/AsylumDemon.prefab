@@ -163,11 +163,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf426d08fff0b8f43859971e067c0f2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  arenaManager: {fileID: 0}
   Assets: {fileID: 4444569763040051538}
   UIAssets: {fileID: 0}
   HitStartPos: {fileID: 4444569763040051539}
   HealthSlider: {fileID: 0}
-  OriginPosition: {x: 0, y: 0, z: 0}
+  OriginPosition: {x: 125, y: 9.16, z: 0}
   Health: 144
   MaxHealth: 144
   Behaviour: Idle
@@ -175,7 +176,7 @@ MonoBehaviour:
   CurrnetLookDirection: 0
   IsFacingPlayer: 0
   IsTurning: 0
-  IsActive: 1
+  IsActive: 0
   IsAttacking: 0
   IsCoolingDown: 0
   IsDead: 0

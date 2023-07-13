@@ -32,6 +32,7 @@ public class PlayerControllerV2 : MonoBehaviour
     public bool IsBackStepping;
     public bool IsRunning;
     public bool IsJumping;
+    private bool ShouldCheckGrounded;
     private bool IsLanding;
     public bool IsMovingInput;
     private bool IsWaitingToRun;
@@ -63,13 +64,16 @@ public class PlayerControllerV2 : MonoBehaviour
     public float JumpTime;
     public float FallSpeed;
     public float AirborneControl;
+    public float TimeFalling;
 
 
     [Header("Combat states")]
+    public bool IsImmune;
     public bool IsLockedOn;
     public bool IsBlocking;
     public bool IsHealing;
     public bool IsPlunging;
+    public bool CanPlunge;
     public bool CanUseSecondEstus;
     public bool CanAttack;
     public bool CanFollowUp;
@@ -142,6 +146,7 @@ public class PlayerControllerV2 : MonoBehaviour
         VerticalSpeed = FallSpeed;
         OriginalBackstepSpeed = BackstepSpeed;
         OriginalRollSpeed = RollSpeed;
+        ShouldCheckGrounded = true;
         if (SceneManager.GetActiveScene().name == "Build")
         {
             CM = GameObject.FindGameObjectWithTag("Canvas").GetComponent<CanvasManager>();
@@ -159,6 +164,7 @@ public class PlayerControllerV2 : MonoBehaviour
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     IEnumerator PlayerDead()
     {
+        State = "Dead";
         CanMove = false;
         CanAttack = false;
         IsMovingInput = false;
@@ -166,6 +172,11 @@ public class PlayerControllerV2 : MonoBehaviour
         CM.YouDiedAnim.Play("YouDied");
         Anim.Play("PlayerAnim_Death");
         yield return new WaitForSeconds(4.5f);
+
+        if(PM.DemonArena.currentState == "Active") //player died to demon
+        {
+            PM.DemonArena.SwitchState("Idle");
+        }
        
         switch (PM.LastBonfireVisited)
         {
@@ -195,7 +206,7 @@ public class PlayerControllerV2 : MonoBehaviour
 
     public void PlayerTakeDamage(float Damage, bool Knockdown, int KnockDownDirection) // -1 to left, 1 to right, 0 is the direction the player is on relative to the enemy
     {
-        if (!IsRolling)
+        if (!IsRolling && !IsImmune)
         {
             if (!Knockdown)
             {
@@ -214,11 +225,13 @@ public class PlayerControllerV2 : MonoBehaviour
                 StaggerCoroutine = StartCoroutine(Stagger());
             }
         }
+        if (Health <= 0) { StartCoroutine(PlayerDead()); }
     }
 
     public void PlayerFinishInteraction()
     {
         if (MovementInputDirection == 0) { State = "Idle"; } else { State = "Walking"; }
+        IsImmune = false;
     }
 
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -573,10 +586,11 @@ public class PlayerControllerV2 : MonoBehaviour
     }
     void ProcessInput_RT_Plunge(InputAction.CallbackContext context) 
     {
-        if (context.action.triggered && IsPlunging==false)
+        if (context.action.triggered && IsPlunging==false && CanPlunge)
         {
             IsPlunging = true;
             Stamina -= 35f;
+            CanPlunge = false;
         }
     }
     //////////////////////////////////////////////////////////////
@@ -802,10 +816,16 @@ public class PlayerControllerV2 : MonoBehaviour
 
                 break;
             case "Interacting":
-
+                IsImmune = true;
                 break;
             case "Stagger":
-
+                IsImmune = true;
+                break;
+            case "Dead":
+                IsImmune = true;
+                break;
+            case "Saving":
+                IsImmune = true;
                 break;
             case "MenuOpen":
                 MenuOpen();
@@ -894,8 +914,7 @@ public class PlayerControllerV2 : MonoBehaviour
         IsStaminaRegen = false;
     }
     void Falling()
-    {     
-        
+    {
 
         if (MovementInputDirection > 0.2f) { PlayerDirection = 1; }
         if (MovementInputDirection < -0.2f) { PlayerDirection = -1; }
@@ -911,7 +930,9 @@ public class PlayerControllerV2 : MonoBehaviour
             MyRb.velocity = new Vector2(MovementInputDirection * (AirborneControl + 1), MyRb.velocity.y); 
         }
 
-        VerticalSpeed = 5 + (Time.deltaTime*10);
+
+        TimeFalling += Time.deltaTime;
+        VerticalSpeed = 5 + TimeFalling;
 
 
         if (IsGrounded && !IsJumping && !IsLanding)
@@ -919,6 +940,7 @@ public class PlayerControllerV2 : MonoBehaviour
             StartCoroutine(Land());
             IsLanding = true;
             IsPlunging = false;
+            TimeFalling = 0;
         }
         if (!IsGrounded && !IsLanding)
         {
@@ -975,11 +997,13 @@ public class PlayerControllerV2 : MonoBehaviour
         else if (PlayerDirection == -1) { Assets.transform.localScale = new Vector3(-1, 1, 1); }
     }
 
-
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// ground check
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     void GroundCheck()
     {
-        if (!IsJumping)
+        if (!IsJumping && ShouldCheckGrounded)
         {
             
             int layerMask = ~(LayerMask.GetMask("Enemy"));
@@ -1051,101 +1075,105 @@ public class PlayerControllerV2 : MonoBehaviour
     }
     void OnSlope(Transform Slope)
     {
+        if (!IsJumping)
+        {
+            float SlopeAngle = Slope.transform.transform.eulerAngles.z;
+            if (SlopeAngle <= 35 && SlopeAngle < 60)
+            {
+                // right  a 35 or less slope
+                if (MovementInputDirection == 1)
+                { //going against slope
 
-        float SlopeAngle = Slope.transform.transform.eulerAngles.z;
-        if (SlopeAngle <= 35 && SlopeAngle < 60)
-        {
-            // right  a 35 or less slope
-            if (MovementInputDirection == 1)
-            { //going against slope
-                
-                WalkSpeed = 3f;
-                RunSpeed = 5.5f;
-                if (IsMovingInput)
-                {
-                    VerticalSpeed = 0f;
+                    WalkSpeed = 3f;
+                    RunSpeed = 5.5f;
+                    if (IsMovingInput)
+                    {
+                        VerticalSpeed = 0f;
+                    }
+                    else { MyRb.velocity = Vector2.zero; }
                 }
-                else { MyRb.velocity = Vector2.zero; }
-            }
-            else
-            {//going with slope
-                
-                WalkSpeed = 1.5f;
-                RunSpeed = 4f;
-                if (IsMovingInput) { VerticalSpeed = 5f; } else { MyRb.velocity = Vector2.zero; }
-                if (FootAOnSlope && !FootBOnSlope) { WalkSpeed = 1.75f; if (IsMovingInput) { VerticalSpeed = 1.75f; } else { VerticalSpeed = 0f; } }
-                if(!FootAOnSlope && FootBOnSlope) { WalkSpeed = 1.75f; if (IsMovingInput) { VerticalSpeed = 1.75f; } else { VerticalSpeed = 0f; } }
-            }
+                else
+                {//going with slope
 
-        }
-        else if(SlopeAngle > 35 && SlopeAngle <60)
-        {
-            // right  a 35 or MORE slope
-            if (MovementInputDirection == 1)
-            { //going against slope
-                WalkSpeed = 3.5f;
-                RunSpeed = 7f;
-                if (IsMovingInput)
-                {
-                    VerticalSpeed = 0f;
+                    WalkSpeed = 1.5f;
+                    RunSpeed = 4f;
+                    if (IsMovingInput) { VerticalSpeed = 5f; } else { MyRb.velocity = Vector2.zero; }
+                    if (FootAOnSlope && !FootBOnSlope) { WalkSpeed = 1.75f; if (IsMovingInput) { VerticalSpeed = 1.75f; } else { VerticalSpeed = 0f; } }
+                    if (!FootAOnSlope && FootBOnSlope) { WalkSpeed = 1.75f; if (IsMovingInput) { VerticalSpeed = 1.75f; } else { VerticalSpeed = 0f; } }
                 }
-                else { MyRb.velocity = Vector2.zero; }
+
             }
-            else
-            {//going with slope
-                WalkSpeed = 1.5f;
-                RunSpeed = 3f;
-                if (IsMovingInput) { VerticalSpeed = 5f; } else { MyRb.velocity = Vector2.zero; }
-                if (FootAOnSlope && !FootBOnSlope) { WalkSpeed = 1.75f; if (IsMovingInput) { VerticalSpeed = 1.75f; } else { VerticalSpeed = 0f; } }
-                if (!FootAOnSlope && FootBOnSlope) { WalkSpeed = 1.75f; if (IsMovingInput) { VerticalSpeed = 1.75f; } else { VerticalSpeed = 0f; } }
-            }
-        }
-        if (SlopeAngle >= 325 && SlopeAngle >300)
-        {
-            // left a 35 or less slope
-            if (MovementInputDirection == 1)
-            { //going against slope
-                WalkSpeed = 1.5f;
-                RunSpeed = 4f;
-                if (IsMovingInput)
-                {
-                    VerticalSpeed = 5f;
+            else if (SlopeAngle > 35 && SlopeAngle < 60)
+            {
+                // right  a 35 or MORE slope
+                if (MovementInputDirection == 1)
+                { //going against slope
+                    WalkSpeed = 3.5f;
+                    RunSpeed = 7f;
+                    if (IsMovingInput)
+                    {
+                        VerticalSpeed = 0f;
+                    }
+                    else { MyRb.velocity = Vector2.zero; }
                 }
-                else { MyRb.velocity = Vector2.zero; }
-                if (FootAOnSlope && !FootBOnSlope) { WalkSpeed = 1.75f; if (IsMovingInput) { VerticalSpeed = 1.75f; } else { VerticalSpeed = 0f; } }
-                if (!FootAOnSlope && FootBOnSlope) { WalkSpeed = 1.75f; if (IsMovingInput) { VerticalSpeed = 1.75f; } else { VerticalSpeed = 0f; } } 
-            }
-            else
-            {//going with slope
-                WalkSpeed = 3f;
-                RunSpeed = 5.5f;
-                if (IsMovingInput) { VerticalSpeed = 0f; } else { MyRb.velocity = Vector2.zero; } 
-            }
-        }
-        else if (SlopeAngle < 325 && SlopeAngle >300)
-        {
-            // left a 35 or MORE slope
-            if (MovementInputDirection == 1)
-            { //going with slope
-                WalkSpeed = 1.5f;
-                RunSpeed = 3f;
-                if (IsMovingInput) { VerticalSpeed = 5f; } else { MyRb.velocity = Vector2.zero; } 
-                if (FootAOnSlope && !FootBOnSlope) { WalkSpeed = 1.75f; if (IsMovingInput) { VerticalSpeed = 1.75f; } else { VerticalSpeed = 0f; } }
-                if (!FootAOnSlope && FootBOnSlope) { WalkSpeed = 1.75f; if (IsMovingInput) { VerticalSpeed = 1.75f; } else { VerticalSpeed = 0f; } }
-            }
-            else
-            {//going against slope
-                WalkSpeed = 3.5f;
-                RunSpeed = 7f;
-                if (IsMovingInput)
-                {
-                    VerticalSpeed = 0f;
+                else
+                {//going with slope
+                    WalkSpeed = 1.5f;
+                    RunSpeed = 3f;
+                    if (IsMovingInput) { VerticalSpeed = 5f; } else { MyRb.velocity = Vector2.zero; }
+                    if (FootAOnSlope && !FootBOnSlope) { WalkSpeed = 1.75f; if (IsMovingInput && ! IsJumping) { VerticalSpeed = 1.75f; } else { VerticalSpeed = 0f; } }
+                    if (!FootAOnSlope && FootBOnSlope) { WalkSpeed = 1.75f; if (IsMovingInput && !IsJumping) { VerticalSpeed = 1.75f; } else { VerticalSpeed = 0f; } }
                 }
-                else { MyRb.velocity = Vector2.zero; }
+            }
+            if (SlopeAngle >= 325 && SlopeAngle > 300)
+            {
+                // left a 35 or less slope
+                if (MovementInputDirection == 1)
+                { //going against slope
+                    WalkSpeed = 1.5f;
+                    RunSpeed = 4f;
+                    if (IsMovingInput)
+                    {
+                        VerticalSpeed = 5f;
+                    }
+                    else { MyRb.velocity = Vector2.zero; }
+                    if (FootAOnSlope && !FootBOnSlope) { WalkSpeed = 1.75f; if (IsMovingInput) { VerticalSpeed = 1.75f; } else { VerticalSpeed = 0f; } }
+                    if (!FootAOnSlope && FootBOnSlope) { WalkSpeed = 1.75f; if (IsMovingInput) { VerticalSpeed = 1.75f; } else { VerticalSpeed = 0f; } }
+                }
+                else
+                {//going with slope
+                    WalkSpeed = 3f;
+                    RunSpeed = 5.5f;
+                    if (IsMovingInput) { VerticalSpeed = 0f; } else { MyRb.velocity = Vector2.zero; }
+                }
+            }
+            else if (SlopeAngle < 325 && SlopeAngle > 300)
+            {
+                // left a 35 or MORE slope
+                if (MovementInputDirection == 1)
+                { //going with slope
+                    WalkSpeed = 1.5f;
+                    RunSpeed = 3f;
+                    if (IsMovingInput) { VerticalSpeed = 5f; } else { MyRb.velocity = Vector2.zero; }
+                    if (FootAOnSlope && !FootBOnSlope) { WalkSpeed = 1.75f; if (IsMovingInput) { VerticalSpeed = 1.75f; } else { VerticalSpeed = 0f; } }
+                    if (!FootAOnSlope && FootBOnSlope) { WalkSpeed = 1.75f; if (IsMovingInput) { VerticalSpeed = 1.75f; } else { VerticalSpeed = 0f; } }
+                }
+                else
+                {//going against slope
+                    WalkSpeed = 3.5f;
+                    RunSpeed = 7f;
+                    if (IsMovingInput)
+                    {
+                        VerticalSpeed = 0f;
+                    }
+                    else { MyRb.velocity = Vector2.zero; }
+                }
             }
         }
     }
-
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     void UpdateUI()
     {
@@ -1224,7 +1252,7 @@ public class PlayerControllerV2 : MonoBehaviour
     }
     IEnumerator Jump()
     {
-        
+        ShouldCheckGrounded = false;
         Anim.Play("PlayerAnim_JumpEnter");
 
         if (MovementInputDirection == 0)
@@ -1241,9 +1269,9 @@ public class PlayerControllerV2 : MonoBehaviour
         IsJumping = false;
     
         State = "Falling";
-       
-        
 
+        yield return new WaitForSeconds(.25f);
+        ShouldCheckGrounded = true;
     }
     IEnumerator Land()
     {
@@ -1256,6 +1284,7 @@ public class PlayerControllerV2 : MonoBehaviour
         yield return new WaitForSeconds(.5f);
 
         IsLanding = false;
+        CanPlunge = false;
         VerticalSpeed = FallSpeed;
         if (IsMovingInput) { State = "Walking"; } else { State = "Idle"; }     
     }
@@ -1399,6 +1428,7 @@ public class PlayerControllerV2 : MonoBehaviour
         CanRollOut = false; CancelThisCoroutine = null;
 
         if (MovementInputDirection == 0) { State = "Idle"; } else { State = "Walking"; }
+        IsImmune = false;
     }
 
     IEnumerator Parry()
@@ -1478,7 +1508,7 @@ public class PlayerControllerV2 : MonoBehaviour
     {
         int layerMask = ~(LayerMask.GetMask("Player"));
         RaycastHit2D hit = Physics2D.Raycast(transform.position, new Vector2(0, -1), HeavyAttackFollowUpRange, layerMask);
-
+        
 
         if (hit.collider != null)
         {

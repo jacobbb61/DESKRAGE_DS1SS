@@ -108,16 +108,19 @@ public class LayerManagerV2 : MonoBehaviour
                 break;
         }
 
-
+        /*
         GameObject [] DoorSaveManagerList = null;
         DoorSaveManagerList = GameObject.FindGameObjectsWithTag("Door");
         {
             foreach (GameObject Door in DoorSaveManagerList)
             {
                 //Pass each door data,from game to file
-                Door.GetComponent<DoorManager>().ManualStart();
+                if (Door.GetComponent<DoorSaveManager>().DoorTag_This != "O" || Door.GetComponent<DoorSaveManager>().DoorTag_This != "P")
+                {
+                    Door.GetComponent<DoorManager>().ManualStart();
+                }
             }
-        }
+        }*/
 
     }
 

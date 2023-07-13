@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using FMODUnity;
 
 public class AsylumDemonArena : MonoBehaviour
 {
@@ -13,6 +14,9 @@ public class AsylumDemonArena : MonoBehaviour
 
     public AsylumDemon Boss;
 
+    public EventReference AsylumTheme;
+    public FMOD.Studio.EventInstance FMODinstance;
+
     public void ManualStart()
     {
         SwitchState(currentState);
@@ -23,13 +27,16 @@ public class AsylumDemonArena : MonoBehaviour
         }
         Boss.ManualStart();
     }
-
+    public void StopMusic()
+    {
+        FMODinstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+    }
     public void EnterArena() //called from door manager
     {
             for (int i = 0; i < doors.Length; i++)
             {
                 doors[i].inBossFight = true;
-            doors[i].ManualStart();
+                doors[i].ManualStart();
             }
 
             if (currentState == "FirstTime" || currentState == "Idle")
@@ -37,6 +44,7 @@ public class AsylumDemonArena : MonoBehaviour
                 SwitchState("Active");
                 inBossFight = true;
                 arenaIsActive = true;
+                Boss.Behaviour = "Hostile";
             }
             if (inBossFight)
             {
@@ -69,10 +77,12 @@ public class AsylumDemonArena : MonoBehaviour
                     Boss.IsActive = false;
                     Boss.IsDead = false;
                     Boss.Health = Boss.MaxHealth;
+                    Boss.Behaviour = "Idle";
                     break;
                 }
             case "Idle":
                 {
+                    Debug.Log("Bos set to idle");
                     doors[0].SwitchDoorState("FogEnter"/*FogEnter not implemented yet*/); //Door E
                     doors[1].SwitchDoorState("Open"); //Door F1
                     doors[2].SwitchDoorState("FogEnter"/*FogEnter not implemented yet*/); //Door M1
@@ -84,6 +94,11 @@ public class AsylumDemonArena : MonoBehaviour
                     Boss.IsActive = false;
                     Boss.IsDead = false;
                     Boss.Health = Boss.MaxHealth;
+                    Boss.StopAllCoroutines();
+                    Boss.Behaviour = "Idle";
+                    Boss.ManualStart();
+                    FMODinstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+                   // FMODinstance.release();
                     break;
                 }
             case "Active":
@@ -99,21 +114,28 @@ public class AsylumDemonArena : MonoBehaviour
                     Boss.IsActive = true;
                     Boss.IsDead = false;
                     Boss.Health = Boss.MaxHealth;
+                    Boss.Behaviour = "Hostile";
+                    FMODinstance = FMODUnity.RuntimeManager.CreateInstance(AsylumTheme);
+                    FMODinstance.start();
+                   // FMODinstance.release();
                     break;
                 }
             case "Open":
                 {
-                    doors[0].SwitchDoorState("Open"); //Door E
+                  /*  doors[0].SwitchDoorState("Open"); //Door E
                     doors[1].SwitchDoorState("Open"); //Door F1
                     doors[2].SwitchDoorState("Open"); //Door M1
                     doors[3].SwitchDoorState("Open"); //Door M2
-                    doors[4].SwitchDoorState("Closed"); //Door N
+                   doors[4].SwitchDoorState("Open"); //Door N */ //door save manager will save these
                     inBossFight = false;
                     arenaIsActive = false;
                     BossUI.SetActive(false);
                     Boss.IsActive = false;
                     Boss.IsDead = true;
                     Boss.gameObject.SetActive(false);
+                    Boss.Behaviour = "Dead";
+                    FMODinstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+                   // FMODinstance.release();
                     break;
                 }
         }
@@ -125,13 +147,23 @@ public class AsylumDemonArena : MonoBehaviour
 
     public void BossKilled() //Called by boss script
     {
-
+        SwitchState("Open");
         arenaIsActive = false;
+
+        doors[0].SwitchDoorState("Open"); //Door E
+        doors[1].SwitchDoorState("Open"); //Door F1
+        doors[2].SwitchDoorState("Open"); //Door M1
+        doors[3].SwitchDoorState("Open"); //Door M2
+        doors[4].SwitchDoorState("Closed"); //Door N
+
         for (int i = 0; i < doors.Length; i++)
         {
             doors[i].inBossFight = false;
-            SwitchState("Open");
+            doors[i].FogAssets.SetActive(false);
+            doors[i].ManualStart();
         }
+
+
         // Audio stuffs
         // Wait(time);
         // Disable boss health

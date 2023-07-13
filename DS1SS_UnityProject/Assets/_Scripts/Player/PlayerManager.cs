@@ -27,7 +27,7 @@ public class PlayerManager : MonoBehaviour
     public AsylumDemonArena DemonArena;
 
 
-    private LayerManagerV2 Layer;
+    public LayerManagerV2 Layer;
     private PlayerControllerV2 PC;
     private void Start()
     {
@@ -38,6 +38,8 @@ public class PlayerManager : MonoBehaviour
             PC = GetComponent<PlayerControllerV2>();
             StartedGame = true;
         }
+
+        QualitySettings.vSyncCount = 1;
     }
     private void Update()
     {

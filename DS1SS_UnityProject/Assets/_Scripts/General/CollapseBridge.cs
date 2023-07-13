@@ -21,12 +21,15 @@ public class CollapseBridge : MonoBehaviour
     public GameObject BridgeAssets_UnBroken;
     public GameObject BridgeAssets_Broken;
 
+    private bool CanBreak; //wait for time when loading into scene before player can trigger break
+
     // The bridge referenced in this script must have a collider and kinematic rigidbody
 
     public void ManualStart()
     {
         if (!isBridge)
         {
+            StartCoroutine(WaitForLoad());
             switch (currentState)
             {
                 case "UnBroken":
@@ -65,9 +68,16 @@ public class CollapseBridge : MonoBehaviour
         }
     }
 
+    IEnumerator WaitForLoad()
+    {
+        CanBreak = false;
+        yield return new WaitForSeconds(1.5f);
+        CanBreak = true;
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player") && !isBridge /* && playerRB.velocity.y < 0*/)
+        if (collision.CompareTag("Player") && !isBridge && CanBreak/* && playerRB.velocity.y < 0*/)
         {
 
             switch (currentState)
