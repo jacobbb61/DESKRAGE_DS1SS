@@ -151,7 +151,7 @@ public class OscarManager : MonoBehaviour
         }
         SetDeath();
         SetLocation();
-        //  SetAnimation();  
+        //SetAnimation();  
     }
 
 
@@ -261,28 +261,51 @@ public class OscarManager : MonoBehaviour
         }
     }
 
+    private void OnEnable()
+    {
+        SetAnimation();
+    }
     public void SetAnimation()
     {
         switch (CurrentState)
         {
+            case "Null":
+                OscarAnim.Play("OscarAnim_SittingIdle"); //Sitting
+                break;
             case "A":
-                OscarAnim.Play(""); //Sitting
+                OscarAnim.Play("OscarAnim_SittingIdle"); //Sitting
+                break;
+            case "YES":
+                OscarAnim.Play("OscarAnim_SittingIdle"); //Sitting
+                break;
+            case "NO":
+                OscarAnim.Play("OscarAnim_SittingIdle"); //Sitting
                 break;
             case "B":
-                OscarAnim.Play(""); //standing
+                OscarAnim.Play("OscarAnim_StandingIdle"); //standing
                 break;
             case "C":
-                OscarAnim.Play(""); //dying
+                OscarAnim.Play("OscarAnim_SittingIdle"); //dying
+                break;
+            case "D":
+                OscarAnim.Play("OscarAnim_SittingIdle"); //dying
+                break;
+            case "E":
+                OscarAnim.Play("OscarAnim_SittingIdle"); //dying
+                break;
+            case "F":
+                OscarAnim.Play("OscarAnim_SittingIdle"); //dying
                 break;
             case "G":
-                OscarAnim.Play(""); //standing
+                OscarAnim.Play("OscarAnim_StandingIdle"); //standing
                 break;
             case "H":
-                OscarAnim.Play(""); //dying broken legs
+                OscarAnim.Play("OscarAnim_SittingIdle"); //dying broken legs
                 break;
-             default:
-                OscarAnim.Play(""); //dead
+            case "I":
+                OscarAnim.Play("OscarAnim_SittingIdle"); //dying
                 break;
+
 
         }
     }
@@ -700,6 +723,11 @@ public class OscarManager : MonoBehaviour
             DialogTextObject.text = CurrentText;
             OpenDialog();
             PC.Interactable = Interactable;
+            if (!IsOscarDead) //interaction animation 
+            {
+                if (IsSitting()) { OscarAnim.Play("OscarAnim_SittingInteract"); }
+                else { OscarAnim.Play("OscarAnim_StandingInteract"); }
+            }
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
@@ -711,8 +739,44 @@ public class OscarManager : MonoBehaviour
             CloseQuestion();
             CloseDialog();
             PC.Interactable = null;
+            if (!IsOscarDead) //interaction animation 
+            {
+                if (IsSitting()) { OscarAnim.Play("OscarAnim_SittingIdle"); }
+                else { OscarAnim.Play("OscarAnim_StandingIdle"); }
+            }
         }
     }
+
+    bool IsSitting()
+    {
+        switch (CurrentState)
+        {
+            case "Null":
+                return true;
+
+            case "A":
+                return true;
+
+            case "YES":
+                return true;
+ 
+            case "NO":
+                return true;
+
+            case "C":
+                return true;
+
+            case "H":
+                return true;
+
+            default:
+                return false;
+
+        }
+    }
+
+
+
 
     public void SaveGameDataToCurrentCharacterData(ref CharacterSaveData CurrentCharacterData)
     {

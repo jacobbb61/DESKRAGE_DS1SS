@@ -63,7 +63,9 @@ public class Bonfire : MonoBehaviour
 
     public void BonfireRest()
     {
-       
+        PC.State = "Idle";
+        PC.CanMove = true;
+
         PC.Health = PC.MaxHealth;
         PC.Stamina = PC.MaxStamina;
         // replenish estus
