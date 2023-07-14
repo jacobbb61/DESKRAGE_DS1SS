@@ -17,6 +17,7 @@ public class AsylumDemonArena : MonoBehaviour
     public EventReference AsylumTheme;
     public FMOD.Studio.EventInstance FMODinstance;
 
+    public OscarManager Oscar;
     public void ManualStart()
     {
         SwitchState(currentState);
@@ -163,6 +164,7 @@ public class AsylumDemonArena : MonoBehaviour
             doors[i].ManualStart();
         }
 
+        Oscar.KilledDemon();
 
         // Audio stuffs
         // Wait(time);

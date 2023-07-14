@@ -120,6 +120,17 @@ public class OscarManager : MonoBehaviour
       //  SetAnimation();  
     }
 
+    public void DiedToDemon()
+    {
+         NextInteraction(); 
+    }
+    public void KilledDemon()
+    {
+       if (CurrentState == "A" || CurrentState == "B") { CurrentState = "C"; MoveInteractionOnLoad = false; }
+       if (CurrentState == "Null") { CurrentState = "I"; MoveInteractionOnLoad = false; }
+
+        Reload();
+    }
     public void Reload()
     {
         QuestionOpen = false;
@@ -132,8 +143,12 @@ public class OscarManager : MonoBehaviour
 
         CheckMemory(); // check for demon killed and pursuer triggered, also updates states based on previous loads
 
-
-        if (MoveInteractionOnLoad) { NextInteraction(); }
+        if (MoveInteractionOnLoad)
+        {
+            if (CurrentState == "I") { CurrentState = "C"; }
+            if (CurrentState == "C") { CurrentState = "E"; }
+            if (CurrentState == "H") { CurrentState = "E"; }
+        }
         SetDeath();
         SetLocation();
         //  SetAnimation();  
@@ -177,11 +192,11 @@ public class OscarManager : MonoBehaviour
                 break;
             case "G":
                 CurrentState = "H";
+                MoveInteractionOnLoad = false;
                 break;
             default:
                 break;
         }
-        MoveInteractionOnLoad = false;
     }
     public void SetDeath()
     {
@@ -324,6 +339,8 @@ public class OscarManager : MonoBehaviour
             Debug.Log("Y Button Pressed");
             CanInput = false;
 
+        if(CurrentState == "Null") { CurrentState = "A"; }
+
             if (!IsTalking) { OpenDialog(); }
             NextLine();
             // StopAnyAudio();//stop audio and timer     
@@ -458,6 +475,7 @@ public class OscarManager : MonoBehaviour
                     RoutineToStop = StartCoroutine(WaitForAudioToEnd());//start audio timer            
                     CurrentText = StateCTextLines[CurrentTextLine]; //tell dialogue text what to show
                     CurrentTextLine++;
+                    MoveInteractionOnLoad = true;
                 } else { CloseDialog(); IsOscarDead = true; } //dies
                 if (CurrentTextLine == 2) { GiveEstus(3); }
                 break;
@@ -493,6 +511,7 @@ public class OscarManager : MonoBehaviour
                     RoutineToStop = StartCoroutine(WaitForAudioToEnd());//start audio timer            
                     CurrentText = StateHTextLines[CurrentTextLine]; //tell dialogue text what to show
                     CurrentTextLine++;
+                    MoveInteractionOnLoad = true;
                 } else { CloseDialog(); IsOscarDead = true; } //dies
                 break;
             case "I":
@@ -502,6 +521,7 @@ public class OscarManager : MonoBehaviour
                     RoutineToStop = StartCoroutine(WaitForAudioToEnd());//start audio timer            
                     CurrentText = StateITextLines[CurrentTextLine]; //tell dialogue text what to show
                     CurrentTextLine++;
+                    MoveInteractionOnLoad = true;
                 } else
                 {
                     PlayAudio(StateGAudioClips[CurrentTextLine]);

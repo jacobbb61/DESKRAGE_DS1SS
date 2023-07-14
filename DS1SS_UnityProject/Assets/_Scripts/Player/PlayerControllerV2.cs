@@ -129,6 +129,8 @@ public class PlayerControllerV2 : MonoBehaviour
 
     public InteractableV2 Interactable;
 
+    public OscarManager Oscar;
+
     //UI
     private CanvasManager CM;
     private Slider StaminaSlider;
@@ -176,6 +178,7 @@ public class PlayerControllerV2 : MonoBehaviour
         if(PM.DemonArena.currentState == "Active") //player died to demon
         {
             PM.DemonArena.SwitchState("Idle");
+            Oscar.DiedToDemon();
         }
        
         switch (PM.LastBonfireVisited)
@@ -882,7 +885,6 @@ public class PlayerControllerV2 : MonoBehaviour
 
             MyRb.velocity = new Vector2(MovementInputDirection * RunSpeed, -VerticalSpeed);
         }
-        IsLockedOn = false;        
     }
 
     void Rolling()

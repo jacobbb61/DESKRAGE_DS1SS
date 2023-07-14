@@ -28,10 +28,15 @@ public class MainMenuManager : MonoBehaviour
     public RectTransform MainHightlightPos;
     public Animator MainHightlightAnim;
     private int MainOrder = 1;
+    public GameObject NewGameText;
+    public GameObject ContinueText;
 
     [Header("Character Menu")]
     public GameObject CharacterMenu;
     public RectTransform CharacterMenuHighlight;
+    public GameObject NewGame1;
+    public GameObject NewGame2;
+    public GameObject NewGame3;
     public UICharacterSaveSlot Slot01;
     public UICharacterSaveSlot Slot02;
     public UICharacterSaveSlot Slot03;
@@ -41,6 +46,7 @@ public class MainMenuManager : MonoBehaviour
     private int CharacterMenuOrder = 1;
 
     public CharacterSlot CurrentSelectedSlot = CharacterSlot.NO_Slot;
+    public int LastSlotPlayed;
     public GameObject DeleteSlotPopUp;
 
     [Header("Settings")]
@@ -92,6 +98,13 @@ public class MainMenuManager : MonoBehaviour
     public void Start()
     {
         WorldSaveGameManager.Instance.LoadAllCharacterSlots();
+
+        LastSlotPlayed = GameSaveGameManager.Instance.GameSaveData.LastSlotUsed;
+
+        if(LastSlotPlayed == 0) { NewGameText.SetActive(true); ContinueText.SetActive(false); }//newgame
+        else { NewGameText.SetActive(false); ContinueText.SetActive(true); }//continue
+
+
 
         ActiveMenu = "Main";
         MainOrder = 1;
@@ -298,7 +311,25 @@ public class MainMenuManager : MonoBehaviour
         switch (MainOrder)
         {
             case 1:
-                StartCoroutine(LoadNewGame()); 
+                if (LastSlotPlayed == 0) { StartCoroutine(LoadNewGame()); LastSlotPlayed = 1;
+                    GameSaveGameManager.Instance.GameSaveData.LastSlotUsed = LastSlotPlayed;
+                    GameSaveGameManager.Instance.SaveGameData();
+                }
+                if (LastSlotPlayed == 1)
+                {
+                    Slot01.LoadGameFromCharacterSlot();
+                    CurrentSelectedSlot = CharacterSlot.CharacterSlot_01;
+                }
+                if (LastSlotPlayed == 2)
+                {
+                    Slot02.LoadGameFromCharacterSlot();
+                    CurrentSelectedSlot = CharacterSlot.CharacterSlot_02;
+                }
+                if (LastSlotPlayed == 3)
+                {
+                    Slot03.LoadGameFromCharacterSlot();
+                    CurrentSelectedSlot = CharacterSlot.CharacterSlot_03;
+                }              
                 break;
 
             case 2:
@@ -333,31 +364,39 @@ public class MainMenuManager : MonoBehaviour
             case 1:
                 if (Slot01.gameObject.activeInHierarchy)
                 {
+                    LastSlotPlayed = 1;
                     Slot01.LoadGameFromCharacterSlot();
                     CurrentSelectedSlot = CharacterSlot.CharacterSlot_01;
+                    GameSaveGameManager.Instance.GameSaveData.LastSlotUsed = LastSlotPlayed;
+                    GameSaveGameManager.Instance.SaveGameData();
                 }
-                else { CanInput = true; }
+                else { StartCoroutine(LoadNewGame()); }
                 break;
 
             case 2:
                 if (Slot02.gameObject.activeInHierarchy)
                 {
+                    LastSlotPlayed = 2;
                     Slot02.LoadGameFromCharacterSlot();
                     CurrentSelectedSlot = CharacterSlot.CharacterSlot_02;
+                    GameSaveGameManager.Instance.GameSaveData.LastSlotUsed = LastSlotPlayed;
+                    GameSaveGameManager.Instance.SaveGameData();
                 }
-                else { CanInput = true;  }
+                else { StartCoroutine(LoadNewGame()); }
                 break;
 
             case 3:
                 if (Slot03.gameObject.activeInHierarchy)
                 {
+                    LastSlotPlayed = 3;
                     Slot03.LoadGameFromCharacterSlot();
                     CurrentSelectedSlot = CharacterSlot.CharacterSlot_03;
+                    GameSaveGameManager.Instance.GameSaveData.LastSlotUsed = LastSlotPlayed;
+                    GameSaveGameManager.Instance.SaveGameData();
                 }
-                else { CanInput = true; }
+                else { StartCoroutine(LoadNewGame()); }
                 break;
         }
-
     }
 
 
@@ -671,6 +710,11 @@ public class MainMenuManager : MonoBehaviour
         SceneTransitionAnim.SetTrigger("Active");
         yield return new WaitForSeconds(1.2f);
         if (!CharacterMenuOpen) { CharacterMenu.SetActive(true); } else { CharacterMenu.SetActive(false); }
+
+        if (Slot01.gameObject.activeInHierarchy) { NewGame1.SetActive(false); } else { NewGame1.SetActive(true); }
+        if (Slot02.gameObject.activeInHierarchy) { NewGame2.SetActive(false); } else { NewGame2.SetActive(true); }
+        if (Slot03.gameObject.activeInHierarchy) { NewGame3.SetActive(false); } else { NewGame3.SetActive(true); }
+
         CharacterMenuOrder = 1;
         MoveCharacterMenuHighlight();
         CanInput = true;

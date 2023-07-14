@@ -455,6 +455,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a8e31fc29ddc8c42b922c75925ed617, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  AsylumArena: {fileID: 0}
+  AsylumDemonLockOnPos: {fileID: 0}
   AllEnemies: []
   LayerEnemies: []
   nearestEnemyPos: {fileID: 0}
@@ -828,7 +830,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &528583623710192539
 Transform:
   m_ObjectHideFlags: 0

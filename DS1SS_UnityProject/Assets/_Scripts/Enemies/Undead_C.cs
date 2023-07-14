@@ -23,14 +23,27 @@ public class Undead_C : MonoBehaviour
     public string SlopeDir;
 
 
-    [Header("Combat Data")]
-    public float TimeBeforeAttack;
-    public float AttackAnimationTime;
-    public float AttackCoolDownTime;
-    public float StaggerTime;
-    public float AttackRange;
-    public float AttackDamage;
+    [Header("Running Slash")]
+    public float TimeBeforeAttack_RS;
+    public float AttackAnimationTime_RS;
+    public float AttackCoolDownTime_RS;
 
+    [Header("Quick Barrage")]
+    public float TimeBeforeAttack_QB;
+    public float AttackAnimationTime_QB;
+    public float AttackCoolDownTime_QB;
+
+    [Header("2H Slash")]
+    public float TimeBeforeAttack_2S;
+    public float AttackAnimationTime_2S;
+    public float AttackCoolDownTime_2S;
+
+    [Header("Combat Data")]
+    public float StaggerTime;
+    public float TriggerRange;
+    public float CloseAttackRange;
+    public float AttackRange;
+    public float AttackStepMultiplier;
     public float CombatTime;
 
     public List<Collider2D> Overlap;
@@ -38,6 +51,7 @@ public class Undead_C : MonoBehaviour
     [Header("Bools")]
     public bool SeePlayer;
     public bool IsAttacking;
+    public bool IsHeavyAttacking;
     public bool IsAttackStepping;
     public bool IsDead;
     public bool IsAtOrigin;
@@ -89,7 +103,7 @@ public class Undead_C : MonoBehaviour
     }
 
     void Update()
-    {   
+    {
         UpdateUI();
         IsByOriginPosition();
         GroundCheck();
@@ -107,29 +121,34 @@ public class Undead_C : MonoBehaviour
                     break;
                 case "Hostile":
                     CombatTime += Time.deltaTime;
-                    LookForPlayer();
-                    if (SeePlayer && IsInAttackRange()) { Behaviour = "Attacking"; }
-                    else if (SeePlayer)
+                    LookForPlayer();                   
+                    if (IsInRange()) { Behaviour = "Attacking"; }
+                    else
                     {
                         FacePlayer();
                         Walk();
                     }
-                    else
-                    {
-                        Anim.Play("UndeadAnim_C_Idle");
-                        RB.velocity = Vector2.zero;
-                    }
-                    
-                    if (!SeePlayer && !IsAtOrigin && CombatTime>8) {Behaviour = "Returning"; CombatTime = 0; }
+
+                    if (!SeePlayer && !IsAtOrigin && CombatTime > 8) { Behaviour = "Returning"; CombatTime = 0; }
                     break;
                 case "Attacking":
-                    if (!IsAttacking) { AttackingCoroutine =  StartCoroutine(Attack()); }
-                    if (!IsAttackStepping)
+                    LookForPlayer();
+                    if (!IsAttacking) { ChooseAttack(); }
+                    else
                     {
-                        RB.velocity = new Vector2(0, -VerticalSpeed);
+                        if (!IsAttackStepping)
+                        {
+                            FacePlayer();
+                            RB.velocity = new Vector2(0, -VerticalSpeed);
+                        }
+                        else
+                        {
+                            Stepping();
+                        }
                     }
                     break;
                 case "Staggered":
+                    StopCoroutine(AttackingCoroutine);
                     StartCoroutine(Staggered());
                     RB.velocity = Vector2.zero;
                     break;
@@ -139,12 +158,15 @@ public class Undead_C : MonoBehaviour
                     break;
                 case "Returning":
                     LookForPlayer();
-                    if (SeePlayer) { Behaviour = "Hostile"; }                  
+                    if (SeePlayer) { Behaviour = "Hostile"; }
                     if (!IsAtOrigin) { FaceOrigin(); WalkToOrigin(); GroundCheck(); }
                     else { Behaviour = "Idle"; }
                     break;
                 case "Dead":
                     Dead();
+                    RB.velocity = Vector2.zero;
+                    break;
+                case "Dying":
                     RB.velocity = Vector2.zero;
                     break;
                 default:
@@ -155,11 +177,36 @@ public class Undead_C : MonoBehaviour
     }
 
 
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+    void ChooseAttack()
+    {
+
+            if (IsInCloseRange())
+            {
+                int num = Random.Range(1, 3);
+                Debug.Log(num);
+                if (num == 1) { AttackingCoroutine = StartCoroutine(Attack_QuickBarrage()); }
+                else if (num == 2) { AttackingCoroutine = StartCoroutine(Attack_2HSlash()); }
+                
+            }
+            else
+            {
+                AttackingCoroutine = StartCoroutine(Attack_RunningSlash());
+            }
+    }
+
+
+
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     IEnumerator Death()
     {
-        Behaviour = "Dead";
-        if (IsAttacking) { StopCoroutine(AttackingCoroutine); }
+        Behaviour = "Dying";
+        RB.velocity = Vector2.zero;
+        IsAttacking = false;
+        IsHeavyAttacking = false;
+        IsAttackStepping = false;
+        if (AttackingCoroutine!=null) { StopCoroutine(AttackingCoroutine); }
         HealthSlider.value = 0;
         Anim.Play("UndeadAnim_C_Death");
         yield return new WaitForSeconds(3);
@@ -167,15 +214,14 @@ public class Undead_C : MonoBehaviour
         Dead();
 
     }
-
     public void Dead()
     {
+        Behaviour = "Dead";
         Health = 0;
         IsDead = true;
         Assets.SetActive(false);
         gameObject.SetActive(false);
     }
-
     public void TakeLightDamage()
     {
         Health -= 6;
@@ -183,20 +229,21 @@ public class Undead_C : MonoBehaviour
     public void TakeHeavyDamage()
     {
         Health -= 9;
-        Behaviour = "Staggered";
+        if (!IsHeavyAttacking) { Behaviour = "Staggered"; }
     }
     IEnumerator Staggered()
-    {  
+    {
         Anim.Play("UndeadAnim_C_GettingHit");
+        IsAttacking = false;
+        IsHeavyAttacking = false;
         yield return new WaitForSeconds(StaggerTime);
         Behaviour = "Hostile";
     }
-
     void UpdateUI()
     {
         HealthSlider.value = Health;
     }
-
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     void LookForPlayer()
     {
 
@@ -266,8 +313,7 @@ public class Undead_C : MonoBehaviour
         if (LookDirection == 1) { Assets.transform.localScale = new Vector3(2, 2, 2); }
         else if (LookDirection == -1) { Assets.transform.localScale = new Vector3(-2, 2, 2); }
     }
-
-
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     void GroundCheck()
     {
         int layerMask = ~(LayerMask.GetMask("Player"));
@@ -328,7 +374,6 @@ public class Undead_C : MonoBehaviour
                 }
                  
     }
-
     void OnSlope(Transform Slope)
     {
 
@@ -393,7 +438,7 @@ public class Undead_C : MonoBehaviour
             }
         }
     }
-
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     void Walk()
     {
         if (IsGrounded)
@@ -402,7 +447,6 @@ public class Undead_C : MonoBehaviour
             Anim.Play("UndeadAnim_C_Walk");
         }
     }
-
     void IsByOriginPosition()
     {
         if (Vector3.Distance(transform.localPosition, OriginPosition) < 2)
@@ -414,8 +458,6 @@ public class Undead_C : MonoBehaviour
             IsAtOrigin = false;
         }
     }
-
-
     void FaceOrigin()
     {
         if (transform.localPosition.x > OriginPosition.x)
@@ -437,12 +479,21 @@ public class Undead_C : MonoBehaviour
         RB.velocity = new Vector2(-Speed * LookDirection, -VerticalSpeed);
         Anim.Play("UndeadAnim_C_Walk");
     }
-
-
-
-    bool IsInAttackRange()
+    bool IsInRange()
     {
-        if (Vector3.Distance(Eyes.transform.position, Player.transform.position) < AttackTriggerRange)
+        if (Vector3.Distance(Eyes.transform.position, Player.transform.position) < TriggerRange)
+        {
+            Anim.Play("UndeadAnim_C_Idle");
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    bool IsInCloseRange()
+    {
+        if (Vector3.Distance(Eyes.transform.position, Player.transform.position) < CloseAttackRange)
         {
             Anim.Play("UndeadAnim_C_Idle");
             return true;
@@ -453,34 +504,76 @@ public class Undead_C : MonoBehaviour
         }
     }
 
-    IEnumerator Attack()
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    IEnumerator Attack_RunningSlash()
     {
         IsAttacking = true;
-        yield return new WaitForSeconds(TimeBeforeAttack);
+        IsHeavyAttacking = true;
+        AttackStepMultiplier = 5;
+        yield return new WaitForSeconds(TimeBeforeAttack_RS);
         FacePlayer();
-        Anim.Play("UndeadAnim_C_SwingAttack");
-        yield return new WaitForSeconds(AttackAnimationTime);
+        Anim.Play("UndeadAnim_C_RunningSlash");
+        yield return new WaitForSeconds(AttackAnimationTime_RS);
         Anim.Play("UndeadAnim_C_Idle");
-        yield return new WaitForSeconds(AttackCoolDownTime);
+        yield return new WaitForSeconds(AttackCoolDownTime_RS);
         IsAttacking = false;
+        IsHeavyAttacking = false;
+        Behaviour = "Hostile";
+        FacePlayer();
+    }
+    IEnumerator Attack_QuickBarrage()
+    {
+        IsAttacking = true;
+        IsHeavyAttacking = true;
+        AttackStepMultiplier = -1;
+        yield return new WaitForSeconds(TimeBeforeAttack_QB);
+        FacePlayer();
+        Anim.Play("UndeadAnim_C_QuickBarrage");
+        yield return new WaitForSeconds(AttackAnimationTime_QB);
+        Anim.Play("UndeadAnim_C_Idle");
+        yield return new WaitForSeconds(AttackCoolDownTime_QB);
+        IsAttacking = false;
+        IsHeavyAttacking = false;
+        Behaviour = "Hostile";
+        FacePlayer();
+    }
+    IEnumerator Attack_2HSlash()
+    {
+        IsAttacking = true;
+        AttackStepMultiplier = -1;
+        yield return new WaitForSeconds(TimeBeforeAttack_2S);
+        FacePlayer();
+        Anim.Play("UndeadAnim_C_2hSwordSlash");
+        yield return new WaitForSeconds(AttackAnimationTime_2S);
+        Anim.Play("UndeadAnim_C_Idle");
+        yield return new WaitForSeconds(AttackCoolDownTime_2S);
+        IsAttacking = false;
+ 
         Behaviour = "Hostile";
         FacePlayer();
     }
 
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
     public void StartAttackStep()
     {
-
-        RB.velocity = new Vector2(-Speed * LookDirection, -VerticalSpeed);
         IsAttackStepping = true;
-
     }
+
+    public void Stepping()
+    {
+        RB.velocity = new Vector2(-(Speed + AttackStepMultiplier) * LookDirection, -VerticalSpeed);
+    }
+
     public void StopAttackStep()
     {
         RB.velocity = Vector2.zero;
         IsAttackStepping = false;
     }
 
-    public void AttackRegister()
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    public void AttackRegister_RunningSlash()
     {
         int layerMask = ~(LayerMask.GetMask("Enemy"));
         RaycastHit2D hit = Physics2D.Raycast(HitStartPos.position, new Vector2(-LookDirection, 0), AttackRange, layerMask);
@@ -490,10 +583,42 @@ public class Undead_C : MonoBehaviour
         {
             if (hit.transform.CompareTag("Player"))
             {
-                hit.transform.GetComponent<PlayerControllerV2>().PlayerTakeDamage(AttackDamage, false, 0);
+                hit.transform.GetComponent<PlayerControllerV2>().PlayerTakeDamage(8, true, 0);
             }
         }
     }
+    public void AttackRegister_QuickBarrage()
+    {
+        int layerMask = ~(LayerMask.GetMask("Enemy"));
+        RaycastHit2D hit = Physics2D.Raycast(HitStartPos.position, new Vector2(-LookDirection, 0), AttackRange, layerMask);
+
+       
+
+        if (hit.collider != null)
+        { 
+            if (hit.transform.CompareTag("Player"))
+            {
+                hit.transform.GetComponent<PlayerControllerV2>().PlayerTakeDamage(6, true, 0);
+            }
+        }
+    }
+    public void AttackRegister_2hSlash()
+    {
+        int layerMask = ~(LayerMask.GetMask("Enemy"));
+        RaycastHit2D hit = Physics2D.Raycast(HitStartPos.position, new Vector2(-LookDirection, 0), AttackRange, layerMask);
+
+
+
+        if (hit.collider != null)
+        {
+            if (hit.transform.CompareTag("Player"))
+            {
+                hit.transform.GetComponent<PlayerControllerV2>().PlayerTakeDamage(15, false, 0);
+            }
+        }
+    }
+
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     bool IsOnEnemy()
     {

@@ -176,7 +176,7 @@ public class Undead_B : MonoBehaviour
             RaycastHit2D hit = Physics2D.Raycast(Eyes.transform.position, (Player.transform.position - Eyes.transform.position), Range, layerMask);
             if (hit.transform != null)
             {
-                Debug.Log(hit.transform.name);
+               // Debug.Log(hit.transform.name);
                 if (hit.transform.CompareTag("Player"))
                 {
                     SeePlayer = true;

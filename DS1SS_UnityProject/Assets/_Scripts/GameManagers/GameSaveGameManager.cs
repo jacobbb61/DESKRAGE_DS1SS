@@ -15,6 +15,7 @@ public struct GameSaveData
     public bool Achievement_7;
     public bool Achievement_8;
 
+    public int LastSlotUsed;
 
     public bool HUD;
     public bool Subtitles;
@@ -83,6 +84,8 @@ public class GameSaveGameManager : MonoBehaviour
             GameSaveData.HUD = true;
             GameSaveData.Subtitles = true;
 
+            GameSaveData.LastSlotUsed = 0;
+
             GameSaveData.Master = 10;
             GameSaveData.Effects = 10;
             GameSaveData.Ambience = 10;
@@ -100,7 +103,7 @@ public class GameSaveGameManager : MonoBehaviour
         //write a text file containing the string value as simple text
         File.WriteAllText(filePath + "/" + FILE_NAME, gameStatusJson);
         Debug.Log("File created and saved");
-
+        Debug.Log(GameSaveData.LastSlotUsed);
     }
 
     public void SaveSettings(bool HUD, bool Subtitles, float Master, float Effects, float Ambience, float Music, float Dialog)

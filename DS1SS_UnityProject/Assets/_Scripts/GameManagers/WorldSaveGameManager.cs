@@ -329,7 +329,7 @@ public class WorldSaveGameManager : MonoBehaviour
     CurrentCharacterData.DoorState_U = "Closed";
 
         //Oscar data
-        CurrentCharacterData.OscarState = "A";
+        CurrentCharacterData.OscarState = "Null";
         CurrentCharacterData.CurrentTextLine = 0;
         CurrentCharacterData.MoveInteractionOnLoad = false;
         CurrentCharacterData.IsOscarDead = false;

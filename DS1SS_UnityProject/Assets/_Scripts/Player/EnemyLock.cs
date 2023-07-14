@@ -5,6 +5,9 @@ using UnityEngine.Rendering;
 using TMPro;
 public class EnemyLock : MonoBehaviour
 {
+    public AsylumDemonArena AsylumArena;
+    public GameObject AsylumDemonLockOnPos;
+
     public GameObject[] AllEnemies;
     public List<GameObject> LayerEnemies;
     public Transform nearestEnemyPos;
@@ -71,36 +74,53 @@ public class EnemyLock : MonoBehaviour
 
     public Transform GetNearestEnemy()
     {
+        Transform trans = null;
 
-        AllEnemies = GameObject.FindGameObjectsWithTag("Enemy");
-        LayerEnemies = new List<GameObject>();
-        foreach (GameObject enemy in AllEnemies)
-        {         
+        if (AsylumArena.currentState != "Active")
+        {
+            AllEnemies = GameObject.FindGameObjectsWithTag("Enemy");
+            LayerEnemies = new List<GameObject>();
+            foreach (GameObject enemy in AllEnemies)
+            {
                 if (enemy.activeInHierarchy)
                 {
                     LayerEnemies.Add(enemy);
-                }                
-        }
+                }
+            }
 
-        Transform trans = null; // Used for enemy transform
-        foreach (GameObject enemy in LayerEnemies)
-        {
-            EnemyDistance = Vector3.Distance(transform.position, enemy.transform.position); // Distance between attached gameobject and enemy
-            Debug.Log(enemy.name + " is " + EnemyDistance + " far away");
-            if (EnemyDistance < 20)
+            foreach (GameObject enemy in LayerEnemies)
             {
-                trans = enemy.transform; // Sets transform to closest enemy's transform
-                EnemyLockPos = enemy.transform;
-                EnemyLockedOnTo = enemy;
+                EnemyDistance = Vector3.Distance(transform.position, enemy.transform.position); // Distance between attached gameobject and enemy
+                Debug.Log(enemy.name + " is " + EnemyDistance + " far away");
+                if (EnemyDistance < 20)
+                {
+                    trans = enemy.transform; // Sets transform to closest enemy's transform
+                    EnemyLockPos = enemy.transform;
+                    EnemyLockedOnTo = enemy;
 
-                LockedOn = true;
-                Pc.IsLockedOn = true;
-                LockOnSymbol.SetActive(true);      
-            }  
+                    LockedOn = true;
+                    Pc.IsLockedOn = true;
+                    LockOnSymbol.SetActive(true);
+                }
+            }
+
+            LayerEnemies = null;
+
+            return trans;
         }
+        else
+        {
 
-        LayerEnemies = null;
+            trans = AsylumDemonLockOnPos.transform;
 
-        return trans;
+            EnemyLockPos = AsylumDemonLockOnPos.transform;
+            EnemyLockedOnTo = AsylumDemonLockOnPos;
+
+            LockedOn = true;
+            Pc.IsLockedOn = true;
+            LockOnSymbol.SetActive(true);
+
+            return trans;
+        }
     }
 }
