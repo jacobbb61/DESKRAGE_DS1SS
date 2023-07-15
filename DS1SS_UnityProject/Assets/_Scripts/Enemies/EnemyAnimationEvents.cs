@@ -6,6 +6,8 @@ using UnityEngine.Events;
 public class EnemyAnimationEvents : MonoBehaviour
 {
     public UnityEvent TurnEvent;
+    public UnityEvent MoveEvent;
+    public UnityEvent StopEvent;
     public UnityEvent Attack1Triggered;
     public UnityEvent Attack2Triggered;
     public UnityEvent Attack3Triggered;
@@ -21,7 +23,14 @@ public class EnemyAnimationEvents : MonoBehaviour
     {
         TurnEvent.Invoke();
     }
-
+    public void Move()
+    {
+        MoveEvent.Invoke();
+    }
+    public void Stop()
+    {
+        StopEvent.Invoke();
+    }
     public void Attack1()
     {
         Attack1Triggered.Invoke();

@@ -77,6 +77,8 @@ public class AsylumDemonArena : MonoBehaviour
                     BossUI.SetActive(false);
                     Boss.IsActive = false;
                     Boss.IsDead = false;
+                    Boss.IsTurning = false;
+                    Boss.IsCoolingDown = false;
                     Boss.Health = Boss.MaxHealth;
                     Boss.Behaviour = "Idle";
                     break;
@@ -94,6 +96,8 @@ public class AsylumDemonArena : MonoBehaviour
                     BossUI.SetActive(false);
                     Boss.IsActive = false;
                     Boss.IsDead = false;
+                    Boss.IsTurning = false;
+                    Boss.IsCoolingDown = false;
                     Boss.Health = Boss.MaxHealth;
                     Boss.StopAllCoroutines();
                     Boss.Behaviour = "Idle";
@@ -114,6 +118,8 @@ public class AsylumDemonArena : MonoBehaviour
                     BossUI.SetActive(true);
                     Boss.IsActive = true;
                     Boss.IsDead = false;
+                    Boss.IsTurning = false;
+                    Boss.IsCoolingDown = false;
                     Boss.Health = Boss.MaxHealth;
                     Boss.Behaviour = "Hostile";
                     FMODinstance = FMODUnity.RuntimeManager.CreateInstance(AsylumTheme);
@@ -133,6 +139,8 @@ public class AsylumDemonArena : MonoBehaviour
                     BossUI.SetActive(false);
                     Boss.IsActive = false;
                     Boss.IsDead = true;
+                    Boss.IsTurning = false;
+                    Boss.IsCoolingDown = false;
                     Boss.gameObject.SetActive(false);
                     Boss.Behaviour = "Dead";
                     FMODinstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);

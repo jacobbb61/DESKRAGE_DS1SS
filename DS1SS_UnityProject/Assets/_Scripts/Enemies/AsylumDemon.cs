@@ -7,6 +7,7 @@ public class AsylumDemon : MonoBehaviour
 {   
     private Animator Anim;
     private GameObject Player;
+    private PlayerControllerV2 PC;
     private Rigidbody2D RB;
     private Coroutine AttackingCoroutine;
     [SerializeField] private AsylumDemonArena arenaManager;
@@ -38,6 +39,7 @@ public class AsylumDemon : MonoBehaviour
     [Header("Combat Data")]
     public float Speed;
     public float TimeToTurn;
+    public float StepDistance;
     public float StaggerTime;
     public float CloseTriggerRange;
 
@@ -47,59 +49,55 @@ public class AsylumDemon : MonoBehaviour
 
     [Header("Hammer Drive")]
     public float HD_AttackDamage;
-    public float HD_AttackRangeDistnace;
     public float HD_AttackAnimationTime;
     public float HD_AttackCoolDownTime;
-    public Transform HD_HitStartPos;
+    public Collider2D HD_Collider;
 
     [Header("Ranged Hammer")]
     public float RH_AttackDamage;
-    public float RH_AttackRangeDistnace;
+    public float RH_AttackDamage_AOE;
     public float RH_AttackAnimationTime;
     public float RH_AttackCoolDownTime;
-    public Transform RH_HitStartPos;
+    public float RH_StepDistance;
+    public Collider2D RH_Collider;
+    public Collider2D RH_Collider_AOE;
 
     [Header("Ground Pound")]
     public float GP_AttackDamage;
-    public float GP_AttackRangeDistnace;
     public float GP_AttackAnimationTime;
     public float GP_AttackCoolDownTime;
-    public Transform GP_HitStartPos;
+    public Collider2D GP_Collider;
 
     [Header("Hammer Sweep")]
     public float HSP_AttackDamage;
-    public float HSP_AttackRangeDistnace;
     public float HSP_AttackAnimationTime;
     public float HSP_AttackCoolDownTime;
-    public Transform HSP_HitStartPos;
+    public Collider2D HSP_Collider;
 
     [Header("Hammer Swing")]
     public float HSG_AttackDamage;
-    public float HSG_AttackRangeDistnace;
     public float HSG_AttackAnimationTime;
     public float HSG_AttackCoolDownTime;
-    public Transform HSG_HitStartPos;
+    public Collider2D HSG_Collider;
 
     [Header("Hammer Back Swing")]
     public float HBS_AttackDamage;
-    public float HBS_AttackRangeDistnace;
     public float HBS_AttackAnimationTime;
     public float HBS_AttackCoolDownTime;
-    public Transform HBS_HitStartPos;
+    public Collider2D HBS_Collider;
 
     [Header("Leaping Hammer Smash")]
     public float LH_AttackDamage;
-    public float LH_AttackRangeDistnace;
     public float LH_AttackAnimationTime;
     public float LH_AttackCoolDownTime;
-    public Transform LH_HitStartPos;
+    public float LH_StepDistance;
+    public Collider2D LH_Collider;
 
     [Header("Double Hammer Swing")]
     public float DHS_AttackDamage;
-    public float DHS_AttackRangeDistnace;
     public float DHS_AttackAnimationTime;
     public float DHS_AttackCoolDownTime;
-    public Transform DHS_HitStartPos;
+    public Collider2D DHS_Collider;
 
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// start
@@ -109,7 +107,8 @@ public class AsylumDemon : MonoBehaviour
     {
         Anim = GetComponentInChildren<Animator>();
         RB = GetComponent<Rigidbody2D>();
-        Player = GameObject.FindGameObjectWithTag("Player"); 
+        Player = GameObject.FindGameObjectWithTag("Player");
+        PC = Player.GetComponent<PlayerControllerV2>();
         HealthSlider.maxValue = MaxHealth;
         HealthSlider.value = Health;
     }
@@ -159,7 +158,7 @@ public class AsylumDemon : MonoBehaviour
                     {
                         if (IsInCloseRange()) { ChooseCloseRangeAttack(); } else
                         {
-                           // ChooseLongRangeAttack();
+                            ChooseLongRangeAttack();
                         }
                     }
 
@@ -295,7 +294,11 @@ public class AsylumDemon : MonoBehaviour
 
     public void AttackStep()
     {
-        RB.velocity = new Vector2((-Speed - 1) * LookDirection, -5);
+        RB.velocity = new Vector2(StepDistance * -LookDirection, -5);
+    }
+    public void AttackStop()
+    {
+        RB.velocity = Vector2.zero;
     }
 
     bool IsByPlayer()
@@ -342,7 +345,7 @@ public class AsylumDemon : MonoBehaviour
     
     void ChooseCloseRangeAttack()
     {
-        int attack = Random.Range(1, 5);
+        int attack = Random.Range(1, 6);
         Debug.Log("Close Attack " + attack);
         switch (attack)
         {
@@ -370,16 +373,16 @@ public class AsylumDemon : MonoBehaviour
     }
     void ChooseLongRangeAttack()
     {
-        int attack = Random.Range(1, 2);
+        int attack = Random.Range(1, 3);
         Debug.Log("Long Attack " + attack);
         switch (attack)
         {
             case 1: //Ranged Hammer
-                AttackingCoroutine = StartCoroutine(HD_Attack());
+                AttackingCoroutine = StartCoroutine(RH_Attack());
                 break;
 
             case 2: //Leaping Hammer Swing
-                AttackingCoroutine = StartCoroutine(HD_Attack());
+                AttackingCoroutine = StartCoroutine(LH_Attack());
                 break;
 
         }
@@ -408,32 +411,84 @@ public class AsylumDemon : MonoBehaviour
 
     }
 
-
-
     public void HD_AttackRegister()
     {
-        RaycastHit2D hit1 = Physics2D.Raycast(HD_HitStartPos.position, new Vector2(-1, 0), HD_AttackRangeDistnace/2);
-        RaycastHit2D hit2 = Physics2D.Raycast(HD_HitStartPos.position, new Vector2(1, 0), HD_AttackRangeDistnace/2);
-
-        bool hitplayer = false;
-
-        if (hit1.collider != null)
+        if (HD_Collider.bounds.Contains(Player.transform.position))
         {
-            if (hit1.transform.CompareTag("Player"))
-            {
-                hit1.transform.GetComponent<PlayerControllerV2>().PlayerTakeDamage(HD_AttackDamage, true, 0);
-                hitplayer = true;
-            }
-        }
-        
-        if(hit2.collider != null && hitplayer == false)
-        {
-            if (hit2.transform.CompareTag("Player"))
-            {
-                hit2.transform.GetComponent<PlayerControllerV2>().PlayerTakeDamage(HD_AttackDamage, true, 0);
-            }
+            PC.PlayerTakeDamage(HD_AttackDamage, true, 0);
         }
     }
 
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// Ranged Hammer
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+    IEnumerator RH_Attack()
+    {
+        Behaviour = "Attacking";
+        IsCoolingDown = false;
+        StepDistance = RH_StepDistance;
+
+        Anim.Play("AsylumDemonAnim_RangedHammer");
+
+
+        yield return new WaitForSeconds(RH_AttackAnimationTime);
+
+        Behaviour = "Hostile";
+        IsCoolingDown = true;
+        Anim.Play("AsylumDemonAnim_Idle");
+        StepDistance = 0;
+
+        yield return new WaitForSeconds(RH_AttackCoolDownTime);
+        IsCoolingDown = false;
+
+    }
+
+    public void RH_AttackRegister()
+    {
+        if (RH_Collider.bounds.Contains(Player.transform.position))
+        {
+            PC.PlayerTakeDamage(RH_AttackDamage, true, 0);
+        }
+    }
+    public void RH_AOE_AttackRegister()
+    {
+        if (RH_Collider_AOE.bounds.Contains(Player.transform.position))
+        {
+            PC.PlayerTakeDamage(RH_AttackDamage, true, 0);
+        }
+    }
+
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// Leaping Hammer Smash
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    IEnumerator LH_Attack()
+    {
+        Behaviour = "Attacking";
+        IsCoolingDown = false;
+        StepDistance = LH_StepDistance;
+
+        Anim.Play("AsylumDemonAnim_LeapingHammerSmash");
+
+
+        yield return new WaitForSeconds(LH_AttackAnimationTime);
+
+        Behaviour = "Hostile";
+        IsCoolingDown = true;
+        Anim.Play("AsylumDemonAnim_Idle");
+        StepDistance = 0;
+
+        yield return new WaitForSeconds(LH_AttackCoolDownTime);
+        IsCoolingDown = false;
+
+    }
+
+    public void LH_AttackRegister()
+    {
+        if (LH_Collider.bounds.Contains(Player.transform.position))
+        {
+            PC.PlayerTakeDamage(LH_AttackDamage, true, 0);
+        }
+    }
 }
