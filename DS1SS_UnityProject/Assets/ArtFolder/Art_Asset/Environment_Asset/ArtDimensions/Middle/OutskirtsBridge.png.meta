@@ -125,9 +125,525 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 16384
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: OutskirtsBridge_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 320
+        width: 3840
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ab5c0873a1c188645934d716a2db5115
+      internalID: -621754733
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OutskirtsBridge_1
+      rect:
+        serializedVersion: 2
+        x: 3840
+        y: 320
+        width: 3840
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 53456aae938a11947843b73ebf356aa1
+      internalID: -1519479976
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OutskirtsBridge_2
+      rect:
+        serializedVersion: 2
+        x: 7680
+        y: 320
+        width: 3840
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c6abff9284609284bbd59f5c0cb0acf4
+      internalID: -1952817709
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OutskirtsBridge_3
+      rect:
+        serializedVersion: 2
+        x: 11520
+        y: 320
+        width: 3840
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 916df9a23918cd5479a1eb7033237528
+      internalID: -126725754
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OutskirtsBridge_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 256
+        width: 3840
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ced79805e3eaa31459b426417dc0b0d4
+      internalID: 1971560788
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OutskirtsBridge_5
+      rect:
+        serializedVersion: 2
+        x: 3840
+        y: 256
+        width: 3840
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c573ef4820d15d14da6724aa095a384e
+      internalID: -268833745
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OutskirtsBridge_6
+      rect:
+        serializedVersion: 2
+        x: 7680
+        y: 256
+        width: 3840
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 78b467a7d6129f345934a1cd47a06286
+      internalID: 333710299
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OutskirtsBridge_7
+      rect:
+        serializedVersion: 2
+        x: 11520
+        y: 256
+        width: 3840
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8d63368c13c508e4bb7dd43c0a9de6bc
+      internalID: -1281508330
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OutskirtsBridge_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 192
+        width: 3840
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9ce503294842fd5488c548e7dc94b14b
+      internalID: -308700996
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OutskirtsBridge_9
+      rect:
+        serializedVersion: 2
+        x: 3840
+        y: 192
+        width: 3840
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6ec69d4ed6a954b48898f39c12a68066
+      internalID: -1329091198
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OutskirtsBridge_10
+      rect:
+        serializedVersion: 2
+        x: 7680
+        y: 192
+        width: 3840
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: affd8b9b927f465439d64cdafc99d8b8
+      internalID: -1280313965
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OutskirtsBridge_11
+      rect:
+        serializedVersion: 2
+        x: 11520
+        y: 192
+        width: 3840
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3ea63f31312e8704e845b92e2eb2a928
+      internalID: 231304928
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OutskirtsBridge_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 128
+        width: 3840
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 230d799580f3b1b4ba7075dfbcf19e2f
+      internalID: 587374646
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OutskirtsBridge_13
+      rect:
+        serializedVersion: 2
+        x: 3840
+        y: 128
+        width: 3840
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b2020ba9b61475f48a44f806d6c7df52
+      internalID: 235267265
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OutskirtsBridge_14
+      rect:
+        serializedVersion: 2
+        x: 7680
+        y: 128
+        width: 3840
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 16dd2906c54cfc7429d94455425320f9
+      internalID: 1411510791
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OutskirtsBridge_15
+      rect:
+        serializedVersion: 2
+        x: 11520
+        y: 128
+        width: 3840
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6e1fdccea2f13544c933d362ebc50e3f
+      internalID: 1947064246
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OutskirtsBridge_16
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 64
+        width: 3840
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9908a83b1190f3a42bebc0a2f0ee4470
+      internalID: 1351904113
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OutskirtsBridge_17
+      rect:
+        serializedVersion: 2
+        x: 3840
+        y: 64
+        width: 3840
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fd1cfe01970eb6f479d3cda9a856b25a
+      internalID: -1999192133
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OutskirtsBridge_18
+      rect:
+        serializedVersion: 2
+        x: 7680
+        y: 64
+        width: 3840
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c37246d3fad0efb438a057e4184ca6dd
+      internalID: -2082979595
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OutskirtsBridge_19
+      rect:
+        serializedVersion: 2
+        x: 11520
+        y: 64
+        width: 3840
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7d29b4e6ae685ff42aa433ac510a83f2
+      internalID: 1822061174
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OutskirtsBridge_20
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 3840
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c8896af1a5d71d646b41231a7bc67a99
+      internalID: 241487471
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OutskirtsBridge_21
+      rect:
+        serializedVersion: 2
+        x: 3840
+        y: 0
+        width: 3840
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b4c9a30f2b5fb7a4b9d530a280ee6abe
+      internalID: -537932078
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OutskirtsBridge_22
+      rect:
+        serializedVersion: 2
+        x: 7680
+        y: 0
+        width: 3840
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2ae25200318b5894fb408ab4eae3b9b6
+      internalID: -795627636
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OutskirtsBridge_23
+      rect:
+        serializedVersion: 2
+        x: 11520
+        y: 0
+        width: 3840
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3991be0b5934131479604e5d745f8b25
+      internalID: -1281074098
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -138,7 +654,31 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      OutskirtsBridge_0: -621754733
+      OutskirtsBridge_1: -1519479976
+      OutskirtsBridge_10: -1280313965
+      OutskirtsBridge_11: 231304928
+      OutskirtsBridge_12: 587374646
+      OutskirtsBridge_13: 235267265
+      OutskirtsBridge_14: 1411510791
+      OutskirtsBridge_15: 1947064246
+      OutskirtsBridge_16: 1351904113
+      OutskirtsBridge_17: -1999192133
+      OutskirtsBridge_18: -2082979595
+      OutskirtsBridge_19: 1822061174
+      OutskirtsBridge_2: -1952817709
+      OutskirtsBridge_20: 241487471
+      OutskirtsBridge_21: -537932078
+      OutskirtsBridge_22: -795627636
+      OutskirtsBridge_23: -1281074098
+      OutskirtsBridge_3: -126725754
+      OutskirtsBridge_4: 1971560788
+      OutskirtsBridge_5: -268833745
+      OutskirtsBridge_6: 333710299
+      OutskirtsBridge_7: -1281508330
+      OutskirtsBridge_8: -308700996
+      OutskirtsBridge_9: -1329091198
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
