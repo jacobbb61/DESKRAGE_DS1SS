@@ -91,12 +91,25 @@ public class EnemyLock : MonoBehaviour
                 }
             }
 
+            float Closest = 1000;
+
             foreach (GameObject enemy in LayerEnemies)
             {
                 EnemyDistance = Vector3.Distance(transform.position, enemy.transform.position); // Distance between attached gameobject and enemy
-                Debug.Log(enemy.name + " is " + EnemyDistance + " far away");
-                if (EnemyDistance < 20)
+                
+                if (Closest == 1000) { Closest = EnemyDistance; }
+
+                if (EnemyDistance < Closest)
                 {
+                    Closest = EnemyDistance;
+                }
+                // Debug.Log(enemy.name + " is " + EnemyDistance + " far away" + "the closest is " + Closest);
+                if (EnemyDistance == Closest) { Debug.Log(enemy.name + " is " + EnemyDistance + " far away"); 
+                
+                
+                
+                if (EnemyDistance < 20) //in camera range
+                { 
                     trans = enemy.transform; // Sets transform to closest enemy's transform
                     EnemyLockPos = enemy.transform;
                     EnemyLockedOnTo = enemy;
@@ -105,12 +118,17 @@ public class EnemyLock : MonoBehaviour
                     Pc.IsLockedOn = true;
                     LockOnSymbol.SetActive(true);
                 }
+                
+                }
             }
 
             LayerEnemies = null;
 
             return trans;
-        }
+        } 
+
+        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        
         else if (PursuerArena.currentState == "Active")
         {
             trans = PursuerLockOnPos.transform;

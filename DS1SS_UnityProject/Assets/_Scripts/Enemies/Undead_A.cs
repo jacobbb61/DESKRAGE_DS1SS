@@ -60,7 +60,12 @@ public class Undead_A : MonoBehaviour
     public Vector3 OriginPosition;
 
     public EnemySaveManager EnemySaveManager;
-    void Start()
+    private void Start()
+    {
+        ManualStart();
+    }
+
+    public void ManualStart()
     {
         Anim = GetComponentInChildren<Animator>();
         RB = GetComponent<Rigidbody2D>();

@@ -89,7 +89,10 @@ public class DoorManager : MonoBehaviour
         }
     }
 
-
+    private void OnEnable()
+    {
+        ManualStart();
+    }
 
     public void ManualStart()
     {
@@ -429,7 +432,7 @@ public class DoorManager : MonoBehaviour
 
                         if (doorSaveManager.DoorTag_This == "F1")
                         {
-                            if (DemonArena.currentState == "Active") { DemonArena.SwitchState("Idle"); }
+                            if (DemonArena.currentState == "Active") { DemonArena.currentState = "Idle"; } // DemonArena.SwitchState("Idle"); }
                         }
 
                         if (doorSaveManager.DoorTag_This == "J1")

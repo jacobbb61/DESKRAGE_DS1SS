@@ -78,6 +78,7 @@ public class PlayerManager : MonoBehaviour
         if (PursuerArena.currentState == "Active") { PursuerArena.currentState = "Idle"; }
 
         CurrentCharacterData.DemonArenaState = DemonArena.currentState;
+        CurrentCharacterData.PursuerArenaState = PursuerArena.currentState;
 
 
     }
@@ -108,6 +109,6 @@ public class PlayerManager : MonoBehaviour
         BoulderManager.BoulderUsed = CurrentCharacterData.BoulderUsed;
 
         if (DemonArena != null) { DemonArena.currentState = CurrentCharacterData.DemonArenaState; DemonArena.ManualStart(); }
-        if (PursuerArena != null) { PursuerArena.currentState = CurrentCharacterData.DemonArenaState; PursuerArena.ManualStart(); }
+        if (PursuerArena != null) { PursuerArena.currentState = CurrentCharacterData.PursuerArenaState; PursuerArena.ManualStart(); }
     }
 }

@@ -8,6 +8,7 @@ public class AsylumDemonArena : MonoBehaviour
     [Tooltip("Doors in this array should be E, F1, M1, M2 and N, in that order")][SerializeField] DoorManager[] doors = new DoorManager[5];
     public bool inBossFight;
     public bool arenaIsActive;
+    public bool IsSecondPhase;
     public string currentState;
 
     public GameObject BossUI;
@@ -35,6 +36,7 @@ public class AsylumDemonArena : MonoBehaviour
     }
     public void SecondPhase()
     {
+        IsSecondPhase = true;
         StopMusic();
         FMODinstance = FMODUnity.RuntimeManager.CreateInstance(Theme_SecondPhase);
         FMODinstance.start();
@@ -68,6 +70,12 @@ public class AsylumDemonArena : MonoBehaviour
     {
         yield return new WaitForSeconds(timeToWait);
     }
+
+    private void OnEnable()
+    {
+        SwitchState(currentState);
+    }
+
 
     public void SwitchState(string state)
     {
@@ -109,6 +117,7 @@ public class AsylumDemonArena : MonoBehaviour
                     Boss.IsTurning = false;
                     Boss.IsCoolingDown = false;
                     Boss.Health = Boss.MaxHealth;
+                    Boss.UpdateUI();
                     Boss.StopAllCoroutines();
                     Boss.Behaviour = "Idle";
                     Boss.ManualStart();

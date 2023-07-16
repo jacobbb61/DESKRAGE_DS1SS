@@ -95,6 +95,8 @@ public class MainMenuManager : MonoBehaviour
         }
     }
 
+
+
     public void Start()
     {
         WorldSaveGameManager.Instance.LoadAllCharacterSlots();
@@ -657,16 +659,24 @@ public class MainMenuManager : MonoBehaviour
         {
             case 1:
                 Slot01.gameObject.SetActive(false);
+                NewGame1.gameObject.SetActive(true);
+                LastSlotPlayed = 0;
                 break;
 
             case 2:
                 Slot02.gameObject.SetActive(false);
+                NewGame2.gameObject.SetActive(true);
+                LastSlotPlayed = 0;
                 break;
 
             case 3:
                 Slot03.gameObject.SetActive(false);
+                NewGame3.gameObject.SetActive(true);
+                LastSlotPlayed = 0;
                 break;
         }
+        GameSaveGameManager.Instance.GameSaveData.LastSlotUsed = LastSlotPlayed;
+        GameSaveGameManager.Instance.SaveGameData();
         DeleteSlotPopUp.SetActive(false);
         ActiveMenu = "CharacterMenu";
         WorldSaveGameManager.Instance.DeleteGame(CurrentSelectedSlot);
@@ -714,6 +724,10 @@ public class MainMenuManager : MonoBehaviour
         if (Slot01.gameObject.activeInHierarchy) { NewGame1.SetActive(false); } else { NewGame1.SetActive(true); }
         if (Slot02.gameObject.activeInHierarchy) { NewGame2.SetActive(false); } else { NewGame2.SetActive(true); }
         if (Slot03.gameObject.activeInHierarchy) { NewGame3.SetActive(false); } else { NewGame3.SetActive(true); }
+
+        if (LastSlotPlayed == 0) { NewGameText.SetActive(true); ContinueText.SetActive(false); }//newgame
+        else { NewGameText.SetActive(false); ContinueText.SetActive(true); }//continue
+
 
         CharacterMenuOrder = 1;
         MoveCharacterMenuHighlight();

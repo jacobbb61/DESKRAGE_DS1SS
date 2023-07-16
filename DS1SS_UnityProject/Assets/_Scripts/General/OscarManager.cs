@@ -33,10 +33,11 @@ public class OscarManager : MonoBehaviour
     public SpriteRenderer Assets;
     public GameObject MiddleLayerObject;
     public GameObject FrontLayerObject;
+    public GameObject InteractPrompt;
 
     [Header("State")]
     public string CurrentState; //needs to be saved
-    public Animator OscarAnim;
+    public Animator Anim;
     public List<Vector2> Locations = new List<Vector2>();
 
 
@@ -103,6 +104,12 @@ public class OscarManager : MonoBehaviour
         SetLineText();
 
     }
+
+    private void OnEnable()
+    {
+        ManualStart();
+    }
+
     public void ManualStart()
     {
 
@@ -112,12 +119,12 @@ public class OscarManager : MonoBehaviour
         DialogObject.SetActive(false);
         IsTalking = false;
 
-        CurrentTextLine = 0;
+        //CurrentTextLine = 0;
         SetLineText();
 
         SetDeath();
         SetLocation();
-      //  SetAnimation();  
+        if (gameObject.activeInHierarchy) { SetAnimation(); }
     }
 
     public void DiedToDemon()
@@ -126,8 +133,9 @@ public class OscarManager : MonoBehaviour
     }
     public void KilledDemon()
     {
-       if (CurrentState == "A" || CurrentState == "B") { CurrentState = "C"; MoveInteractionOnLoad = false; }
-       if (CurrentState == "Null") { CurrentState = "I"; MoveInteractionOnLoad = false; }
+       if (CurrentState == "A" || CurrentState == "B" || CurrentState == "YES" || CurrentState == "NO") { CurrentState = "C"; MoveInteractionOnLoad = false; CurrentTextLine = 0; }
+       if (CurrentState == "Null") { CurrentState = "I"; MoveInteractionOnLoad = false; CurrentTextLine = 0; }
+
 
         Reload();
     }
@@ -139,44 +147,19 @@ public class OscarManager : MonoBehaviour
         DialogObject.SetActive(false);
         IsTalking = false;
 
-        CurrentTextLine = 0;
+        //CurrentTextLine = 0;
 
-        CheckMemory(); // check for demon killed and pursuer triggered, also updates states based on previous loads
+   
 
         if (MoveInteractionOnLoad)
         {
-            if (CurrentState == "I") { CurrentState = "C"; }
-            if (CurrentState == "C") { CurrentState = "E"; }
-            if (CurrentState == "H") { CurrentState = "E"; }
+            if (CurrentState == "I") { CurrentState = "C"; CurrentTextLine = 0; }
+            if (CurrentState == "C") { CurrentState = "E"; CurrentTextLine = 0; }
+            if (CurrentState == "H") { CurrentState = "E"; CurrentTextLine = 0; }
         }
         SetDeath();
         SetLocation();
-        //SetAnimation();  
-    }
-
-
-    public void CheckMemory()
-    {
-        /*
-         * IsOscarDead = GameMemory.IsOscarDead;
-         * MoveInteractionOnLoad = GameMemory.MoveInteractionOnLoad;
-         * CurrentState = GameMemory.CurrentState;
-
-         if player kills demon 
-        {
-        if intaraction A {interaction I }
-        if interaction B or G { interaction C }
-
-        }
-
-        if player triggers pursuer 
-        {
-        if interaction I { interaction C }
-
-
-        }
-          MoveInteractionOnLoad=false;
-         */
+        if (gameObject.activeInHierarchy) { SetAnimation(); }
     }
 
 
@@ -185,13 +168,13 @@ public class OscarManager : MonoBehaviour
         switch (CurrentState) 
         {
             case "YES":
-                CurrentState = "B";              
+                CurrentState = "B"; CurrentTextLine = 0;
                 break;
             case "B":
-                CurrentState = "G";
+                CurrentState = "G"; CurrentTextLine = 0;
                 break;
             case "G":
-                CurrentState = "H";
+                CurrentState = "H"; CurrentTextLine = 0;
                 MoveInteractionOnLoad = false;
                 break;
             default:
@@ -260,50 +243,45 @@ public class OscarManager : MonoBehaviour
                 break;
         }
     }
-
-    private void OnEnable()
-    {
-        SetAnimation();
-    }
     public void SetAnimation()
     {
         switch (CurrentState)
         {
             case "Null":
-                OscarAnim.Play("OscarAnim_SittingIdle"); //Sitting
+                Anim.Play("OscarAnim_SittingIdle"); //Sitting
                 break;
             case "A":
-                OscarAnim.Play("OscarAnim_SittingIdle"); //Sitting
+                Anim.Play("OscarAnim_SittingIdle"); //Sitting
                 break;
             case "YES":
-                OscarAnim.Play("OscarAnim_SittingIdle"); //Sitting
+                Anim.Play("OscarAnim_SittingIdle"); //Sitting
                 break;
             case "NO":
-                OscarAnim.Play("OscarAnim_SittingIdle"); //Sitting
+                Anim.Play("OscarAnim_SittingIdle"); //Sitting
                 break;
             case "B":
-                OscarAnim.Play("OscarAnim_StandingIdle"); //standing
+                Anim.Play("OscarAnim_StandingIdle"); //standing
                 break;
             case "C":
-                OscarAnim.Play("OscarAnim_SittingIdle"); //dying
+                Anim.Play("OscarAnim_SittingIdle"); //dying
                 break;
             case "D":
-                OscarAnim.Play("OscarAnim_SittingIdle"); //dying
+                Anim.Play("OscarAnim_SittingIdle"); //dying
                 break;
             case "E":
-                OscarAnim.Play("OscarAnim_SittingIdle"); //dying
+                Anim.Play("OscarAnim_SittingIdle"); //dying
                 break;
             case "F":
-                OscarAnim.Play("OscarAnim_SittingIdle"); //dying
+                Anim.Play("OscarAnim_SittingIdle"); //dying
                 break;
             case "G":
-                OscarAnim.Play("OscarAnim_StandingIdle"); //standing
+                Anim.Play("OscarAnim_StandingIdle"); //standing
                 break;
             case "H":
-                OscarAnim.Play("OscarAnim_SittingIdle"); //dying broken legs
+                Anim.Play("OscarAnim_SittingIdle"); //dying broken legs
                 break;
             case "I":
-                OscarAnim.Play("OscarAnim_SittingIdle"); //dying
+                Anim.Play("OscarAnim_SittingIdle"); //dying
                 break;
 
 
@@ -366,7 +344,8 @@ public class OscarManager : MonoBehaviour
 
             if (!IsTalking) { OpenDialog(); }
             NextLine();
-            // StopAnyAudio();//stop audio and timer     
+        InteractPrompt.SetActive(false);
+        // StopAnyAudio();//stop audio and timer     
 
         if (IsOscarDead)
         {
@@ -725,8 +704,9 @@ public class OscarManager : MonoBehaviour
             PC.Interactable = Interactable;
             if (!IsOscarDead) //interaction animation 
             {
-                if (IsSitting()) { OscarAnim.Play("OscarAnim_SittingInteract"); }
-                else { OscarAnim.Play("OscarAnim_StandingInteract"); }
+                InteractPrompt.SetActive(true);
+                if (IsSitting()) { Anim.Play("OscarAnim_SittingInteract"); }
+                else { Anim.Play("OscarAnim_StandingInteract"); }
             }
         }
     }
@@ -741,8 +721,9 @@ public class OscarManager : MonoBehaviour
             PC.Interactable = null;
             if (!IsOscarDead) //interaction animation 
             {
-                if (IsSitting()) { OscarAnim.Play("OscarAnim_SittingIdle"); }
-                else { OscarAnim.Play("OscarAnim_StandingIdle"); }
+                InteractPrompt.SetActive(false);
+                if (IsSitting()) { Anim.Play("OscarAnim_SittingIdle"); }
+                else { Anim.Play("OscarAnim_StandingIdle"); }
             }
         }
     }

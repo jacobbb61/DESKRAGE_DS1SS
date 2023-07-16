@@ -432,18 +432,21 @@ public class EnemySaveManager : MonoBehaviour
                 GetComponent<Undead_A>().Behaviour = EnemyBehaviour_This;
                 GetComponent<Undead_A>().Health = EnemyHealth_This;
                 GetComponent<Undead_A>().LookDirection = EnemyDirection_This;
+                GetComponent<Undead_A>().ManualStart();
                 if (EnemyHealth_This <= 0) { GetComponent<Undead_A>().Dead(); }
                 break;
             case "B":
                 GetComponent<Undead_B>().Behaviour = EnemyBehaviour_This;
                 GetComponent<Undead_B>().Health = EnemyHealth_This;
                 GetComponent<Undead_B>().LookDirection = EnemyDirection_This;
-                if(EnemyHealth_This <= 0) { GetComponent<Undead_B>().Dead(); }
+                GetComponent<Undead_B>().ManualStart();
+                if (EnemyHealth_This <= 0) { GetComponent<Undead_B>().Dead(); }
                 break;
             case "C":
                 GetComponent<Undead_C>().Behaviour = EnemyBehaviour_This;
                 GetComponent<Undead_C>().Health = EnemyHealth_This;
                 GetComponent<Undead_C>().LookDirection = EnemyDirection_This;
+                GetComponent<Undead_C>().ManualStart();
                 if (EnemyHealth_This <= 0) { GetComponent<Undead_C>().Dead(); }
                 break;
             case "D":
