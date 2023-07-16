@@ -11,6 +11,7 @@ public class EnemySaveManager : MonoBehaviour
     public UnityEvent TakeLightDamageEvent;
     public UnityEvent TakeHeavyDamageEvent;
     public UnityEvent ParryEvent;
+    public bool CanBeParry;
 
     [Header("Enemy Identity")]
     public int EnemyTag_This;

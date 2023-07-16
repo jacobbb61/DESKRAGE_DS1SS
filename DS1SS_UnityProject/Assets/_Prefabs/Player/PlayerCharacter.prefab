@@ -414,6 +414,7 @@ MonoBehaviour:
   GroundCheckPosB: {fileID: 1065959576714209544}
   MyRb: {fileID: 1065959576863444072}
   Interactable: {fileID: 0}
+  Oscar: {fileID: 0}
 --- !u!114 &3137671597447383463
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -442,6 +443,7 @@ MonoBehaviour:
   BoulderManager: {fileID: 0}
   OscarManager: {fileID: 0}
   DemonArena: {fileID: 0}
+  PursuerArena: {fileID: 0}
   Layer: {fileID: 0}
 --- !u!114 &6847898321215821318
 MonoBehaviour:

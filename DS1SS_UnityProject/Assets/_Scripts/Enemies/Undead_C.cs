@@ -71,9 +71,11 @@ public class Undead_C : MonoBehaviour
     public Transform GroundCheckPosA;
     public Transform GroundCheckPosB;
 
-    public Transform HitStartPos;
+    public Collider2D HitPos;
     public Slider HealthSlider;
     public Vector3 OriginPosition;
+
+    public EnemySaveManager EnemySaveManager;
 
     void Start()
     {
@@ -206,6 +208,7 @@ public class Undead_C : MonoBehaviour
         IsAttacking = false;
         IsHeavyAttacking = false;
         IsAttackStepping = false;
+        EnemySaveManager.CanBeParry = false;
         if (AttackingCoroutine!=null) { StopCoroutine(AttackingCoroutine); }
         HealthSlider.value = 0;
         Anim.Play("UndeadAnim_C_Death");
@@ -231,12 +234,22 @@ public class Undead_C : MonoBehaviour
         Health -= 9;
         if (!IsHeavyAttacking) { Behaviour = "Staggered"; }
     }
+    public void TriggerStagger()
+    {
+        Behaviour = "Parried";
+        StopCoroutine(AttackingCoroutine);
+        StartCoroutine(Staggered());
+        RB.velocity = Vector2.zero;
+    }
     IEnumerator Staggered()
     {
         Anim.Play("UndeadAnim_C_GettingHit");
         IsAttacking = false;
         IsHeavyAttacking = false;
+        EnemySaveManager.CanBeParry = false;
         yield return new WaitForSeconds(StaggerTime);
+        IsAttacking = false;
+        IsHeavyAttacking = false;
         Behaviour = "Hostile";
     }
     void UpdateUI()
@@ -562,7 +575,14 @@ public class Undead_C : MonoBehaviour
 
     public void Stepping()
     {
-        RB.velocity = new Vector2(-(Speed + AttackStepMultiplier) * LookDirection, -VerticalSpeed);
+        if (!HitPos.bounds.Contains(Player.transform.position))
+        {
+          RB.velocity = new Vector2(-(Speed + AttackStepMultiplier) * LookDirection, -VerticalSpeed);
+        }
+        else
+        {
+            RB.velocity = Vector2.zero;
+        }
     }
 
     public void StopAttackStep()
@@ -575,81 +595,34 @@ public class Undead_C : MonoBehaviour
 
     public void AttackRegister_RunningSlash()
     {
-        int layerMask = ~(LayerMask.GetMask("Enemy"));
-        RaycastHit2D hit = Physics2D.Raycast(HitStartPos.position, new Vector2(-LookDirection, 0), AttackRange, layerMask);
-
-
-        if (hit.collider != null)
+        if (HitPos.bounds.Contains(Player.transform.position))
         {
-            if (hit.transform.CompareTag("Player"))
-            {
-                hit.transform.GetComponent<PlayerControllerV2>().PlayerTakeDamage(8, true, 0);
-            }
+            Player.GetComponent<PlayerControllerV2>().PlayerTakeDamage(8, true, 0);
         }
+
     }
     public void AttackRegister_QuickBarrage()
     {
-        int layerMask = ~(LayerMask.GetMask("Enemy"));
-        RaycastHit2D hit = Physics2D.Raycast(HitStartPos.position, new Vector2(-LookDirection, 0), AttackRange, layerMask);
-
-       
-
-        if (hit.collider != null)
-        { 
-            if (hit.transform.CompareTag("Player"))
-            {
-                hit.transform.GetComponent<PlayerControllerV2>().PlayerTakeDamage(6, true, 0);
-            }
+        if (HitPos.bounds.Contains(Player.transform.position))
+        {
+            Player.GetComponent<PlayerControllerV2>().PlayerTakeDamage(6, true, 0);
         }
     }
     public void AttackRegister_2hSlash()
     {
-        int layerMask = ~(LayerMask.GetMask("Enemy"));
-        RaycastHit2D hit = Physics2D.Raycast(HitStartPos.position, new Vector2(-LookDirection, 0), AttackRange, layerMask);
-
-
-
-        if (hit.collider != null)
+        if (HitPos.bounds.Contains(Player.transform.position))
         {
-            if (hit.transform.CompareTag("Player"))
-            {
-                hit.transform.GetComponent<PlayerControllerV2>().PlayerTakeDamage(15, false, 0);
-            }
+            Player.GetComponent<PlayerControllerV2>().PlayerTakeDamage(15, false, 0);
         }
     }
 
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
+    /*
     bool IsOnEnemy()
     {
-
-        Collider2D coll = GetComponent<Collider2D>();
-        ContactFilter2D filter = new ContactFilter2D().NoFilter();
-        List<Collider2D> results = new List<Collider2D>();
-        if (Physics2D.OverlapCollider(coll, filter, Overlap) > 0)
-        {
-            Debug.Log(Overlap);
-        }
-
-
-        RaycastHit2D hit = Physics2D.Raycast(HitStartPos.position, Vector2.down, 0.1f);
-  
-        if (hit.collider != null)
-        {
-            if (hit.transform.CompareTag("Enemy"))
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-        else
-        {
-            return false;
-        }
-    }
+        
+      
+    }*/
     IEnumerator StepBack()
     {
         Behaviour = "BackStep";
@@ -681,4 +654,12 @@ public class Undead_C : MonoBehaviour
             return false;
         }
     }
+
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    public void ToggleParry()
+    {
+        EnemySaveManager.CanBeParry = !EnemySaveManager.CanBeParry;
+    }
+
 }

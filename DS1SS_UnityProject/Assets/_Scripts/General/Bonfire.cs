@@ -84,6 +84,11 @@ public class Bonfire : MonoBehaviour
             PM.DemonArena.SwitchState("Idle");
             PM.DemonArena.ManualStart();
         }
+        if (PM.PursuerArena.currentState == "Active") //player died to demon
+        {
+            PM.PursuerArena.SwitchState("Idle");
+            PM.PursuerArena.ManualStart();
+        }
 
         //upadate oscar
         OM.Reload();

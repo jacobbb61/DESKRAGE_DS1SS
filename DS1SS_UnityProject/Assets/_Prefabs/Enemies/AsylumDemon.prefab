@@ -558,7 +558,7 @@ MonoBehaviour:
   RH_AttackDamage_AOE: 5
   RH_AttackAnimationTime: 2.45
   RH_AttackCoolDownTime: 1
-  RH_StepDistance: 5
+  RH_StepDistance: 8
   RH_Collider: {fileID: 7044626041403056444}
   RH_Collider_AOE: {fileID: 4423251132597690453}
   GP_AttackDamage: 0
@@ -580,7 +580,7 @@ MonoBehaviour:
   LH_AttackDamage: 34
   LH_AttackAnimationTime: 2.5
   LH_AttackCoolDownTime: 1
-  LH_StepDistance: 15
+  LH_StepDistance: 12
   LH_Collider: {fileID: 2138685403881674676}
   DHS_AttackDamage: 0
   DHS_AttackAnimationTime: 0

@@ -477,7 +477,7 @@ public class PlayerMenuManager : MonoBehaviour
 
     IEnumerator Quiting()
     {
-        if (PM.DemonArena.inBossFight==false) // or pursuer active
+        if (PM.DemonArena.inBossFight==false || PM.PursuerArena.inBossFight==false) // or pursuer active
         {
         WorldSaveGameManager.Instance.Player = PM;
         WorldSaveGameManager.Instance.SaveGame();
@@ -485,6 +485,7 @@ public class PlayerMenuManager : MonoBehaviour
         else
         {
             PM.DemonArena.StopMusic();
+            PM.PursuerArena.StopMusic();
         }
 
         yield return new WaitForSeconds(2f);

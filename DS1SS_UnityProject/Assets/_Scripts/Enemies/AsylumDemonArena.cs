@@ -14,7 +14,8 @@ public class AsylumDemonArena : MonoBehaviour
 
     public AsylumDemon Boss;
 
-    public EventReference AsylumTheme;
+    public EventReference Theme_FirstPhase;
+    public EventReference Theme_SecondPhase;
     public FMOD.Studio.EventInstance FMODinstance;
 
     public OscarManager Oscar;
@@ -32,6 +33,15 @@ public class AsylumDemonArena : MonoBehaviour
     {
         FMODinstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
     }
+    public void SecondPhase()
+    {
+        StopMusic();
+        FMODinstance = FMODUnity.RuntimeManager.CreateInstance(Theme_SecondPhase);
+        FMODinstance.start();
+    }
+
+
+
     public void EnterArena() //called from door manager
     {
             for (int i = 0; i < doors.Length; i++)
@@ -122,7 +132,7 @@ public class AsylumDemonArena : MonoBehaviour
                     Boss.IsCoolingDown = false;
                     Boss.Health = Boss.MaxHealth;
                     Boss.Behaviour = "Hostile";
-                    FMODinstance = FMODUnity.RuntimeManager.CreateInstance(AsylumTheme);
+                    FMODinstance = FMODUnity.RuntimeManager.CreateInstance(Theme_FirstPhase);
                     FMODinstance.start();
                    // FMODinstance.release();
                     break;

@@ -8,6 +8,9 @@ public class EnemyLock : MonoBehaviour
     public AsylumDemonArena AsylumArena;
     public GameObject AsylumDemonLockOnPos;
 
+    public PursuerArena PursuerArena;
+    public GameObject PursuerLockOnPos;
+
     public GameObject[] AllEnemies;
     public List<GameObject> LayerEnemies;
     public Transform nearestEnemyPos;
@@ -76,7 +79,7 @@ public class EnemyLock : MonoBehaviour
     {
         Transform trans = null;
 
-        if (AsylumArena.currentState != "Active")
+        if (AsylumArena.currentState != "Active" && PursuerArena.currentState != "Active")
         {
             AllEnemies = GameObject.FindGameObjectsWithTag("Enemy");
             LayerEnemies = new List<GameObject>();
@@ -105,6 +108,19 @@ public class EnemyLock : MonoBehaviour
             }
 
             LayerEnemies = null;
+
+            return trans;
+        }
+        else if (PursuerArena.currentState == "Active")
+        {
+            trans = PursuerLockOnPos.transform;
+
+            EnemyLockPos = PursuerLockOnPos.transform;
+            EnemyLockedOnTo = PursuerLockOnPos;
+
+            LockedOn = true;
+            Pc.IsLockedOn = true;
+            LockOnSymbol.SetActive(true);
 
             return trans;
         }

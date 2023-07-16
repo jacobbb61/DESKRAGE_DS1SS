@@ -15,6 +15,7 @@ public class DoorManager : MonoBehaviour
     public bool inBossFight;
 
     public AsylumDemonArena DemonArena;
+    public PursuerArena PursuerArena;
     public bool isPursuerDoor;
 
 
@@ -291,6 +292,12 @@ public class DoorManager : MonoBehaviour
                             WorldSaveGameManager.Instance.Player = playerManager;
                             WorldSaveGameManager.Instance.SaveGame();
                             DemonArena.EnterArena(); playerManager.gameObject.transform.position = DemonArena.transform.position; 
+                        }
+                        if (doorSaveManager.DoorTag_This == "T")
+                        {
+                            WorldSaveGameManager.Instance.Player = playerManager;
+                            WorldSaveGameManager.Instance.SaveGame();
+                            PursuerArena.EnterArena(); playerManager.gameObject.transform.position = PursuerArena.transform.position;
                         }
                         doorCollider.enabled = false;
                         break;

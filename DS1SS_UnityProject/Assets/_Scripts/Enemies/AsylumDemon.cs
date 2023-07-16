@@ -14,7 +14,6 @@ public class AsylumDemon : MonoBehaviour
 
     public GameObject Assets;
     public GameObject UIAssets;
-    public Transform HitStartPos;
     public Slider HealthSlider;
     public Vector3 OriginPosition;
 
@@ -218,16 +217,21 @@ public class AsylumDemon : MonoBehaviour
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public void TakeLightDamage()
     {
-        Health -= 6; UpdateUI();
+        Health -= 6; 
+        UpdateUI();
+        if (Health <= MaxHealth / 2) { arenaManager.SecondPhase(); }
     }
     public void TakeHeavyDamage()
     {
-        Health -= 9; UpdateUI();
+        Health -= 9; 
+        UpdateUI();
+        if (Health <= MaxHealth / 2) { arenaManager.SecondPhase(); }
     }
     public void TakePlungeDamage()
     {
         if (HasBeenPlunged == false) { Health -= 50; HasBeenPlunged = true; }
         UpdateUI();
+        if (Health <= MaxHealth / 2) { arenaManager.SecondPhase(); }
     }
 
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

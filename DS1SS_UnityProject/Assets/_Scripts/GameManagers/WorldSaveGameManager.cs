@@ -336,6 +336,7 @@ public class WorldSaveGameManager : MonoBehaviour
 
         //Boss date
         CurrentCharacterData.DemonArenaState = "FirstTime";
+        CurrentCharacterData.PursuerArenaState = "FirstTime";
 
         //enemy data
         CurrentCharacterData.EnemyBehaviour_1 = "Idle";

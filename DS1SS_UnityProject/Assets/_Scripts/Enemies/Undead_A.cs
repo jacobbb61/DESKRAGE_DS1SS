@@ -55,10 +55,11 @@ public class Undead_A : MonoBehaviour
     public Transform GroundCheckPosA;
     public Transform GroundCheckPosB;
 
-    public Transform HitStartPos;
+    public Collider2D HitPos;
     public Slider HealthSlider;
     public Vector3 OriginPosition;
 
+    public EnemySaveManager EnemySaveManager;
     void Start()
     {
         Anim = GetComponentInChildren<Animator>();
@@ -127,6 +128,7 @@ public class Undead_A : MonoBehaviour
                     }
                     break;
                 case "Staggered":
+                    StopCoroutine(AttackingCoroutine);
                     StartCoroutine(Staggered());
                     RB.velocity = Vector2.zero;
                     break;
@@ -180,10 +182,24 @@ public class Undead_A : MonoBehaviour
         Health -= 9;
         Behaviour = "Staggered";
     }
+    public void ToggleParry()
+    {
+        EnemySaveManager.CanBeParry = !EnemySaveManager.CanBeParry;
+    }
+    public void TriggerStagger()
+    {
+        Behaviour = "Parried";
+        StopCoroutine(AttackingCoroutine);
+        StartCoroutine(Staggered());
+        RB.velocity = Vector2.zero;
+    }
     IEnumerator Staggered()
     {  
         Anim.Play("UndeadAnim_A_GettingHit");
+        IsAttacking = false;
+        EnemySaveManager.CanBeParry = false;
         yield return new WaitForSeconds(StaggerTime);
+        IsAttacking = false;
         Behaviour = "Hostile";
     }
 
@@ -470,15 +486,9 @@ public class Undead_A : MonoBehaviour
     }
     public void AttackRegister()
     {
-        RaycastHit2D hit = Physics2D.Raycast(HitStartPos.position, new Vector2(-LookDirection, 0), AttackRange);
-
-
-        if (hit.collider != null)
+        if (HitPos.bounds.Contains(Player.transform.position))
         {
-            if (hit.transform.CompareTag("Player"))
-            {
-                hit.transform.GetComponent<PlayerControllerV2>().PlayerTakeDamage(AttackDamage, false, 0);
-            }
+            Player.GetComponent<PlayerControllerV2>().PlayerTakeDamage(AttackDamage, false, 0);
         }
     }
 }

@@ -131,7 +131,7 @@ MonoBehaviour:
   AttackAnimationTime: 2
   AttackCoolDownTime: 1
   StaggerTime: 1
-  AttackRange: 2
+  AttackRange: 3
   AttackDamage: 6
   CombatTime: 0
   SeePlayer: 0
@@ -147,9 +147,10 @@ MonoBehaviour:
   Eyes: {fileID: 6729981755404304190}
   GroundCheckPosA: {fileID: 8488795320099415708}
   GroundCheckPosB: {fileID: 2719514958336874655}
-  HitStartPos: {fileID: 6729981753930603875}
+  HitPos: {fileID: 4631865631653132160}
   HealthSlider: {fileID: 8076404684593113949}
   OriginPosition: {x: 70, y: 7.2, z: 0}
+  EnemySaveManager: {fileID: 6729981753912794571}
 --- !u!114 &6729981753912794571
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -209,7 +210,20 @@ MonoBehaviour:
         m_CallState: 2
   ParryEvent:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6729981753912794569}
+        m_TargetAssemblyTypeName: Undead_A, Assembly-CSharp
+        m_MethodName: TriggerStagger
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  CanBeParry: 0
   EnemyTag_This: 1
   EnemyVariant: A
   EnemyBehaviour_This: 
@@ -263,7 +277,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6729981753930603875}
-  m_Layer: 3
+  - component: {fileID: 4631865631653132160}
+  m_Layer: 2
   m_Name: HitStartPos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -285,6 +300,32 @@ Transform:
   m_Father: {fileID: 6729981754875089219}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &4631865631653132160
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6729981753930603876}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.4485531, y: -0.15119743}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.8084831, y: 0.69760513}
+  m_EdgeRadius: 0
 --- !u!1 &6729981754439168588
 GameObject:
   m_ObjectHideFlags: 0
@@ -411,6 +452,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6791d31455b605c4d82c38327d3497a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  TurnEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  MoveEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  StopEvent:
+    m_PersistentCalls:
+      m_Calls: []
   Attack1Triggered:
     m_PersistentCalls:
       m_Calls:
@@ -459,6 +509,33 @@ MonoBehaviour:
   Attack4Triggered:
     m_PersistentCalls:
       m_Calls: []
+  Attack5Triggered:
+    m_PersistentCalls:
+      m_Calls: []
+  Attack6Triggered:
+    m_PersistentCalls:
+      m_Calls: []
+  Attack7Triggered:
+    m_PersistentCalls:
+      m_Calls: []
+  Attack8Triggered:
+    m_PersistentCalls:
+      m_Calls: []
+  Attack9Triggered:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6729981753912794569}
+        m_TargetAssemblyTypeName: Undead_A, Assembly-CSharp
+        m_MethodName: ToggleParry
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!212 &6729981754875089218
 SpriteRenderer:
   m_ObjectHideFlags: 0

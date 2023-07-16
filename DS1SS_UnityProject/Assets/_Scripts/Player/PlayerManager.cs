@@ -25,6 +25,7 @@ public class PlayerManager : MonoBehaviour
     public OscarManager OscarManager;
 
     public AsylumDemonArena DemonArena;
+    public PursuerArena PursuerArena;
 
 
     public LayerManagerV2 Layer;
@@ -74,6 +75,7 @@ public class PlayerManager : MonoBehaviour
 
 
         if (DemonArena.currentState == "Active") { DemonArena.currentState = "Idle"; }
+        if (PursuerArena.currentState == "Active") { PursuerArena.currentState = "Idle"; }
 
         CurrentCharacterData.DemonArenaState = DemonArena.currentState;
 
@@ -106,5 +108,6 @@ public class PlayerManager : MonoBehaviour
         BoulderManager.BoulderUsed = CurrentCharacterData.BoulderUsed;
 
         if (DemonArena != null) { DemonArena.currentState = CurrentCharacterData.DemonArenaState; DemonArena.ManualStart(); }
+        if (PursuerArena != null) { PursuerArena.currentState = CurrentCharacterData.DemonArenaState; PursuerArena.ManualStart(); }
     }
 }

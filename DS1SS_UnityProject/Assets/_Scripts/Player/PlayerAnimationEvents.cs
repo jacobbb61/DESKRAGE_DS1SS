@@ -39,7 +39,12 @@ public class PlayerAnimationEvents : MonoBehaviour
             else if (hit.transform.CompareTag("Demon"))
             {
                 hit.transform.GetComponent<AsylumDemon>().TakeLightDamage();
-            } else
+            }
+            else if (hit.transform.CompareTag("Pursuer"))
+            {
+                hit.transform.GetComponent<Pursuer>().TakeLightDamage();
+            }
+            else
             {
                 Debug.Log("Player hit" + hit.transform.name);
             }
@@ -62,6 +67,10 @@ public class PlayerAnimationEvents : MonoBehaviour
             else if (hit.transform.CompareTag("Demon"))
             {
                 hit.transform.GetComponent<AsylumDemon>().TakeLightDamage();
+            }
+            else if (hit.transform.CompareTag("Pursuer"))
+            {
+                hit.transform.GetComponent<Pursuer>().TakeLightDamage();
             }
             else
             {
@@ -86,6 +95,10 @@ public class PlayerAnimationEvents : MonoBehaviour
             {
                 hit.transform.GetComponent<AsylumDemon>().TakeHeavyDamage();
             }
+            else if (hit.transform.CompareTag("Pursuer"))
+            {
+                hit.transform.GetComponent<Pursuer>().TakeHeavyDamage();
+            }
             else
             {
                 Debug.Log("Player hit" + hit.transform.name);
@@ -108,6 +121,10 @@ public class PlayerAnimationEvents : MonoBehaviour
             else if (hit.transform.CompareTag("Demon"))
             {
                 hit.transform.GetComponent<AsylumDemon>().TakeHeavyDamage();
+            }
+            else if (hit.transform.CompareTag("Pursuer"))
+            {
+                hit.transform.GetComponent<Pursuer>().TakeHeavyDamage();
             }
             else
             {
@@ -132,7 +149,10 @@ public class PlayerAnimationEvents : MonoBehaviour
 
             if (hit.transform.CompareTag("Enemy"))
             {
-                hit.transform.GetComponent<EnemySaveManager>().ParryEvent.Invoke();
+                if (hit.transform.GetComponent<EnemySaveManager>().CanBeParry == true)
+                {
+                    hit.transform.GetComponent<EnemySaveManager>().ParryEvent.Invoke();
+                }
             }
             else
             {

@@ -1438,7 +1438,6 @@ public class PlayerControllerV2 : MonoBehaviour
         Anim.Play("PlayerAnim_Parry");
         State = "Attacking";
 
-
         yield return new WaitForSeconds(1f);
 
         if (MovementInputDirection == 0) { State = "Idle"; } else { State = "Walking"; }
@@ -1522,7 +1521,7 @@ public class PlayerControllerV2 : MonoBehaviour
             }
             else if (hit.transform.CompareTag("Pursuer"))
             {
-                hit.transform.GetComponent<EnemySaveManager>().ParryEvent.Invoke();
+                hit.transform.GetComponent<Pursuer>().TakePlungeDamage();
                 IsPlunging = false;
             }
             else

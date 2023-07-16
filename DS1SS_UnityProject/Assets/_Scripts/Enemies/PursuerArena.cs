@@ -1,54 +1,68 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using FMODUnity;
 
 public class PursuerArena : MonoBehaviour
 {
-    [Tooltip("Doors in this array should be P, T, U in that order")][SerializeField] DoorManager[] doors = new DoorManager[3];
-    public bool bossDead;
+    [Tooltip("Doors in this array should be , , ,  and , in that order")]
+    [SerializeField] DoorManager doorT;
+    [SerializeField] DoorManager doorU;
+    [SerializeField] CollapseBridge Bridge; 
     public bool inBossFight;
     public bool arenaIsActive;
     public string currentState;
 
-    private void Start()
+    public GameObject BossUI;
+
+    public Pursuer Boss;
+
+    public EventReference Theme_FirstPhase;
+    public EventReference Theme_SecondPhase;
+    public FMOD.Studio.EventInstance FMODinstance;
+
+    public void ManualStart()
     {
-        SwitchState("FirstTime");
+        SwitchState(currentState);
+        doorT.PursuerArena = this;
+        doorU.PursuerArena = this;
+
+        Boss.ManualStart();
     }
-
-    private void OnTriggerEnter2D(Collider2D collision)
+    public void StopMusic()
     {
-        if (collision.CompareTag("Player"))
-        {
-            for (int i = 0; i < doors.Length; i++)
-            {
-                doors[i].inBossFight = true;
-            }
+        FMODinstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+    }
+    public void SecondPhase()
+    {
+        StopMusic();
+        FMODinstance = FMODUnity.RuntimeManager.CreateInstance(Theme_SecondPhase);
+        FMODinstance.start();
+    }
+    public void EnterArena() //called from door manager
+    {
+        doorT.SwitchDoorState("Fog");
+        doorU.SwitchDoorState("Fog");
+        doorT.inBossFight = true;
+        doorU.inBossFight = true;
+        doorT.ManualStart();
+        doorU.ManualStart();
 
-            if (!bossDead)
-            {
-                SwitchState("Active");
-                inBossFight = true;
-                arenaIsActive = true;
-            }
+
+        if (currentState == "FirstTime" || currentState == "Idle")
+        {
+            SwitchState("Active");
+            inBossFight = true;
+            arenaIsActive = true;
+            Boss.Behaviour = "Hostile";
+        }
+        if (inBossFight)
+        {
             // Display boss health
             // Play boss music
             // Achievement and saving stuff
         }
     }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Player"))
-        {
-            if (!bossDead)
-            {
-                arenaIsActive = false;
-                SwitchState("Idle");
-            }
-            //Saving stuff
-        }
-    }
-
     IEnumerator Wait(float timeToWait)
     {
         yield return new WaitForSeconds(timeToWait);
@@ -62,30 +76,78 @@ public class PursuerArena : MonoBehaviour
         {
             case "FirstTime":
                 {   //Door states are "Open", "Closed", "Locked", "OneSided", "Fog", "FogEnter"
-                    doors[0].SwitchDoorState("Closed"); //Door P
-                    doors[1].SwitchDoorState("Closed"); //Door T
-                    doors[2].SwitchDoorState("Locked"); //Door U
+                    doorT.SwitchDoorState("Closed"); 
+                    doorU.SwitchDoorState("Closed");
+                    Bridge.currentState="Closed";
+                    Bridge.ManualStart();
+
+                    inBossFight = false;
+                    arenaIsActive = false;
+                    BossUI.SetActive(false);
+                    Boss.IsActive = false;
+                    Boss.IsDead = false;
+                    Boss.IsTurning = false;
+                    Boss.IsCoolingDown = false;
+                    Boss.Health = Boss.MaxHealth;
+                    Boss.Behaviour = "Idle";
                     break;
                 }
             case "Idle":
                 {
-                    doors[0].SwitchDoorState("Open"); //Door P
-                    doors[1].SwitchDoorState("Fog"/*FogEnter not implemented yet*/); //Door T
-                    doors[2].SwitchDoorState("Locked"); //Door U
+                    doorT.SwitchDoorState("FogEnter");
+                    doorU.SwitchDoorState("Fog");
+                    Bridge.currentState = "Open";
+                    Bridge.ManualStart();
+
+                    inBossFight = false;
+                    arenaIsActive = false;
+                    BossUI.SetActive(false);
+                    Boss.IsActive = false;
+                    Boss.IsDead = false;
+                    Boss.IsTurning = false;
+                    Boss.IsCoolingDown = false;
+                    Boss.Health = Boss.MaxHealth;
+                    Boss.StopAllCoroutines();
+                    Boss.Behaviour = "Idle";
+                    Boss.ManualStart();
+                    FMODinstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+                    // FMODinstance.release();
                     break;
                 }
             case "Active":
                 {
-                    doors[0].SwitchDoorState("Open"); //Door P
-                    doors[1].SwitchDoorState("Fog"); //Door T
-                    doors[2].SwitchDoorState("Fog"); //Door U
+                    doorT.SwitchDoorState("Fog");
+                    doorU.SwitchDoorState("Fog");
+                    Bridge.currentState = "Open";
+                    Bridge.ManualStart();
+
+                    inBossFight = true;
+                    arenaIsActive = true;
+                    BossUI.SetActive(true);
+                    Boss.IsActive = true;
+                    Boss.IsDead = false;
+                    Boss.IsTurning = false;
+                    Boss.IsCoolingDown = false;
+                    Boss.Health = Boss.MaxHealth;
+                    Boss.Behaviour = "Hostile";
+                    FMODinstance = FMODUnity.RuntimeManager.CreateInstance(Theme_FirstPhase);
+                    FMODinstance.start();
+                    // FMODinstance.release();
                     break;
                 }
             case "Open":
                 {
-                    doors[0].SwitchDoorState("Open"); //Door P
-                    doors[1].SwitchDoorState("OneSided"); //Door T
-                    doors[2].SwitchDoorState("Closed"); //Door U
+                    inBossFight = false;
+                    arenaIsActive = false;
+                    BossUI.SetActive(false);
+                    Boss.IsActive = false;
+                    Boss.IsDead = true;
+                    Boss.IsTurning = false;
+                    Boss.IsCoolingDown = false;
+                    Boss.gameObject.SetActive(false);
+                    Boss.Behaviour = "Dead";
+                    FMODinstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+                    // FMODinstance.release();
                     break;
                 }
         }
@@ -93,13 +155,17 @@ public class PursuerArena : MonoBehaviour
 
     public void BossKilled() //Called by boss script
     {
-        bossDead = true;
+        SwitchState("Open");
         arenaIsActive = false;
-        for (int i = 0; i < doors.Length; i++)
-        {
-            doors[i].inBossFight = false;
-            SwitchState("Open");
-        }
+
+        doorT.SwitchDoorState("Locked");
+        doorU.SwitchDoorState("Closed");
+        Bridge.currentState = "Open";
+        Bridge.ManualStart();
+
+
+
+
         // Audio stuffs
         // Wait(time);
         // Disable boss health
