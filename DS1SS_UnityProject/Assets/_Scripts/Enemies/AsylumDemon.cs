@@ -65,6 +65,7 @@ public class AsylumDemon : MonoBehaviour
     public float GP_AttackDamage;
     public float GP_AttackAnimationTime;
     public float GP_AttackCoolDownTime;
+    public float GP_StepDistance;
     public Collider2D GP_Collider;
 
     [Header("Hammer Sweep")]
@@ -362,15 +363,15 @@ public class AsylumDemon : MonoBehaviour
                 break;
 
             case 3: //Ground Pound
-                AttackingCoroutine = StartCoroutine(HD_Attack());
+                AttackingCoroutine = StartCoroutine(GP_Attack());
                 break;
 
             case 4: //Hammer Sweep
-                AttackingCoroutine = StartCoroutine(HD_Attack());
+                AttackingCoroutine = StartCoroutine(GP_Attack());
                 break;
 
             case 5: //Hammer Drive
-                AttackingCoroutine = StartCoroutine(HD_Attack());
+                AttackingCoroutine = StartCoroutine(GP_Attack());
                 break;
 
         }
@@ -493,6 +494,38 @@ public class AsylumDemon : MonoBehaviour
         if (LH_Collider.bounds.Contains(Player.transform.position))
         {
             PC.PlayerTakeDamage(LH_AttackDamage, true, 0);
+        }
+    }
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// Ground Pound
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    IEnumerator GP_Attack()
+    {
+        Behaviour = "Attacking";
+        IsCoolingDown = false;
+        StepDistance = GP_StepDistance;
+
+        Anim.Play("AsylumDemonAnim_GroundPoung");
+
+
+        yield return new WaitForSeconds(GP_AttackAnimationTime);
+
+        Behaviour = "Hostile";
+        IsCoolingDown = true;
+        Anim.Play("AsylumDemonAnim_Idle");
+        StepDistance = 0;
+
+        yield return new WaitForSeconds(GP_AttackCoolDownTime);
+        IsCoolingDown = false;
+
+    }
+
+    public void GP_AttackRegister()
+    {
+        if (GP_Collider.bounds.Contains(Player.transform.position))
+        {
+            PC.PlayerTakeDamage(GP_AttackDamage, true, 0);
         }
     }
 }

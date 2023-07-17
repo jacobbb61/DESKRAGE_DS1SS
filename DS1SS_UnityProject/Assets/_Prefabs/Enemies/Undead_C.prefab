@@ -154,7 +154,19 @@ MonoBehaviour:
         m_CallState: 2
   Attack6Triggered:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 4401275331580959328}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   Attack7Triggered:
     m_PersistentCalls:
       m_Calls: []
@@ -391,6 +403,9 @@ MonoBehaviour:
   TimeBeforeAttack_2S: 0.1
   AttackAnimationTime_2S: 1.5
   AttackCoolDownTime_2S: 0.1
+  TimeBeforeAttack_SA: 0.1
+  AttackAnimationTime_SA: 2.2
+  AttackCoolDownTime_SA: 0.25
   StaggerTime: 1
   TriggerRange: 8
   CloseAttackRange: 4

@@ -30,6 +30,11 @@ public class AsylumDemonArena : MonoBehaviour
         }
         Boss.ManualStart();
     }
+    private void OnDisable()
+    {
+        StopMusic();
+    }
+
     public void StopMusic()
     {
         FMODinstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);

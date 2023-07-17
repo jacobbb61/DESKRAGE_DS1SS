@@ -38,6 +38,11 @@ public class Undead_C : MonoBehaviour
     public float AttackAnimationTime_2S;
     public float AttackCoolDownTime_2S;
 
+    [Header("Stab")]
+    public float TimeBeforeAttack_SA;
+    public float AttackAnimationTime_SA;
+    public float AttackCoolDownTime_SA;
+
     [Header("Combat Data")]
     public float StaggerTime;
     public float TriggerRange;
@@ -190,10 +195,11 @@ public class Undead_C : MonoBehaviour
 
             if (IsInCloseRange())
             {
-                int num = Random.Range(1, 3);
+                int num = Random.Range(1, 4);
                 Debug.Log(num);
                 if (num == 1) { AttackingCoroutine = StartCoroutine(Attack_QuickBarrage()); }
                 else if (num == 2) { AttackingCoroutine = StartCoroutine(Attack_2HSlash()); }
+                else if (num == 3) { AttackingCoroutine = StartCoroutine(Attack_Stab()); }
                 
             }
             else
@@ -220,6 +226,10 @@ public class Undead_C : MonoBehaviour
 
         Dead();
 
+    }
+    private void OnDisable()
+    {
+        if (Behaviour == "Dying") { Dead(); }
     }
     public void Dead()
     {
@@ -569,6 +579,21 @@ public class Undead_C : MonoBehaviour
         Behaviour = "Hostile";
         FacePlayer();
     }
+    IEnumerator Attack_Stab()
+    {
+        IsAttacking = true;
+        AttackStepMultiplier = 1;
+        yield return new WaitForSeconds(TimeBeforeAttack_SA);
+        FacePlayer();
+        Anim.Play("UndeadAnim_C_StabAttack");
+        yield return new WaitForSeconds(AttackAnimationTime_SA);
+        Anim.Play("UndeadAnim_C_Idle");
+        yield return new WaitForSeconds(AttackCoolDownTime_SA);
+        IsAttacking = false;
+
+        Behaviour = "Hostile";
+        FacePlayer();
+    }
 
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -617,6 +642,13 @@ public class Undead_C : MonoBehaviour
         if (HitPos.bounds.Contains(Player.transform.position))
         {
             Player.GetComponent<PlayerControllerV2>().PlayerTakeDamage(15, false, 0);
+        }
+    }
+    public void AttackRegister_StabAttack()
+    {
+        if (HitPos.bounds.Contains(Player.transform.position))
+        {
+            Player.GetComponent<PlayerControllerV2>().PlayerTakeDamage(9, false, 0);
         }
     }
 

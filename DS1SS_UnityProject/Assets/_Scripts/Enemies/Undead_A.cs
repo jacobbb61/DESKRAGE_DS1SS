@@ -147,6 +147,9 @@ public class Undead_A : MonoBehaviour
                     if (!IsAtOrigin) { FaceOrigin(); WalkToOrigin(); GroundCheck(); }
                     else { Behaviour = "Idle"; }
                     break;
+                case "Dying":
+                    RB.velocity = Vector2.zero;
+                    break;
                 case "Dead":
                     Dead();
                     RB.velocity = Vector2.zero;
@@ -160,7 +163,7 @@ public class Undead_A : MonoBehaviour
 
     IEnumerator Death()
     {
-        Behaviour = "Dead";
+        Behaviour = "Dying";
         if (IsAttacking) { StopCoroutine(AttackingCoroutine); }
         HealthSlider.value = 0;
         Anim.Play("UndeadAnim_A_Death");
@@ -169,9 +172,14 @@ public class Undead_A : MonoBehaviour
         Dead();
 
     }
+    private void OnDisable()
+    {
+        if (Behaviour == "Dying") { Dead(); }
+    }
 
     public void Dead()
     {
+        Behaviour = "Dead";
         Health = 0;
         IsDead = true;
         Assets.SetActive(false);

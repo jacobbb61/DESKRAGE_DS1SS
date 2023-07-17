@@ -99,6 +99,9 @@ public class Undead_B : MonoBehaviour
                 case "Staggered":
                     StartCoroutine(Staggered());
                     break;
+                case "Dying":
+                    RB.velocity = Vector2.zero;
+                    break;
                 case "Dead":
                     Dead();
                     break;
@@ -111,7 +114,7 @@ public class Undead_B : MonoBehaviour
 
     IEnumerator Death()
     {
-        Behaviour = "Dead";
+        Behaviour = "Dying";
         if (IsAttacking) { StopCoroutine(AttackingCoroutine); }
         HealthSlider.value = 0;
         Anim.Play("UndeadAnim_B_Death");
@@ -120,9 +123,14 @@ public class Undead_B : MonoBehaviour
         Dead();
 
     }
+    private void OnDisable()
+    {
+        if (Behaviour == "Dying") { Dead(); }
+    }
 
     public void Dead()
     {
+        Behaviour = "Dead";
         Health = 0;
         IsDead = true;
         Assets.SetActive(false);

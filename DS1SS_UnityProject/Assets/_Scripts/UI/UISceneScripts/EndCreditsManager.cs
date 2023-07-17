@@ -29,7 +29,7 @@ public class EndCreditsManager : MonoBehaviour
 
     IEnumerator EndCredits()
     {
-        yield return new WaitForSeconds(120f);
+        yield return new WaitForSeconds(200f);
         SceneManager.LoadScene("Main Menu", LoadSceneMode.Single);
     }
 

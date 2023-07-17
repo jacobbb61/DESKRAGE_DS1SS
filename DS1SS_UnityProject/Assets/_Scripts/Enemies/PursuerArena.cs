@@ -10,7 +10,8 @@ public class PursuerArena : MonoBehaviour
     [SerializeField] DoorManager doorU;
     [SerializeField] CollapseBridge Bridge; 
     public bool inBossFight;
-    public bool arenaIsActive;
+    public bool arenaIsActive; 
+    public bool IsSecondPhase;
     public string currentState;
 
     public GameObject BossUI;
@@ -29,12 +30,17 @@ public class PursuerArena : MonoBehaviour
 
         Boss.ManualStart();
     }
+    private void OnDisable()
+    {
+        StopMusic();
+    }
     public void StopMusic()
     {
         FMODinstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
     }
     public void SecondPhase()
     {
+        IsSecondPhase = true;
         StopMusic();
         FMODinstance = FMODUnity.RuntimeManager.CreateInstance(Theme_SecondPhase);
         FMODinstance.start();

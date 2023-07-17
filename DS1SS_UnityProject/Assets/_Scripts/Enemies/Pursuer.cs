@@ -220,19 +220,19 @@ public class Pursuer : MonoBehaviour
     {
         Health -= 6; 
         UpdateUI();
-        if (Health <= MaxHealth / 2) { arenaManager.SecondPhase(); }
+        if (Health <= MaxHealth / 2 && !arenaManager.IsSecondPhase) { arenaManager.SecondPhase(); }
     }
     public void TakeHeavyDamage()
     {
         Health -= 9; 
         UpdateUI();
-        if (Health <= MaxHealth / 2) { arenaManager.SecondPhase(); }
+        if (Health <= MaxHealth / 2 && !arenaManager.IsSecondPhase) { arenaManager.SecondPhase(); }
     }
     public void TakePlungeDamage()
     {
         if (HasBeenPlunged == false) { Health -= 50; HasBeenPlunged = true; }
         UpdateUI();
-        if (Health <= MaxHealth / 2) { arenaManager.SecondPhase(); }
+        if (Health <= MaxHealth / 2 && !arenaManager.IsSecondPhase) { arenaManager.SecondPhase(); }
     }
 
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

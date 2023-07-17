@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 using FMODUnity;
 public class StartScreenManger : MonoBehaviour
 {
-    private bool CanInput = true;
+    public bool CanInput = false;
     public Animator StartSceneAnim;
 
     public EventReference PressGameStart;
@@ -22,6 +22,17 @@ public class StartScreenManger : MonoBehaviour
             StartCoroutine(LoadMainMenu());
             CanInput = false;
         }
+    }
+
+    private void Start()
+    {
+        StartCoroutine(WaitForIntro());
+    }
+
+    IEnumerator WaitForIntro()
+    {
+        yield return new WaitForSeconds(5f);
+        CanInput = true;
     }
 
     IEnumerator LoadMainMenu()

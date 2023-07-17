@@ -180,7 +180,12 @@ public class PlayerControllerV2 : MonoBehaviour
             PM.DemonArena.SwitchState("Idle");
             Oscar.DiedToDemon();
         }
-       
+
+        if(PM.PursuerArena.currentState == "Active") //player died to pursuer
+        {
+            PM.PursuerArena.SwitchState("Idle");
+        }
+
         switch (PM.LastBonfireVisited)
         {
             case 1:
