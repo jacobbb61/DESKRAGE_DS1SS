@@ -220,11 +220,13 @@ public class PlayerControllerV2 : MonoBehaviour
                 else
                 {
                     Health -= Damage;
+                    GetComponentInChildren<AnimationAudio>().Audio8();
                 }
             }
             else
             {
                 Health -= Damage;
+                if(StaggerCoroutine != null) { StopCoroutine(StaggerCoroutine); }
                 StaggerCoroutine = StartCoroutine(Stagger());
             }
         }
@@ -279,7 +281,7 @@ public class PlayerControllerV2 : MonoBehaviour
          
             JumpingCoroutine = StartCoroutine(Jump());
             
-            Stamina -= 30f;
+            Stamina -= 10f;
         }
     }
     //////////////////////////////////////////////////////////////
@@ -1446,6 +1448,7 @@ public class PlayerControllerV2 : MonoBehaviour
 
     IEnumerator Stagger()
     {
+        if (EstusUseCoroutine != null) { StopCoroutine(EstusUseCoroutine); }
         Anim.Play("PlayerAnim_StaggerGettingHit");
         State = "Stagger";
 

@@ -5,7 +5,7 @@ using FMODUnity;
 
 public class AsylumDemonArena : MonoBehaviour
 {
-    [Tooltip("Doors in this array should be E, F1, M1, M2 and N, in that order")][SerializeField] DoorManager[] doors = new DoorManager[5];
+    [Tooltip("Doors in this array should be E, F1, M1, M2 and N, in that order")][SerializeField] DoorManager[] doors = new DoorManager[6];
     public bool inBossFight;
     public bool arenaIsActive;
     public bool IsSecondPhase;
@@ -121,8 +121,7 @@ public class AsylumDemonArena : MonoBehaviour
                     Boss.StopAllCoroutines();
                     Boss.Behaviour = "Idle";
                     Boss.ManualStart();
-                    FMODinstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
-                   // FMODinstance.release();
+                    StopMusic();
                     break;
                 }
             case "Active":
@@ -162,8 +161,7 @@ public class AsylumDemonArena : MonoBehaviour
                     Boss.IsCoolingDown = false;
                     Boss.gameObject.SetActive(false);
                     Boss.Behaviour = "Dead";
-                    FMODinstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
-                   // FMODinstance.release();
+                    StopMusic();
                     break;
                 }
         }
@@ -183,6 +181,7 @@ public class AsylumDemonArena : MonoBehaviour
         doors[2].SwitchDoorState("Open"); //Door M1
         doors[3].SwitchDoorState("Open"); //Door M2
         doors[4].SwitchDoorState("Closed"); //Door N
+        doors[5].SwitchDoorState("Open"); //Door M1
 
         for (int i = 0; i < doors.Length; i++)
         {

@@ -319,6 +319,13 @@ public class DoorManager : MonoBehaviour
                             DemonArena.EnterArena(); playerManager.gameObject.transform.position = DemonArena.transform.position; 
                         }
 
+                        if (doorSaveManager.DoorTag_This == "T" && PursuerArena.currentState == "FirstTime")
+                        {
+                            WorldSaveGameManager.Instance.Player = playerManager;
+                            WorldSaveGameManager.Instance.SaveGame();
+                            PursuerArena.EnterArena(); playerManager.gameObject.transform.position = PursuerArena.transform.position;
+                        }
+
                         if (doorSaveManager.DoorTag_This == "N")
                         {
                             AchievementsGameManager.Instance.UnlockedAchievement(1);
@@ -432,7 +439,7 @@ public class DoorManager : MonoBehaviour
 
                         if (doorSaveManager.DoorTag_This == "F1")
                         {
-                            if (DemonArena.currentState == "Active") { DemonArena.currentState = "Idle"; } // DemonArena.SwitchState("Idle"); }
+                            if (DemonArena.currentState == "Active") { DemonArena.currentState = "Idle"; DemonArena.SwitchState("Idle"); } // DemonArena.SwitchState("Idle"); }
                         }
 
                         if (doorSaveManager.DoorTag_This == "J1")

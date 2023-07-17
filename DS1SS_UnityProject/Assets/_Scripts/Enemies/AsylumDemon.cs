@@ -120,7 +120,7 @@ public class AsylumDemon : MonoBehaviour
         else if (LookDirection == -1) { Assets.transform.localScale = new Vector3(-1, 1, 1); }
         CurrnetLookDirection = LookDirection;
 
-        transform.localPosition = OriginPosition;
+        if (arenaManager.currentState == "FirstTime") { transform.localPosition = OriginPosition; }
 
         IsAttacking = false;
 

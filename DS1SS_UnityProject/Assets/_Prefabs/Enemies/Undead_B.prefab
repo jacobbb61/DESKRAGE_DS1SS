@@ -389,6 +389,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6791d31455b605c4d82c38327d3497a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  TurnEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  MoveEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  StopEvent:
+    m_PersistentCalls:
+      m_Calls: []
   Attack1Triggered:
     m_PersistentCalls:
       m_Calls:
@@ -423,6 +432,21 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   Attack4Triggered:
+    m_PersistentCalls:
+      m_Calls: []
+  Attack5Triggered:
+    m_PersistentCalls:
+      m_Calls: []
+  Attack6Triggered:
+    m_PersistentCalls:
+      m_Calls: []
+  Attack7Triggered:
+    m_PersistentCalls:
+      m_Calls: []
+  Attack8Triggered:
+    m_PersistentCalls:
+      m_Calls: []
+  Attack9Triggered:
     m_PersistentCalls:
       m_Calls: []
 --- !u!212 &6565168764558948638
@@ -591,8 +615,8 @@ MonoBehaviour:
   Behaviour: 
   LookDirection: -1
   ForwardDetectionRange: 20
-  BackwardsDetectionRange: 6
-  AttackTriggerRange: 20
+  BackwardsDetectionRange: 30
+  AttackTriggerRange: 30
   TimeBeforeAttack: 0
   AttackAnimationTime: 2.5
   AttackCoolDownTime: 1
@@ -665,6 +689,10 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  ParryEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  CanBeParry: 0
   EnemyTag_This: 1
   EnemyVariant: B
   EnemyBehaviour_This: 

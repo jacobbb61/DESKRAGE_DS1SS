@@ -391,7 +391,7 @@ public class WorldSaveGameManager : MonoBehaviour
         CurrentCharacterData.EnemyHealth_9 = 11;
         CurrentCharacterData.EnemyPosX_9 = 145;
         CurrentCharacterData.EnemyPosY_9 = 23.2f;
-        CurrentCharacterData.EnemyDirection_9 = 1;
+        CurrentCharacterData.EnemyDirection_9 = -1;
 
         CurrentCharacterData.EnemyBehaviour_10 = "";
         CurrentCharacterData.EnemyHealth_10 = 11;

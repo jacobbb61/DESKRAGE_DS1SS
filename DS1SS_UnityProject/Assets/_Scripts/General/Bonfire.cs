@@ -10,6 +10,7 @@ public class Bonfire : MonoBehaviour
     public OscarManager OM;
 
     public int BonfireTagNum;
+    public int BonfireLayer;
     public bool BonfireEverUsed;
 
     private Animator Anim;
@@ -17,6 +18,7 @@ public class Bonfire : MonoBehaviour
     public GameObject[] EnemySaveManagerList;
     private GameObject BonfirePromptUI;
 
+    public LayerManagerV2 LayerManager;
 
     void Start()
     {
@@ -63,8 +65,10 @@ public class Bonfire : MonoBehaviour
 
     public void BonfireRest()
     {
-        PC.State = "Idle";
+        PC.State = "Falling";
         PC.CanMove = true;
+
+        LayerManager.ChangeLayer(BonfireLayer);
 
         PC.Health = PC.MaxHealth;
         PC.Stamina = PC.MaxStamina;
