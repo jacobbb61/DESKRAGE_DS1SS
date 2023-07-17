@@ -104,21 +104,21 @@ public class EnemyLock : MonoBehaviour
                     Closest = EnemyDistance;
                 }
                 // Debug.Log(enemy.name + " is " + EnemyDistance + " far away" + "the closest is " + Closest);
-                if (EnemyDistance == Closest) { Debug.Log(enemy.name + " is " + EnemyDistance + " far away"); 
-                
-                
-                
-                if (EnemyDistance < 20) //in camera range
-                { 
-                    trans = enemy.transform; // Sets transform to closest enemy's transform
-                    EnemyLockPos = enemy.transform;
-                    EnemyLockedOnTo = enemy;
+                if (EnemyDistance == Closest)
+                {
+                    Debug.Log(enemy.name + " is " + EnemyDistance + " far away");
 
-                    LockedOn = true;
-                    Pc.IsLockedOn = true;
-                    LockOnSymbol.SetActive(true);
-                }
-                
+                    if (Closest < 20) //in camera range
+                    {
+                        trans = enemy.transform; // Sets transform to closest enemy's transform
+                        EnemyLockPos = enemy.transform;
+                        EnemyLockedOnTo = enemy;
+
+                        LockedOn = true;
+                        Pc.IsLockedOn = true;
+                        LockOnSymbol.SetActive(true);
+                    }
+
                 }
             }
 

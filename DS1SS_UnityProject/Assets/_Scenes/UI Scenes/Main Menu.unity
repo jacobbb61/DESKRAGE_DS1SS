@@ -6851,6 +6851,7 @@ MonoBehaviour:
     MoveInteractionOnLoad: 0
     IsOscarDead: 0
     DemonArenaState: 
+    PursuerArenaState: 
     EnemyBehaviour_1: 
     EnemyHealth_1: 0
     EnemyPosX_1: 0
@@ -7018,6 +7019,7 @@ MonoBehaviour:
     MoveInteractionOnLoad: 0
     IsOscarDead: 0
     DemonArenaState: 
+    PursuerArenaState: 
     EnemyBehaviour_1: 
     EnemyHealth_1: 0
     EnemyPosX_1: 0
@@ -7182,6 +7184,7 @@ MonoBehaviour:
     MoveInteractionOnLoad: 0
     IsOscarDead: 0
     DemonArenaState: 
+    PursuerArenaState: 
     EnemyBehaviour_1: 
     EnemyHealth_1: 0
     EnemyPosX_1: 0
@@ -7346,6 +7349,7 @@ MonoBehaviour:
     MoveInteractionOnLoad: 0
     IsOscarDead: 0
     DemonArenaState: 
+    PursuerArenaState: 
     EnemyBehaviour_1: 
     EnemyHealth_1: 0
     EnemyPosX_1: 0
@@ -8275,7 +8279,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &737246889
 RectTransform:
   m_ObjectHideFlags: 0

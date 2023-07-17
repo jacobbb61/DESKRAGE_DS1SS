@@ -154,7 +154,7 @@ public class Undead_C : MonoBehaviour
                     }
                     break;
                 case "Staggered":
-                    StopCoroutine(AttackingCoroutine);
+                    if (AttackingCoroutine != null) { StopCoroutine(AttackingCoroutine); }
                     StartCoroutine(Staggered());
                     RB.velocity = Vector2.zero;
                     break;

@@ -1564,6 +1564,7 @@ public class PlayerControllerV2 : MonoBehaviour
         if (num == 6)
         {
             MaxEstus = 6;
+            CurrentEstus = 6;
         }
         if (num == 3)
         {

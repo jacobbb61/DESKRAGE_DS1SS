@@ -103,13 +103,14 @@ public class MainMenuManager : MonoBehaviour
 
         LastSlotPlayed = GameSaveGameManager.Instance.GameSaveData.LastSlotUsed;
 
-        if(LastSlotPlayed == 0) { NewGameText.SetActive(true); ContinueText.SetActive(false); }//newgame
-        else { NewGameText.SetActive(false); ContinueText.SetActive(true); }//continue
-
+        // if(LastSlotPlayed == 0) { NewGameText.SetActive(true); ContinueText.SetActive(false); }//newgame
+        // else { NewGameText.SetActive(false); ContinueText.SetActive(true); }//continue
+        NewGameText.SetActive(false);
+        ContinueText.SetActive(false);
 
 
         ActiveMenu = "Main";
-        MainOrder = 1;
+        MainOrder = 2;
         MoveMainHighlight();
 
         SettingsOpen = false;
@@ -411,8 +412,8 @@ public class MainMenuManager : MonoBehaviour
                 MainOrder = 6; MoveMainHighlight();
                 break;
 
-            case 1: 
-                MainHightlightPos.anchoredPosition = new Vector2(0, -20);
+            case 1:
+                MainOrder = 6; MoveMainHighlight();
                 break;
 
             case 2:
@@ -436,7 +437,7 @@ public class MainMenuManager : MonoBehaviour
                 break;
 
             case 7:
-                MainOrder = 1; MoveMainHighlight();
+                MainOrder = 2; MoveMainHighlight();
                 break;
         }
         CanInput = true;
@@ -725,9 +726,10 @@ public class MainMenuManager : MonoBehaviour
         if (Slot02.gameObject.activeInHierarchy) { NewGame2.SetActive(false); } else { NewGame2.SetActive(true); }
         if (Slot03.gameObject.activeInHierarchy) { NewGame3.SetActive(false); } else { NewGame3.SetActive(true); }
 
-        if (LastSlotPlayed == 0) { NewGameText.SetActive(true); ContinueText.SetActive(false); }//newgame
-        else { NewGameText.SetActive(false); ContinueText.SetActive(true); }//continue
-
+        //if (LastSlotPlayed == 0) { NewGameText.SetActive(true); ContinueText.SetActive(false); }//newgame
+        //else { NewGameText.SetActive(false); ContinueText.SetActive(true); }//continue
+        NewGameText.SetActive(false);
+        ContinueText.SetActive(false);
 
         CharacterMenuOrder = 1;
         MoveCharacterMenuHighlight();

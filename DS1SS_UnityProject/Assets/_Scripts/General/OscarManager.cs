@@ -122,7 +122,7 @@ public class OscarManager : MonoBehaviour
         //CurrentTextLine = 0;
         SetLineText();
 
-        SetDeath();
+      //  SetDeath();
         SetLocation();
         if (gameObject.activeInHierarchy) { SetAnimation(); }
     }
@@ -150,14 +150,11 @@ public class OscarManager : MonoBehaviour
         //CurrentTextLine = 0;
 
    
+        if (MoveInteractionOnLoad && CurrentState == "I") { CurrentState = "C"; CurrentTextLine = 0; MoveInteractionOnLoad = false; }
+        if (MoveInteractionOnLoad && CurrentState == "C") { CurrentState = "E"; CurrentTextLine = 0; MoveInteractionOnLoad = false; }
+        if (MoveInteractionOnLoad && CurrentState == "H") { CurrentState = "E"; CurrentTextLine = 0; MoveInteractionOnLoad = false; }
 
-        if (MoveInteractionOnLoad)
-        {
-            if (CurrentState == "I") { CurrentState = "C"; CurrentTextLine = 0; }
-            if (CurrentState == "C") { CurrentState = "E"; CurrentTextLine = 0; }
-            if (CurrentState == "H") { CurrentState = "E"; CurrentTextLine = 0; }
-        }
-        SetDeath();
+       // SetDeath();
         SetLocation();
         if (gameObject.activeInHierarchy) { SetAnimation(); }
     }
@@ -183,6 +180,7 @@ public class OscarManager : MonoBehaviour
     }
     public void SetDeath()
     {
+        /*
         switch (CurrentState)
         {
             case "C":
@@ -199,6 +197,7 @@ public class OscarManager : MonoBehaviour
         }
         if (CurrentState == "E") { IsOscarDead = true; }
         if (CurrentState == "D") { IsOscarDead = true; }
+        */
     }
     public void SetLocation() 
     {
@@ -479,7 +478,7 @@ public class OscarManager : MonoBehaviour
                     CurrentTextLine++;
                     MoveInteractionOnLoad = true;
                 } else { CloseDialog(); IsOscarDead = true; } //dies
-                if (CurrentTextLine == 2) { GiveEstus(3); }
+                if (CurrentTextLine == 1) { GiveEstus(6); }
                 break;
             case "DF":
                 if (CurrentTextLine < 1)
@@ -689,8 +688,7 @@ public class OscarManager : MonoBehaviour
     {
         IsOscarDead = true;
         MoveInteractionOnLoad = false;
-        if (PC.MaxEstus == 3) { GiveEstus(3); }
-        else if (PC.MaxEstus == 0) { GiveEstus(6); }
+        GiveEstus(6);
     }
 
 
