@@ -28,8 +28,6 @@ public class MainMenuManager : MonoBehaviour
     public RectTransform MainHightlightPos;
     public Animator MainHightlightAnim;
     private int MainOrder = 1;
-    public GameObject NewGameText;
-    public GameObject ContinueText;
 
     [Header("Character Menu")]
     public GameObject CharacterMenu;
@@ -83,6 +81,12 @@ public class MainMenuManager : MonoBehaviour
     public Animator AchievementsExitAnim;
     private bool AchievementsOpen=false;
 
+    [Header("Controls")]
+    public GameObject Controls;
+    public Animator ControlsExitAnim;
+    private bool ControlsOpen = false;
+
+
     private void Awake()
     {
         if(Instance == null)
@@ -103,14 +107,8 @@ public class MainMenuManager : MonoBehaviour
 
         LastSlotPlayed = GameSaveGameManager.Instance.GameSaveData.LastSlotUsed;
 
-        // if(LastSlotPlayed == 0) { NewGameText.SetActive(true); ContinueText.SetActive(false); }//newgame
-        // else { NewGameText.SetActive(false); ContinueText.SetActive(true); }//continue
-        NewGameText.SetActive(false);
-        ContinueText.SetActive(false);
-
-
         ActiveMenu = "Main";
-        MainOrder = 2;
+        MainOrder = 1;
         MoveMainHighlight();
 
         SettingsOpen = false;
@@ -118,6 +116,9 @@ public class MainMenuManager : MonoBehaviour
 
         AchievementsOpen = false;
         Achievements.SetActive(false);
+
+        ControlsOpen = false;
+        Controls.SetActive(false);
 
 
         FMODinstance = FMODUnity.RuntimeManager.CreateInstance(MainMenuMusic);
@@ -264,6 +265,10 @@ public class MainMenuManager : MonoBehaviour
             switch (ActiveMenu)
             {
 
+                case "Controls":
+                    ControlsExitAnim.SetTrigger("Active");
+                    StartCoroutine(LoadControls());
+                    break;
                 case "Achievements":
                     AchievementsExitAnim.SetTrigger("Active");
                     StartCoroutine(LoadAchievements());
@@ -314,33 +319,15 @@ public class MainMenuManager : MonoBehaviour
         switch (MainOrder)
         {
             case 1:
-                if (LastSlotPlayed == 0) { StartCoroutine(LoadNewGame()); LastSlotPlayed = 1;
-                    GameSaveGameManager.Instance.GameSaveData.LastSlotUsed = LastSlotPlayed;
-                    GameSaveGameManager.Instance.SaveGameData();
-                }
-                if (LastSlotPlayed == 1)
-                {
-                    Slot01.LoadGameFromCharacterSlot();
-                    CurrentSelectedSlot = CharacterSlot.CharacterSlot_01;
-                }
-                if (LastSlotPlayed == 2)
-                {
-                    Slot02.LoadGameFromCharacterSlot();
-                    CurrentSelectedSlot = CharacterSlot.CharacterSlot_02;
-                }
-                if (LastSlotPlayed == 3)
-                {
-                    Slot03.LoadGameFromCharacterSlot();
-                    CurrentSelectedSlot = CharacterSlot.CharacterSlot_03;
-                }              
-                break;
-
-            case 2:
                 StartCoroutine(LoadCharacterMenu());
                 break;
 
-            case 3:
+            case 2:
                 StartCoroutine(LoadSettings());
+                break;
+
+            case 3:
+                StartCoroutine(LoadControls());
                 break;
 
             case 4:
@@ -413,7 +400,7 @@ public class MainMenuManager : MonoBehaviour
                 break;
 
             case 1:
-                MainOrder = 6; MoveMainHighlight();
+                MainHightlightPos.anchoredPosition = new Vector2(0, -20);
                 break;
 
             case 2:
@@ -437,7 +424,7 @@ public class MainMenuManager : MonoBehaviour
                 break;
 
             case 7:
-                MainOrder = 2; MoveMainHighlight();
+                MainOrder = 1; MoveMainHighlight();
                 break;
         }
         CanInput = true;
@@ -714,6 +701,16 @@ public class MainMenuManager : MonoBehaviour
         CanInput = true;
         AchievementsOpen = !AchievementsOpen;
     }
+    IEnumerator LoadControls()
+    {
+        if (!ControlsOpen) { ActiveMenu = "Controls"; } else { ActiveMenu = "Main"; }
+        Debug.Log("Loading Controls");
+        SceneTransitionAnim.SetTrigger("Active");
+        yield return new WaitForSeconds(1.2f);
+        if (!ControlsOpen) { Controls.SetActive(true); } else { Controls.SetActive(false); }
+        CanInput = true;
+        ControlsOpen = !ControlsOpen;
+    }
     IEnumerator LoadCharacterMenu()
     {
         if (!CharacterMenuOpen) { ActiveMenu = "CharacterMenu"; } else { ActiveMenu = "Main"; }
@@ -725,11 +722,6 @@ public class MainMenuManager : MonoBehaviour
         if (Slot01.gameObject.activeInHierarchy) { NewGame1.SetActive(false); } else { NewGame1.SetActive(true); }
         if (Slot02.gameObject.activeInHierarchy) { NewGame2.SetActive(false); } else { NewGame2.SetActive(true); }
         if (Slot03.gameObject.activeInHierarchy) { NewGame3.SetActive(false); } else { NewGame3.SetActive(true); }
-
-        //if (LastSlotPlayed == 0) { NewGameText.SetActive(true); ContinueText.SetActive(false); }//newgame
-        //else { NewGameText.SetActive(false); ContinueText.SetActive(true); }//continue
-        NewGameText.SetActive(false);
-        ContinueText.SetActive(false);
 
         CharacterMenuOrder = 1;
         MoveCharacterMenuHighlight();

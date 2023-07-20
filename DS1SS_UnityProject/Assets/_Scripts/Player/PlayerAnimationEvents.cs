@@ -7,7 +7,6 @@ public class PlayerAnimationEvents : MonoBehaviour
 {
     private PlayerControllerV2 PC;
     public Transform HitStartPos;
-
     private void Start()
     {
         PC = GetComponentInParent < PlayerControllerV2 > ();
@@ -160,4 +159,5 @@ public class PlayerAnimationEvents : MonoBehaviour
             }
         }
     }
+
 }

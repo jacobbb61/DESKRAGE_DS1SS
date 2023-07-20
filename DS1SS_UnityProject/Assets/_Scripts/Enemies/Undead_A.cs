@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using FMODUnity;
 public class Undead_A : MonoBehaviour
 {
 
@@ -58,6 +58,9 @@ public class Undead_A : MonoBehaviour
     public Collider2D HitPos;
     public Slider HealthSlider;
     public Vector3 OriginPosition;
+
+    [Header("Audio")]
+    public EventReference Grunts;
 
     public EnemySaveManager EnemySaveManager;
     private void Start()
@@ -188,12 +191,12 @@ public class Undead_A : MonoBehaviour
 
     public void TakeLightDamage()
     {
-        Health -= 6;
+        Health -= 6; RuntimeManager.PlayOneShot(Grunts, transform.position);
     }
     public void TakeHeavyDamage()
     {
         Health -= 9;
-        Behaviour = "Staggered";
+        Behaviour = "Staggered"; RuntimeManager.PlayOneShot(Grunts, transform.position);
     }
     public void ToggleParry()
     {

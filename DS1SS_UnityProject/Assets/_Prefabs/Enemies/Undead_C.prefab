@@ -430,6 +430,13 @@ MonoBehaviour:
   HitPos: {fileID: 2146336827841055255}
   HealthSlider: {fileID: 1181330010867150025}
   OriginPosition: {x: 0, y: 0, z: 0}
+  Grunts:
+    Guid:
+      Data1: 1045219388
+      Data2: 1163626313
+      Data3: 689875109
+      Data4: 633058295
+    Path: event:/Enemies/Hollow/Grunts
   EnemySaveManager: {fileID: 4401275331580959327}
 --- !u!114 &4401275331580959327
 MonoBehaviour:

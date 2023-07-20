@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using FMODUnity;
 public class Undead_C : MonoBehaviour
 {
 
@@ -80,7 +80,15 @@ public class Undead_C : MonoBehaviour
     public Slider HealthSlider;
     public Vector3 OriginPosition;
 
+    [Header("Audio")]
+    public EventReference Grunts;
+
+
+
     public EnemySaveManager EnemySaveManager;
+
+
+
     private void Start()
     {
         ManualStart();
@@ -242,11 +250,13 @@ public class Undead_C : MonoBehaviour
     public void TakeLightDamage()
     {
         Health -= 6;
+        RuntimeManager.PlayOneShot(Grunts, transform.position);
     }
     public void TakeHeavyDamage()
     {
         Health -= 9;
         if (!IsHeavyAttacking) { Behaviour = "Staggered"; }
+        RuntimeManager.PlayOneShot(Grunts, transform.position);
     }
     public void TriggerStagger()
     {
