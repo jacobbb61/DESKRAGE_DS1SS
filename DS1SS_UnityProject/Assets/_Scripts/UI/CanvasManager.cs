@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class CanvasManager : MonoBehaviour
 {
@@ -25,5 +26,31 @@ public class CanvasManager : MonoBehaviour
     public Animator BonfireAnim;
     public Animator YouDiedAnim;
     public Animator SceneTransitionAnim;
+
+    [Header("HUD")]
+    public GameObject HUD_1;
+    public GameObject HUD_2;
+    public GameObject HUD_3;
+    public GameObject HUD_4;
+
+
+    private void Start()
+    {
+        if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Build"))
+        {
+            if (GameSaveGameManager.Instance.GameSaveData.HUD == false)
+            {
+                ToggleHUD();
+            }
+        }
+    }
+
+    public void ToggleHUD()
+    {
+        HUD_1.SetActive(!HUD_1.activeInHierarchy);
+        HUD_2.SetActive(!HUD_2.activeInHierarchy);
+        HUD_3.SetActive(!HUD_3.activeInHierarchy);
+        HUD_4.SetActive(!HUD_4.activeInHierarchy);
+    }
 
 }

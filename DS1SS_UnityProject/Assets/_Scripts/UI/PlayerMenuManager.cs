@@ -18,6 +18,7 @@ public class PlayerMenuManager : MonoBehaviour
     public string ActiveMenu = "Main";
     public PlayerManager PM;
     public PlayerControllerV2 PC;
+    public CanvasManager CanvasManager;
 
     public EventReference PressSelect;
     public EventReference PressMove;
@@ -42,6 +43,7 @@ public class PlayerMenuManager : MonoBehaviour
 
     [Header("Settings")]
     public GameObject Settings;
+    public GameObject Subtitles;
     public RectTransform SettingsHightlightPos;
     private bool SettingsOpen = false;
     private int SettingsOrder;
@@ -303,6 +305,7 @@ public class PlayerMenuManager : MonoBehaviour
         CanInput = true;
         SettingsOpen = !SettingsOpen;
         MainOrder = 1;
+        MoveSettingsHighlight();
     }
     public void MoveSettingsHighlight()
     {
@@ -366,9 +369,11 @@ public class PlayerMenuManager : MonoBehaviour
         {
             case 1:
                 HUDActive = !HUDActive;
+                CanvasManager.ToggleHUD();
                 break;
             case 2:
                 SubtitlesActive = !SubtitlesActive;
+                Subtitles.SetActive(!Subtitles.activeInHierarchy);
                 break;
             case 3:
                 if (Left) { AudioMasterNum--; } else { AudioMasterNum++; };
