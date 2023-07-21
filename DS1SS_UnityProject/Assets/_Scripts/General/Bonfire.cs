@@ -94,6 +94,28 @@ public class Bonfire : MonoBehaviour
             PM.PursuerArena.ManualStart();
         }
 
+
+        switch (PM.LastBonfireVisited)
+        {
+            case 1:
+                PM.gameObject.transform.position = PM.Bonfire_1.transform.position;
+                //PM.Bonfire_1.BonfireRest();
+                break;
+            case 2:
+                PM.gameObject.transform.position = PM.Bonfire_1.transform.position;
+                //PM.Bonfire_2.BonfireRest();
+                break;
+            case 3:
+                PM.gameObject.transform.position = PM.Bonfire_1.transform.position;
+                //PM.Bonfire_3.BonfireRest();
+                break;
+            default:
+                PM.gameObject.transform.position = new Vector2(-90, -18);
+                //PM.Bonfire_1.BonfireRest();
+                break;
+        }
+
+
         //upadate oscar
         OM.Reload();
     }

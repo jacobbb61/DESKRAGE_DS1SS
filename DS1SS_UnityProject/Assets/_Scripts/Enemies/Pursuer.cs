@@ -192,6 +192,8 @@ public class Pursuer : MonoBehaviour
     {
         Behaviour = "Dying";
 
+        AchievementsGameManager.Instance.UnlockedAchievement(2);
+
         Anim.Play("AsylumDemonAnim_Death");
 
         if (IsAttacking) { StopCoroutine(AttackingCoroutine); }

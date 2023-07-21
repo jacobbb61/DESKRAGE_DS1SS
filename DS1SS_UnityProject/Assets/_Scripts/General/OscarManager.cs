@@ -55,6 +55,7 @@ public class OscarManager : MonoBehaviour
     public bool QuestionOpen;
 
     [Header("Item UI")]
+    public GameObject KKeyItemDrop;
     public GameObject ItemPopUp;
     public RawImage ItemSymbol;
     public TextMeshProUGUI ItemName;
@@ -125,6 +126,13 @@ public class OscarManager : MonoBehaviour
       //  SetDeath();
         SetLocation();
         if (gameObject.activeInHierarchy) { SetAnimation(); }
+        if (CurrentState == "I" || CurrentState == "C" || CurrentState == "E")
+        {
+            if (PC.GetComponent<PlayerManager>().KKey == false)
+            {
+                KKeyItemDrop.SetActive(true);
+            }
+        }
     }
 
     public void DiedToDemon()
@@ -135,8 +143,12 @@ public class OscarManager : MonoBehaviour
     {
        if (CurrentState == "A" || CurrentState == "B" || CurrentState == "YES" || CurrentState == "NO") { CurrentState = "C"; MoveInteractionOnLoad = false; CurrentTextLine = 0; }
        if (CurrentState == "Null") { CurrentState = "I"; MoveInteractionOnLoad = false; CurrentTextLine = 0; }
+       if (CurrentState == "G") { CurrentState = "H"; MoveInteractionOnLoad = false; CurrentTextLine = 0; }
 
-
+        if (PC.GetComponent<PlayerManager>().KKey == false)
+        {
+            KKeyItemDrop.SetActive(true);
+        }
         Reload();
     }
     public void Reload()
@@ -157,6 +169,14 @@ public class OscarManager : MonoBehaviour
        // SetDeath();
         SetLocation();
         if (gameObject.activeInHierarchy) { SetAnimation(); }
+
+        if (CurrentState == "I" || CurrentState == "C" || CurrentState == "E")
+        {
+            if (PC.GetComponent<PlayerManager>().KKey == false)
+            {
+                KKeyItemDrop.SetActive(true);
+            }
+        }
     }
 
 
@@ -513,7 +533,7 @@ public class OscarManager : MonoBehaviour
                     CurrentText = StateHTextLines[CurrentTextLine]; //tell dialogue text what to show
                     CurrentTextLine++;
                     MoveInteractionOnLoad = true;
-                } else { CloseDialog(); IsOscarDead = true; } //dies
+                } else { CloseDialog(); IsOscarDead = true; AchievementsGameManager.Instance.UnlockedAchievement(4); GiveEstus(3); } //dies
                 break;
             case "I":
                 if (CurrentTextLine < 3)

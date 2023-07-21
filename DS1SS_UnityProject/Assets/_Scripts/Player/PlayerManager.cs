@@ -30,6 +30,13 @@ public class PlayerManager : MonoBehaviour
 
     public LayerManagerV2 Layer;
     private PlayerControllerV2 PC;
+
+
+
+    public bool HasBeenHit;
+    public bool HasDied;
+
+
     private void Start()
     {
         WorldSaveGameManager.Instance.Player = this;

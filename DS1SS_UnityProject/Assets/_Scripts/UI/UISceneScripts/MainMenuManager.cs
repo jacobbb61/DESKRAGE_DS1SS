@@ -231,23 +231,22 @@ public class MainMenuManager : MonoBehaviour
     {
         if (context.action.triggered && CanInput == true)
         {
-            PlayAudioPressOk();
             Debug.Log("A Button Pressed");
             CanInput = false;
             switch (ActiveMenu)
             {             
 
                 case "Main":
-                    SelectMain();                   
+                    SelectMain(); PlayAudioPressOk();
                     break;
                 case "NoSlots":
-                    CloseNoSlotsMessage();
+                    CloseNoSlotsMessage(); PlayAudioPressOk();
                     break;
                 case "CharacterMenu":
                     SelectCharacterMenu();
                     break;
                 case "DeleteSlot":
-                    DeletCharacterSlot();
+                    DeletCharacterSlot(); PlayAudioPressOk();
                     break;
                 default:
                     CanInput = true;
@@ -354,11 +353,21 @@ public class MainMenuManager : MonoBehaviour
             case 1:
                 if (Slot01.gameObject.activeInHierarchy)
                 {
-                    LastSlotPlayed = 1;
+                    if (WorldSaveGameManager.Instance.CharacterSlot01.FinishedGame)
+                    {
+                        PlayAudioPressCancel();
+                        CanInput = true;
+                    }
+                    else
+                    {
+                        PlayAudioPressOk();
+                        LastSlotPlayed = 1;
                     Slot01.LoadGameFromCharacterSlot();
                     CurrentSelectedSlot = CharacterSlot.CharacterSlot_01;
                     GameSaveGameManager.Instance.GameSaveData.LastSlotUsed = LastSlotPlayed;
                     GameSaveGameManager.Instance.SaveGameData();
+                    }
+
                 }
                 else { StartCoroutine(LoadNewGame()); }
                 break;
@@ -366,11 +375,20 @@ public class MainMenuManager : MonoBehaviour
             case 2:
                 if (Slot02.gameObject.activeInHierarchy)
                 {
-                    LastSlotPlayed = 2;
-                    Slot02.LoadGameFromCharacterSlot();
-                    CurrentSelectedSlot = CharacterSlot.CharacterSlot_02;
-                    GameSaveGameManager.Instance.GameSaveData.LastSlotUsed = LastSlotPlayed;
-                    GameSaveGameManager.Instance.SaveGameData();
+                    if (WorldSaveGameManager.Instance.CharacterSlot02.FinishedGame)
+                    {
+                        PlayAudioPressCancel();
+                        CanInput = true;
+                    }
+                    else
+                    {
+                        PlayAudioPressOk();
+                        LastSlotPlayed = 2;
+                        Slot02.LoadGameFromCharacterSlot();
+                        CurrentSelectedSlot = CharacterSlot.CharacterSlot_02;
+                        GameSaveGameManager.Instance.GameSaveData.LastSlotUsed = LastSlotPlayed;
+                        GameSaveGameManager.Instance.SaveGameData();
+                    }
                 }
                 else { StartCoroutine(LoadNewGame()); }
                 break;
@@ -378,11 +396,20 @@ public class MainMenuManager : MonoBehaviour
             case 3:
                 if (Slot03.gameObject.activeInHierarchy)
                 {
-                    LastSlotPlayed = 3;
-                    Slot03.LoadGameFromCharacterSlot();
-                    CurrentSelectedSlot = CharacterSlot.CharacterSlot_03;
-                    GameSaveGameManager.Instance.GameSaveData.LastSlotUsed = LastSlotPlayed;
-                    GameSaveGameManager.Instance.SaveGameData();
+                    if (WorldSaveGameManager.Instance.CharacterSlot03.FinishedGame)
+                    {
+                        PlayAudioPressCancel();
+                        CanInput = true;
+                    }
+                    else
+                    {
+                        PlayAudioPressOk();
+                        LastSlotPlayed = 3;
+                        Slot03.LoadGameFromCharacterSlot();
+                        CurrentSelectedSlot = CharacterSlot.CharacterSlot_03;
+                        GameSaveGameManager.Instance.GameSaveData.LastSlotUsed = LastSlotPlayed;
+                        GameSaveGameManager.Instance.SaveGameData();
+                    }
                 }
                 else { StartCoroutine(LoadNewGame()); }
                 break;

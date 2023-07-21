@@ -28,6 +28,7 @@ public class Key : MonoBehaviour
     public Texture KeySymbol;
     public string AKeyName;
     public string SKeyName;
+    public string KKeyName;
 
     private void Start()
     {
@@ -105,6 +106,12 @@ public class Key : MonoBehaviour
                 {
                     ItemName.text = SKeyName;
                     playerManager.SKey = true;
+                    break;
+                }
+            case "K":
+                {
+                    ItemName.text = KKeyName;
+                    playerManager.KKey = true;
                     break;
                 }
             default:

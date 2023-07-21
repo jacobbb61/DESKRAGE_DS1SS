@@ -8,6 +8,7 @@ public class EnemyAnimationEvents : MonoBehaviour
     public UnityEvent TurnEvent;
     public UnityEvent MoveEvent;
     public UnityEvent StopEvent;
+    public UnityEvent ImmuneEvent;
     public UnityEvent Attack1Triggered;
     public UnityEvent Attack2Triggered;
     public UnityEvent Attack3Triggered;
@@ -31,6 +32,11 @@ public class EnemyAnimationEvents : MonoBehaviour
     {
         StopEvent.Invoke();
     }
+    public void Immune()
+    {
+        ImmuneEvent.Invoke();
+    }
+
     public void Attack1()
     {
         Attack1Triggered.Invoke();

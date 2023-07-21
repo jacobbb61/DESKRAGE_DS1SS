@@ -12,8 +12,6 @@ public struct GameSaveData
     public bool Achievement_4;
     public bool Achievement_5;
     public bool Achievement_6;
-    public bool Achievement_7;
-    public bool Achievement_8;
 
     public int LastSlotUsed;
 
@@ -78,8 +76,6 @@ public class GameSaveGameManager : MonoBehaviour
             GameSaveData.Achievement_4 = false;
             GameSaveData.Achievement_5 = false;
             GameSaveData.Achievement_6 = false;
-            GameSaveData.Achievement_7 = false;
-            GameSaveData.Achievement_8 = false;
 
             GameSaveData.HUD = true;
             GameSaveData.Subtitles = true;
@@ -98,6 +94,9 @@ public class GameSaveGameManager : MonoBehaviour
 
     public void SaveGameData()
     {
+        
+
+
         //serialise the GameStatus struct into a Json string
         string gameStatusJson = JsonUtility.ToJson(GameSaveData);
         //write a text file containing the string value as simple text

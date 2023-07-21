@@ -12,8 +12,7 @@ public class AchievementsMenuManager : MonoBehaviour
     public bool IsUnlockedAchievment4;
     public bool IsUnlockedAchievment5;
     public bool IsUnlockedAchievment6;
-    public bool IsUnlockedAchievment7;
-    public bool IsUnlockedAchievment8;
+
 
     [Header("Unlocked")]
     public GameObject AchievementUnlocked1;
@@ -22,8 +21,7 @@ public class AchievementsMenuManager : MonoBehaviour
     public GameObject AchievementUnlocked4;
     public GameObject AchievementUnlocked5;
     public GameObject AchievementUnlocked6;
-    public GameObject AchievementUnlocked7;
-    public GameObject AchievementUnlocked8;
+
 
     [Header("Locked")]
     public GameObject AchievementLocked1;
@@ -32,8 +30,7 @@ public class AchievementsMenuManager : MonoBehaviour
     public GameObject AchievementLocked4;
     public GameObject AchievementLocked5;
     public GameObject AchievementLocked6;
-    public GameObject AchievementLocked7;
-    public GameObject AchievementLocked8;
+
 
 
     void Start()
@@ -45,8 +42,7 @@ public class AchievementsMenuManager : MonoBehaviour
         IsUnlockedAchievment4 = GameSaveGameManager.Instance.GameSaveData.Achievement_4;
         IsUnlockedAchievment5 = GameSaveGameManager.Instance.GameSaveData.Achievement_5;
         IsUnlockedAchievment6 = GameSaveGameManager.Instance.GameSaveData.Achievement_6;
-        IsUnlockedAchievment7 = GameSaveGameManager.Instance.GameSaveData.Achievement_7;
-        IsUnlockedAchievment8 = GameSaveGameManager.Instance.GameSaveData.Achievement_8;
+
 
         AchievementUnlocked1.SetActive(IsUnlockedAchievment1);
         AchievementUnlocked2.SetActive(IsUnlockedAchievment2);
@@ -54,8 +50,7 @@ public class AchievementsMenuManager : MonoBehaviour
         AchievementUnlocked4.SetActive(IsUnlockedAchievment4);
         AchievementUnlocked5.SetActive(IsUnlockedAchievment5);
         AchievementUnlocked6.SetActive(IsUnlockedAchievment6);
-        AchievementUnlocked7.SetActive(IsUnlockedAchievment7);
-        AchievementUnlocked8.SetActive(IsUnlockedAchievment8);
+
 
         AchievementLocked1.SetActive(!IsUnlockedAchievment1);
         AchievementLocked2.SetActive(!IsUnlockedAchievment2);
@@ -63,8 +58,7 @@ public class AchievementsMenuManager : MonoBehaviour
         AchievementLocked4.SetActive(!IsUnlockedAchievment4);
         AchievementLocked5.SetActive(!IsUnlockedAchievment5);
         AchievementLocked6.SetActive(!IsUnlockedAchievment6);
-        AchievementLocked7.SetActive(!IsUnlockedAchievment7);
-        AchievementLocked8.SetActive(!IsUnlockedAchievment8);
+
     }
 
 

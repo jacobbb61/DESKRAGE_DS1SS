@@ -124,6 +124,7 @@ MonoBehaviour:
   Assets: {fileID: 5828070884769839138}
   MiddleLayerObject: {fileID: 0}
   FrontLayerObject: {fileID: 0}
+  InteractPrompt: {fileID: 0}
   CurrentState: Null
   Anim: {fileID: 4569153201842782655}
   Locations:
@@ -141,6 +142,7 @@ MonoBehaviour:
   QuestionHightlightPos: {fileID: 0}
   QuestionOrder: 0
   QuestionOpen: 0
+  KKeyItemDrop: {fileID: 0}
   ItemPopUp: {fileID: 0}
   ItemSymbol: {fileID: 0}
   ItemName: {fileID: 0}

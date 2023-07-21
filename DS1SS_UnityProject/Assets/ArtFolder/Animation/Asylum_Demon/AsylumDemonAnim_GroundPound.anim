@@ -488,6 +488,13 @@ AnimationClip:
   m_HasGenericRootTransform: 1
   m_HasMotionFloatCurves: 0
   m_Events:
+  - time: 0.78333336
+    functionName: Immune
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
   - time: 1.0666667
     functionName: Turn
     data: 
@@ -504,6 +511,13 @@ AnimationClip:
     messageOptions: 0
   - time: 1.4166666
     functionName: Stop
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 1.7
+    functionName: Immune
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

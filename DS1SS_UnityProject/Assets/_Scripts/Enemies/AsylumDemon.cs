@@ -33,6 +33,7 @@ public class AsylumDemon : MonoBehaviour
     public bool IsAttacking;
     public bool IsCoolingDown;
     public bool IsDead;
+    public bool IsImmune;
     public bool HasBeenPlunged;
 
     [Header("Combat Data")]
@@ -45,6 +46,11 @@ public class AsylumDemon : MonoBehaviour
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    [Header("TRigger Colliders")]
+    public Collider2D InFrontCol;
+    public Collider2D OnTopCol;
+    public Collider2D BehindCol;
 
     [Header("Hammer Drive")]
     public float HD_AttackDamage;
@@ -69,16 +75,14 @@ public class AsylumDemon : MonoBehaviour
     public Collider2D GP_Collider;
 
     [Header("Hammer Sweep")]
-    public float HSP_AttackDamage;
     public float HSP_AttackAnimationTime;
     public float HSP_AttackCoolDownTime;
-    public Collider2D HSP_Collider;
 
-    [Header("Hammer Swing")]
-    public float HSG_AttackDamage;
-    public float HSG_AttackAnimationTime;
-    public float HSG_AttackCoolDownTime;
-    public Collider2D HSG_Collider;
+    [Header("Hammer Front Swing")]
+    public float HFS_AttackDamage;
+    public float HFS_AttackAnimationTime;
+    public float HFS_AttackCoolDownTime;
+    public Collider2D HFS_Collider;
 
     [Header("Hammer Back Swing")]
     public float HBS_AttackDamage;
@@ -94,10 +98,8 @@ public class AsylumDemon : MonoBehaviour
     public Collider2D LH_Collider;
 
     [Header("Double Hammer Swing")]
-    public float DHS_AttackDamage;
     public float DHS_AttackAnimationTime;
     public float DHS_AttackCoolDownTime;
-    public Collider2D DHS_Collider;
 
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// start
@@ -218,21 +220,33 @@ public class AsylumDemon : MonoBehaviour
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public void TakeLightDamage()
     {
-        Health -= 6; 
-        UpdateUI();
-        if (Health <= MaxHealth / 2 && !arenaManager.IsSecondPhase) { arenaManager.SecondPhase(); }
+        if (!IsImmune)
+        {
+            Health -= 6;
+            UpdateUI();
+            if (Health <= MaxHealth / 2 && !arenaManager.IsSecondPhase) { arenaManager.SecondPhase(); }
+        }
     }
     public void TakeHeavyDamage()
     {
-        Health -= 9; 
-        UpdateUI();
-        if (Health <= MaxHealth / 2 && !arenaManager.IsSecondPhase) { arenaManager.SecondPhase(); }
+        if (!IsImmune)
+        {
+            Health -= 9;
+            UpdateUI();
+            if (Health <= MaxHealth / 2 && !arenaManager.IsSecondPhase) { arenaManager.SecondPhase(); }
+        }
     }
     public void TakePlungeDamage()
     {
-        if (HasBeenPlunged == false) { Health -= 50; HasBeenPlunged = true; }
-        UpdateUI();
-        if (Health <= MaxHealth / 2 && !arenaManager.IsSecondPhase) { arenaManager.SecondPhase(); }
+            if (HasBeenPlunged == false) { Health -= 50; HasBeenPlunged = true; }
+            UpdateUI();
+            if (Health <= MaxHealth / 2 && !arenaManager.IsSecondPhase) { arenaManager.SecondPhase(); }
+
+    }
+
+    public void ToggleImmunity()
+    {
+        IsImmune = !IsImmune;
     }
 
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -350,30 +364,54 @@ public class AsylumDemon : MonoBehaviour
     
     void ChooseCloseRangeAttack()
     {
-        int attack = Random.Range(1, 6);
-        Debug.Log("Close Attack " + attack);
-        switch (attack)
+
+        int SmartAttack = Random.Range(1, 3);
+        if (SmartAttack == 1)//smart close range
         {
-            case 1: //Hammer Swing
-                AttackingCoroutine = StartCoroutine(HD_Attack());
-                break;
-
-            case 2: //Double Hammer Swing
-                AttackingCoroutine = StartCoroutine(HD_Attack());
-                break;
-
-            case 3: //Ground Pound
+            if (InFrontCol.bounds.Contains(Player.transform.position))
+            {
+                AttackingCoroutine = StartCoroutine(HFS_Attack());
+            }
+            else if (BehindCol.bounds.Contains(Player.transform.position))
+            {
+                AttackingCoroutine = StartCoroutine(HBS_Attack());
+            }
+            else if (OnTopCol.bounds.Contains(Player.transform.position))
+            {
                 AttackingCoroutine = StartCoroutine(GP_Attack());
-                break;
+            }
+        }
+        else //random close range
+        {
+            int attack = Random.Range(1, 7);
+            Debug.Log("Close Attack " + attack);
+            switch (attack)
+            {
+                case 1: //Hammer Swing
+                    AttackingCoroutine = StartCoroutine(HFS_Attack());
+                    break;
 
-            case 4: //Hammer Sweep
-                AttackingCoroutine = StartCoroutine(GP_Attack());
-                break;
+                case 2: //Hammer Back Swing
+                    AttackingCoroutine = StartCoroutine(HBS_Attack());
+                    break;
 
-            case 5: //Hammer Drive
-                AttackingCoroutine = StartCoroutine(GP_Attack());
-                break;
+                case 3: //Double Hammer Swing
+                    AttackingCoroutine = StartCoroutine(DHS_Attack());
+                    break;
 
+                case 4: //Ground Pound
+                    AttackingCoroutine = StartCoroutine(GP_Attack());
+                    break;
+
+                case 5: //Hammer Sweep
+                    AttackingCoroutine = StartCoroutine(HSP_Attack());
+                    break;
+
+                case 6: //Hammer Drive
+                    AttackingCoroutine = StartCoroutine(HD_Attack());
+                    break;
+
+            }
         }
     }
     void ChooseLongRangeAttack()
@@ -527,5 +565,116 @@ public class AsylumDemon : MonoBehaviour
         {
             PC.PlayerTakeDamage(GP_AttackDamage, true, 0);
         }
+    }    
+    
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// Hammer Swing Back
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    IEnumerator HBS_Attack()
+    {
+        Behaviour = "Attacking";
+        IsCoolingDown = false;
+
+        Anim.Play("AsylumDemonAnim_HammerBackSwing");
+
+
+        yield return new WaitForSeconds(HBS_AttackAnimationTime);
+
+        Behaviour = "Hostile";
+        IsCoolingDown = true;
+        Anim.Play("AsylumDemonAnim_Idle");
+        StepDistance = 0;
+
+        yield return new WaitForSeconds(HBS_AttackCoolDownTime);
+        IsCoolingDown = false;
+
+    }
+
+    public void HBS_AttackRegister()
+    {
+        if (HBS_Collider.bounds.Contains(Player.transform.position))
+        {
+            PC.PlayerTakeDamage(HBS_AttackDamage, true, 0);
+        }
+    }
+
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// Hammer Swing front
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    IEnumerator HFS_Attack()
+    {
+        Behaviour = "Attacking";
+        IsCoolingDown = false;
+
+        Anim.Play("AsylumDemonAnim_HammerSwing");
+
+
+        yield return new WaitForSeconds(HFS_AttackAnimationTime);
+
+        Behaviour = "Hostile";
+        IsCoolingDown = true;
+        Anim.Play("AsylumDemonAnim_Idle");
+        StepDistance = 0;
+
+        yield return new WaitForSeconds(HFS_AttackCoolDownTime);
+        IsCoolingDown = false;
+
+    }
+
+    public void HFS_AttackRegister()
+    {
+        if (HFS_Collider.bounds.Contains(Player.transform.position))
+        {
+            PC.PlayerTakeDamage(HFS_AttackDamage, true, 0);
+        }
+    }
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// Hammer Double Swing
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    IEnumerator DHS_Attack()
+    {
+        Behaviour = "Attacking";
+        IsCoolingDown = false;
+
+        Anim.Play("AsylumDemonAnim_DoubleHammerSwing");
+
+
+        yield return new WaitForSeconds(DHS_AttackAnimationTime);
+
+        Behaviour = "Hostile";
+        IsCoolingDown = true;
+        Anim.Play("AsylumDemonAnim_Idle");
+        StepDistance = 0;
+
+        yield return new WaitForSeconds(DHS_AttackCoolDownTime);
+        IsCoolingDown = false;
+
+    }
+
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// Hammer Double Swing
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    IEnumerator HSP_Attack()
+    {
+        Behaviour = "Attacking";
+        IsCoolingDown = false;
+
+        Anim.Play("AsylumDemonAnim_HammerSweep");
+
+
+        yield return new WaitForSeconds(HSP_AttackAnimationTime);
+
+        Behaviour = "Hostile";
+        IsCoolingDown = true;
+        Anim.Play("AsylumDemonAnim_Idle");
+        StepDistance = 0;
+
+        yield return new WaitForSeconds(HSP_AttackCoolDownTime);
+        IsCoolingDown = false;
+
     }
 }

@@ -17,6 +17,7 @@ public class UICharacterSaveSlot : MonoBehaviour
     private float seconds;
     private float minutes;
     private float hours;
+    public GameObject CompletedGame;
 
     private void OnEnable()
     {
@@ -42,6 +43,12 @@ public class UICharacterSaveSlot : MonoBehaviour
                     minutes = Mathf.Floor(timer / 60);
                     hours = Mathf.Floor(minutes / 60);
                     TimePlayed.text = hours.ToString("00") + ":" + minutes.ToString("00") + ":" + seconds.ToString("00");
+
+                if (WorldSaveGameManager.Instance.CharacterSlot01.FinishedGame)
+                {
+                    CompletedGame.SetActive(true);
+                }
+
             }
             // doesnt exits, disable
             else
@@ -62,6 +69,11 @@ public class UICharacterSaveSlot : MonoBehaviour
                 minutes = Mathf.Floor(timer / 60);
                 hours = Mathf.Floor(minutes / 60);
                 TimePlayed.text = hours.ToString("00") + ":" + minutes.ToString("00") + ":" + seconds.ToString("00");
+
+                if (WorldSaveGameManager.Instance.CharacterSlot02.FinishedGame)
+                {
+                    CompletedGame.SetActive(true);
+                }
             }
             // doesnt exits, disable
             else
@@ -82,6 +94,11 @@ public class UICharacterSaveSlot : MonoBehaviour
                 minutes = Mathf.Floor(timer / 60);
                 hours = Mathf.Floor(minutes / 60);
                 TimePlayed.text = hours.ToString("00") + ":" + minutes.ToString("00") + ":" + seconds.ToString("00");
+
+                if (WorldSaveGameManager.Instance.CharacterSlot03.FinishedGame)
+                {
+                    CompletedGame.SetActive(true);
+                }
 
             }
             // doesnt exits, disable

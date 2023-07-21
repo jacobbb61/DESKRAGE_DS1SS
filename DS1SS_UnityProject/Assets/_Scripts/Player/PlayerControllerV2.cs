@@ -166,6 +166,10 @@ public class PlayerControllerV2 : MonoBehaviour
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     IEnumerator PlayerDead()
     {
+        bool ahh = false;
+
+        if (PM.HasDied == false) { PM.HasDied = true; }
+
         State = "Dead";
         CanMove = false;
         CanAttack = false;
@@ -186,26 +190,34 @@ public class PlayerControllerV2 : MonoBehaviour
             PM.PursuerArena.SwitchState("Idle");
         }
 
-        switch (PM.LastBonfireVisited)
+
+
+        if (ahh == false)
         {
-            case 1:
-                transform.position = PM.Bonfire_1.transform.position;
-                PM.Bonfire_1.BonfireRest();
-                break;
-            case 2:
-                transform.position = PM.Bonfire_1.transform.position;
-                PM.Bonfire_2.BonfireRest();
-                break;
-            case 3:
-                transform.position = PM.Bonfire_1.transform.position;
-                PM.Bonfire_3.BonfireRest();
-                break;
-            default:
-                transform.position = new Vector2(-90,-18);
-                PM.Bonfire_1.BonfireRest();
-                break;
+            switch (PM.LastBonfireVisited)
+            {
+                case 1:
+                    //transform.position = PM.Bonfire_1.transform.position;
+                    PM.Bonfire_1.BonfireRest();
+                    break;
+                case 2:
+                    //transform.position = PM.Bonfire_1.transform.position;
+                    PM.Bonfire_2.BonfireRest();
+                    break;
+                case 3:
+                    //transform.position = PM.Bonfire_1.transform.position;
+                    PM.Bonfire_3.BonfireRest();
+                    break;
+                default:
+                    //transform.position = new Vector2(-90,-18);
+                    PM.Bonfire_1.BonfireRest();
+                    break;
+            }
+            ahh = true;
         }
-        yield return new WaitForSeconds(1f);
+      
+        yield return new WaitForSeconds(1f); 
+
         CanMove = true;
         CanAttack = true;
         IsMovingInput = true;
@@ -226,12 +238,14 @@ public class PlayerControllerV2 : MonoBehaviour
                 {
                     Health -= Damage;
                     GetComponentInChildren<AnimationAudio>().Audio8();
+                    if (PM.HasBeenHit == false) { PM.HasBeenHit = true; }
                 }
             }
             else
             {
                 Health -= Damage;
-                if(StaggerCoroutine != null) { StopCoroutine(StaggerCoroutine); }
+                if (PM.HasBeenHit == false) { PM.HasBeenHit = true; }
+                if (StaggerCoroutine != null) { StopCoroutine(StaggerCoroutine); }
                 StaggerCoroutine = StartCoroutine(Stagger());
             }
         }
@@ -1312,6 +1326,13 @@ public class PlayerControllerV2 : MonoBehaviour
     }
     IEnumerator Land()
     {
+        if (VerticalSpeed > 7) 
+        {
+            PlayerTakeDamage(30, true, 0);
+            if (Health <= 0) { AchievementsGameManager.Instance.UnlockedAchievement(3);  }//deid to fall damage
+        }
+
+
         StartCoroutine(StaminaRegenPause());
 
         if (JumpingCoroutine != null) { StopCoroutine(JumpingCoroutine); }
