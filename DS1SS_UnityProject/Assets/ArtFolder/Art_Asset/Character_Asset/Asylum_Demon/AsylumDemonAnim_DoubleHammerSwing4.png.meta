@@ -33,7 +33,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -42,12 +42,12 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 128
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -67,10 +67,10 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 16384
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -139,7 +139,112 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: AsylumDemonAnim_DoubleHammerSwing4_0
+      rect:
+        serializedVersion: 2
+        x: 338
+        y: 0
+        width: 581
+        height: 419
+      alignment: 9
+      pivot: {x: 0.27, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e300dd2e1b2065841a507b4ba8efc2a0
+      internalID: 1733639560
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AsylumDemonAnim_DoubleHammerSwing4_1
+      rect:
+        serializedVersion: 2
+        x: 1291
+        y: 0
+        width: 579
+        height: 419
+      alignment: 9
+      pivot: {x: 0.28, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fb34645639d67304a9ad035823ad2814
+      internalID: -33164736
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AsylumDemonAnim_DoubleHammerSwing4_3
+      rect:
+        serializedVersion: 2
+        x: 2244
+        y: 0
+        width: 564
+        height: 419
+      alignment: 9
+      pivot: {x: 0.3, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0c3b8e49914e9584b823f88bbb96e148
+      internalID: 656366093
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AsylumDemonAnim_DoubleHammerSwing4_5
+      rect:
+        serializedVersion: 2
+        x: 3142
+        y: 0
+        width: 525
+        height: 424
+      alignment: 9
+      pivot: {x: 0.42, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 06a8779c3a387b94c97f70332ee5471a
+      internalID: -766943395
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AsylumDemonAnim_DoubleHammerSwing4_6
+      rect:
+        serializedVersion: 2
+        x: 4106
+        y: 0
+        width: 514
+        height: 447
+      alignment: 9
+      pivot: {x: 0.42, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 66eca970dafdd9848800f8980b6b268b
+      internalID: 1951291347
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -150,7 +255,17 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      AsylumDemonAnim_DoubleHammerSwing4_0: 1733639560
+      AsylumDemonAnim_DoubleHammerSwing4_1: -33164736
+      AsylumDemonAnim_DoubleHammerSwing4_2: 753595593
+      AsylumDemonAnim_DoubleHammerSwing4_3: 656366093
+      AsylumDemonAnim_DoubleHammerSwing4_4: -452966659
+      AsylumDemonAnim_DoubleHammerSwing4_5: -766943395
+      AsylumDemonAnim_DoubleHammerSwing4_6: 1951291347
+      AsylumDemonAnim_DoubleHammerSwing4_7: 1343040640
+      AsylumDemonAnim_DoubleHammerSwing4_8: -2000236175
+      AsylumDemonAnim_DoubleHammerSwing4_9: -1361436313
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

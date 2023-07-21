@@ -33,7 +33,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -42,12 +42,12 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 128
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -67,10 +67,10 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 16384
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -139,7 +139,112 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: AsylumDemonAnim_HammerBackSwing3_0
+      rect:
+        serializedVersion: 2
+        x: 210
+        y: 0
+        width: 573
+        height: 419
+      alignment: 9
+      pivot: {x: 0.27, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 94cd89c4187f3724d89cfed8d81d9ec8
+      internalID: 608970648
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AsylumDemonAnim_HammerBackSwing3_2
+      rect:
+        serializedVersion: 2
+        x: 1124
+        y: 0
+        width: 595
+        height: 419
+      alignment: 9
+      pivot: {x: 0.24, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ae80c7dde29247449a4bc885d77d6d06
+      internalID: -411063924
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AsylumDemonAnim_HammerBackSwing3_4
+      rect:
+        serializedVersion: 2
+        x: 1978
+        y: 0
+        width: 525
+        height: 424
+      alignment: 9
+      pivot: {x: 0.39, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 310e8e3824e884c42a4f39a7ec0822f4
+      internalID: -726393799
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AsylumDemonAnim_HammerBackSwing3_5
+      rect:
+        serializedVersion: 2
+        x: 2903
+        y: 0
+        width: 514
+        height: 447
+      alignment: 9
+      pivot: {x: 0.36, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3adee4aa723e6cf4ba2a6a4d16fc5077
+      internalID: -1861409106
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AsylumDemonAnim_HammerBackSwing3_6
+      rect:
+        serializedVersion: 2
+        x: 3817
+        y: 0
+        width: 514
+        height: 447
+      alignment: 9
+      pivot: {x: 0.39, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 62dd08c95b4de5649895b0b84c6fdc27
+      internalID: -1206291622
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -150,7 +255,17 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      AsylumDemonAnim_HammerBackSwing3_0: 608970648
+      AsylumDemonAnim_HammerBackSwing3_1: -505874106
+      AsylumDemonAnim_HammerBackSwing3_2: -411063924
+      AsylumDemonAnim_HammerBackSwing3_3: 1784533915
+      AsylumDemonAnim_HammerBackSwing3_4: -726393799
+      AsylumDemonAnim_HammerBackSwing3_5: -1861409106
+      AsylumDemonAnim_HammerBackSwing3_6: -1206291622
+      AsylumDemonAnim_HammerBackSwing3_7: -97316514
+      AsylumDemonAnim_HammerBackSwing3_8: -1894164810
+      AsylumDemonAnim_HammerBackSwing3_9: 1780118076
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

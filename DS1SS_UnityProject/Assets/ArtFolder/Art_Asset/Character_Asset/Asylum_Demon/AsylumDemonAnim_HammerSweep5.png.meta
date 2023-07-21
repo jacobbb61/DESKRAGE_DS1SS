@@ -33,7 +33,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -42,12 +42,12 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 128
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -67,10 +67,10 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 16384
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -139,7 +139,133 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: AsylumDemonAnim_HammerSweep5_0
+      rect:
+        serializedVersion: 2
+        x: 359
+        y: 0
+        width: 741
+        height: 576
+      alignment: 9
+      pivot: {x: 0.62, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6569b72ecc8fc2946b909f7fb3af055e
+      internalID: 247580439
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AsylumDemonAnim_HammerSweep5_1
+      rect:
+        serializedVersion: 2
+        x: 3817
+        y: 0
+        width: 715
+        height: 644
+      alignment: 9
+      pivot: {x: 0.575, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d40261afe6be0be40b2612de5c0a45e4
+      internalID: -756651734
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AsylumDemonAnim_HammerSweep5_2
+      rect:
+        serializedVersion: 2
+        x: 4959
+        y: 0
+        width: 715
+        height: 668
+      alignment: 9
+      pivot: {x: 0.575, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bdddd3e5942539142b1a8c4e3d98af13
+      internalID: 635969199
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AsylumDemonAnim_HammerSweep5_7
+      rect:
+        serializedVersion: 2
+        x: 1533
+        y: 0
+        width: 701
+        height: 408
+      alignment: 9
+      pivot: {x: 0.59, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d5b5e36bebe296143923040713524a9d
+      internalID: 417666841
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AsylumDemonAnim_HammerSweep5_8
+      rect:
+        serializedVersion: 2
+        x: 2675
+        y: 0
+        width: 715
+        height: 408
+      alignment: 9
+      pivot: {x: 0.576, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ad1b53938771c504d9e561a1cb594503
+      internalID: 106950863
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AsylumDemonAnim_HammerSweep5_9
+      rect:
+        serializedVersion: 2
+        x: 6101
+        y: 0
+        width: 715
+        height: 557
+      alignment: 9
+      pivot: {x: 0.575, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1dbbf7a5d4e0b4249b917d460e8f1108
+      internalID: -279762187
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -150,7 +276,17 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      AsylumDemonAnim_HammerSweep5_0: 247580439
+      AsylumDemonAnim_HammerSweep5_1: -756651734
+      AsylumDemonAnim_HammerSweep5_2: 635969199
+      AsylumDemonAnim_HammerSweep5_3: -1959365328
+      AsylumDemonAnim_HammerSweep5_4: -1333275306
+      AsylumDemonAnim_HammerSweep5_5: -842890373
+      AsylumDemonAnim_HammerSweep5_6: 1227899250
+      AsylumDemonAnim_HammerSweep5_7: 417666841
+      AsylumDemonAnim_HammerSweep5_8: 106950863
+      AsylumDemonAnim_HammerSweep5_9: -279762187
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
