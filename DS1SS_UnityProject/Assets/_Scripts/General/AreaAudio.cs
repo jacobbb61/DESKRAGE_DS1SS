@@ -24,7 +24,12 @@ public class AreaAudio : MonoBehaviour
 
     }
 
-    private void Update()
+    private void OnEnable()
+    {
+        CheckIfInside();
+    }
+
+    private void LateUpdate()
     {
         if (InAudio) { StayInAudio(); }
         if (LM.CurrentLayerNumber != CurrentLayer) { ExitAudio(); }

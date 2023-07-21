@@ -5,7 +5,7 @@
 			<value>wind</value>
 		</property>
 		<property name="outputFormat">
-			<value>1</value>
+			<value>2</value>
 		</property>
 		<relationship name="folder">
 			<destination>{4ce9bc54-9afb-4459-a244-d686fee34a1d}</destination>
@@ -59,7 +59,11 @@
 			<destination>{2704f0d1-b685-4fcb-91ad-189fca62dc66}</destination>
 		</relationship>
 	</object>
-	<object class="EventAutomatableProperties" id="{c9501101-f5f5-426c-b070-d190e8dea68f}" />
+	<object class="EventAutomatableProperties" id="{c9501101-f5f5-426c-b070-d190e8dea68f}">
+		<property name="maximumDistance">
+			<value>85</value>
+		</property>
+	</object>
 	<object class="MarkerTrack" id="{43db65fd-b62e-4393-a771-74a02d7279b8}" />
 	<object class="GroupTrack" id="{a6620a38-8047-4ef3-b5ea-4bf95607b3b9}">
 		<relationship name="automationTracks">
@@ -111,6 +115,9 @@
 		</relationship>
 	</object>
 	<object class="EventMixerGroup" id="{f431271c-f044-465f-98e9-f0c7571939be}">
+		<property name="volume">
+			<value>3</value>
+		</property>
 		<property name="name">
 			<value>Audio 1</value>
 		</property>
@@ -141,6 +148,7 @@
 	<object class="MixerBusEffectChain" id="{88855771-af63-43fb-904e-e50cbdb46c2e}">
 		<relationship name="effects">
 			<destination>{3e5a171e-0a93-4d39-b7c7-82a650348383}</destination>
+			<destination>{75a79076-dbf3-4596-b7e4-ab9c606c6508}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{e284b389-7f68-48e5-b48d-8d7dbf198cc4}" />
@@ -153,6 +161,7 @@
 	</object>
 	<object class="MixerBusPanner" id="{5406640f-67f4-410c-9aa3-833894cfafd9}" />
 	<object class="MixerBusFader" id="{3e5a171e-0a93-4d39-b7c7-82a650348383}" />
+	<object class="SpatialiserEffect" id="{75a79076-dbf3-4596-b7e4-ab9c606c6508}" />
 	<object class="MixerBusFader" id="{6b0126ce-d316-4f36-8209-63d2fcd9fe99}" />
 	<object class="GainEffect" id="{27f3b1e1-a9ed-416a-a615-95bc96e0e1bd}">
 		<relationship name="automators">
