@@ -5,51 +5,80 @@ using FMODUnity;
 
 public class AnimationAudio : MonoBehaviour
 {
-    public EventReference Audio1Ref;
-    public EventReference Audio2Ref;
-    public EventReference Audio3Ref;
-    public EventReference Audio4Ref;
-    public EventReference Audio5Ref;
-    public EventReference Audio6Ref;
-    public EventReference Audio7Ref;
-    public EventReference Audio8Ref;
-    public EventReference Audio9Ref;
+    public EventReference ShortSwingAudioRef;
+    public EventReference MedSwingAudioRef;
+    public EventReference LongSwingAudioRef;
+    public EventReference PlayerDamageAudioRef;
+
+    public EventReference WalkAudioRef;
+    public EventReference Walk_Stone_AudioRef;
+    public EventReference Walk_WetStone_AudioRef;
+    public EventReference Walk_Wood_AudioRef;
+    public EventReference Walk_Snow_AudioRef;
 
 
-    public void Audio1()
+    public EventReference HitWoodRef;
+    public EventReference HitStoneRef;
+    public EventReference HitMetalRef;
+
+
+    public void ShortSwingAudio()
     {
-        RuntimeManager.PlayOneShot(Audio1Ref, transform.position);
+        RuntimeManager.PlayOneShot(ShortSwingAudioRef, transform.position);
     }
-    public void Audio2()
+    public void MedSwingAudio()
     {
-        RuntimeManager.PlayOneShot(Audio2Ref, transform.position);
+        RuntimeManager.PlayOneShot(MedSwingAudioRef, transform.position);
     }
-    public void Audio3()
+    public void LongSwingAudio()
     {
-        RuntimeManager.PlayOneShot(Audio3Ref, transform.position);
+        RuntimeManager.PlayOneShot(LongSwingAudioRef, transform.position);
     }
-    public void Audio4()
+    public void PlayerDamageAudio()
     {
-        RuntimeManager.PlayOneShot(Audio4Ref, transform.position);
+        RuntimeManager.PlayOneShot(PlayerDamageAudioRef, transform.position);
     }
-    public void Audio5()
+    public void WalkAudio()
     {
-        RuntimeManager.PlayOneShot(Audio5Ref, transform.position);
+        switch (GetComponentInParent<PlayerControllerV2>().GroundType)
+        {
+            case "Wood":
+                RuntimeManager.PlayOneShot(Walk_Wood_AudioRef, transform.position);
+                break;
+            case "Stone":
+                RuntimeManager.PlayOneShot(Walk_Stone_AudioRef, transform.position);
+                break;
+            case "WetStone":
+                RuntimeManager.PlayOneShot(Walk_WetStone_AudioRef, transform.position);
+                break;
+            case "Snow":
+                RuntimeManager.PlayOneShot(Walk_Snow_AudioRef, transform.position);
+                break;
+            default:
+                RuntimeManager.PlayOneShot(WalkAudioRef, transform.position);
+                break;
+        }
     }
-    public void Audio6()
+    public void HitObjectAudio()
     {
-        RuntimeManager.PlayOneShot(Audio6Ref, transform.position);
+        switch (GetComponentInParent<PlayerControllerV2>().WallHitType)
+        {
+            case "Wood":
+                RuntimeManager.PlayOneShot(HitWoodRef, transform.position);
+                break;
+            case "Stone":
+                RuntimeManager.PlayOneShot(HitStoneRef, transform.position);
+                break;
+            case "Metal":
+                RuntimeManager.PlayOneShot(HitMetalRef, transform.position);
+                break;
+            default:
+                RuntimeManager.PlayOneShot(HitStoneRef, transform.position);
+                break;
+        }
     }
-    public void Audio7()
+    public void HitMetal()
     {
-        RuntimeManager.PlayOneShot(Audio7Ref, transform.position);
-    }
-    public void Audio8()
-    {
-        RuntimeManager.PlayOneShot(Audio8Ref, transform.position);
-    }
-    public void Audio9()
-    {
-        RuntimeManager.PlayOneShot(Audio9Ref, transform.position);
+        RuntimeManager.PlayOneShot(HitMetalRef, transform.position);
     }
 }

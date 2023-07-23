@@ -34,14 +34,21 @@ public class PlayerAnimationEvents : MonoBehaviour
             if (hit.transform.CompareTag("Enemy"))
             {
                 hit.transform.GetComponent<EnemySaveManager>().TakeLightDamageEvent.Invoke();
+                return;
             }
             else if (hit.transform.CompareTag("Demon"))
             {
                 hit.transform.GetComponent<AsylumDemon>().TakeLightDamage();
+                return;
             }
             else if (hit.transform.CompareTag("Pursuer"))
             {
                 hit.transform.GetComponent<Pursuer>().TakeLightDamage();
+                return;
+            }
+            else if (hit.transform.CompareTag("Wall"))
+            {
+                PC.HitWall(hit.transform.GetComponent<ObjectType_AudioRef>().ObjectType);
             }
             else
             {
@@ -62,14 +69,21 @@ public class PlayerAnimationEvents : MonoBehaviour
             if (hit.transform.CompareTag("Enemy"))
             {
                 hit.transform.GetComponent<EnemySaveManager>().TakeLightDamageEvent.Invoke();
+                return;
             }
             else if (hit.transform.CompareTag("Demon"))
             {
                 hit.transform.GetComponent<AsylumDemon>().TakeLightDamage();
+                return;
             }
             else if (hit.transform.CompareTag("Pursuer"))
             {
                 hit.transform.GetComponent<Pursuer>().TakeLightDamage();
+                return;
+            }
+            else if (hit.transform.CompareTag("Wall"))
+            {
+                PC.HitWall(hit.transform.GetComponent<ObjectType_AudioRef>().ObjectType);
             }
             else
             {
@@ -89,14 +103,21 @@ public class PlayerAnimationEvents : MonoBehaviour
             if (hit.transform.CompareTag("Enemy"))
             {
                 hit.transform.GetComponent<EnemySaveManager>().TakeHeavyDamageEvent.Invoke();
+                return;
             }
             else if (hit.transform.CompareTag("Demon"))
             {
                 hit.transform.GetComponent<AsylumDemon>().TakeHeavyDamage();
+                return;
             }
             else if (hit.transform.CompareTag("Pursuer"))
             {
                 hit.transform.GetComponent<Pursuer>().TakeHeavyDamage();
+                return;
+            }
+            else if (hit.transform.CompareTag("Wall"))
+            {
+                PC.HitWall(hit.transform.GetComponent<ObjectType_AudioRef>().ObjectType);
             }
             else
             {
@@ -116,14 +137,21 @@ public class PlayerAnimationEvents : MonoBehaviour
             if (hit.transform.CompareTag("Enemy"))
             {
                 hit.transform.GetComponent<EnemySaveManager>().TakeHeavyDamageEvent.Invoke();
+                return;
             }
             else if (hit.transform.CompareTag("Demon"))
             {
-                hit.transform.GetComponent<AsylumDemon>().TakeHeavyDamage();
+                hit.transform.GetComponent<AsylumDemon>().TakeHeavyDamage(); 
+                return;
             }
             else if (hit.transform.CompareTag("Pursuer"))
             {
                 hit.transform.GetComponent<Pursuer>().TakeHeavyDamage();
+                return;
+            }
+            else if (hit.transform.CompareTag("Wall"))
+            {
+                PC.HitWall(hit.transform.GetComponent<ObjectType_AudioRef>().ObjectType);
             }
             else
             {

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1117873118704686403}
   m_Layer: 2
   m_Name: Door1
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -5193,8 +5193,8 @@ MonoBehaviour:
   doorType: 0
   targetLayer: 0
   inBossFight: 0
-  isDemonDoor: 0
   DemonArena: {fileID: 0}
+  PursuerArena: {fileID: 0}
   isPursuerDoor: 0
   CurrentDoorState_This: 
   doorCollider: {fileID: 4638701453398582779}

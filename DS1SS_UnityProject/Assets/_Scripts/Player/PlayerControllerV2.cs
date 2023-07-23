@@ -21,15 +21,15 @@ public class PlayerControllerV2 : MonoBehaviour
     [Header("stuff for jacob")]
     public float MovementInputDirection;
     public float PlayerDirection;
-    public float JumpDirection;
+    private float JumpDirection;
     public bool IsUiOpen = false;
 
     [Header("movement states")]
     public bool IsGrounded;
-    public bool IsStaminaRegen;
+    private bool IsStaminaRegen;
     public bool CanMove;
     public bool IsRolling;
-    public bool IsBackStepping;
+    private bool IsBackStepping;
     public bool IsRunning;
     public bool IsJumping;
     private bool ShouldCheckGrounded;
@@ -37,7 +37,7 @@ public class PlayerControllerV2 : MonoBehaviour
     public bool IsMovingInput;
     private bool IsWaitingToRun;
     private bool DontDondgeOnThisRelease;
-    public bool IsIdleAnim;
+    private bool IsIdleAnim;
     public float VerticalSpeed;
     public bool FootAOnSlope;
     public bool FootBOnSlope;
@@ -71,8 +71,8 @@ public class PlayerControllerV2 : MonoBehaviour
     public bool IsImmune;
     public bool IsLockedOn;
     public bool IsBlocking;
-    public bool IsHealing;
-    public bool IsPlunging;
+    private bool IsHealing;
+    private bool IsPlunging;
     public bool CanPlunge;
     public bool CanUseSecondEstus;
     public bool CanAttack;
@@ -81,7 +81,6 @@ public class PlayerControllerV2 : MonoBehaviour
 
     public bool CanRollOut; //important
 
-    private bool SwapLightAnim;
 
     [Header("Combat Data to edit")]
     public float EstusHealAmount;
@@ -99,6 +98,9 @@ public class PlayerControllerV2 : MonoBehaviour
     public float HeavyAttackRange;
     public float HeavyAttackFollowUpRange;
 
+    [Header("Audio stuff")]
+    public string WallHitType;
+    public string GroundType;
 
     [Header("variables")]
     public GameObject LayerManager;
@@ -237,7 +239,7 @@ public class PlayerControllerV2 : MonoBehaviour
                 else
                 {
                     Health -= Damage;
-                    GetComponentInChildren<AnimationAudio>().Audio8();
+                    GetComponentInChildren<AnimationAudio>().PlayerDamageAudio();
                     if (PM.HasBeenHit == false) { PM.HasBeenHit = true; }
                 }
             }
@@ -1078,6 +1080,7 @@ public class PlayerControllerV2 : MonoBehaviour
                     IsGrounded = false;
                     FootAOnSlope = false;
                 }
+                
             }
             if (hitB.collider != null)
             {
@@ -1100,6 +1103,11 @@ public class PlayerControllerV2 : MonoBehaviour
             if (hitA.collider == null && hitB.collider == null)
             {
                 IsGrounded = false;
+            }
+            else
+            {
+                if (hitB.collider == null) { GroundType = hitA.collider.GetComponent<ObjectType_AudioRef>().ObjectType; }
+                else { GroundType = hitB.collider.GetComponent<ObjectType_AudioRef>().ObjectType; }
             }
 
             if (!IsGrounded && State != "Rolling" && State != "BackStepping")
@@ -1347,7 +1355,9 @@ public class PlayerControllerV2 : MonoBehaviour
         if (IsMovingInput) { State = "Walking"; } else { State = "Idle"; }     
     }
 
-
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     IEnumerator LightAttack()
     {
@@ -1588,6 +1598,9 @@ public class PlayerControllerV2 : MonoBehaviour
         }
     }
 
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public void GiveEstus(int num)
     {
         if (num == 6)
@@ -1601,5 +1614,19 @@ public class PlayerControllerV2 : MonoBehaviour
            else if (MaxEstus == 0) { MaxEstus = 3; CurrentEstus = 3; }
         }
        // Debug.Log("Max was " + MaxEstus + "is now " + num); 
+    }
+
+    public void HitWall(string WallHit)
+    {
+        WallHitType = WallHit;
+        StartCoroutine(WallStagger());
+    }
+
+    IEnumerator WallStagger()
+    {
+        Anim.Play("PlayerAnim_StaggerHitObject");
+        State = "Stagger";
+        yield return new WaitForSeconds(.5f);
+        if (MovementInputDirection == 0) { State = "Idle"; } else { State = "Walking"; }
     }
 }
