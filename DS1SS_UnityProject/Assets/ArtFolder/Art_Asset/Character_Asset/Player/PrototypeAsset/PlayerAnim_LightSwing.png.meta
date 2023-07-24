@@ -186,10 +186,10 @@ TextureImporter:
       name: PlayerAnim_LightSwing_2
       rect:
         serializedVersion: 2
-        x: 642
-        y: 1
-        width: 95
-        height: 112
+        x: 665
+        y: 0
+        width: 81
+        height: 105
       alignment: 9
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -207,12 +207,12 @@ TextureImporter:
       name: PlayerAnim_LightSwing_3
       rect:
         serializedVersion: 2
-        x: 876
+        x: 900
         y: 0
-        width: 131
-        height: 109
+        width: 95
+        height: 112
       alignment: 9
-      pivot: {x: 0.3666205, y: 0}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -228,12 +228,12 @@ TextureImporter:
       name: PlayerAnim_LightSwing_4
       rect:
         serializedVersion: 2
-        x: 1120
+        x: 1144
         y: 0
-        width: 136
-        height: 123
+        width: 107
+        height: 112
       alignment: 9
-      pivot: {x: 0.25772992, y: 0}
+      pivot: {x: 0.46, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -249,12 +249,12 @@ TextureImporter:
       name: PlayerAnim_LightSwing_5
       rect:
         serializedVersion: 2
-        x: 1285
+        x: 1388
         y: 0
-        width: 234
-        height: 122
+        width: 131
+        height: 109
       alignment: 9
-      pivot: {x: 0.44412413, y: 0}
+      pivot: {x: 0.36, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -270,12 +270,12 @@ TextureImporter:
       name: PlayerAnim_LightSwing_6
       rect:
         serializedVersion: 2
-        x: 1541
+        x: 1639
         y: 0
-        width: 226
-        height: 107
+        width: 121
+        height: 113
       alignment: 9
-      pivot: {x: 0.4639828, y: 0}
+      pivot: {x: 0.34, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -291,12 +291,12 @@ TextureImporter:
       name: PlayerAnim_LightSwing_9
       rect:
         serializedVersion: 2
-        x: 2053
+        x: 2309
         y: 0
-        width: 164
-        height: 99
+        width: 234
+        height: 122
       alignment: 9
-      pivot: {x: 0.64137083, y: 0}
+      pivot: {x: 0.43, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -312,12 +312,12 @@ TextureImporter:
       name: PlayerAnim_LightSwing_10
       rect:
         serializedVersion: 2
-        x: 2309
+        x: 2565
         y: 0
-        width: 164
-        height: 99
+        width: 229
+        height: 109
       alignment: 9
-      pivot: {x: 0.6649334, y: 0}
+      pivot: {x: 0.43, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -330,57 +330,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerAnim_LightSwing_11
-      rect:
-        serializedVersion: 2
-        x: 2565
-        y: 0
-        width: 164
-        height: 99
-      alignment: 9
-      pivot: {x: 0.65567833, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 99c197740ea088146a7f2100493e1ce9
-      internalID: 136894607
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: PlayerAnim_LightSwing_FollowUp_1
-      rect:
-        serializedVersion: 2
-        x: 2850
-        y: 0
-        width: 141
-        height: 98
-      alignment: 9
-      pivot: {x: 0.52321416, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 16adda59b0988854b9af8ade8df02282
-      internalID: 138746473
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: PlayerAnim_LightSwing_8
       rect:
         serializedVersion: 2
-        x: 1797
+        x: 2123
         y: 0
-        width: 170
-        height: 99
+        width: 143
+        height: 104
       alignment: 9
-      pivot: {x: 0.6199822, y: 0}
+      pivot: {x: 0.26, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -393,127 +351,442 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerAnim_LightSwing_FollowUp_2
+      name: PlayerAnim_LightSwing_7
       rect:
         serializedVersion: 2
-        x: 3074
+        x: 1888
+        y: 0
+        width: 136
+        height: 123
+      alignment: 9
+      pivot: {x: 0.27, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7f4f555cf7aeef843b80f2e2f3cf36b3
+      internalID: -1278697047
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayerAnim_LightSwing_12
+      rect:
+        serializedVersion: 2
+        x: 2821
+        y: 0
+        width: 170
+        height: 99
+      alignment: 9
+      pivot: {x: 0.59, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 048e86b7c1a183941803f7f166fdeaee
+      internalID: -2015388753
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayerAnim_LightSwing_13
+      rect:
+        serializedVersion: 2
+        x: 3077
+        y: 0
+        width: 164
+        height: 99
+      alignment: 9
+      pivot: {x: 0.61, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 545ee5d7d977ff64f878ef943f1aa1de
+      internalID: 821347700
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayerAnim_LightSwing_14
+      rect:
+        serializedVersion: 2
+        x: 3333
+        y: 0
+        width: 164
+        height: 99
+      alignment: 9
+      pivot: {x: 0.62, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 65b70a1c97354dc48aa5e85ac2cded31
+      internalID: -127091685
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayerAnim_LightSwing_15
+      rect:
+        serializedVersion: 2
+        x: 3589
+        y: 0
+        width: 164
+        height: 99
+      alignment: 9
+      pivot: {x: 0.62, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fbd35819df2e889419a27e395215505a
+      internalID: 1510044446
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayerAnim_LightSwing_16
+      rect:
+        serializedVersion: 2
+        x: 3874
+        y: 0
+        width: 141
+        height: 98
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ee84808638d30bb49aa04765f650dbfc
+      internalID: -754606281
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayerAnim_LightSwing_17
+      rect:
+        serializedVersion: 2
+        x: 4143
+        y: 0
+        width: 120
+        height: 98
+      alignment: 9
+      pivot: {x: 0.46, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a72397e23544f9044bfdc2e280f497f1
+      internalID: 1892779405
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayerAnim_LightSwing_18
+      rect:
+        serializedVersion: 2
+        x: 4412
+        y: 0
+        width: 79
+        height: 106
+      alignment: 9
+      pivot: {x: 0.55, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6c91b1ed67b10bc448ea100850f6eaa6
+      internalID: -1729201175
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayerAnim_LightSwing_19
+      rect:
+        serializedVersion: 2
+        x: 4671
+        y: 0
+        width: 75
+        height: 110
+      alignment: 9
+      pivot: {x: 0.55, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2a40b0a3fe04cba4d9c2d0dc9691b08d
+      internalID: 1555908155
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayerAnim_LightSwing_20
+      rect:
+        serializedVersion: 2
+        x: 4937
+        y: 0
+        width: 83
+        height: 112
+      alignment: 9
+      pivot: {x: 0.4, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2127a0642bf178844bdbbf878b2f3b09
+      internalID: 1358652900
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayerAnim_LightSwing_21
+      rect:
+        serializedVersion: 2
+        x: 5122
+        y: 0
+        width: 157
+        height: 99
+      alignment: 9
+      pivot: {x: 0.71, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c9ab17675f9352d4ebefdcf114316e83
+      internalID: 1848532990
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayerAnim_LightSwing_22
+      rect:
+        serializedVersion: 2
+        x: 5378
         y: 0
         width: 254
         height: 102
       alignment: 9
-      pivot: {x: 0.5469202, y: 0}
+      pivot: {x: 0.53, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e3a839b6e3b4d39408e09d13a202186d
-      internalID: 1893163378
+      spriteID: 1dfe1f5e236317443aeb395354cbbef9
+      internalID: 1510325765
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerAnim_LightSwing_FollowUp_3
+      name: PlayerAnim_LightSwing_23
       rect:
         serializedVersion: 2
-        x: 3342
+        x: 5646
         y: 0
         width: 242
         height: 102
       alignment: 9
-      pivot: {x: 0.5217467, y: 0}
+      pivot: {x: 0.51, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8a45dda5243e1bc43b3ea10596264b2f
-      internalID: -262510892
+      spriteID: 28784b29d449a4c48b5b9d71544f0f32
+      internalID: -484451470
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerAnim_LightSwing_FollowUp_4
+      name: PlayerAnim_LightSwing_24
       rect:
         serializedVersion: 2
-        x: 3652
+        x: 5956
         y: 0
         width: 188
         height: 102
       alignment: 9
-      pivot: {x: 0.37302092, y: 0}
+      pivot: {x: 0.37, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d717a47c995ee6741bc0783e92a319eb
-      internalID: 1350390164
+      spriteID: 296f0bcc5cf88d943bde80268249df27
+      internalID: -243007048
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerAnim_LightSwing_FollowUp_5
+      name: PlayerAnim_LightSwing_25
       rect:
         serializedVersion: 2
-        x: 3908
+        x: 6212
         y: 0
         width: 188
         height: 102
       alignment: 9
-      pivot: {x: 0.37572074, y: 0}
+      pivot: {x: 0.38, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c0b6ed3cbda0d964dbdd10017dd8670e
-      internalID: -1895125831
+      spriteID: a1e21805209708649abfaf4110dbb6af
+      internalID: 525821924
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerAnim_LightSwing_FollowUp_6
+      name: PlayerAnim_LightSwing_26
       rect:
         serializedVersion: 2
-        x: 4164
+        x: 6468
         y: 0
         width: 188
         height: 102
       alignment: 9
-      pivot: {x: 0.38399944, y: 0}
+      pivot: {x: 0.37, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b9ac596c2df1f9e4b80c1a9ee9e6e72d
-      internalID: 1672926500
+      spriteID: f84a644bd9ec8fb4c8611be536c2fe3b
+      internalID: -1609076575
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerAnim_LightSwing_FollowUp_7
+      name: PlayerAnim_LightSwing_27
       rect:
         serializedVersion: 2
-        x: 4420
+        x: 6724
         y: 0
         width: 188
         height: 102
       alignment: 9
-      pivot: {x: 0.37952438, y: 0}
+      pivot: {x: 0.37, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 79f16a48b31894e4882e7a789e9cad6c
-      internalID: -1657364591
+      spriteID: 816eb2051d517e84dbf3136edb636ab3
+      internalID: -1474283147
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayerAnim_LightSwing_28
+      rect:
+        serializedVersion: 2
+        x: 7004
+        y: 0
+        width: 144
+        height: 103
+      alignment: 9
+      pivot: {x: 0.31, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ba1e691ce60c533459000bbf781aa8db
+      internalID: -1309809665
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayerAnim_LightSwing_29
+      rect:
+        serializedVersion: 2
+        x: 7243
+        y: 0
+        width: 118
+        height: 102
+      alignment: 9
+      pivot: {x: 0.49, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a4c3e16993bd06046ad5e58cb0805bd5
+      internalID: 183460942
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayerAnim_LightSwing_30
+      rect:
+        serializedVersion: 2
+        x: 7522
+        y: 0
+        width: 93
+        height: 106
+      alignment: 9
+      pivot: {x: 0.4, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8fbc079d5f96538488774e8f923326c7
+      internalID: 944904996
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayerAnim_LightSwing_31
+      rect:
+        serializedVersion: 2
+        x: 7778
+        y: 0
+        width: 83
+        height: 112
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3589f3ba757f2134686ce5b2f1e58a64
+      internalID: -1456061775
       vertices: []
       indices: 
       edges: []
@@ -533,22 +806,35 @@ TextureImporter:
       PlayerAnim_LightSwing_1: 828302667
       PlayerAnim_LightSwing_10: -637395747
       PlayerAnim_LightSwing_11: 136894607
+      PlayerAnim_LightSwing_12: -2015388753
+      PlayerAnim_LightSwing_13: 821347700
+      PlayerAnim_LightSwing_14: -127091685
+      PlayerAnim_LightSwing_15: 1510044446
+      PlayerAnim_LightSwing_16: -754606281
+      PlayerAnim_LightSwing_17: 1892779405
+      PlayerAnim_LightSwing_18: -1729201175
       PlayerAnim_LightSwing_19: 1555908155
       PlayerAnim_LightSwing_2: 1232094238
+      PlayerAnim_LightSwing_20: 1358652900
+      PlayerAnim_LightSwing_21: 1848532990
+      PlayerAnim_LightSwing_22: 1510325765
+      PlayerAnim_LightSwing_23: -484451470
+      PlayerAnim_LightSwing_24: -243007048
+      PlayerAnim_LightSwing_25: 525821924
+      PlayerAnim_LightSwing_26: -1609076575
+      PlayerAnim_LightSwing_27: -1474283147
+      PlayerAnim_LightSwing_28: -1309809665
+      PlayerAnim_LightSwing_29: 183460942
       PlayerAnim_LightSwing_3: 1603102063
+      PlayerAnim_LightSwing_30: 944904996
+      PlayerAnim_LightSwing_31: -1456061775
+      PlayerAnim_LightSwing_32: -1561849066
       PlayerAnim_LightSwing_4: -96256297
       PlayerAnim_LightSwing_5: -795719196
       PlayerAnim_LightSwing_6: -1925187278
       PlayerAnim_LightSwing_7: -1278697047
       PlayerAnim_LightSwing_8: -1599302729
       PlayerAnim_LightSwing_9: 1614170594
-      PlayerAnim_LightSwing_FollowUp_1: 138746473
-      PlayerAnim_LightSwing_FollowUp_2: 1568898668
-      PlayerAnim_LightSwing_FollowUp_3: -1789646718
-      PlayerAnim_LightSwing_FollowUp_4: -1875799954
-      PlayerAnim_LightSwing_FollowUp_5: -1895125831
-      PlayerAnim_LightSwing_FollowUp_6: 1672926500
-      PlayerAnim_LightSwing_FollowUp_7: -1657364591
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
