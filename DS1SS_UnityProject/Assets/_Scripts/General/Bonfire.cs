@@ -16,6 +16,8 @@ public class Bonfire : MonoBehaviour
     private Animator Anim;
 
     public GameObject[] EnemySaveManagerList;
+    public AsylumDemon AsylumDemon;
+    public Pursuer Pursuer;
     private GameObject BonfirePromptUI;
 
     public LayerManagerV2 LayerManager;
@@ -115,6 +117,8 @@ public class Bonfire : MonoBehaviour
                 break;
         }
 
+        //update boss pos
+        AsylumDemon.ResetPos();
 
         //upadate oscar
         OM.Reload();

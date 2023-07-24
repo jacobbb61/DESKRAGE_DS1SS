@@ -134,6 +134,14 @@ public class AsylumDemon : MonoBehaviour
         if (IsActive) { UIAssets.SetActive(true); }else { UIAssets.SetActive(false); }
     }
 
+    public void ResetPos()
+    {
+        if (isActiveAndEnabled == false)
+        {
+            transform.position = OriginPosition;
+        }
+    }
+
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// updates
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -444,7 +452,7 @@ public class AsylumDemon : MonoBehaviour
 
 
         yield return new WaitForSeconds(HD_AttackAnimationTime);
-
+        IsImmune = false;
         Behaviour = "Hostile";
         IsCoolingDown = true;
         Anim.Play("AsylumDemonAnim_Idle");
@@ -477,6 +485,7 @@ public class AsylumDemon : MonoBehaviour
 
         yield return new WaitForSeconds(RH_AttackAnimationTime);
 
+        IsImmune = false;
         Behaviour = "Hostile";
         IsCoolingDown = true;
         Anim.Play("AsylumDemonAnim_Idle");
@@ -517,6 +526,7 @@ public class AsylumDemon : MonoBehaviour
 
         yield return new WaitForSeconds(LH_AttackAnimationTime);
 
+        IsImmune = false;
         Behaviour = "Hostile";
         IsCoolingDown = true;
         Anim.Play("AsylumDemonAnim_Idle");
@@ -548,6 +558,8 @@ public class AsylumDemon : MonoBehaviour
 
 
         yield return new WaitForSeconds(GP_AttackAnimationTime);
+
+        IsImmune = false;
 
         Behaviour = "Hostile";
         IsCoolingDown = true;
@@ -581,6 +593,8 @@ public class AsylumDemon : MonoBehaviour
 
         yield return new WaitForSeconds(HBS_AttackAnimationTime);
 
+        IsImmune = false;
+
         Behaviour = "Hostile";
         IsCoolingDown = true;
         Anim.Play("AsylumDemonAnim_Idle");
@@ -613,6 +627,8 @@ public class AsylumDemon : MonoBehaviour
 
         yield return new WaitForSeconds(HFS_AttackAnimationTime);
 
+        IsImmune = false;
+
         Behaviour = "Hostile";
         IsCoolingDown = true;
         Anim.Play("AsylumDemonAnim_Idle");
@@ -644,6 +660,8 @@ public class AsylumDemon : MonoBehaviour
 
         yield return new WaitForSeconds(DHS_AttackAnimationTime);
 
+        IsImmune = false;
+
         Behaviour = "Hostile";
         IsCoolingDown = true;
         Anim.Play("AsylumDemonAnim_Idle");
@@ -667,6 +685,8 @@ public class AsylumDemon : MonoBehaviour
 
 
         yield return new WaitForSeconds(HSP_AttackAnimationTime);
+
+        IsImmune = false;
 
         Behaviour = "Hostile";
         IsCoolingDown = true;
