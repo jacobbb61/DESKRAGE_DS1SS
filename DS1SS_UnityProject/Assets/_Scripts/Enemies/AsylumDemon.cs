@@ -136,7 +136,7 @@ public class AsylumDemon : MonoBehaviour
 
     public void ResetPos()
     {
-        if (isActiveAndEnabled == false)
+        if (IsDead == false)
         {
             transform.position = OriginPosition;
         }
