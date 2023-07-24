@@ -1106,8 +1106,13 @@ public class PlayerControllerV2 : MonoBehaviour
             }
             else
             {
-                if (hitB.collider == null) { GroundType = hitA.collider.GetComponent<ObjectType_AudioRef>().ObjectType; }
-                else { GroundType = hitB.collider.GetComponent<ObjectType_AudioRef>().ObjectType; }
+                if (hitA.collider == null)
+                {
+                    if (hitA.transform.CompareTag("Wall") || hitA.transform.CompareTag("Slope"))
+                    {
+                        GroundType = hitA.collider.GetComponent<ObjectType_AudioRef>().ObjectType;
+                    }
+                }
             }
 
             if (!IsGrounded && State != "Rolling" && State != "BackStepping")
@@ -1243,13 +1248,13 @@ public class PlayerControllerV2 : MonoBehaviour
     void StaminaRegen()
     {
         Stamina = Mathf.Clamp(Stamina, 0, 100);
-        if (Stamina < 100) { Stamina += Time.deltaTime * 30; } else { Stamina = 100; IsStaminaRegen = false; }
+        if (Stamina < 100) { Stamina += Time.deltaTime * 50; } else { Stamina = 100; IsStaminaRegen = false; }
 
     }
     IEnumerator StaminaRegenPause()
     {
         IsStaminaRegen = false;
-        yield return new WaitForSeconds(.65f);
+        yield return new WaitForSeconds(.5f);
         IsStaminaRegen = true;
     }
 

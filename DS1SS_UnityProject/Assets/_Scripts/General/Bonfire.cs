@@ -102,11 +102,11 @@ public class Bonfire : MonoBehaviour
                 //PM.Bonfire_1.BonfireRest();
                 break;
             case 2:
-                PM.gameObject.transform.position = PM.Bonfire_1.transform.position;
+                PM.gameObject.transform.position = PM.Bonfire_2.transform.position;
                 //PM.Bonfire_2.BonfireRest();
                 break;
             case 3:
-                PM.gameObject.transform.position = PM.Bonfire_1.transform.position;
+                PM.gameObject.transform.position = PM.Bonfire_3.transform.position;
                 //PM.Bonfire_3.BonfireRest();
                 break;
             default:
