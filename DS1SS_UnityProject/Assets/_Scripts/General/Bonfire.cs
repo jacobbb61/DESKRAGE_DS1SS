@@ -22,6 +22,8 @@ public class Bonfire : MonoBehaviour
 
     public LayerManagerV2 LayerManager;
 
+    public Animator FireAnim;
+
     void Start()
     {
 
@@ -41,6 +43,12 @@ public class Bonfire : MonoBehaviour
 
     }
 
+    private void OnEnable()
+    {
+        if (BonfireEverUsed) {  FireAnim.Play("BonfireLightIdle"); }
+        else { FireAnim.Play("BonfireAshIdle"); }
+    }
+
     IEnumerator UseThisBonfire()
     {
         PC.MyRb.velocity = Vector2.zero;
@@ -54,7 +62,7 @@ public class Bonfire : MonoBehaviour
         yield return new WaitForSeconds(1);
 
         if (BonfireEverUsed) { Anim.Play("BonfireLitActivate"); }
-        else { Anim.Play("BonfireLitFirstTime"); BonfireEverUsed = true; }
+        else { Anim.Play("BonfireLitFirstTime"); BonfireEverUsed = true;FireAnim.Play("BonfireLightUp");  }
         
         yield return new WaitForSeconds(1);
         PC.PlayerFinishInteraction();
