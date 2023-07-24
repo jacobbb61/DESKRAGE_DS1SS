@@ -106,29 +106,29 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.11666667
+  - time: 0.1
     functionName: MedSwingAudio
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.13333334
+  - time: 0.1
     functionName: WalkAudio
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.15
-    functionName: CameraShake_DirectionalLightShake
+  - time: 0.13333334
+    functionName: LightAttackFollowUp
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 0.18333334
-    functionName: LightAttackFollowUp
+    functionName: CameraShake_DirectionalLightShake
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
