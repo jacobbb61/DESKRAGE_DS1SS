@@ -145,9 +145,10 @@ public class AsylumDemonArena : MonoBehaviour
                     Boss.IsCoolingDown = false;
                     Boss.Health = Boss.MaxHealth;
                     Boss.Behaviour = "Hostile";
+                    FMODinstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
                     FMODinstance = FMODUnity.RuntimeManager.CreateInstance(Theme_FirstPhase);
                     FMODinstance.start();
-                   // FMODinstance.release();
+                    FMODinstance.release();
                     break;
                 }
             case "Open":
