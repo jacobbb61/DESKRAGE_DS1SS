@@ -677,7 +677,12 @@ public class OscarManager : MonoBehaviour
 
     public void GiveEstus(int num)
     {
-      PC.GiveEstus(num);
+        PC.GiveEstus(num);
+
+    }
+
+    public void EstusUI(int num)
+    {
       ItemSymbol.texture = EstusSymbol;
       ItemName.text = EstusName;
       ItemQuantity.text = num.ToString();

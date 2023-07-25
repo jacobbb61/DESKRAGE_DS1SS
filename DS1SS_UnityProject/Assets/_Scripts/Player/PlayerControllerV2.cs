@@ -524,10 +524,14 @@ public class PlayerControllerV2 : MonoBehaviour
         {
             if (CanFollowUp)
             {
+                if (LightAttackCoroutine != null) StopCoroutine(LightAttackCoroutine);
+                if (LightAttackFollowUpCoroutine != null) StopCoroutine(LightAttackFollowUpCoroutine);
                 ProcessInput_RT_Cancel();
             }
             else if (CanFollowUpAgain)
             {
+                if (LightAttackCoroutine != null) StopCoroutine(LightAttackCoroutine);
+                if (LightAttackFollowUpCoroutine != null) StopCoroutine(LightAttackFollowUpCoroutine);
                 ProcessInput_RT_CancelAgain();
             }
             else
@@ -626,10 +630,14 @@ public class PlayerControllerV2 : MonoBehaviour
         {
             if (CanFollowUp)
             {
+                if (HeavyAttackCoroutine != null) StopCoroutine(HeavyAttackCoroutine);
+                if (HeavyAttackFollowUpCoroutine != null) StopCoroutine(HeavyAttackFollowUpCoroutine);
                 ProcessInput_RB_Cancel();
             }
             else if (CanFollowUpAgain)
             {
+                if (HeavyAttackCoroutine != null) StopCoroutine(HeavyAttackCoroutine);
+                if (HeavyAttackFollowUpCoroutine != null) StopCoroutine(HeavyAttackFollowUpCoroutine);
                 ProcessInput_RB_CancelAgain();
             }
             else
@@ -1106,13 +1114,21 @@ public class PlayerControllerV2 : MonoBehaviour
             }
             else
             {
-                if (hitA.collider == null)
+                if (hitA.collider != null)
                 {
-                    if (hitA.transform.CompareTag("Wall") || hitA.transform.CompareTag("Slope"))
+                    if (hitA.transform.CompareTag("Ground") || hitA.transform.CompareTag("Slope"))
                     {
                         GroundType = hitA.collider.GetComponent<ObjectType_AudioRef>().ObjectType;
                     }
                 }
+                else if (hitB.collider != null)
+                {
+                    if (hitB.transform.CompareTag("Ground") || hitB.transform.CompareTag("Slope"))
+                    {
+                        GroundType = hitB.collider.GetComponent<ObjectType_AudioRef>().ObjectType;
+                    }
+                }
+
             }
 
             if (!IsGrounded && State != "Rolling" && State != "BackStepping")
@@ -1148,8 +1164,8 @@ public class PlayerControllerV2 : MonoBehaviour
                 if (MovementInputDirection == 1)
                 { //going against slope
 
-                    WalkSpeed = 3f;
-                    RunSpeed = 5.5f;
+                    WalkSpeed = 3.5f;
+                    RunSpeed = 6f;
                     if (IsMovingInput)
                     {
                         VerticalSpeed = 0f;
@@ -1610,13 +1626,13 @@ public class PlayerControllerV2 : MonoBehaviour
     {
         if (num == 6)
         {
-            MaxEstus = 6;
-            CurrentEstus = 6;
+            if (MaxEstus == 3) { MaxEstus = 6; CurrentEstus = 6; Oscar.EstusUI(3);  }
+            else if (MaxEstus == 0) { MaxEstus = 6; CurrentEstus = 6; Oscar.EstusUI(6); }
         }
         if (num == 3)
         {
-           if (MaxEstus == 3) { MaxEstus = 6; CurrentEstus = 6; }
-           else if (MaxEstus == 0) { MaxEstus = 3; CurrentEstus = 3; }
+           if (MaxEstus == 3) { MaxEstus = 6; CurrentEstus = 6; Oscar.EstusUI(3); }
+           else if (MaxEstus == 0) { MaxEstus = 3; CurrentEstus = 3; Oscar.EstusUI(3); }
         }
        // Debug.Log("Max was " + MaxEstus + "is now " + num); 
     }

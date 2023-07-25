@@ -138,7 +138,7 @@ public class AsylumDemon : MonoBehaviour
     {
         if (IsDead == false)
         {
-            transform.position = OriginPosition;
+            transform.localPosition = OriginPosition;
         }
     }
 

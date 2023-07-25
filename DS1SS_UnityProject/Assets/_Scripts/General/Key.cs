@@ -14,6 +14,8 @@ public class Key : MonoBehaviour
     private PlayerManager playerManager;
     private PlayerControllerV2 PC;
     private CanvasManager canvasManager;
+
+    public GameObject ItemAsset;
     
     [Tooltip("Current door tags: Cell, A, K, S")]public string targetDoorTag;
 
@@ -121,7 +123,7 @@ public class Key : MonoBehaviour
                 }
         }
         ItemSymbol.texture = KeySymbol;
-        
+        ItemAsset.SetActive(false);
         ItemQuantity.text = "1";
         StartCoroutine(PopUp());
         Debug.Log(this.name + " picked up. " + correspondingDoor.gameObject + " unlocked");
