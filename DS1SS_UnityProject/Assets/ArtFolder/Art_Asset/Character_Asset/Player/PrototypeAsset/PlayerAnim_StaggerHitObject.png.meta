@@ -144,12 +144,12 @@ TextureImporter:
       name: PlayerAnim_StaggerHitObject_0
       rect:
         serializedVersion: 2
-        x: 156
+        x: 5
         y: 0
-        width: 82
-        height: 112
+        width: 234
+        height: 122
       alignment: 9
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: 0.43, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -165,12 +165,12 @@ TextureImporter:
       name: PlayerAnim_StaggerHitObject_1
       rect:
         serializedVersion: 2
-        x: 414
+        x: 281
         y: 0
-        width: 89
-        height: 112
+        width: 137
+        height: 101
       alignment: 9
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: 0.59, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -186,12 +186,12 @@ TextureImporter:
       name: PlayerAnim_StaggerHitObject_2
       rect:
         serializedVersion: 2
-        x: 644
+        x: 593
         y: 0
-        width: 95
-        height: 112
+        width: 74
+        height: 101
       alignment: 9
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: 0.33, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -207,12 +207,12 @@ TextureImporter:
       name: PlayerAnim_StaggerHitObject_3
       rect:
         serializedVersion: 2
-        x: 876
+        x: 848
         y: 0
-        width: 131
-        height: 109
+        width: 81
+        height: 105
       alignment: 9
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: 0.3, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -228,12 +228,12 @@ TextureImporter:
       name: PlayerAnim_StaggerHitObject_4
       rect:
         serializedVersion: 2
-        x: 1120
+        x: 1091
         y: 0
-        width: 136
-        height: 123
+        width: 113
+        height: 114
       alignment: 9
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: 0.34, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -249,12 +249,12 @@ TextureImporter:
       name: PlayerAnim_StaggerHitObject_5
       rect:
         serializedVersion: 2
-        x: 1285
+        x: 1355
         y: 0
-        width: 234
-        height: 122
+        width: 129
+        height: 126
       alignment: 9
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: 0.25, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -270,12 +270,12 @@ TextureImporter:
       name: PlayerAnim_StaggerHitObject_6
       rect:
         serializedVersion: 2
-        x: 1608
+        x: 1611
         y: 0
-        width: 132
-        height: 126
+        width: 97
+        height: 112
       alignment: 9
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: 0.31, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -283,6 +283,69 @@ TextureImporter:
       bones: []
       spriteID: d0b69448e07fde8428ab63169b49b0b1
       internalID: -741064548
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayerAnim_StaggerHitObject_7
+      rect:
+        serializedVersion: 2
+        x: 1865
+        y: 0
+        width: 94
+        height: 113
+      alignment: 9
+      pivot: {x: 0.35, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8a210c47b569a6243b440d4271440971
+      internalID: 858779555
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayerAnim_StaggerHitObject_8
+      rect:
+        serializedVersion: 2
+        x: 2121
+        y: 0
+        width: 84
+        height: 107
+      alignment: 9
+      pivot: {x: 0.38, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 39ebb6f277bb60a479a93d2de34018fe
+      internalID: -1583128171
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayerAnim_StaggerHitObject_9
+      rect:
+        serializedVersion: 2
+        x: 2377
+        y: 0
+        width: 83
+        height: 111
+      alignment: 9
+      pivot: {x: 0.4, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 529630281c9a02c4aa43355c4329816f
+      internalID: -269753546
       vertices: []
       indices: 
       edges: []
@@ -305,6 +368,9 @@ TextureImporter:
       PlayerAnim_StaggerHitObject_4: -1392793936
       PlayerAnim_StaggerHitObject_5: -1687000403
       PlayerAnim_StaggerHitObject_6: -741064548
+      PlayerAnim_StaggerHitObject_7: 858779555
+      PlayerAnim_StaggerHitObject_8: -1583128171
+      PlayerAnim_StaggerHitObject_9: -269753546
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
