@@ -183,69 +183,90 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 429bb3f5a64de5349b091f7228ed4511, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Audio1Ref:
-    Guid:
-      Data1: 63629417
-      Data2: 1321518142
-      Data3: 604196736
-      Data4: -85629740
-    Path: event:/Effects/UI SFX/StartGame
-  Audio2Ref:
-    Guid:
-      Data1: 2034212367
-      Data2: 1139489680
-      Data3: 2032545932
-      Data4: -587010951
-    Path: event:/Effects/UI SFX/Ok
-  Audio3Ref:
+  ShortSwingAudioRef:
     Guid:
       Data1: 0
       Data2: 0
       Data3: 0
       Data4: 0
     Path: 
-  Audio4Ref:
+  MedSwingAudioRef:
     Guid:
       Data1: 0
       Data2: 0
       Data3: 0
       Data4: 0
     Path: 
-  Audio5Ref:
+  LongSwingAudioRef:
     Guid:
       Data1: 0
       Data2: 0
       Data3: 0
       Data4: 0
     Path: 
-  Audio6Ref:
+  PlayerDamageAudioRef:
     Guid:
       Data1: 0
       Data2: 0
       Data3: 0
       Data4: 0
     Path: 
-  Audio7Ref:
+  WalkAudioRef:
     Guid:
       Data1: 0
       Data2: 0
       Data3: 0
       Data4: 0
     Path: 
-  Audio8Ref:
+  Walk_Stone_AudioRef:
     Guid:
-      Data1: 1069122748
-      Data2: 1317838744
-      Data3: 436730278
-      Data4: -814525657
-    Path: event:/Player/Damage
-  Audio9Ref:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  Walk_WetStone_AudioRef:
     Guid:
-      Data1: 1536091416
-      Data2: 1132977384
-      Data3: 1994861241
-      Data4: -631453580
-    Path: event:/Player/WalkRun
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  Walk_Wood_AudioRef:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  Walk_Snow_AudioRef:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  HitWoodRef:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  HitStoneRef:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  HitMetalRef:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
 --- !u!114 &8358082389795210412
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -399,22 +420,18 @@ MonoBehaviour:
   MaxEstus: 0
   MovementInputDirection: 0
   PlayerDirection: 1
-  JumpDirection: 0
   IsUiOpen: 0
   IsGrounded: 0
-  IsStaminaRegen: 0
   CanMove: 1
   IsRolling: 0
-  IsBackStepping: 0
   IsRunning: 0
   IsJumping: 0
   IsMovingInput: 0
-  IsIdleAnim: 1
   VerticalSpeed: 0
   FootAOnSlope: 0
   FootBOnSlope: 0
-  WalkSpeed: 2
-  RunSpeed: 5.25
+  WalkSpeed: 2.75
+  RunSpeed: 6
   RollSpeed: 5
   RollUpSlopeSpeed: 8
   RollDownSlopeSpeed: 2
@@ -433,8 +450,6 @@ MonoBehaviour:
   IsImmune: 0
   IsLockedOn: 0
   IsBlocking: 0
-  IsHealing: 0
-  IsPlunging: 0
   CanPlunge: 0
   CanUseSecondEstus: 0
   CanAttack: 1
@@ -447,12 +462,14 @@ MonoBehaviour:
   HeavyAttackTime: 1.5
   HeavyFollowUpAttackTime: 1
   StepDistance: 4
-  LightAttackDamage: 6
-  HeavyAttackDamage: 9
+  LightAttackDamage: 5
+  HeavyAttackDamage: 10
   LightAttackRange: 2.2
   LightAttackFollowUpRange: 2.2
-  HeavyAttackRange: 2.5
-  HeavyAttackFollowUpRange: 2.5
+  HeavyAttackRange: 3
+  HeavyAttackFollowUpRange: 3
+  WallHitType: 
+  GroundType: 
   LayerManager: {fileID: 0}
   Assets: {fileID: 1065959576549058040}
   Anim: {fileID: 1065959575374467966}
@@ -491,6 +508,8 @@ MonoBehaviour:
   DemonArena: {fileID: 0}
   PursuerArena: {fileID: 0}
   Layer: {fileID: 0}
+  HasBeenHit: 0
+  HasDied: 0
 --- !u!114 &6847898321215821318
 MonoBehaviour:
   m_ObjectHideFlags: 0

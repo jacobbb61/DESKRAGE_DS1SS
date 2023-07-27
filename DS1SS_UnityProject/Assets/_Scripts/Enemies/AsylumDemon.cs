@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class AsylumDemon : MonoBehaviour
 {   
@@ -15,7 +16,9 @@ public class AsylumDemon : MonoBehaviour
     public GameObject Assets;
     public GameObject UIAssets;
     public Slider HealthSlider;
+    public TextMeshProUGUI DamagerNumber;
     public Vector3 OriginPosition;
+    public int DamageTakenInTime;
 
 
     [Header("Stats")]
@@ -230,7 +233,8 @@ public class AsylumDemon : MonoBehaviour
     {
         if (!IsImmune)
         {
-            Health -= 6;
+            Health -= 5;
+            AddDamage(5);
             UpdateUI();
             if (Health <= MaxHealth / 2 && !arenaManager.IsSecondPhase) { arenaManager.SecondPhase(); }
         }
@@ -239,7 +243,8 @@ public class AsylumDemon : MonoBehaviour
     {
         if (!IsImmune)
         {
-            Health -= 9;
+            Health -= 10;
+            AddDamage(10);
             UpdateUI();
             if (Health <= MaxHealth / 2 && !arenaManager.IsSecondPhase) { arenaManager.SecondPhase(); }
         }
@@ -247,6 +252,7 @@ public class AsylumDemon : MonoBehaviour
     public void TakePlungeDamage()
     {
             if (HasBeenPlunged == false) { Health -= 50; HasBeenPlunged = true; }
+            AddDamage(50);
             UpdateUI();
             if (Health <= MaxHealth / 2 && !arenaManager.IsSecondPhase) { arenaManager.SecondPhase(); }
 
@@ -256,6 +262,30 @@ public class AsylumDemon : MonoBehaviour
     {
         IsImmune = !IsImmune;
     }
+
+    void AddDamage(int DMG)
+    {
+        if (DamagerNumber.gameObject.activeInHierarchy) { DamageTakenInTime += DMG; DamagerNumber.text = DamageTakenInTime.ToString(); }
+        else
+        {
+            DamageTakenInTime += DMG;
+            DamagerNumber.text = DamageTakenInTime.ToString();
+            StartCoroutine(ShowDamageNumbers());
+        }
+    }
+
+    IEnumerator ShowDamageNumbers()
+    {
+        DamagerNumber.gameObject.SetActive(true);
+        yield return new WaitForSeconds(1.5f);
+        DamagerNumber.gameObject.SetActive(false);
+        DamageTakenInTime = 0;
+    }
+
+
+
+
+
 
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// movement
@@ -378,7 +408,9 @@ public class AsylumDemon : MonoBehaviour
         {
             if (InFrontCol.bounds.Contains(Player.transform.position))
             {
-                AttackingCoroutine = StartCoroutine(HFS_Attack());
+                int SmartAttack1 = Random.Range(1, 3);
+                if (SmartAttack1 == 1) { AttackingCoroutine = StartCoroutine(HFS_Attack()); }
+                else { AttackingCoroutine = StartCoroutine(HD_Attack()); }
             }
             else if (BehindCol.bounds.Contains(Player.transform.position))
             {
@@ -386,7 +418,9 @@ public class AsylumDemon : MonoBehaviour
             }
             else if (OnTopCol.bounds.Contains(Player.transform.position))
             {
-                AttackingCoroutine = StartCoroutine(GP_Attack());
+                int SmartAttack2 = Random.Range(1, 3);
+                if (SmartAttack2 == 1) {  AttackingCoroutine = StartCoroutine(GP_Attack());}
+                else { AttackingCoroutine = StartCoroutine(DHS_Attack()); }
             }
         }
         else //random close range

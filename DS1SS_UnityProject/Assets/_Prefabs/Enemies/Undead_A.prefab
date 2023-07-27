@@ -115,24 +115,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df1f725cacc8c9c4aa59bdd519520578, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Health: 3
-  MaxHealth: 3
+  Health: 30
+  MaxHealth: 30
   Behaviour: 
   LookDirection: 1
-  Speed: 1.5
-  BaseSpeed: 1.5
+  Speed: 2
+  BaseSpeed: 2
   ForwardDetectionRange: 8
   BackwardsDetectionRange: 2
   AttackTriggerRange: 2
   VerticalSpeed: 0
   FallSpeed: 0
   SlopeDir: 
-  TimeBeforeAttack: 0.5
+  TimeBeforeAttack: 0.1
   AttackAnimationTime: 2
-  AttackCoolDownTime: 1
+  AttackCoolDownTime: 0.5
   StaggerTime: 1
   AttackRange: 3
-  AttackDamage: 6
+  AttackDamage: 18
   CombatTime: 0
   SeePlayer: 0
   IsAttacking: 0
@@ -150,6 +150,8 @@ MonoBehaviour:
   HitPos: {fileID: 4631865631653132160}
   HealthSlider: {fileID: 8076404684593113949}
   OriginPosition: {x: 70, y: 7.2, z: 0}
+  DamagerNumber: {fileID: 2345360820444483462}
+  DamageTakenInTime: 0
   Grunts:
     Guid:
       Data1: 1045219388
@@ -468,6 +470,9 @@ MonoBehaviour:
   StopEvent:
     m_PersistentCalls:
       m_Calls: []
+  ImmuneEvent:
+    m_PersistentCalls:
+      m_Calls: []
   Attack1Triggered:
     m_PersistentCalls:
       m_Calls:
@@ -767,6 +772,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 13831b476ae286941b41878e06f009af, type: 3}
+--- !u!114 &2345360820444483462 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9073019881741708434, guid: 13831b476ae286941b41878e06f009af, type: 3}
+  m_PrefabInstance: {fileID: 6729981754267083540}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &7300559950057106275 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4050282148734421111, guid: 13831b476ae286941b41878e06f009af, type: 3}

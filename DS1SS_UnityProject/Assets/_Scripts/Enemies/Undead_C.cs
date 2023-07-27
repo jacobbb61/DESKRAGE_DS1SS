@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using FMODUnity;
+using TMPro;
 public class Undead_C : MonoBehaviour
 {
 
@@ -79,6 +80,8 @@ public class Undead_C : MonoBehaviour
     public Collider2D HitPos;
     public Slider HealthSlider;
     public Vector3 OriginPosition;
+    public TextMeshProUGUI DamagerNumber;
+    public int DamageTakenInTime;
 
     [Header("Audio")]
     public EventReference Grunts;
@@ -238,6 +241,13 @@ public class Undead_C : MonoBehaviour
     private void OnDisable()
     {
         if (Behaviour == "Dying") { Dead(); }
+        if (Behaviour == "Attacking")
+        {
+            CombatTime = 0;
+            IsAttacking = false;
+            IsHeavyAttacking = false;
+            Behaviour = "Hostile";
+        }
     }
     public void Dead()
     {
@@ -249,12 +259,14 @@ public class Undead_C : MonoBehaviour
     }
     public void TakeLightDamage()
     {
-        Health -= 6;
+        Health -= 5;
+        AddDamage(5);
         RuntimeManager.PlayOneShot(Grunts, transform.position);
     }
     public void TakeHeavyDamage()
     {
-        Health -= 9;
+        Health -= 10;
+        AddDamage(10);
         if (!IsHeavyAttacking) { Behaviour = "Staggered"; }
         RuntimeManager.PlayOneShot(Grunts, transform.position);
     }
@@ -265,6 +277,27 @@ public class Undead_C : MonoBehaviour
         StartCoroutine(Staggered());
         RB.velocity = Vector2.zero;
     }
+
+    void AddDamage(int DMG)
+    {
+        if (DamagerNumber.gameObject.activeInHierarchy) { DamageTakenInTime += DMG; DamagerNumber.text = DamageTakenInTime.ToString(); }
+        else
+        {
+            DamageTakenInTime += DMG;
+            DamagerNumber.text = DamageTakenInTime.ToString();
+            StartCoroutine(ShowDamageNumbers());
+        }
+    }
+
+    IEnumerator ShowDamageNumbers()
+    {
+        DamagerNumber.gameObject.SetActive(true);
+        yield return new WaitForSeconds(1.5f);
+        DamagerNumber.gameObject.SetActive(false);
+        DamageTakenInTime = 0;
+    }
+
+
     IEnumerator Staggered()
     {
         Anim.Play("UndeadAnim_C_GettingHit");
@@ -636,7 +669,7 @@ public class Undead_C : MonoBehaviour
     {
         if (HitPos.bounds.Contains(Player.transform.position))
         {
-            Player.GetComponent<PlayerControllerV2>().PlayerTakeDamage(8, true, 0);
+            Player.GetComponent<PlayerControllerV2>().PlayerTakeDamage(18, true, 0); //upped from 8
         }
 
     }
@@ -644,21 +677,21 @@ public class Undead_C : MonoBehaviour
     {
         if (HitPos.bounds.Contains(Player.transform.position))
         {
-            Player.GetComponent<PlayerControllerV2>().PlayerTakeDamage(6, true, 0);
+            Player.GetComponent<PlayerControllerV2>().PlayerTakeDamage(16, true, 0); //upped from 6
         }
     }
     public void AttackRegister_2hSlash()
     {
         if (HitPos.bounds.Contains(Player.transform.position))
         {
-            Player.GetComponent<PlayerControllerV2>().PlayerTakeDamage(15, false, 0);
+            Player.GetComponent<PlayerControllerV2>().PlayerTakeDamage(25, false, 0); //upped from 15
         }
     }
     public void AttackRegister_StabAttack()
     {
         if (HitPos.bounds.Contains(Player.transform.position))
         {
-            Player.GetComponent<PlayerControllerV2>().PlayerTakeDamage(9, false, 0);
+            Player.GetComponent<PlayerControllerV2>().PlayerTakeDamage(19, false, 0); //upped from 9
         }
     }
 

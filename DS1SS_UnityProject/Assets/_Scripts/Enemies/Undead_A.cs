@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using FMODUnity;
+using TMPro;
 public class Undead_A : MonoBehaviour
 {
 
@@ -58,6 +59,8 @@ public class Undead_A : MonoBehaviour
     public Collider2D HitPos;
     public Slider HealthSlider;
     public Vector3 OriginPosition;
+    public TextMeshProUGUI DamagerNumber;
+    public int DamageTakenInTime;
 
     [Header("Audio")]
     public EventReference Grunts;
@@ -136,7 +139,7 @@ public class Undead_A : MonoBehaviour
                     }
                     break;
                 case "Staggered":
-                    StopCoroutine(AttackingCoroutine);
+                    if (AttackingCoroutine != null) { StopCoroutine(AttackingCoroutine); }
                     StartCoroutine(Staggered());
                     RB.velocity = Vector2.zero;
                     break;
@@ -191,12 +194,33 @@ public class Undead_A : MonoBehaviour
 
     public void TakeLightDamage()
     {
-        Health -= 6; RuntimeManager.PlayOneShot(Grunts, transform.position);
+        Health -= 5;
+        AddDamage(5);
+        RuntimeManager.PlayOneShot(Grunts, transform.position);
     }
     public void TakeHeavyDamage()
     {
-        Health -= 9;
+        Health -= 10;
+        AddDamage(10);
         Behaviour = "Staggered"; RuntimeManager.PlayOneShot(Grunts, transform.position);
+    }
+    void AddDamage(int DMG)
+    {
+        if (DamagerNumber.gameObject.activeInHierarchy) { DamageTakenInTime += DMG; DamagerNumber.text = DamageTakenInTime.ToString(); }
+        else
+        {
+            DamageTakenInTime += DMG;
+            DamagerNumber.text = DamageTakenInTime.ToString();
+            StartCoroutine(ShowDamageNumbers());
+        }
+    }
+
+    IEnumerator ShowDamageNumbers()
+    {
+        DamagerNumber.gameObject.SetActive(true);
+        yield return new WaitForSeconds(1.5f);
+        DamagerNumber.gameObject.SetActive(false);
+        DamageTakenInTime = 0;
     }
     public void ToggleParry()
     {

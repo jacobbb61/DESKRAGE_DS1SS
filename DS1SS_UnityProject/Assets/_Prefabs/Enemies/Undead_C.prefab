@@ -77,6 +77,9 @@ MonoBehaviour:
   StopEvent:
     m_PersistentCalls:
       m_Calls: []
+  ImmuneEvent:
+    m_PersistentCalls:
+      m_Calls: []
   Attack1Triggered:
     m_PersistentCalls:
       m_Calls:
@@ -382,21 +385,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f13d10cb7b5fa734db429ba011076715, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Health: 11
-  MaxHealth: 11
+  Health: 50
+  MaxHealth: 50
   Behaviour: 
   LookDirection: 1
   Speed: 3
-  BaseSpeed: 3
+  BaseSpeed: 4
   ForwardDetectionRange: 10
   BackwardsDetectionRange: 4
   AttackTriggerRange: 3
   VerticalSpeed: 0.5
   FallSpeed: 5
   SlopeDir: 
-  TimeBeforeAttack_RS: 0.5
+  TimeBeforeAttack_RS: 0.1
   AttackAnimationTime_RS: 1.15
-  AttackCoolDownTime_RS: 0.5
+  AttackCoolDownTime_RS: 0.2
   TimeBeforeAttack_QB: 0.1
   AttackAnimationTime_QB: 3.25
   AttackCoolDownTime_QB: 0.5
@@ -405,7 +408,7 @@ MonoBehaviour:
   AttackCoolDownTime_2S: 0.1
   TimeBeforeAttack_SA: 0.1
   AttackAnimationTime_SA: 2.2
-  AttackCoolDownTime_SA: 0.25
+  AttackCoolDownTime_SA: 0.1
   StaggerTime: 1
   TriggerRange: 8
   CloseAttackRange: 4
@@ -430,6 +433,8 @@ MonoBehaviour:
   HitPos: {fileID: 2146336827841055255}
   HealthSlider: {fileID: 1181330010867150025}
   OriginPosition: {x: 0, y: 0, z: 0}
+  DamagerNumber: {fileID: 4683091716959488018}
+  DamageTakenInTime: 0
   Grunts:
     Guid:
       Data1: 1045219388
@@ -830,5 +835,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4683091716959488018 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9073019881741708434, guid: 13831b476ae286941b41878e06f009af, type: 3}
+  m_PrefabInstance: {fileID: 4401275331365086336}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

@@ -476,7 +476,7 @@ public class PlayerControllerV2 : MonoBehaviour
     //////////////////////////////////////////////////////////////
     public void Move(InputAction.CallbackContext context)
     {
-
+  
             Vector2 MovementInput;
             MovementInput = context.ReadValue<Vector2>();
             if (MovementInput.x > 0.4f)
@@ -489,6 +489,7 @@ public class PlayerControllerV2 : MonoBehaviour
                 MovementInputDirection = -1;
                 IsMovingInput = true;
             }
+       
         
 
         if (context.canceled)
@@ -933,8 +934,8 @@ public class PlayerControllerV2 : MonoBehaviour
         }
         else
         {
-            if (MovementInputDirection > 0.2f) { PlayerDirection = 1; Anim.Play("PlayerAnim_Run"); Stamina -= Time.deltaTime * 8.5f; }
-            if (MovementInputDirection < -0.2f) { PlayerDirection = -1; Anim.Play("PlayerAnim_Run"); Stamina -= Time.deltaTime * 8.5f; }
+            if (MovementInputDirection > 0.2f) { PlayerDirection = 1; Anim.Play("PlayerAnim_Run"); Stamina -= Time.deltaTime * 5f; }
+            if (MovementInputDirection < -0.2f) { PlayerDirection = -1; Anim.Play("PlayerAnim_Run"); Stamina -= Time.deltaTime * 5f; }
             if (MovementInputDirection > -0.2f && MovementInputDirection < 0.2f) { Anim.Play("PlayerAnim_Idle"); DontDondgeOnThisRelease = true;  }
 
             FaceTowardsInput(); 
@@ -1139,15 +1140,17 @@ public class PlayerControllerV2 : MonoBehaviour
             }
             else { VerticalSpeed = FallSpeed; }
 
-
-            if (FootAOnSlope && FootBOnSlope && hitA.transform != null) { OnSlope(hitA.transform); }
-            else if (FootAOnSlope && !FootBOnSlope && hitA.transform != null) { OnSlope(hitA.transform); }
-            else if (!FootAOnSlope && FootBOnSlope && hitB.transform != null) { OnSlope(hitB.transform); }
-            else if (!FootAOnSlope && !FootBOnSlope)
+            if (State != "Blocking")
             {
-                //not on slope reset speeds
-                WalkSpeed = 2f;
-                RunSpeed = 5f;
+                if (FootAOnSlope && FootBOnSlope && hitA.transform != null) { OnSlope(hitA.transform); }
+                else if (FootAOnSlope && !FootBOnSlope && hitA.transform != null) { OnSlope(hitA.transform); }
+                else if (!FootAOnSlope && FootBOnSlope && hitB.transform != null) { OnSlope(hitB.transform); }
+                else if (!FootAOnSlope && !FootBOnSlope)
+                {
+                    //not on slope reset speeds
+                    WalkSpeed = 2.75f;
+                    RunSpeed = 6f;
+                }
             }
 
         }
@@ -1264,13 +1267,13 @@ public class PlayerControllerV2 : MonoBehaviour
     void StaminaRegen()
     {
         Stamina = Mathf.Clamp(Stamina, 0, 100);
-        if (Stamina < 100) { Stamina += Time.deltaTime * 50; } else { Stamina = 100; IsStaminaRegen = false; }
+        if (Stamina < 100) { Stamina += Time.deltaTime * 70; } else { Stamina = 100; IsStaminaRegen = false; }
 
     }
     IEnumerator StaminaRegenPause()
     {
         IsStaminaRegen = false;
-        yield return new WaitForSeconds(.5f);
+        yield return new WaitForSeconds(.3f);
         IsStaminaRegen = true;
     }
 

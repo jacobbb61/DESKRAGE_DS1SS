@@ -19,6 +19,8 @@ public class PlayerMenuManager : MonoBehaviour
     public PlayerManager PM;
     public PlayerControllerV2 PC;
     public CanvasManager CanvasManager;
+    public AsylumDemonArena AsylumDemonArena;
+    public PursuerArena PursuerArena;
 
     public EventReference PressSelect;
     public EventReference PressMove;
@@ -482,7 +484,7 @@ public class PlayerMenuManager : MonoBehaviour
 
     IEnumerator Quiting()
     {
-        if (PM.DemonArena.inBossFight==false || PM.PursuerArena.inBossFight==false) // or pursuer active
+        if (PM.DemonArena.inBossFight==false && PM.PursuerArena.inBossFight==false) // or pursuer active
         {
         WorldSaveGameManager.Instance.Player = PM;
         WorldSaveGameManager.Instance.SaveGame();
