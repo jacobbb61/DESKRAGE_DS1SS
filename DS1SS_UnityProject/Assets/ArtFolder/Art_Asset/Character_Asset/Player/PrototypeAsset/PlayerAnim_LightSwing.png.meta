@@ -147,7 +147,7 @@ TextureImporter:
         x: 155
         y: 0
         width: 83
-        height: 112
+        height: 115
       alignment: 9
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -168,7 +168,7 @@ TextureImporter:
         x: 412
         y: 0
         width: 91
-        height: 112
+        height: 115
       alignment: 9
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -231,7 +231,7 @@ TextureImporter:
         x: 1144
         y: 0
         width: 107
-        height: 112
+        height: 116
       alignment: 9
       pivot: {x: 0.46, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -252,7 +252,7 @@ TextureImporter:
         x: 1388
         y: 0
         width: 131
-        height: 109
+        height: 119
       alignment: 9
       pivot: {x: 0.36, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -273,7 +273,7 @@ TextureImporter:
         x: 1639
         y: 0
         width: 121
-        height: 113
+        height: 125
       alignment: 9
       pivot: {x: 0.34, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -293,8 +293,8 @@ TextureImporter:
         serializedVersion: 2
         x: 2309
         y: 0
-        width: 234
-        height: 122
+        width: 235
+        height: 128
       alignment: 9
       pivot: {x: 0.43, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -315,7 +315,7 @@ TextureImporter:
         x: 2565
         y: 0
         width: 229
-        height: 109
+        height: 112
       alignment: 9
       pivot: {x: 0.43, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -357,7 +357,7 @@ TextureImporter:
         x: 1888
         y: 0
         width: 136
-        height: 123
+        height: 127
       alignment: 9
       pivot: {x: 0.27, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -377,10 +377,10 @@ TextureImporter:
         serializedVersion: 2
         x: 2821
         y: 0
-        width: 170
+        width: 172
         height: 99
       alignment: 9
-      pivot: {x: 0.59, y: 0}
+      pivot: {x: 0.58, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -398,10 +398,10 @@ TextureImporter:
         serializedVersion: 2
         x: 3077
         y: 0
-        width: 164
+        width: 169
         height: 99
       alignment: 9
-      pivot: {x: 0.61, y: 0}
+      pivot: {x: 0.6, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -419,10 +419,10 @@ TextureImporter:
         serializedVersion: 2
         x: 3333
         y: 0
-        width: 164
+        width: 169
         height: 99
       alignment: 9
-      pivot: {x: 0.62, y: 0}
+      pivot: {x: 0.61, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -440,10 +440,10 @@ TextureImporter:
         serializedVersion: 2
         x: 3589
         y: 0
-        width: 164
+        width: 169
         height: 99
       alignment: 9
-      pivot: {x: 0.62, y: 0}
+      pivot: {x: 0.61, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -501,12 +501,12 @@ TextureImporter:
       name: PlayerAnim_LightSwing_18
       rect:
         serializedVersion: 2
-        x: 4412
+        x: 4399
         y: 0
-        width: 79
+        width: 94
         height: 106
       alignment: 9
-      pivot: {x: 0.55, y: 0}
+      pivot: {x: 0.64, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -522,9 +522,9 @@ TextureImporter:
       name: PlayerAnim_LightSwing_19
       rect:
         serializedVersion: 2
-        x: 4671
+        x: 4667
         y: 0
-        width: 75
+        width: 83
         height: 110
       alignment: 9
       pivot: {x: 0.55, y: 0}
@@ -546,7 +546,7 @@ TextureImporter:
         x: 4937
         y: 0
         width: 83
-        height: 112
+        height: 115
       alignment: 9
       pivot: {x: 0.4, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -777,7 +777,7 @@ TextureImporter:
         x: 7778
         y: 0
         width: 83
-        height: 112
+        height: 115
       alignment: 9
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
