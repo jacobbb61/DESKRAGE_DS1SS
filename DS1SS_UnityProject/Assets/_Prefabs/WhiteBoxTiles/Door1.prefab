@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 179632688337621780}
   - component: {fileID: 4638701453398582779}
   - component: {fileID: 1117873118704686403}
+  - component: {fileID: 4552585353968647479}
   m_Layer: 2
   m_Name: Door1
   m_TagString: Wall
@@ -134,6 +135,19 @@ PlatformEffector2D:
   m_UseSideFriction: 0
   m_UseSideBounce: 0
   m_SideArc: 1
+--- !u!114 &4552585353968647479
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 179632688337621783}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91bfcefc209897546bd45a2d1cdf0d3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObjectType: Stone
 --- !u!1 &406323726070884970
 GameObject:
   m_ObjectHideFlags: 0

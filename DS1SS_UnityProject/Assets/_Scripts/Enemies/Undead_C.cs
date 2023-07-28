@@ -579,7 +579,7 @@ public class Undead_C : MonoBehaviour
     {
         IsAttacking = true;
         IsHeavyAttacking = true;
-        AttackStepMultiplier = 5;
+        AttackStepMultiplier = 7.5f;
         yield return new WaitForSeconds(TimeBeforeAttack_RS);
         FacePlayer();
         Anim.Play("UndeadAnim_C_RunningSlash");

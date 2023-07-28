@@ -392,8 +392,8 @@ MonoBehaviour:
   Speed: 3
   BaseSpeed: 4
   ForwardDetectionRange: 10
-  BackwardsDetectionRange: 4
-  AttackTriggerRange: 3
+  BackwardsDetectionRange: 6
+  AttackTriggerRange: 2
   VerticalSpeed: 0.5
   FallSpeed: 5
   SlopeDir: 
