@@ -6,8 +6,8 @@ using UnityEngine;
 public class TutorialTextDisplay : MonoBehaviour
 {
     private CanvasManager canvasManager;
-    public string displayText;
     private PlayerControllerV2 PC;
+    public GameObject Message;
 
 
     private void Start()
@@ -32,7 +32,7 @@ public class TutorialTextDisplay : MonoBehaviour
             canvasManager.TutorialPrompt.SetActive(false);
             collision.GetComponent<PlayerControllerV2>().Interactable = null;
             canvasManager.TutorialMessage.SetActive(false);
-            canvasManager.TutorialText.text = "You should not be reading this, maidenless one";
+            Message.SetActive(false);
         }
     }
 
@@ -40,8 +40,8 @@ public class TutorialTextDisplay : MonoBehaviour
     {
         Debug.Log("Tutorial interacted");
         canvasManager.TutorialPrompt.SetActive(false);
-        canvasManager.TutorialText.text = displayText;
         canvasManager.TutorialMessage.SetActive(true);
+        Message.SetActive(true);
         PC.PlayerFinishInteraction();
     }
 }
