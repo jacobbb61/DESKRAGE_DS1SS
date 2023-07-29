@@ -115,6 +115,7 @@ public class PlayerControllerV2 : MonoBehaviour
     private Coroutine RollingCoroutine;
     private Coroutine BacksteppingCoroutine;
     private Coroutine StaggerCoroutine;
+    private Coroutine StaminaRegenCoroutine;
     private Coroutine EstusUseCoroutine;
 
     private Coroutine LightAttackCoroutine;
@@ -159,7 +160,7 @@ public class PlayerControllerV2 : MonoBehaviour
             EstusCountText = CM.EstusCountText;
             UpdateUI();
         }
-        StartCoroutine(StaminaRegenPause());
+                if (StaminaRegenCoroutine != null) { StopCoroutine(StaminaRegenCoroutine);} StaminaRegenCoroutine = StartCoroutine(StaminaRegenPause());
         
     }
 
@@ -234,7 +235,13 @@ public class PlayerControllerV2 : MonoBehaviour
             {
                 if (IsBlocking)
                 {
-                    Stamina -= Health;
+                    Stamina -= Damage*1.5f;
+                    Health -= Damage/4;
+                    if (Stamina <= 0)
+                    {
+                        StartCoroutine(Stagger());
+                        Stamina = 0;
+                    }
                 }
                 else
                 {
@@ -329,6 +336,9 @@ public class PlayerControllerV2 : MonoBehaviour
                 case "Blocking":
                     ProcessInput_B(context); IsBlocking = false;
                     break;
+                case "Rolling":
+                    if (CanRollOut) { ProcessInput_B(context); }
+                    break;
                 default:
                     if (context.action.WasPerformedThisFrame())
                     {
@@ -351,9 +361,22 @@ public class PlayerControllerV2 : MonoBehaviour
         {    
             if (IsWaitingToRun) { StopCoroutine(WaitToRunCoroutine); IsWaitingToRun = false; }
 
+            if (State=="Rolling" && CanRollOut) 
+            { 
+                StopCoroutine(RollingCoroutine); 
+                if (MovementInputDirection == 0) // trigger backstep
+                {
+                    StartBackStep();
+                }
+                else // trigger roll
+                {
+                    StartRoll();
+                }
+            }
+
             if (State == "Running")
             {                
-                StartCoroutine(StaminaRegenPause());
+                        if (StaminaRegenCoroutine != null) { StopCoroutine(StaminaRegenCoroutine);} StaminaRegenCoroutine = StartCoroutine(StaminaRegenPause());
                 if (MovementInputDirection == 0) { State = "Idle"; } else { State = "Walking"; }
             }
             else if (State != "Running" && DontDondgeOnThisRelease == false)
@@ -395,7 +418,7 @@ public class PlayerControllerV2 : MonoBehaviour
     }
     void StartBackStep()
     {
-       BacksteppingCoroutine = StartCoroutine(Backstep()); 
+        BacksteppingCoroutine = StartCoroutine(Backstep()); 
 
         Stamina -= 15f;
         State = "BackStepping";
@@ -576,7 +599,7 @@ public class PlayerControllerV2 : MonoBehaviour
                 FaceTowardsEnemy();
             }
             HeavyAttackCoroutine = StartCoroutine(HeavyAttack());
-            Stamina -= 35f;
+            Stamina -= 25f;
         }
     }
     void ProcessInput_RT_Cancel()
@@ -594,7 +617,7 @@ public class PlayerControllerV2 : MonoBehaviour
             FaceTowardsEnemy();
         }
         HeavyAttackFollowUpCoroutine = StartCoroutine(HeavyAttackFollowUp());
-        Stamina -= 30f;
+        Stamina -= 25f;
         CanFollowUp = false;
     }
     void ProcessInput_RT_CancelAgain()
@@ -612,7 +635,7 @@ public class PlayerControllerV2 : MonoBehaviour
             FaceTowardsEnemy();
         }
         HeavyAttackCoroutine = StartCoroutine(HeavyAttack());
-        Stamina -= 30f;
+        Stamina -= 25f;
         CanFollowUpAgain = false;
     }
     void ProcessInput_RT_Plunge(InputAction.CallbackContext context) 
@@ -678,7 +701,7 @@ public class PlayerControllerV2 : MonoBehaviour
                 FaceTowardsEnemy();
             }
             LightAttackCoroutine = StartCoroutine(LightAttack());
-            Stamina -= 25f;
+            Stamina -= 17.5f;
         }
     }
     void ProcessInput_RB_Cancel()
@@ -696,7 +719,7 @@ public class PlayerControllerV2 : MonoBehaviour
         }
         
         LightAttackFollowUpCoroutine = StartCoroutine(LightAttackFollowUp());
-        Stamina -= 20f;
+        Stamina -= 17.5f;
         CanFollowUp = false;
     }
     void ProcessInput_RB_CancelAgain()
@@ -714,7 +737,7 @@ public class PlayerControllerV2 : MonoBehaviour
         }
 
         LightAttackCoroutine = StartCoroutine(LightAttack());
-        Stamina -= 20f;
+        Stamina -= 17.5f;
         CanFollowUpAgain = false;
     }
     //////////////////////////////////////////////////////////////
@@ -877,6 +900,7 @@ public class PlayerControllerV2 : MonoBehaviour
     void Idle()
     {
         Anim.Play("PlayerAnim_Idle");
+        IsBlocking = false;
         if (IsLockedOn) { FaceTowardsEnemy(); } else { FaceTowardsInput(); }
     }
 
@@ -929,7 +953,7 @@ public class PlayerControllerV2 : MonoBehaviour
     {      
         if (Stamina <= 0) //ran out of stamina, break run
         {
-            StartCoroutine(StaminaRegenPause());
+                    if (StaminaRegenCoroutine != null) { StopCoroutine(StaminaRegenCoroutine);} StaminaRegenCoroutine = StartCoroutine(StaminaRegenPause());
             if (MovementInputDirection == 0) { State = "Idle"; } else { State = "Walking"; }
         }
         else
@@ -1026,9 +1050,12 @@ public class PlayerControllerV2 : MonoBehaviour
 
     void Blocking()
     {
+        MyRb.velocity = Vector2.zero;
+
         if (Stamina <= 0) //ran out of stamina, break blocking and stagger
         {
            StartCoroutine(Stagger());
+           Stamina = 0;
         }
     }
     void MenuOpen()
@@ -1275,6 +1302,7 @@ public class PlayerControllerV2 : MonoBehaviour
         IsStaminaRegen = false;
         yield return new WaitForSeconds(.3f);
         IsStaminaRegen = true;
+        StaminaRegenCoroutine = null;
     }
 
 
@@ -1283,7 +1311,7 @@ public class PlayerControllerV2 : MonoBehaviour
     {
         IsWaitingToRun = true;
 
-        yield return new WaitForSeconds(.25f);
+        yield return new WaitForSeconds(.2f);
 
         if (State != "Rolling") { State = "Running";}
 
@@ -1291,10 +1319,16 @@ public class PlayerControllerV2 : MonoBehaviour
     }
     IEnumerator Roll()
     {
-        IsStaminaRegen = false;
+        IsStaminaRegen = false; 
+        CanRollOut = false;
         Anim.Play("PlayerAnim_Roll");
 
-        yield return new WaitForSeconds(RollTime);
+        yield return new WaitForSeconds(RollTime-.25f);
+
+                if (StaminaRegenCoroutine != null) { StopCoroutine(StaminaRegenCoroutine);} StaminaRegenCoroutine = StartCoroutine(StaminaRegenPause());
+        CanRollOut = true;
+
+        yield return new WaitForSeconds(.25f);
 
         MyRb.velocity = Vector2.zero;  
 
@@ -1307,7 +1341,7 @@ public class PlayerControllerV2 : MonoBehaviour
             State = "Idle";
         }
 
-        StartCoroutine(StaminaRegenPause()); 
+        
    
     }
     IEnumerator Backstep()
@@ -1331,7 +1365,7 @@ public class PlayerControllerV2 : MonoBehaviour
             State = "Idle";
         }
 
-        StartCoroutine(StaminaRegenPause());
+                if (StaminaRegenCoroutine != null) { StopCoroutine(StaminaRegenCoroutine);} StaminaRegenCoroutine = StartCoroutine(StaminaRegenPause());
     }
     IEnumerator Jump()
     {
@@ -1365,7 +1399,7 @@ public class PlayerControllerV2 : MonoBehaviour
         }
 
 
-        StartCoroutine(StaminaRegenPause());
+        if (StaminaRegenCoroutine != null) { StopCoroutine(StaminaRegenCoroutine);} StaminaRegenCoroutine = StartCoroutine(StaminaRegenPause());
 
         if (JumpingCoroutine != null) { StopCoroutine(JumpingCoroutine); }
 
@@ -1392,17 +1426,17 @@ public class PlayerControllerV2 : MonoBehaviour
 
         Anim.Play("PlayerAnim_LightSwing");
 
-        yield return new WaitForSeconds(LightAttackTime-.25f);
+        yield return new WaitForSeconds(LightAttackTime-.4f);
    
         CanRollOut = true; CancelThisCoroutine = LightAttackCoroutine;
         CanFollowUp = true;  
 
-        yield return new WaitForSeconds(.25f);
+        yield return new WaitForSeconds(.4f);
 
         CanRollOut = false; CancelThisCoroutine = null;
         CanFollowUp = false;
 
-        StartCoroutine(StaminaRegenPause());
+                if (StaminaRegenCoroutine != null) { StopCoroutine(StaminaRegenCoroutine);} StaminaRegenCoroutine = StartCoroutine(StaminaRegenPause());
 
         if (MovementInputDirection == 0) { State = "Idle"; } else { State = "Walking"; }
     }
@@ -1416,17 +1450,17 @@ public class PlayerControllerV2 : MonoBehaviour
 
         Anim.Play("PlayerAnim_LightSwingFollowUpAttack");
 
-        yield return new WaitForSeconds(LightFollowUpAttackTime-.25f);
+        yield return new WaitForSeconds(LightFollowUpAttackTime-.4f);
 
         CanRollOut = true; CancelThisCoroutine = LightAttackFollowUpCoroutine;
         CanFollowUpAgain = true;
 
-        yield return new WaitForSeconds(.25f);
+        yield return new WaitForSeconds(.4f);
 
         CanRollOut = false; CancelThisCoroutine = null;
         CanFollowUpAgain = false;
 
-        StartCoroutine(StaminaRegenPause());
+                if (StaminaRegenCoroutine != null) { StopCoroutine(StaminaRegenCoroutine);} StaminaRegenCoroutine = StartCoroutine(StaminaRegenPause());
 
         if (MovementInputDirection == 0) { State = "Idle"; } else { State = "Walking"; }
     }
@@ -1450,7 +1484,7 @@ public class PlayerControllerV2 : MonoBehaviour
         CanRollOut = false; CancelThisCoroutine = null;
         CanFollowUp = false; 
 
-        StartCoroutine(StaminaRegenPause());
+                if (StaminaRegenCoroutine != null) { StopCoroutine(StaminaRegenCoroutine);} StaminaRegenCoroutine = StartCoroutine(StaminaRegenPause());
 
         if (MovementInputDirection == 0) { State = "Idle"; } else { State = "Walking"; }
     }
@@ -1464,17 +1498,17 @@ public class PlayerControllerV2 : MonoBehaviour
 
         Anim.Play("PlayerAnim_HeavySwingFollowUpAttack");
 
-        yield return new WaitForSeconds(HeavyFollowUpAttackTime - .2f);
+        yield return new WaitForSeconds(HeavyFollowUpAttackTime - .4f);
 
         CanRollOut = true; CancelThisCoroutine = HeavyAttackFollowUpCoroutine;
         CanFollowUpAgain = true;
 
-        yield return new WaitForSeconds(.2f);
+        yield return new WaitForSeconds(.4f);
 
         CanRollOut = false; CancelThisCoroutine = null;
         CanFollowUpAgain = false;
 
-        StartCoroutine(StaminaRegenPause());
+                if (StaminaRegenCoroutine != null) { StopCoroutine(StaminaRegenCoroutine);} StaminaRegenCoroutine = StartCoroutine(StaminaRegenPause());
 
         if (MovementInputDirection == 0) { State = "Idle"; } else { State = "Walking"; }
     }
@@ -1511,6 +1545,7 @@ public class PlayerControllerV2 : MonoBehaviour
         if (EstusUseCoroutine != null) { StopCoroutine(EstusUseCoroutine); }
         Anim.Play("PlayerAnim_StaggerGettingHit");
         State = "Stagger";
+        IsBlocking = false;
 
         yield return new WaitForSeconds(0.75f);
 
@@ -1519,9 +1554,12 @@ public class PlayerControllerV2 : MonoBehaviour
         yield return new WaitForSeconds(0.25f);
 
         CanRollOut = false; CancelThisCoroutine = null;
+        
 
         if (MovementInputDirection == 0) { State = "Idle"; } else { State = "Walking"; }
         IsImmune = false;
+        if (StaminaRegenCoroutine != null) { StopCoroutine(StaminaRegenCoroutine); }
+        StaminaRegenCoroutine = StartCoroutine(StaminaRegenPause());
     }
 
     IEnumerator Parry()
@@ -1547,7 +1585,7 @@ public class PlayerControllerV2 : MonoBehaviour
 
         Anim.Play("PlayerAnim_ShieldBlockEnter");
 
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.25f);
 
         HoldBlock();
     }
@@ -1555,7 +1593,7 @@ public class PlayerControllerV2 : MonoBehaviour
     {
         Anim.Play("PlayerAnim_ShieldBlockExit");
 
-        yield return new WaitForSeconds(0.25f);
+        yield return new WaitForSeconds(0.15f);
 
         IsBlocking = false;
 

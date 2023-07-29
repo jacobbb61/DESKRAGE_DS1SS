@@ -457,10 +457,10 @@ MonoBehaviour:
   CanFollowUpAgain: 0
   CanRollOut: 0
   EstusHealAmount: 40
-  LightAttackTime: 0.75
-  LightFollowUpAttackTime: 0.75
-  HeavyAttackTime: 1.5
-  HeavyFollowUpAttackTime: 1
+  LightAttackTime: 0.7
+  LightFollowUpAttackTime: 0.7
+  HeavyAttackTime: 1.4
+  HeavyFollowUpAttackTime: 0.9
   StepDistance: 4
   LightAttackDamage: 5
   HeavyAttackDamage: 10
