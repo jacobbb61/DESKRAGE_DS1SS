@@ -16,6 +16,7 @@ public class Bonfire : MonoBehaviour
     private Animator Anim;
 
     public GameObject[] EnemySaveManagerList;
+    public PotManager[] PotManagers;
     public AsylumDemon AsylumDemon;
     public Pursuer Pursuer;
     private GameObject BonfirePromptUI;
@@ -130,6 +131,17 @@ public class Bonfire : MonoBehaviour
 
         //upadate oscar
         OM.Reload();
+
+        //reset pots
+
+        if (PotManagers != null)
+        {
+            foreach (PotManager PotManager in PotManagers)
+            {
+                PotManager.ReloadPots();
+            }
+        }
+
     }
 
 

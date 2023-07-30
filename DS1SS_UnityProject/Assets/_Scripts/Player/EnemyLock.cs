@@ -24,11 +24,17 @@ public class EnemyLock : MonoBehaviour
    // private PlayerController playerController;
     public bool running;
 
+
     void Update()
     {
+
+
+
         if (LockedOn && EnemyLockPos!=null) // Placeholder input, this needs to be set to left arrow on dpad
         {
-             // Finds nearest enemy every frame
+            
+
+            // Finds nearest enemy every frame
             LockOnSymbol.transform.position = EnemyLockPos.position;
             if (nearestEnemyPos.transform.position.x < transform.position.x) // Detects if enemy is to right of player
             {
@@ -39,11 +45,14 @@ public class EnemyLock : MonoBehaviour
                 enemyToRight = false; // Enemy is to left
             }
 
-
+            
             if (EnemyLockedOnTo.activeInHierarchy == false)
             {
+                LockedOn = false;
                 ToggleLockOn();
             }
+
+
 
             EnemyDistance = Vector3.Distance(transform.position, EnemyLockPos.position);
            
@@ -58,9 +67,11 @@ public class EnemyLock : MonoBehaviour
 
     }
 
+
+
+
     public void ToggleLockOn()
     {
-        Debug.Log("Toggle Lock On");
         if (!LockedOn)
         {
             nearestEnemyPos = GetNearestEnemy();
@@ -106,7 +117,7 @@ public class EnemyLock : MonoBehaviour
                 // Debug.Log(enemy.name + " is " + EnemyDistance + " far away" + "the closest is " + Closest);
                 if (EnemyDistance == Closest)
                 {
-                    Debug.Log(enemy.name + " is " + EnemyDistance + " far away");
+                   // Debug.Log(enemy.name + " is " + EnemyDistance + " far away");
 
                     if (Closest < 20) //in camera range
                     {
@@ -117,6 +128,7 @@ public class EnemyLock : MonoBehaviour
                         LockedOn = true;
                         Pc.IsLockedOn = true;
                         LockOnSymbol.SetActive(true);
+
                     }
 
                 }
@@ -139,7 +151,7 @@ public class EnemyLock : MonoBehaviour
             LockedOn = true;
             Pc.IsLockedOn = true;
             LockOnSymbol.SetActive(true);
-
+ 
             return trans;
         }
         else

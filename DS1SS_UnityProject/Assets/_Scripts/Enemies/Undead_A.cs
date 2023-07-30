@@ -84,7 +84,7 @@ public class Undead_A : MonoBehaviour
 
         HealthSlider.maxValue = MaxHealth;
 
-        if (Health > 0) { IsDead = false; } else { Dead(); Behaviour = "Dead"; }
+        if (Health > 0) { IsDead = false; EnemySaveManager.IsLockOnAble = true; } else { Dead(); Behaviour = "Dead"; }
     }
 
     public void Respawn()
@@ -169,6 +169,7 @@ public class Undead_A : MonoBehaviour
 
     IEnumerator Death()
     {
+        EnemySaveManager.IsLockOnAble = false;
         Behaviour = "Dying";
         if (IsAttacking) { StopCoroutine(AttackingCoroutine); }
         HealthSlider.value = 0;

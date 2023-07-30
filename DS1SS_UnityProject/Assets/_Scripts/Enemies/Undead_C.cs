@@ -110,7 +110,7 @@ public class Undead_C : MonoBehaviour
 
         HealthSlider.maxValue = MaxHealth;
 
-        if (Health > 0) { IsDead = false; } else { Dead(); Behaviour = "Dead"; }
+        if (Health > 0) { IsDead = false; EnemySaveManager.IsLockOnAble = true; } else { Dead(); Behaviour = "Dead"; }
     }
 
     public void Respawn()
@@ -171,7 +171,8 @@ public class Undead_C : MonoBehaviour
                     break;
                 case "Staggered":
                     if (AttackingCoroutine != null) { StopCoroutine(AttackingCoroutine); }
-                    StartCoroutine(Staggered());
+                    //StartCoroutine(Staggered());
+                    IsAttacking = false;
                     RB.velocity = Vector2.zero;
                     break;
                 case "Parried":
@@ -217,6 +218,7 @@ public class Undead_C : MonoBehaviour
             {
                 AttackingCoroutine = StartCoroutine(Attack_RunningSlash());
             }
+        IsAttacking = true;
     }
 
 
@@ -224,6 +226,7 @@ public class Undead_C : MonoBehaviour
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     IEnumerator Death()
     {
+        EnemySaveManager.IsLockOnAble = false;
         Behaviour = "Dying";
         RB.velocity = Vector2.zero;
         IsAttacking = false;
@@ -267,7 +270,7 @@ public class Undead_C : MonoBehaviour
     {
         Health -= 10;
         AddDamage(10);
-        if (!IsHeavyAttacking) { Behaviour = "Staggered"; }
+        if (!IsHeavyAttacking) { Behaviour = "Staggered"; StartCoroutine(Staggered()); }
         RuntimeManager.PlayOneShot(Grunts, transform.position);
     }
     public void TriggerStagger()
@@ -618,7 +621,7 @@ public class Undead_C : MonoBehaviour
         Anim.Play("UndeadAnim_C_Idle");
         yield return new WaitForSeconds(AttackCoolDownTime_2S);
         IsAttacking = false;
- 
+        IsHeavyAttacking = false;
         Behaviour = "Hostile";
         FacePlayer();
     }
@@ -633,7 +636,7 @@ public class Undead_C : MonoBehaviour
         Anim.Play("UndeadAnim_C_Idle");
         yield return new WaitForSeconds(AttackCoolDownTime_SA);
         IsAttacking = false;
-
+        IsHeavyAttacking = false;
         Behaviour = "Hostile";
         FacePlayer();
     }

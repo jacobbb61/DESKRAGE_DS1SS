@@ -33,6 +33,7 @@ public class Undead_B : MonoBehaviour
 
 
     private Animator Anim;
+    private EnemySaveManager EnemySaveManager;
     private GameObject Player;
     private Rigidbody2D RB;
     private Coroutine AttackingCoroutine;
@@ -58,6 +59,7 @@ public class Undead_B : MonoBehaviour
     {
         Anim = GetComponentInChildren<Animator>();
         RB = GetComponent<Rigidbody2D>();
+        EnemySaveManager = GetComponent<EnemySaveManager>();
         Player = GameObject.FindGameObjectWithTag("Player");
         if (Behaviour == null) { Behaviour = "Idle"; }
         if (LookDirection == 1) { Assets.transform.localScale = new Vector3(2, 2, 2); }
@@ -67,7 +69,7 @@ public class Undead_B : MonoBehaviour
 
         HealthSlider.maxValue = MaxHealth;
 
-        if (Health > 0) { IsDead = false; } else { Dead(); Behaviour = "Dead"; }
+        if (Health > 0) { IsDead = false; EnemySaveManager.IsLockOnAble = true; } else { Dead(); Behaviour = "Dead"; }
     }
 
     public void Respawn()
@@ -121,6 +123,7 @@ public class Undead_B : MonoBehaviour
 
     IEnumerator Death()
     {
+        EnemySaveManager.IsLockOnAble = false;
         Behaviour = "Dying";
         if (IsAttacking) { StopCoroutine(AttackingCoroutine); }
         HealthSlider.value = 0;
