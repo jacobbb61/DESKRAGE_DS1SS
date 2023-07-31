@@ -337,7 +337,7 @@ public class PlayerControllerV2 : MonoBehaviour
                     ProcessInput_B(context); IsBlocking = false;
                     break;
                 case "Rolling":
-                    if (CanRollOut) { ProcessInput_B(context); }
+                    if (CanRollOut && IsGrounded) { ProcessInput_B(context); }
                     break;
                 default:
                     if (context.action.WasPerformedThisFrame())

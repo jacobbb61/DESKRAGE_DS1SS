@@ -51,6 +51,10 @@ public class AsylumDemonArena : MonoBehaviour
 
     public void EnterArena() //called from door manager
     {
+
+
+
+
             for (int i = 0; i < doors.Length; i++)
             {
                 doors[i].inBossFight = true;
@@ -63,12 +67,6 @@ public class AsylumDemonArena : MonoBehaviour
                 inBossFight = true;
                 arenaIsActive = true;
                 Boss.Behaviour = "Hostile";
-            }
-            if (inBossFight)
-            {
-                // Display boss health
-                // Play boss music
-                // Achievement and saving stuff
             }
     }
     IEnumerator Wait(float timeToWait)

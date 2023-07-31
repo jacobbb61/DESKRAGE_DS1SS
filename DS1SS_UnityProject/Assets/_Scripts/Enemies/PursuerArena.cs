@@ -62,16 +62,14 @@ public class PursuerArena : MonoBehaviour
             arenaIsActive = true;
             Boss.Behaviour = "Hostile";
         }
-        if (inBossFight)
-        {
-            // Display boss health
-            // Play boss music
-            // Achievement and saving stuff
-        }
     }
     IEnumerator Wait(float timeToWait)
     {
         yield return new WaitForSeconds(timeToWait);
+    }
+    private void OnEnable()
+    {
+        SwitchState(currentState);
     }
 
     public void SwitchState(string state)
@@ -86,7 +84,6 @@ public class PursuerArena : MonoBehaviour
                     doorU.SwitchDoorState("Closed");
                     Bridge.currentState="Closed";
                     Bridge.ManualStart();
-
                     inBossFight = false;
                     arenaIsActive = false;
                     BossUI.SetActive(false);
@@ -104,7 +101,6 @@ public class PursuerArena : MonoBehaviour
                     doorU.SwitchDoorState("Fog");
                     Bridge.currentState = "Open";
                     Bridge.ManualStart();
-
                     inBossFight = false;
                     arenaIsActive = false;
                     BossUI.SetActive(false);
@@ -113,11 +109,11 @@ public class PursuerArena : MonoBehaviour
                     Boss.IsTurning = false;
                     Boss.IsCoolingDown = false;
                     Boss.Health = Boss.MaxHealth;
+                    Boss.UpdateUI();
                     Boss.StopAllCoroutines();
                     Boss.Behaviour = "Idle";
                     Boss.ManualStart();
-                    FMODinstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
-                    // FMODinstance.release();
+                    StopMusic();
                     break;
                 }
             case "Active":
@@ -126,7 +122,6 @@ public class PursuerArena : MonoBehaviour
                     doorU.SwitchDoorState("Fog");
                     Bridge.currentState = "Open";
                     Bridge.ManualStart();
-
                     inBossFight = true;
                     arenaIsActive = true;
                     BossUI.SetActive(true);
@@ -136,9 +131,10 @@ public class PursuerArena : MonoBehaviour
                     Boss.IsCoolingDown = false;
                     Boss.Health = Boss.MaxHealth;
                     Boss.Behaviour = "Hostile";
+                    FMODinstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
                     FMODinstance = FMODUnity.RuntimeManager.CreateInstance(Theme_FirstPhase);
                     FMODinstance.start();
-                    // FMODinstance.release();
+                    FMODinstance.release();
                     break;
                 }
             case "Open":
@@ -152,8 +148,7 @@ public class PursuerArena : MonoBehaviour
                     Boss.IsCoolingDown = false;
                     Boss.gameObject.SetActive(false);
                     Boss.Behaviour = "Dead";
-                    FMODinstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
-                    // FMODinstance.release();
+                    StopMusic();
                     break;
                 }
         }
@@ -165,7 +160,11 @@ public class PursuerArena : MonoBehaviour
         arenaIsActive = false;
 
         doorT.SwitchDoorState("Locked");
+        doorT.ManualStart();
+
         doorU.SwitchDoorState("Closed");
+        doorU.ManualStart();
+
         Bridge.currentState = "Open";
         Bridge.ManualStart();
 

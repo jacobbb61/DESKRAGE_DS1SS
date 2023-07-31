@@ -46,57 +46,15 @@ public class Pursuer : MonoBehaviour
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    [Header("Hammer Drive")]
-    public float HD_AttackDamage;
-    public float HD_AttackAnimationTime;
-    public float HD_AttackCoolDownTime;
-    public Collider2D HD_Collider;
+    [Header("Combo")]
+    public float CO_AttackDamage;
+    public float CO_AttackAnimationTime;
+    public float CO_AttackCoolDownTime;
+    public float CO_AttackStep;
+    public Collider2D CO1_Collider;
+    public Collider2D CO2_Collider;
 
-    [Header("Ranged Hammer")]
-    public float RH_AttackDamage;
-    public float RH_AttackDamage_AOE;
-    public float RH_AttackAnimationTime;
-    public float RH_AttackCoolDownTime;
-    public float RH_StepDistance;
-    public Collider2D RH_Collider;
-    public Collider2D RH_Collider_AOE;
 
-    [Header("Ground Pound")]
-    public float GP_AttackDamage;
-    public float GP_AttackAnimationTime;
-    public float GP_AttackCoolDownTime;
-    public Collider2D GP_Collider;
-
-    [Header("Hammer Sweep")]
-    public float HSP_AttackDamage;
-    public float HSP_AttackAnimationTime;
-    public float HSP_AttackCoolDownTime;
-    public Collider2D HSP_Collider;
-
-    [Header("Hammer Swing")]
-    public float HSG_AttackDamage;
-    public float HSG_AttackAnimationTime;
-    public float HSG_AttackCoolDownTime;
-    public Collider2D HSG_Collider;
-
-    [Header("Hammer Back Swing")]
-    public float HBS_AttackDamage;
-    public float HBS_AttackAnimationTime;
-    public float HBS_AttackCoolDownTime;
-    public Collider2D HBS_Collider;
-
-    [Header("Leaping Hammer Smash")]
-    public float LH_AttackDamage;
-    public float LH_AttackAnimationTime;
-    public float LH_AttackCoolDownTime;
-    public float LH_StepDistance;
-    public Collider2D LH_Collider;
-
-    [Header("Double Hammer Swing")]
-    public float DHS_AttackDamage;
-    public float DHS_AttackAnimationTime;
-    public float DHS_AttackCoolDownTime;
-    public Collider2D DHS_Collider;
 
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// start
@@ -143,14 +101,14 @@ public class Pursuer : MonoBehaviour
             switch (Behaviour)
             {
                 case "Idle":
-                    Anim.Play("AsylumDemonAnim_Idle");
+                    Anim.Play("ThePursuerAnim_Idle");
                     break;
                 case "Hostile":
 
                     FacePlayer();
 
                     if (IsFacingPlayer && !IsByPlayer()) { Walk(); }
-                    else { Anim.Play("AsylumDemonAnim_Idle"); }
+                    else { Anim.Play("ThePursuerAnim_Idle"); }
 
 
                     if (!IsCoolingDown)
@@ -181,7 +139,7 @@ public class Pursuer : MonoBehaviour
         }
     }
 
-    void UpdateUI()
+    public void UpdateUI()
     {
         HealthSlider.value = Health;
     }
@@ -194,7 +152,7 @@ public class Pursuer : MonoBehaviour
 
         AchievementsGameManager.Instance.UnlockedAchievement(2);
 
-        Anim.Play("AsylumDemonAnim_Death");
+        Anim.Play("ThePursuerAnim_Death");
 
         if (IsAttacking) { StopCoroutine(AttackingCoroutine); }
 
@@ -220,13 +178,13 @@ public class Pursuer : MonoBehaviour
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public void TakeLightDamage()
     {
-        Health -= 6; 
+        Health -= 6;
         UpdateUI();
         if (Health <= MaxHealth / 2 && !arenaManager.IsSecondPhase) { arenaManager.SecondPhase(); }
     }
     public void TakeHeavyDamage()
     {
-        Health -= 9; 
+        Health -= 9;
         UpdateUI();
         if (Health <= MaxHealth / 2 && !arenaManager.IsSecondPhase) { arenaManager.SecondPhase(); }
     }
@@ -269,7 +227,7 @@ public class Pursuer : MonoBehaviour
     IEnumerator Turn()
     {
         IsTurning = true;
-        Anim.Play("AsylumDemonAnim_Idle");
+        Anim.Play("ThePursuerAnim_Idle");
         yield return new WaitForSeconds(TimeToTurn);
         IsTurning = false;
         if (LookDirection == 1) { Assets.transform.localScale = new Vector3(1, 1, 1); }
@@ -296,12 +254,12 @@ public class Pursuer : MonoBehaviour
     void Walk()
     {
         RB.velocity = new Vector2(-Speed * LookDirection, -5);
-        Anim.Play("AsylumDemonAnim_Walk");
+        Anim.Play("ThePursuerAnim_MoveForward");
     }
 
     public void AttackStep()
     {
-        RB.velocity = new Vector2(StepDistance * -LookDirection, -5);
+        RB.velocity = new Vector2(StepDistance * -LookDirection, 0);
     }
     public void AttackStop()
     {
@@ -338,7 +296,7 @@ public class Pursuer : MonoBehaviour
     {
         if (Vector3.Distance(transform.position, Player.transform.position) < CloseTriggerRange)
         {
-            Anim.Play("AsylumDemonAnim_Idle");
+            Anim.Play("ThePursuerAnim_Idle");
             return true;
         }
         else
@@ -357,23 +315,23 @@ public class Pursuer : MonoBehaviour
         switch (attack)
         {
             case 1: //Hammer Swing
-                AttackingCoroutine = StartCoroutine(HD_Attack());
+                AttackingCoroutine = StartCoroutine(CO_Attack());
                 break;
 
             case 2: //Double Hammer Swing
-                AttackingCoroutine = StartCoroutine(HD_Attack());
+                AttackingCoroutine = StartCoroutine(CO_Attack());
                 break;
 
             case 3: //Ground Pound
-                AttackingCoroutine = StartCoroutine(HD_Attack());
+                AttackingCoroutine = StartCoroutine(CO_Attack());
                 break;
 
             case 4: //Hammer Sweep
-                AttackingCoroutine = StartCoroutine(HD_Attack());
+                AttackingCoroutine = StartCoroutine(CO_Attack());
                 break;
 
             case 5: //Hammer Drive
-                AttackingCoroutine = StartCoroutine(HD_Attack());
+                AttackingCoroutine = StartCoroutine(CO_Attack());
                 break;
 
         }
@@ -385,117 +343,52 @@ public class Pursuer : MonoBehaviour
         switch (attack)
         {
             case 1: //Ranged Hammer
-                AttackingCoroutine = StartCoroutine(RH_Attack());
+                AttackingCoroutine = StartCoroutine(CO_Attack());
                 break;
 
             case 2: //Leaping Hammer Swing
-                AttackingCoroutine = StartCoroutine(LH_Attack());
+                AttackingCoroutine = StartCoroutine(CO_Attack());
                 break;
 
         }
     }
 
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// Hammer Drive
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// Combo Attack
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    IEnumerator HD_Attack()
+    IEnumerator CO_Attack()
     {
         Behaviour = "Attacking";
         IsCoolingDown = false;
-
-        Anim.Play("AsylumDemonAnim_HammerDrive");
-
-
-        yield return new WaitForSeconds(HD_AttackAnimationTime);
-
-        Behaviour = "Hostile";
-        IsCoolingDown = true;
-        Anim.Play("AsylumDemonAnim_Idle");
-
-        yield return new WaitForSeconds(HD_AttackCoolDownTime);
-        IsCoolingDown = false;
-
-    }
-
-    public void HD_AttackRegister()
-    {
-        if (HD_Collider.bounds.Contains(Player.transform.position))
-        {
-            PC.PlayerTakeDamage(HD_AttackDamage, true, 0);
-        }
-    }
-
-    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// Ranged Hammer
-    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-    IEnumerator RH_Attack()
-    {
-        Behaviour = "Attacking";
-        IsCoolingDown = false;
-        StepDistance = RH_StepDistance;
-
-        Anim.Play("AsylumDemonAnim_RangedHammer");
+        StepDistance = CO_AttackStep;
+        Anim.Play("ThePursuerAnim_ComboAttack");
 
 
-        yield return new WaitForSeconds(RH_AttackAnimationTime);
+        yield return new WaitForSeconds(CO_AttackAnimationTime);
 
         Behaviour = "Hostile";
         IsCoolingDown = true;
-        Anim.Play("AsylumDemonAnim_Idle");
+        Anim.Play("ThePursuerAnim_Idle");
         StepDistance = 0;
 
-        yield return new WaitForSeconds(RH_AttackCoolDownTime);
+        yield return new WaitForSeconds(CO_AttackCoolDownTime);
         IsCoolingDown = false;
-
+        
     }
 
-    public void RH_AttackRegister()
+    public void CO1_AttackRegister()
     {
-        if (RH_Collider.bounds.Contains(Player.transform.position))
+        if (CO1_Collider.bounds.Contains(Player.transform.position))
         {
-            PC.PlayerTakeDamage(RH_AttackDamage, true, 0);
+            PC.PlayerTakeDamage(CO_AttackDamage, true, 0);
         }
     }
-    public void RH_AOE_AttackRegister()
+    public void CO2_AttackRegister()
     {
-        if (RH_Collider_AOE.bounds.Contains(Player.transform.position))
+        if (CO2_Collider.bounds.Contains(Player.transform.position))
         {
-            PC.PlayerTakeDamage(RH_AttackDamage, true, 0);
-        }
-    }
-
-    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// Leaping Hammer Smash
-    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-    IEnumerator LH_Attack()
-    {
-        Behaviour = "Attacking";
-        IsCoolingDown = false;
-        StepDistance = LH_StepDistance;
-
-        Anim.Play("AsylumDemonAnim_LeapingHammerSmash");
-
-
-        yield return new WaitForSeconds(LH_AttackAnimationTime);
-
-        Behaviour = "Hostile";
-        IsCoolingDown = true;
-        Anim.Play("AsylumDemonAnim_Idle");
-        StepDistance = 0;
-
-        yield return new WaitForSeconds(LH_AttackCoolDownTime);
-        IsCoolingDown = false;
-
-    }
-
-    public void LH_AttackRegister()
-    {
-        if (LH_Collider.bounds.Contains(Player.transform.position))
-        {
-            PC.PlayerTakeDamage(LH_AttackDamage, true, 0);
+            PC.PlayerTakeDamage(CO_AttackDamage, true, 0);
         }
     }
 }
