@@ -6,6 +6,7 @@ using UnityEngine;
 public class Arrow : MonoBehaviour
 {
     public int Direction;
+    public float yDirection;
     public float Speed;
     public float VerticalSpeed;
     public float RotationSpeed;
@@ -14,6 +15,7 @@ public class Arrow : MonoBehaviour
     public Rigidbody2D RB;
     public Quaternion from;
     public Quaternion to;
+    public float ydis;
 
     // animate the game object from -1 to +1 and back
     public float minimum;
@@ -21,11 +23,13 @@ public class Arrow : MonoBehaviour
 
     // starting value for the Lerp
     static float t = 0.0f;
-    public Transform target;
+    public Vector3 target;
+    private GameObject player;
 
     public void Start()
     {
-        target = GameObject.FindGameObjectWithTag("Player").transform;
+        player = GameObject.FindGameObjectWithTag("Player");
+        Debug.Log(player.name);
     }
 
     public void ManualStart()
@@ -42,6 +46,7 @@ public class Arrow : MonoBehaviour
 
         //float vertDis;
         float dis = Vector3.Distance(transform.position, GameObject.FindGameObjectWithTag("Player").transform.position);
+        
 
         if (dis <= 5)
         {
@@ -59,17 +64,25 @@ public class Arrow : MonoBehaviour
         {
             minimum = 3.5f;
         }
-        Debug.Log(dis);
     }
 
     void Update()
     {
         if (Flying)
         {
+            yDirection = 0;
+            target = player.transform.position;
             VerticalSpeed = Mathf.Lerp(minimum, maximum, t);
             t += 0.5f * Time.deltaTime;
 
-            RB.velocity = new Vector2(Speed * Direction, VerticalSpeed);
+            ydis = (transform.position.y - player.transform.position.y);
+
+            //float yDisMultiplier = 0;
+            //need a yDisMultiplier formula for more accurate results
+            
+            yDirection = (ydis * -1) + 0.5f;
+
+            RB.AddForce(new Vector3(Direction * Speed, yDirection, VerticalSpeed));
             if (Direction == -1)
             {
                 transform.Rotate(new Vector3(0, 0, Time.deltaTime * RotationSpeed));
@@ -97,7 +110,7 @@ public class Arrow : MonoBehaviour
         }
     }
 
-     void DestroyArrow()
+    void DestroyArrow()
     {
         Destroy(gameObject);
     }
