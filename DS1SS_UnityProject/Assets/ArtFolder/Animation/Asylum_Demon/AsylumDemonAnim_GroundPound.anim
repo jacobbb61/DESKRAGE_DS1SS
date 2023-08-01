@@ -488,6 +488,13 @@ AnimationClip:
   m_HasGenericRootTransform: 1
   m_HasMotionFloatCurves: 0
   m_Events:
+  - time: 0.55
+    functionName: Audio_WingFlap
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
   - time: 0.78333336
     functionName: Immune
     data: 
@@ -497,6 +504,13 @@ AnimationClip:
     messageOptions: 0
   - time: 1.0666667
     functionName: Turn
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 1.1166667
+    functionName: Audio_WingFlap
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
@@ -532,6 +546,13 @@ AnimationClip:
     messageOptions: 0
   - time: 1.8
     functionName: CameraShake_HeavyShake
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 1.8
+    functionName: Audio_Land
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

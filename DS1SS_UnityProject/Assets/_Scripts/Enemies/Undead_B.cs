@@ -86,8 +86,7 @@ public class Undead_B : MonoBehaviour
     void Update()
     {
         UpdateUI();
-        if (Health <= 0) { StartCoroutine(Death()); }
-        else
+        if (Health > 0)
         {
             switch (Behaviour)
             {
@@ -150,14 +149,15 @@ public class Undead_B : MonoBehaviour
     public void TakeLightDamage()
     {
         Health -= 5;
-        AddDamage(5); 
-        RuntimeManager.PlayOneShot(Grunts, transform.position);
+        AddDamage(5);
+        if (Health <= 0) { StartCoroutine(Death()); RuntimeManager.PlayOneShot(Grunts, transform.position); }
     }
     public void TakeHeavyDamage()
     {
         Health -= 10;
         AddDamage(10);
-        Behaviour = "Staggered"; RuntimeManager.PlayOneShot(Grunts, transform.position);
+        Behaviour = "Staggered";
+        if (Health <= 0) { StartCoroutine(Death()); RuntimeManager.PlayOneShot(Grunts, transform.position); }
     }
     void AddDamage(int DMG)
     {

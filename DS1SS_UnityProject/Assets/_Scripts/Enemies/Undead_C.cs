@@ -129,8 +129,8 @@ public class Undead_C : MonoBehaviour
         UpdateUI();
         IsByOriginPosition();
         GroundCheck();
-        if (Health <= 0) { StartCoroutine(Death()); }
-        else
+
+        if (Health > 0)
         {
             IsDead = false;
             switch (Behaviour)
@@ -226,6 +226,7 @@ public class Undead_C : MonoBehaviour
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     IEnumerator Death()
     {
+        
         EnemySaveManager.IsLockOnAble = false;
         Behaviour = "Dying";
         RB.velocity = Vector2.zero;
@@ -264,14 +265,14 @@ public class Undead_C : MonoBehaviour
     {
         Health -= 5;
         AddDamage(5);
-        RuntimeManager.PlayOneShot(Grunts, transform.position);
+        if (Health <= 0) { StartCoroutine(Death()); RuntimeManager.PlayOneShot(Grunts, transform.position); }
     }
     public void TakeHeavyDamage()
     {
         Health -= 10;
         AddDamage(10);
         if (!IsHeavyAttacking) { Behaviour = "Staggered"; StartCoroutine(Staggered()); }
-        RuntimeManager.PlayOneShot(Grunts, transform.position);
+        if (Health <= 0) { StartCoroutine(Death()); RuntimeManager.PlayOneShot(Grunts, transform.position); }
     }
     public void TriggerStagger()
     {

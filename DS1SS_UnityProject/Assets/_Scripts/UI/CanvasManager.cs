@@ -15,11 +15,13 @@ public class CanvasManager : MonoBehaviour
     public GameObject DoorUI;
     public GameObject AchievementObj;
     public GameObject ItemPrompt;
+    public GameObject InteractPrompt;
     public GameObject TutorialPrompt;
     public GameObject TutorialMessage;
 
     public TextMeshProUGUI DoorDescription;
     public TextMeshProUGUI ItemProptDescription;
+    public TextMeshProUGUI InteractProptDescription;
     public TextMeshProUGUI EstusCountText;
     public TextMeshProUGUI TutorialText;
 

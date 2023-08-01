@@ -6,10 +6,12 @@ using UnityEngine.Events;
 public class PlayerAnimationEvents : MonoBehaviour
 {
     private PlayerControllerV2 PC;
+    private AnimationAudio AnimationAudio;
     public Transform HitStartPos;
     private void Start()
     {
         PC = GetComponentInParent < PlayerControllerV2 > ();
+        AnimationAudio = GetComponent <AnimationAudio> ();
     }
 
 
@@ -34,16 +36,19 @@ public class PlayerAnimationEvents : MonoBehaviour
             if (hit.transform.CompareTag("Enemy"))
             {
                 hit.transform.GetComponent<EnemySaveManager>().TakeLightDamageEvent.Invoke();
+                AnimationAudio.HitFlesh();
                 return;
             }
             else if (hit.transform.CompareTag("Demon"))
             {
                 hit.transform.GetComponent<AsylumDemon>().TakeLightDamage();
+                AnimationAudio.HitFlesh();
                 return;
             }
             else if (hit.transform.CompareTag("Pursuer"))
             {
                 hit.transform.GetComponent<Pursuer>().TakeLightDamage();
+                AnimationAudio.HitMetal();
                 return;
             }
             else if (hit.transform.CompareTag("Wall"))
@@ -73,16 +78,19 @@ public class PlayerAnimationEvents : MonoBehaviour
             if (hit.transform.CompareTag("Enemy"))
             {
                 hit.transform.GetComponent<EnemySaveManager>().TakeLightDamageEvent.Invoke();
+                AnimationAudio.HitFlesh();
                 return;
             }
             else if (hit.transform.CompareTag("Demon"))
             {
                 hit.transform.GetComponent<AsylumDemon>().TakeLightDamage();
+                AnimationAudio.HitFlesh();
                 return;
             }
             else if (hit.transform.CompareTag("Pursuer"))
             {
                 hit.transform.GetComponent<Pursuer>().TakeLightDamage();
+                AnimationAudio.HitMetal();
                 return;
             }
             else if (hit.transform.CompareTag("Wall"))
@@ -110,17 +118,20 @@ public class PlayerAnimationEvents : MonoBehaviour
 
             if (hit.transform.CompareTag("Enemy"))
             {
-                hit.transform.GetComponent<EnemySaveManager>().TakeHeavyDamageEvent.Invoke();
+                hit.transform.GetComponent<EnemySaveManager>().TakeHeavyDamageEvent.Invoke(); 
+                AnimationAudio.HitFlesh();
                 return;
             }
             else if (hit.transform.CompareTag("Demon"))
             {
                 hit.transform.GetComponent<AsylumDemon>().TakeHeavyDamage();
+                AnimationAudio.HitFlesh();
                 return;
             }
             else if (hit.transform.CompareTag("Pursuer"))
             {
                 hit.transform.GetComponent<Pursuer>().TakeHeavyDamage();
+                AnimationAudio.HitMetal();
                 return;
             }
             else if (hit.transform.CompareTag("Wall"))
@@ -149,16 +160,19 @@ public class PlayerAnimationEvents : MonoBehaviour
             if (hit.transform.CompareTag("Enemy"))
             {
                 hit.transform.GetComponent<EnemySaveManager>().TakeHeavyDamageEvent.Invoke();
+                AnimationAudio.HitFlesh();
                 return;
             }
             else if (hit.transform.CompareTag("Demon"))
             {
-                hit.transform.GetComponent<AsylumDemon>().TakeHeavyDamage(); 
+                hit.transform.GetComponent<AsylumDemon>().TakeHeavyDamage();
+                AnimationAudio.HitFlesh();
                 return;
             }
             else if (hit.transform.CompareTag("Pursuer"))
             {
                 hit.transform.GetComponent<Pursuer>().TakeHeavyDamage();
+                AnimationAudio.HitMetal();
                 return;
             }
             else if (hit.transform.CompareTag("Wall"))

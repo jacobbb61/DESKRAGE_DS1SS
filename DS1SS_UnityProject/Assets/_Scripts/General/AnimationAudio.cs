@@ -5,23 +5,31 @@ using FMODUnity;
 
 public class AnimationAudio : MonoBehaviour
 {
+    [Header("Combat")]
     public EventReference ShortSwingAudioRef;
     public EventReference MedSwingAudioRef;
     public EventReference LongSwingAudioRef;
     public EventReference PlayerDamageAudioRef;
 
+
+    [Header("Walking")]
     public EventReference WalkAudioRef;
     public EventReference Walk_Stone_AudioRef;
     public EventReference Walk_WetStone_AudioRef;
     public EventReference Walk_Wood_AudioRef;
     public EventReference Walk_Snow_AudioRef;
 
+    [Header("Movement")]
+    public EventReference RollAudioRef;
 
+    [Header("Hitting Things")]
     public EventReference HitWoodRef;
     public EventReference HitStoneRef;
     public EventReference HitMetalRef;
+    public EventReference HitMeatRef;
 
-
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public void ShortSwingAudio()
     {
         RuntimeManager.PlayOneShot(ShortSwingAudioRef, transform.position);
@@ -59,6 +67,15 @@ public class AnimationAudio : MonoBehaviour
                 break;
         }
     }
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    public void RollAudio()
+    {
+        RuntimeManager.PlayOneShot(RollAudioRef, transform.position);
+    }
+
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public void HitObjectAudio()
     {
         switch (GetComponentInParent<PlayerControllerV2>().WallHitType)
@@ -81,4 +98,11 @@ public class AnimationAudio : MonoBehaviour
     {
         RuntimeManager.PlayOneShot(HitMetalRef, transform.position);
     }
+    public void HitFlesh()
+    {
+        RuntimeManager.PlayOneShot(HitMeatRef, transform.position);
+    }
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    
 }

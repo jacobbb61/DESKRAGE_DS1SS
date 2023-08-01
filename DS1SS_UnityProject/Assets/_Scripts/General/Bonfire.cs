@@ -33,7 +33,7 @@ public class Bonfire : MonoBehaviour
        // EnemySaveManagerList = GameObject.FindGameObjectsWithTag("Enemy");
 
         Anim = GameObject.FindGameObjectWithTag("Canvas").GetComponent<CanvasManager>().BonfireAnim;
-        BonfirePromptUI = GameObject.FindGameObjectWithTag("Canvas").GetComponent<CanvasManager>().ItemPrompt;
+        BonfirePromptUI = GameObject.FindGameObjectWithTag("Canvas").GetComponent<CanvasManager>().InteractPrompt;
     }
 
 
@@ -155,7 +155,7 @@ public class Bonfire : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             BonfirePromptUI.SetActive(true);
-            GameObject.FindGameObjectWithTag("Canvas").GetComponent<CanvasManager>().ItemProptDescription.text = "Y : Light flame";
+            GameObject.FindGameObjectWithTag("Canvas").GetComponent<CanvasManager>().InteractProptDescription.text = ":  Light flame";
             collision.GetComponent<PlayerControllerV2>().Interactable = GetComponent<InteractableV2>();
         }
     }
@@ -165,7 +165,7 @@ public class Bonfire : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             BonfirePromptUI.SetActive(false);
-            GameObject.FindGameObjectWithTag("Canvas").GetComponent<CanvasManager>().ItemProptDescription.text = "You should not see me";
+            GameObject.FindGameObjectWithTag("Canvas").GetComponent<CanvasManager>().InteractProptDescription.text = "You should not see me";
             collision.GetComponent<PlayerControllerV2>().Interactable = null;
         }
     }
