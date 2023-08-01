@@ -291,9 +291,11 @@ public class Undead_B : MonoBehaviour
         if (Layer.CurrentLayerNumber == 1) { arrow.transform.parent = Layer.MiddleLayer.transform; }
         if (Layer.CurrentLayerNumber == 2) { arrow.transform.parent = Layer.FrontLayer.transform; }
 
-        arrow.GetComponent<Arrow>().Direction = -LookDirection;
-        arrow.GetComponent<Arrow>().ManualStart();
-        arrow.GetComponent<Arrow>().Flying = true;
+        // arrow.GetComponent<Arrow>().Direction = -LookDirection;
+        // arrow.GetComponent<Arrow>().ManualStart();
+        // arrow.GetComponent<Arrow>().Flying = true;
+        arrow.GetComponent<ArrowV2>().Target = Player.transform.position;
+
     }
 
 

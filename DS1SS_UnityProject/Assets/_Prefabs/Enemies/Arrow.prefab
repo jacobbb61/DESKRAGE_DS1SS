@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8144088339725920757}
+  - component: {fileID: 8075460998069668070}
   - component: {fileID: 8144088339725920756}
   - component: {fileID: 8144088339725920759}
   - component: {fileID: 8144088339725920755}
@@ -29,13 +30,13 @@ Transform:
   m_GameObject: {fileID: 8144088339725920745}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 53.119, y: -4.28, z: -0.9083171}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: -1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8144088339725920756
+--- !u!114 &8075460998069668070
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -44,10 +45,26 @@ MonoBehaviour:
   m_GameObject: {fileID: 8144088339725920745}
   m_Enabled: 1
   m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c84772eefddd0e45a5a2f5d8ba373f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Target: {x: 0, y: 0, z: 0}
+  RB: {fileID: 8144088339725920759}
+  speed: 30
+--- !u!114 &8144088339725920756
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8144088339725920745}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 54319f6178c9c5c4e8bae20f6070d128, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Direction: -1
+  yDirection: 0
   Speed: 12
   VerticalSpeed: 0
   RotationSpeed: 10
@@ -56,8 +73,10 @@ MonoBehaviour:
   RB: {fileID: 8144088339725920759}
   from: {x: 0, y: 0, z: 0, w: 0}
   to: {x: 0, y: 0, z: 0.21643962, w: 0.976296}
+  ydis: 0
   minimum: 3
   maximum: -5
+  target: {x: 0, y: 0, z: 0}
 --- !u!50 &8144088339725920759
 Rigidbody2D:
   serializedVersion: 4
@@ -70,14 +89,14 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 2
   m_LinearDrag: 0
   m_AngularDrag: 0
-  m_GravityScale: 1.5
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!61 &8144088339725920755
 BoxCollider2D:
@@ -125,7 +144,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

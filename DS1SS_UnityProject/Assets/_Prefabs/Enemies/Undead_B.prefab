@@ -327,8 +327,8 @@ MonoBehaviour:
   MaxHealth: 30
   Behaviour: 
   LookDirection: -1
-  ForwardDetectionRange: 20
-  BackwardsDetectionRange: 30
+  ForwardDetectionRange: 50
+  BackwardsDetectionRange: 50
   AttackTriggerRange: 30
   TimeBeforeAttack: 0
   AttackAnimationTime: 2.5
@@ -415,6 +415,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   CanBeParry: 0
+  IsLockOnAble: 0
   EnemyTag_This: 1
   EnemyVariant: B
   EnemyBehaviour_This: 
