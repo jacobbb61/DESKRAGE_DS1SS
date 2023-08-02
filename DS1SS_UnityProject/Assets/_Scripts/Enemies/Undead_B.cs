@@ -42,6 +42,7 @@ public class Undead_B : MonoBehaviour
     public GameObject Arrow;
     public GameObject Eyes;
     public Transform HitStartPos;
+    public Vector3 Target;
     public Slider HealthSlider;
     public Vector3 OriginPosition; 
     public TextMeshProUGUI DamagerNumber;
@@ -273,7 +274,9 @@ public class Undead_B : MonoBehaviour
         IsAttacking = true;
         FacePlayer();
         Anim.Play("UndeadAnim_B_ShootingArrow");
-        yield return new WaitForSeconds(AttackAnimationTime);
+        yield return new WaitForSeconds(1.5f);
+        Target = Player.transform.position;
+        yield return new WaitForSeconds(AttackAnimationTime - 1.5f);
         Anim.Play("UndeadAnim_B_Idle");
         yield return new WaitForSeconds(AttackCoolDownTime);
         IsAttacking = false;
@@ -294,7 +297,7 @@ public class Undead_B : MonoBehaviour
         // arrow.GetComponent<Arrow>().Direction = -LookDirection;
         // arrow.GetComponent<Arrow>().ManualStart();
         // arrow.GetComponent<Arrow>().Flying = true;
-        arrow.GetComponent<ArrowV2>().Target = Player.transform.position;
+        arrow.GetComponent<ArrowV2>().Target = Target;
 
     }
 
