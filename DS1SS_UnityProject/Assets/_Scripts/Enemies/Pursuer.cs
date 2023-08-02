@@ -2,10 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class Pursuer : MonoBehaviour
 {
-    private Animator Anim;
+    public Animator Anim;
     private GameObject Player;
     private PlayerControllerV2 PC;
     private Rigidbody2D RB;
@@ -15,7 +16,9 @@ public class Pursuer : MonoBehaviour
     public GameObject Assets;
     public GameObject UIAssets;
     public Slider HealthSlider;
+    public TextMeshProUGUI DamagerNumber;
     public Vector3 OriginPosition;
+    public int DamageTakenInTime;
 
 
     [Header("Stats")]
@@ -72,7 +75,7 @@ public class Pursuer : MonoBehaviour
     public void ManualStart()
     {
         HasBeenPlunged = false;
-        if (Behaviour == null) { Behaviour = "Idle"; }
+        if (Behaviour == null) { Behaviour = "FirstTime"; }
 
         if (LookDirection == 1) { Assets.transform.localScale = new Vector3(1, 1, 1); }
         else if (LookDirection == -1) { Assets.transform.localScale = new Vector3(-1, 1, 1); }
@@ -84,7 +87,7 @@ public class Pursuer : MonoBehaviour
 
         if (arenaManager.currentState == "Open") { Dead(); Behaviour = "Dead"; }
 
-        if (Health > 0) { IsDead = false; } else { Dead(); Behaviour = "Dead"; }
+        if (Health > 0) { IsDead = false; Assets.SetActive(true); } else { Dead(); Behaviour = "Dead"; }
 
         if (IsActive) { UIAssets.SetActive(true); } else { UIAssets.SetActive(false); }
     }
@@ -94,7 +97,7 @@ public class Pursuer : MonoBehaviour
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     void Update()
     {
-        if (Health <= 0) { StartCoroutine(Death()); }
+        if (Health <= 0) { }// StartCoroutine(Death()); }
         else
         {
             IsDead = false;
@@ -129,11 +132,17 @@ public class Pursuer : MonoBehaviour
                 case "Dying":
 
                     break;
+                case "Cinematic":
+
+                    break;
+                case "FirstTime":
+                    Assets.SetActive(false);
+                    break;
                 case "Dead":
                     Dead();
                     break;
                 default:
-                    Behaviour = "Idle";
+                    Behaviour = "FirstTime";
                     break;
             }
         }
@@ -158,7 +167,7 @@ public class Pursuer : MonoBehaviour
 
         HealthSlider.value = 0; UpdateUI();
 
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(3.3f);
 
         Behaviour = "Dead";
         Dead();
@@ -178,22 +187,50 @@ public class Pursuer : MonoBehaviour
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public void TakeLightDamage()
     {
-        Health -= 6;
-        UpdateUI();
+        Health -= 5;
+        UpdateUI(); 
+        AddDamage(5);
+        if (Health <= 0) { StartCoroutine(Death()); }
         if (Health <= MaxHealth / 2 && !arenaManager.IsSecondPhase) { arenaManager.SecondPhase(); }
     }
     public void TakeHeavyDamage()
     {
-        Health -= 9;
-        UpdateUI();
+        Health -= 10;
+        UpdateUI(); 
+        AddDamage(10);
+        if (Health <= 0) { StartCoroutine(Death()); }
         if (Health <= MaxHealth / 2 && !arenaManager.IsSecondPhase) { arenaManager.SecondPhase(); }
     }
     public void TakePlungeDamage()
     {
         if (HasBeenPlunged == false) { Health -= 50; HasBeenPlunged = true; }
-        UpdateUI();
+        UpdateUI(); 
+        AddDamage(50);
+        if (Health <= 0) { StartCoroutine(Death()); }
         if (Health <= MaxHealth / 2 && !arenaManager.IsSecondPhase) { arenaManager.SecondPhase(); }
     }
+
+    void AddDamage(int DMG)
+    {
+        if (DamagerNumber.gameObject.activeInHierarchy) { DamageTakenInTime += DMG; DamagerNumber.text = DamageTakenInTime.ToString(); }
+        else
+        {
+            DamageTakenInTime += DMG;
+            DamagerNumber.text = DamageTakenInTime.ToString();
+            StartCoroutine(ShowDamageNumbers());
+        }
+    }
+
+    IEnumerator ShowDamageNumbers()
+    {
+        DamagerNumber.gameObject.SetActive(true);
+        yield return new WaitForSeconds(1.5f);
+        DamagerNumber.gameObject.SetActive(false);
+        DamageTakenInTime = 0;
+    }
+
+
+
 
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// movement

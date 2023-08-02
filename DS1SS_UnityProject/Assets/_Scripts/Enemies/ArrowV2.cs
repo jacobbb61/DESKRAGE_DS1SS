@@ -19,8 +19,11 @@ public class ArrowV2 : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
+            if (collision.GetComponent<PlayerControllerV2>().IsRolling==false) 
+            {             
             collision.GetComponent<PlayerControllerV2>().PlayerTakeDamage(20, false, 0);
-            DestroyArrow();
+            DestroyArrow(); 
+            }
         }
         if (collision.CompareTag("Ground"))
         {

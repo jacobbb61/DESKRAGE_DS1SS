@@ -150,7 +150,7 @@ public class AsylumDemon : MonoBehaviour
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     void Update()
     {
-        if (Health <= 0) { StartCoroutine(Death()); }
+        if (Health <= 0) { }// StartCoroutine(Death()); }
         else
         {
             IsDead = false;
@@ -211,7 +211,7 @@ public class AsylumDemon : MonoBehaviour
 
         HealthSlider.value = 0; UpdateUI();
 
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(3.3f);
 
         Behaviour = "Dead";
         Dead();
@@ -236,6 +236,7 @@ public class AsylumDemon : MonoBehaviour
             Health -= 5;
             AddDamage(5);
             UpdateUI();
+            if (Health <= 0) { StartCoroutine(Death()); }
             if (Health <= MaxHealth / 2 && !arenaManager.IsSecondPhase) { arenaManager.SecondPhase(); }
         }
     }
@@ -246,6 +247,7 @@ public class AsylumDemon : MonoBehaviour
             Health -= 10;
             AddDamage(10);
             UpdateUI();
+            if (Health <= 0) { StartCoroutine(Death()); }
             if (Health <= MaxHealth / 2 && !arenaManager.IsSecondPhase) { arenaManager.SecondPhase(); }
         }
     }
@@ -254,7 +256,8 @@ public class AsylumDemon : MonoBehaviour
             if (HasBeenPlunged == false) { Health -= 50; HasBeenPlunged = true; }
             AddDamage(50);
             UpdateUI();
-            if (Health <= MaxHealth / 2 && !arenaManager.IsSecondPhase) { arenaManager.SecondPhase(); }
+        if (Health <= 0) { StartCoroutine(Death()); }
+        if (Health <= MaxHealth / 2 && !arenaManager.IsSecondPhase) { arenaManager.SecondPhase(); }
 
     }
 

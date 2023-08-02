@@ -54,8 +54,19 @@ public class PursuerArena : MonoBehaviour
         doorT.ManualStart();
         doorU.ManualStart();
 
+        if (currentState == "FirstTime")
+        {
+            StartCinematic();
 
-        if (currentState == "FirstTime" || currentState == "Idle")
+
+           // SwitchState("Active");
+
+            inBossFight = true;
+            arenaIsActive = true;
+           // Boss.Behaviour = "Hostile";
+        }
+
+        if (currentState == "Idle")
         {
             SwitchState("Active");
             inBossFight = true;
@@ -92,7 +103,7 @@ public class PursuerArena : MonoBehaviour
                     Boss.IsTurning = false;
                     Boss.IsCoolingDown = false;
                     Boss.Health = Boss.MaxHealth;
-                    Boss.Behaviour = "Idle";
+                    Boss.Behaviour = "FirstTime";
                     break;
                 }
             case "Idle":
@@ -176,4 +187,31 @@ public class PursuerArena : MonoBehaviour
         // Disable boss health
         // Achievement and saving stuff
     }
+
+
+
+    public void StartCinematic()
+    {
+        inBossFight = true;
+        arenaIsActive = true;
+        Boss.Behaviour = "Cinematic";
+        Boss.Assets.SetActive(true);
+        //trigger bridge wait to break
+        Bridge.StartCoroutine(Bridge.WaitToBreak());
+        //trigger bridge animation
+        Bridge.Anim.Play("Breaking");
+        //trigger boss animation
+        Boss.Anim.Play("Intro");
+
+        StartCoroutine(WaitToStartBoss());
+    }
+
+    IEnumerator WaitToStartBoss()
+    {
+        yield return new WaitForSeconds(2.5f);
+        SwitchState("Active");
+        Boss.Behaviour = "Hostile";
+        
+    }
+
 }

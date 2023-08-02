@@ -375,17 +375,17 @@ public class WorldSaveGameManager : MonoBehaviour
         CurrentCharacterData.EnemyPosY_6 = 23.2f;
         CurrentCharacterData.EnemyDirection_6 = -1;
 
-        CurrentCharacterData.EnemyBehaviour_7 = "";
-        CurrentCharacterData.EnemyHealth_7 = 50;
-        CurrentCharacterData.EnemyPosX_7 = 0;
-        CurrentCharacterData.EnemyPosY_7 = 0;
-        CurrentCharacterData.EnemyDirection_7 = -1;
+        CurrentCharacterData.EnemyBehaviour_7 = "";   // new undead A front boulder
+        CurrentCharacterData.EnemyHealth_7 = 30;
+        CurrentCharacterData.EnemyPosX_7 = 128;
+        CurrentCharacterData.EnemyPosY_7 = 23.5f;
+        CurrentCharacterData.EnemyDirection_7 = 1;
 
-        CurrentCharacterData.EnemyBehaviour_8 = "";
+        CurrentCharacterData.EnemyBehaviour_8 = "";   //new undead C front boulder
         CurrentCharacterData.EnemyHealth_8 = 50;
-        CurrentCharacterData.EnemyPosX_8 = 0;
-        CurrentCharacterData.EnemyPosY_8 = 0;
-        CurrentCharacterData.EnemyDirection_8 = -1;
+        CurrentCharacterData.EnemyPosX_8 = 142;
+        CurrentCharacterData.EnemyPosY_8 = 23.2f;
+        CurrentCharacterData.EnemyDirection_8 = 1;
 
         CurrentCharacterData.EnemyBehaviour_9 = "";
         CurrentCharacterData.EnemyHealth_9 = 50;
@@ -405,16 +405,16 @@ public class WorldSaveGameManager : MonoBehaviour
         CurrentCharacterData.EnemyPosY_11 = 9;
         CurrentCharacterData.EnemyDirection_11 = -1;
 
-        CurrentCharacterData.EnemyBehaviour_12 = "";
-        CurrentCharacterData.EnemyHealth_12 = 50;
-        CurrentCharacterData.EnemyPosX_12 = 0;
-        CurrentCharacterData.EnemyPosY_12 = 0;
+        CurrentCharacterData.EnemyBehaviour_12 = "";   // new undead a front under
+        CurrentCharacterData.EnemyHealth_12 = 30;
+        CurrentCharacterData.EnemyPosX_12 = 173.5f;
+        CurrentCharacterData.EnemyPosY_12 = -5.75f;
         CurrentCharacterData.EnemyDirection_12 = -1;
 
-        CurrentCharacterData.EnemyBehaviour_13 = "";
+        CurrentCharacterData.EnemyBehaviour_13 = "";   //new undead b front under
         CurrentCharacterData.EnemyHealth_13 = 50;
-        CurrentCharacterData.EnemyPosX_13 = 0;
-        CurrentCharacterData.EnemyPosY_13 = 0;
+        CurrentCharacterData.EnemyPosX_13 = 179.5f;
+        CurrentCharacterData.EnemyPosY_13 = -14.7f;
         CurrentCharacterData.EnemyDirection_13 = -1;
 
         CurrentCharacterData.EnemyBehaviour_14 = "";
@@ -429,10 +429,10 @@ public class WorldSaveGameManager : MonoBehaviour
         CurrentCharacterData.EnemyPosY_15 = 17.2f;
         CurrentCharacterData.EnemyDirection_15 = -1;
 
-        CurrentCharacterData.EnemyBehaviour_16 = "";
+        CurrentCharacterData.EnemyBehaviour_16 = "";   //new undead c middle upper
         CurrentCharacterData.EnemyHealth_16 = 50;
-        CurrentCharacterData.EnemyPosX_16 = 0;
-        CurrentCharacterData.EnemyPosY_16 = 0;
+        CurrentCharacterData.EnemyPosX_16 = 185.11f;
+        CurrentCharacterData.EnemyPosY_16 = 21.3f;
         CurrentCharacterData.EnemyDirection_16 = -1;
 
         CurrentCharacterData.EnemyBehaviour_17 = "";
@@ -443,14 +443,14 @@ public class WorldSaveGameManager : MonoBehaviour
 
         CurrentCharacterData.EnemyBehaviour_18 = "";
         CurrentCharacterData.EnemyHealth_18 = 50;
-        CurrentCharacterData.EnemyPosX_18 = 172;
+        CurrentCharacterData.EnemyPosX_18 = 142;
         CurrentCharacterData.EnemyPosY_18 = -5.85f;
         CurrentCharacterData.EnemyDirection_18 = -1;
 
-        CurrentCharacterData.EnemyBehaviour_19 = "";
+        CurrentCharacterData.EnemyBehaviour_19 = "";   //new undead b middle upper
         CurrentCharacterData.EnemyHealth_19 = 50;
-        CurrentCharacterData.EnemyPosX_19 = 0;
-        CurrentCharacterData.EnemyPosY_19 = 0;
+        CurrentCharacterData.EnemyPosX_19 = 178.65f;
+        CurrentCharacterData.EnemyPosY_19 = 12.28f;
         CurrentCharacterData.EnemyDirection_19 = -1;
 
         CurrentCharacterData.EnemyBehaviour_20 = "";
@@ -471,10 +471,10 @@ public class WorldSaveGameManager : MonoBehaviour
         CurrentCharacterData.EnemyPosY_22 = -14.7f;
         CurrentCharacterData.EnemyDirection_22 = -1;
 
-        CurrentCharacterData.EnemyBehaviour_23 = "";
-        CurrentCharacterData.EnemyHealth_23 = 50;
-        CurrentCharacterData.EnemyPosX_23 = 0;
-        CurrentCharacterData.EnemyPosY_23 = 0;
+        CurrentCharacterData.EnemyBehaviour_23 = "";   //new undead a middle upper
+        CurrentCharacterData.EnemyHealth_23 = 30;
+        CurrentCharacterData.EnemyPosX_23 = 209.1f;
+        CurrentCharacterData.EnemyPosY_23 = 17.15f;
         CurrentCharacterData.EnemyDirection_23 = -1;
 
         CurrentCharacterData.EnemyBehaviour_24 = "";

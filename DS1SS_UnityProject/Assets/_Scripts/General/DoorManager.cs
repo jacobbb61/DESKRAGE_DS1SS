@@ -107,6 +107,7 @@ public class DoorManager : MonoBehaviour
                     FogAssets.SetActive(false);
                     if (doorSaveManager.DoorTag_This == "N") { GetComponent<DoorOcludingSection>().Open(); }
                     if (doorSaveManager.DoorTag_This == "H") { GetComponent<DoorOcludingSection>().Open(); }
+                    if (doorSaveManager.DoorTag_This == "U") { GetComponent<DoorOcludingSection>().Open(); }
                     break;
                 case "Closed":
                     doorCollider.enabled = true;
@@ -154,6 +155,7 @@ public class DoorManager : MonoBehaviour
 
          if(doorSaveManager.DoorTag_This == "N") { GetComponent<DoorOcludingSection>().ManualStart(); }
          if(doorSaveManager.DoorTag_This == "H") { GetComponent<DoorOcludingSection>().ManualStart(); }
+         if(doorSaveManager.DoorTag_This == "U") { GetComponent<DoorOcludingSection>().ManualStart(); }
         
     }
 
@@ -301,6 +303,7 @@ public class DoorManager : MonoBehaviour
                             WorldSaveGameManager.Instance.Player = playerManager;
                             WorldSaveGameManager.Instance.SaveGame();
                             PursuerArena.EnterArena(); playerManager.gameObject.transform.position = PursuerArena.transform.position;
+                            Anim.Play("PerpendicularDoorClosedIdle");
                         }
                         doorCollider.enabled = false;
                         break;
@@ -317,6 +320,7 @@ public class DoorManager : MonoBehaviour
                             WorldSaveGameManager.Instance.Player = playerManager;
                             WorldSaveGameManager.Instance.SaveGame();
                             DemonArena.EnterArena(); playerManager.gameObject.transform.position = DemonArena.transform.position; 
+                            Anim.Play("PerpendicularDoorClosedIdle");
                         }
 
                         if (doorSaveManager.DoorTag_This == "T" && PursuerArena.currentState == "FirstTime")
@@ -324,6 +328,7 @@ public class DoorManager : MonoBehaviour
                             WorldSaveGameManager.Instance.Player = playerManager;
                             WorldSaveGameManager.Instance.SaveGame();
                             PursuerArena.EnterArena(); playerManager.gameObject.transform.position = PursuerArena.transform.position;
+                            Anim.Play("PerpendicularDoorClosedIdle");
                         }
 
                         if (doorSaveManager.DoorTag_This == "N")
@@ -333,6 +338,7 @@ public class DoorManager : MonoBehaviour
 
                         if (doorSaveManager.DoorTag_This == "N") { GetComponent<DoorOcludingSection>().RevealArea(); }
                         if (doorSaveManager.DoorTag_This == "H") { GetComponent<DoorOcludingSection>().RevealArea(); }
+                        if (doorSaveManager.DoorTag_This == "U") { GetComponent<DoorOcludingSection>().RevealArea(); }
 
                         break;
                     }
