@@ -73,6 +73,12 @@ public class PursuerArena : MonoBehaviour
             arenaIsActive = true;
             Boss.Behaviour = "Hostile";
         }
+
+        FMODinstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+        FMODinstance = FMODUnity.RuntimeManager.CreateInstance(Theme_FirstPhase);
+        FMODinstance.start();
+        FMODinstance.release();
+
     }
     IEnumerator Wait(float timeToWait)
     {
@@ -142,10 +148,12 @@ public class PursuerArena : MonoBehaviour
                     Boss.IsCoolingDown = false;
                     Boss.Health = Boss.MaxHealth;
                     Boss.Behaviour = "Hostile";
+                   /*
                     FMODinstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
                     FMODinstance = FMODUnity.RuntimeManager.CreateInstance(Theme_FirstPhase);
                     FMODinstance.start();
                     FMODinstance.release();
+                   */
                     break;
                 }
             case "Open":
@@ -209,9 +217,7 @@ public class PursuerArena : MonoBehaviour
     IEnumerator WaitToStartBoss()
     {
         yield return new WaitForSeconds(2.5f);
-        SwitchState("Active");
-        Boss.Behaviour = "Hostile";
-        
+        SwitchState("Active");        
     }
 
 }

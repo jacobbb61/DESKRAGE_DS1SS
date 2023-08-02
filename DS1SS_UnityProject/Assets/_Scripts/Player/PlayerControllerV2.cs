@@ -902,6 +902,7 @@ public class PlayerControllerV2 : MonoBehaviour
         Anim.Play("PlayerAnim_Idle");
         IsBlocking = false;
         IsRolling = false;
+        IsImmune = false;
         if (IsLockedOn) { FaceTowardsEnemy(); } else { FaceTowardsInput(); }
     }
 
@@ -911,6 +912,7 @@ public class PlayerControllerV2 : MonoBehaviour
         if (MovementInputDirection < -0.2f && !IsLockedOn) { PlayerDirection = -1; }
         if (IsLockedOn) { FaceTowardsEnemy(); } else { FaceTowardsInput(); }
         IsRolling = false;
+        IsImmune = false;
 
 
         MyRb.velocity = new Vector2(MovementInputDirection * WalkSpeed, -VerticalSpeed);
@@ -953,6 +955,7 @@ public class PlayerControllerV2 : MonoBehaviour
     void Running()
     {
         IsRolling = false;
+        IsImmune = false;
         if (Stamina <= 0) //ran out of stamina, break run
         {
                     if (StaminaRegenCoroutine != null) { StopCoroutine(StaminaRegenCoroutine);} StaminaRegenCoroutine = StartCoroutine(StaminaRegenPause());
@@ -1005,6 +1008,7 @@ public class PlayerControllerV2 : MonoBehaviour
     void Falling()
     {
         IsRolling = false;
+        IsImmune = false;
         if (MovementInputDirection > 0.2f) { PlayerDirection = 1; }
         if (MovementInputDirection < -0.2f) { PlayerDirection = -1; }
         FaceTowardsInput();
@@ -1055,6 +1059,7 @@ public class PlayerControllerV2 : MonoBehaviour
     {
         MyRb.velocity = Vector2.zero;
         IsRolling = false;
+        IsImmune = false;
         if (Stamina <= 0) //ran out of stamina, break blocking and stagger
         {
            StartCoroutine(Stagger());
@@ -1064,6 +1069,7 @@ public class PlayerControllerV2 : MonoBehaviour
     void MenuOpen()
     {
         IsRolling = false;
+        IsImmune = false;
         Anim.Play("PlayerAnim_Idle");
         if (IsUiOpen == false) { if (MovementInputDirection == 0) { State = "Idle"; } else { State = "Walking"; } }
     }
