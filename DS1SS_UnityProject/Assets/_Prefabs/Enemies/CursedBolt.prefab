@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5338844659262792864}
   - component: {fileID: 7867437254259844194}
+  - component: {fileID: 89571785820168398}
   m_Layer: 0
   m_Name: Triangle
   m_TagString: Untagged
@@ -24,14 +25,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7997320383105472279}
-  m_LocalRotation: {x: -0, y: 0, z: -0.70710677, w: 0.7071068}
+  m_LocalRotation: {x: -0.0000004768371, y: -1, z: -2.5579536e-13, w: 0.00000058114523}
   m_LocalPosition: {x: -0, y: 0, z: 0.9083171}
-  m_LocalScale: {x: 1, y: 3.5875, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8144088339725920757}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
+  m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
 --- !u!212 &7867437254259844194
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -84,6 +85,27 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &89571785820168398
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7997320383105472279}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ce81a5581a3717a4d99dac953c865ac6, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &8144088339725920745
 GameObject:
   m_ObjectHideFlags: 0
@@ -112,7 +134,7 @@ Transform:
   m_GameObject: {fileID: 8144088339725920745}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 53.119, y: -4.28, z: -0.9083171}
-  m_LocalScale: {x: -2.25, y: 3, z: 2.25}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5338844659262792864}
@@ -136,6 +158,7 @@ MonoBehaviour:
   speed: 40
   angle: 0
   IsArrow: 0
+  Anim: {fileID: 89571785820168398}
 --- !u!50 &8144088339725920759
 Rigidbody2D:
   serializedVersion: 4

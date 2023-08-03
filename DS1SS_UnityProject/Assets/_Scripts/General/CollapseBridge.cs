@@ -27,12 +27,15 @@ public class CollapseBridge : MonoBehaviour
     private bool CanBreak; //wait for time when loading into scene before player can trigger break
 
     // The bridge referenced in this script must have a collider and kinematic rigidbody
-
+    private void Start()
+    {
+         StartCoroutine(WaitForLoad());
+    }
     public void ManualStart()
     {
         if (!isBridge)
         {
-            StartCoroutine(WaitForLoad());
+           
             switch (currentState)
             {
                 case "UnBroken":

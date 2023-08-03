@@ -130,6 +130,14 @@ public class EnemyLock : MonoBehaviour
                         LockOnSymbol.SetActive(true);
 
                     }
+                    else
+                    {
+                        
+                        LockedOn = false;
+                        Pc.IsLockedOn = false;
+                        LockOnSymbol.SetActive(false);
+                        return trans;
+                    }
 
                 }
             }

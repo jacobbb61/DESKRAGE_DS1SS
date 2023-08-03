@@ -9,6 +9,7 @@ public class ArrowV2 : MonoBehaviour
     public float speed;
     public float angle;
     public bool IsArrow;
+    public Animator Anim;
 
     private void Start()
     {
@@ -31,7 +32,7 @@ public class ArrowV2 : MonoBehaviour
                 Quaternion targetRotation = Quaternion.Euler(new Vector3(0, 0, 180));
                 transform.rotation = targetRotation;
             }
-           
+            Anim.Play("CursedShockWaveVFX");
             RB.AddForce(transform.right * speed, ForceMode2D.Impulse);
         }
  
@@ -66,6 +67,14 @@ public class ArrowV2 : MonoBehaviour
 
     void DestroyArrow()
     {
-        Destroy(gameObject);
+        if (IsArrow) { Destroy(gameObject); }
+        else
+        {
+            GetComponent<BoxCollider2D>().enabled = false;
+            Anim.Play("CursedShockWaveVFX_Impact");
+            RB.velocity = Vector2.zero;
+            Destroy(gameObject,0.25f);
+
+        }
     }
 }

@@ -122,6 +122,8 @@ public class PlayerControllerV2 : MonoBehaviour
     private Coroutine LightAttackFollowUpCoroutine;
     private Coroutine HeavyAttackCoroutine;
     private Coroutine HeavyAttackFollowUpCoroutine;
+    private Coroutine EnterBlockCoroutine;
+    private Coroutine ExitBlockCoroutine;
 
     private Coroutine CancelThisCoroutine;
 
@@ -812,23 +814,24 @@ public class PlayerControllerV2 : MonoBehaviour
     }  
     void ProcessInput_LB(InputAction.CallbackContext context)
     {
-        if (context.action.WasPressedThisFrame())
+        if (context.action.WasPressedThisFrame() && State != "Blocking")
         {
             if (!IsLockedOn)
-            {
-                if (MovementInputDirection > 0.2f) { PlayerDirection = 1; }
-                if (MovementInputDirection < -0.2f) { PlayerDirection = -1; }
-                FaceTowardsInput();
-            }
-            else
-            {
-                FaceTowardsEnemy();
-            }
-            StartCoroutine(EnterBlock());
+                {
+                    if (MovementInputDirection > 0.2f) { PlayerDirection = 1; }
+                    if (MovementInputDirection < -0.2f) { PlayerDirection = -1; }
+                    FaceTowardsInput();
+                }
+                else
+                {
+                    FaceTowardsEnemy();
+                }
+
+                EnterBlock();
         }
         if (context.action.WasReleasedThisFrame())
         {
-            StartCoroutine(ExitBlock());
+            ExitBlock();
         }
     }
     //////////////////////////////////////////////////////////////
@@ -1587,24 +1590,41 @@ public class PlayerControllerV2 : MonoBehaviour
 
     void HoldBlock()
     {
-        IsBlocking = true;
+        //IsBlocking = true;
 
         Anim.Play("PlayerAnim_ShieldBlockHold");
     }
-    IEnumerator EnterBlock()
+    void EnterBlock()
     {
+        if (EnterBlockCoroutine != null) { StopCoroutine(EnterBlockCoroutine); }
+        EnterBlockCoroutine = StartCoroutine(EnterBlockWait());
         State = "Blocking";
-
         Anim.Play("PlayerAnim_ShieldBlockEnter");
 
+        IsBlocking = true;
+    }
+    IEnumerator EnterBlockWait()
+    {
         yield return new WaitForSeconds(0.25f);
 
         HoldBlock();
     }
-    IEnumerator ExitBlock()
-    {
-        Anim.Play("PlayerAnim_ShieldBlockExit");
 
+    void ExitBlock()
+    {
+       // if (ExitBlockCoroutine != null) { StopCoroutine(ExitBlockCoroutine); }
+       // ExitBlockCoroutine = StartCoroutine(ExitBlockWait());
+
+        IsBlocking = false;
+        if (EnterBlockCoroutine != null) { StopCoroutine(EnterBlockCoroutine); }
+        if (MovementInputDirection == 0) { State = "Idle"; } else { State = "Walking"; }
+
+
+      //  Anim.Play("PlayerAnim_ShieldBlockExit");
+    }
+
+    IEnumerator ExitBlockWait()
+    {
         yield return new WaitForSeconds(0.15f);
 
         IsBlocking = false;

@@ -120,14 +120,20 @@ public class Undead_B : MonoBehaviour
             }
         }
     }
-
-    IEnumerator Death()
+    void Death()
     {
+        DamagerNumber.gameObject.SetActive(false);
         EnemySaveManager.IsLockOnAble = false;
         Behaviour = "Dying";
-        if (IsAttacking) { StopCoroutine(AttackingCoroutine); }
+        StopAllCoroutines();
+        if (AttackingCoroutine != null) { StopCoroutine(AttackingCoroutine); }
         HealthSlider.value = 0;
         Anim.Play("UndeadAnim_B_Death");
+        StartCoroutine(DeathWait());
+    }
+    IEnumerator DeathWait()
+    {
+
         yield return new WaitForSeconds(3);
 
         Dead();
@@ -151,14 +157,14 @@ public class Undead_B : MonoBehaviour
     {
         Health -= 5;
         AddDamage(5);
-        if (Health <= 0) { StartCoroutine(Death()); RuntimeManager.PlayOneShot(Grunts, transform.position); }
+        if (Health <= 0) { Death(); RuntimeManager.PlayOneShot(Grunts, transform.position); }
     }
     public void TakeHeavyDamage()
     {
         Health -= 10;
         AddDamage(10);
+        if (Health <= 0) { Death(); RuntimeManager.PlayOneShot(Grunts, transform.position); return; }
         Behaviour = "Staggered";
-        if (Health <= 0) { StartCoroutine(Death()); RuntimeManager.PlayOneShot(Grunts, transform.position); }
     }
     void AddDamage(int DMG)
     {
