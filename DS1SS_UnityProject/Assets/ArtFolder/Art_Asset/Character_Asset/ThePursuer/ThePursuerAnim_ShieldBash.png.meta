@@ -165,12 +165,12 @@ TextureImporter:
       name: ThePursuerAnim_ShieldBash_1
       rect:
         serializedVersion: 2
-        x: 740
-        y: 1
-        width: 241
-        height: 213
+        x: 794
+        y: 0
+        width: 185
+        height: 222
       alignment: 9
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: 0.44, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -186,12 +186,12 @@ TextureImporter:
       name: ThePursuerAnim_ShieldBash_2
       rect:
         serializedVersion: 2
-        x: 1263
-        y: 0
-        width: 314
-        height: 233
+        x: 1376
+        y: 1
+        width: 164
+        height: 222
       alignment: 9
-      pivot: {x: 0.48, y: 0}
+      pivot: {x: 0.38, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -207,12 +207,12 @@ TextureImporter:
       name: ThePursuerAnim_ShieldBash_3
       rect:
         serializedVersion: 2
-        x: 1806
+        x: 1860
         y: 0
-        width: 385
-        height: 223
+        width: 241
+        height: 214
       alignment: 9
-      pivot: {x: 0.42, y: 0}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -228,12 +228,12 @@ TextureImporter:
       name: ThePursuerAnim_ShieldBash_4
       rect:
         serializedVersion: 2
-        x: 2372
+        x: 2383
         y: 0
-        width: 379
-        height: 242
+        width: 314
+        height: 233
       alignment: 9
-      pivot: {x: 0.41, y: 0}
+      pivot: {x: 0.47, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -249,12 +249,12 @@ TextureImporter:
       name: ThePursuerAnim_ShieldBash_5
       rect:
         serializedVersion: 2
-        x: 2971
+        x: 2926
         y: 0
-        width: 367
-        height: 231
+        width: 385
+        height: 223
       alignment: 9
-      pivot: {x: 0.25, y: 0}
+      pivot: {x: 0.42, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -270,12 +270,12 @@ TextureImporter:
       name: ThePursuerAnim_ShieldBash_6
       rect:
         serializedVersion: 2
-        x: 3532
+        x: 3492
         y: 0
-        width: 377
-        height: 229
+        width: 379
+        height: 242
       alignment: 9
-      pivot: {x: 0.25, y: 0}
+      pivot: {x: 0.41, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -291,12 +291,12 @@ TextureImporter:
       name: ThePursuerAnim_ShieldBash_7
       rect:
         serializedVersion: 2
-        x: 4091
+        x: 4042
         y: 0
-        width: 267
-        height: 218
+        width: 389
+        height: 223
       alignment: 9
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: 0.42, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -312,12 +312,12 @@ TextureImporter:
       name: ThePursuerAnim_ShieldBash_8
       rect:
         serializedVersion: 2
-        x: 4668
+        x: 4651
         y: 0
-        width: 231
-        height: 222
+        width: 367
+        height: 231
       alignment: 9
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: 0.25, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -333,9 +333,51 @@ TextureImporter:
       name: ThePursuerAnim_ShieldBash_9
       rect:
         serializedVersion: 2
-        x: 5255
+        x: 5212
         y: 0
-        width: 179
+        width: 377
+        height: 228
+      alignment: 9
+      pivot: {x: 0.24, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 78bceb9fd0d2dd44b957ea430fe847d4
+      internalID: 1672994417
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThePursuerAnim_ShieldBash_10
+      rect:
+        serializedVersion: 2
+        x: 5771
+        y: 0
+        width: 267
+        height: 218
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f3715cd849f50414d838b47d8e9a7e66
+      internalID: -1703508842
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThePursuerAnim_ShieldBash_11
+      rect:
+        serializedVersion: 2
+        x: 6348
+        y: 0
+        width: 231
         height: 222
       alignment: 9
       pivot: {x: 0.5, y: 0}
@@ -344,8 +386,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 78bceb9fd0d2dd44b957ea430fe847d4
-      internalID: 1672994417
+      spriteID: fc5fc9b642d652648a29f0b83f0ddba7
+      internalID: 414421188
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThePursuerAnim_ShieldBash_12
+      rect:
+        serializedVersion: 2
+        x: 6935
+        y: 2
+        width: 179
+        height: 220
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f6521e74ebc8c154790f4d71f40d6a04
+      internalID: 768045401
       vertices: []
       indices: 
       edges: []
@@ -363,6 +426,9 @@ TextureImporter:
     nameFileIdTable:
       ThePursuerAnim_ShieldBash_0: 1740860501
       ThePursuerAnim_ShieldBash_1: -1134019380
+      ThePursuerAnim_ShieldBash_10: -1703508842
+      ThePursuerAnim_ShieldBash_11: 414421188
+      ThePursuerAnim_ShieldBash_12: 768045401
       ThePursuerAnim_ShieldBash_2: 892985931
       ThePursuerAnim_ShieldBash_3: -568731983
       ThePursuerAnim_ShieldBash_4: -1197382299
