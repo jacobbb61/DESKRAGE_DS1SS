@@ -192,7 +192,11 @@ public class Undead_B : MonoBehaviour
 
     void LookForPlayer()
     {
-
+        if (Vector3.Distance(Eyes.transform.position, Player.transform.position) < 4)
+        {
+            SeePlayer = true;
+            return;
+        }
         float Range = 0;
 
         if (transform.position.x > Player.transform.position.x && LookDirection == 1) //looking towards player

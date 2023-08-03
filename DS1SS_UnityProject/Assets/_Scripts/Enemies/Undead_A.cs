@@ -251,6 +251,11 @@ public class Undead_A : MonoBehaviour
 
     void LookForPlayer()
     {
+        if (Vector3.Distance(Eyes.transform.position, Player.transform.position) < 4)
+        {
+            SeePlayer = true;
+            return;
+        }
 
         float Range = 0;
 
@@ -290,11 +295,11 @@ public class Undead_A : MonoBehaviour
                     SeePlayer = false;
                 }
 
-            } 
+            }
             else
-                {
-                    SeePlayer = false;
-                }
+            {
+                SeePlayer = false;
+            }
         }
         else
         {

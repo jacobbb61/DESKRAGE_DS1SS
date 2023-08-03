@@ -426,9 +426,11 @@ public class PlayerControllerV2 : MonoBehaviour
     //////////////////////////////////////////////////////////////
     public void X(InputAction.CallbackContext context)
     {
-        if (CanUseSecondEstus && CurrentEstus>0)
+        if (CanUseSecondEstus && CurrentEstus>0 && Health<MaxHealth)
         {
             State = "Estus";
+            StopCoroutine(EstusUseCoroutine);
+            CanUseSecondEstus = false;
             EstusUseCoroutine = StartCoroutine(UseEstus());
         }
         else
@@ -451,12 +453,12 @@ public class PlayerControllerV2 : MonoBehaviour
     }
     void ProcessInput_X(InputAction.CallbackContext context)
     {
-            if (context.action.triggered && CurrentEstus>0)
+            if (context.action.triggered && CurrentEstus> 0 && Health < MaxHealth)
             {
             State = "Estus";
             EstusUseCoroutine = StartCoroutine(UseEstus());
             } 
-            if(context.action.triggered && CurrentEstus == 0)
+            if(context.action.triggered && CurrentEstus == 0 && Health < MaxHealth)
             {
             State = "Estus";
             EstusUseCoroutine = StartCoroutine(UseEmptyEstus());
