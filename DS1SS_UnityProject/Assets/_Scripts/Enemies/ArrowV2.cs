@@ -7,13 +7,38 @@ public class ArrowV2 : MonoBehaviour
     public Vector3 Target;
     public Rigidbody2D RB;
     public float speed;
+    public float angle;
+    public bool IsArrow;
 
     private void Start()
     {
-        float angle = Mathf.Atan2(Target.y - transform.position.y, Target.x - transform.position.x) * Mathf.Rad2Deg;
-        Quaternion targetRotation = Quaternion.Euler(new Vector3(0, 0, angle));
-        transform.rotation = targetRotation;
-        RB.AddForce(transform.right * speed, ForceMode2D.Impulse);
+        if (IsArrow) 
+        {
+            angle = Mathf.Atan2(Target.y - transform.position.y, Target.x - transform.position.x) * Mathf.Rad2Deg; 
+            Quaternion targetRotation = Quaternion.Euler(new Vector3(0, 0, angle));
+            transform.rotation = targetRotation;
+            RB.AddForce(transform.right * speed, ForceMode2D.Impulse);
+        }
+        else
+        {
+           if (transform.position.x < Target.x)
+            {
+                Quaternion targetRotation = Quaternion.Euler(new Vector3(0, 0, 0));
+                transform.rotation = targetRotation;
+            }
+            else
+            {
+                Quaternion targetRotation = Quaternion.Euler(new Vector3(0, 0, 180));
+                transform.rotation = targetRotation;
+            }
+           
+            RB.AddForce(transform.right * speed, ForceMode2D.Impulse);
+        }
+ 
+
+
+
+
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {

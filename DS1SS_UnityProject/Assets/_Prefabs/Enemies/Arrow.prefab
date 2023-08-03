@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8144088339725920757}
   - component: {fileID: 8075460998069668070}
-  - component: {fileID: 8144088339725920756}
   - component: {fileID: 8144088339725920759}
   - component: {fileID: 8144088339725920755}
   - component: {fileID: 8144088339725920744}
@@ -51,32 +50,8 @@ MonoBehaviour:
   Target: {x: 0, y: 0, z: 0}
   RB: {fileID: 8144088339725920759}
   speed: 30
---- !u!114 &8144088339725920756
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8144088339725920745}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 54319f6178c9c5c4e8bae20f6070d128, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Direction: -1
-  yDirection: 0
-  Speed: 12
-  VerticalSpeed: 0
-  RotationSpeed: 10
-  SortingLayer: 
-  Flying: 1
-  RB: {fileID: 8144088339725920759}
-  from: {x: 0, y: 0, z: 0, w: 0}
-  to: {x: 0, y: 0, z: 0.21643962, w: 0.976296}
-  ydis: 0
-  minimum: 3
-  maximum: -5
-  target: {x: 0, y: 0, z: 0}
+  angle: 0
+  IsArrow: 1
 --- !u!50 &8144088339725920759
 Rigidbody2D:
   serializedVersion: 4

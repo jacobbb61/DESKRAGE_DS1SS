@@ -6,7 +6,8 @@ using TMPro;
 
 public class Pursuer : MonoBehaviour
 {
-    public Animator Anim;
+    public Animator Anim; 
+    public Collider2D Pursuer_Collider;
     private GameObject Player;
     private PlayerControllerV2 PC;
     private Rigidbody2D RB;
@@ -49,7 +50,7 @@ public class Pursuer : MonoBehaviour
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    [Header("Combo")]
+    [Header("Combo")] //close
     public float CO_AttackDamage;
     public float CO_AttackAnimationTime;
     public float CO_AttackCoolDownTime;
@@ -57,6 +58,35 @@ public class Pursuer : MonoBehaviour
     public Collider2D CO1_Collider;
     public Collider2D CO2_Collider;
 
+    [Header("Charge")] //long
+    public float CH_AttackDamage;
+    public float CH_AttackAnimationTime;
+    public float CH_AttackCoolDownTime;
+    public float CH_AttackStep;
+    public Collider2D CH_Collider;
+
+    [Header("Cursed Impale")] //close
+    public float CI_AttackDamage;
+    public float CI_AttackAnimationTime;
+    public float CI_AttackCoolDownTime;
+    public float CI_AttackStep;
+    public Collider2D CI_Collider;
+
+    [Header("Cursed Shockwave")] //long 
+    public float CS_AttackDamage;
+    public float CS_AttackAnimationTime;
+    public float CS_AttackCoolDownTime;
+    public float CS_AttackStep;
+    public Collider2D CS_Collider;
+    public GameObject CursedShockwaveProjectile;
+    public Transform CursedShockwavePos;
+
+    [Header("Sheild Bash")] //close
+    public float SB_AttackDamage;
+    public float SB_AttackAnimationTime;
+    public float SB_AttackCoolDownTime;
+    public float SB_AttackStep;
+    public Collider2D SB_Collider;
 
 
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -314,6 +344,18 @@ public class Pursuer : MonoBehaviour
             return false;
         }
     }
+
+    bool IsONTopOfPlayer()
+    {
+        if (Pursuer_Collider.bounds.Contains(Player.transform.position))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// attack triggers
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -347,28 +389,20 @@ public class Pursuer : MonoBehaviour
 
     void ChooseCloseRangeAttack()
     {
-        int attack = Random.Range(1, 6);
+        int attack = Random.Range(1, 4);
         Debug.Log("Close Attack " + attack);
         switch (attack)
         {
-            case 1: //Hammer Swing
+            case 1: //combo 
                 AttackingCoroutine = StartCoroutine(CO_Attack());
                 break;
 
-            case 2: //Double Hammer Swing
-                AttackingCoroutine = StartCoroutine(CO_Attack());
+            case 2: //cursed impale
+                AttackingCoroutine = StartCoroutine(CI_Attack());
                 break;
 
-            case 3: //Ground Pound
-                AttackingCoroutine = StartCoroutine(CO_Attack());
-                break;
-
-            case 4: //Hammer Sweep
-                AttackingCoroutine = StartCoroutine(CO_Attack());
-                break;
-
-            case 5: //Hammer Drive
-                AttackingCoroutine = StartCoroutine(CO_Attack());
+            case 3: //sheild bash
+                AttackingCoroutine = StartCoroutine(SB_Attack());
                 break;
 
         }
@@ -379,12 +413,12 @@ public class Pursuer : MonoBehaviour
         Debug.Log("Long Attack " + attack);
         switch (attack)
         {
-            case 1: //Ranged Hammer
-                AttackingCoroutine = StartCoroutine(CO_Attack());
+            case 1: //charge
+                AttackingCoroutine = StartCoroutine(CH_Attack());
                 break;
 
-            case 2: //Leaping Hammer Swing
-                AttackingCoroutine = StartCoroutine(CO_Attack());
+            case 2: //cursed shockwave
+                AttackingCoroutine = StartCoroutine(CS_Attack());
                 break;
 
         }
@@ -426,6 +460,140 @@ public class Pursuer : MonoBehaviour
         if (CO2_Collider.bounds.Contains(Player.transform.position))
         {
             PC.PlayerTakeDamage(CO_AttackDamage, true, 0);
+        }
+    }
+
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// Charge Attack
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    IEnumerator CH_Attack()
+    {
+        Behaviour = "Attacking";
+        IsCoolingDown = false;
+        StepDistance = CH_AttackStep;
+        Anim.Play("ThePursuerAnim_Charge");
+
+
+        yield return new WaitForSeconds(CH_AttackAnimationTime);
+
+        Behaviour = "Hostile";
+        IsCoolingDown = true;
+        Anim.Play("ThePursuerAnim_Idle");
+        StepDistance = 0;
+
+        yield return new WaitForSeconds(CH_AttackCoolDownTime);
+        IsCoolingDown = false;
+
+    }
+
+    public void CH_AttackRegister()
+    {
+        if (CH_Collider.bounds.Contains(Player.transform.position))
+        {
+            PC.PlayerTakeDamage(CH_AttackDamage, true, 0);
+        }
+    }
+
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// Cursed Imaple Attack
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    IEnumerator CI_Attack()
+    {
+        Behaviour = "Attacking";
+        IsCoolingDown = false;
+        StepDistance = CI_AttackStep;
+        Anim.Play("ThePursuerAnim_CursedImpale");
+
+
+        yield return new WaitForSeconds(CI_AttackAnimationTime);
+
+        Behaviour = "Hostile";
+        IsCoolingDown = true;
+        Anim.Play("ThePursuerAnim_Idle");
+        StepDistance = 0;
+
+        yield return new WaitForSeconds(CI_AttackCoolDownTime);
+        IsCoolingDown = false;
+
+    }
+
+    public void CI_AttackRegister()
+    {
+        if (CI_Collider.bounds.Contains(Player.transform.position))
+        {
+            PC.PlayerTakeDamage(CI_AttackDamage, true, 0);
+        }
+    }
+
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// Cursed shockwave Attack
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    IEnumerator CS_Attack()
+    {
+        Behaviour = "Attacking";
+        IsCoolingDown = false;
+        StepDistance = CS_AttackStep;
+        Anim.Play("ThePursuerAnim_CursedShockwave");
+
+
+        yield return new WaitForSeconds(CS_AttackAnimationTime);
+
+        Behaviour = "Hostile";
+        IsCoolingDown = true;
+        Anim.Play("ThePursuerAnim_Idle");
+        StepDistance = 0;
+
+        yield return new WaitForSeconds(CS_AttackCoolDownTime);
+        IsCoolingDown = false;
+
+    }
+
+    public void CS_AttackRegister()
+    {
+        if (CS_Collider.bounds.Contains(Player.transform.position))
+        {
+            PC.PlayerTakeDamage(CS_AttackDamage, true, 0);
+        }
+    }
+    public void CursedShockwaveFire()
+    {
+        GameObject Bolt = Instantiate(CursedShockwaveProjectile);
+        Bolt.transform.position = CursedShockwavePos.position;
+        Bolt.GetComponent<ArrowV2>().Target = Player.transform.position;
+    }
+
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// Shield Bash  Attack
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    IEnumerator SB_Attack()
+    {
+        Behaviour = "Attacking";
+        IsCoolingDown = false;
+        StepDistance = SB_AttackStep;
+        Anim.Play("ThePursuerAnim_ShieldBash");
+
+
+        yield return new WaitForSeconds(SB_AttackAnimationTime);
+
+        Behaviour = "Hostile";
+        IsCoolingDown = true;
+        Anim.Play("ThePursuerAnim_Idle");
+        StepDistance = 0;
+
+        yield return new WaitForSeconds(SB_AttackCoolDownTime);
+        IsCoolingDown = false;
+
+    }
+
+    public void SB_AttackRegister()
+    {
+        if (SB_Collider.bounds.Contains(Player.transform.position))
+        {
+            PC.PlayerTakeDamage(SB_AttackDamage, true, 0);
         }
     }
 }

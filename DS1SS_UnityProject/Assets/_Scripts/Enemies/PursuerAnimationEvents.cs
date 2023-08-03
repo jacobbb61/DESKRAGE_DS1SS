@@ -12,6 +12,11 @@ public class PursuerAnimationEvents : MonoBehaviour
     public UnityEvent ImmuneEvent;
     public UnityEvent Combo1Triggered;
     public UnityEvent Combo2Triggered;
+    public UnityEvent ChargeTriggered;
+    public UnityEvent CursedImpaleTriggered;
+    public UnityEvent CursedShockwaveTriggered;
+    public UnityEvent CursedShockwaveProjectileTriggered;
+    public UnityEvent SheildBashTriggered;
 
     public void Turn()
     {
@@ -38,5 +43,24 @@ public class PursuerAnimationEvents : MonoBehaviour
     {
         Combo2Triggered.Invoke();
     }
-
+    public void Charge()
+    {
+        ChargeTriggered.Invoke();
+    }
+    public void CursedImpale()
+    {
+        CursedImpaleTriggered.Invoke();
+    }
+    public void CursedShockwave()
+    {
+        CursedShockwaveTriggered.Invoke();
+    }
+    public void CursedShockwaveProjectile()
+    {
+        CursedShockwaveProjectileTriggered.Invoke();
+    }
+    public void SheildBash()
+    {
+        SheildBashTriggered.Invoke();
+    }
 }
