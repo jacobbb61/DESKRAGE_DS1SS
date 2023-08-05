@@ -43,7 +43,8 @@ public class PursuerArena : MonoBehaviour
         IsSecondPhase = true;
         StopMusic();
         FMODinstance = FMODUnity.RuntimeManager.CreateInstance(Theme_SecondPhase);
-        FMODinstance.start();
+        FMODinstance.start(); 
+        FMODinstance.release();
     }
     public void EnterArena() //called from door manager
     {
@@ -98,7 +99,9 @@ public class PursuerArena : MonoBehaviour
             case "FirstTime":
                 {   //Door states are "Open", "Closed", "Locked", "OneSided", "Fog", "FogEnter"
                     doorT.SwitchDoorState("Closed"); 
-                    doorU.SwitchDoorState("Closed");
+                    doorU.SwitchDoorState("Locked");
+                    doorT.ManualStart();
+                    doorU.ManualStart();
                     Bridge.currentState="Closed";
                     Bridge.ManualStart();
                     inBossFight = false;
@@ -116,6 +119,8 @@ public class PursuerArena : MonoBehaviour
                 {
                     doorT.SwitchDoorState("FogEnter");
                     doorU.SwitchDoorState("Fog");
+                    doorT.ManualStart();
+                    doorU.ManualStart();
                     Bridge.currentState = "Open";
                     Bridge.ManualStart();
                     inBossFight = false;
@@ -137,6 +142,8 @@ public class PursuerArena : MonoBehaviour
                 {
                     doorT.SwitchDoorState("Fog");
                     doorU.SwitchDoorState("Fog");
+                    doorT.ManualStart();
+                    doorU.ManualStart();
                     Bridge.currentState = "Open";
                     Bridge.ManualStart();
                     inBossFight = true;
@@ -187,7 +194,7 @@ public class PursuerArena : MonoBehaviour
         Bridge.currentState = "Open";
         Bridge.ManualStart();
 
-
+        StopMusic();
 
 
         // Audio stuffs

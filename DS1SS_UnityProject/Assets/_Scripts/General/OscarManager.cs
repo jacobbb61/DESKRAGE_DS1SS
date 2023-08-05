@@ -34,6 +34,7 @@ public class OscarManager : MonoBehaviour
     public GameObject MiddleLayerObject;
     public GameObject FrontLayerObject;
     public GameObject InteractPrompt;
+    public TextMeshProUGUI InteractPromptText;
 
     [Header("State")]
     public string CurrentState; //needs to be saved
@@ -728,8 +729,13 @@ public class OscarManager : MonoBehaviour
             if (!IsOscarDead) //interaction animation 
             {
                 InteractPrompt.SetActive(true);
+                InteractPromptText.text = ": Interact";
                 if (IsSitting()) { Anim.Play("OscarAnim_SittingInteract"); }
                 else { Anim.Play("OscarAnim_StandingInteract"); }
+            }
+            else
+            {
+                InteractPrompt.SetActive(false);
             }
         }
     }

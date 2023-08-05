@@ -385,8 +385,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f13d10cb7b5fa734db429ba011076715, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Health: 50
-  MaxHealth: 50
+  Health: 45
+  MaxHealth: 45
   Behaviour: 
   LookDirection: 1
   Speed: 3
@@ -516,6 +516,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   CanBeParry: 0
+  IsLockOnAble: 0
   EnemyTag_This: 1
   EnemyVariant: C
   EnemyBehaviour_This: 

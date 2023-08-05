@@ -323,8 +323,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4135ae0ea84c1df4384375a7d2935a68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Health: 30
-  MaxHealth: 30
+  Health: 35
+  MaxHealth: 35
   Behaviour: 
   LookDirection: -1
   ForwardDetectionRange: 50
@@ -343,6 +343,7 @@ MonoBehaviour:
   Arrow: {fileID: 8144088339725920745, guid: c86c3dd48efe99f42a882701f0307de5, type: 3}
   Eyes: {fileID: 6565168763947030370}
   HitStartPos: {fileID: 6565168765696406847}
+  Target: {x: 0, y: 0, z: 0}
   HealthSlider: {fileID: 3583652391891775245}
   OriginPosition: {x: 0, y: 0, z: 0}
   DamagerNumber: {fileID: 6999423563434249174}

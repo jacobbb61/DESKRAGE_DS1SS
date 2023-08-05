@@ -253,9 +253,9 @@ public class AsylumDemon : MonoBehaviour
     }
     public void TakePlungeDamage()
     {
-            if (HasBeenPlunged == false) { Health -= 50; HasBeenPlunged = true; }
-            AddDamage(50);
-            UpdateUI();
+        if (HasBeenPlunged == false) { Health -= 150; HasBeenPlunged = true; }
+        AddDamage(150);
+        UpdateUI();
         if (Health <= 0) { StartCoroutine(Death()); }
         if (Health <= MaxHealth / 2 && !arenaManager.IsSecondPhase) { arenaManager.SecondPhase(); }
 

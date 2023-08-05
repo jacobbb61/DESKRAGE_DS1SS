@@ -181,7 +181,7 @@ public class DoorManager : MonoBehaviour
                     break;
                 case "FogEnter":
 
-                    if (doorType == 0) { fogDoorPrompt.SetActive(true); }
+                    if (doorType == 0) { fogDoorPrompt.SetActive(true); doorCollider.enabled = true; }
                     else { fogDoorPrompt.SetActive(false); }
 
                     break;

@@ -151,30 +151,49 @@ public class EnemyLock : MonoBehaviour
         
         else if (PursuerArena.currentState == "Active")
         {
-            trans = PursuerLockOnPos.transform;
+            if (PursuerArena.Boss.IsDead == false)
+            {
+                trans = PursuerLockOnPos.transform;
 
-            EnemyLockPos = PursuerLockOnPos.transform;
-            EnemyLockedOnTo = PursuerLockOnPos;
+                EnemyLockPos = PursuerLockOnPos.transform;
+                EnemyLockedOnTo = PursuerLockOnPos;
 
-            LockedOn = true;
-            Pc.IsLockedOn = true;
-            LockOnSymbol.SetActive(true);
- 
-            return trans;
+                LockedOn = true;
+                Pc.IsLockedOn = true;
+                LockOnSymbol.SetActive(true);
+
+                return trans;
+            }
+            else
+            {
+                LockedOn = false;
+                Pc.IsLockedOn = false;
+                LockOnSymbol.SetActive(false);
+                return trans;
+            }
         }
         else
         {
+            if (AsylumArena.Boss.IsDead == false)
+            {
+                trans = AsylumDemonLockOnPos.transform;
 
-            trans = AsylumDemonLockOnPos.transform;
+                EnemyLockPos = AsylumDemonLockOnPos.transform;
+                EnemyLockedOnTo = AsylumDemonLockOnPos;
 
-            EnemyLockPos = AsylumDemonLockOnPos.transform;
-            EnemyLockedOnTo = AsylumDemonLockOnPos;
+                LockedOn = true;
+                Pc.IsLockedOn = true;
+                LockOnSymbol.SetActive(true);
 
-            LockedOn = true;
-            Pc.IsLockedOn = true;
-            LockOnSymbol.SetActive(true);
-
-            return trans;
-        }
+                return trans;
+            }
+            else
+            {
+                LockedOn = false;
+                Pc.IsLockedOn = false;
+                LockOnSymbol.SetActive(false);
+                return trans;
+            }
+    }
     }
 }
