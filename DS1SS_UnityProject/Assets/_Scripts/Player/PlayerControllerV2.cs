@@ -260,7 +260,7 @@ public class PlayerControllerV2 : MonoBehaviour
                 StaggerCoroutine = StartCoroutine(Stagger());
             }
         }
-        if (Health <= 0) { StopAllCoroutines(); StartCoroutine(PlayerDead()); }
+        if (Health <= 0) { StartCoroutine(PlayerDead()); }
     }
 
     public void PlayerFinishInteraction()
@@ -853,7 +853,7 @@ public class PlayerControllerV2 : MonoBehaviour
 
     public void Update()
     {   
-        if (Health <= 0) { StopAllCoroutines(); StartCoroutine(PlayerDead()); }
+        if (Health <= 0) { StartCoroutine(PlayerDead()); }
         GroundCheck();
         UpdateUI();
         if (IsStaminaRegen) { StaminaRegen(); }
