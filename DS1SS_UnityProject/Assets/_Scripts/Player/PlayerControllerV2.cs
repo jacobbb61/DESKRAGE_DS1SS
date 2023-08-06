@@ -27,7 +27,7 @@ public class PlayerControllerV2 : MonoBehaviour
 
     [Header("movement states")]
     public bool IsGrounded;
-    private bool IsStaminaRegen;
+    public bool IsStaminaRegen;
     public bool CanMove;
     public bool IsRolling;
     private bool IsBackStepping;
@@ -934,6 +934,9 @@ public class PlayerControllerV2 : MonoBehaviour
     void Idle()
     {
         if (StaminaRegenCoroutine != null) { StopCoroutine(StaminaRegenCoroutine); StaminaRegenCoroutine = StartCoroutine(StaminaRegenPause()); }
+        if (Stamina!=MaxStamina && IsStaminaRegen==false) {StaminaRegenCoroutine = StartCoroutine(StaminaRegenPause()); }
+
+
 
         Anim.Play("PlayerAnim_Idle");
         IsBlocking = false;
@@ -945,6 +948,9 @@ public class PlayerControllerV2 : MonoBehaviour
     void Walking()
     {
         if (StaminaRegenCoroutine != null) { StopCoroutine(StaminaRegenCoroutine); StaminaRegenCoroutine = StartCoroutine(StaminaRegenPause()); }
+        if (Stamina != MaxStamina && IsStaminaRegen == false) { StaminaRegenCoroutine = StartCoroutine(StaminaRegenPause()); }
+
+
 
 
         if (MovementInputAmount == 1) { State = "Running"; }
@@ -993,6 +999,7 @@ public class PlayerControllerV2 : MonoBehaviour
     void Running()
     {
         if (StaminaRegenCoroutine != null) { StopCoroutine(StaminaRegenCoroutine); StaminaRegenCoroutine = StartCoroutine(StaminaRegenPause()); }
+        if (Stamina != MaxStamina && IsStaminaRegen == false) { StaminaRegenCoroutine = StartCoroutine(StaminaRegenPause()); }
 
 
         IsRolling = false;
@@ -1006,7 +1013,7 @@ public class PlayerControllerV2 : MonoBehaviour
             FaceTowardsInput(); 
 
            
-            IsStaminaRegen = false;
+            
 
             MyRb.velocity = new Vector2(MovementInputDirection * RunSpeed, -VerticalSpeed);
         
@@ -1359,7 +1366,7 @@ public class PlayerControllerV2 : MonoBehaviour
 
         yield return new WaitForSeconds(RollTime-.25f);
 
-        if (StaminaRegenCoroutine != null) { StopCoroutine(StaminaRegenCoroutine);} StaminaRegenCoroutine = StartCoroutine(StaminaRegenPause());
+        if (StaminaRegenCoroutine != null) { StopCoroutine(StaminaRegenCoroutine); } StaminaRegenCoroutine = StartCoroutine(StaminaRegenPause()); 
         CanRollOut = true;
 
         yield return new WaitForSeconds(.25f);
@@ -1399,7 +1406,8 @@ public class PlayerControllerV2 : MonoBehaviour
             State = "Idle";
         }
 
-                if (StaminaRegenCoroutine != null) { StopCoroutine(StaminaRegenCoroutine);} StaminaRegenCoroutine = StartCoroutine(StaminaRegenPause());
+        if (StaminaRegenCoroutine != null) { StopCoroutine(StaminaRegenCoroutine); }
+        StaminaRegenCoroutine = StartCoroutine(StaminaRegenPause()); 
     }
     IEnumerator Jump()
     {
@@ -1433,7 +1441,7 @@ public class PlayerControllerV2 : MonoBehaviour
         }
 
 
-        if (StaminaRegenCoroutine != null) { StopCoroutine(StaminaRegenCoroutine);} StaminaRegenCoroutine = StartCoroutine(StaminaRegenPause());
+        if (StaminaRegenCoroutine != null) { StopCoroutine(StaminaRegenCoroutine); } StaminaRegenCoroutine = StartCoroutine(StaminaRegenPause()); 
 
         if (JumpingCoroutine != null) { StopCoroutine(JumpingCoroutine); }
 
