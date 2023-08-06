@@ -115,6 +115,8 @@ public class Undead_C : MonoBehaviour
 
     public void Respawn()
     {
+        DamagerNumber.gameObject.SetActive(false);
+        SeePlayer = false;
         IsDead = false;
         Assets.SetActive(true);
         gameObject.SetActive(true);
@@ -122,6 +124,8 @@ public class Undead_C : MonoBehaviour
         HealthSlider.value = Health;
         transform.localPosition = OriginPosition;
         Behaviour = "Idle";
+        SeePlayer = false;
+
     }
 
     void Update()
@@ -230,14 +234,19 @@ public class Undead_C : MonoBehaviour
     
     void Death()
     {
-        StopAllCoroutines();
+       
+        DamagerNumber.gameObject.SetActive(false);
+        SeePlayer = false;
+
         EnemySaveManager.IsLockOnAble = false;
-        Behaviour = "Dying";
         RB.velocity = Vector2.zero;
         IsAttacking = false;
         IsHeavyAttacking = false;
         IsAttackStepping = false;
         EnemySaveManager.CanBeParry = false;
+
+        Behaviour = "Dying";
+        StopAllCoroutines();
         HealthSlider.value = 0;
         Anim.Play("UndeadAnim_C_Death");
         StartCoroutine(DeathWait());
@@ -257,6 +266,9 @@ public class Undead_C : MonoBehaviour
     private void OnDisable()
     {
         if (Behaviour == "Dying") { Dead(); }
+        DamagerNumber.gameObject.SetActive(false);
+        DamageTakenInTime = 0;
+        DamagerNumber.text = DamageTakenInTime.ToString();
         if (Behaviour == "Attacking")
         {
             CombatTime = 0;

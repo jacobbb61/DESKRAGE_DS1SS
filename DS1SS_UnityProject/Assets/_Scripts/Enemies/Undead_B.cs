@@ -75,13 +75,16 @@ public class Undead_B : MonoBehaviour
 
     public void Respawn()
     {
+        DamagerNumber.gameObject.SetActive(false);
+        SeePlayer = false;
         IsDead = false;
         Assets.SetActive(true);
         gameObject.SetActive(true);
         Health = MaxHealth;
         HealthSlider.value = Health;
         transform.localPosition = OriginPosition;
-        Behaviour = "Idle";
+        Behaviour = "Idle"; 
+        SeePlayer = false;
     }
 
     void Update()
@@ -124,9 +127,14 @@ public class Undead_B : MonoBehaviour
     {
         DamagerNumber.gameObject.SetActive(false);
         EnemySaveManager.IsLockOnAble = false;
+
+        EnemySaveManager.IsLockOnAble = false;
+        RB.velocity = Vector2.zero;
+        IsAttacking = false;
+        EnemySaveManager.CanBeParry = false;
+
         Behaviour = "Dying";
         StopAllCoroutines();
-        if (AttackingCoroutine != null) { StopCoroutine(AttackingCoroutine); }
         HealthSlider.value = 0;
         Anim.Play("UndeadAnim_B_Death");
         StartCoroutine(DeathWait());
@@ -142,6 +150,9 @@ public class Undead_B : MonoBehaviour
     private void OnDisable()
     {
         if (Behaviour == "Dying") { Dead(); }
+        DamagerNumber.gameObject.SetActive(false);
+        DamageTakenInTime = 0;
+        DamagerNumber.text = DamageTakenInTime.ToString();
     }
 
     public void Dead()

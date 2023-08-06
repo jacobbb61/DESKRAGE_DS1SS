@@ -132,8 +132,8 @@ MonoBehaviour:
   - {x: -5, y: 0}
   - {x: -3.5, y: 0}
   - {x: 6.75, y: -7.5}
-  - {x: 66.5, y: -9.5}
-  - {x: 82.25, y: -9.75}
+  - {x: 66, y: -9.5}
+  - {x: 79.5, y: -9.75}
   DialogObject: {fileID: 0}
   DialogTextObject: {fileID: 0}
   CurrentText: 
@@ -606,7 +606,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.7840445}
+  m_Offset: {x: -0.036025763, y: 0.5273603}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -617,7 +617,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 3, y: 0.528903}
+  m_Size: {x: 2.2794833, y: 1.0422714}
   m_EdgeRadius: 0
 --- !u!1 &5828070884769839136
 GameObject:

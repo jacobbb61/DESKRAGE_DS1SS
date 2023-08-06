@@ -89,6 +89,8 @@ public class Undead_A : MonoBehaviour
 
     public void Respawn()
     {
+        DamagerNumber.gameObject.SetActive(false);
+        SeePlayer = false;
         IsDead = false;
         Assets.SetActive(true);
         gameObject.SetActive(true);
@@ -96,6 +98,7 @@ public class Undead_A : MonoBehaviour
         HealthSlider.value = Health;
         transform.localPosition = OriginPosition;
         Behaviour = "Idle";
+        SeePlayer = false;
     }
 
     void Update()
@@ -171,6 +174,12 @@ public class Undead_A : MonoBehaviour
     {
         DamagerNumber.gameObject.SetActive(false);
         EnemySaveManager.IsLockOnAble = false;
+
+        EnemySaveManager.IsLockOnAble = false;
+        RB.velocity = Vector2.zero;
+        IsAttacking = false;
+        EnemySaveManager.CanBeParry = false;
+
         Behaviour = "Dying";
         StopAllCoroutines();
         HealthSlider.value = 0;
@@ -188,6 +197,9 @@ public class Undead_A : MonoBehaviour
     private void OnDisable()
     {
         if (Behaviour == "Dying") { Dead(); }
+        DamagerNumber.gameObject.SetActive(false);
+        DamageTakenInTime = 0;
+        DamagerNumber.text = DamageTakenInTime.ToString();
     }
 
     public void Dead()

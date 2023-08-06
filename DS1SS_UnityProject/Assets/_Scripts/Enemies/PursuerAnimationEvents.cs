@@ -17,6 +17,7 @@ public class PursuerAnimationEvents : MonoBehaviour
     public UnityEvent CursedShockwaveTriggered;
     public UnityEvent CursedShockwaveProjectileTriggered;
     public UnityEvent SheildBashTriggered;
+    public UnityEvent GroundPoundTriggered;
 
     public void Turn()
     {
@@ -62,5 +63,9 @@ public class PursuerAnimationEvents : MonoBehaviour
     public void SheildBash()
     {
         SheildBashTriggered.Invoke();
+    }   
+    public void GroundPound()
+    {
+        GroundPoundTriggered.Invoke();
     }
 }

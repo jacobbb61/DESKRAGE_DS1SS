@@ -751,8 +751,7 @@ public class OscarManager : MonoBehaviour
             if (!IsOscarDead) //interaction animation 
             {
                 InteractPrompt.SetActive(false);
-                if (IsSitting()) { Anim.Play("OscarAnim_SittingIdle"); }
-                else { Anim.Play("OscarAnim_StandingIdle"); }
+                SetAnimation();
             }
         }
     }
@@ -762,26 +761,43 @@ public class OscarManager : MonoBehaviour
         switch (CurrentState)
         {
             case "Null":
-                return true;
+                return true; //Sitting
 
             case "A":
-                return true;
+                return true; //Sitting
 
             case "YES":
-                return true;
- 
+                return true; //Sitting
+
             case "NO":
-                return true;
+                return true; //Sitting
+
+            case "B":
+                return false; //Standing
 
             case "C":
-                return true;
+                return true; //Sitting
+
+            case "D":
+                return true; //Sitting
+
+            case "E":
+                return true; //Sitting
+
+            case "F":
+                return true; //Sitting
+
+            case "G":
+                return false; //Standing
 
             case "H":
-                return true;
+                return true; //Sitting
+
+            case "I":
+                return true; //Sitting
 
             default:
-                return false;
-
+                return true; //Sitting
         }
     }
 

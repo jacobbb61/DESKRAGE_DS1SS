@@ -35,9 +35,9 @@ public class ArrowV2 : MonoBehaviour
             Anim.Play("CursedShockWaveVFX");
             RB.AddForce(transform.right * speed, ForceMode2D.Impulse);
         }
- 
 
 
+        StartCoroutine(SafetyDestroy());
 
 
     }
@@ -47,7 +47,7 @@ public class ArrowV2 : MonoBehaviour
         {
             if (collision.GetComponent<PlayerControllerV2>().IsRolling==false) 
             {             
-            collision.GetComponent<PlayerControllerV2>().PlayerTakeDamage(20, false, 0);
+            collision.GetComponent<PlayerControllerV2>().PlayerTakeDamage(15, false, 0);
             DestroyArrow(); 
             }
         }
@@ -76,5 +76,11 @@ public class ArrowV2 : MonoBehaviour
             Destroy(gameObject,0.25f);
 
         }
+    }
+
+    IEnumerator SafetyDestroy()
+    {
+        yield return new WaitForSeconds(15);
+        DestroyArrow();
     }
 }

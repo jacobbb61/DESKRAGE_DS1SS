@@ -236,7 +236,7 @@ public class AsylumDemon : MonoBehaviour
             Health -= 5;
             AddDamage(5);
             UpdateUI();
-            if (Health <= 0) { StartCoroutine(Death()); }
+            if (Health <= 0) { StopAllCoroutines(); StartCoroutine(Death()); }
             if (Health <= MaxHealth / 2 && !arenaManager.IsSecondPhase) { arenaManager.SecondPhase(); }
         }
     }
@@ -247,7 +247,7 @@ public class AsylumDemon : MonoBehaviour
             Health -= 10;
             AddDamage(10);
             UpdateUI();
-            if (Health <= 0) { StartCoroutine(Death()); }
+            if (Health <= 0) { StopAllCoroutines(); StartCoroutine(Death()); }
             if (Health <= MaxHealth / 2 && !arenaManager.IsSecondPhase) { arenaManager.SecondPhase(); }
         }
     }
@@ -256,7 +256,7 @@ public class AsylumDemon : MonoBehaviour
         if (HasBeenPlunged == false) { Health -= 150; HasBeenPlunged = true; }
         AddDamage(150);
         UpdateUI();
-        if (Health <= 0) { StartCoroutine(Death()); }
+        if (Health <= 0) { StopAllCoroutines(); StartCoroutine(Death()); }
         if (Health <= MaxHealth / 2 && !arenaManager.IsSecondPhase) { arenaManager.SecondPhase(); }
 
     }

@@ -395,8 +395,8 @@ public class WorldSaveGameManager : MonoBehaviour
 
         CurrentCharacterData.EnemyBehaviour_10 = ""; //C first outskirts
         CurrentCharacterData.EnemyHealth_10 = 45;
-        CurrentCharacterData.EnemyPosX_10 = 156;
-        CurrentCharacterData.EnemyPosY_10 = 5.2f;
+        CurrentCharacterData.EnemyPosX_10 = 185;
+        CurrentCharacterData.EnemyPosY_10 = 12.11f;
         CurrentCharacterData.EnemyDirection_10 = -1;
 
         CurrentCharacterData.EnemyBehaviour_11 = ""; //C second outskirts
@@ -443,7 +443,7 @@ public class WorldSaveGameManager : MonoBehaviour
 
         CurrentCharacterData.EnemyBehaviour_18 = ""; //C sewer first
         CurrentCharacterData.EnemyHealth_18 = 45;
-        CurrentCharacterData.EnemyPosX_18 = 142;
+        CurrentCharacterData.EnemyPosX_18 = 158;
         CurrentCharacterData.EnemyPosY_18 = -5.85f;
         CurrentCharacterData.EnemyDirection_18 = -1;
 

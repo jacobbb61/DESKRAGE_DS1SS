@@ -38,6 +38,7 @@ public class Pursuer : MonoBehaviour
     public bool IsCoolingDown;
     public bool IsDead;
     public bool HasBeenPlunged;
+    public bool CanPhaseChanged;
 
     [Header("Combat Data")]
     public float Speed;
@@ -45,6 +46,13 @@ public class Pursuer : MonoBehaviour
     public float StepDistance;
     public float StaggerTime;
     public float CloseTriggerRange;
+
+    [Header("Trigger Colliders")] 
+    public Collider2D InFront_Collider;
+    public Collider2D OnTop_Collider;
+    public Collider2D Behind_Collider;
+
+
 
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
@@ -87,6 +95,13 @@ public class Pursuer : MonoBehaviour
     public float SB_AttackCoolDownTime;
     public float SB_AttackStep;
     public Collider2D SB_Collider;
+
+    [Header("Ground Pound")] //close/long   SECOND PHASE
+    public float GP_AttackDamage;
+    public float GP_AttackAnimationTime;
+    public float GP_AttackCoolDownTime;
+    public Collider2D GP_Collider;
+    public Transform GroundPoundPos;
 
 
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -145,11 +160,15 @@ public class Pursuer : MonoBehaviour
 
 
                     if (!IsCoolingDown)
-                    {
-                        if (IsInCloseRange()) { ChooseCloseRangeAttack(); }
+                    { 
+                        if (CanPhaseChanged == true) { AttackingCoroutine = StartCoroutine(GP_Attack()); CanPhaseChanged = false; }
                         else
                         {
-                            ChooseLongRangeAttack();
+                            if (IsInCloseRange()) { ChooseCloseRangeAttack(); }
+                            else
+                            {
+                                ChooseLongRangeAttack();
+                            }
                         }
                     }
 
@@ -182,6 +201,7 @@ public class Pursuer : MonoBehaviour
     {
         HealthSlider.value = Health;
     }
+
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// death
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -220,24 +240,24 @@ public class Pursuer : MonoBehaviour
         Health -= 5;
         UpdateUI(); 
         AddDamage(5);
-        if (Health <= 0) { StartCoroutine(Death()); }
-        if (Health <= MaxHealth / 2 && !arenaManager.IsSecondPhase) { arenaManager.SecondPhase(); }
+        if (Health <= 0) { StopAllCoroutines(); StartCoroutine(Death()); }
+        if (Health <= MaxHealth / 2 && !arenaManager.IsSecondPhase) { arenaManager.SecondPhase(); CanPhaseChanged = true; }
     }
     public void TakeHeavyDamage()
     {
         Health -= 10;
         UpdateUI(); 
         AddDamage(10);
-        if (Health <= 0) { StartCoroutine(Death()); }
-        if (Health <= MaxHealth / 2 && !arenaManager.IsSecondPhase) { arenaManager.SecondPhase(); }
+        if (Health <= 0) { StopAllCoroutines(); StartCoroutine(Death()); }
+        if (Health <= MaxHealth / 2 && !arenaManager.IsSecondPhase) { arenaManager.SecondPhase(); CanPhaseChanged = true; }
     }
     public void TakePlungeDamage()
     {
-        if (HasBeenPlunged == false) { Health -= 50; HasBeenPlunged = true; }
+        if (HasBeenPlunged == false) { Health -= 150; HasBeenPlunged = true; }
         UpdateUI(); 
-        AddDamage(50);
-        if (Health <= 0) { StartCoroutine(Death()); }
-        if (Health <= MaxHealth / 2 && !arenaManager.IsSecondPhase) { arenaManager.SecondPhase(); }
+        AddDamage(150);
+        if (Health <= 0) { StopAllCoroutines(); StartCoroutine(Death()); }
+        if (Health <= MaxHealth / 2 && !arenaManager.IsSecondPhase) { arenaManager.SecondPhase(); CanPhaseChanged = true; }
     }
 
     void AddDamage(int DMG)
@@ -258,9 +278,6 @@ public class Pursuer : MonoBehaviour
         DamagerNumber.gameObject.SetActive(false);
         DamageTakenInTime = 0;
     }
-
-
-
 
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// movement
@@ -345,17 +362,7 @@ public class Pursuer : MonoBehaviour
         }
     }
 
-    bool IsONTopOfPlayer()
-    {
-        if (Pursuer_Collider.bounds.Contains(Player.transform.position))
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
+    
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// attack triggers
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -383,44 +390,113 @@ public class Pursuer : MonoBehaviour
             return false;
         }
     }
+    bool IsONTopOfPlayer()
+    {
+        if (Pursuer_Collider.bounds.Contains(Player.transform.position))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// attack pick
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     void ChooseCloseRangeAttack()
     {
-        int attack = Random.Range(1, 4);
-        Debug.Log("Close Attack " + attack);
-        switch (attack)
+        if (arenaManager.IsSecondPhase)
         {
-            case 1: //combo 
-                AttackingCoroutine = StartCoroutine(CO_Attack());
-                break;
+            int attack = Random.Range(1, 5);
+            Debug.Log("Close Attack " + attack);
+            switch (attack)
+            {
+                case 1: //combo 
+                    AttackingCoroutine = StartCoroutine(CO_Attack());
+                    break;
 
-            case 2: //cursed impale
-                AttackingCoroutine = StartCoroutine(CI_Attack());
-                break;
+                case 2: //combo 
+                    AttackingCoroutine = StartCoroutine(CO_Attack());
+                    break;
 
-            case 3: //sheild bash
-                AttackingCoroutine = StartCoroutine(SB_Attack());
-                break;
+                case 3: //cursed impale
+                    AttackingCoroutine = StartCoroutine(CI_Attack());
+                    break;
 
+                case 4: //sheild bash
+                    AttackingCoroutine = StartCoroutine(SB_Attack());
+                    break;
+
+            }
+        }
+        else
+        {
+            int attack = Random.Range(1, 5);
+            Debug.Log("Close Attack " + attack);
+            switch (attack)
+            {
+                case 1: //combo 
+                    AttackingCoroutine = StartCoroutine(CO_Attack());
+                    break;
+
+                case 2: //combo 
+                    AttackingCoroutine = StartCoroutine(CO_Attack());
+                    break;
+
+                case 3: //cursed impale
+                    AttackingCoroutine = StartCoroutine(CI_Attack());
+                    break;
+
+                case 4: //sheild bash
+                    AttackingCoroutine = StartCoroutine(SB_Attack());
+                    break;
+
+            }
         }
     }
     void ChooseLongRangeAttack()
     {
-        int attack = Random.Range(1, 3);
-        Debug.Log("Long Attack " + attack);
-        switch (attack)
+        if (arenaManager.IsSecondPhase)
         {
-            case 1: //charge
-                AttackingCoroutine = StartCoroutine(CH_Attack());
-                break;
+            int attack = Random.Range(1, 5);
+            Debug.Log("Long Attack " + attack);
+            switch (attack)
+            {
+                case 1: //charge
+                    AttackingCoroutine = StartCoroutine(CH_Attack());
+                    break;
 
-            case 2: //cursed shockwave
-                AttackingCoroutine = StartCoroutine(CS_Attack());
-                break;
+                case 2: //charge
+                    AttackingCoroutine = StartCoroutine(CH_Attack());
+                    break;
 
+                case 3: //cursed shockwave
+                    AttackingCoroutine = StartCoroutine(CS_Attack());
+                    break;
+
+                case 4: //GroundPound
+                    AttackingCoroutine = StartCoroutine(GP_Attack());
+                    break;
+
+            }
+        }
+        else
+        {
+            int attack = Random.Range(1, 3);
+            Debug.Log("Long Attack " + attack);
+            switch (attack)
+            {
+                case 1: //charge
+                    AttackingCoroutine = StartCoroutine(CH_Attack());
+                    break;
+
+                case 2: //cursed shockwave
+                    AttackingCoroutine = StartCoroutine(CS_Attack());
+                    break;
+
+            }
         }
     }
 
@@ -595,5 +671,49 @@ public class Pursuer : MonoBehaviour
         {
             PC.PlayerTakeDamage(SB_AttackDamage, true, 0);
         }
+    }
+
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// Ground Pound  Attack
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    IEnumerator GP_Attack()
+    {
+        Behaviour = "Attacking";
+        IsCoolingDown = false;
+        StepDistance = 0;
+        Anim.Play("ThePursuerAnim_GroundPound");
+
+
+        yield return new WaitForSeconds(GP_AttackAnimationTime);
+
+        Behaviour = "Hostile";
+        IsCoolingDown = true;
+        Anim.Play("ThePursuerAnim_Idle");
+        StepDistance = 0;
+
+        yield return new WaitForSeconds(GP_AttackCoolDownTime);
+        IsCoolingDown = false;
+
+    }
+
+    public void GP_AttackRegister()
+    {
+        GP_Projectiles();
+        if (GP_Collider.bounds.Contains(Player.transform.position))
+        {
+            PC.PlayerTakeDamage(GP_AttackDamage, true, 0);
+        }
+    }
+
+    void GP_Projectiles()
+    {
+        GameObject Bolt1 = Instantiate(CursedShockwaveProjectile);
+        Bolt1.transform.position = GroundPoundPos.position;
+        Bolt1.GetComponent<ArrowV2>().Target = Behind_Collider.transform.position;
+
+        GameObject Bolt2 = Instantiate(CursedShockwaveProjectile);
+        Bolt2.transform.position = GroundPoundPos.position;
+        Bolt2.GetComponent<ArrowV2>().Target = InFront_Collider.transform.position;
     }
 }

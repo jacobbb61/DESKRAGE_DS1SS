@@ -327,9 +327,9 @@ MonoBehaviour:
   MaxHealth: 35
   Behaviour: 
   LookDirection: -1
-  ForwardDetectionRange: 50
-  BackwardsDetectionRange: 50
-  AttackTriggerRange: 30
+  ForwardDetectionRange: 20
+  BackwardsDetectionRange: 20
+  AttackTriggerRange: 20
   TimeBeforeAttack: 0
   AttackAnimationTime: 2.5
   AttackCoolDownTime: 1
