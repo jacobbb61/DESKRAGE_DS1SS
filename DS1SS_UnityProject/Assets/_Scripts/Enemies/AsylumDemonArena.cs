@@ -177,6 +177,7 @@ public class AsylumDemonArena : MonoBehaviour
 
     public void BossKilled() //Called by boss script
     {
+
         SwitchState("Open");
         arenaIsActive = false;
 

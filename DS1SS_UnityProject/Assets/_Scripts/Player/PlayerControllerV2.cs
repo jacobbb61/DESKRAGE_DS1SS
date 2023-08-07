@@ -139,10 +139,15 @@ public class PlayerControllerV2 : MonoBehaviour
 
     public GameObject BloodImpact;
 
+
+    public CatchupSliders CatchupSliders;
+
     //UI
     private CanvasManager CM;
     private Slider StaminaSlider;
-    private Slider HealthSlider;
+    private Slider HealthSlider; 
+    private Slider healthCatchupSlider;
+    private Slider staminaCatchupSlider;
     private TextMeshProUGUI EstusCountText;
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -162,6 +167,8 @@ public class PlayerControllerV2 : MonoBehaviour
             CM = GameObject.FindGameObjectWithTag("Canvas").GetComponent<CanvasManager>();
             StaminaSlider = CM.PlayerStaminaSlider;
             HealthSlider = CM.PlayerHealthSlider;
+            healthCatchupSlider = CM.PlayerHealthCatchupSlider;
+            staminaCatchupSlider = CM.PlayerStaminaCatchupSlider;
             EstusCountText = CM.EstusCountText;
             UpdateUI();
         }
@@ -241,12 +248,15 @@ public class PlayerControllerV2 : MonoBehaviour
                 if (IsBlocking)
                 {
                     Stamina -= Damage*1.5f;
+                    StaminaCatchup();
                     Health -= Damage/4;
                     if (Stamina <= 0)
                     {
                         StartCoroutine(Stagger());
                         Stamina = 0;
                     }
+
+                    StartCoroutine(CatchupSliders.ManualUpdate(true));
                 }
                 else
                 {
@@ -254,6 +264,7 @@ public class PlayerControllerV2 : MonoBehaviour
                     BloodEffect();
                     GetComponentInChildren<AnimationAudio>().PlayerDamageAudio();
                     if (PM.HasBeenHit == false) { PM.HasBeenHit = true; }
+                    StartCoroutine(CatchupSliders.ManualUpdate(true));
                 }
             }
             else
@@ -265,10 +276,13 @@ public class PlayerControllerV2 : MonoBehaviour
                     if (StaggerCoroutine != null) { StopCoroutine(StaggerCoroutine); }
                     Health -= Damage; BloodEffect();
                     StaggerCoroutine = StartCoroutine(Stagger());
+                    StartCoroutine(CatchupSliders.ManualUpdate(true));
                 }
                 
             }
         }
+
+
         if (Health <= 0) { StartCoroutine(PlayerDead()); }
     }
 
@@ -278,7 +292,6 @@ public class PlayerControllerV2 : MonoBehaviour
         NewBlood.transform.position = transform.position;
         Destroy(NewBlood, 0.25f);
     }
-
 
     public void PlayerFinishInteraction()
     {
@@ -329,6 +342,7 @@ public class PlayerControllerV2 : MonoBehaviour
             JumpingCoroutine = StartCoroutine(Jump());
             
             Stamina -= 10f;
+            StaminaCatchup();
         }
     }
     //////////////////////////////////////////////////////////////
@@ -387,6 +401,7 @@ public class PlayerControllerV2 : MonoBehaviour
         RollingCoroutine =  StartCoroutine(Roll());
 
         Stamina -= 25f;
+        StaminaCatchup();
         State = "Rolling";
     }
     void StartBackStep()
@@ -394,6 +409,7 @@ public class PlayerControllerV2 : MonoBehaviour
         BacksteppingCoroutine = StartCoroutine(Backstep()); 
 
         Stamina -= 15f;
+        StaminaCatchup();
         State = "BackStepping";
     }
     //////////////////////////////////////////////////////////////
@@ -632,6 +648,7 @@ public class PlayerControllerV2 : MonoBehaviour
             }
             HeavyAttackCoroutine = StartCoroutine(HeavyAttack());
             Stamina -= 22f;
+            StaminaCatchup();
         }
     }
     void ProcessInput_RT_Cancel()
@@ -650,6 +667,7 @@ public class PlayerControllerV2 : MonoBehaviour
         }
         HeavyAttackFollowUpCoroutine = StartCoroutine(HeavyAttackFollowUp());
         Stamina -= 22f;
+        StaminaCatchup();
         CanFollowUp = false;
     }
     void ProcessInput_RT_CancelAgain()
@@ -668,6 +686,7 @@ public class PlayerControllerV2 : MonoBehaviour
         }
         HeavyAttackCoroutine = StartCoroutine(HeavyAttack());
         Stamina -= 22f;
+        StaminaCatchup();
         CanFollowUpAgain = false;
     }
     void ProcessInput_RT_Plunge(InputAction.CallbackContext context) 
@@ -676,6 +695,7 @@ public class PlayerControllerV2 : MonoBehaviour
         {
             IsPlunging = true;
             Stamina -= 40f;
+            StaminaCatchup();
             CanPlunge = false;
         }
     }
@@ -734,6 +754,7 @@ public class PlayerControllerV2 : MonoBehaviour
             }
             LightAttackCoroutine = StartCoroutine(LightAttack());
             Stamina -= 15f;
+            StaminaCatchup();
         }
     }
     void ProcessInput_RB_Cancel()
@@ -752,6 +773,7 @@ public class PlayerControllerV2 : MonoBehaviour
         
         LightAttackFollowUpCoroutine = StartCoroutine(LightAttackFollowUp());
         Stamina -= 15f;
+        StaminaCatchup();
         CanFollowUp = false;
     }
     void ProcessInput_RB_CancelAgain()
@@ -770,6 +792,7 @@ public class PlayerControllerV2 : MonoBehaviour
 
         LightAttackCoroutine = StartCoroutine(LightAttack());
         Stamina -= 15f;
+        StaminaCatchup();
         CanFollowUpAgain = false;
     }
     //////////////////////////////////////////////////////////////
@@ -814,6 +837,7 @@ public class PlayerControllerV2 : MonoBehaviour
             }
             StartCoroutine(Parry());
             Stamina -= 15f;
+            StaminaCatchup();
         }
     }
     //////////////////////////////////////////////////////////////
@@ -1367,6 +1391,25 @@ public class PlayerControllerV2 : MonoBehaviour
         IsStaminaRegen = true;
         StaminaRegenCoroutine = null;
     }
+
+
+    void StaminaCatchup()
+    {
+        if (staminaCatchupSlider.value > StaminaSlider.value && CatchupSliders.staminaCatchupActive == false)
+        {
+            StartCoroutine(CatchupSliders.ManualUpdate(false));
+        }
+        else if (staminaCatchupSlider.value < StaminaSlider.value)
+        {
+            staminaCatchupSlider.value = StaminaSlider.value;
+        }
+    }
+
+
+
+
+
+
 
     IEnumerator Roll()
     {

@@ -12,7 +12,7 @@ public class CatchupSliders : MonoBehaviour
     private Slider staminaSlider;
     private Slider healthCatchupSlider;
     private Slider staminaCatchupSlider;
-    [SerializeField] private float catchupSliderDelay = 1;
+    [SerializeField] private float catchupSliderDelay = 0.75f;
     [SerializeField] private float catchupSliderSpeed = 0.02f;
     public bool staminaCatchupActive;
     public bool healthCatchupActive;
@@ -34,11 +34,7 @@ public class CatchupSliders : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        /*Debug.Log("Health catchup slider value = " + healthCatchupSlider.value);
-        Debug.Log("Heath slider value = " + healthSlider.value);*/
-    }
+
 
     public IEnumerator ManualUpdate(bool isHealthUpdate)
     {
