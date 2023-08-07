@@ -9,6 +9,8 @@ public class CanvasManager : MonoBehaviour
 {
     public Slider PlayerStaminaSlider;
     public Slider PlayerHealthSlider;
+    public Slider PlayerStaminaCatchupSlider;
+    public Slider PlayerHealthCatchupSlider;
 
     public GameObject DoorPrompt;
     public GameObject FogDoorPrompt;
