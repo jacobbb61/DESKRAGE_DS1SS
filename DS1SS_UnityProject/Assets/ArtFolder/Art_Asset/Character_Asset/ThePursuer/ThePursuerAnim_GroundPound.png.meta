@@ -1,0 +1,629 @@
+fileFormatVersion: 2
+guid: e30bd577df78671408bc4668d926efbc
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 128
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 16384
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: ThePursuerAnim_GroundPound_0
+      rect:
+        serializedVersion: 2
+        x: 251
+        y: 0
+        width: 179
+        height: 220
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1ede432ea7c5dd94ba492221d19e2d60
+      internalID: 1809386653
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThePursuerAnim_GroundPound_1
+      rect:
+        serializedVersion: 2
+        x: 942
+        y: 0
+        width: 179
+        height: 218
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 97e30d8e24ccdaa43b5dec5eb370adde
+      internalID: 1184924627
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThePursuerAnim_GroundPound_2
+      rect:
+        serializedVersion: 2
+        x: 1635
+        y: 0
+        width: 179
+        height: 220
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ba05029333177ff45bca533c73395339
+      internalID: -1465077582
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThePursuerAnim_GroundPound_3
+      rect:
+        serializedVersion: 2
+        x: 2325
+        y: 0
+        width: 179
+        height: 217
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b332b918fecf6ff4eba2105684bac05c
+      internalID: -1239703714
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThePursuerAnim_GroundPound_4
+      rect:
+        serializedVersion: 2
+        x: 3019
+        y: 0
+        width: 179
+        height: 215
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 345e6873f932f4140a39f0389762f0b7
+      internalID: -2137954015
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThePursuerAnim_GroundPound_5
+      rect:
+        serializedVersion: 2
+        x: 3666
+        y: 0
+        width: 184
+        height: 219
+      alignment: 9
+      pivot: {x: 0.78, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1782a68a625c0e24aa2abf59bcd3ce30
+      internalID: -1906217030
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThePursuerAnim_GroundPound_6
+      rect:
+        serializedVersion: 2
+        x: 4327
+        y: 0
+        width: 200
+        height: 217
+      alignment: 9
+      pivot: {x: 0.86, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 69f524fa8ba354d4faa13a4cbe1efaea
+      internalID: 618789926
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThePursuerAnim_GroundPound_7
+      rect:
+        serializedVersion: 2
+        x: 5095
+        y: 0
+        width: 129
+        height: 227
+      alignment: 9
+      pivot: {x: 0.71, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 505ed90b97e801e419ce3cd7f21cd4c2
+      internalID: 39072666
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThePursuerAnim_GroundPound_8
+      rect:
+        serializedVersion: 2
+        x: 5777
+        y: 55
+        width: 129
+        height: 225
+      alignment: 9
+      pivot: {x: 0.71, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d4b51a8d1af5f554ab42fcee865df289
+      internalID: 1768960002
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThePursuerAnim_GroundPound_9
+      rect:
+        serializedVersion: 2
+        x: 6463
+        y: 125
+        width: 129
+        height: 225
+      alignment: 9
+      pivot: {x: 0.71, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ae63ee1366aba4742921d3550fc7a6ab
+      internalID: -2006224354
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThePursuerAnim_GroundPound_10
+      rect:
+        serializedVersion: 2
+        x: 7156
+        y: 0
+        width: 129
+        height: 242
+      alignment: 9
+      pivot: {x: 0.71, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 54b2f12b220b15c489e23da225ef248c
+      internalID: 1547250049
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThePursuerAnim_GroundPound_11
+      rect:
+        serializedVersion: 2
+        x: 7730
+        y: 0
+        width: 415
+        height: 174
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4af53b33805ac0447bd90059b7ce76ea
+      internalID: 2046468260
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThePursuerAnim_GroundPound_14
+      rect:
+        serializedVersion: 2
+        x: 8295
+        y: 0
+        width: 697
+        height: 331
+      alignment: 9
+      pivot: {x: 0.475, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6741cc002187e564f978a5213f470711
+      internalID: -1609880204
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThePursuerAnim_GroundPound_17
+      rect:
+        serializedVersion: 2
+        x: 8998
+        y: 0
+        width: 686
+        height: 323
+      alignment: 9
+      pivot: {x: 0.465, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6079f412e27903542ad4b38536e1fa51
+      internalID: 2078579257
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThePursuerAnim_GroundPound_18
+      rect:
+        serializedVersion: 2
+        x: 9693
+        y: 0
+        width: 680
+        height: 320
+      alignment: 9
+      pivot: {x: 0.465, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 04290d61184f4ea4e93f0fb0f5de7335
+      internalID: -1539169432
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThePursuerAnim_GroundPound_19
+      rect:
+        serializedVersion: 2
+        x: 10614
+        y: 0
+        width: 131
+        height: 182
+      alignment: 9
+      pivot: {x: 0.59, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7ed09f8057d43724190a27e91279ce91
+      internalID: 933985946
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThePursuerAnim_GroundPound_20
+      rect:
+        serializedVersion: 2
+        x: 11215
+        y: 0
+        width: 238
+        height: 201
+      alignment: 9
+      pivot: {x: 0.8, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5a10cd47aa920bb4cbd04afa66bff1f8
+      internalID: -1847850063
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThePursuerAnim_GroundPound_21
+      rect:
+        serializedVersion: 2
+        x: 11917
+        y: 0
+        width: 226
+        height: 210
+      alignment: 9
+      pivot: {x: 0.89, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6a1eebcae0e33e142b804f98355d0222
+      internalID: -1995477383
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThePursuerAnim_GroundPound_22
+      rect:
+        serializedVersion: 2
+        x: 12669
+        y: 0
+        width: 194
+        height: 222
+      alignment: 9
+      pivot: {x: 0.68, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 90ff1b140c78756469a5cfecbfccef2a
+      internalID: -1727184640
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThePursuerAnim_GroundPound_23
+      rect:
+        serializedVersion: 2
+        x: 13389
+        y: 0
+        width: 192
+        height: 223
+      alignment: 9
+      pivot: {x: 0.53, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 74458e7a9f68946459334906809a4e59
+      internalID: -5060949
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThePursuerAnim_GroundPound_24
+      rect:
+        serializedVersion: 2
+        x: 14091
+        y: 0
+        width: 179
+        height: 220
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: acd80a8a9bc0c414699920f68537cfda
+      internalID: -1890888883
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      ThePursuerAnim_GroundPound_0: 1809386653
+      ThePursuerAnim_GroundPound_1: 1184924627
+      ThePursuerAnim_GroundPound_10: 1547250049
+      ThePursuerAnim_GroundPound_11: 2046468260
+      ThePursuerAnim_GroundPound_12: -501443397
+      ThePursuerAnim_GroundPound_13: -1778891495
+      ThePursuerAnim_GroundPound_14: -1609880204
+      ThePursuerAnim_GroundPound_15: 109821834
+      ThePursuerAnim_GroundPound_16: -1257912622
+      ThePursuerAnim_GroundPound_17: 2078579257
+      ThePursuerAnim_GroundPound_18: -1539169432
+      ThePursuerAnim_GroundPound_19: 933985946
+      ThePursuerAnim_GroundPound_2: -1465077582
+      ThePursuerAnim_GroundPound_20: -1847850063
+      ThePursuerAnim_GroundPound_21: -1995477383
+      ThePursuerAnim_GroundPound_22: -1727184640
+      ThePursuerAnim_GroundPound_23: -5060949
+      ThePursuerAnim_GroundPound_24: -1890888883
+      ThePursuerAnim_GroundPound_25: 585000139
+      ThePursuerAnim_GroundPound_26: 1181051277
+      ThePursuerAnim_GroundPound_27: -1470144551
+      ThePursuerAnim_GroundPound_28: -1015573971
+      ThePursuerAnim_GroundPound_3: -1239703714
+      ThePursuerAnim_GroundPound_4: -2137954015
+      ThePursuerAnim_GroundPound_5: -1906217030
+      ThePursuerAnim_GroundPound_6: 618789926
+      ThePursuerAnim_GroundPound_7: 39072666
+      ThePursuerAnim_GroundPound_8: 1768960002
+      ThePursuerAnim_GroundPound_9: -2006224354
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

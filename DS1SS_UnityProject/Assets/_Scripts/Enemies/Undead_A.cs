@@ -89,6 +89,8 @@ public class Undead_A : MonoBehaviour
 
     public void Respawn()
     {
+        DamagerNumber.gameObject.SetActive(false);
+        SeePlayer = false;
         IsDead = false;
         Assets.SetActive(true);
         gameObject.SetActive(true);
@@ -96,6 +98,7 @@ public class Undead_A : MonoBehaviour
         HealthSlider.value = Health;
         transform.localPosition = OriginPosition;
         Behaviour = "Idle";
+        SeePlayer = false;
     }
 
     void Update()
@@ -123,7 +126,7 @@ public class Undead_A : MonoBehaviour
                         FacePlayer();
                         Walk();
                     }
-                    else
+                    else 
                     {
                         Anim.Play("UndeadAnim_A_Idle");
                         RB.velocity = Vector2.zero;
@@ -166,13 +169,26 @@ public class Undead_A : MonoBehaviour
         }
     }
 
-    IEnumerator Death()
+
+    void Death()
     {
+        DamagerNumber.gameObject.SetActive(false);
         EnemySaveManager.IsLockOnAble = false;
+
+        EnemySaveManager.IsLockOnAble = false;
+        RB.velocity = Vector2.zero;
+        IsAttacking = false;
+        EnemySaveManager.CanBeParry = false;
+
         Behaviour = "Dying";
-        if (IsAttacking) { StopCoroutine(AttackingCoroutine); }
+        StopAllCoroutines();
         HealthSlider.value = 0;
         Anim.Play("UndeadAnim_A_Death");
+        StartCoroutine(DeathWait());
+    }
+    IEnumerator DeathWait()
+    {
+
         yield return new WaitForSeconds(3);
 
         Dead();
@@ -181,6 +197,9 @@ public class Undead_A : MonoBehaviour
     private void OnDisable()
     {
         if (Behaviour == "Dying") { Dead(); }
+        DamagerNumber.gameObject.SetActive(false);
+        DamageTakenInTime = 0;
+        DamagerNumber.text = DamageTakenInTime.ToString();
     }
 
     public void Dead()
@@ -196,14 +215,14 @@ public class Undead_A : MonoBehaviour
     {
         Health -= 5;
         AddDamage(5);
-        if (Health <= 0) { StartCoroutine(Death()); RuntimeManager.PlayOneShot(Grunts, transform.position); }
+        if (Health <= 0) { Death(); RuntimeManager.PlayOneShot(Grunts, transform.position); }
     }
     public void TakeHeavyDamage()
     {
         Health -= 10;
-        AddDamage(10);
-        Behaviour = "Staggered";
-        if (Health <= 0) { StartCoroutine(Death()); RuntimeManager.PlayOneShot(Grunts, transform.position); }
+        AddDamage(10); 
+        if (Health <= 0) { Death(); RuntimeManager.PlayOneShot(Grunts, transform.position); return; }
+        else {  Behaviour = "Staggered";}     
     }
     void AddDamage(int DMG)
     {
@@ -230,7 +249,7 @@ public class Undead_A : MonoBehaviour
     public void TriggerStagger()
     {
         Behaviour = "Parried";
-        StopCoroutine(AttackingCoroutine);
+        if (AttackingCoroutine != null) { StopCoroutine(AttackingCoroutine); }
         StartCoroutine(Staggered());
         RB.velocity = Vector2.zero;
     }
@@ -251,6 +270,11 @@ public class Undead_A : MonoBehaviour
 
     void LookForPlayer()
     {
+        if (Vector3.Distance(Eyes.transform.position, Player.transform.position) < 4)
+        {
+            SeePlayer = true;
+            return;
+        }
 
         float Range = 0;
 
@@ -290,11 +314,11 @@ public class Undead_A : MonoBehaviour
                     SeePlayer = false;
                 }
 
-            } 
+            }
             else
-                {
-                    SeePlayer = false;
-                }
+            {
+                SeePlayer = false;
+            }
         }
         else
         {
@@ -532,4 +556,6 @@ public class Undead_A : MonoBehaviour
             Player.GetComponent<PlayerControllerV2>().PlayerTakeDamage(AttackDamage, false, 0);
         }
     }
+
+
 }

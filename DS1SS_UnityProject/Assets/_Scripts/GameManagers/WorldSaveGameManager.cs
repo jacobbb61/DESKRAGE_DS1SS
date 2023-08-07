@@ -339,146 +339,146 @@ public class WorldSaveGameManager : MonoBehaviour
         CurrentCharacterData.PursuerArenaState = "FirstTime";
 
         //enemy data
-        CurrentCharacterData.EnemyBehaviour_1 = "Idle";
-        CurrentCharacterData.EnemyHealth_1 = 30;
+        CurrentCharacterData.EnemyBehaviour_1 = "Idle"; //A jailcells
+        CurrentCharacterData.EnemyHealth_1 = 25;
         CurrentCharacterData.EnemyPosX_1 = 4;
         CurrentCharacterData.EnemyPosY_1 = -1.8f;
         CurrentCharacterData.EnemyDirection_1 = -1;
 
-        CurrentCharacterData.EnemyBehaviour_2 = "Idle";
-        CurrentCharacterData.EnemyHealth_2 = 30;
+        CurrentCharacterData.EnemyBehaviour_2 = "Idle"; //A jailcells
+        CurrentCharacterData.EnemyHealth_2 = 25;
         CurrentCharacterData.EnemyPosX_2 = 17.5f;
         CurrentCharacterData.EnemyPosY_2 = -1.8f;
         CurrentCharacterData.EnemyDirection_2 = 1;
 
-        CurrentCharacterData.EnemyBehaviour_3 = "Idle";
-        CurrentCharacterData.EnemyHealth_3 = 50;
+        CurrentCharacterData.EnemyBehaviour_3 = "Idle"; //C jailcells
+        CurrentCharacterData.EnemyHealth_3 = 45;
         CurrentCharacterData.EnemyPosX_3 = 50;
         CurrentCharacterData.EnemyPosY_3 = 4.2f;
         CurrentCharacterData.EnemyDirection_3 = -1;
 
-        CurrentCharacterData.EnemyBehaviour_4 = "";
+        CurrentCharacterData.EnemyBehaviour_4 = ""; //B archer
         CurrentCharacterData.EnemyHealth_4 = 30;
         CurrentCharacterData.EnemyPosX_4 = 90;
         CurrentCharacterData.EnemyPosY_4 = 15.2f;
         CurrentCharacterData.EnemyDirection_4 = -1;
 
-        CurrentCharacterData.EnemyBehaviour_5 = "";
-        CurrentCharacterData.EnemyHealth_5 = 50;
-        CurrentCharacterData.EnemyPosX_5 = 500;
+        CurrentCharacterData.EnemyBehaviour_5 = ""; //C boulder lad
+        CurrentCharacterData.EnemyHealth_5 = 45;
+        CurrentCharacterData.EnemyPosX_5 = 110;
         CurrentCharacterData.EnemyPosY_5 = 23.2f;
         CurrentCharacterData.EnemyDirection_5 = -1;
 
-        CurrentCharacterData.EnemyBehaviour_6 = "";
-        CurrentCharacterData.EnemyHealth_6 = 50;
+        CurrentCharacterData.EnemyBehaviour_6 = ""; //B archer past boulder
+        CurrentCharacterData.EnemyHealth_6 = 35;
         CurrentCharacterData.EnemyPosX_6 = 123;
         CurrentCharacterData.EnemyPosY_6 = 23.2f;
         CurrentCharacterData.EnemyDirection_6 = -1;
 
-        CurrentCharacterData.EnemyBehaviour_7 = "";
-        CurrentCharacterData.EnemyHealth_7 = 50;
-        CurrentCharacterData.EnemyPosX_7 = 0;
-        CurrentCharacterData.EnemyPosY_7 = 0;
-        CurrentCharacterData.EnemyDirection_7 = -1;
+        CurrentCharacterData.EnemyBehaviour_7 = "";   // new undead A front boulder
+        CurrentCharacterData.EnemyHealth_7 = 25;
+        CurrentCharacterData.EnemyPosX_7 = 128;
+        CurrentCharacterData.EnemyPosY_7 = 23.5f;
+        CurrentCharacterData.EnemyDirection_7 = 1;
 
-        CurrentCharacterData.EnemyBehaviour_8 = "";
-        CurrentCharacterData.EnemyHealth_8 = 50;
-        CurrentCharacterData.EnemyPosX_8 = 0;
-        CurrentCharacterData.EnemyPosY_8 = 0;
-        CurrentCharacterData.EnemyDirection_8 = -1;
+        CurrentCharacterData.EnemyBehaviour_8 = "";   //new undead C front boulder
+        CurrentCharacterData.EnemyHealth_8 = 45;
+        CurrentCharacterData.EnemyPosX_8 = 142;
+        CurrentCharacterData.EnemyPosY_8 = 23.2f;
+        CurrentCharacterData.EnemyDirection_8 = 1;
 
-        CurrentCharacterData.EnemyBehaviour_9 = "";
-        CurrentCharacterData.EnemyHealth_9 = 50;
+        CurrentCharacterData.EnemyBehaviour_9 = ""; //B archer past boulder
+        CurrentCharacterData.EnemyHealth_9 = 35;
         CurrentCharacterData.EnemyPosX_9 = 145;
         CurrentCharacterData.EnemyPosY_9 = 23.2f;
         CurrentCharacterData.EnemyDirection_9 = -1;
 
-        CurrentCharacterData.EnemyBehaviour_10 = "";
-        CurrentCharacterData.EnemyHealth_10 = 50;
-        CurrentCharacterData.EnemyPosX_10 = 156;
-        CurrentCharacterData.EnemyPosY_10 = 5.2f;
+        CurrentCharacterData.EnemyBehaviour_10 = ""; //C first outskirts
+        CurrentCharacterData.EnemyHealth_10 = 45;
+        CurrentCharacterData.EnemyPosX_10 = 185;
+        CurrentCharacterData.EnemyPosY_10 = 12.11f;
         CurrentCharacterData.EnemyDirection_10 = -1;
 
-        CurrentCharacterData.EnemyBehaviour_11 = "";
-        CurrentCharacterData.EnemyHealth_11 = 50;
+        CurrentCharacterData.EnemyBehaviour_11 = ""; //C second outskirts
+        CurrentCharacterData.EnemyHealth_11 = 45;
         CurrentCharacterData.EnemyPosX_11 = 171;
         CurrentCharacterData.EnemyPosY_11 = 9;
         CurrentCharacterData.EnemyDirection_11 = -1;
 
-        CurrentCharacterData.EnemyBehaviour_12 = "";
-        CurrentCharacterData.EnemyHealth_12 = 50;
-        CurrentCharacterData.EnemyPosX_12 = 0;
-        CurrentCharacterData.EnemyPosY_12 = 0;
+        CurrentCharacterData.EnemyBehaviour_12 = "";   // new undead A front under
+        CurrentCharacterData.EnemyHealth_12 = 25;
+        CurrentCharacterData.EnemyPosX_12 = 173.5f;
+        CurrentCharacterData.EnemyPosY_12 = -5.75f;
         CurrentCharacterData.EnemyDirection_12 = -1;
 
-        CurrentCharacterData.EnemyBehaviour_13 = "";
-        CurrentCharacterData.EnemyHealth_13 = 50;
-        CurrentCharacterData.EnemyPosX_13 = 0;
-        CurrentCharacterData.EnemyPosY_13 = 0;
+        CurrentCharacterData.EnemyBehaviour_13 = "";   //new undead b front under
+        CurrentCharacterData.EnemyHealth_13 = 35;
+        CurrentCharacterData.EnemyPosX_13 = 183.25f;
+        CurrentCharacterData.EnemyPosY_13 = -12.7f;
         CurrentCharacterData.EnemyDirection_13 = -1;
 
-        CurrentCharacterData.EnemyBehaviour_14 = "";
-        CurrentCharacterData.EnemyHealth_14 = 50;
-        CurrentCharacterData.EnemyPosX_14 = 180;
+        CurrentCharacterData.EnemyBehaviour_14 = ""; //B outskirts top
+        CurrentCharacterData.EnemyHealth_14 = 35;
+        CurrentCharacterData.EnemyPosX_14 = 177.65f;
         CurrentCharacterData.EnemyPosY_14 = 22.2f;
         CurrentCharacterData.EnemyDirection_14 = -1;
 
-        CurrentCharacterData.EnemyBehaviour_15 = "";
-        CurrentCharacterData.EnemyHealth_15 = 50;
+        CurrentCharacterData.EnemyBehaviour_15 = ""; // C by bridge
+        CurrentCharacterData.EnemyHealth_15 = 45;
         CurrentCharacterData.EnemyPosX_15 = 203;
         CurrentCharacterData.EnemyPosY_15 = 17.2f;
         CurrentCharacterData.EnemyDirection_15 = -1;
 
-        CurrentCharacterData.EnemyBehaviour_16 = "";
-        CurrentCharacterData.EnemyHealth_16 = 50;
-        CurrentCharacterData.EnemyPosX_16 = 0;
-        CurrentCharacterData.EnemyPosY_16 = 0;
+        CurrentCharacterData.EnemyBehaviour_16 = "";   //new undead c middle upper
+        CurrentCharacterData.EnemyHealth_16 = 45;
+        CurrentCharacterData.EnemyPosX_16 = 185.11f;
+        CurrentCharacterData.EnemyPosY_16 = 21.3f;
         CurrentCharacterData.EnemyDirection_16 = -1;
 
-        CurrentCharacterData.EnemyBehaviour_17 = "";
+        CurrentCharacterData.EnemyBehaviour_17 = ""; // B after bridge
         CurrentCharacterData.EnemyHealth_17 = 50;
         CurrentCharacterData.EnemyPosX_17 = 235.5f;
         CurrentCharacterData.EnemyPosY_17 = 17.45f;
         CurrentCharacterData.EnemyDirection_17 = 1;
 
-        CurrentCharacterData.EnemyBehaviour_18 = "";
-        CurrentCharacterData.EnemyHealth_18 = 50;
-        CurrentCharacterData.EnemyPosX_18 = 172;
+        CurrentCharacterData.EnemyBehaviour_18 = ""; //C sewer first
+        CurrentCharacterData.EnemyHealth_18 = 45;
+        CurrentCharacterData.EnemyPosX_18 = 158;
         CurrentCharacterData.EnemyPosY_18 = -5.85f;
         CurrentCharacterData.EnemyDirection_18 = -1;
 
-        CurrentCharacterData.EnemyBehaviour_19 = "";
-        CurrentCharacterData.EnemyHealth_19 = 50;
-        CurrentCharacterData.EnemyPosX_19 = 0;
-        CurrentCharacterData.EnemyPosY_19 = 0;
+        CurrentCharacterData.EnemyBehaviour_19 = "";   //new undead b middle upper
+        CurrentCharacterData.EnemyHealth_19 = 35;
+        CurrentCharacterData.EnemyPosX_19 = 178.65f;
+        CurrentCharacterData.EnemyPosY_19 = 12.28f;
         CurrentCharacterData.EnemyDirection_19 = -1;
 
-        CurrentCharacterData.EnemyBehaviour_20 = "";
-        CurrentCharacterData.EnemyHealth_20 = 50;
+        CurrentCharacterData.EnemyBehaviour_20 = ""; //B sewer first
+        CurrentCharacterData.EnemyHealth_20 = 35;
         CurrentCharacterData.EnemyPosX_20 = 148;
         CurrentCharacterData.EnemyPosY_20 = -5.75f;
         CurrentCharacterData.EnemyDirection_20 = 1;
 
-        CurrentCharacterData.EnemyBehaviour_21 = "";
-        CurrentCharacterData.EnemyHealth_21 = 50;
+        CurrentCharacterData.EnemyBehaviour_21 = ""; //C sewer second
+        CurrentCharacterData.EnemyHealth_21 = 45;
         CurrentCharacterData.EnemyPosX_21 = 161;
         CurrentCharacterData.EnemyPosY_21 = -14.7f;
         CurrentCharacterData.EnemyDirection_21 = -1;
 
-        CurrentCharacterData.EnemyBehaviour_22 = "";
-        CurrentCharacterData.EnemyHealth_22 = 50;
+        CurrentCharacterData.EnemyBehaviour_22 = ""; //C sewer third
+        CurrentCharacterData.EnemyHealth_22 = 45;
         CurrentCharacterData.EnemyPosX_22 = 171;
         CurrentCharacterData.EnemyPosY_22 = -14.7f;
         CurrentCharacterData.EnemyDirection_22 = -1;
 
-        CurrentCharacterData.EnemyBehaviour_23 = "";
-        CurrentCharacterData.EnemyHealth_23 = 50;
-        CurrentCharacterData.EnemyPosX_23 = 0;
-        CurrentCharacterData.EnemyPosY_23 = 0;
+        CurrentCharacterData.EnemyBehaviour_23 = "";   //new undead A middle upper
+        CurrentCharacterData.EnemyHealth_23 = 25;
+        CurrentCharacterData.EnemyPosX_23 = 209.1f;
+        CurrentCharacterData.EnemyPosY_23 = 17.15f;
         CurrentCharacterData.EnemyDirection_23 = -1;
 
-        CurrentCharacterData.EnemyBehaviour_24 = "";
-        CurrentCharacterData.EnemyHealth_24 = 50;
+        CurrentCharacterData.EnemyBehaviour_24 = ""; //B sewer last
+        CurrentCharacterData.EnemyHealth_24 = 35;
         CurrentCharacterData.EnemyPosX_24 = 177.5f;
         CurrentCharacterData.EnemyPosY_24 = -5.7f;
         CurrentCharacterData.EnemyDirection_24 = 1;

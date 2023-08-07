@@ -21,15 +21,21 @@ public class CollapseBridge : MonoBehaviour
     public GameObject BridgeAssets_UnBroken;
     public GameObject BridgeAssets_Broken;
 
+    public PursuerArena PursuerArena;
+    public Animator Anim;
+
     private bool CanBreak; //wait for time when loading into scene before player can trigger break
 
     // The bridge referenced in this script must have a collider and kinematic rigidbody
-
+    private void Start()
+    {
+         StartCoroutine(WaitForLoad());
+    }
     public void ManualStart()
     {
         if (!isBridge)
         {
-            StartCoroutine(WaitForLoad());
+           
             switch (currentState)
             {
                 case "UnBroken":
@@ -59,10 +65,12 @@ public class CollapseBridge : MonoBehaviour
                 case "Closed":
                     BridgeAssets_UnBroken.SetActive(true);
                     BridgeAssets_Broken.SetActive(false);
+                    Anim.Play("UnbrokenIdle");
                     break;
                 case "Open":
                     BridgeAssets_Broken.SetActive(true);
-                    BridgeAssets_UnBroken.SetActive(false);
+                    BridgeAssets_UnBroken.SetActive(false); 
+                    Anim.Play("BrokenIdle");
                     break;
             }
         }
@@ -103,16 +111,25 @@ public class CollapseBridge : MonoBehaviour
         }
         else if (collision.CompareTag("Player") && isBridge)
         {
-            // Play animation
-            Collider.enabled = false;
-            // Wait();
-            currentState = "Open";
-            BridgeAssets_UnBroken.SetActive(false);
-            BridgeAssets_Broken.SetActive(true);
+            PursuerArena.EnterArena();
         }
+    }
 
+
+    public IEnumerator WaitToBreak()
+    {
+        yield return new WaitForSeconds(1);
+    
+        Collider.enabled = false; 
+        
+        yield return new WaitForSeconds(3);
+   
+        currentState = "Open";
+        Anim.Play("BrokenIdle");
 
     }
+
+
 
     void assetsOff()
     {

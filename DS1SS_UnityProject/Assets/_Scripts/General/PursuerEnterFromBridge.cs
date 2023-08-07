@@ -10,7 +10,7 @@ public class PursuerEnterFromBridge : MonoBehaviour
     {
         if (collision.transform.CompareTag("Player"))
         {
-            PursuerArena.EnterArena();
+            if (PursuerArena.currentState == "Idle") { PursuerArena.EnterArena(); }
         }
     }
 }

@@ -20,13 +20,14 @@ public class PlayerControllerV2 : MonoBehaviour
 
     [Header("stuff for jacob")]
     public float MovementInputDirection;
+    public float MovementInputAmount;
     public float PlayerDirection;
     private float JumpDirection;
     public bool IsUiOpen = false;
 
     [Header("movement states")]
     public bool IsGrounded;
-    private bool IsStaminaRegen;
+    public bool IsStaminaRegen;
     public bool CanMove;
     public bool IsRolling;
     private bool IsBackStepping;
@@ -36,7 +37,7 @@ public class PlayerControllerV2 : MonoBehaviour
     private bool IsLanding;
     public bool IsMovingInput;
     private bool IsWaitingToRun;
-    private bool DontDondgeOnThisRelease;
+    public bool DontDondgeOnThisRelease;
     private bool IsIdleAnim;
     public float VerticalSpeed;
     public bool FootAOnSlope;
@@ -122,6 +123,8 @@ public class PlayerControllerV2 : MonoBehaviour
     private Coroutine LightAttackFollowUpCoroutine;
     private Coroutine HeavyAttackCoroutine;
     private Coroutine HeavyAttackFollowUpCoroutine;
+    private Coroutine EnterBlockCoroutine;
+    private Coroutine ExitBlockCoroutine;
 
     private Coroutine CancelThisCoroutine;
 
@@ -133,6 +136,8 @@ public class PlayerControllerV2 : MonoBehaviour
     public InteractableV2 Interactable;
 
     public OscarManager Oscar;
+
+    public GameObject BloodImpact;
 
     //UI
     private CanvasManager CM;
@@ -160,7 +165,7 @@ public class PlayerControllerV2 : MonoBehaviour
             EstusCountText = CM.EstusCountText;
             UpdateUI();
         }
-                if (StaminaRegenCoroutine != null) { StopCoroutine(StaminaRegenCoroutine);} StaminaRegenCoroutine = StartCoroutine(StaminaRegenPause());
+         if (StaminaRegenCoroutine != null) { StopCoroutine(StaminaRegenCoroutine);} StaminaRegenCoroutine = StartCoroutine(StaminaRegenPause());
         
     }
 
@@ -227,11 +232,11 @@ public class PlayerControllerV2 : MonoBehaviour
         Anim.Play("PlayerAnim_Idle");
     }
 
-    public void PlayerTakeDamage(float Damage, bool Knockdown, int KnockDownDirection) // -1 to left, 1 to right, 0 is the direction the player is on relative to the enemy
+    public void PlayerTakeDamage(float Damage, bool staggger, int KnockDownDirection) // -1 to left, 1 to right, 0 is the direction the player is on relative to the enemy
     {
         if (!IsRolling && !IsImmune)
         {
-            if (!Knockdown)
+            if (!staggger)
             {
                 if (IsBlocking)
                 {
@@ -246,20 +251,34 @@ public class PlayerControllerV2 : MonoBehaviour
                 else
                 {
                     Health -= Damage;
+                    BloodEffect();
                     GetComponentInChildren<AnimationAudio>().PlayerDamageAudio();
                     if (PM.HasBeenHit == false) { PM.HasBeenHit = true; }
                 }
             }
             else
             {
-                Health -= Damage;
-                if (PM.HasBeenHit == false) { PM.HasBeenHit = true; }
-                if (StaggerCoroutine != null) { StopCoroutine(StaggerCoroutine); }
-                StaggerCoroutine = StartCoroutine(Stagger());
+
+                if (State != "Stagger")
+                { 
+                    if (PM.HasBeenHit == false) { PM.HasBeenHit = true; }               
+                    if (StaggerCoroutine != null) { StopCoroutine(StaggerCoroutine); }
+                    Health -= Damage; BloodEffect();
+                    StaggerCoroutine = StartCoroutine(Stagger());
+                }
+                
             }
         }
         if (Health <= 0) { StartCoroutine(PlayerDead()); }
     }
+
+    void BloodEffect()
+    {
+        GameObject NewBlood = Instantiate(BloodImpact);
+        NewBlood.transform.position = transform.position;
+        Destroy(NewBlood, 0.25f);
+    }
+
 
     public void PlayerFinishInteraction()
     {
@@ -315,37 +334,26 @@ public class PlayerControllerV2 : MonoBehaviour
     //////////////////////////////////////////////////////////////
     public void B(InputAction.CallbackContext context)
     {
-        if (CanRollOut && CancelThisCoroutine!=null) 
-        {
-            ProcessInput_B_Cancel();
-            StopCoroutine(CancelThisCoroutine);   
-        }
-        else
-        {
             switch (State)
             {
                 case "Idle":
-                    ProcessInput_B(context);
+                    if (Stamina >= 10) ProcessInput_B(context);
                     break;
                 case "Walking":
-                    ProcessInput_B(context);
+                    if (Stamina >= 10) ProcessInput_B(context);
                     break;
                 case "Running":
-                    ProcessInput_B(context);
+                    if (Stamina >= 10) ProcessInput_B(context);
                     break;
                 case "Blocking":
-                    ProcessInput_B(context); IsBlocking = false;
+                    if (Stamina >= 10) ProcessInput_B(context); IsBlocking = false;
                     break;
                 case "Rolling":
-                    if (CanRollOut && IsGrounded) { ProcessInput_B(context); }
+                    //if (CanRollOut) { if (Stamina >= 10) { ProcessInput_B(context); } }          
                     break;
                 default:
-                    if (context.action.WasPerformedThisFrame())
-                    {
-                        DontDondgeOnThisRelease = true;
-                    }
                     break;
-            }
+            
         }
     }
     void ProcessInput_B(InputAction.CallbackContext context)
@@ -353,55 +361,20 @@ public class PlayerControllerV2 : MonoBehaviour
    
         if (context.action.WasPerformedThisFrame())
         {
-            WaitToRunCoroutine = StartCoroutine(WaitToRun());
+
+                if (RollingCoroutine != null) { StopCoroutine(RollingCoroutine); }
+                if (MovementInputDirection == 0) 
+                {// trigger backstep
+                    StartBackStep();
+                }
+                else 
+                {// trigger roll
+                    StartRoll();
+                }
+            
 
         }
 
-        if (context.action.WasReleasedThisFrame())
-        {    
-            if (IsWaitingToRun) { StopCoroutine(WaitToRunCoroutine); IsWaitingToRun = false; }
-
-            if (State=="Rolling" && CanRollOut) 
-            { 
-                StopCoroutine(RollingCoroutine); 
-                if (MovementInputDirection == 0) // trigger backstep
-                {
-                    StartBackStep();
-                }
-                else // trigger roll
-                {
-                    StartRoll();
-                }
-            }
-
-            if (State == "Running")
-            {                
-                        if (StaminaRegenCoroutine != null) { StopCoroutine(StaminaRegenCoroutine);} StaminaRegenCoroutine = StartCoroutine(StaminaRegenPause());
-                if (MovementInputDirection == 0) { State = "Idle"; } else { State = "Walking"; }
-            }
-            else if (State != "Running" && DontDondgeOnThisRelease == false)
-            {
-                if (MovementInputDirection == 0) // trigger backstep
-                {
-                    StartBackStep();
-                }
-                else // trigger roll
-                {
-                    StartRoll();
-                }
-                
-            }
-         DontDondgeOnThisRelease = false;
-
-        }
-
-    }
-    void ProcessInput_B_Cancel()
-    {
-        if (MovementInputDirection == 0) { StartBackStep(); }
-        else { StartRoll(); }
-        CanFollowUp = false;
-        CanRollOut = false;
     }
     void StartRoll()
     {
@@ -413,7 +386,7 @@ public class PlayerControllerV2 : MonoBehaviour
 
         RollingCoroutine =  StartCoroutine(Roll());
 
-        Stamina -= 30f;
+        Stamina -= 25f;
         State = "Rolling";
     }
     void StartBackStep()
@@ -426,9 +399,11 @@ public class PlayerControllerV2 : MonoBehaviour
     //////////////////////////////////////////////////////////////
     public void X(InputAction.CallbackContext context)
     {
-        if (CanUseSecondEstus && CurrentEstus>0)
+        if (CanUseSecondEstus && CurrentEstus>0 && Health<MaxHealth)
         {
             State = "Estus";
+            StopCoroutine(EstusUseCoroutine);
+            CanUseSecondEstus = false;
             EstusUseCoroutine = StartCoroutine(UseEstus());
         }
         else
@@ -451,12 +426,12 @@ public class PlayerControllerV2 : MonoBehaviour
     }
     void ProcessInput_X(InputAction.CallbackContext context)
     {
-            if (context.action.triggered && CurrentEstus>0)
+            if (context.action.triggered && CurrentEstus> 0 && Health < MaxHealth)
             {
             State = "Estus";
             EstusUseCoroutine = StartCoroutine(UseEstus());
             } 
-            if(context.action.triggered && CurrentEstus == 0)
+            if(context.action.triggered && CurrentEstus == 0 && Health < MaxHealth)
             {
             State = "Estus";
             EstusUseCoroutine = StartCoroutine(UseEmptyEstus());
@@ -499,35 +474,92 @@ public class PlayerControllerV2 : MonoBehaviour
     //////////////////////////////////////////////////////////////
     public void Move(InputAction.CallbackContext context)
     {
-  
-            Vector2 MovementInput;
-            MovementInput = context.ReadValue<Vector2>();
-            if (MovementInput.x > 0.4f)
-            {
-                MovementInputDirection = 1;
-                IsMovingInput = true;
-            }
-            if (MovementInput.x < -0.4f)
-            {
-                MovementInputDirection = -1;
-                IsMovingInput = true;
-            }
-       
-        
+        Vector2 MovementInput;
+        MovementInput = context.ReadValue<Vector2>();
+
+
+        if (MovementInput.x > 0.1f && MovementInput.x <= 0.75f)
+        {
+            MovementInputDirection = 1;
+            MovementInputAmount = 0.5f;
+            IsMovingInput = true;
+            //walking
+        }
+        else if (MovementInput.x < -0.1f && MovementInput.x >= -0.75f)
+        {
+            MovementInputDirection = -1;
+            MovementInputAmount = 0.5f;
+            IsMovingInput = true;
+            //walking
+        }
+        else if (MovementInput.x > 0.75f && MovementInput.x <= 1f)
+        {
+            MovementInputDirection = 1;
+            MovementInputAmount = 1;
+            IsMovingInput = true;
+            //running
+        }
+        else if (MovementInput.x < -0.75f && MovementInput.x >= -1f)
+        {
+            MovementInputDirection = -1;
+            MovementInputAmount = 1;
+            IsMovingInput = true;
+            //running
+        }
+
+
+        switch (State)
+        {
+            case "Idle":
+                ProccessMove(context);
+                break;
+            case "Walking":
+                ProccessMove(context);
+                break;
+            case "Running":
+                ProccessMove(context);
+                break;
+            case "Blocking":
+                ProccessMove(context);
+                break;
+            case "Rolling":
+                //if (CanRollOut) { if (Stamina >= 10) { ProcessInput_B(context); } }          
+                break;
+            default:
+                break;
+
+        }
 
         if (context.canceled)
         {
             MovementInputDirection = 0;
             IsMovingInput = false;
         }
-
-        switch (State)
+    }
+    void ProccessMove(InputAction.CallbackContext context)
+    {
+        Vector2 MovementInput;
+        MovementInput = context.ReadValue<Vector2>();
+        if (MovementInput.x > 0.1f && MovementInput.x <= 0.75f)
         {
-            case "Idle":
-                if (IsGrounded && IsMovingInput) State = "Walking";
-                break;
+            if (IsGrounded && IsMovingInput) State = "Walking";
+        }
+        else if (MovementInput.x < -0.1f && MovementInput.x >= -0.75f)
+        {
+            if (IsGrounded && IsMovingInput) State = "Walking";
+        }
+        else if (MovementInput.x > 0.75f && MovementInput.x <= 1f)
+        {
+            if (IsGrounded && IsMovingInput) State = "Running";
+        }
+        else if (MovementInput.x < -0.75f && MovementInput.x >= -1f)
+        {
+            if (IsGrounded && IsMovingInput) State = "Running";
         }
     }
+
+
+
     //////////////////////////////////////////////////////////////
     public void LockOn(InputAction.CallbackContext context)
     {
@@ -599,7 +631,7 @@ public class PlayerControllerV2 : MonoBehaviour
                 FaceTowardsEnemy();
             }
             HeavyAttackCoroutine = StartCoroutine(HeavyAttack());
-            Stamina -= 25f;
+            Stamina -= 22f;
         }
     }
     void ProcessInput_RT_Cancel()
@@ -617,7 +649,7 @@ public class PlayerControllerV2 : MonoBehaviour
             FaceTowardsEnemy();
         }
         HeavyAttackFollowUpCoroutine = StartCoroutine(HeavyAttackFollowUp());
-        Stamina -= 25f;
+        Stamina -= 22f;
         CanFollowUp = false;
     }
     void ProcessInput_RT_CancelAgain()
@@ -635,7 +667,7 @@ public class PlayerControllerV2 : MonoBehaviour
             FaceTowardsEnemy();
         }
         HeavyAttackCoroutine = StartCoroutine(HeavyAttack());
-        Stamina -= 25f;
+        Stamina -= 22f;
         CanFollowUpAgain = false;
     }
     void ProcessInput_RT_Plunge(InputAction.CallbackContext context) 
@@ -643,7 +675,7 @@ public class PlayerControllerV2 : MonoBehaviour
         if (context.action.triggered && IsPlunging==false && CanPlunge)
         {
             IsPlunging = true;
-            Stamina -= 35f;
+            Stamina -= 40f;
             CanPlunge = false;
         }
     }
@@ -701,7 +733,7 @@ public class PlayerControllerV2 : MonoBehaviour
                 FaceTowardsEnemy();
             }
             LightAttackCoroutine = StartCoroutine(LightAttack());
-            Stamina -= 17.5f;
+            Stamina -= 15f;
         }
     }
     void ProcessInput_RB_Cancel()
@@ -719,7 +751,7 @@ public class PlayerControllerV2 : MonoBehaviour
         }
         
         LightAttackFollowUpCoroutine = StartCoroutine(LightAttackFollowUp());
-        Stamina -= 17.5f;
+        Stamina -= 15f;
         CanFollowUp = false;
     }
     void ProcessInput_RB_CancelAgain()
@@ -737,7 +769,7 @@ public class PlayerControllerV2 : MonoBehaviour
         }
 
         LightAttackCoroutine = StartCoroutine(LightAttack());
-        Stamina -= 17.5f;
+        Stamina -= 15f;
         CanFollowUpAgain = false;
     }
     //////////////////////////////////////////////////////////////
@@ -810,23 +842,24 @@ public class PlayerControllerV2 : MonoBehaviour
     }  
     void ProcessInput_LB(InputAction.CallbackContext context)
     {
-        if (context.action.WasPressedThisFrame())
+        if (context.action.WasPressedThisFrame() && State != "Blocking")
         {
             if (!IsLockedOn)
-            {
-                if (MovementInputDirection > 0.2f) { PlayerDirection = 1; }
-                if (MovementInputDirection < -0.2f) { PlayerDirection = -1; }
-                FaceTowardsInput();
-            }
-            else
-            {
-                FaceTowardsEnemy();
-            }
-            StartCoroutine(EnterBlock());
+                {
+                    if (MovementInputDirection > 0.2f) { PlayerDirection = 1; }
+                    if (MovementInputDirection < -0.2f) { PlayerDirection = -1; }
+                    FaceTowardsInput();
+                }
+                else
+                {
+                    FaceTowardsEnemy();
+                }
+
+                EnterBlock();
         }
         if (context.action.WasReleasedThisFrame())
         {
-            StartCoroutine(ExitBlock());
+            ExitBlock();
         }
     }
     //////////////////////////////////////////////////////////////
@@ -899,18 +932,42 @@ public class PlayerControllerV2 : MonoBehaviour
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     void Idle()
     {
-        Anim.Play("PlayerAnim_Idle");
         IsBlocking = false;
+        IsRolling = false;
+        IsImmune = false;
+
+
+        if (StaminaRegenCoroutine != null) { StopCoroutine(StaminaRegenCoroutine); StaminaRegenCoroutine = StartCoroutine(StaminaRegenPause()); }
+        if (Stamina!=MaxStamina && IsStaminaRegen==false) {StaminaRegenCoroutine = StartCoroutine(StaminaRegenPause()); }
+
+
+
+        Anim.Play("PlayerAnim_Idle");
+
         if (IsLockedOn) { FaceTowardsEnemy(); } else { FaceTowardsInput(); }
     }
 
     void Walking()
     {
-        if (MovementInputDirection > 0.2f && !IsLockedOn) { PlayerDirection = 1; }
-        if (MovementInputDirection < -0.2f && !IsLockedOn) { PlayerDirection = -1; }
-        if (IsLockedOn) { FaceTowardsEnemy(); } else { FaceTowardsInput(); }    
+        IsBlocking = false;
+        IsRolling = false;
+        IsImmune = false;
 
+
+        if (StaminaRegenCoroutine != null) { StopCoroutine(StaminaRegenCoroutine); StaminaRegenCoroutine = StartCoroutine(StaminaRegenPause()); }
+        if (Stamina != MaxStamina && IsStaminaRegen == false) { StaminaRegenCoroutine = StartCoroutine(StaminaRegenPause()); }
+
+
+
+
+        if (MovementInputAmount == 1) { State = "Running"; }
+        if (MovementInputDirection == 0) { State = "Idle"; }
+
+        if (MovementInputDirection > 0.1f && !IsLockedOn) { PlayerDirection = 1; }
+        if (MovementInputDirection < -0.1f && !IsLockedOn) { PlayerDirection = -1; }
+        if (IsLockedOn) { FaceTowardsEnemy(); } else { FaceTowardsInput(); }
         
+
 
         MyRb.velocity = new Vector2(MovementInputDirection * WalkSpeed, -VerticalSpeed);
 
@@ -919,30 +976,26 @@ public class PlayerControllerV2 : MonoBehaviour
         {
             if (GetComponent<EnemyLock>().enemyToRight)
             {
-                if (MovementInputDirection < -0.2f)
-                {
-                    Anim.Play("PlayerAnim_WalkForward");
-                }
-                else
+                if (MovementInputDirection < 0.75f && MovementInputDirection > 0.1f)
                 {
                     Anim.Play("PlayerAnim_WalkBackward");
+                }
+                if (MovementInputDirection < -0.75f && MovementInputDirection < -0.1f)
+                {
+                    Anim.Play("PlayerAnim_WalkForward");
                 }
             }
             else
             {
-                if (MovementInputDirection > 0.2f)
+                if (MovementInputDirection < 0.75f && MovementInputDirection > 0.1f)
                 {
                     Anim.Play("PlayerAnim_WalkForward");
                 }
-                else
+                if (MovementInputDirection < -0.75f && MovementInputDirection < -0.1f)
                 {
                     Anim.Play("PlayerAnim_WalkBackward");
                 }
             }
-            
-
-        
-        
         }
         
         
@@ -950,25 +1003,30 @@ public class PlayerControllerV2 : MonoBehaviour
     }
 
     void Running()
-    {      
-        if (Stamina <= 0) //ran out of stamina, break run
-        {
-                    if (StaminaRegenCoroutine != null) { StopCoroutine(StaminaRegenCoroutine);} StaminaRegenCoroutine = StartCoroutine(StaminaRegenPause());
-            if (MovementInputDirection == 0) { State = "Idle"; } else { State = "Walking"; }
-        }
-        else
-        {
-            if (MovementInputDirection > 0.2f) { PlayerDirection = 1; Anim.Play("PlayerAnim_Run"); Stamina -= Time.deltaTime * 5f; }
-            if (MovementInputDirection < -0.2f) { PlayerDirection = -1; Anim.Play("PlayerAnim_Run"); Stamina -= Time.deltaTime * 5f; }
-            if (MovementInputDirection > -0.2f && MovementInputDirection < 0.2f) { Anim.Play("PlayerAnim_Idle"); DontDondgeOnThisRelease = true;  }
+    {
+        IsBlocking = false;
+        IsRolling = false;
+        IsImmune = false;
 
+
+        if (StaminaRegenCoroutine != null) { StopCoroutine(StaminaRegenCoroutine); StaminaRegenCoroutine = StartCoroutine(StaminaRegenPause()); }
+        if (Stamina != MaxStamina && IsStaminaRegen == false) { StaminaRegenCoroutine = StartCoroutine(StaminaRegenPause()); }
+
+
+
+        Anim.Play("PlayerAnim_Run");
+
+            if (MovementInputDirection >= 0.75f) { PlayerDirection = 1;}
+            if (MovementInputDirection <= -0.75f) { PlayerDirection = -1;}
+            if (MovementInputAmount == 0.5f) { State = "Walk"; }
+            if (MovementInputDirection == 0) { State = "Idle"; }
             FaceTowardsInput(); 
 
            
-            IsStaminaRegen = false;
+            
 
             MyRb.velocity = new Vector2(MovementInputDirection * RunSpeed, -VerticalSpeed);
-        }
+        
     }
 
     void Rolling()
@@ -993,6 +1051,7 @@ public class PlayerControllerV2 : MonoBehaviour
 
     void Jumping()
     {
+        IsRolling = false;
         IsJumping = true;
         IsGrounded = false;
         FootAOnSlope = false;
@@ -1001,7 +1060,8 @@ public class PlayerControllerV2 : MonoBehaviour
     }
     void Falling()
     {
-
+        IsRolling = false;
+        IsImmune = false;
         if (MovementInputDirection > 0.2f) { PlayerDirection = 1; }
         if (MovementInputDirection < -0.2f) { PlayerDirection = -1; }
         FaceTowardsInput();
@@ -1051,7 +1111,8 @@ public class PlayerControllerV2 : MonoBehaviour
     void Blocking()
     {
         MyRb.velocity = Vector2.zero;
-
+        IsRolling = false;
+        IsImmune = false;
         if (Stamina <= 0) //ran out of stamina, break blocking and stagger
         {
            StartCoroutine(Stagger());
@@ -1060,6 +1121,8 @@ public class PlayerControllerV2 : MonoBehaviour
     }
     void MenuOpen()
     {
+        IsRolling = false;
+        IsImmune = false;
         Anim.Play("PlayerAnim_Idle");
         if (IsUiOpen == false) { if (MovementInputDirection == 0) { State = "Idle"; } else { State = "Walking"; } }
     }
@@ -1294,7 +1357,7 @@ public class PlayerControllerV2 : MonoBehaviour
     void StaminaRegen()
     {
         Stamina = Mathf.Clamp(Stamina, 0, 100);
-        if (Stamina < 100) { Stamina += Time.deltaTime * 70; } else { Stamina = 100; IsStaminaRegen = false; }
+        if (Stamina < 100) { Stamina += Time.deltaTime * 80; } else { Stamina = 100; IsStaminaRegen = false; }
 
     }
     IEnumerator StaminaRegenPause()
@@ -1305,18 +1368,6 @@ public class PlayerControllerV2 : MonoBehaviour
         StaminaRegenCoroutine = null;
     }
 
-
-
-    IEnumerator WaitToRun()
-    {
-        IsWaitingToRun = true;
-
-        yield return new WaitForSeconds(.2f);
-
-        if (State != "Rolling") { State = "Running";}
-
-        IsWaitingToRun = false;
-    }
     IEnumerator Roll()
     {
         IsStaminaRegen = false; 
@@ -1325,7 +1376,7 @@ public class PlayerControllerV2 : MonoBehaviour
 
         yield return new WaitForSeconds(RollTime-.25f);
 
-                if (StaminaRegenCoroutine != null) { StopCoroutine(StaminaRegenCoroutine);} StaminaRegenCoroutine = StartCoroutine(StaminaRegenPause());
+        if (StaminaRegenCoroutine != null) { StopCoroutine(StaminaRegenCoroutine); } StaminaRegenCoroutine = StartCoroutine(StaminaRegenPause()); 
         CanRollOut = true;
 
         yield return new WaitForSeconds(.25f);
@@ -1340,9 +1391,9 @@ public class PlayerControllerV2 : MonoBehaviour
         {
             State = "Idle";
         }
+        CanRollOut = false;
 
-        
-   
+
     }
     IEnumerator Backstep()
     {
@@ -1365,7 +1416,8 @@ public class PlayerControllerV2 : MonoBehaviour
             State = "Idle";
         }
 
-                if (StaminaRegenCoroutine != null) { StopCoroutine(StaminaRegenCoroutine);} StaminaRegenCoroutine = StartCoroutine(StaminaRegenPause());
+        if (StaminaRegenCoroutine != null) { StopCoroutine(StaminaRegenCoroutine); }
+        StaminaRegenCoroutine = StartCoroutine(StaminaRegenPause()); 
     }
     IEnumerator Jump()
     {
@@ -1399,7 +1451,7 @@ public class PlayerControllerV2 : MonoBehaviour
         }
 
 
-        if (StaminaRegenCoroutine != null) { StopCoroutine(StaminaRegenCoroutine);} StaminaRegenCoroutine = StartCoroutine(StaminaRegenPause());
+        if (StaminaRegenCoroutine != null) { StopCoroutine(StaminaRegenCoroutine); } StaminaRegenCoroutine = StartCoroutine(StaminaRegenPause()); 
 
         if (JumpingCoroutine != null) { StopCoroutine(JumpingCoroutine); }
 
@@ -1436,7 +1488,7 @@ public class PlayerControllerV2 : MonoBehaviour
         CanRollOut = false; CancelThisCoroutine = null;
         CanFollowUp = false;
 
-                if (StaminaRegenCoroutine != null) { StopCoroutine(StaminaRegenCoroutine);} StaminaRegenCoroutine = StartCoroutine(StaminaRegenPause());
+        if (StaminaRegenCoroutine != null) { StopCoroutine(StaminaRegenCoroutine);} StaminaRegenCoroutine = StartCoroutine(StaminaRegenPause());
 
         if (MovementInputDirection == 0) { State = "Idle"; } else { State = "Walking"; }
     }
@@ -1460,7 +1512,7 @@ public class PlayerControllerV2 : MonoBehaviour
         CanRollOut = false; CancelThisCoroutine = null;
         CanFollowUpAgain = false;
 
-                if (StaminaRegenCoroutine != null) { StopCoroutine(StaminaRegenCoroutine);} StaminaRegenCoroutine = StartCoroutine(StaminaRegenPause());
+        if (StaminaRegenCoroutine != null) { StopCoroutine(StaminaRegenCoroutine);} StaminaRegenCoroutine = StartCoroutine(StaminaRegenPause());
 
         if (MovementInputDirection == 0) { State = "Idle"; } else { State = "Walking"; }
     }
@@ -1484,7 +1536,7 @@ public class PlayerControllerV2 : MonoBehaviour
         CanRollOut = false; CancelThisCoroutine = null;
         CanFollowUp = false; 
 
-                if (StaminaRegenCoroutine != null) { StopCoroutine(StaminaRegenCoroutine);} StaminaRegenCoroutine = StartCoroutine(StaminaRegenPause());
+        if (StaminaRegenCoroutine != null) { StopCoroutine(StaminaRegenCoroutine);} StaminaRegenCoroutine = StartCoroutine(StaminaRegenPause());
 
         if (MovementInputDirection == 0) { State = "Idle"; } else { State = "Walking"; }
     }
@@ -1508,7 +1560,7 @@ public class PlayerControllerV2 : MonoBehaviour
         CanRollOut = false; CancelThisCoroutine = null;
         CanFollowUpAgain = false;
 
-                if (StaminaRegenCoroutine != null) { StopCoroutine(StaminaRegenCoroutine);} StaminaRegenCoroutine = StartCoroutine(StaminaRegenPause());
+        if (StaminaRegenCoroutine != null) { StopCoroutine(StaminaRegenCoroutine);} StaminaRegenCoroutine = StartCoroutine(StaminaRegenPause());
 
         if (MovementInputDirection == 0) { State = "Idle"; } else { State = "Walking"; }
     }
@@ -1522,11 +1574,11 @@ public class PlayerControllerV2 : MonoBehaviour
         {
             if (hit.transform.CompareTag("Enemy"))
             {
-                MyRb.velocity = Vector2.zero;
+                MyRb.velocity = new Vector2(PlayerDirection * StepDistance/8, 0);
             }
             else if (hit.transform.CompareTag("Demon"))
             {
-              MyRb.velocity = Vector2.zero;                  
+                MyRb.velocity = new Vector2(PlayerDirection * StepDistance/8, 0);
             }
             else
             {
@@ -1575,24 +1627,41 @@ public class PlayerControllerV2 : MonoBehaviour
 
     void HoldBlock()
     {
-        IsBlocking = true;
+        //IsBlocking = true;
 
         Anim.Play("PlayerAnim_ShieldBlockHold");
     }
-    IEnumerator EnterBlock()
+    void EnterBlock()
     {
+        if (EnterBlockCoroutine != null) { StopCoroutine(EnterBlockCoroutine); }
+        EnterBlockCoroutine = StartCoroutine(EnterBlockWait());
         State = "Blocking";
-
         Anim.Play("PlayerAnim_ShieldBlockEnter");
 
+        IsBlocking = true;
+    }
+    IEnumerator EnterBlockWait()
+    {
         yield return new WaitForSeconds(0.25f);
 
         HoldBlock();
     }
-    IEnumerator ExitBlock()
-    {
-        Anim.Play("PlayerAnim_ShieldBlockExit");
 
+    void ExitBlock()
+    {
+       // if (ExitBlockCoroutine != null) { StopCoroutine(ExitBlockCoroutine); }
+       // ExitBlockCoroutine = StartCoroutine(ExitBlockWait());
+
+        IsBlocking = false;
+        if (EnterBlockCoroutine != null) { StopCoroutine(EnterBlockCoroutine); }
+        if (MovementInputDirection == 0) { State = "Idle"; } else { State = "Walking"; }
+
+
+      //  Anim.Play("PlayerAnim_ShieldBlockExit");
+    }
+
+    IEnumerator ExitBlockWait()
+    {
         yield return new WaitForSeconds(0.15f);
 
         IsBlocking = false;
@@ -1667,15 +1736,22 @@ public class PlayerControllerV2 : MonoBehaviour
     {
         if (num == 6)
         {
-            if (MaxEstus == 3) { MaxEstus = 6; CurrentEstus = 6; Oscar.EstusUI(3);  }
-            else if (MaxEstus == 0) { MaxEstus = 6; CurrentEstus = 6; Oscar.EstusUI(6); }
+            if (MaxEstus == 3) { MaxEstus = 6; CurrentEstus += 6; Oscar.EstusUI(3);  }
+            else if (MaxEstus == 0) { MaxEstus = 6; CurrentEstus += 6; Oscar.EstusUI(6); }
         }
         if (num == 3)
         {
-           if (MaxEstus == 3) { MaxEstus = 6; CurrentEstus = 6; Oscar.EstusUI(3); }
-           else if (MaxEstus == 0) { MaxEstus = 3; CurrentEstus = 3; Oscar.EstusUI(3); }
+           if (MaxEstus == 3) { MaxEstus = 6; CurrentEstus += 3; Oscar.EstusUI(3); }
+           else if (MaxEstus == 0) { MaxEstus = 3; CurrentEstus += 3; Oscar.EstusUI(3); }
         }
-       // Debug.Log("Max was " + MaxEstus + "is now " + num); 
+
+        if (CurrentEstus > MaxEstus)
+        {
+            if (MaxEstus == 3) { CurrentEstus = 3; }
+            if (MaxEstus == 6) { CurrentEstus = 6; }
+        }
+
+        // Debug.Log("Max was " + MaxEstus + "is now " + num); 
     }
 
     public void HitWall(string WallHit)

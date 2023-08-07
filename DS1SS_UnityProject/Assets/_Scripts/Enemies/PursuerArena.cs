@@ -43,7 +43,8 @@ public class PursuerArena : MonoBehaviour
         IsSecondPhase = true;
         StopMusic();
         FMODinstance = FMODUnity.RuntimeManager.CreateInstance(Theme_SecondPhase);
-        FMODinstance.start();
+        FMODinstance.start(); 
+        FMODinstance.release();
     }
     public void EnterArena() //called from door manager
     {
@@ -54,14 +55,31 @@ public class PursuerArena : MonoBehaviour
         doorT.ManualStart();
         doorU.ManualStart();
 
+        if (currentState == "FirstTime")
+        {
+            StartCinematic();
 
-        if (currentState == "FirstTime" || currentState == "Idle")
+
+           // SwitchState("Active");
+
+            inBossFight = true;
+            arenaIsActive = true;
+           // Boss.Behaviour = "Hostile";
+        }
+
+        if (currentState == "Idle")
         {
             SwitchState("Active");
             inBossFight = true;
             arenaIsActive = true;
             Boss.Behaviour = "Hostile";
         }
+
+        FMODinstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+        FMODinstance = FMODUnity.RuntimeManager.CreateInstance(Theme_FirstPhase);
+        FMODinstance.start();
+        FMODinstance.release();
+
     }
     IEnumerator Wait(float timeToWait)
     {
@@ -81,7 +99,9 @@ public class PursuerArena : MonoBehaviour
             case "FirstTime":
                 {   //Door states are "Open", "Closed", "Locked", "OneSided", "Fog", "FogEnter"
                     doorT.SwitchDoorState("Closed"); 
-                    doorU.SwitchDoorState("Closed");
+                    doorU.SwitchDoorState("Locked");
+                    doorT.ManualStart();
+                    doorU.ManualStart();
                     Bridge.currentState="Closed";
                     Bridge.ManualStart();
                     inBossFight = false;
@@ -92,13 +112,15 @@ public class PursuerArena : MonoBehaviour
                     Boss.IsTurning = false;
                     Boss.IsCoolingDown = false;
                     Boss.Health = Boss.MaxHealth;
-                    Boss.Behaviour = "Idle";
+                    Boss.Behaviour = "FirstTime";
                     break;
                 }
             case "Idle":
                 {
                     doorT.SwitchDoorState("FogEnter");
                     doorU.SwitchDoorState("Fog");
+                    doorT.ManualStart();
+                    doorU.ManualStart();
                     Bridge.currentState = "Open";
                     Bridge.ManualStart();
                     inBossFight = false;
@@ -120,6 +142,8 @@ public class PursuerArena : MonoBehaviour
                 {
                     doorT.SwitchDoorState("Fog");
                     doorU.SwitchDoorState("Fog");
+                    doorT.ManualStart();
+                    doorU.ManualStart();
                     Bridge.currentState = "Open";
                     Bridge.ManualStart();
                     inBossFight = true;
@@ -131,10 +155,12 @@ public class PursuerArena : MonoBehaviour
                     Boss.IsCoolingDown = false;
                     Boss.Health = Boss.MaxHealth;
                     Boss.Behaviour = "Hostile";
+                   /*
                     FMODinstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
                     FMODinstance = FMODUnity.RuntimeManager.CreateInstance(Theme_FirstPhase);
                     FMODinstance.start();
                     FMODinstance.release();
+                   */
                     break;
                 }
             case "Open":
@@ -168,7 +194,7 @@ public class PursuerArena : MonoBehaviour
         Bridge.currentState = "Open";
         Bridge.ManualStart();
 
-
+        StopMusic();
 
 
         // Audio stuffs
@@ -176,4 +202,29 @@ public class PursuerArena : MonoBehaviour
         // Disable boss health
         // Achievement and saving stuff
     }
+
+
+
+    public void StartCinematic()
+    {
+        inBossFight = true;
+        arenaIsActive = true;
+        Boss.Behaviour = "Cinematic";
+        Boss.Assets.SetActive(true);
+        //trigger bridge wait to break
+        Bridge.StartCoroutine(Bridge.WaitToBreak());
+        //trigger bridge animation
+        Bridge.Anim.Play("Breaking");
+        //trigger boss animation
+        Boss.Anim.Play("Intro");
+
+        StartCoroutine(WaitToStartBoss());
+    }
+
+    IEnumerator WaitToStartBoss()
+    {
+        yield return new WaitForSeconds(2.5f);
+        SwitchState("Active");        
+    }
+
 }

@@ -211,6 +211,15 @@ public class PlayerAnimationEvents : MonoBehaviour
                     hit.transform.GetComponent<EnemySaveManager>().ParryEvent.Invoke();
                 }
             }
+            else if (hit.transform.CompareTag("Pursuer"))
+            {
+
+                if (hit.transform.GetComponent<Pursuer>().CanBeParry == true)
+                {
+                    hit.transform.GetComponent<Pursuer>().TriggerStagger();
+                }
+
+            }
             else
             {
                 Debug.Log("Player hit" + hit.transform.name);

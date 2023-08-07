@@ -34,6 +34,7 @@ public class OscarManager : MonoBehaviour
     public GameObject MiddleLayerObject;
     public GameObject FrontLayerObject;
     public GameObject InteractPrompt;
+    public TextMeshProUGUI InteractPromptText;
 
     [Header("State")]
     public string CurrentState; //needs to be saved
@@ -123,7 +124,7 @@ public class OscarManager : MonoBehaviour
         //CurrentTextLine = 0;
         SetLineText();
 
-      //  SetDeath();
+        SetDeath();
         SetLocation();
         if (gameObject.activeInHierarchy) { SetAnimation(); }
         if (CurrentState == "I" || CurrentState == "C" || CurrentState == "E")
@@ -200,24 +201,10 @@ public class OscarManager : MonoBehaviour
     }
     public void SetDeath()
     {
-        /*
-        switch (CurrentState)
+       if (IsOscarDead)
         {
-            case "C":
-                CurrentState = "E";
-                break;
-            case "F":
-                CurrentState = "E";
-                break;
-            case "H":
-                CurrentState = "E";
-                break;
-            default:
-                break;
+            gameObject.SetActive(false);
         }
-        if (CurrentState == "E") { IsOscarDead = true; }
-        if (CurrentState == "D") { IsOscarDead = true; }
-        */
     }
     public void SetLocation() 
     {
@@ -497,8 +484,8 @@ public class OscarManager : MonoBehaviour
                     CurrentText = StateCTextLines[CurrentTextLine]; //tell dialogue text what to show
                     CurrentTextLine++;
                     MoveInteractionOnLoad = true;
-                } else { CloseDialog(); IsOscarDead = true; } //dies
-                if (CurrentTextLine == 1) { GiveEstus(6); }
+                } else { CloseDialog(); } //dies
+                if (CurrentTextLine == 2) { GiveEstus(6); IsOscarDead = true; }
                 break;
             case "DF":
                 if (CurrentTextLine < 1)
@@ -728,8 +715,13 @@ public class OscarManager : MonoBehaviour
             if (!IsOscarDead) //interaction animation 
             {
                 InteractPrompt.SetActive(true);
+                InteractPromptText.text = ": Interact";
                 if (IsSitting()) { Anim.Play("OscarAnim_SittingInteract"); }
                 else { Anim.Play("OscarAnim_StandingInteract"); }
+            }
+            else
+            {
+                InteractPrompt.SetActive(false);
             }
         }
     }
@@ -745,8 +737,7 @@ public class OscarManager : MonoBehaviour
             if (!IsOscarDead) //interaction animation 
             {
                 InteractPrompt.SetActive(false);
-                if (IsSitting()) { Anim.Play("OscarAnim_SittingIdle"); }
-                else { Anim.Play("OscarAnim_StandingIdle"); }
+                SetAnimation();
             }
         }
     }
@@ -756,26 +747,43 @@ public class OscarManager : MonoBehaviour
         switch (CurrentState)
         {
             case "Null":
-                return true;
+                return true; //Sitting
 
             case "A":
-                return true;
+                return true; //Sitting
 
             case "YES":
-                return true;
- 
+                return true; //Sitting
+
             case "NO":
-                return true;
+                return true; //Sitting
+
+            case "B":
+                return false; //Standing
 
             case "C":
-                return true;
+                return true; //Sitting
+
+            case "D":
+                return true; //Sitting
+
+            case "E":
+                return true; //Sitting
+
+            case "F":
+                return true; //Sitting
+
+            case "G":
+                return false; //Standing
 
             case "H":
-                return true;
+                return true; //Sitting
+
+            case "I":
+                return true; //Sitting
 
             default:
-                return false;
-
+                return true; //Sitting
         }
     }
 

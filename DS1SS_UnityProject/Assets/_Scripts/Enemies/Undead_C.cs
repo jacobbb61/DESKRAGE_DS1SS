@@ -115,6 +115,8 @@ public class Undead_C : MonoBehaviour
 
     public void Respawn()
     {
+        DamagerNumber.gameObject.SetActive(false);
+        SeePlayer = false;
         IsDead = false;
         Assets.SetActive(true);
         gameObject.SetActive(true);
@@ -122,6 +124,8 @@ public class Undead_C : MonoBehaviour
         HealthSlider.value = Health;
         transform.localPosition = OriginPosition;
         Behaviour = "Idle";
+        SeePlayer = false;
+
     }
 
     void Update()
@@ -224,19 +228,36 @@ public class Undead_C : MonoBehaviour
 
 
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    IEnumerator Death()
+   
+    
+    
+    
+    void Death()
     {
-        
+       
+        DamagerNumber.gameObject.SetActive(false);
+        SeePlayer = false;
+
         EnemySaveManager.IsLockOnAble = false;
-        Behaviour = "Dying";
         RB.velocity = Vector2.zero;
         IsAttacking = false;
         IsHeavyAttacking = false;
         IsAttackStepping = false;
         EnemySaveManager.CanBeParry = false;
-        if (AttackingCoroutine!=null) { StopCoroutine(AttackingCoroutine); }
+
+        Behaviour = "Dying";
+        StopAllCoroutines();
         HealthSlider.value = 0;
         Anim.Play("UndeadAnim_C_Death");
+        StartCoroutine(DeathWait());
+    }
+    
+    
+    
+    IEnumerator DeathWait()
+    {
+        
+
         yield return new WaitForSeconds(3);
 
         Dead();
@@ -245,6 +266,9 @@ public class Undead_C : MonoBehaviour
     private void OnDisable()
     {
         if (Behaviour == "Dying") { Dead(); }
+        DamagerNumber.gameObject.SetActive(false);
+        DamageTakenInTime = 0;
+        DamagerNumber.text = DamageTakenInTime.ToString();
         if (Behaviour == "Attacking")
         {
             CombatTime = 0;
@@ -265,19 +289,20 @@ public class Undead_C : MonoBehaviour
     {
         Health -= 5;
         AddDamage(5);
-        if (Health <= 0) { StartCoroutine(Death()); RuntimeManager.PlayOneShot(Grunts, transform.position); }
+        if (Health <= 0) { Death(); RuntimeManager.PlayOneShot(Grunts, transform.position); }
     }
     public void TakeHeavyDamage()
     {
         Health -= 10;
         AddDamage(10);
+        if (Health <= 0) { Death(); RuntimeManager.PlayOneShot(Grunts, transform.position); return; }
         if (!IsHeavyAttacking) { Behaviour = "Staggered"; StartCoroutine(Staggered()); }
-        if (Health <= 0) { StartCoroutine(Death()); RuntimeManager.PlayOneShot(Grunts, transform.position); }
+       
     }
     public void TriggerStagger()
     {
         Behaviour = "Parried";
-        StopCoroutine(AttackingCoroutine);
+        if (AttackingCoroutine != null) { StopCoroutine(AttackingCoroutine); }
         StartCoroutine(Staggered());
         RB.velocity = Vector2.zero;
     }
@@ -320,7 +345,11 @@ public class Undead_C : MonoBehaviour
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     void LookForPlayer()
     {
-
+        if (Vector3.Distance(Eyes.transform.position, Player.transform.position) < 4)
+        {
+            SeePlayer = true;
+            return;
+        }
         float Range = 0;
 
         if (transform.position.x > Player.transform.position.x && LookDirection == 1) //looking towards player
@@ -653,7 +682,14 @@ public class Undead_C : MonoBehaviour
     {
         if (!HitPos.bounds.Contains(Player.transform.position))
         {
-          RB.velocity = new Vector2(-(Speed + AttackStepMultiplier) * LookDirection, -VerticalSpeed);
+            if (IsGrounded)
+            {
+                RB.velocity = new Vector2(-(Speed + AttackStepMultiplier) * LookDirection, -VerticalSpeed);
+            }
+            else
+            {
+                RB.velocity = new Vector2(-(Speed + AttackStepMultiplier) * LookDirection, -FallSpeed);
+            }
         }
         else
         {

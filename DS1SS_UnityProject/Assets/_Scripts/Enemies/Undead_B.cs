@@ -42,6 +42,7 @@ public class Undead_B : MonoBehaviour
     public GameObject Arrow;
     public GameObject Eyes;
     public Transform HitStartPos;
+    public Vector3 Target;
     public Slider HealthSlider;
     public Vector3 OriginPosition; 
     public TextMeshProUGUI DamagerNumber;
@@ -74,13 +75,16 @@ public class Undead_B : MonoBehaviour
 
     public void Respawn()
     {
+        DamagerNumber.gameObject.SetActive(false);
+        SeePlayer = false;
         IsDead = false;
         Assets.SetActive(true);
         gameObject.SetActive(true);
         Health = MaxHealth;
         HealthSlider.value = Health;
         transform.localPosition = OriginPosition;
-        Behaviour = "Idle";
+        Behaviour = "Idle"; 
+        SeePlayer = false;
     }
 
     void Update()
@@ -119,14 +123,25 @@ public class Undead_B : MonoBehaviour
             }
         }
     }
-
-    IEnumerator Death()
+    void Death()
     {
+        DamagerNumber.gameObject.SetActive(false);
         EnemySaveManager.IsLockOnAble = false;
+
+        EnemySaveManager.IsLockOnAble = false;
+        RB.velocity = Vector2.zero;
+        IsAttacking = false;
+        EnemySaveManager.CanBeParry = false;
+
         Behaviour = "Dying";
-        if (IsAttacking) { StopCoroutine(AttackingCoroutine); }
+        StopAllCoroutines();
         HealthSlider.value = 0;
         Anim.Play("UndeadAnim_B_Death");
+        StartCoroutine(DeathWait());
+    }
+    IEnumerator DeathWait()
+    {
+
         yield return new WaitForSeconds(3);
 
         Dead();
@@ -135,6 +150,9 @@ public class Undead_B : MonoBehaviour
     private void OnDisable()
     {
         if (Behaviour == "Dying") { Dead(); }
+        DamagerNumber.gameObject.SetActive(false);
+        DamageTakenInTime = 0;
+        DamagerNumber.text = DamageTakenInTime.ToString();
     }
 
     public void Dead()
@@ -150,14 +168,14 @@ public class Undead_B : MonoBehaviour
     {
         Health -= 5;
         AddDamage(5);
-        if (Health <= 0) { StartCoroutine(Death()); RuntimeManager.PlayOneShot(Grunts, transform.position); }
+        if (Health <= 0) { Death(); RuntimeManager.PlayOneShot(Grunts, transform.position); }
     }
     public void TakeHeavyDamage()
     {
         Health -= 10;
         AddDamage(10);
+        if (Health <= 0) { Death(); RuntimeManager.PlayOneShot(Grunts, transform.position); return; }
         Behaviour = "Staggered";
-        if (Health <= 0) { StartCoroutine(Death()); RuntimeManager.PlayOneShot(Grunts, transform.position); }
     }
     void AddDamage(int DMG)
     {
@@ -191,7 +209,11 @@ public class Undead_B : MonoBehaviour
 
     void LookForPlayer()
     {
-
+        if (Vector3.Distance(Eyes.transform.position, Player.transform.position) < 4)
+        {
+            SeePlayer = true;
+            return;
+        }
         float Range = 0;
 
         if (transform.position.x > Player.transform.position.x && LookDirection == 1) //looking towards player
@@ -273,7 +295,9 @@ public class Undead_B : MonoBehaviour
         IsAttacking = true;
         FacePlayer();
         Anim.Play("UndeadAnim_B_ShootingArrow");
-        yield return new WaitForSeconds(AttackAnimationTime);
+        yield return new WaitForSeconds(1.5f);
+        Target = Player.transform.position;
+        yield return new WaitForSeconds(AttackAnimationTime - 1.5f);
         Anim.Play("UndeadAnim_B_Idle");
         yield return new WaitForSeconds(AttackCoolDownTime);
         IsAttacking = false;
@@ -291,9 +315,11 @@ public class Undead_B : MonoBehaviour
         if (Layer.CurrentLayerNumber == 1) { arrow.transform.parent = Layer.MiddleLayer.transform; }
         if (Layer.CurrentLayerNumber == 2) { arrow.transform.parent = Layer.FrontLayer.transform; }
 
-        arrow.GetComponent<Arrow>().Direction = -LookDirection;
-        arrow.GetComponent<Arrow>().ManualStart();
-        arrow.GetComponent<Arrow>().Flying = true;
+        // arrow.GetComponent<Arrow>().Direction = -LookDirection;
+        // arrow.GetComponent<Arrow>().ManualStart();
+        // arrow.GetComponent<Arrow>().Flying = true;
+        arrow.GetComponent<ArrowV2>().Target = Target;
+
     }
 
 

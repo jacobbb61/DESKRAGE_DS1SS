@@ -246,6 +246,13 @@ MonoBehaviour:
       Data3: 0
       Data4: 0
     Path: 
+  RollAudioRef:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
   HitWoodRef:
     Guid:
       Data1: 0
@@ -261,6 +268,13 @@ MonoBehaviour:
       Data4: 0
     Path: 
   HitMetalRef:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  HitMeatRef:
     Guid:
       Data1: 0
       Data2: 0
@@ -419,20 +433,23 @@ MonoBehaviour:
   CurrentEstus: 0
   MaxEstus: 0
   MovementInputDirection: 0
+  MovementInputAmount: 0
   PlayerDirection: 1
   IsUiOpen: 0
   IsGrounded: 0
+  IsStaminaRegen: 0
   CanMove: 1
   IsRolling: 0
   IsRunning: 0
   IsJumping: 0
   IsMovingInput: 0
+  DontDondgeOnThisRelease: 0
   VerticalSpeed: 0
   FootAOnSlope: 0
   FootBOnSlope: 0
   WalkSpeed: 2.75
   RunSpeed: 6
-  RollSpeed: 5
+  RollSpeed: 5.5
   RollUpSlopeSpeed: 8
   RollDownSlopeSpeed: 2
   RollTime: 1
@@ -478,6 +495,7 @@ MonoBehaviour:
   MyRb: {fileID: 1065959576863444072}
   Interactable: {fileID: 0}
   Oscar: {fileID: 0}
+  BloodImpact: {fileID: 5058380460030695850, guid: 8634f4503a4207a488cdc3fc892835e3, type: 3}
 --- !u!114 &3137671597447383463
 MonoBehaviour:
   m_ObjectHideFlags: 0
