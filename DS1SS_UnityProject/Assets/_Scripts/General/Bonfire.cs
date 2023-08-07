@@ -20,6 +20,7 @@ public class Bonfire : MonoBehaviour
     public AsylumDemon AsylumDemon;
     public Pursuer Pursuer;
     private GameObject BonfirePromptUI;
+    
 
     public LayerManagerV2 LayerManager;
 

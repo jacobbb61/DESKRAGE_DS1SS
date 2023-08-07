@@ -39,6 +39,7 @@ public class Pursuer : MonoBehaviour
     public bool IsDead;
     public bool HasBeenPlunged;
     public bool CanPhaseChanged;
+    public bool CanBeParry;
 
     [Header("Combat Data")]
     public float Speed;
@@ -258,6 +259,27 @@ public class Pursuer : MonoBehaviour
         AddDamage(150);
         if (Health <= 0) { StopAllCoroutines(); StartCoroutine(Death()); }
         if (Health <= MaxHealth / 2 && !arenaManager.IsSecondPhase) { arenaManager.SecondPhase(); CanPhaseChanged = true; }
+    }
+
+
+    public void ToggleParry()
+    {
+        CanBeParry = !CanBeParry;
+    }
+    public void TriggerStagger()
+    {
+        Behaviour = "Parried";
+        if (AttackingCoroutine != null) { StopCoroutine(AttackingCoroutine); }
+        StartCoroutine(Staggered());
+        RB.velocity = Vector2.zero;
+    }
+    IEnumerator Staggered()
+    {
+        Anim.Play("StaggerPlaceholder");
+        IsAttacking = false;
+        yield return new WaitForSeconds(StaggerTime);
+        IsAttacking = false;
+        Behaviour = "Hostile";
     }
 
     void AddDamage(int DMG)

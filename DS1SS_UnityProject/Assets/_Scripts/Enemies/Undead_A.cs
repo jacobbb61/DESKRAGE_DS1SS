@@ -249,7 +249,7 @@ public class Undead_A : MonoBehaviour
     public void TriggerStagger()
     {
         Behaviour = "Parried";
-        StopCoroutine(AttackingCoroutine);
+        if (AttackingCoroutine != null) { StopCoroutine(AttackingCoroutine); }
         StartCoroutine(Staggered());
         RB.velocity = Vector2.zero;
     }
@@ -556,4 +556,6 @@ public class Undead_A : MonoBehaviour
             Player.GetComponent<PlayerControllerV2>().PlayerTakeDamage(AttackDamage, false, 0);
         }
     }
+
+
 }

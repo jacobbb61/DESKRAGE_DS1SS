@@ -124,7 +124,7 @@ public class OscarManager : MonoBehaviour
         //CurrentTextLine = 0;
         SetLineText();
 
-      //  SetDeath();
+        SetDeath();
         SetLocation();
         if (gameObject.activeInHierarchy) { SetAnimation(); }
         if (CurrentState == "I" || CurrentState == "C" || CurrentState == "E")
@@ -201,24 +201,10 @@ public class OscarManager : MonoBehaviour
     }
     public void SetDeath()
     {
-        /*
-        switch (CurrentState)
+       if (IsOscarDead)
         {
-            case "C":
-                CurrentState = "E";
-                break;
-            case "F":
-                CurrentState = "E";
-                break;
-            case "H":
-                CurrentState = "E";
-                break;
-            default:
-                break;
+            gameObject.SetActive(false);
         }
-        if (CurrentState == "E") { IsOscarDead = true; }
-        if (CurrentState == "D") { IsOscarDead = true; }
-        */
     }
     public void SetLocation() 
     {
@@ -498,8 +484,8 @@ public class OscarManager : MonoBehaviour
                     CurrentText = StateCTextLines[CurrentTextLine]; //tell dialogue text what to show
                     CurrentTextLine++;
                     MoveInteractionOnLoad = true;
-                } else { CloseDialog(); IsOscarDead = true; } //dies
-                if (CurrentTextLine == 1) { GiveEstus(6); }
+                } else { CloseDialog(); } //dies
+                if (CurrentTextLine == 2) { GiveEstus(6); IsOscarDead = true; }
                 break;
             case "DF":
                 if (CurrentTextLine < 1)

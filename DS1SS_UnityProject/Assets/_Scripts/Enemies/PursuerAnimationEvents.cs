@@ -10,6 +10,7 @@ public class PursuerAnimationEvents : MonoBehaviour
     public UnityEvent MoveEvent;
     public UnityEvent StopEvent;
     public UnityEvent ImmuneEvent;
+    public UnityEvent ParryEvent;
     public UnityEvent Combo1Triggered;
     public UnityEvent Combo2Triggered;
     public UnityEvent ChargeTriggered;
@@ -34,6 +35,10 @@ public class PursuerAnimationEvents : MonoBehaviour
     public void Immune()
     {
         ImmuneEvent.Invoke();
+    }   
+    public void Parryable()
+    {
+        ParryEvent.Invoke();
     }
 
     public void Combo1()

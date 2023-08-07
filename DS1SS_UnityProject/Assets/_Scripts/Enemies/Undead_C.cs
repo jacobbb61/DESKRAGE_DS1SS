@@ -302,7 +302,7 @@ public class Undead_C : MonoBehaviour
     public void TriggerStagger()
     {
         Behaviour = "Parried";
-        StopCoroutine(AttackingCoroutine);
+        if (AttackingCoroutine != null) { StopCoroutine(AttackingCoroutine); }
         StartCoroutine(Staggered());
         RB.velocity = Vector2.zero;
     }

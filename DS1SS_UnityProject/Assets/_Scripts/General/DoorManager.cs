@@ -186,6 +186,13 @@ public class DoorManager : MonoBehaviour
 
                     break;
 
+                case "Fog":
+
+                    doorPrompt.SetActive(false);
+                    fogDoorPrompt.SetActive(false);
+
+                    break;
+
                 default:
                     doorPrompt.SetActive(true);
                     break;
@@ -439,6 +446,12 @@ public class DoorManager : MonoBehaviour
                             break;
                     }
 
+
+                case "Fog":
+                    {
+                        PC.PlayerFinishInteraction();
+                        break;
+                    }
                 case "Open":
                     {
                         layerManager.ChangeLayer(targetLayer);

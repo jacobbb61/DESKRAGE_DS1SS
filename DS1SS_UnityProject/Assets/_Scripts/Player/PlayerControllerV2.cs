@@ -258,13 +258,12 @@ public class PlayerControllerV2 : MonoBehaviour
             }
             else
             {
-                
-                BloodEffect();
-                if (PM.HasBeenHit == false) { PM.HasBeenHit = true; }
-                if (StaggerCoroutine != null) { StopCoroutine(StaggerCoroutine); }
-                else
-                {
-                    Health -= Damage;
+
+                if (State != "Stagger")
+                { 
+                    if (PM.HasBeenHit == false) { PM.HasBeenHit = true; }               
+                    if (StaggerCoroutine != null) { StopCoroutine(StaggerCoroutine); }
+                    Health -= Damage; BloodEffect();
                     StaggerCoroutine = StartCoroutine(Stagger());
                 }
                 
@@ -933,20 +932,28 @@ public class PlayerControllerV2 : MonoBehaviour
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     void Idle()
     {
+        IsBlocking = false;
+        IsRolling = false;
+        IsImmune = false;
+
+
         if (StaminaRegenCoroutine != null) { StopCoroutine(StaminaRegenCoroutine); StaminaRegenCoroutine = StartCoroutine(StaminaRegenPause()); }
         if (Stamina!=MaxStamina && IsStaminaRegen==false) {StaminaRegenCoroutine = StartCoroutine(StaminaRegenPause()); }
 
 
 
         Anim.Play("PlayerAnim_Idle");
-        IsBlocking = false;
-        IsRolling = false;
-        IsImmune = false;
+
         if (IsLockedOn) { FaceTowardsEnemy(); } else { FaceTowardsInput(); }
     }
 
     void Walking()
     {
+        IsBlocking = false;
+        IsRolling = false;
+        IsImmune = false;
+
+
         if (StaminaRegenCoroutine != null) { StopCoroutine(StaminaRegenCoroutine); StaminaRegenCoroutine = StartCoroutine(StaminaRegenPause()); }
         if (Stamina != MaxStamina && IsStaminaRegen == false) { StaminaRegenCoroutine = StartCoroutine(StaminaRegenPause()); }
 
@@ -959,8 +966,7 @@ public class PlayerControllerV2 : MonoBehaviour
         if (MovementInputDirection > 0.1f && !IsLockedOn) { PlayerDirection = 1; }
         if (MovementInputDirection < -0.1f && !IsLockedOn) { PlayerDirection = -1; }
         if (IsLockedOn) { FaceTowardsEnemy(); } else { FaceTowardsInput(); }
-        IsRolling = false;
-        IsImmune = false;
+        
 
 
         MyRb.velocity = new Vector2(MovementInputDirection * WalkSpeed, -VerticalSpeed);
@@ -998,12 +1004,16 @@ public class PlayerControllerV2 : MonoBehaviour
 
     void Running()
     {
+        IsBlocking = false;
+        IsRolling = false;
+        IsImmune = false;
+
+
         if (StaminaRegenCoroutine != null) { StopCoroutine(StaminaRegenCoroutine); StaminaRegenCoroutine = StartCoroutine(StaminaRegenPause()); }
         if (Stamina != MaxStamina && IsStaminaRegen == false) { StaminaRegenCoroutine = StartCoroutine(StaminaRegenPause()); }
 
 
-        IsRolling = false;
-        IsImmune = false;
+
         Anim.Play("PlayerAnim_Run");
 
             if (MovementInputDirection >= 0.75f) { PlayerDirection = 1;}
@@ -1726,15 +1736,22 @@ public class PlayerControllerV2 : MonoBehaviour
     {
         if (num == 6)
         {
-            if (MaxEstus == 3) { MaxEstus = 6; CurrentEstus = 6; Oscar.EstusUI(3);  }
-            else if (MaxEstus == 0) { MaxEstus = 6; CurrentEstus = 6; Oscar.EstusUI(6); }
+            if (MaxEstus == 3) { MaxEstus = 6; CurrentEstus += 6; Oscar.EstusUI(3);  }
+            else if (MaxEstus == 0) { MaxEstus = 6; CurrentEstus += 6; Oscar.EstusUI(6); }
         }
         if (num == 3)
         {
-           if (MaxEstus == 3) { MaxEstus = 6; CurrentEstus = 6; Oscar.EstusUI(3); }
-           else if (MaxEstus == 0) { MaxEstus = 3; CurrentEstus = 3; Oscar.EstusUI(3); }
+           if (MaxEstus == 3) { MaxEstus = 6; CurrentEstus += 3; Oscar.EstusUI(3); }
+           else if (MaxEstus == 0) { MaxEstus = 3; CurrentEstus += 3; Oscar.EstusUI(3); }
         }
-       // Debug.Log("Max was " + MaxEstus + "is now " + num); 
+
+        if (CurrentEstus > MaxEstus)
+        {
+            if (MaxEstus == 3) { CurrentEstus = 3; }
+            if (MaxEstus == 6) { CurrentEstus = 6; }
+        }
+
+        // Debug.Log("Max was " + MaxEstus + "is now " + num); 
     }
 
     public void HitWall(string WallHit)

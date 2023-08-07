@@ -35,6 +35,9 @@ but added anyways</value>
 		<relationship name="timeline">
 			<destination>{3d9de550-0af6-45c6-901b-68c507b34854}</destination>
 		</relationship>
+		<relationship name="banks">
+			<destination>{f6c889c1-66a0-4495-8add-4939b1da6c4b}</destination>
+		</relationship>
 	</object>
 	<object class="EventMixer" id="{0cee1ae7-2f7a-411c-b1c5-7cac9b73fb5b}">
 		<relationship name="masterBus">
