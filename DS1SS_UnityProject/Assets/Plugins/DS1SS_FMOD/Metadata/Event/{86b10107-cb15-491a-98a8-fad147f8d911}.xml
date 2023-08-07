@@ -193,33 +193,5 @@
 		<property name="nameOfPropertyBeingAutomated">
 			<value>gain</value>
 		</property>
-		<relationship name="automationCurves">
-			<destination>{745c9783-72cf-4b61-8838-aa5904501d71}</destination>
-		</relationship>
-	</object>
-	<object class="AutomationCurve" id="{745c9783-72cf-4b61-8838-aa5904501d71}">
-		<relationship name="parameter">
-			<destination>{e553e2cb-8000-41a5-bf2d-55c2d9a517c4}</destination>
-		</relationship>
-		<relationship name="automationPoints">
-			<destination>{7092ae2b-51a6-4330-9089-ccd51d058e9a}</destination>
-			<destination>{7b4bd62c-3583-45b8-8a7e-2eb3b990a1c4}</destination>
-		</relationship>
-	</object>
-	<object class="AutomationPoint" id="{7092ae2b-51a6-4330-9089-ccd51d058e9a}">
-		<property name="position">
-			<value>0.018361581920903956</value>
-		</property>
-		<property name="value">
-			<value>-80</value>
-		</property>
-	</object>
-	<object class="AutomationPoint" id="{7b4bd62c-3583-45b8-8a7e-2eb3b990a1c4}">
-		<property name="position">
-			<value>1</value>
-		</property>
-		<property name="value">
-			<value>0</value>
-		</property>
 	</object>
 </objects>

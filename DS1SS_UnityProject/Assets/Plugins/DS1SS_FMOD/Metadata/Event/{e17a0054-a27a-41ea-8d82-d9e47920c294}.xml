@@ -223,13 +223,5 @@
 		<property name="nameOfPropertyBeingAutomated">
 			<value>gain</value>
 		</property>
-		<relationship name="automationCurves">
-			<destination>{38daee68-98ec-4b0a-abe3-89c365e865f1}</destination>
-		</relationship>
-	</object>
-	<object class="AutomationCurve" id="{38daee68-98ec-4b0a-abe3-89c365e865f1}">
-		<relationship name="parameter">
-			<destination>{e553e2cb-8000-41a5-bf2d-55c2d9a517c4}</destination>
-		</relationship>
 	</object>
 </objects>
