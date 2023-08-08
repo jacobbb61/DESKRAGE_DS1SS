@@ -51,10 +51,6 @@ public class AsylumDemonArena : MonoBehaviour
 
     public void EnterArena() //called from door manager
     {
-
-
-
-
             for (int i = 0; i < doors.Length; i++)
             {
                 doors[i].inBossFight = true;
@@ -165,7 +161,7 @@ public class AsylumDemonArena : MonoBehaviour
                     Boss.IsCoolingDown = false;
                     Boss.gameObject.SetActive(false);
                     Boss.Behaviour = "Dead";
-                    StopMusic();
+                    
                     break;
                 }
         }
@@ -177,7 +173,6 @@ public class AsylumDemonArena : MonoBehaviour
 
     public void BossKilled() //Called by boss script
     {
-
         SwitchState("Open");
         arenaIsActive = false;
 

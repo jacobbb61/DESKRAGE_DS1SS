@@ -210,6 +210,8 @@ public class Pursuer : MonoBehaviour
     {
         Behaviour = "Dying";
 
+        Player.GetComponent<PlayerControllerV2>().FadeOutMusic = true;
+
         AchievementsGameManager.Instance.UnlockedAchievement(2);
 
         Anim.Play("ThePursuerAnim_Death");

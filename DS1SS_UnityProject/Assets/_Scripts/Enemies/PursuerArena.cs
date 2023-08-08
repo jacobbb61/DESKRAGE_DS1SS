@@ -174,7 +174,6 @@ public class PursuerArena : MonoBehaviour
                     Boss.IsCoolingDown = false;
                     Boss.gameObject.SetActive(false);
                     Boss.Behaviour = "Dead";
-                    StopMusic();
                     break;
                 }
         }
@@ -194,7 +193,6 @@ public class PursuerArena : MonoBehaviour
         Bridge.currentState = "Open";
         Bridge.ManualStart();
 
-        StopMusic();
 
 
         // Audio stuffs

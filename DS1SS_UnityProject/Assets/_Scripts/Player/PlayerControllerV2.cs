@@ -24,6 +24,7 @@ public class PlayerControllerV2 : MonoBehaviour
     public float PlayerDirection;
     private float JumpDirection;
     public bool IsUiOpen = false;
+    public bool FadeOutMusic = false;
 
     [Header("movement states")]
     public bool IsGrounded;
@@ -131,6 +132,7 @@ public class PlayerControllerV2 : MonoBehaviour
     public Rigidbody2D MyRb;
     private Collider2D MyCol;
     private PlayerManager PM;
+    public PlayerMenuManager PlayerMenuManager;
     private EnemyLock EnemyLock;
 
     public InteractableV2 Interactable;
@@ -142,6 +144,10 @@ public class PlayerControllerV2 : MonoBehaviour
 
     public CatchupSliders CatchupSliders;
 
+
+    public AsylumDemonArena AsylumDemonArena;
+    public PursuerArena PursuerArena;
+    float saved;
     //UI
     private CanvasManager CM;
     private Slider StaminaSlider;
@@ -182,7 +188,7 @@ public class PlayerControllerV2 : MonoBehaviour
     IEnumerator PlayerDead()
     {
         bool ahh = false;
-
+        FadeOutMusic = true;
         if (PM.HasDied == false) { PM.HasDied = true; }
 
         State = "Dead";
@@ -299,6 +305,7 @@ public class PlayerControllerV2 : MonoBehaviour
         if (MovementInputDirection == 0) { State = "Idle"; } else { State = "Walking"; }
         IsImmune = false;
     }
+
 
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -891,7 +898,6 @@ public class PlayerControllerV2 : MonoBehaviour
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
     public void Update()
     {   
         if (Health <= 0) { StartCoroutine(PlayerDead()); }
@@ -951,6 +957,31 @@ public class PlayerControllerV2 : MonoBehaviour
                 State = "Idle";
                 break;
         }
+
+
+        if (!FadeOutMusic)
+        {
+           saved = PlayerMenuManager.AudioMusicNum;
+        }
+        else
+        {
+            PlayerMenuManager.AudioMusicNum -= Time.deltaTime*5;
+            PlayerMenuManager.UpdateFMODSettings();
+            Debug.Log(PlayerMenuManager.AudioMusicNum);
+
+            if (PlayerMenuManager.AudioMusicNum <= 0)
+            {
+                AsylumDemonArena.StopMusic();
+                PursuerArena.StopMusic();
+                PlayerMenuManager.AudioMusicNum = saved;
+                PlayerMenuManager.UpdateFMODSettings();
+                FadeOutMusic = false;
+            }
+        }
+
+
+
+
     }
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

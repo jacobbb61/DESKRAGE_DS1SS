@@ -205,7 +205,7 @@ public class AsylumDemon : MonoBehaviour
     {
         Behaviour = "Dying";
         IsImmune = true;
-        
+        Player.GetComponent<PlayerControllerV2>().FadeOutMusic = true;
         Anim.Play("AsylumDemonAnim_Death");
 
         if (IsAttacking) { StopCoroutine(AttackingCoroutine); }
