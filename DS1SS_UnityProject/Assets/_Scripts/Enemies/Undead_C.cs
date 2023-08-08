@@ -309,6 +309,7 @@ public class Undead_C : MonoBehaviour
 
     void AddDamage(int DMG)
     {
+        Anim.Play("UndeadAnim_C_HItRegister_Hit");
         if (DamagerNumber.gameObject.activeInHierarchy) { DamageTakenInTime += DMG; DamagerNumber.text = DamageTakenInTime.ToString(); }
         else
         {

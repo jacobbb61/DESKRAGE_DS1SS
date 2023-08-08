@@ -288,6 +288,7 @@ public class PlayerControllerV2 : MonoBehaviour
 
     void BloodEffect()
     {
+        Anim.Play("PlayerAnim_HitRegister_Hit");
         GameObject NewBlood = Instantiate(BloodImpact);
         NewBlood.transform.position = transform.position;
         Destroy(NewBlood, 0.25f);

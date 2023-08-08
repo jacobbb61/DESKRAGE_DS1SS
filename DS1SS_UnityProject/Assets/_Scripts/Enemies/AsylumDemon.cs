@@ -204,6 +204,7 @@ public class AsylumDemon : MonoBehaviour
     IEnumerator Death()
     {
         Behaviour = "Dying";
+        IsImmune = true;
         
         Anim.Play("AsylumDemonAnim_Death");
 
@@ -268,6 +269,7 @@ public class AsylumDemon : MonoBehaviour
 
     void AddDamage(int DMG)
     {
+        Anim.Play("AsylumDemonAnim_HitRegester_Hit");
         if (DamagerNumber.gameObject.activeInHierarchy) { DamageTakenInTime += DMG; DamagerNumber.text = DamageTakenInTime.ToString(); }
         else
         {

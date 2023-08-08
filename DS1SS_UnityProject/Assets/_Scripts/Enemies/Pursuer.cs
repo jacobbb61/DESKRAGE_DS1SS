@@ -284,6 +284,7 @@ public class Pursuer : MonoBehaviour
 
     void AddDamage(int DMG)
     {
+        Anim.Play("Pursuer_HitRegester_Hit");
         if (DamagerNumber.gameObject.activeInHierarchy) { DamageTakenInTime += DMG; DamagerNumber.text = DamageTakenInTime.ToString(); }
         else
         {
