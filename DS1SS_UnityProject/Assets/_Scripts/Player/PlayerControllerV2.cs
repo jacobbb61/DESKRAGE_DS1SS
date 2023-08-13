@@ -237,11 +237,17 @@ public class PlayerControllerV2 : MonoBehaviour
             ahh = true;
         }
       
-        yield return new WaitForSeconds(1f); 
+        yield return new WaitForSeconds(1f);
 
+        healthCatchupSlider.value = 100;
         CanMove = true;
         CanAttack = true;
         IsMovingInput = true;
+
+        IsRolling = false;
+        IsImmune = false;
+        IsBlocking = false;
+
         Anim.Play("PlayerAnim_Idle");
     }
 
@@ -269,7 +275,7 @@ public class PlayerControllerV2 : MonoBehaviour
                     Health -= Damage;
                     BloodEffect();
                     GetComponentInChildren<AnimationAudio>().PlayerDamageAudio();
-                    if (PM.HasBeenHit == false) { PM.HasBeenHit = true; }
+                    if (PM.HasBeenHit == false && KnockDownDirection==0) { PM.HasBeenHit = true; }
                     StartCoroutine(CatchupSliders.ManualUpdate(true));
                 }
             }
@@ -278,7 +284,7 @@ public class PlayerControllerV2 : MonoBehaviour
 
                 if (State != "Stagger")
                 { 
-                    if (PM.HasBeenHit == false) { PM.HasBeenHit = true; }               
+                    if (PM.HasBeenHit == false && KnockDownDirection == 0) { PM.HasBeenHit = true; }               
                     if (StaggerCoroutine != null) { StopCoroutine(StaggerCoroutine); }
                     Health -= Damage; BloodEffect();
                     StaggerCoroutine = StartCoroutine(Stagger());
@@ -303,7 +309,9 @@ public class PlayerControllerV2 : MonoBehaviour
     public void PlayerFinishInteraction()
     {
         if (MovementInputDirection == 0) { State = "Idle"; } else { State = "Walking"; }
+        IsRolling = false;
         IsImmune = false;
+        IsBlocking = false;
     }
 
 
@@ -1521,7 +1529,7 @@ public class PlayerControllerV2 : MonoBehaviour
     {
         if (VerticalSpeed > 7) 
         {
-            PlayerTakeDamage(30, true, 0);
+            PlayerTakeDamage(30, true, 1);
             if (Health <= 0) { AchievementsGameManager.Instance.UnlockedAchievement(3);  }//deid to fall damage
         }
 

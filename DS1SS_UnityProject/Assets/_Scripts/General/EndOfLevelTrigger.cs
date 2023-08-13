@@ -31,12 +31,12 @@ public class EndOfLevelTrigger : MonoBehaviour
             {
                 if (PM.HasBeenHit == false)
                 {
-                    AchievementsGameManager.Instance.UnlockedAchievement(5);
+                    AchievementsGameManager.Instance.UnlockedAchievement(6);
                     EndAnimLenght2 = 3.5f;
                 }
                 if (PM.HasDied == false)
                 {
-                    AchievementsGameManager.Instance.UnlockedAchievement(6);
+                    AchievementsGameManager.Instance.UnlockedAchievement(5);
                     EndAnimLenght2 = 3.5f;
                 }
 

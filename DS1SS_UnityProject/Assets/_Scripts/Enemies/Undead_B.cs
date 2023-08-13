@@ -101,6 +101,7 @@ public class Undead_B : MonoBehaviour
                     break;
                 case "Hostile":
                     LookForPlayer();
+                    Anim.Play("UndeadAnim_B_Idle");
                     if (SeePlayer && IsInAttackRange()) { Behaviour = "Attacking"; }
                     if (!SeePlayer) { Behaviour = "Idle";}
                     break;
@@ -108,8 +109,7 @@ public class Undead_B : MonoBehaviour
                     if (!IsAttacking) { AttackingCoroutine = StartCoroutine(Attack()); }
                     break;
                 case "Staggered":
-                    if (AttackingCoroutine != null) { StopCoroutine(AttackingCoroutine); }
-                    StartCoroutine(Staggered());
+                    RB.velocity = Vector2.zero;
                     break;
                 case "Dying":
                     RB.velocity = Vector2.zero;
@@ -175,7 +175,8 @@ public class Undead_B : MonoBehaviour
         Health -= 10;
         AddDamage(10);
         if (Health <= 0) { Death(); RuntimeManager.PlayOneShot(Grunts, transform.position); return; }
-        Behaviour = "Staggered";
+        if (AttackingCoroutine != null) { StopCoroutine(AttackingCoroutine); }
+        StartCoroutine(Staggered());
     }
     void AddDamage(int DMG)
     {
@@ -201,6 +202,8 @@ public class Undead_B : MonoBehaviour
         Anim.Play("UndeadAnim_B_GettingHit");
         yield return new WaitForSeconds(StaggerTime);
         Behaviour = "Hostile";
+        IsAttacking = false;
+        SeePlayer = true;
     }
 
     void UpdateUI()
