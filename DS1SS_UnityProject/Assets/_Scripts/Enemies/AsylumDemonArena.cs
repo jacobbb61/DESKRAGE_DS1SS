@@ -57,7 +57,21 @@ public class AsylumDemonArena : MonoBehaviour
                 doors[i].ManualStart();
             }
 
-            if (currentState == "FirstTime" || currentState == "Idle")
+        if (currentState == "FirstTime")
+        {
+            StartCinematic();
+
+
+            // SwitchState("Active");
+
+            inBossFight = true;
+            arenaIsActive = true;
+            // Boss.Behaviour = "Hostile";
+        }
+
+
+
+        if (currentState == "Idle")
             {
                 SwitchState("Active");
                 inBossFight = true;
@@ -65,6 +79,29 @@ public class AsylumDemonArena : MonoBehaviour
                 Boss.Behaviour = "Hostile";
             }
     }
+
+
+    public void StartCinematic()
+    {
+        inBossFight = true;
+        arenaIsActive = true;
+        Boss.Behaviour = "Cinematic";
+        Boss.Assets.SetActive(true);
+        //trigger boss animation
+        Boss.Anim.Play("Intro");
+
+        StartCoroutine(WaitToStartBoss());
+    }
+
+    IEnumerator WaitToStartBoss()
+    {
+        yield return new WaitForSeconds(1.5f);
+        Boss.Anim.Play("AsylumDemonAnim_Idle");
+        SwitchState("Active");
+    }
+
+
+
     IEnumerator Wait(float timeToWait)
     {
         yield return new WaitForSeconds(timeToWait);

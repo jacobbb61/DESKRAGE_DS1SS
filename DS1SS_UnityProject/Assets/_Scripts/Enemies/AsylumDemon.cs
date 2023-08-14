@@ -5,8 +5,8 @@ using UnityEngine.UI;
 using TMPro;
 
 public class AsylumDemon : MonoBehaviour
-{   
-    private Animator Anim;
+{
+    public Animator Anim;
     private GameObject Player;
     private PlayerControllerV2 PC;
     private Rigidbody2D RB;
@@ -116,6 +116,7 @@ public class AsylumDemon : MonoBehaviour
         PC = Player.GetComponent<PlayerControllerV2>();
         HealthSlider.maxValue = MaxHealth;
         HealthSlider.value = Health;
+        if (arenaManager.currentState == "FirstTime") { Assets.SetActive(false); }
     }
     public void ManualStart()
     {
@@ -130,7 +131,9 @@ public class AsylumDemon : MonoBehaviour
 
         IsAttacking = false;
 
-        if(arenaManager.currentState == "Open") { Dead(); Behaviour = "Dead"; }
+        transform.localPosition = OriginPosition;
+
+        if (arenaManager.currentState == "Open") { Dead(); Behaviour = "Dead"; }
 
         if (Health > 0) { IsDead = false; } else { Dead(); Behaviour = "Dead"; }
 
@@ -186,6 +189,12 @@ public class AsylumDemon : MonoBehaviour
                     break;
                 case "Dead":
                     Dead();
+                    break;
+                case "Cinematic":
+
+                    break;
+                case "FirstTime":
+                    Assets.SetActive(false);
                     break;
                 default:
                     Behaviour = "Idle";

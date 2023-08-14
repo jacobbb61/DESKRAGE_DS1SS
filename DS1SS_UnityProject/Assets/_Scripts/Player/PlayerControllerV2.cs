@@ -983,21 +983,21 @@ public class PlayerControllerV2 : MonoBehaviour
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public void Update()
-    {   
+    {
         if (Health <= 0) { StartCoroutine(PlayerDead()); }
         GroundCheck();
         UpdateUI();
         if (IsStaminaRegen) { StaminaRegen(); }
 
-        switch (State) 
+        switch (State)
         {
-            case "Idle": 
+            case "Idle":
                 Idle();
                 break;
-            case "Walking": 
-                Walking();          
+            case "Walking":
+                Walking();
                 break;
-            case "Running": 
+            case "Running":
                 Running();
                 break;
             case "Rolling":
@@ -1042,14 +1042,16 @@ public class PlayerControllerV2 : MonoBehaviour
                 break;
         }
 
-
-        if (!FadeOutMusic && PlayerMenuManager!=null)
+        if (PlayerMenuManager != null) 
         {
-           saved = PlayerMenuManager.AudioMusicNum;
+          
+        if (!FadeOutMusic)
+        {
+            saved = PlayerMenuManager.AudioMusicNum;
         }
         else
         {
-            PlayerMenuManager.AudioMusicNum -= Time.deltaTime*5;
+            PlayerMenuManager.AudioMusicNum -= Time.deltaTime * 5;
             PlayerMenuManager.UpdateFMODSettings();
             Debug.Log(PlayerMenuManager.AudioMusicNum);
 
@@ -1062,6 +1064,7 @@ public class PlayerControllerV2 : MonoBehaviour
                 FadeOutMusic = false;
             }
         }
+    }
 
 
 

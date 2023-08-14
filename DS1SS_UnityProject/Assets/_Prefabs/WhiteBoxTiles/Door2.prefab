@@ -30,7 +30,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3702622892975103697}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &5378784410699180966
 SpriteRenderer:
@@ -117,6 +117,7 @@ Transform:
   m_LocalScale: {x: 0.75, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 71999500302903818}
   - {fileID: 2932159731730198146}
   - {fileID: 3702885329366768063}
   - {fileID: 138073224744582338}
@@ -225,6 +226,7 @@ MonoBehaviour:
   FogAssets: {fileID: 8991338065409271480}
   doorSaveManager: {fileID: 436300435429700708}
   Anim: {fileID: 0}
+  ParticleSystem: {fileID: 7409907498814937051}
 --- !u!114 &436300435429700708
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -297,7 +299,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3702622892975103697}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &4873062691897891266
 SpriteRenderer:
@@ -376,12 +378,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7192039245128885361}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.17399979, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 2932159731730198146}
+  m_Father: {fileID: 3702622892975103697}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!198 &7409907498814937051
@@ -467,7 +469,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 5
+      scalar: 3
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -635,9 +637,9 @@ ParticleSystem:
         m_NumAlphaKeys: 2
     startSize:
       serializedVersion: 2
-      minMaxState: 0
-      scalar: 1
-      minScalar: 1
+      minMaxState: 3
+      scalar: 0.4
+      minScalar: 0.6
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -688,7 +690,7 @@ ParticleSystem:
         m_RotationOrder: 4
     startSizeY:
       serializedVersion: 2
-      minMaxState: 0
+      minMaxState: 3
       scalar: 1
       minScalar: 1
       maxCurve:
@@ -741,7 +743,7 @@ ParticleSystem:
         m_RotationOrder: 4
     startSizeZ:
       serializedVersion: 2
-      minMaxState: 0
+      minMaxState: 3
       scalar: 1
       minScalar: 1
       maxCurve:
@@ -1218,7 +1220,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 10
+      scalar: 50
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -1657,16 +1659,16 @@ ParticleSystem:
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 0}
-        key1: {r: 0.7830189, g: 0.7830189, b: 0.7830189, a: 1}
-        key2: {r: 0, g: 0, b: 0, a: 0.8784314}
+        key1: {r: 0.5660378, g: 0.5361339, b: 0.5361339, a: 1}
+        key2: {r: 0.7830189, g: 0.7830189, b: 0.7830189, a: 1}
         key3: {r: 0, g: 0, b: 0, a: 0.97025615}
         key4: {r: 0, g: 0, b: 0, a: 0.5686275}
         key5: {r: 0, g: 0, b: 0, a: 0}
         key6: {r: 0, g: 0, b: 0, a: 0}
         key7: {r: 0, g: 0, b: 0, a: 0}
         ctime0: 0
-        ctime1: 65535
-        ctime2: 0
+        ctime1: 30840
+        ctime2: 65535
         ctime3: 0
         ctime4: 0
         ctime5: 0
@@ -1681,7 +1683,7 @@ ParticleSystem:
         atime6: 0
         atime7: 0
         m_Mode: 0
-        m_NumColorKeys: 2
+        m_NumColorKeys: 3
         m_NumAlphaKeys: 5
       minGradient:
         serializedVersion: 2
@@ -5132,7 +5134,7 @@ ParticleSystemRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 24380851
   m_SortingLayer: 2
-  m_SortingOrder: 10
+  m_SortingOrder: 19
   m_RenderMode: 3
   m_MeshDistribution: 0
   m_SortMode: 0
@@ -5190,8 +5192,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 3, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 71999500302903818}
+  m_Children: []
   m_Father: {fileID: 3702622892975103697}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
