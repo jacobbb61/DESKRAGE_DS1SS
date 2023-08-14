@@ -9,6 +9,7 @@ public class AnimationAudio : MonoBehaviour
     public EventReference ShortSwingAudioRef;
     public EventReference MedSwingAudioRef;
     public EventReference LongSwingAudioRef;
+    public EventReference ParryAudioRef;
     public EventReference PlayerDamageAudioRef;
 
 
@@ -45,6 +46,10 @@ public class AnimationAudio : MonoBehaviour
     public void PlayerDamageAudio()
     {
         RuntimeManager.PlayOneShot(PlayerDamageAudioRef, transform.position);
+    }
+    public void ParryAudio()
+    {
+        RuntimeManager.PlayOneShot(ParryAudioRef, transform.position);
     }
     public void WalkAudio()
     {

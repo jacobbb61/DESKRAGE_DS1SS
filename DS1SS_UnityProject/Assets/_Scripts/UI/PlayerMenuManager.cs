@@ -120,14 +120,18 @@ public class PlayerMenuManager : MonoBehaviour
     {
         if (context.action.triggered && CanInput == true && MainOpen)
         {
-            PlayAudioPressMove();
+           
             CanInput = false;
             Debug.Log("Up Button Pressed");
             switch (ActiveMenu)
             {
                 case "Settings":
                     SettingsOrder--;
+                    PlayAudioPressMove();
                     MoveSettingsHighlight();
+                    break;
+                default:
+                    CanInput = true;
                     break;
             }
         }
@@ -136,14 +140,18 @@ public class PlayerMenuManager : MonoBehaviour
     {
         if (context.action.triggered && CanInput == true && MainOpen)
         {
-            PlayAudioPressMove();
+       
             CanInput = false;
             Debug.Log("Down Button Pressed");
             switch (ActiveMenu)
             {
                 case "Settings":
                     SettingsOrder++;
+                    PlayAudioPressMove();
                     MoveSettingsHighlight();
+                    break;
+                default:
+                    CanInput = true;
                     break;
             }
         }
@@ -170,6 +178,9 @@ public class PlayerMenuManager : MonoBehaviour
                     ChangeSettings(true);
                     PlayAudioPressSelect();
                     break;
+                default:
+                    CanInput = true;
+                    break;
             }
         }
     }
@@ -194,6 +205,9 @@ public class PlayerMenuManager : MonoBehaviour
                 case "Settings":
                     ChangeSettings(false);                  
                     PlayAudioPressSelect();
+                    break;
+                default:
+                    CanInput = true;
                     break;
             }
         }

@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using FMODUnity;
 
 public class Bonfire : MonoBehaviour
 {
@@ -26,6 +26,9 @@ public class Bonfire : MonoBehaviour
 
     public Animator FireAnim;
 
+    public EventReference LitBonfire;
+
+
     void Start()
     {
 
@@ -41,8 +44,6 @@ public class Bonfire : MonoBehaviour
     public void InteractBonfire()
     {
         StartCoroutine(UseThisBonfire());
-        
-
     }
 
     private void OnEnable()
@@ -65,7 +66,9 @@ public class Bonfire : MonoBehaviour
 
         if (BonfireEverUsed) { Anim.Play("BonfireLitActivate"); }
         else { Anim.Play("BonfireLitFirstTime"); BonfireEverUsed = true;FireAnim.Play("BonfireLightUp");  }
-        
+
+        RuntimeManager.PlayOneShot(LitBonfire, transform.position);
+
         yield return new WaitForSeconds(1);
         PC.PlayerFinishInteraction();
         BonfireRest();

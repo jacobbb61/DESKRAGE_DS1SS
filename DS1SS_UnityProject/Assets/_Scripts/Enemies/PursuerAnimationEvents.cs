@@ -19,6 +19,9 @@ public class PursuerAnimationEvents : MonoBehaviour
     public UnityEvent CursedShockwaveProjectileTriggered;
     public UnityEvent SheildBashTriggered;
     public UnityEvent GroundPoundTriggered;
+    public UnityEvent ComboFinsherTriggered;
+    public UnityEvent SlamFinsherTriggered;
+    public UnityEvent SpinningFinsherTriggered;
 
     public void Turn()
     {
@@ -72,5 +75,19 @@ public class PursuerAnimationEvents : MonoBehaviour
     public void GroundPound()
     {
         GroundPoundTriggered.Invoke();
+    }
+    public void ComboFinsher()
+    {
+        ComboFinsherTriggered.Invoke();
+    }
+
+    public void SlamTrigger()
+    {
+        SlamFinsherTriggered.Invoke();
+    }
+
+    public void SpinningFinsher()
+    {
+        SpinningFinsherTriggered.Invoke();
     }
 }

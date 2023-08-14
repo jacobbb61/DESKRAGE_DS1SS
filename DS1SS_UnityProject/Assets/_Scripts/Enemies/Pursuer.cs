@@ -104,6 +104,21 @@ public class Pursuer : MonoBehaviour
     public Collider2D GP_Collider;
     public Transform GroundPoundPos;
 
+    [Header("Slam Finish")] //close
+    public float SMF_AttackDamage;
+    public float SMF_AttackAnimationTime;
+    public float SMF_AttackCoolDownTime;
+    public float SMF_AttackStep;
+    public Collider2D SMF_Collider;
+
+    [Header("Spinning Finish")] //close
+    public float SPF_AttackDamage;
+    public float SPF_AttackAnimationTime;
+    public float SPF_AttackCoolDownTime;
+    public float SPF_AttackStep;
+    public Collider2D SPF_Collider;
+
+
 
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// start
@@ -434,7 +449,7 @@ public class Pursuer : MonoBehaviour
     {
         if (arenaManager.IsSecondPhase)
         {
-            int attack = Random.Range(1, 5);
+            int attack = Random.Range(1, 6);
             Debug.Log("Close Attack " + attack);
             switch (attack)
             {
@@ -446,11 +461,15 @@ public class Pursuer : MonoBehaviour
                     AttackingCoroutine = StartCoroutine(CO_Attack());
                     break;
 
-                case 3: //cursed impale
+                case 3: //combo 
+                    AttackingCoroutine = StartCoroutine(CO_Attack());
+                    break;
+
+                case 4: //cursed impale
                     AttackingCoroutine = StartCoroutine(CI_Attack());
                     break;
 
-                case 4: //sheild bash
+                case 5: //sheild bash
                     AttackingCoroutine = StartCoroutine(SB_Attack());
                     break;
 
@@ -458,7 +477,7 @@ public class Pursuer : MonoBehaviour
         }
         else
         {
-            int attack = Random.Range(1, 5);
+            int attack = Random.Range(1, 6);
             Debug.Log("Close Attack " + attack);
             switch (attack)
             {
@@ -470,11 +489,15 @@ public class Pursuer : MonoBehaviour
                     AttackingCoroutine = StartCoroutine(CO_Attack());
                     break;
 
-                case 3: //cursed impale
+                case 3: //combo 
+                    AttackingCoroutine = StartCoroutine(CO_Attack());
+                    break;
+
+                case 4: //cursed impale
                     AttackingCoroutine = StartCoroutine(CI_Attack());
                     break;
 
-                case 4: //sheild bash
+                case 5: //sheild bash
                     AttackingCoroutine = StartCoroutine(SB_Attack());
                     break;
 
@@ -522,6 +545,24 @@ public class Pursuer : MonoBehaviour
                     break;
 
             }
+        }
+    }
+
+    public void ChooseFinsiherAttack()
+    {
+        if (AttackingCoroutine != null) { StopCoroutine(AttackingCoroutine); }
+        int attack = Random.Range(1, 3);
+        Debug.Log("Long Attack " + attack);
+        switch (attack)
+        {
+            case 1: //Slam
+                AttackingCoroutine = StartCoroutine(SMF_Attack());
+                break;
+
+            case 2: //Spinning
+                AttackingCoroutine = StartCoroutine(SPF_Attack());
+                break;
+
         }
     }
 
@@ -740,5 +781,69 @@ public class Pursuer : MonoBehaviour
         GameObject Bolt2 = Instantiate(CursedShockwaveProjectile);
         Bolt2.transform.position = GroundPoundPos.position;
         Bolt2.GetComponent<ArrowV2>().Target = InFront_Collider.transform.position;
+    }
+
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////  Slam Finisher  Attack
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    IEnumerator SMF_Attack()
+    {
+        Behaviour = "Attacking";
+        IsCoolingDown = false;
+        StepDistance = SMF_AttackStep;
+        Anim.Play("ThePursuerAnim_SlamFinisher");
+
+
+        yield return new WaitForSeconds(SMF_AttackAnimationTime);
+
+        Behaviour = "Hostile";
+        IsCoolingDown = true;
+        Anim.Play("ThePursuerAnim_Idle");
+        StepDistance = 0;
+
+        yield return new WaitForSeconds(SMF_AttackCoolDownTime);
+        IsCoolingDown = false;
+
+    }
+
+    public void SMF_AttackRegister()
+    {
+        if (SMF_Collider.bounds.Contains(Player.transform.position))
+        {
+            PC.PlayerTakeDamage(SMF_AttackDamage, true, 0);
+        }
+    }
+
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////  Spinning Finisher  Attack
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    IEnumerator SPF_Attack()
+    {
+        Behaviour = "Attacking";
+        IsCoolingDown = false;
+        StepDistance = SPF_AttackStep;
+        Anim.Play("ThePursuerAnim_SpinningFinisher");
+
+
+        yield return new WaitForSeconds(SPF_AttackAnimationTime);
+
+        Behaviour = "Hostile";
+        IsCoolingDown = true;
+        Anim.Play("ThePursuerAnim_Idle");
+        StepDistance = 0;
+
+        yield return new WaitForSeconds(SPF_AttackCoolDownTime);
+        IsCoolingDown = false;
+
+    }
+
+    public void SPF_AttackRegister()
+    {
+        if (SPF_Collider.bounds.Contains(Player.transform.position))
+        {
+            PC.PlayerTakeDamage(SPF_AttackDamage, true, 0);
+        }
     }
 }

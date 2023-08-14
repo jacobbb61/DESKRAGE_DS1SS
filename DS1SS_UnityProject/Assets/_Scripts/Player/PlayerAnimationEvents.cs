@@ -194,6 +194,10 @@ public class PlayerAnimationEvents : MonoBehaviour
     {
         PC.AttackStep();
     }
+    public void AttackStepStop()
+    {
+        PC.AttackStepStop();
+    }
 
     public void Parry()
     {
