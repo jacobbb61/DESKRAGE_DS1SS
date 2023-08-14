@@ -125,10 +125,12 @@ public class PlayerControllerV2 : MonoBehaviour
     private Coroutine StaminaRegenCoroutine;
     private Coroutine EstusUseCoroutine;
 
-    private Coroutine LightAttackCoroutine;
-    private Coroutine LightAttackFollowUpCoroutine;
-    private Coroutine HeavyAttackCoroutine;
-    private Coroutine HeavyAttackFollowUpCoroutine;
+    private Coroutine AttackCoroutine;
+    private Coroutine AttackFollowUpCoroutine;
+    private Coroutine AttackFollowUpCoroutine2;
+
+
+
     private Coroutine EnterBlockCoroutine;
     private Coroutine ExitBlockCoroutine;
 
@@ -211,7 +213,7 @@ public class PlayerControllerV2 : MonoBehaviour
             Oscar.DiedToDemon();
         }
 
-        if(PM.PursuerArena.currentState == "Active") //player died to pursuer
+        if(PM.PursuerArena.currentState == "Active" || PM.PursuerArena.inBossFight==true) //player died to pursuer
         {
             PM.PursuerArena.SwitchState("Idle");
         }
@@ -613,24 +615,27 @@ public class PlayerControllerV2 : MonoBehaviour
     //////////////////////////////////////////////////////////////
     public void RT(InputAction.CallbackContext context)
     {
-        if (Stamina >= 0)
+        if (Stamina >= 0 && CanAttack)
         {
             if (CanFollowUp)
             {
-                if (LightAttackCoroutine != null) StopCoroutine(LightAttackCoroutine);
-                if (LightAttackFollowUpCoroutine != null) StopCoroutine(LightAttackFollowUpCoroutine);
+                if (AttackCoroutine != null) StopCoroutine(AttackCoroutine);
+                if (AttackFollowUpCoroutine != null) StopCoroutine(AttackFollowUpCoroutine);
+                if (AttackFollowUpCoroutine2 != null) StopCoroutine(AttackFollowUpCoroutine2);
                 ProcessInput_RT_Cancel();
             }
             else if (CanFollowUpAgain)
             {
-                if (LightAttackCoroutine != null) StopCoroutine(LightAttackCoroutine);
-                if (LightAttackFollowUpCoroutine != null) StopCoroutine(LightAttackFollowUpCoroutine);
+                if (AttackCoroutine != null) StopCoroutine(AttackCoroutine);
+                if (AttackFollowUpCoroutine != null) StopCoroutine(AttackFollowUpCoroutine);
+                if (AttackFollowUpCoroutine2 != null) StopCoroutine(AttackFollowUpCoroutine2);
                 ProcessInput_RT_CancelAgain();
             }
             else if (CanFollowUpAgain2)
             {
-                if (LightAttackCoroutine != null) StopCoroutine(LightAttackCoroutine);
-                if (LightAttackFollowUpCoroutine != null) StopCoroutine(LightAttackFollowUpCoroutine);
+                if (AttackCoroutine != null) StopCoroutine(AttackCoroutine);
+                if (AttackFollowUpCoroutine != null) StopCoroutine(AttackFollowUpCoroutine);
+                if (AttackFollowUpCoroutine2 != null) StopCoroutine(AttackFollowUpCoroutine2);
                 ProcessInput_RT_CancelAgain2();
             }
             else
@@ -638,19 +643,19 @@ public class PlayerControllerV2 : MonoBehaviour
                 switch (State)
                 {
                     case "Idle":
-                        ProcessInput_RT(context);
+                        if (context.action.triggered) ProcessInput_RT();
                         break;
                     case "Walking":
-                        ProcessInput_RT(context);
+                        if (context.action.triggered) ProcessInput_RT();
                         break;
                     case "Running":
-                        ProcessInput_RT(context);
+                        if (context.action.triggered) ProcessInput_RT();
                         break;
                     case "Blocking":
-                        ProcessInput_RT(context); IsBlocking = false;
+                        if (context.action.triggered) ProcessInput_RT(); IsBlocking = false;
                         break;                    
                     case "Falling":
-                        ProcessInput_RT_Plunge(context);
+                        if (context.action.triggered) ProcessInput_RT_Plunge();
                         break;
                     default:
                         break;
@@ -659,10 +664,12 @@ public class PlayerControllerV2 : MonoBehaviour
         }     
 
     }
-    void ProcessInput_RT(InputAction.CallbackContext context)
+    void ProcessInput_RT()
     {
-        if (context.action.triggered)
-        {
+        if (AttackCoroutine != null) StopCoroutine(AttackCoroutine);
+        if (AttackFollowUpCoroutine != null) StopCoroutine(AttackFollowUpCoroutine);
+        if (AttackFollowUpCoroutine2 != null) StopCoroutine(AttackFollowUpCoroutine2);
+
             if (!IsLockedOn)
             {
                 if (MovementInputDirection > 0.2f) { PlayerDirection = 1; }
@@ -673,14 +680,15 @@ public class PlayerControllerV2 : MonoBehaviour
             {
                 FaceTowardsEnemy();
             }
-            HeavyAttackCoroutine = StartCoroutine(HeavyAttack());
+            AttackCoroutine = StartCoroutine(HeavyAttack());
             Stamina -= 22f;
             StaminaCatchup();
-        }
     }
     void ProcessInput_RT_Cancel()
     {
-        if (HeavyAttackCoroutine != null) { StopCoroutine(HeavyAttackCoroutine); }
+        if (AttackCoroutine != null) StopCoroutine(AttackCoroutine);
+        if (AttackFollowUpCoroutine != null) StopCoroutine(AttackFollowUpCoroutine);
+        if (AttackFollowUpCoroutine2 != null) StopCoroutine(AttackFollowUpCoroutine2);
 
         if (!IsLockedOn)
         {
@@ -692,14 +700,16 @@ public class PlayerControllerV2 : MonoBehaviour
         {
             FaceTowardsEnemy();
         }
-        HeavyAttackFollowUpCoroutine = StartCoroutine(HeavyAttackFollowUp());
+        AttackFollowUpCoroutine = StartCoroutine(HeavyAttackFollowUp());
         Stamina -= 22f;
         StaminaCatchup();
         CanFollowUp = false;
     }
     void ProcessInput_RT_CancelAgain()
     {
-        if (HeavyAttackFollowUpCoroutine != null) { StopCoroutine(HeavyAttackFollowUpCoroutine); }
+        if (AttackCoroutine != null) StopCoroutine(AttackCoroutine);
+        if (AttackFollowUpCoroutine != null) StopCoroutine(AttackFollowUpCoroutine);
+        if (AttackFollowUpCoroutine2 != null) StopCoroutine(AttackFollowUpCoroutine2);
 
         if (!IsLockedOn)
         {
@@ -711,14 +721,16 @@ public class PlayerControllerV2 : MonoBehaviour
         {
             FaceTowardsEnemy();
         }
-        HeavyAttackCoroutine = StartCoroutine(HeavyAttackFollowUp2());
+        AttackFollowUpCoroutine2 = StartCoroutine(HeavyAttackFollowUp2());
         Stamina -= 22f;
         StaminaCatchup();
         CanFollowUpAgain = false;
     }
     void ProcessInput_RT_CancelAgain2()
     {
-        if (HeavyAttackFollowUpCoroutine != null) { StopCoroutine(HeavyAttackFollowUpCoroutine); }
+        if (AttackCoroutine != null) StopCoroutine(AttackCoroutine);
+        if (AttackFollowUpCoroutine != null) StopCoroutine(AttackFollowUpCoroutine);
+        if (AttackFollowUpCoroutine2 != null) StopCoroutine(AttackFollowUpCoroutine2);
 
         if (!IsLockedOn)
         {
@@ -730,14 +742,14 @@ public class PlayerControllerV2 : MonoBehaviour
         {
             FaceTowardsEnemy();
         }
-        HeavyAttackCoroutine = StartCoroutine(HeavyAttackFollowUp2());
+        AttackCoroutine = StartCoroutine(HeavyAttackFollowUp2());
         Stamina -= 22f;
         StaminaCatchup();
         CanFollowUpAgain = false;
     }
-    void ProcessInput_RT_Plunge(InputAction.CallbackContext context) 
+    void ProcessInput_RT_Plunge() 
     {
-        if (context.action.triggered && IsPlunging==false && CanPlunge)
+        if (IsPlunging==false && CanPlunge)
         {
             IsPlunging = true;
             Stamina -= 40f;
@@ -748,24 +760,27 @@ public class PlayerControllerV2 : MonoBehaviour
     //////////////////////////////////////////////////////////////
     public void RB(InputAction.CallbackContext context)
     {
-        if (Stamina >= 0)
+        if (Stamina >= 0 && CanAttack)
         {
             if (CanFollowUp)
             {
-                if (LightAttackCoroutine != null) StopCoroutine(LightAttackCoroutine);
-                if (LightAttackFollowUpCoroutine != null) StopCoroutine(LightAttackFollowUpCoroutine);
+                if (AttackFollowUpCoroutine2 != null) { StopCoroutine(AttackFollowUpCoroutine2); }
+                if (AttackFollowUpCoroutine != null) { StopCoroutine(AttackFollowUpCoroutine); }
+                if (AttackCoroutine != null) { StopCoroutine(AttackCoroutine); }
                 ProcessInput_RB_Cancel();
             }
             else if (CanFollowUpAgain)
             {
-                if (LightAttackCoroutine != null) StopCoroutine(LightAttackCoroutine);
-                if (LightAttackFollowUpCoroutine != null) StopCoroutine(LightAttackFollowUpCoroutine);
+                if (AttackFollowUpCoroutine2 != null) { StopCoroutine(AttackFollowUpCoroutine2); }
+                if (AttackFollowUpCoroutine != null) { StopCoroutine(AttackFollowUpCoroutine); }
+                if (AttackCoroutine != null) { StopCoroutine(AttackCoroutine); }
                 ProcessInput_RB_CancelAgain();
             }
             else if (CanFollowUpAgain2)
             {
-                if (LightAttackCoroutine != null) StopCoroutine(LightAttackCoroutine);
-                if (LightAttackFollowUpCoroutine != null) StopCoroutine(LightAttackFollowUpCoroutine);
+                if (AttackFollowUpCoroutine2 != null) { StopCoroutine(AttackFollowUpCoroutine2); }
+                if (AttackFollowUpCoroutine != null) { StopCoroutine(AttackFollowUpCoroutine); }
+                if (AttackCoroutine != null) { StopCoroutine(AttackCoroutine); }
                 ProcessInput_RB_CancelAgain2();
             }
             else
@@ -773,16 +788,16 @@ public class PlayerControllerV2 : MonoBehaviour
                 switch (State)
                 {
                     case "Idle":
-                        ProcessInput_RB(context);
+                        if (context.action.triggered) ProcessInput_RB();
                         break;
                     case "Walking":
-                        ProcessInput_RB(context);
+                        if (context.action.triggered) ProcessInput_RB();
                         break;
                     case "Running":
-                        ProcessInput_RB(context);
+                        if (context.action.triggered) ProcessInput_RB();
                         break;
                     case "Blocking":
-                        ProcessInput_RB(context); IsBlocking = false;
+                        if (context.action.triggered) ProcessInput_RB(); IsBlocking = false;
                         break;
                     default:
                         break;
@@ -790,10 +805,11 @@ public class PlayerControllerV2 : MonoBehaviour
             }
         }
     }
-    void ProcessInput_RB(InputAction.CallbackContext context)
+    void ProcessInput_RB()
     {
-        if (context.action.triggered)
-        {
+        if (AttackFollowUpCoroutine2 != null) { StopCoroutine(AttackFollowUpCoroutine2); }
+        if (AttackFollowUpCoroutine != null) { StopCoroutine(AttackFollowUpCoroutine); }
+        if (AttackCoroutine != null) { StopCoroutine(AttackCoroutine); }
             if (!IsLockedOn)
             {
                 if (MovementInputDirection > 0.2f) { PlayerDirection = 1; }
@@ -804,14 +820,15 @@ public class PlayerControllerV2 : MonoBehaviour
             {
                 FaceTowardsEnemy();
             }
-            LightAttackCoroutine = StartCoroutine(LightAttack());
+            AttackCoroutine = StartCoroutine(LightAttack());
             Stamina -= 15f;
             StaminaCatchup();
-        }
     }
     void ProcessInput_RB_Cancel()
     {
-        if (LightAttackCoroutine != null) { StopCoroutine(LightAttackCoroutine); }
+        if (AttackFollowUpCoroutine2 != null) { StopCoroutine(AttackFollowUpCoroutine2); }
+        if (AttackFollowUpCoroutine != null) { StopCoroutine(AttackFollowUpCoroutine); }
+        if (AttackCoroutine != null) { StopCoroutine(AttackCoroutine); }
         if (!IsLockedOn)
         {
             if (MovementInputDirection > 0.2f) { PlayerDirection = 1; }
@@ -823,14 +840,16 @@ public class PlayerControllerV2 : MonoBehaviour
             FaceTowardsEnemy();
         }
         
-        LightAttackFollowUpCoroutine = StartCoroutine(LightAttackFollowUp());
+        AttackFollowUpCoroutine = StartCoroutine(LightAttackFollowUp());
         Stamina -= 15f;
         StaminaCatchup();
         CanFollowUp = false;
     }
     void ProcessInput_RB_CancelAgain()
     {
-        if (LightAttackFollowUpCoroutine != null) { StopCoroutine(LightAttackFollowUpCoroutine); }
+        if (AttackFollowUpCoroutine2 != null) { StopCoroutine(AttackFollowUpCoroutine2); }
+        if (AttackFollowUpCoroutine != null) { StopCoroutine(AttackFollowUpCoroutine); }
+        if (AttackCoroutine != null) { StopCoroutine(AttackCoroutine); }
         if (!IsLockedOn)
         {
             if (MovementInputDirection > 0.2f) { PlayerDirection = 1; }
@@ -842,15 +861,16 @@ public class PlayerControllerV2 : MonoBehaviour
             FaceTowardsEnemy();
         }
 
-        LightAttackCoroutine = StartCoroutine(LightAttackFollowUp2());
-        StepDistance = 10;
+        AttackFollowUpCoroutine2 = StartCoroutine(LightAttackFollowUp2());
         Stamina -= 15f;
         StaminaCatchup();
         CanFollowUpAgain = false;
     }
     void ProcessInput_RB_CancelAgain2()
     {
-        if (LightAttackFollowUpCoroutine != null) { StopCoroutine(LightAttackFollowUpCoroutine); }
+        if (AttackFollowUpCoroutine2 != null) { StopCoroutine(AttackFollowUpCoroutine2); }
+        if (AttackFollowUpCoroutine != null) { StopCoroutine(AttackFollowUpCoroutine); }
+        if (AttackCoroutine != null) { StopCoroutine(AttackCoroutine); }
         if (!IsLockedOn)
         {
             if (MovementInputDirection > 0.2f) { PlayerDirection = 1; }
@@ -862,7 +882,7 @@ public class PlayerControllerV2 : MonoBehaviour
             FaceTowardsEnemy();
         }
 
-        LightAttackCoroutine = StartCoroutine(LightAttack());
+        AttackCoroutine = StartCoroutine(LightAttack());
         Stamina -= 15f;
         StaminaCatchup();
         CanFollowUpAgain = false;
@@ -1023,7 +1043,7 @@ public class PlayerControllerV2 : MonoBehaviour
         }
 
 
-        if (!FadeOutMusic)
+        if (!FadeOutMusic && PlayerMenuManager!=null)
         {
            saved = PlayerMenuManager.AudioMusicNum;
         }
@@ -1611,18 +1631,23 @@ public class PlayerControllerV2 : MonoBehaviour
     IEnumerator LightAttack()
     {
         State = "Attacking";
-
+        StepDistance = 5;
         IsStaminaRegen = false;
         CanFollowUp = false;
+        CanFollowUpAgain = false;
+        CanFollowUpAgain2 = false;
+        CanRollOut = false;
+        CanAttack = false;
 
         Anim.Play("PlayerAnim_LightSwing");
 
-        yield return new WaitForSeconds(LightAttackTime-.4f);
+        yield return new WaitForSeconds(LightAttackTime-.3f);
    
-        CanRollOut = true; CancelThisCoroutine = LightAttackCoroutine;
-        CanFollowUp = true;  
+        CanRollOut = true; CancelThisCoroutine = AttackCoroutine;
+        CanFollowUp = true;
+        CanAttack = true;
 
-        yield return new WaitForSeconds(.4f);
+        yield return new WaitForSeconds(.3f);
 
         CanRollOut = false; CancelThisCoroutine = null;
         CanFollowUp = false;
@@ -1633,21 +1658,24 @@ public class PlayerControllerV2 : MonoBehaviour
     }
     IEnumerator LightAttackFollowUp()
     {
-        State = "Attacking";
-        
+        State = "Attacking"; 
+        StepDistance = 5;
         IsStaminaRegen = false;
         CanFollowUp = false;
         CanFollowUpAgain = false;
+        CanFollowUpAgain2 = false;
         CanRollOut = false;
+        CanAttack = false;
 
         Anim.Play("PlayerAnim_LightSwingFollowUpAttack");
 
-        yield return new WaitForSeconds(LightAttackTime - .4f);
+        yield return new WaitForSeconds(LightAttackTime - .3f);
 
-        CanRollOut = true; CancelThisCoroutine = LightAttackFollowUpCoroutine;
+        CanRollOut = true; CancelThisCoroutine = AttackFollowUpCoroutine;
         CanFollowUpAgain = true;
+        CanAttack = true;
 
-        yield return new WaitForSeconds(.4f);
+        yield return new WaitForSeconds(.3f);
 
         CanRollOut = false; CancelThisCoroutine = null;
         CanFollowUpAgain = false;
@@ -1660,19 +1688,23 @@ public class PlayerControllerV2 : MonoBehaviour
     IEnumerator LightAttackFollowUp2()
     {
         State = "Attacking";
+        StepDistance = 10;
         IsStaminaRegen = false;
         CanFollowUp = false;
         CanFollowUpAgain = false;
+        CanFollowUpAgain2 = false;
         CanRollOut = false;
+        CanAttack = false;
 
         Anim.Play("PlayerAnim_LightSwingFollowUpAttack2");
 
-        yield return new WaitForSeconds(LightFollowUpAttackTime - .4f);
+        yield return new WaitForSeconds(LightFollowUpAttackTime - .3f);
 
-        CanRollOut = true; CancelThisCoroutine = LightAttackFollowUpCoroutine;
+        CanRollOut = true; CancelThisCoroutine = AttackFollowUpCoroutine;
         CanFollowUpAgain2 = true;
+        CanAttack = true;
 
-        yield return new WaitForSeconds(.4f);
+        yield return new WaitForSeconds(.3f);
 
         CanRollOut = false; CancelThisCoroutine = null;
         CanFollowUpAgain2 = false;
@@ -1689,16 +1721,20 @@ public class PlayerControllerV2 : MonoBehaviour
     IEnumerator HeavyAttack()
     {
         State = "Attacking";
-
+        StepDistance = 7;
         IsStaminaRegen = false;
         CanFollowUp = false;
+        CanFollowUpAgain = false;
+        CanFollowUpAgain2 = false;
+        CanAttack = false;
 
         Anim.Play("PlayerAnim_HeavySwingFollow2");
 
         yield return new WaitForSeconds(HeavyAttackTime - .4f);
         
-        CanRollOut = true; CancelThisCoroutine = HeavyAttackCoroutine;
+        CanRollOut = true; CancelThisCoroutine = AttackCoroutine;
         CanFollowUp = true;
+        CanAttack = true;
 
         yield return new WaitForSeconds(.4f);
 
@@ -1712,17 +1748,21 @@ public class PlayerControllerV2 : MonoBehaviour
     IEnumerator HeavyAttackFollowUp()
     {
         State = "Attacking";
-
+        StepDistance = 5.5f;
         IsStaminaRegen = false;
         CanFollowUp = false;
+        CanFollowUpAgain = false;
+        CanFollowUpAgain2 = false;
         CanRollOut = false;
+        CanAttack = false;
 
         Anim.Play("PlayerAnim_HeavySwingFollowUpAttack");
 
         yield return new WaitForSeconds(HeavyFollowUpAttackTime - .5f);
 
-        CanRollOut = true; CancelThisCoroutine = HeavyAttackFollowUpCoroutine;
+        CanRollOut = true; CancelThisCoroutine = AttackFollowUpCoroutine;
         CanFollowUpAgain = true;
+        CanAttack = true;
 
         yield return new WaitForSeconds(.5f);
 
@@ -1737,17 +1777,21 @@ public class PlayerControllerV2 : MonoBehaviour
     IEnumerator HeavyAttackFollowUp2()
     {
         State = "Attacking";
-
+        StepDistance = 4;
         IsStaminaRegen = false;
         CanFollowUp = false;
+        CanFollowUpAgain = false;
+        CanFollowUpAgain2 = false;
         CanRollOut = false;
+        CanAttack = false;
 
         Anim.Play("PlayerAnim_HeavySwing");
 
         yield return new WaitForSeconds(HeavyFollowUpAttackTime - .5f);
 
-        CanRollOut = true; CancelThisCoroutine = HeavyAttackFollowUpCoroutine;
+        CanRollOut = true; CancelThisCoroutine = AttackFollowUpCoroutine;
         CanFollowUpAgain2 = true;
+        CanAttack = true;
 
         yield return new WaitForSeconds(.5f);
 
@@ -1790,8 +1834,11 @@ public class PlayerControllerV2 : MonoBehaviour
 
     public void AttackStepStop()
     {
+        MyRb.constraints = RigidbodyConstraints2D.FreezePositionX;
         MyRb.velocity = new Vector2(0, 0);
         StepDistance = 4;
+        MyRb.constraints = RigidbodyConstraints2D.None;
+        MyRb.constraints = RigidbodyConstraints2D.FreezeRotation;
     }
 
     IEnumerator Stagger()

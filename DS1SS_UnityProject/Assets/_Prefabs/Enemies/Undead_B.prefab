@@ -101,7 +101,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TurnEvent:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6565168765680693871}
+        m_TargetAssemblyTypeName: Undead_B, Assembly-CSharp
+        m_MethodName: FacePlayer
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   MoveEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -129,9 +141,9 @@ MonoBehaviour:
   Attack2Triggered:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: Undead_A, Assembly-CSharp
-        m_MethodName: AttackStep
+      - m_Target: {fileID: 6565168765680693871}
+        m_TargetAssemblyTypeName: Undead_B, Assembly-CSharp
+        m_MethodName: AssignTarget
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -338,6 +350,7 @@ MonoBehaviour:
   SeePlayer: 0
   IsAttacking: 0
   IsDead: 0
+  IsDying: 0
   IsAtOrigin: 0
   Assets: {fileID: 6565168764558948632}
   Arrow: {fileID: 8144088339725920745, guid: c86c3dd48efe99f42a882701f0307de5, type: 3}

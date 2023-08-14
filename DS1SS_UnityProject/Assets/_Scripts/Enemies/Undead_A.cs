@@ -38,6 +38,7 @@ public class Undead_A : MonoBehaviour
     public bool IsAttacking;
     public bool IsAttackStepping;
     public bool IsDead;
+    public bool IsDying;
     public bool IsAtOrigin;
     public bool IsGrounded;
     public bool IsOnSlope;
@@ -172,19 +173,23 @@ public class Undead_A : MonoBehaviour
 
     void Death()
     {
-        DamagerNumber.gameObject.SetActive(false);
-        EnemySaveManager.IsLockOnAble = false;
+        if (IsDying == false)
+        {
+            IsDying = true;
+            DamagerNumber.gameObject.SetActive(false);
+            EnemySaveManager.IsLockOnAble = false;
 
-        EnemySaveManager.IsLockOnAble = false;
-        RB.velocity = Vector2.zero;
-        IsAttacking = false;
-        EnemySaveManager.CanBeParry = false;
+            EnemySaveManager.IsLockOnAble = false;
+            RB.velocity = Vector2.zero;
+            IsAttacking = false;
+            EnemySaveManager.CanBeParry = false;
 
-        Behaviour = "Dying";
-        StopAllCoroutines();
-        HealthSlider.value = 0;
-        Anim.Play("UndeadAnim_A_Death");
-        StartCoroutine(DeathWait());
+            Behaviour = "Dying";
+            StopAllCoroutines();
+            HealthSlider.value = 0;
+            Anim.Play("UndeadAnim_A_Death");
+            StartCoroutine(DeathWait());
+        }
     }
     IEnumerator DeathWait()
     {

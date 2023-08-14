@@ -29,6 +29,7 @@ public class Undead_B : MonoBehaviour
     public bool SeePlayer;
     public bool IsAttacking;
     public bool IsDead;
+    public bool IsDying;
     public bool IsAtOrigin;
 
 
@@ -125,19 +126,23 @@ public class Undead_B : MonoBehaviour
     }
     void Death()
     {
-        DamagerNumber.gameObject.SetActive(false);
-        EnemySaveManager.IsLockOnAble = false;
+        if (IsDying == false)
+        {
+            IsDying = true;
+            DamagerNumber.gameObject.SetActive(false);
+            EnemySaveManager.IsLockOnAble = false;
 
-        EnemySaveManager.IsLockOnAble = false;
-        RB.velocity = Vector2.zero;
-        IsAttacking = false;
-        EnemySaveManager.CanBeParry = false;
+            EnemySaveManager.IsLockOnAble = false;
+            RB.velocity = Vector2.zero;
+            IsAttacking = false;
+            EnemySaveManager.CanBeParry = false;
 
-        Behaviour = "Dying";
-        StopAllCoroutines();
-        HealthSlider.value = 0;
-        Anim.Play("UndeadAnim_B_Death");
-        StartCoroutine(DeathWait());
+            Behaviour = "Dying";
+            StopAllCoroutines();
+            HealthSlider.value = 0;
+            Anim.Play("UndeadAnim_B_Death");
+            StartCoroutine(DeathWait());
+        }
     }
     IEnumerator DeathWait()
     {
@@ -267,7 +272,7 @@ public class Undead_B : MonoBehaviour
             SeePlayer = false;
         }
     }
-    void FacePlayer()
+    public void FacePlayer()
     {
         if (transform.position.x > Player.transform.position.x)
         {
@@ -299,13 +304,16 @@ public class Undead_B : MonoBehaviour
         IsAttacking = true;
         FacePlayer();
         Anim.Play("UndeadAnim_B_ShootingArrow");
-        yield return new WaitForSeconds(1.5f);
-        Target = Player.transform.position;
-        yield return new WaitForSeconds(AttackAnimationTime - 1.5f);
+        yield return new WaitForSeconds(AttackAnimationTime);
         Anim.Play("UndeadAnim_B_Idle");
         yield return new WaitForSeconds(AttackCoolDownTime);
         IsAttacking = false;
         Behaviour = "Idle";
+    }
+
+    public void AssignTarget()
+    {
+       Target = Player.transform.position;
     }
 
     public void ReleaseArrow()
@@ -322,7 +330,11 @@ public class Undead_B : MonoBehaviour
         // arrow.GetComponent<Arrow>().Direction = -LookDirection;
         // arrow.GetComponent<Arrow>().ManualStart();
         // arrow.GetComponent<Arrow>().Flying = true;
-        arrow.GetComponent<ArrowV2>().Target = Target;
+        if (Target != null) { arrow.GetComponent<ArrowV2>().Target = Target; } else
+        {
+            arrow.GetComponent<ArrowV2>().Target = Player.transform.position;
+        }
+       
 
     }
 
