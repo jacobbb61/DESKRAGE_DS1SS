@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-
+using FMODUnity;
 
 public class Key : MonoBehaviour
 {
@@ -19,7 +19,7 @@ public class Key : MonoBehaviour
     
     [Tooltip("Current door tags: Cell, A, K, S")]public string targetDoorTag;
 
-
+    public EventReference ItemAudioRef;
 
     [Header("Item UI")]
     public GameObject ItemPopUp;
@@ -128,6 +128,13 @@ public class Key : MonoBehaviour
         StartCoroutine(PopUp());
         Debug.Log(this.name + " picked up. " + correspondingDoor.gameObject + " unlocked");
         GetComponent<SpriteRenderer>().enabled = false;
+
+
+
+        RuntimeManager.PlayOneShot(ItemAudioRef, transform.position);
+
+
+
     } 
     
     IEnumerator PopUp()

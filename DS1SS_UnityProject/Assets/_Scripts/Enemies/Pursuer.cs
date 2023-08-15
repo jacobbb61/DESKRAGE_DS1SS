@@ -225,6 +225,8 @@ public class Pursuer : MonoBehaviour
     {
         Behaviour = "Dying";
 
+
+
         Player.GetComponent<PlayerControllerV2>().FadeOutMusic = true;
 
         AchievementsGameManager.Instance.UnlockedAchievement(2);
@@ -258,7 +260,7 @@ public class Pursuer : MonoBehaviour
         Health -= 5;
         UpdateUI(); 
         AddDamage(5);
-        if (Health <= 0) { StopAllCoroutines(); StartCoroutine(Death()); }
+        if (Health <= 0) { StopAllCoroutines(); StartCoroutine(Death()); arenaManager.Victory(); }
         if (Health <= MaxHealth / 2 && !arenaManager.IsSecondPhase) { arenaManager.SecondPhase(); CanPhaseChanged = true; }
     }
     public void TakeHeavyDamage()
@@ -266,7 +268,7 @@ public class Pursuer : MonoBehaviour
         Health -= 10;
         UpdateUI(); 
         AddDamage(10);
-        if (Health <= 0) { StopAllCoroutines(); StartCoroutine(Death()); }
+        if (Health <= 0) { StopAllCoroutines(); StartCoroutine(Death()); arenaManager.Victory(); }
         if (Health <= MaxHealth / 2 && !arenaManager.IsSecondPhase) { arenaManager.SecondPhase(); CanPhaseChanged = true; }
     }
     public void TakePlungeDamage()
@@ -274,7 +276,7 @@ public class Pursuer : MonoBehaviour
         if (HasBeenPlunged == false) { Health -= 150; HasBeenPlunged = true; }
         UpdateUI(); 
         AddDamage(150);
-        if (Health <= 0) { StopAllCoroutines(); StartCoroutine(Death()); }
+        if (Health <= 0) { StopAllCoroutines(); StartCoroutine(Death()); arenaManager.Victory(); }
         if (Health <= MaxHealth / 2 && !arenaManager.IsSecondPhase) { arenaManager.SecondPhase(); CanPhaseChanged = true; }
     }
 

@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using FMODUnity;
+using FMOD.Studio;
 
 public class EnemyAnimationEvents : MonoBehaviour
 {
@@ -19,7 +21,45 @@ public class EnemyAnimationEvents : MonoBehaviour
     public UnityEvent Attack8Triggered;
     public UnityEvent Attack9Triggered;
 
+    public string GroundType; 
+    public EventReference WalkAudioRef;
+    public void WalkAudio()
+    {
+        EventInstance walk = RuntimeManager.CreateInstance(WalkAudioRef);
+        RuntimeManager.AttachInstanceToGameObject(walk, transform, GetComponentInParent<Rigidbody2D>());
 
+        walk.setParameterByName("WalkorRun", 0);
+        
+
+        switch (GroundType)
+        {
+            case "Grass":
+                walk.setParameterByName("Terrain", 0);
+                break;
+            case "StoneDirty":
+                walk.setParameterByName("Terrain", 1);
+                break;
+            case "Stone":
+                walk.setParameterByName("Terrain", 2);
+                break;
+            case "Wood":
+                walk.setParameterByName("Terrain", 3);
+                break;
+            case "WetStone":
+                walk.setParameterByName("Terrain", 4);
+                break;
+            case "Snow":
+                walk.setParameterByName("Terrain", 5);
+                break;
+            default:
+                //RuntimeManager.PlayOneShot(WalkAudioRef, transform.position);
+                break;
+        }
+
+        walk.start();
+        walk.release();
+
+    }
     public void Turn()
     {
         TurnEvent.Invoke();

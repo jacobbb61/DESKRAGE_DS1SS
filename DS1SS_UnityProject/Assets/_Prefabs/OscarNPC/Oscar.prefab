@@ -162,6 +162,13 @@ MonoBehaviour:
   StateHTextLines: []
   StateITextLines: []
   Emitter: {fileID: 5828070884245676003}
+  ItemAudioRef:
+    Guid:
+      Data1: -1260129922
+      Data2: 1127754944
+      Data3: 68576438
+      Data4: 2071406851
+    Path: event:/Effects/UI SFX/ItemGet
   StateAAudioClips:
   - Guid:
       Data1: -49538305

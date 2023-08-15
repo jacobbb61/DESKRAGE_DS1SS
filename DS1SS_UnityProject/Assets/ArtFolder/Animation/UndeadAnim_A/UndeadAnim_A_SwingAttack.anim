@@ -128,6 +128,13 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
+  - time: 0.8833333
+    functionName: WalkAudio
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
   - time: 1.1333333
     functionName: Attack9
     data: 
@@ -144,6 +151,13 @@ AnimationClip:
     messageOptions: 0
   - time: 1.2666667
     functionName: Attack3
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 1.8
+    functionName: WalkAudio
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

@@ -83,6 +83,7 @@ public class OscarManager : MonoBehaviour
     private FMOD.Studio.EventInstance instance;
     private Coroutine RoutineToStop;
     public StudioEventEmitter Emitter;
+    public EventReference ItemAudioRef;
     public List<EventReference> StateAAudioClips = new List<EventReference>();
     public List<EventReference> StateYESAudioClips = new List<EventReference>();
     public List<EventReference> StateNOAudioClips = new List<EventReference>();
@@ -167,7 +168,7 @@ public class OscarManager : MonoBehaviour
         if (MoveInteractionOnLoad && CurrentState == "C") { CurrentState = "E"; CurrentTextLine = 0; MoveInteractionOnLoad = false; }
         if (MoveInteractionOnLoad && CurrentState == "H") { CurrentState = "E"; CurrentTextLine = 0; MoveInteractionOnLoad = false; }
 
-       // SetDeath();
+        SetDeath();
         SetLocation();
         if (gameObject.activeInHierarchy) { SetAnimation(); }
 
@@ -666,6 +667,8 @@ public class OscarManager : MonoBehaviour
     {
         PC.GiveEstus(num);
 
+
+        RuntimeManager.PlayOneShot(ItemAudioRef, transform.position);
     }
 
     public void EstusUI(int num)
@@ -683,6 +686,8 @@ public class OscarManager : MonoBehaviour
         ItemName.text = KeyName;
         ItemQuantity.text = "1";
         StartCoroutine(UIPopUp());
+
+        RuntimeManager.PlayOneShot(ItemAudioRef, transform.position);
     }
 
     IEnumerator UIPopUp()

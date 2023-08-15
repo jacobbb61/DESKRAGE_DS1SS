@@ -5,6 +5,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
+using FMODUnity;
 
 [RequireComponent(typeof(InteractableV2))]
 public class DoorManager : MonoBehaviour
@@ -18,8 +19,7 @@ public class DoorManager : MonoBehaviour
     public PursuerArena PursuerArena;
     public bool isPursuerDoor;
 
-
-
+    public EventReference FogEnterAudioRef;
     public string CurrentDoorState_This;
 
      private CanvasManager CanvasManager;
@@ -302,6 +302,9 @@ public class DoorManager : MonoBehaviour
                     {
                         //move player in
                         //trigger boss fight
+
+                        RuntimeManager.PlayOneShot(FogEnterAudioRef, transform.position);
+
                         if (doorSaveManager.DoorTag_This == "E") 
                         {
                             WorldSaveGameManager.Instance.Player = playerManager;
@@ -444,6 +447,9 @@ public class DoorManager : MonoBehaviour
                         layerManager.ChangeLayer(targetLayer);
                         WorldSaveGameManager.Instance.Player = playerManager;
                         WorldSaveGameManager.Instance.SaveGame();
+
+                        RuntimeManager.PlayOneShot(FogEnterAudioRef, transform.position);
+
                         if (doorSaveManager.DoorTag_This == "M1")
                         {
                             DemonArena.EnterArena();

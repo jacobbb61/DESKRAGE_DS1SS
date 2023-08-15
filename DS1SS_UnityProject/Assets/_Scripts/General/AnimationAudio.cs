@@ -1,7 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using FMODUnity; 
+using FMODUnity;
+using FMOD.Studio;
 
 public class AnimationAudio : MonoBehaviour
 {
@@ -15,13 +16,14 @@ public class AnimationAudio : MonoBehaviour
 
     [Header("Walking")]
     public EventReference WalkAudioRef;
-    public EventReference Walk_Stone_AudioRef;
-    public EventReference Walk_WetStone_AudioRef;
-    public EventReference Walk_Wood_AudioRef;
-    public EventReference Walk_Snow_AudioRef;
+
 
     [Header("Movement")]
     public EventReference RollAudioRef;
+
+
+    [Header("Misc")]
+    public EventReference EstusAudioRef;
 
     [Header("Hitting Things")]
     public EventReference HitWoodRef;
@@ -31,6 +33,11 @@ public class AnimationAudio : MonoBehaviour
 
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    public void EstusAudio()
+    {
+        RuntimeManager.PlayOneShot(EstusAudioRef, transform.position);
+    }
+
     public void ShortSwingAudio()
     {
         RuntimeManager.PlayOneShot(ShortSwingAudioRef, transform.position);
@@ -53,24 +60,46 @@ public class AnimationAudio : MonoBehaviour
     }
     public void WalkAudio()
     {
+        EventInstance walk = RuntimeManager.CreateInstance(WalkAudioRef);
+        RuntimeManager.AttachInstanceToGameObject(walk, transform, GetComponentInParent<Rigidbody2D>());
+
+        if (GetComponentInParent<PlayerControllerV2>().State == "Running")
+        {
+            walk.setParameterByName("WalkorRun", 1);
+        }
+        else
+        {
+            walk.setParameterByName("WalkorRun", 0);
+        }
+
         switch (GetComponentInParent<PlayerControllerV2>().GroundType)
         {
-            case "Wood":
-                RuntimeManager.PlayOneShot(Walk_Wood_AudioRef, transform.position);
+            case "Grass":
+                walk.setParameterByName("Terrain", 0);
+                break;
+            case "StoneDirty":
+                walk.setParameterByName("Terrain", 1); 
                 break;
             case "Stone":
-                RuntimeManager.PlayOneShot(Walk_Stone_AudioRef, transform.position);
+                walk.setParameterByName("Terrain", 2);
+                break;
+            case "Wood":
+                walk.setParameterByName("Terrain", 3);
                 break;
             case "WetStone":
-                RuntimeManager.PlayOneShot(Walk_WetStone_AudioRef, transform.position);
+                walk.setParameterByName("Terrain", 4);
                 break;
             case "Snow":
-                RuntimeManager.PlayOneShot(Walk_Snow_AudioRef, transform.position);
+                walk.setParameterByName("Terrain", 5);
                 break;
             default:
-                RuntimeManager.PlayOneShot(WalkAudioRef, transform.position);
+                //RuntimeManager.PlayOneShot(WalkAudioRef, transform.position);
                 break;
         }
+
+        walk.start();
+        walk.release();
+
     }
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

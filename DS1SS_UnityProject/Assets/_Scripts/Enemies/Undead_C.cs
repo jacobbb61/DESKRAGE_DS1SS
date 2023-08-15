@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using FMODUnity;
+using FMOD.Studio;
 using TMPro;
 public class Undead_C : MonoBehaviour
 {
@@ -87,6 +88,7 @@ public class Undead_C : MonoBehaviour
     [Header("Audio")]
     public EventReference Grunts;
 
+ 
 
 
     public EnemySaveManager EnemySaveManager;
@@ -467,11 +469,29 @@ public class Undead_C : MonoBehaviour
             if (hitA.collider == null && hitB.collider == null)
             {
                 IsGrounded = false;
+        }
+        else
+        {
+            if (hitA.collider != null)
+            {
+                if (hitA.transform.CompareTag("Ground") || hitA.transform.CompareTag("Slope"))
+                {
+                    GetComponentInChildren<EnemyAnimationEvents>().GroundType = hitA.collider.GetComponent<ObjectType_AudioRef>().ObjectType;
+                }
+            }
+            else if (hitB.collider != null)
+            {
+                if (hitB.transform.CompareTag("Ground") || hitB.transform.CompareTag("Slope"))
+                {
+                    GetComponentInChildren<EnemyAnimationEvents>().GroundType = hitB.collider.GetComponent<ObjectType_AudioRef>().ObjectType;
+                }
             }
 
+        }
 
-            
-                if (FootAOnSlope && FootBOnSlope && hitA.transform != null) { OnSlope(hitA.transform); }
+
+
+        if (FootAOnSlope && FootBOnSlope && hitA.transform != null) { OnSlope(hitA.transform); }
                 else if (FootAOnSlope && !FootBOnSlope && hitA.transform != null) { OnSlope(hitA.transform); }
                 else if (!FootAOnSlope && FootBOnSlope && hitB.transform != null) { OnSlope(hitB.transform); }
                 else if (!FootAOnSlope && !FootBOnSlope)

@@ -14,7 +14,9 @@ public class AsylumDemonArena : MonoBehaviour
     public GameObject BossUI;
 
     public AsylumDemon Boss;
+    public Animator VictoryAnim;
 
+    public EventReference BossKilledAudio;
     public EventReference Theme_FirstPhase;
     public EventReference Theme_SecondPhase;
     public FMOD.Studio.EventInstance FMODinstance;
@@ -208,10 +210,17 @@ public class AsylumDemonArena : MonoBehaviour
         }
     }
 
+    public void Victory()
+    {
+        RuntimeManager.PlayOneShot(BossKilledAudio);
+        VictoryAnim.Play("Active");
+    }
+
     public void BossKilled() //Called by boss script
     {
         SwitchState("Open");
         arenaIsActive = false;
+
 
         doors[0].SwitchDoorState("Open"); //Door E
         doors[1].SwitchDoorState("Open"); //Door F1

@@ -67,6 +67,8 @@ public class Undead_A : MonoBehaviour
     public EventReference Grunts;
 
     public EnemySaveManager EnemySaveManager;
+
+
     private void Start()
     {
         ManualStart();
@@ -390,6 +392,24 @@ public class Undead_A : MonoBehaviour
         if (hitA.collider == null && hitB.collider == null)
         {
             IsGrounded = false;
+        }
+        else
+        {
+            if (hitA.collider != null)
+            {
+                if (hitA.transform.CompareTag("Ground") || hitA.transform.CompareTag("Slope"))
+                {
+                    GetComponentInChildren<EnemyAnimationEvents>().GroundType = hitA.collider.GetComponent<ObjectType_AudioRef>().ObjectType;
+                }
+            }
+            else if (hitB.collider != null)
+            {
+                if (hitB.transform.CompareTag("Ground") || hitB.transform.CompareTag("Slope"))
+                {
+                    GetComponentInChildren<EnemyAnimationEvents>().GroundType = hitB.collider.GetComponent<ObjectType_AudioRef>().ObjectType;
+                }
+            }
+
         }
 
 

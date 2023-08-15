@@ -191,6 +191,14 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  GroundType: 
+  WalkAudioRef:
+    Guid:
+      Data1: 1536091416
+      Data2: 1132977384
+      Data3: 1994861241
+      Data4: -631453580
+    Path: event:/Player/WalkRun
 --- !u!212 &4401275330471859926
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -421,6 +429,7 @@ MonoBehaviour:
   IsHeavyAttacking: 0
   IsAttackStepping: 0
   IsDead: 0
+  IsDying: 0
   IsAtOrigin: 0
   IsGrounded: 0
   IsOnSlope: 0

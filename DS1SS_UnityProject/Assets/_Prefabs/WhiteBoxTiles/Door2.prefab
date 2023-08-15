@@ -221,6 +221,13 @@ MonoBehaviour:
   DemonArena: {fileID: 0}
   PursuerArena: {fileID: 0}
   isPursuerDoor: 0
+  FogEnterAudioRef:
+    Guid:
+      Data1: 1460408682
+      Data2: 1094578714
+      Data3: 1874503353
+      Data4: 1912571368
+    Path: event:/Effects/UI SFX/FogWall
   CurrentDoorState_This: 
   doorCollider: {fileID: 3702622892975103703}
   FogAssets: {fileID: 8991338065409271480}
