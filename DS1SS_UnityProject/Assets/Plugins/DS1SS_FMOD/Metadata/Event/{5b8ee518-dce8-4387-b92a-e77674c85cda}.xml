@@ -74,7 +74,7 @@
 	<object class="MarkerTrack" id="{e9727876-a0c5-4959-a41d-e580d045ab45}" />
 	<object class="GroupTrack" id="{08d45aab-864d-4d3b-a367-36b0219318d1}">
 		<relationship name="automationTracks">
-			<destination>{f8214e9b-c96d-4d1c-9fcd-0d7741a82bd5}</destination>
+			<destination>{f6a9ac74-1476-4dcf-b034-291dc22bedc5}</destination>
 		</relationship>
 		<relationship name="modules">
 			<destination>{67ef664c-4042-49e1-9e43-5a094f2684ea}</destination>
@@ -149,9 +149,9 @@
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{0bcf18cc-0c94-4afc-89d4-43afebc67610}" />
-	<object class="AutomationTrack" id="{f8214e9b-c96d-4d1c-9fcd-0d7741a82bd5}">
+	<object class="AutomationTrack" id="{f6a9ac74-1476-4dcf-b034-291dc22bedc5}">
 		<relationship name="automator">
-			<destination>{f612d83f-b417-4251-9e96-3a93f314cbfc}</destination>
+			<destination>{ffbd0a06-e9f4-4e64-8e9b-93ec5f9d3412}</destination>
 		</relationship>
 	</object>
 	<object class="MultiSound" id="{67ef664c-4042-49e1-9e43-5a094f2684ea}">
@@ -216,7 +216,7 @@
 			<value>Walk</value>
 		</property>
 		<relationship name="automators">
-			<destination>{f612d83f-b417-4251-9e96-3a93f314cbfc}</destination>
+			<destination>{ffbd0a06-e9f4-4e64-8e9b-93ec5f9d3412}</destination>
 		</relationship>
 		<relationship name="effectChain">
 			<destination>{7bbe8a88-70d4-4a3f-a1fe-3de5382ab146}</destination>
@@ -406,12 +406,12 @@
 			<destination>{38a758da-dc0f-45e4-8d75-ec69fb6f9980}</destination>
 		</relationship>
 	</object>
-	<object class="Automator" id="{f612d83f-b417-4251-9e96-3a93f314cbfc}">
+	<object class="Automator" id="{ffbd0a06-e9f4-4e64-8e9b-93ec5f9d3412}">
 		<property name="nameOfPropertyBeingAutomated">
 			<value>volume</value>
 		</property>
 		<relationship name="automationCurves">
-			<destination>{b24eefe0-47d3-4ac4-9237-dbc5eadfb288}</destination>
+			<destination>{4520f831-57c5-4194-9dd4-6923be069e61}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusEffectChain" id="{7bbe8a88-70d4-4a3f-a1fe-3de5382ab146}">
@@ -531,13 +531,13 @@
 	<object class="MixerBusPanner" id="{e35a1b7d-f03c-4224-91bb-972e1f7a4921}" />
 	<object class="MixerBusFader" id="{2ca46c10-346c-430f-869f-bac743d2dc93}" />
 	<object class="SpatialiserEffect" id="{348150f1-1424-450d-b215-a1a2ae112b7f}" />
-	<object class="AutomationCurve" id="{b24eefe0-47d3-4ac4-9237-dbc5eadfb288}">
+	<object class="AutomationCurve" id="{4520f831-57c5-4194-9dd4-6923be069e61}">
 		<relationship name="parameter">
-			<destination>{00f06c5e-ff40-49b5-903b-d196469c8ea7}</destination>
+			<destination>{84e9d3d9-877c-4bd9-8ece-3f2da711ec4b}</destination>
 		</relationship>
 		<relationship name="automationPoints">
-			<destination>{4c2dcc7b-a06b-4756-b89b-ae4617aff266}</destination>
-			<destination>{0c0adc4b-e905-435c-a5f8-b5204b9d34a2}</destination>
+			<destination>{a59d94a5-abfc-45a2-ac09-426cd9be5e4e}</destination>
+			<destination>{c5f9378e-ec62-4155-99d5-4e8a837ced38}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusFader" id="{37456fbe-5f36-4620-a65b-7cc0e3bdb64a}" />
@@ -551,20 +551,20 @@
 		</relationship>
 	</object>
 	<object class="MixerBusFader" id="{e2954bd1-f6c5-453e-bd3f-27f4b97f329b}" />
-	<object class="AutomationPoint" id="{4c2dcc7b-a06b-4756-b89b-ae4617aff266}">
+	<object class="AutomationPoint" id="{a59d94a5-abfc-45a2-ac09-426cd9be5e4e}">
 		<property name="position">
-			<value>0</value>
-		</property>
-		<property name="value">
-			<value>-13.5</value>
-		</property>
-	</object>
-	<object class="AutomationPoint" id="{0c0adc4b-e905-435c-a5f8-b5204b9d34a2}">
-		<property name="position">
-			<value>1</value>
+			<value>0.015536723163841807</value>
 		</property>
 		<property name="value">
 			<value>-80</value>
+		</property>
+	</object>
+	<object class="AutomationPoint" id="{c5f9378e-ec62-4155-99d5-4e8a837ced38}">
+		<property name="position">
+			<value>0.99858757062146897</value>
+		</property>
+		<property name="value">
+			<value>0</value>
 		</property>
 	</object>
 	<object class="AutomationPoint" id="{41095f0c-f5f0-4c41-80f5-a79090b0aac3}">
