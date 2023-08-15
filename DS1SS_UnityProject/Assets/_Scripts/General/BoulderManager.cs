@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using FMODUnity;
 
 public class BoulderManager : MonoBehaviour
 {
@@ -10,6 +11,9 @@ public class BoulderManager : MonoBehaviour
 
     public bool BoulderUsed;
 
+    public EventReference Boulder0Audio;
+    public EventReference Boulder1Audio;
+    public EventReference Boulder2Audio;
     private void Start()
     {
         if (BoulderUsed) { Assets.SetActive(false); GetComponent<BoxCollider2D>().enabled = false; }
@@ -30,7 +34,20 @@ public class BoulderManager : MonoBehaviour
     }
     IEnumerator Roll()
     {
-        yield return new WaitForSeconds(2.5f);
+   
+        yield return new WaitForSeconds(2f); 
+        
+        RuntimeManager.PlayOneShot(Boulder0Audio);
+
+        yield return new WaitForSeconds(0.5f);
+
+        RuntimeManager.PlayOneShot(Boulder1Audio);
+
+        yield return new WaitForSeconds(0.5f);
+
+        RuntimeManager.PlayOneShot(Boulder2Audio);
+
+        yield return new WaitForSeconds(0.5f);
         Assets.SetActive(false);
         GetComponent<BoxCollider2D>().enabled = false;
         DM.CurrentDoorState_This = "Closed";
