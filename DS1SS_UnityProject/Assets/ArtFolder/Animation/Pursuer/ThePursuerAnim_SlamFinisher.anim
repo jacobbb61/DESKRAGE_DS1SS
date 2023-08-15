@@ -39,7 +39,7 @@ AnimationClip:
         inWeight: 0
         outWeight: 0
       - serializedVersion: 3
-        time: 0.73333335
+        time: 0.8333333
         value: 0
         inSlope: Infinity
         outSlope: Infinity
@@ -161,7 +161,7 @@ AnimationClip:
         inWeight: 0
         outWeight: 0
       - serializedVersion: 3
-        time: 0.73333335
+        time: 0.8333333
         value: 0
         inSlope: Infinity
         outSlope: Infinity
@@ -202,6 +202,13 @@ AnimationClip:
     intParameter: 0
     messageOptions: 0
   - time: 0.5833333
+    functionName: SlamTrigger
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.8333333
     functionName: SlamTrigger
     data: 
     objectReferenceParameter: {fileID: 0}

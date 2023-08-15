@@ -33,6 +33,7 @@ public class Pursuer : MonoBehaviour
     public bool IsTurning;
 
     [Header("Bools")]
+    public bool HitPlayer;
     public bool IsActive;
     public bool IsAttacking;
     public bool IsCoolingDown;
@@ -273,9 +274,9 @@ public class Pursuer : MonoBehaviour
     }
     public void TakePlungeDamage()
     {
-        if (HasBeenPlunged == false) { Health -= 150; HasBeenPlunged = true; }
+        if (HasBeenPlunged == false) { Health -= 100; HasBeenPlunged = true; }
         UpdateUI(); 
-        AddDamage(150);
+        AddDamage(100);
         if (Health <= 0) { StopAllCoroutines(); StartCoroutine(Death()); arenaManager.Victory(); }
         if (Health <= MaxHealth / 2 && !arenaManager.IsSecondPhase) { arenaManager.SecondPhase(); CanPhaseChanged = true; }
     }
@@ -568,6 +569,11 @@ public class Pursuer : MonoBehaviour
         }
     }
 
+    public void HitPlayerReset()
+    {
+        HitPlayer = false;
+    }
+
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// Combo Attack
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -586,6 +592,7 @@ public class Pursuer : MonoBehaviour
         IsCoolingDown = true;
         Anim.Play("ThePursuerAnim_Idle");
         StepDistance = 0;
+        HitPlayer = false;
 
         yield return new WaitForSeconds(CO_AttackCoolDownTime);
         IsCoolingDown = false;
@@ -594,16 +601,18 @@ public class Pursuer : MonoBehaviour
 
     public void CO1_AttackRegister()
     {
-        if (CO1_Collider.bounds.Contains(Player.transform.position))
+        if (CO1_Collider.bounds.Contains(Player.transform.position)&&HitPlayer==false)
         {
             PC.PlayerTakeDamage(CO_AttackDamage, true, 0);
+            HitPlayer = true;
         }
     }
     public void CO2_AttackRegister()
     {
-        if (CO2_Collider.bounds.Contains(Player.transform.position))
+        if (CO2_Collider.bounds.Contains(Player.transform.position) && HitPlayer == false)
         {
             PC.PlayerTakeDamage(CO_AttackDamage, true, 0);
+            HitPlayer = true;
         }
     }
 
@@ -625,6 +634,7 @@ public class Pursuer : MonoBehaviour
         IsCoolingDown = true;
         Anim.Play("ThePursuerAnim_Idle");
         StepDistance = 0;
+        HitPlayer = false;
 
         yield return new WaitForSeconds(CH_AttackCoolDownTime);
         IsCoolingDown = false;
@@ -633,9 +643,10 @@ public class Pursuer : MonoBehaviour
 
     public void CH_AttackRegister()
     {
-        if (CH_Collider.bounds.Contains(Player.transform.position))
+        if (CH_Collider.bounds.Contains(Player.transform.position) && HitPlayer == false)
         {
             PC.PlayerTakeDamage(CH_AttackDamage, true, 0);
+            HitPlayer = true;
         }
     }
 
@@ -657,6 +668,7 @@ public class Pursuer : MonoBehaviour
         IsCoolingDown = true;
         Anim.Play("ThePursuerAnim_Idle");
         StepDistance = 0;
+        HitPlayer = false;
 
         yield return new WaitForSeconds(CI_AttackCoolDownTime);
         IsCoolingDown = false;
@@ -665,9 +677,10 @@ public class Pursuer : MonoBehaviour
 
     public void CI_AttackRegister()
     {
-        if (CI_Collider.bounds.Contains(Player.transform.position))
+        if (CI_Collider.bounds.Contains(Player.transform.position) && HitPlayer == false)
         {
             PC.PlayerTakeDamage(CI_AttackDamage, true, 0);
+            HitPlayer = true;
         }
     }
 
@@ -689,6 +702,7 @@ public class Pursuer : MonoBehaviour
         IsCoolingDown = true;
         Anim.Play("ThePursuerAnim_Idle");
         StepDistance = 0;
+        HitPlayer = false;
 
         yield return new WaitForSeconds(CS_AttackCoolDownTime);
         IsCoolingDown = false;
@@ -697,9 +711,10 @@ public class Pursuer : MonoBehaviour
 
     public void CS_AttackRegister()
     {
-        if (CS_Collider.bounds.Contains(Player.transform.position))
+        if (CS_Collider.bounds.Contains(Player.transform.position) && HitPlayer == false)
         {
             PC.PlayerTakeDamage(CS_AttackDamage, true, 0);
+            HitPlayer = true;
         }
     }
     public void CursedShockwaveFire()
@@ -727,6 +742,7 @@ public class Pursuer : MonoBehaviour
         IsCoolingDown = true;
         Anim.Play("ThePursuerAnim_Idle");
         StepDistance = 0;
+        HitPlayer = false;
 
         yield return new WaitForSeconds(SB_AttackCoolDownTime);
         IsCoolingDown = false;
@@ -735,9 +751,10 @@ public class Pursuer : MonoBehaviour
 
     public void SB_AttackRegister()
     {
-        if (SB_Collider.bounds.Contains(Player.transform.position))
+        if (SB_Collider.bounds.Contains(Player.transform.position) && HitPlayer == false)
         {
             PC.PlayerTakeDamage(SB_AttackDamage, true, 0);
+            HitPlayer = true;
         }
     }
 
@@ -759,6 +776,7 @@ public class Pursuer : MonoBehaviour
         IsCoolingDown = true;
         Anim.Play("ThePursuerAnim_Idle");
         StepDistance = 0;
+        HitPlayer = false;
 
         yield return new WaitForSeconds(GP_AttackCoolDownTime);
         IsCoolingDown = false;
@@ -767,10 +785,12 @@ public class Pursuer : MonoBehaviour
 
     public void GP_AttackRegister()
     {
-        GP_Projectiles();
-        if (GP_Collider.bounds.Contains(Player.transform.position))
+         GP_Projectiles();
+
+        if (GP_Collider.bounds.Contains(Player.transform.position) && HitPlayer == false)
         {
             PC.PlayerTakeDamage(GP_AttackDamage, true, 0);
+            HitPlayer = true;
         }
     }
 
@@ -803,6 +823,7 @@ public class Pursuer : MonoBehaviour
         IsCoolingDown = true;
         Anim.Play("ThePursuerAnim_Idle");
         StepDistance = 0;
+        HitPlayer = false;
 
         yield return new WaitForSeconds(SMF_AttackCoolDownTime);
         IsCoolingDown = false;
@@ -811,9 +832,10 @@ public class Pursuer : MonoBehaviour
 
     public void SMF_AttackRegister()
     {
-        if (SMF_Collider.bounds.Contains(Player.transform.position))
+        if (SMF_Collider.bounds.Contains(Player.transform.position) && HitPlayer == false)
         {
             PC.PlayerTakeDamage(SMF_AttackDamage, true, 0);
+            HitPlayer = true;
         }
     }
 
@@ -835,6 +857,7 @@ public class Pursuer : MonoBehaviour
         IsCoolingDown = true;
         Anim.Play("ThePursuerAnim_Idle");
         StepDistance = 0;
+        HitPlayer = false;
 
         yield return new WaitForSeconds(SPF_AttackCoolDownTime);
         IsCoolingDown = false;
@@ -843,9 +866,10 @@ public class Pursuer : MonoBehaviour
 
     public void SPF_AttackRegister()
     {
-        if (SPF_Collider.bounds.Contains(Player.transform.position))
+        if (SPF_Collider.bounds.Contains(Player.transform.position) && HitPlayer == false)
         {
             PC.PlayerTakeDamage(SPF_AttackDamage, true, 0);
+            HitPlayer = true;
         }
     }
 }

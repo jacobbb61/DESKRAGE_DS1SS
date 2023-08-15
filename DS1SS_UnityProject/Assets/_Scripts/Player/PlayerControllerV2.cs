@@ -455,6 +455,9 @@ public class PlayerControllerV2 : MonoBehaviour
                 case "Walking":
                     ProcessInput_X(context);
                     break;
+                case "Running":
+                    ProcessInput_X(context);
+                    break;
                 case "Blocking":
                     ProcessInput_X(context); IsBlocking = false;
                     break;
@@ -1851,7 +1854,7 @@ public class PlayerControllerV2 : MonoBehaviour
         State = "Stagger";
         IsBlocking = false;
 
-        yield return new WaitForSeconds(0.75f);
+        yield return new WaitForSeconds(0.5f);
 
         CanRollOut = true; CancelThisCoroutine = StaggerCoroutine;
 
