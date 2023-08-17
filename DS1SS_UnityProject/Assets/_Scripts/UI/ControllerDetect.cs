@@ -17,10 +17,7 @@ public class ControllerDetect : MonoBehaviour
 
     /*private void Update()
     {
-        if (Input.anyKey)
-        {
-            CheckInputType();
-        }
+        CheckInputType();
     }*/
 
     public void CheckInputType()
@@ -49,10 +46,15 @@ public class ControllerDetect : MonoBehaviour
                     IDM.SwitchToXbox();
 
                 }
-                else if (joystickName.ToLower().Contains("ps4") || joystickName.ToLower().Contains("playstation") || joystickName.ToLower().Contains("wireless controller"))
+                else if (joystickName.ToLower().Contains("ps4") || joystickName.ToLower().Contains("playstation") || joystickName.ToLower().Contains("wireless controller") || joystickName.ToLower().Contains("dualshock"))
                 {
                     IDM.Device = "PS";
-                    IDM.SwitchToPC();
+                    IDM.SwitchToPS();
+                }
+                else
+                {
+                    IDM.Device = "XBox";
+                    IDM.SwitchToXbox();
                 }
             }
         }
