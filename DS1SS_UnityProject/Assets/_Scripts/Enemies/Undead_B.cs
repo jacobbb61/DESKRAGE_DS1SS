@@ -50,10 +50,16 @@ public class Undead_B : MonoBehaviour
     public int DamageTakenInTime;
 
     [Header("Audio")]
-    public EventReference Grunts;
+    public EventReference GruntAudio;
+    public EventReference HitAudio;
+    public EventReference DeathAudio;
 
+    private float RandomGruntTime;
+    private float RandomGruntTarget;
     private void Start()
     {
+        RandomGruntTarget = Random.Range(3, 10);
+        RandomGruntTime = 0;
         ManualStart();
     }
 
@@ -99,12 +105,41 @@ public class Undead_B : MonoBehaviour
                     LookForPlayer();
                     Anim.Play("UndeadAnim_B_Idle");
                     if (SeePlayer) { Behaviour = "Hostile"; }
+
+
+                    if (RandomGruntTime >= RandomGruntTarget)
+                    {
+                        RandomGruntTime = 0;
+                        RandomGruntTarget = Random.Range(2, 8);
+                        RuntimeManager.PlayOneShot(GruntAudio, transform.position);
+
+                    }
+                    else
+                    {
+                        RandomGruntTime += Time.deltaTime;
+                    }
+
+
                     break;
                 case "Hostile":
                     LookForPlayer();
                     Anim.Play("UndeadAnim_B_Idle");
                     if (SeePlayer && IsInAttackRange()) { Behaviour = "Attacking"; }
                     if (!SeePlayer) { Behaviour = "Idle";}
+
+
+                    if (RandomGruntTime >= RandomGruntTarget)
+                    {
+                        RandomGruntTime = 0;
+                        RandomGruntTarget = Random.Range(2, 8);
+                        RuntimeManager.PlayOneShot(GruntAudio, transform.position);
+
+                    }
+                    else
+                    {
+                        RandomGruntTime += Time.deltaTime;
+                    }
+
                     break;
                 case "Attacking":
                     if (!IsAttacking) { AttackingCoroutine = StartCoroutine(Attack()); }
@@ -173,13 +208,15 @@ public class Undead_B : MonoBehaviour
     {
         Health -= 5;
         AddDamage(5);
-        if (Health <= 0) { Death(); RuntimeManager.PlayOneShot(Grunts, transform.position); }
+        RuntimeManager.PlayOneShot(HitAudio, transform.position);
+        if (Health <= 0) { Death(); RuntimeManager.PlayOneShot(DeathAudio, transform.position); return; }
     }
     public void TakeHeavyDamage()
     {
         Health -= 10;
         AddDamage(10);
-        if (Health <= 0) { Death(); RuntimeManager.PlayOneShot(Grunts, transform.position); return; }
+        RuntimeManager.PlayOneShot(HitAudio, transform.position);
+        if (Health <= 0) { Death(); RuntimeManager.PlayOneShot(DeathAudio, transform.position); return; }
         if (AttackingCoroutine != null) { StopCoroutine(AttackingCoroutine); }
         StartCoroutine(Staggered());
     }

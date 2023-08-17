@@ -64,13 +64,19 @@ public class Undead_A : MonoBehaviour
     public int DamageTakenInTime;
 
     [Header("Audio")]
-    public EventReference Grunts;
+    public EventReference GruntAudio;
+    public EventReference HitAudio;
+    public EventReference DeathAudio;
 
     public EnemySaveManager EnemySaveManager;
 
+    private float RandomGruntTime;
+    private float RandomGruntTarget;
 
     private void Start()
     {
+        RandomGruntTarget = Random.Range(3, 10);
+        RandomGruntTime = 0;
         ManualStart();
     }
 
@@ -119,6 +125,22 @@ public class Undead_A : MonoBehaviour
                     Anim.Play("UndeadAnim_A_Idle");
                     if (SeePlayer) { Behaviour = "Hostile"; }
                     if (!IsAtOrigin) { Behaviour = "Returning"; } else { RB.velocity = Vector2.zero; }
+
+                    if (RandomGruntTime >= RandomGruntTarget) 
+                    { 
+                        RandomGruntTime = 0; 
+                        RandomGruntTarget = Random.Range(2, 8);
+                        RuntimeManager.PlayOneShot(GruntAudio, transform.position);
+
+                    } 
+                    else
+                    {
+                        RandomGruntTime += Time.deltaTime;
+                    }
+
+
+
+
                     break;
                 case "Hostile":
                     CombatTime += Time.deltaTime;
@@ -222,13 +244,15 @@ public class Undead_A : MonoBehaviour
     {
         Health -= 5;
         AddDamage(5);
-        if (Health <= 0) { Death(); RuntimeManager.PlayOneShot(Grunts, transform.position); }
+        RuntimeManager.PlayOneShot(HitAudio, transform.position);
+        if (Health <= 0) { Death(); RuntimeManager.PlayOneShot(DeathAudio, transform.position); }
     }
     public void TakeHeavyDamage()
     {
         Health -= 10;
-        AddDamage(10); 
-        if (Health <= 0) { Death(); RuntimeManager.PlayOneShot(Grunts, transform.position); return; }
+        AddDamage(10);
+        RuntimeManager.PlayOneShot(HitAudio, transform.position);
+        if (Health <= 0) { Death(); RuntimeManager.PlayOneShot(DeathAudio, transform.position); return; }
         else {  Behaviour = "Staggered";}     
     }
     void AddDamage(int DMG)

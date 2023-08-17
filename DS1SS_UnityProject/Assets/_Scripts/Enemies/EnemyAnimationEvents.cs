@@ -23,6 +23,7 @@ public class EnemyAnimationEvents : MonoBehaviour
 
     public string GroundType; 
     public EventReference WalkAudioRef;
+    public EventReference AttackAudioRef;
     public void WalkAudio()
     {
         EventInstance walk = RuntimeManager.CreateInstance(WalkAudioRef);
@@ -80,6 +81,10 @@ public class EnemyAnimationEvents : MonoBehaviour
     public void Attack1()
     {
         Attack1Triggered.Invoke();
+    }
+    public void AttackAudio()
+    {
+        RuntimeManager.PlayOneShot(AttackAudioRef, transform.position);
     }
     public void Attack2()
     {

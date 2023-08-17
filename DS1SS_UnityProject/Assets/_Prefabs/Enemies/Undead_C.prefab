@@ -444,13 +444,27 @@ MonoBehaviour:
   OriginPosition: {x: 0, y: 0, z: 0}
   DamagerNumber: {fileID: 4683091716959488018}
   DamageTakenInTime: 0
-  Grunts:
+  GruntAudio:
     Guid:
       Data1: 1045219388
       Data2: 1163626313
       Data3: 689875109
       Data4: 633058295
     Path: event:/Enemies/Hollow/Grunts
+  HitAudio:
+    Guid:
+      Data1: -980531260
+      Data2: 1123924832
+      Data3: 1291562398
+      Data4: 47760231
+    Path: event:/Enemies/EnemyHit
+  DeathAudio:
+    Guid:
+      Data1: 1045425551
+      Data2: 1142266475
+      Data3: -1360046931
+      Data4: -769938651
+    Path: event:/Enemies/Hollow/deathsound
   EnemySaveManager: {fileID: 4401275331580959327}
 --- !u!114 &4401275331580959327
 MonoBehaviour:

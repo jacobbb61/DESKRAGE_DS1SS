@@ -518,6 +518,17 @@
                 },
                 {
                     "name": "",
+                    "id": "0cb89e25-ce15-4b12-b851-8820aa397107",
+                    "path": "<XInputController>/dpad/up",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Up",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "af0c0ea5-6b2b-42e6-81f2-d316ee8fe458",
                     "path": "<Gamepad>/dpad/down",
                     "interactions": "",
@@ -531,6 +542,17 @@
                     "name": "",
                     "id": "43caecb5-f6d2-49f8-ae5c-402b2fd00092",
                     "path": "<Keyboard>/downArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Down",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "09392d1b-90d9-49ad-9ab5-bc10d8854f5c",
+                    "path": "<XInputController>/dpad/down",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -562,6 +584,17 @@
                 },
                 {
                     "name": "",
+                    "id": "a043c321-5ca0-483c-94e8-b91d1642ca65",
+                    "path": "<XInputController>/dpad/left",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Left",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "26cf1b1a-2c0d-4509-b7a7-e14c847de340",
                     "path": "<Gamepad>/dpad/right",
                     "interactions": "",
@@ -575,6 +608,17 @@
                     "name": "",
                     "id": "8b34efa3-414d-4622-a07a-5775dc307d23",
                     "path": "<Keyboard>/rightArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Right",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "10de68ab-cc3a-4367-a172-4c637d4845a2",
+                    "path": "<XInputController>/dpad/right",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -606,6 +650,17 @@
                 },
                 {
                     "name": "",
+                    "id": "e1c884a3-59ac-4c81-94db-0397a3d9a3ee",
+                    "path": "<XInputController>/start",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Start",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "42e8bc53-f801-460d-bbb9-3cd7f8e0a83c",
                     "path": "<Gamepad>/buttonSouth",
                     "interactions": "",
@@ -628,6 +683,17 @@
                 },
                 {
                     "name": "",
+                    "id": "9d708ac7-c5e3-4e39-9bcf-84b5a52e2400",
+                    "path": "<XInputController>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "A",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "9327e1bb-7e3a-48a4-9751-b98132f2bdaf",
                     "path": "<Gamepad>/buttonEast",
                     "interactions": "",
@@ -641,6 +707,17 @@
                     "name": "",
                     "id": "1d571e2b-8107-456b-bf5c-e08148f64bfc",
                     "path": "<Keyboard>/shift",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "B",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9ffe6d1d-f1cf-48a0-b551-59a128353703",
+                    "path": "<XInputController>/buttonEast",
                     "interactions": "",
                     "processors": "",
                     "groups": "",

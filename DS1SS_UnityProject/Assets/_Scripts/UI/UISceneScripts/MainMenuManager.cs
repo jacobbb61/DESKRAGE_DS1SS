@@ -48,6 +48,7 @@ public class MainMenuManager : MonoBehaviour
     public GameObject DeleteSlotPopUp;
 
     [Header("Settings")]
+    public InputDeviceManager InputDeviceManager;
     public GameObject Settings; 
     public RectTransform SettingsHightlightPos;
     public Animator SettingsExitAnim;
@@ -55,6 +56,7 @@ public class MainMenuManager : MonoBehaviour
     private int SettingsOrder;
     public bool HUDActive;
     public bool SubtitlesActive;
+    public string ControlLayout;
 
     public FMOD.Studio.VCA VcaMasterController;
     public FMOD.Studio.VCA VcaEffectsController;
@@ -70,6 +72,7 @@ public class MainMenuManager : MonoBehaviour
 
     public TextMeshProUGUI HUDText;
     public TextMeshProUGUI SubtitlesText;
+    public TextMeshProUGUI ControlsText;
     public TextMeshProUGUI AudioMasterText;
     public TextMeshProUGUI AudioEffectsText;
     public TextMeshProUGUI AudioAmbienceText;
@@ -258,6 +261,7 @@ public class MainMenuManager : MonoBehaviour
     {
         if (context.action.triggered && CanInput == true)
         {
+            GameSaveGameManager.Instance.SaveSettings(HUDActive, SubtitlesActive, ControlLayout, AudioMasterNum, AudioEffectsNum, AudioAmbienceNum, AudioMusicNum, AudioDialogNum);
             Debug.Log("B Button Pressed");
             CanInput = false;
             PlayAudioPressCancel();
@@ -273,7 +277,7 @@ public class MainMenuManager : MonoBehaviour
                     StartCoroutine(LoadAchievements());
                     break;
                 case "Settings":                    
-                    GameSaveGameManager.Instance.SaveSettings(HUDActive, SubtitlesActive, AudioMasterNum, AudioEffectsNum, AudioAmbienceNum, AudioMusicNum, AudioDialogNum);
+                    GameSaveGameManager.Instance.SaveSettings(HUDActive, SubtitlesActive, ControlLayout, AudioMasterNum, AudioEffectsNum, AudioAmbienceNum, AudioMusicNum, AudioDialogNum);
                     SettingsExitAnim.SetTrigger("Active");
                     StartCoroutine(LoadSettings());
                     break;
@@ -462,38 +466,42 @@ public class MainMenuManager : MonoBehaviour
         switch (SettingsOrder)
         {
             case 0:
-                SettingsOrder = 7; MoveSettingsHighlight();
+                SettingsOrder = 8; MoveSettingsHighlight();
                 break;
 
             case 1:
-                SettingsHightlightPos.anchoredPosition = new Vector2(-50, 80);
+                SettingsHightlightPos.anchoredPosition = new Vector2(-40, 80);
                 break;
 
             case 2:
-                SettingsHightlightPos.anchoredPosition = new Vector2(-50, 55);
+                SettingsHightlightPos.anchoredPosition = new Vector2(-40, 55);
                 break;
 
             case 3:
-                SettingsHightlightPos.anchoredPosition = new Vector2(-50, -20);
+                SettingsHightlightPos.anchoredPosition = new Vector2(-40, 30);
                 break;
 
             case 4:
-                SettingsHightlightPos.anchoredPosition = new Vector2(-50, -50);
+                SettingsHightlightPos.anchoredPosition = new Vector2(-40, -20);
                 break;
 
             case 5:
-                SettingsHightlightPos.anchoredPosition = new Vector2(-50, -80);
+                SettingsHightlightPos.anchoredPosition = new Vector2(-40, -50);
                 break;
 
             case 6:
-                SettingsHightlightPos.anchoredPosition = new Vector2(-50, -110);
+                SettingsHightlightPos.anchoredPosition = new Vector2(-40, -80);
                 break;
 
             case 7:
-                SettingsHightlightPos.anchoredPosition = new Vector2(-50, -140);
+                SettingsHightlightPos.anchoredPosition = new Vector2(-40, -110);
                 break;
 
             case 8:
+                SettingsHightlightPos.anchoredPosition = new Vector2(-40, -140);
+                break;
+
+            case 9:
                 SettingsOrder = 1; MoveSettingsHighlight();
                 break;
         }
@@ -542,10 +550,14 @@ public class MainMenuManager : MonoBehaviour
     }
 
     public void UpdateSettings()
-    {  
-        
+    {
+
+
         HUDActive = GameSaveGameManager.Instance.GameSaveData.HUD;
         SubtitlesActive = GameSaveGameManager.Instance.GameSaveData.Subtitles;
+        ControlLayout = GameSaveGameManager.Instance.GameSaveData.Controls;
+        if (ControlLayout == "") { ControlLayout = "Auto"; }
+        if (ControlLayout == null) { ControlLayout = "Auto"; }
 
         AudioMasterNum = GameSaveGameManager.Instance.GameSaveData.Master;
         AudioEffectsNum = GameSaveGameManager.Instance.GameSaveData.Effects;
@@ -565,19 +577,39 @@ public class MainMenuManager : MonoBehaviour
             case 2:
                 SubtitlesActive = !SubtitlesActive;
                 break;
+
             case 3:
+                if (Left)
+                {
+                    if (ControlLayout == "Keyboard") { ControlLayout = "Auto"; InputDeviceManager.SwitchToAuto(); break; }
+                    if (ControlLayout == "Xbox") { ControlLayout = "Keyboard"; InputDeviceManager.SwitchToPC(); break; }
+                    if (ControlLayout == "PlayStation") { ControlLayout = "Xbox"; InputDeviceManager.SwitchToXbox(); break; }
+                    if (ControlLayout == "Auto") { ControlLayout = "PlayStation"; InputDeviceManager.SwitchToPS(); break; }
+                }
+                else
+                {
+                    if (ControlLayout == "PlayStation") { ControlLayout = "Auto"; InputDeviceManager.SwitchToAuto(); break; }
+                    if (ControlLayout == "Xbox") { ControlLayout = "PlayStation"; InputDeviceManager.SwitchToPS(); break; }
+                    if (ControlLayout == "Keyboard") { ControlLayout = "Xbox"; InputDeviceManager.SwitchToXbox(); break; }
+                    if (ControlLayout == "Auto") { ControlLayout = "Keyboard"; InputDeviceManager.SwitchToPC(); break; }
+                }
+
+
+                break;
+
+            case 4:
                 if (Left) { AudioMasterNum--; } else { AudioMasterNum++; } ;
                 break;
-            case 4:
+            case 5:
                 if (Left) { AudioEffectsNum--; } else { AudioEffectsNum++; };
                 break;
-            case 5:
+            case 6:
                 if (Left) { AudioAmbienceNum--; } else { AudioAmbienceNum++; };
                 break;
-            case 6:
+            case 7:
                 if (Left) { AudioMusicNum--; } else { AudioMusicNum++; };
                 break;
-            case 7:
+            case 8:
                 if (Left) { AudioDialogNum--; } else { AudioDialogNum++; };
                 break;
             default:
@@ -609,6 +641,7 @@ public class MainMenuManager : MonoBehaviour
     {
         if (HUDActive) { HUDText.text = "ON"; } else { HUDText.text = "OFF"; }
         if (SubtitlesActive) { SubtitlesText.text = "ON"; } else { SubtitlesText.text = "OFF"; }
+        ControlsText.text = ControlLayout;
         AudioMasterText.text = AudioMasterNum.ToString();
         AudioEffectsText.text = AudioEffectsNum.ToString();
         AudioAmbienceText.text = AudioAmbienceNum.ToString();

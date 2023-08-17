@@ -17,6 +17,7 @@ public struct GameSaveData
 
     public bool HUD;
     public bool Subtitles;
+    public string Controls;
 
     public float Master;
     public float Effects;
@@ -79,6 +80,7 @@ public class GameSaveGameManager : MonoBehaviour
 
             GameSaveData.HUD = true;
             GameSaveData.Subtitles = true;
+            GameSaveData.Controls = "Auto";
 
             GameSaveData.LastSlotUsed = 0;
 
@@ -105,10 +107,11 @@ public class GameSaveGameManager : MonoBehaviour
         Debug.Log(GameSaveData.LastSlotUsed);
     }
 
-    public void SaveSettings(bool HUD, bool Subtitles, float Master, float Effects, float Ambience, float Music, float Dialog)
+    public void SaveSettings(bool HUD, bool Subtitles,string Controls, float Master, float Effects, float Ambience, float Music, float Dialog)
     {
         GameSaveData.HUD = HUD;
         GameSaveData.Subtitles = Subtitles;
+        GameSaveData.Controls = Controls;
 
         GameSaveData.Master = Master;
         GameSaveData.Effects = Effects;
