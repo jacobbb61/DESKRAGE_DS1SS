@@ -47,6 +47,8 @@ public class WorldSaveGameManager : MonoBehaviour
     {
         DontDestroyOnLoad(gameObject);
         LoadAllCharacterSlots();
+
+        Cursor.visible = false;
     }
     private void Update()
     {

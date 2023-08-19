@@ -90,10 +90,10 @@ public class Undead_A : MonoBehaviour
         else if (LookDirection == -1) { Assets.transform.localScale = new Vector3(-2, 2, 2); }
 
         IsAttacking = false;
-
+        IsDying = false;
         HealthSlider.maxValue = MaxHealth;
 
-        if (Health > 0) { IsDead = false; EnemySaveManager.IsLockOnAble = true; } else { Dead(); Behaviour = "Dead"; }
+        if (Health > 0) { IsDead = false; IsDying = false; EnemySaveManager.IsLockOnAble = true; } else { Dead(); Behaviour = "Dead"; }
     }
 
     public void Respawn()
@@ -117,7 +117,7 @@ public class Undead_A : MonoBehaviour
         GroundCheck();
         if (Health > 0)
         {
-            IsDead = false;
+            IsDead = false; IsDying = false;
             switch (Behaviour)
             {
                 case "Idle":
@@ -197,8 +197,7 @@ public class Undead_A : MonoBehaviour
 
     void Death()
     {
-        if (IsDying == false)
-        {
+        
             IsDying = true;
             DamagerNumber.gameObject.SetActive(false);
             EnemySaveManager.IsLockOnAble = false;
@@ -213,7 +212,7 @@ public class Undead_A : MonoBehaviour
             HealthSlider.value = 0;
             Anim.Play("UndeadAnim_A_Death");
             StartCoroutine(DeathWait());
-        }
+      
     }
     IEnumerator DeathWait()
     {
@@ -242,18 +241,24 @@ public class Undead_A : MonoBehaviour
 
     public void TakeLightDamage()
     {
-        Health -= 5;
-        AddDamage(5);
-        RuntimeManager.PlayOneShot(HitAudio, transform.position);
-        if (Health <= 0) { Death(); RuntimeManager.PlayOneShot(DeathAudio, transform.position); }
+        if (!IsDying)
+        {
+            Health -= 5;
+            AddDamage(5);
+            RuntimeManager.PlayOneShot(HitAudio, transform.position);
+            if (Health <= 0) { Death(); RuntimeManager.PlayOneShot(DeathAudio, transform.position); }
+        }
     }
     public void TakeHeavyDamage()
     {
-        Health -= 10;
-        AddDamage(10);
-        RuntimeManager.PlayOneShot(HitAudio, transform.position);
-        if (Health <= 0) { Death(); RuntimeManager.PlayOneShot(DeathAudio, transform.position); return; }
-        else {  Behaviour = "Staggered";}     
+        if (!IsDying)
+        {
+            Health -= 10;
+            AddDamage(10);
+            RuntimeManager.PlayOneShot(HitAudio, transform.position);
+            if (Health <= 0) { Death(); RuntimeManager.PlayOneShot(DeathAudio, transform.position); return; }
+            else { Behaviour = "Staggered"; }
+        }
     }
     void AddDamage(int DMG)
     {

@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.02.00">
 	<object class="Event" id="{a197c4f3-d8e6-4558-b056-d95f3e5bff09}">
 		<property name="name">
-			<value>attackroar</value>
+			<value>attackroar 1</value>
 		</property>
 		<property name="outputFormat">
 			<value>2</value>
@@ -93,7 +93,6 @@
 			<value>1.6718367346938776</value>
 		</property>
 		<relationship name="sounds">
-			<destination>{792e0880-e04c-4dff-8369-639d63b817ad}</destination>
 			<destination>{947793ad-b220-46dc-9426-035c2b83f067}</destination>
 		</relationship>
 	</object>
@@ -119,11 +118,6 @@
 	</object>
 	<object class="MixerBusPanner" id="{38e8e3e7-2b9a-4a5c-8206-f77187ddfcdb}" />
 	<object class="MixerBusFader" id="{fd73cfc8-d6b3-487c-976c-cf114237c2c3}" />
-	<object class="SingleSound" id="{792e0880-e04c-4dff-8369-639d63b817ad}">
-		<relationship name="audioFile">
-			<destination>{01a613a8-2252-48b2-ba79-e5a5756915dd}</destination>
-		</relationship>
-	</object>
 	<object class="SingleSound" id="{947793ad-b220-46dc-9426-035c2b83f067}">
 		<relationship name="audioFile">
 			<destination>{2ddb92f4-de8d-45eb-849e-f8b6871037e5}</destination>

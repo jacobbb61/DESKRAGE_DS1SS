@@ -446,6 +446,13 @@ AnimationClip:
   m_HasGenericRootTransform: 1
   m_HasMotionFloatCurves: 0
   m_Events:
+  - time: 0.1
+    functionName: Audio_GrowlLong
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
   - time: 0.35
     functionName: Turn
     data: 
@@ -504,6 +511,13 @@ AnimationClip:
     messageOptions: 0
   - time: 1.5166667
     functionName: Audio_ClubLand
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 1.5666667
+    functionName: Audio_CrashWeapon
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

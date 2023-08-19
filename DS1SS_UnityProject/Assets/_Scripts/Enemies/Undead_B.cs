@@ -74,10 +74,11 @@ public class Undead_B : MonoBehaviour
         else if (LookDirection == -1) { Assets.transform.localScale = new Vector3(-2, 2, 2); }
 
         IsAttacking = false;
+        IsDying = false;
 
         HealthSlider.maxValue = MaxHealth;
 
-        if (Health > 0) { IsDead = false; EnemySaveManager.IsLockOnAble = true; } else { Dead(); Behaviour = "Dead"; }
+        if (Health > 0) { IsDead = false; IsDying = false; EnemySaveManager.IsLockOnAble = true; } else { Dead(); Behaviour = "Dead"; }
     }
 
     public void Respawn()
@@ -99,6 +100,7 @@ public class Undead_B : MonoBehaviour
         UpdateUI();
         if (Health > 0)
         {
+            IsDead = false; IsDying = false;
             switch (Behaviour)
             {
                 case "Idle":
@@ -161,11 +163,7 @@ public class Undead_B : MonoBehaviour
     }
     void Death()
     {
-        if (IsDying == false)
-        {
-            IsDying = true;
             DamagerNumber.gameObject.SetActive(false);
-            EnemySaveManager.IsLockOnAble = false;
 
             EnemySaveManager.IsLockOnAble = false;
             RB.velocity = Vector2.zero;
@@ -177,7 +175,6 @@ public class Undead_B : MonoBehaviour
             HealthSlider.value = 0;
             Anim.Play("UndeadAnim_B_Death");
             StartCoroutine(DeathWait());
-        }
     }
     IEnumerator DeathWait()
     {
@@ -206,19 +203,25 @@ public class Undead_B : MonoBehaviour
 
     public void TakeLightDamage()
     {
-        Health -= 5;
-        AddDamage(5);
-        RuntimeManager.PlayOneShot(HitAudio, transform.position);
-        if (Health <= 0) { Death(); RuntimeManager.PlayOneShot(DeathAudio, transform.position); return; }
+        if (!IsDying)
+        {
+            Health -= 5;
+            AddDamage(5);
+            RuntimeManager.PlayOneShot(HitAudio, transform.position);
+            if (Health <= 0) { Death(); RuntimeManager.PlayOneShot(DeathAudio, transform.position); return; }
+        }
     }
     public void TakeHeavyDamage()
     {
-        Health -= 10;
-        AddDamage(10);
-        RuntimeManager.PlayOneShot(HitAudio, transform.position);
-        if (Health <= 0) { Death(); RuntimeManager.PlayOneShot(DeathAudio, transform.position); return; }
-        if (AttackingCoroutine != null) { StopCoroutine(AttackingCoroutine); }
-        StartCoroutine(Staggered());
+        if (!IsDying)
+        {
+            Health -= 10;
+            AddDamage(10);
+            RuntimeManager.PlayOneShot(HitAudio, transform.position);
+            if (Health <= 0) { Death(); RuntimeManager.PlayOneShot(DeathAudio, transform.position); return; }
+            if (AttackingCoroutine != null) { StopCoroutine(AttackingCoroutine); }
+            StartCoroutine(Staggered());
+        }
     }
     void AddDamage(int DMG)
     {

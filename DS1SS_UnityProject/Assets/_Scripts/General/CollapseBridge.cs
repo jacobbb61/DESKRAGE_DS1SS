@@ -53,6 +53,7 @@ public class CollapseBridge : MonoBehaviour
                 case "Broken":
                     assetsOff();
                     FloorAssets_BrokenCompletely.SetActive(true);
+                    Collider.enabled = false;
                     DoorOcludingSection.Open();
                     break;
 
@@ -69,7 +70,8 @@ public class CollapseBridge : MonoBehaviour
                     break;
                 case "Open":
                     BridgeAssets_Broken.SetActive(true);
-                    BridgeAssets_UnBroken.SetActive(false); 
+                    BridgeAssets_UnBroken.SetActive(false);
+                    Collider.enabled = false;
                     Anim.Play("BrokenIdle");
                     break;
             }

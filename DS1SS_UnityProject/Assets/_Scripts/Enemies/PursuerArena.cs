@@ -117,6 +117,9 @@ public class PursuerArena : MonoBehaviour
                     Boss.IsCoolingDown = false;
                     Boss.Health = Boss.MaxHealth;
                     Boss.Behaviour = "FirstTime";
+                    Boss.CanPhaseChanged = false;
+
+                    IsSecondPhase = false;
                     break;
                 }
             case "Idle":
@@ -140,6 +143,8 @@ public class PursuerArena : MonoBehaviour
                     Boss.Behaviour = "Idle";
                     Boss.ManualStart();
                     StopMusic();
+                    IsSecondPhase = false;
+                    Boss.CanPhaseChanged = false;
                     break;
                 }
             case "Active":
