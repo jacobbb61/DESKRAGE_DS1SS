@@ -306,6 +306,15 @@ public class Undead_C : MonoBehaviour
             Behaviour = "Hostile";
         }
     }
+    private void OnEnable()
+    {
+        if (Behaviour == "Attacking")
+        {
+            Behaviour = "Hostile";
+        }
+        IsAttacking = false;
+        SeePlayer = false;
+    }
     public void Dead()
     {
         Behaviour = "Dead";

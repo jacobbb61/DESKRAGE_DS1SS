@@ -354,7 +354,9 @@ public class OscarManager : MonoBehaviour
 
         if(CurrentState == "Null") { CurrentState = "A"; }
 
-            if (!IsTalking) { OpenDialog(); }
+            if (!IsTalking) { OpenDialog();
+            DialogTextObject.text = CurrentText;
+        }
             NextLine();
         InteractPrompt.SetActive(false);
         // StopAnyAudio();//stop audio and timer     
@@ -412,6 +414,14 @@ public class OscarManager : MonoBehaviour
 
     public void NextLine()
     {
+
+        if (InRange == false)
+        {
+            CloseDialog();
+            return;
+        }
+
+
         PC.PlayerFinishInteraction();
         if (IsTalking) { StopAnyAudio(); } //stop previous audio to play/skip to next
         IsTalking = true; //currently talking
@@ -428,6 +438,7 @@ public class OscarManager : MonoBehaviour
                 else
                 {
                     OpenDialog();
+                    DialogTextObject.text = CurrentText;
                     PlayAudio(StateAAudioClips[CurrentTextLine]);
                     CurrentTextLine = 3; // repeat the 4th line of dialog text
                     CurrentText = StateATextLines[3]; //tell dialogue text what to show
@@ -566,7 +577,6 @@ public class OscarManager : MonoBehaviour
     public void OpenDialog()
     {
         DialogObject.SetActive(true);
-        DialogTextObject.text = CurrentText; 
     }
     public void OpenQuestion()
     {
@@ -719,13 +729,21 @@ public class OscarManager : MonoBehaviour
         if (collision.CompareTag("Player")) //Also check if the player is on the same layer as this
         {
             InRange = true;
-            DialogTextObject.text = CurrentText;
-            OpenDialog();
-            PC.Interactable = Interactable;
+
             if (!IsOscarDead) //interaction animation 
             {
-                InteractPrompt.SetActive(true);
+                if (IsTalking)
+                {
+                    DialogTextObject.text = CurrentText;
+                    OpenDialog();
+                }
+                else
+                {
                 InteractPromptText.text = ": Interact";
+                InteractPrompt.SetActive(true);
+                    DialogTextObject.text = "";
+                }
+                PC.Interactable = Interactable;
                 if (IsSitting()) { Anim.Play("OscarAnim_SittingInteract"); }
                 else { Anim.Play("OscarAnim_StandingInteract"); }
             }
@@ -742,7 +760,7 @@ public class OscarManager : MonoBehaviour
             InRange = false;
             DialogObject.SetActive(false);
             CloseQuestion();
-            CloseDialog();
+           // CloseDialog();
             PC.Interactable = null;
             if (!IsOscarDead) //interaction animation 
             {

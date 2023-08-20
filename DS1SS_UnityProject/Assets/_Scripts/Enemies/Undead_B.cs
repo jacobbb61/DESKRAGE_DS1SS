@@ -108,7 +108,6 @@ public class Undead_B : MonoBehaviour
                     Anim.Play("UndeadAnim_B_Idle");
                     if (SeePlayer) { Behaviour = "Hostile"; }
 
-
                     if (RandomGruntTime >= RandomGruntTarget)
                     {
                         RandomGruntTime = 0;
@@ -124,10 +123,9 @@ public class Undead_B : MonoBehaviour
 
                     break;
                 case "Hostile":
-                    LookForPlayer();
+                    
                     Anim.Play("UndeadAnim_B_Idle");
-                    if (SeePlayer && IsInAttackRange()) { Behaviour = "Attacking"; }
-                    if (!SeePlayer) { Behaviour = "Idle";}
+                    if (IsInAttackRange()) { Behaviour = "Attacking"; }
 
 
                     if (RandomGruntTime >= RandomGruntTarget)
@@ -191,6 +189,15 @@ public class Undead_B : MonoBehaviour
         DamageTakenInTime = 0;
         DamagerNumber.text = DamageTakenInTime.ToString();
     }
+    private void OnEnable()
+    {
+        if (Behaviour == "Attacking")
+        {
+            Behaviour = "Hostile";
+        }
+        IsAttacking = false;
+        SeePlayer = false;
+    }
 
     public void Dead()
     {
@@ -209,6 +216,10 @@ public class Undead_B : MonoBehaviour
             AddDamage(5);
             RuntimeManager.PlayOneShot(HitAudio, transform.position);
             if (Health <= 0) { Death(); RuntimeManager.PlayOneShot(DeathAudio, transform.position); return; }
+            if (Behaviour == "Idle")
+            {
+                Behaviour = "Attacking";
+            }
         }
     }
     public void TakeHeavyDamage()

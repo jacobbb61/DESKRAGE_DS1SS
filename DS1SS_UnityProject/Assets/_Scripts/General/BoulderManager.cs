@@ -39,15 +39,15 @@ public class BoulderManager : MonoBehaviour
         
         RuntimeManager.PlayOneShot(Boulder0Audio);
 
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.1f);
 
         RuntimeManager.PlayOneShot(Boulder1Audio);
 
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.1f);
 
         RuntimeManager.PlayOneShot(Boulder2Audio);
 
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1.3f);
         Assets.SetActive(false);
         GetComponent<BoxCollider2D>().enabled = false;
         DM.CurrentDoorState_This = "Closed";
