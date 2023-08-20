@@ -64,6 +64,7 @@ public class CharacterSaveData
     [Header("Boss Data")]
     public string DemonArenaState;
     public string PursuerArenaState;
+    public int DemonDeaths;
 
 
     [Header("Enemy Data")]

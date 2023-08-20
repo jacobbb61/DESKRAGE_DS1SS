@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using TMPro;
+using FMODUnity;
 
 public class PlayerControllerV2 : MonoBehaviour
 {
@@ -155,6 +156,11 @@ public class PlayerControllerV2 : MonoBehaviour
     public AsylumDemonArena AsylumDemonArena;
     public PursuerArena PursuerArena;
     float saved;
+    public bool ahh = false;
+
+    public EventReference Audio_BlockHit_Ref;
+
+
     //UI
     private CanvasManager CM;
     private Slider StaminaSlider;
@@ -195,7 +201,6 @@ public class PlayerControllerV2 : MonoBehaviour
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     IEnumerator PlayerDead()
     {
-        bool ahh = false;
         FadeOutMusic = true;
         if (PM.HasDied == false) { PM.HasDied = true; }
 
@@ -211,6 +216,7 @@ public class PlayerControllerV2 : MonoBehaviour
         if(PM.DemonArena.currentState == "Active") //player died to demon
         {
             PM.DemonArena.SwitchState("Idle");
+            PM.DemonArena.DemonDeaths++;
             Oscar.DiedToDemon();
         }
 
@@ -255,6 +261,7 @@ public class PlayerControllerV2 : MonoBehaviour
         IsRolling = false;
         IsImmune = false;
         IsBlocking = false;
+        ahh = false;
 
         Anim.Play("PlayerAnim_Idle");
     }
@@ -270,6 +277,7 @@ public class PlayerControllerV2 : MonoBehaviour
                     Stamina -= Damage*1.5f;
                     StaminaCatchup();
                     Health -= Damage/4;
+                    RuntimeManager.PlayOneShot(Audio_BlockHit_Ref, transform.position);
                     if (Stamina <= 0)
                     {
                         StartCoroutine(Stagger());
@@ -386,7 +394,7 @@ public class PlayerControllerV2 : MonoBehaviour
                 case "Blocking":
                     if (Stamina >= 10) ProcessInput_B(context); IsBlocking = false;
                     break;
-                case "Rolling":
+            case "Rolling":
                     //if (CanRollOut) { if (Stamina >= 10) { ProcessInput_B(context); } }          
                     break;
                 default:
@@ -1929,7 +1937,7 @@ public class PlayerControllerV2 : MonoBehaviour
     {
         MyRb.velocity = Vector2.zero;
         Anim.Play("PlayerAnim_EstusUse");
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(0.5f);
 
         Health += EstusHealAmount;
         Health = Mathf.Clamp(Health, 0, 100);
@@ -1938,7 +1946,7 @@ public class PlayerControllerV2 : MonoBehaviour
         CancelThisCoroutine = EstusUseCoroutine;
         CanUseSecondEstus = true;
 
-        yield return new WaitForSeconds(.5f);
+        yield return new WaitForSeconds(0.5f);
 
         CancelThisCoroutine = null;
         CanRollOut = false;

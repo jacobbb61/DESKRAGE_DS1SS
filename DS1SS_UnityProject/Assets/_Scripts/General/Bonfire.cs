@@ -38,6 +38,15 @@ public class Bonfire : MonoBehaviour
 
         Anim = GameObject.FindGameObjectWithTag("Canvas").GetComponent<CanvasManager>().BonfireAnim;
         BonfirePromptUI = GameObject.FindGameObjectWithTag("Canvas").GetComponent<CanvasManager>().InteractPrompt;
+        StartCoroutine(WaitForFire());
+    }
+
+
+    IEnumerator WaitForFire()
+    {
+        yield return new WaitForSeconds(0.5f);
+        if (BonfireEverUsed) { FireAnim.Play("BonfireLightIdle"); }
+        else { FireAnim.Play("BonfireAshIdle"); }
     }
 
 
@@ -70,13 +79,19 @@ public class Bonfire : MonoBehaviour
         RuntimeManager.PlayOneShot(LitBonfire, transform.position);
 
         yield return new WaitForSeconds(1);
+        done();
+    }
+
+
+    void done()
+    {
+        Debug.LogWarning("Done");
         PC.PlayerFinishInteraction();
         BonfireRest();
         PC.Anim.Play("PlayerAnim_Idle");
         PC.CanMove = true;
         PC.CanAttack = true;
     }
-
 
     public void BonfireRest()
     {
@@ -98,10 +113,11 @@ public class Bonfire : MonoBehaviour
             }
         }
 
-        if (PM.DemonArena.currentState == "Active") //player died to demon
+        if (PM.DemonArena.currentState == "Active" || PM.DemonArena.currentState == "Idle") //player died to demon
         {
             PM.DemonArena.SwitchState("Idle");
             PM.DemonArena.ManualStart();
+
         }
         if (PM.PursuerArena.currentState == "Active") //player died to demon
         {

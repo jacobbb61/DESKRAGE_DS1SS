@@ -159,6 +159,10 @@ public class DoorManager : MonoBehaviour
          if(doorSaveManager.DoorTag_This == "N") { GetComponent<DoorOcludingSection>().ManualStart(); }
          if(doorSaveManager.DoorTag_This == "H") { GetComponent<DoorOcludingSection>().ManualStart(); }
          if(doorSaveManager.DoorTag_This == "U") { GetComponent<DoorOcludingSection>().ManualStart(); }
+
+
+
+         if (inBossFight) { doorCollider.enabled = true; }
         
     }
 

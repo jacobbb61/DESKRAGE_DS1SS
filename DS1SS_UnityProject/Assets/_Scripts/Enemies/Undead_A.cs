@@ -53,6 +53,7 @@ public class Undead_A : MonoBehaviour
 
     public GameObject Assets;
     public GameObject Eyes;
+    public GameObject ParryIndicator;
 
     public Transform GroundCheckPosA;
     public Transform GroundCheckPosB;
@@ -294,6 +295,7 @@ public class Undead_A : MonoBehaviour
     {  
         Anim.Play("UndeadAnim_A_GettingHit");
         IsAttacking = false;
+        ParryIndicator.SetActive(false);
         EnemySaveManager.CanBeParry = false;
         yield return new WaitForSeconds(StaggerTime);
         IsAttacking = false;

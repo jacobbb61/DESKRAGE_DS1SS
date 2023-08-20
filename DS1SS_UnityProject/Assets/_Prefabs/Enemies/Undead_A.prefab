@@ -146,6 +146,7 @@ MonoBehaviour:
   FootBOnSlope: 0
   Assets: {fileID: 6729981754875089220}
   Eyes: {fileID: 6729981755404304190}
+  ParryIndicator: {fileID: 4634574182244323169}
   GroundCheckPosA: {fileID: 8488795320099415708}
   GroundCheckPosB: {fileID: 2719514958336874655}
   HitPos: {fileID: 4631865631653132160}
@@ -572,6 +573,15 @@ MonoBehaviour:
       Data3: 1994861241
       Data4: -631453580
     Path: event:/Player/WalkRun
+  AttackAudioRef:
+    Guid:
+      Data1: 797456993
+      Data2: 1306249645
+      Data3: -944741445
+      Data4: -1009765589
+    Path: event:/Enemies/Hollow/attack
+  isBoss: 0
+  ParryIndicator: {fileID: 4634574182244323169}
 --- !u!212 &6729981754875089218
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -819,6 +829,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &4634574182244323169 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2104555511988726901, guid: 13831b476ae286941b41878e06f009af, type: 3}
+  m_PrefabInstance: {fileID: 6729981754267083540}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &7300559950057106275 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4050282148734421111, guid: 13831b476ae286941b41878e06f009af, type: 3}

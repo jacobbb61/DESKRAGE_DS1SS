@@ -21,45 +21,53 @@ public class EnemyAnimationEvents : MonoBehaviour
     public UnityEvent Attack8Triggered;
     public UnityEvent Attack9Triggered;
 
-    public string GroundType; 
+    public string GroundType;
     public EventReference WalkAudioRef;
     public EventReference AttackAudioRef;
+
+    public bool isBoss;
+
+    public GameObject ParryIndicator;
     public void WalkAudio()
     {
-        EventInstance walk = RuntimeManager.CreateInstance(WalkAudioRef);
-        RuntimeManager.AttachInstanceToGameObject(walk, transform, GetComponentInParent<Rigidbody2D>());
-
-        walk.setParameterByName("WalkorRun", 0);
-        
-
-        switch (GroundType)
+        if (!isBoss)
         {
-            case "Grass":
-                walk.setParameterByName("Terrain", 0);
-                break;
-            case "StoneDirty":
-                walk.setParameterByName("Terrain", 1);
-                break;
-            case "Stone":
-                walk.setParameterByName("Terrain", 2);
-                break;
-            case "Wood":
-                walk.setParameterByName("Terrain", 3);
-                break;
-            case "WetStone":
-                walk.setParameterByName("Terrain", 4);
-                break;
-            case "Snow":
-                walk.setParameterByName("Terrain", 5);
-                break;
-            default:
-                //RuntimeManager.PlayOneShot(WalkAudioRef, transform.position);
-                break;
+
+
+            EventInstance walk = RuntimeManager.CreateInstance(WalkAudioRef);
+            RuntimeManager.AttachInstanceToGameObject(walk, transform, GetComponentInParent<Rigidbody2D>());
+
+            walk.setParameterByName("WalkorRun", 0);
+
+
+            switch (GroundType)
+            {
+                case "Grass":
+                    walk.setParameterByName("Terrain", 0);
+                    break;
+                case "StoneDirty":
+                    walk.setParameterByName("Terrain", 1);
+                    break;
+                case "Stone":
+                    walk.setParameterByName("Terrain", 2);
+                    break;
+                case "Wood":
+                    walk.setParameterByName("Terrain", 3);
+                    break;
+                case "WetStone":
+                    walk.setParameterByName("Terrain", 4);
+                    break;
+                case "Snow":
+                    walk.setParameterByName("Terrain", 5);
+                    break;
+                default:
+                    //RuntimeManager.PlayOneShot(WalkAudioRef, transform.position);
+                    break;
+            }
+
+            walk.start();
+            walk.release();
         }
-
-        walk.start();
-        walk.release();
-
     }
     public void Turn()
     {
@@ -84,9 +92,12 @@ public class EnemyAnimationEvents : MonoBehaviour
     }
     public void AttackAudio()
     {
-        RuntimeManager.PlayOneShot(AttackAudioRef, transform.position);
+        if (!isBoss)
+        {
+            RuntimeManager.PlayOneShot(AttackAudioRef, transform.position);
+        }
     }
-    public void Attack2()
+    public  void Attack2()
     {
         Attack2Triggered.Invoke();
     }
@@ -117,5 +128,6 @@ public class EnemyAnimationEvents : MonoBehaviour
     public void Attack9()
     {
         Attack9Triggered.Invoke();
+        if (ParryIndicator != null) { ParryIndicator.gameObject.SetActive(!ParryIndicator.activeInHierarchy); }
     }
 }

@@ -54,10 +54,6 @@ public class AnimationAudio : MonoBehaviour
     {
         RuntimeManager.PlayOneShot(PlayerDamageAudioRef, transform.position);
     }
-    public void ParryAudio()
-    {
-        RuntimeManager.PlayOneShot(ParryAudioRef, transform.position);
-    }
     public void WalkAudio()
     {
         EventInstance walk = RuntimeManager.CreateInstance(WalkAudioRef);

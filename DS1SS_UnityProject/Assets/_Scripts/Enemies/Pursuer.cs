@@ -21,6 +21,7 @@ public class Pursuer : MonoBehaviour
     public Vector3 OriginPosition;
     public int DamageTakenInTime;
 
+    public GameObject ParryIndicator;
 
     [Header("Stats")]
     public float Health;
@@ -119,6 +120,14 @@ public class Pursuer : MonoBehaviour
     public float SPF_AttackStep;
     public Collider2D SPF_Collider;
 
+    [Header("Double Stab")] //long
+    public float DS_AttackDamage;
+    public float DS_AttackAnimationTime;
+    public float DS_AttackCoolDownTime;
+    public float DS_AttackStepBack;
+    public float DS_AttackStepForward;
+    public int DS_AttackStepSwap;
+    public Collider2D DS_Collider;
 
 
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -297,6 +306,7 @@ public class Pursuer : MonoBehaviour
     {
         Anim.Play("StaggerPlaceholder");
         IsAttacking = false;
+        ParryIndicator.SetActive(false);
         yield return new WaitForSeconds(StaggerTime);
         IsAttacking = false;
         Behaviour = "Hostile";
@@ -464,8 +474,9 @@ public class Pursuer : MonoBehaviour
                     AttackingCoroutine = StartCoroutine(CO_Attack());
                     break;
 
-                case 3: //combo 
-                    AttackingCoroutine = StartCoroutine(CO_Attack());
+                case 3: //DoubleStab
+                    AttackingCoroutine = StartCoroutine(DS_Attack());
+                    StepDistance = DS_AttackStepBack;
                     break;
 
                 case 4: //cursed impale
@@ -492,8 +503,9 @@ public class Pursuer : MonoBehaviour
                     AttackingCoroutine = StartCoroutine(CO_Attack());
                     break;
 
-                case 3: //combo 
-                    AttackingCoroutine = StartCoroutine(CO_Attack());
+                case 3: //DoubleStab
+                    AttackingCoroutine = StartCoroutine(DS_Attack());
+                    StepDistance = DS_AttackStepBack;
                     break;
 
                 case 4: //cursed impale
@@ -869,6 +881,45 @@ public class Pursuer : MonoBehaviour
         if (SPF_Collider.bounds.Contains(Player.transform.position) && HitPlayer == false)
         {
             PC.PlayerTakeDamage(SPF_AttackDamage, true, 0);
+            HitPlayer = true;
+        }
+    }
+
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////  Double stab Attack
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    IEnumerator DS_Attack()
+    {
+        Behaviour = "Attacking";
+        IsCoolingDown = false;
+        Anim.Play("ThePursuerAnim_DoubleStab");
+
+
+        yield return new WaitForSeconds(DS_AttackAnimationTime);
+
+        Behaviour = "Hostile";
+        IsCoolingDown = true;
+        Anim.Play("ThePursuerAnim_Idle");
+        StepDistance = 0;
+        HitPlayer = false;
+
+        yield return new WaitForSeconds(DS_AttackCoolDownTime);
+        IsCoolingDown = false;
+        DS_AttackStepSwap = 0;
+    }
+    public void DS_AttackStepSwitch()
+    {
+        StepDistance = DS_AttackStepForward;
+    }
+
+
+    public void DS_AttackRegister()
+    {
+
+        if (DS_Collider.bounds.Contains(Player.transform.position) && HitPlayer == false)
+        {
+            PC.PlayerTakeDamage(DS_AttackDamage, true, 0);
             HitPlayer = true;
         }
     }

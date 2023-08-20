@@ -13,14 +13,25 @@ public class EnemyLock : MonoBehaviour
 
     public GameObject[] AllEnemies;
     public List<GameObject> LayerEnemies;
-    public Transform nearestEnemyPos;
-    private Transform EnemyLockPos;
-    private GameObject EnemyLockedOnTo;
+    public Transform EnemyLockPos;
+    public GameObject EnemyLockedOnTo;
     public float EnemyDistance;
+    public float LockedOnEnemyDistance;
+    public float ClosestEnemyDistance;
+
+
+
+
+
+
+
+
+
     public PlayerControllerV2 Pc;
     public GameObject LockOnSymbol;
     public bool enemyToRight;
     public bool LockedOn;
+    public bool LockedOnToBoss;
    // private PlayerController playerController;
     public bool running;
 
@@ -36,7 +47,7 @@ public class EnemyLock : MonoBehaviour
 
             // Finds nearest enemy every frame
             LockOnSymbol.transform.position = EnemyLockPos.position;
-            if (nearestEnemyPos.transform.position.x < transform.position.x) // Detects if enemy is to right of player
+            if (EnemyLockPos.transform.position.x < transform.position.x) // Detects if enemy is to right of player
             {
                 enemyToRight = true;
             }
@@ -45,24 +56,46 @@ public class EnemyLock : MonoBehaviour
                 enemyToRight = false; // Enemy is to left
             }
 
-            
-            if (EnemyLockedOnTo.activeInHierarchy == false)
+
+
+
+            if (AsylumArena.currentState != "Active" && PursuerArena.currentState != "Active")
             {
-                LockedOn = false;
-                ToggleLockOn();
+                if (LockedOnToBoss)
+                {
+                    LockedOnToBoss = false;
+                    EnemyLockedOnTo = null;
+                    LockedOn = false;
+                    Pc.IsLockedOn = LockedOn;
+                    LockOnSymbol.SetActive(LockedOn);
+                    Debug.Log("Boss dead so Change to new lock on");
+                }
+                else
+                {
+                    if (EnemyLockedOnTo.GetComponent<EnemySaveManager>().IsLockOnAble == false)
+                    {
+                        GetNearestEnemy();
+                        Debug.Log("Change to new lock on");
+                    }
+                    else
+                    {
+
+                        LockedOnEnemyDistance = Vector3.Distance(transform.position, EnemyLockPos.position);
+                    }
+                }
+                
+
+                if (LockedOnEnemyDistance > 22)
+                {
+                    LockedOn = false;
+                    Pc.IsLockedOn = LockedOn;
+                    LockOnSymbol.SetActive(LockedOn);
+                }
             }
-
-
-
-            EnemyDistance = Vector3.Distance(transform.position, EnemyLockPos.position);
-           
-            if (EnemyDistance >= 20)
+            else
             {
-                LockedOn = false;
-                Pc.IsLockedOn = LockedOn;
-                LockOnSymbol.SetActive(LockedOn);
+                LockedOnEnemyDistance = Vector3.Distance(transform.position, EnemyLockPos.position);
             }
-
         }
 
     }
@@ -74,7 +107,7 @@ public class EnemyLock : MonoBehaviour
     {
         if (!LockedOn)
         {
-            nearestEnemyPos = GetNearestEnemy();
+            GetNearestEnemy();
         }
         else
         {
@@ -86,114 +119,86 @@ public class EnemyLock : MonoBehaviour
 
 
 
-    public Transform GetNearestEnemy()
+    public void GetNearestEnemy()
     {
-        Transform trans = null;
-
+        EnemyLockPos = null;
+        AllEnemies = null;
+        EnemyDistance = 1001;
         if (AsylumArena.currentState != "Active" && PursuerArena.currentState != "Active")
         {
+            //////////////////////////////////////////////////////////////////////
+            //////////////////////////////////////////////////////////////////////
+            //////////////////////////////////////////////////////////////////////
+            ////////////////////////////////////////////////////////////////////// get list of enemies
             AllEnemies = GameObject.FindGameObjectsWithTag("Enemy");
-            LayerEnemies = new List<GameObject>();
+            //////////////////////////////////////////////////////////////////////
+            //////////////////////////////////////////////////////////////////////
+            //////////////////////////////////////////////////////////////////////
+            //////////////////////////////////////////////////////////////////////
+            ClosestEnemyDistance = 1000;
             foreach (GameObject enemy in AllEnemies)
             {
-                if (enemy.activeInHierarchy)
-                {
-                    LayerEnemies.Add(enemy);
-                }
-            }
-
-            float Closest = 1000;
-
-            foreach (GameObject enemy in LayerEnemies)
-            {
                 EnemyDistance = Vector3.Distance(transform.position, enemy.transform.position); // Distance between attached gameobject and enemy
-                
-                if (Closest == 1000) { Closest = EnemyDistance; }
 
-                if (EnemyDistance < Closest)
+                if (EnemyDistance < 22) // in range
                 {
-                    Closest = EnemyDistance;
-                }
-                // Debug.Log(enemy.name + " is " + EnemyDistance + " far away" + "the closest is " + Closest);
-                if (EnemyDistance == Closest)
-                {
-                   // Debug.Log(enemy.name + " is " + EnemyDistance + " far away");
-
-                    if (Closest < 20) //in camera range
+                    if (EnemyDistance < ClosestEnemyDistance) // is the closest
                     {
-                        trans = enemy.transform; // Sets transform to closest enemy's transform
-                        EnemyLockPos = enemy.transform;
-                        EnemyLockedOnTo = enemy;
+                        if (enemy.GetComponent<EnemySaveManager>().IsLockOnAble == true) // can be locked onto
+                        {
+                             ClosestEnemyDistance = EnemyDistance;
+                             EnemyLockedOnTo = enemy;
+                             EnemyLockPos = enemy.transform;
 
-                        LockedOn = true;
-                        Pc.IsLockedOn = true;
-                        LockOnSymbol.SetActive(true);
-
+                             LockedOn = true;
+                             Pc.IsLockedOn = true;
+                             LockOnSymbol.SetActive(true);
+                             LockedOnToBoss = false;
+                        }
                     }
-                    else
-                    {
-                        
-                        LockedOn = false;
-                        Pc.IsLockedOn = false;
-                        LockOnSymbol.SetActive(false);
-                        return trans;
-                    }
-
                 }
             }
-
-            LayerEnemies = null;
-
-            return trans;
-        } 
+        }
 
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        
+
         else if (PursuerArena.currentState == "Active")
         {
             if (PursuerArena.Boss.IsDead == false)
             {
-                trans = PursuerLockOnPos.transform;
-
+                LockedOnToBoss = true;
                 EnemyLockPos = PursuerLockOnPos.transform;
                 EnemyLockedOnTo = PursuerLockOnPos;
 
                 LockedOn = true;
                 Pc.IsLockedOn = true;
                 LockOnSymbol.SetActive(true);
-
-                return trans;
             }
             else
             {
                 LockedOn = false;
                 Pc.IsLockedOn = false;
                 LockOnSymbol.SetActive(false);
-                return trans;
             }
         }
         else
         {
             if (AsylumArena.Boss.IsDead == false)
             {
-                trans = AsylumDemonLockOnPos.transform;
-
+                LockedOnToBoss = true;
                 EnemyLockPos = AsylumDemonLockOnPos.transform;
                 EnemyLockedOnTo = AsylumDemonLockOnPos;
 
                 LockedOn = true;
                 Pc.IsLockedOn = true;
                 LockOnSymbol.SetActive(true);
-
-                return trans;
             }
             else
             {
                 LockedOn = false;
                 Pc.IsLockedOn = false;
                 LockOnSymbol.SetActive(false);
-                return trans;
             }
-    }
+        }
     }
 }

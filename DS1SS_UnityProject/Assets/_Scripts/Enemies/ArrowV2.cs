@@ -83,4 +83,9 @@ public class ArrowV2 : MonoBehaviour
         yield return new WaitForSeconds(15);
         DestroyArrow();
     }
+
+    private void OnDisable()
+    {
+        DestroyArrow();
+    }
 }

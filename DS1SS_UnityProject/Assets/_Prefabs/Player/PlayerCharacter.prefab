@@ -280,6 +280,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HitStartPos: {fileID: 7531493749407576679}
+  ParryAudioRef:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
 --- !u!114 &5779796926974976982
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -461,7 +468,7 @@ MonoBehaviour:
   CanFollowUpAgain: 0
   CanFollowUpAgain2: 0
   CanRollOut: 0
-  EstusHealAmount: 40
+  EstusHealAmount: 30
   LightAttackTime: 0.75
   LightFollowUpAttackTime: 0.75
   LightFollowUpAttack2Time: 1
@@ -490,6 +497,14 @@ MonoBehaviour:
   CatchupSliders: {fileID: 0}
   AsylumDemonArena: {fileID: 0}
   PursuerArena: {fileID: 0}
+  ahh: 0
+  Audio_BlockHit_Ref:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
 --- !u!114 &3137671597447383463
 MonoBehaviour:
   m_ObjectHideFlags: 0

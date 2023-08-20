@@ -184,20 +184,25 @@ public class OscarManager : MonoBehaviour
 
     public void NextInteraction()
     {
-        switch (CurrentState) 
+        if (MoveInteractionOnLoad)
         {
-            case "YES":
-                CurrentState = "B"; CurrentTextLine = 0;
-                break;
-            case "B":
-                CurrentState = "G"; CurrentTextLine = 0;
-                break;
-            case "G":
-                CurrentState = "H"; CurrentTextLine = 0;
-                MoveInteractionOnLoad = false;
-                break;
-            default:
-                break;
+            switch (CurrentState)
+            {
+                case "YES":
+                    CurrentState = "B"; CurrentTextLine = 0;
+                    MoveInteractionOnLoad = false;
+                    break;
+                case "B":
+                    CurrentState = "G"; CurrentTextLine = 0;
+                    MoveInteractionOnLoad = false;
+                    break;
+                case "G":
+                    CurrentState = "H"; CurrentTextLine = 0;
+                    MoveInteractionOnLoad = false;
+                    break;
+                default:
+                    break;
+            }
         }
     }
     public void SetDeath()
@@ -288,7 +293,7 @@ public class OscarManager : MonoBehaviour
                 Anim.Play("OscarAnim_SittingIdle"); //dying broken legs
                 break;
             case "I":
-                Anim.Play("OscarAnim_SittingIdle"); //dying
+                Anim.Play("OscarAnim_StandingIdle"); //standing
                 break;
 
 
@@ -785,7 +790,7 @@ public class OscarManager : MonoBehaviour
                 return true; //Sitting
 
             case "I":
-                return true; //Sitting
+                return false; //Standing
 
             default:
                 return true; //Sitting

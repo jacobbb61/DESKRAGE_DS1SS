@@ -338,6 +338,7 @@ public class WorldSaveGameManager : MonoBehaviour
 
         //Boss date
         CurrentCharacterData.DemonArenaState = "FirstTime";
+        CurrentCharacterData.DemonDeaths = 0;
         CurrentCharacterData.PursuerArenaState = "FirstTime";
 
         //enemy data

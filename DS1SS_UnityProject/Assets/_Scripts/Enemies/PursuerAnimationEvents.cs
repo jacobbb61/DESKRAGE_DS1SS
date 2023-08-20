@@ -23,7 +23,10 @@ public class PursuerAnimationEvents : MonoBehaviour
     public UnityEvent ComboFinsherTriggered;
     public UnityEvent SlamFinsherTriggered;
     public UnityEvent SpinningFinsherTriggered;
+    public UnityEvent DoubleStabTriggered;
+    public UnityEvent DoubleStabStepSwapTriggered;
 
+    public GameObject ParryIndicator;
     public void Turn()
     {
         TurnEvent.Invoke();
@@ -42,7 +45,7 @@ public class PursuerAnimationEvents : MonoBehaviour
     }   
     public void Parryable()
     {
-        ParryEvent.Invoke();
+        ParryEvent.Invoke(); ParryIndicator.gameObject.SetActive(!ParryIndicator.activeInHierarchy);
     }
     public void HitPlayerReset()
     {
@@ -94,5 +97,13 @@ public class PursuerAnimationEvents : MonoBehaviour
     public void SpinningFinsher()
     {
         SpinningFinsherTriggered.Invoke();
+    }
+    public void DoubleStab()
+    {
+        DoubleStabTriggered.Invoke();
+    }
+    public void DoubleStabStepSwap()
+    {
+        DoubleStabStepSwapTriggered.Invoke();
     }
 }

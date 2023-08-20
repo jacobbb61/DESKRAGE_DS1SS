@@ -10,8 +10,11 @@ public class AsylumDemonArena : MonoBehaviour
     public bool arenaIsActive;
     public bool IsSecondPhase;
     public string currentState;
+    public int DemonDeaths;
 
     public GameObject BossUI;
+    public GameObject BossDoorHint;
+    public PlayerManager playerManager;
 
     public AsylumDemon Boss;
     public Animator VictoryAnim;
@@ -24,6 +27,15 @@ public class AsylumDemonArena : MonoBehaviour
     public OscarManager Oscar;
     public void ManualStart()
     {
+
+        if (DemonDeaths >= 3)
+        {
+            BossDoorHint.SetActive(true);
+
+        }
+
+
+
         SwitchState(currentState);
         doors[0].DemonArena = this;
         for (int i = 0; i < doors.Length; i++)
@@ -31,6 +43,10 @@ public class AsylumDemonArena : MonoBehaviour
             doors[i].DemonArena = this;
         }
         Boss.ManualStart();
+
+
+
+
     }
     private void OnDisable()
     {
@@ -214,6 +230,7 @@ public class AsylumDemonArena : MonoBehaviour
     {
         RuntimeManager.PlayOneShot(BossKilledAudio);
         VictoryAnim.Play("Active");
+
     }
 
     public void BossKilled() //Called by boss script
@@ -237,6 +254,12 @@ public class AsylumDemonArena : MonoBehaviour
         }
 
         Oscar.KilledDemon();
+
+
+
+        WorldSaveGameManager.Instance.Player = playerManager;
+        WorldSaveGameManager.Instance.SaveGame();
+
 
         // Audio stuffs
         // Wait(time);

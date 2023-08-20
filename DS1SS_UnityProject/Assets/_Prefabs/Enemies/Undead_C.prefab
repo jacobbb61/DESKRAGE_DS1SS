@@ -199,6 +199,14 @@ MonoBehaviour:
       Data3: 1994861241
       Data4: -631453580
     Path: event:/Player/WalkRun
+  AttackAudioRef:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  ParryIndicator: {fileID: 2315020144127576309}
 --- !u!212 &4401275330471859926
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -437,6 +445,7 @@ MonoBehaviour:
   FootBOnSlope: 0
   Assets: {fileID: 4401275330471859920}
   Eyes: {fileID: 4401275330900015274}
+  ParryIndicator: {fileID: 2315020144127576309}
   GroundCheckPosA: {fileID: 701048311528227776}
   GroundCheckPosB: {fileID: 118874632729647766}
   HitPos: {fileID: 2146336827841055255}
@@ -861,6 +870,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &2315020144127576309 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2104555511988726901, guid: 13831b476ae286941b41878e06f009af, type: 3}
+  m_PrefabInstance: {fileID: 4401275331365086336}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &4683091716959488018 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 9073019881741708434, guid: 13831b476ae286941b41878e06f009af, type: 3}

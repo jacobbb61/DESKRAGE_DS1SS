@@ -2,12 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using FMODUnity;
+using FMOD.Studio;
 
 public class PlayerAnimationEvents : MonoBehaviour
 {
     private PlayerControllerV2 PC;
     private AnimationAudio AnimationAudio;
     public Transform HitStartPos;
+    public EventReference ParryAudioRef;
     private void Start()
     {
         PC = GetComponentInParent < PlayerControllerV2 > ();
@@ -213,6 +216,8 @@ public class PlayerAnimationEvents : MonoBehaviour
                 if (hit.transform.GetComponent<EnemySaveManager>().CanBeParry == true)
                 {
                     hit.transform.GetComponent<EnemySaveManager>().ParryEvent.Invoke();
+
+                    RuntimeManager.PlayOneShot(ParryAudioRef, transform.position);
                 }
             }
             else if (hit.transform.CompareTag("Pursuer"))
@@ -221,6 +226,7 @@ public class PlayerAnimationEvents : MonoBehaviour
                 if (hit.transform.GetComponent<Pursuer>().CanBeParry == true)
                 {
                     hit.transform.GetComponent<Pursuer>().TriggerStagger();
+                    RuntimeManager.PlayOneShot(ParryAudioRef, transform.position);
                 }
 
             }

@@ -15,6 +15,7 @@ public class PursuerArena : MonoBehaviour
     public string currentState;
 
     public GameObject BossUI;
+    public PlayerManager playerManager;
 
     public Pursuer Boss;
 
@@ -211,6 +212,9 @@ public class PursuerArena : MonoBehaviour
 
 
 
+
+        WorldSaveGameManager.Instance.Player = playerManager;
+        WorldSaveGameManager.Instance.SaveGame();
         // Audio stuffs
         // Wait(time);
         // Disable boss health
