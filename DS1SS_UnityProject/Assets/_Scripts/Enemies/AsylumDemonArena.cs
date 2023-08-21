@@ -20,6 +20,7 @@ public class AsylumDemonArena : MonoBehaviour
     public Animator VictoryAnim;
 
     public EventReference BossKilledAudio;
+    public EventReference BossDeathAudio;
     public EventReference Theme_FirstPhase;
     public EventReference Theme_SecondPhase;
     public FMOD.Studio.EventInstance FMODinstance;
@@ -228,7 +229,8 @@ public class AsylumDemonArena : MonoBehaviour
 
     public void Victory()
     {
-        RuntimeManager.PlayOneShot(BossKilledAudio);
+        RuntimeManager.PlayOneShot(BossKilledAudio, transform.position);
+        RuntimeManager.PlayOneShot(BossDeathAudio, transform.position);
         VictoryAnim.Play("Active");
 
     }

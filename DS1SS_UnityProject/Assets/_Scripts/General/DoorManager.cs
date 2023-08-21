@@ -18,6 +18,9 @@ public class DoorManager : MonoBehaviour
     public AsylumDemonArena DemonArena;
     public PursuerArena PursuerArena;
     public bool isPursuerDoor;
+    public int DoorMaterial;
+
+
 
     public EventReference FogEnterAudioRef;
     public string CurrentDoorState_This;
@@ -58,37 +61,72 @@ public class DoorManager : MonoBehaviour
 
                 case "Open":
                     doorCollider.enabled = false;
-                    if (Anim.gameObject.activeInHierarchy) { Anim.Play("PerpendicularDoorOpenIdle"); }
+                    if (Anim.gameObject.activeInHierarchy) {PlayOpen(); }
                     ParticleSystem.Stop();
                     break;
                 case "Closed":
                     doorCollider.enabled = true;
-                    if (Anim.gameObject.activeInHierarchy) { Anim.Play("PerpendicularDoorClosedIdle"); }
+                    if (Anim.gameObject.activeInHierarchy) { PlayClosed(); }
                     ParticleSystem.Stop();
                     break;
                 case "Locked":
                     doorCollider.enabled = true;
-                    Anim.Play("PerpendicularDoorClosedIdle"); 
+                    PlayClosed(); 
                     ParticleSystem.Stop();
                     break;
                 case "OneSided":
                     doorCollider.enabled = true;
-                    if (Anim.gameObject.activeInHierarchy) { Anim.Play("PerpendicularDoorClosedIdle"); }
+                    if (Anim.gameObject.activeInHierarchy) { PlayClosed(); }
                     ParticleSystem.Stop();
                     break;
                 case "Fog":
                     doorCollider.enabled = true;
-                    if (Anim.gameObject.activeInHierarchy) { Anim.Play("PerpendicularDoorClosedIdle"); }
+                    if (Anim.gameObject.activeInHierarchy) { PlayClosed(); }
                     ParticleSystem.Play();
                     break;
                 case "FogEnter":
                     doorCollider.enabled = true;
-                    if (Anim.gameObject.activeInHierarchy) { Anim.Play("PerpendicularDoorClosedIdle"); }
+                    if (Anim.gameObject.activeInHierarchy) { PlayClosed(); }
                     ParticleSystem.Play();
                     break;
             }
         }
     }
+
+
+    public void PlayClosed()
+    {
+        switch (DoorMaterial)
+        {
+            case 0:
+                Anim.Play("PerpendicularDoorClosedIdle");
+                break;
+            case 1:
+                Anim.Play("PerpendicularDoorClosedIdle_Wood");
+                break;
+            case 2:
+                Anim.Play("PerpendicularDoorClosedIdle_Wood");
+                break;
+        }
+    }
+    public void PlayOpen()
+    {
+        switch (DoorMaterial)
+        {
+            case 0:
+                Anim.Play("PerpendicularDoorOpenIdle");
+                break;
+            case 1:
+                Anim.Play("PerpendicularDoorOpenIdle_Wood");
+                break;
+            case 2:
+                Anim.Play("PerpendicularDoorOpenIdle_Iron");
+                break;
+        }
+    }
+
+
+
 
     private void OnEnable()
     {
@@ -104,7 +142,7 @@ public class DoorManager : MonoBehaviour
             {
                 case "Open":
                     doorCollider.enabled = false;
-                    if (Anim.gameObject.activeInHierarchy) { Anim.Play("PerpendicularDoorOpenIdle"); }
+                    if (Anim.gameObject.activeInHierarchy) {PlayOpen(); }
                    // ParticleSystem.Stop();
                     ParticleSystem.Stop();
                     if (doorSaveManager.DoorTag_This == "N") { GetComponent<DoorOcludingSection>().Open(); }
@@ -113,28 +151,28 @@ public class DoorManager : MonoBehaviour
                     break;
                 case "Closed":
                     doorCollider.enabled = true;
-                    if (Anim.gameObject.activeInHierarchy) { Anim.Play("PerpendicularDoorClosedIdle"); }
+                    if (Anim.gameObject.activeInHierarchy) { PlayClosed(); }
                     ParticleSystem.Stop();
                     break;
                 case "Locked":
                     doorCollider.enabled = true;
-                    if (Anim.gameObject.activeInHierarchy) { Anim.Play("PerpendicularDoorClosedIdle"); }
+                    if (Anim.gameObject.activeInHierarchy) { PlayClosed(); }
                     ParticleSystem.Stop();
                     break;
                 case "OneSided":
                     doorCollider.enabled = true;
-                    if (Anim.gameObject.activeInHierarchy) { Anim.Play("PerpendicularDoorClosedIdle"); }
+                    if (Anim.gameObject.activeInHierarchy) { PlayClosed(); }
                     ParticleSystem.Stop();
                     break;
                 case "Fog":
                     doorCollider.enabled = true;
-                    if (Anim.gameObject.activeInHierarchy) { Anim.Play("PerpendicularDoorClosedIdle"); }
+                    if (Anim.gameObject.activeInHierarchy) { PlayClosed(); }
                     //ParticleSystem.Play();
                     ParticleSystem.Play();
                     break;
                 case "FogEnter":
                     doorCollider.enabled = true;
-                    if (Anim.gameObject.activeInHierarchy) { Anim.Play("PerpendicularDoorClosedIdle"); }
+                    if (Anim.gameObject.activeInHierarchy) { PlayClosed(); }
                     ParticleSystem.Play();
                     break;
             }
@@ -242,7 +280,7 @@ public class DoorManager : MonoBehaviour
                                     {
                                         doorUI.SetActive(true);
                                         doorUIText.text = "Door unlocked";
-                                        Anim.Play("PerpendicularDoorOpenIdle");
+                                       PlayOpen();
                                         //Wait();
                                         doorCollider.enabled = false;
                                         CurrentDoorState_This = "Open";
@@ -261,7 +299,7 @@ public class DoorManager : MonoBehaviour
                                     {
                                         doorUI.SetActive(true);
                                         doorUIText.text = "Door unlocked";
-                                        Anim.Play("PerpendicularDoorOpenIdle");
+                                       PlayOpen();
                                         //Wait();
                                         doorCollider.enabled = false;
                                         CurrentDoorState_This = "Open";
@@ -280,7 +318,7 @@ public class DoorManager : MonoBehaviour
                                     {
                                         doorUI.SetActive(true);
                                         doorUIText.text = "Door unlocked";
-                                        Anim.Play("PerpendicularDoorOpenIdle");
+                                       PlayOpen();
                                         //Wait();
                                         doorCollider.enabled = false;
                                         CurrentDoorState_This = "Open";
@@ -320,7 +358,7 @@ public class DoorManager : MonoBehaviour
                             WorldSaveGameManager.Instance.Player = playerManager;
                             WorldSaveGameManager.Instance.SaveGame();
                             PursuerArena.EnterArena(); playerManager.gameObject.transform.position = PursuerArena.transform.position;
-                            Anim.Play("PerpendicularDoorClosedIdle");
+                            PlayClosed();
                         }
                         doorCollider.enabled = false;
                         break;
@@ -330,7 +368,7 @@ public class DoorManager : MonoBehaviour
                         Debug.Log("C");
                         doorCollider.enabled = false;
                         CurrentDoorState_This = "Open";
-                        Anim.Play("PerpendicularDoorOpenIdle"); 
+                       PlayOpen(); 
 
                         if (doorSaveManager.DoorTag_This == "E" && DemonArena.currentState == "FirstTime") 
                         {
@@ -490,7 +528,7 @@ public class DoorManager : MonoBehaviour
     private IEnumerator Wait(float waitSeconds)
     {
         yield return new WaitForSeconds(waitSeconds);
-        Anim.Play("PerpendicularDoorClosedIdle");
+        PlayClosed();
     }
 
     public void SwitchDoorState(string state) //Used by boss arena manager

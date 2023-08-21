@@ -468,7 +468,7 @@ MonoBehaviour:
   CanFollowUpAgain: 0
   CanFollowUpAgain2: 0
   CanRollOut: 0
-  EstusHealAmount: 30
+  EstusHealAmount: 40
   LightAttackTime: 0.75
   LightFollowUpAttackTime: 0.75
   LightFollowUpAttack2Time: 1
@@ -555,12 +555,16 @@ MonoBehaviour:
   PursuerLockOnPos: {fileID: 0}
   AllEnemies: []
   LayerEnemies: []
-  nearestEnemyPos: {fileID: 0}
+  EnemyLockPos: {fileID: 0}
+  EnemyLockedOnTo: {fileID: 0}
   EnemyDistance: 0
+  LockedOnEnemyDistance: 0
+  ClosestEnemyDistance: 0
   Pc: {fileID: 6595229263072959817}
   LockOnSymbol: {fileID: 0}
   enemyToRight: 0
   LockedOn: 0
+  LockedOnToBoss: 0
   running: 0
 --- !u!114 &1065959576863444070
 MonoBehaviour:

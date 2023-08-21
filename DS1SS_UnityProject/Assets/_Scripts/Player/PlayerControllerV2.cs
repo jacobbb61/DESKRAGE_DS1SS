@@ -1998,21 +1998,21 @@ public class PlayerControllerV2 : MonoBehaviour
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public void GiveEstus(int num)
     {
-        if (num == 6)
+        if (num == 4)
         {
-            if (MaxEstus == 3) { MaxEstus = 6; CurrentEstus += 6; Oscar.EstusUI(3);  }
-            else if (MaxEstus == 0) { MaxEstus = 6; CurrentEstus += 6; Oscar.EstusUI(6); }
+            if (MaxEstus == 2) { MaxEstus = 4; CurrentEstus += 4; Oscar.EstusUI(2);  }
+            else if (MaxEstus == 0) { MaxEstus = 4; CurrentEstus += 4; Oscar.EstusUI(4); }
         }
-        if (num == 3)
+        if (num == 2)
         {
-           if (MaxEstus == 3) { MaxEstus = 6; CurrentEstus += 3; Oscar.EstusUI(3); }
-           else if (MaxEstus == 0) { MaxEstus = 3; CurrentEstus += 3; Oscar.EstusUI(3); }
+           if (MaxEstus == 2) { MaxEstus = 4; CurrentEstus += 2; Oscar.EstusUI(2); }
+           else if (MaxEstus == 0) { MaxEstus = 2; CurrentEstus += 2; Oscar.EstusUI(2); }
         }
 
         if (CurrentEstus > MaxEstus)
         {
-            if (MaxEstus == 3) { CurrentEstus = 3; }
-            if (MaxEstus == 6) { CurrentEstus = 6; }
+            if (MaxEstus == 2) { CurrentEstus = 2; }
+            if (MaxEstus == 4) { CurrentEstus = 4; }
         }
 
         // Debug.Log("Max was " + MaxEstus + "is now " + num); 

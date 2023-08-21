@@ -464,7 +464,7 @@ public class OscarManager : MonoBehaviour
                     IsTalking = false; //done talking
                     CloseDialog();
                 } //repeats
-                if (CurrentTextLine == 8) { GiveEstus(3); }
+                if (CurrentTextLine == 8) { GiveEstus(2); }
                 if (CurrentTextLine == 9 && IsTalking) { GiveKey(); MoveInteractionOnLoad = true; }
                 break;
             case "NO":
@@ -502,7 +502,7 @@ public class OscarManager : MonoBehaviour
                     CurrentTextLine++;
                     MoveInteractionOnLoad = true;
                 } else { CloseDialog(); } //dies
-                if (CurrentTextLine == 2) { GiveEstus(6); IsOscarDead = true; }
+                if (CurrentTextLine == 2) { GiveEstus(4); IsOscarDead = true; }
                 break;
             case "DF":
                 if (CurrentTextLine < 1)
@@ -537,7 +537,7 @@ public class OscarManager : MonoBehaviour
                     CurrentText = StateHTextLines[CurrentTextLine]; //tell dialogue text what to show
                     CurrentTextLine++;
                     MoveInteractionOnLoad = true;
-                } else { CloseDialog(); IsOscarDead = true; AchievementsGameManager.Instance.UnlockedAchievement(4); GiveEstus(3); } //dies
+                } else { CloseDialog(); IsOscarDead = true; AchievementsGameManager.Instance.UnlockedAchievement(4); GiveEstus(2); } //dies
                 break;
             case "I":
                 if (CurrentTextLine < 3)

@@ -191,7 +191,7 @@ public class PursuerArena : MonoBehaviour
 
     public void Victory()
     {
-        RuntimeManager.PlayOneShot(BossKilledAudio);
+        RuntimeManager.PlayOneShot(BossKilledAudio, transform.position);
         VictoryAnim.Play("Active");
     }
     public void BossKilled() //Called by boss script
