@@ -20,6 +20,9 @@ public class PursuerArena : MonoBehaviour
     public Pursuer Boss;
 
 
+    public GameObject BossCam;
+
+
     public Animator VictoryAnim;
 
     public EventReference BossKilledAudio;
@@ -59,6 +62,8 @@ public class PursuerArena : MonoBehaviour
         doorU.inBossFight = true;
         doorT.ManualStart();
         doorU.ManualStart();
+
+        BossCam.SetActive(true);
 
         if (currentState == "FirstTime")
         {
@@ -146,6 +151,7 @@ public class PursuerArena : MonoBehaviour
                     StopMusic();
                     IsSecondPhase = false;
                     Boss.CanPhaseChanged = false;
+                    BossCam.SetActive(false);
                     break;
                 }
             case "Active":
@@ -200,6 +206,7 @@ public class PursuerArena : MonoBehaviour
         arenaIsActive = false;
 
 
+        BossCam.SetActive(false);
 
         doorT.SwitchDoorState("Locked");
         doorT.ManualStart();

@@ -25,6 +25,8 @@ public class AsylumDemonArena : MonoBehaviour
     public EventReference Theme_SecondPhase;
     public FMOD.Studio.EventInstance FMODinstance;
 
+    public GameObject BossCam;
+
     public OscarManager Oscar;
     public void ManualStart()
     {
@@ -70,6 +72,9 @@ public class AsylumDemonArena : MonoBehaviour
 
     public void EnterArena() //called from door manager
     {
+
+        BossCam.SetActive(true);
+
             for (int i = 0; i < doors.Length; i++)
             {
                 doors[i].inBossFight = true;
@@ -177,6 +182,7 @@ public class AsylumDemonArena : MonoBehaviour
                     Boss.Behaviour = "Idle";
                     Boss.ManualStart();
                     StopMusic();
+                    BossCam.SetActive(false);
                     break;
                 }
             case "Active":
@@ -257,6 +263,7 @@ public class AsylumDemonArena : MonoBehaviour
 
         Oscar.KilledDemon();
 
+        BossCam.SetActive(false);
 
 
         WorldSaveGameManager.Instance.Player = playerManager;

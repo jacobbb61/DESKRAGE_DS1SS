@@ -10,6 +10,7 @@ using FMODUnity;
 public class PlayerControllerV2 : MonoBehaviour
 {
 
+    public GameObject BossCam;
     [Header("Player Stats")]
     public string State;
     public float Health;
@@ -160,6 +161,8 @@ public class PlayerControllerV2 : MonoBehaviour
 
     public EventReference Audio_BlockHit_Ref;
 
+    public GameObject LowHealthObj;
+
 
     //UI
     private CanvasManager CM;
@@ -193,7 +196,12 @@ public class PlayerControllerV2 : MonoBehaviour
             UpdateUI();
         }
          if (StaminaRegenCoroutine != null) { StopCoroutine(StaminaRegenCoroutine);} StaminaRegenCoroutine = StartCoroutine(StaminaRegenPause());
-        
+        if(Health<= 20) { LowHealthObj.SetActive(true); } else
+        {
+            LowHealthObj.SetActive(false);
+        }
+
+        BossCam.SetActive(false);
     }
 
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -249,8 +257,9 @@ public class PlayerControllerV2 : MonoBehaviour
                     break;
             }
             ahh = true;
-        }
-      
+        }        
+        BossCam.SetActive(false);
+
         yield return new WaitForSeconds(1f);
 
         healthCatchupSlider.value = 100;
@@ -997,6 +1006,11 @@ public class PlayerControllerV2 : MonoBehaviour
     public void Update()
     {
         if (Health <= 0) { StartCoroutine(PlayerDead()); }
+        if (Health <= 20) { LowHealthObj.SetActive(true); }
+        else
+        {
+            LowHealthObj.SetActive(false);
+        }
         GroundCheck();
         UpdateUI();
         if (IsStaminaRegen) { StaminaRegen(); }
