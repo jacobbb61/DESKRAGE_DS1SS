@@ -127,6 +127,7 @@ public class Undead_C : MonoBehaviour
 
     public void Respawn()
     {
+        EnemySaveManager.IsLockOnAble = true;
         DamagerNumber.gameObject.SetActive(false);
         SeePlayer = false;
         IsDead = false;
@@ -152,6 +153,7 @@ public class Undead_C : MonoBehaviour
             switch (Behaviour)
             {
                 case "Idle":
+                    ParryIndicator.SetActive(false);
                     LookForPlayer();
                     Anim.Play("UndeadAnim_C_Idle");
                     if (SeePlayer) { Behaviour = "Hostile"; }
@@ -173,6 +175,7 @@ public class Undead_C : MonoBehaviour
 
                     break;
                 case "Hostile":
+                    ParryIndicator.SetActive(false);
                     CombatTime += Time.deltaTime;
                     LookForPlayer();                   
                     if (IsInRange()) { Behaviour = "Attacking"; }
@@ -201,24 +204,29 @@ public class Undead_C : MonoBehaviour
                     }
                     break;
                 case "Staggered":
+                    ParryIndicator.SetActive(false);
                     if (AttackingCoroutine != null) { StopCoroutine(AttackingCoroutine); }
                     //StartCoroutine(Staggered());
                     IsAttacking = false;
                     RB.velocity = Vector2.zero;
                     break;
                 case "Parried":
+                    ParryIndicator.SetActive(false);
                     break;
                 case "BackStep":
                     break;
                 case "Returning":
+                    ParryIndicator.SetActive(false);
                     LookForPlayer();
                     if (SeePlayer) { Behaviour = "Hostile"; }
                     if (!IsAtOrigin) { FaceOrigin(); WalkToOrigin(); GroundCheck(); }
                     else { Behaviour = "Idle"; }
                     break;
                 case "Dead":
+                    ParryIndicator.SetActive(false);
                     Dead();
                     RB.velocity = Vector2.zero;
+                    ParryIndicator.SetActive(false);
                     break;
                 case "Dying":
                     RB.velocity = Vector2.zero;
@@ -347,6 +355,7 @@ public class Undead_C : MonoBehaviour
     }
     public void TriggerStagger()
     {
+        ParryIndicator.SetActive(false);
         Behaviour = "Parried";
         if (AttackingCoroutine != null) { StopCoroutine(AttackingCoroutine); }
         StartCoroutine(Staggered());

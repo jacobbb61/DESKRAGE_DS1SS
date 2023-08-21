@@ -34,7 +34,7 @@ public class Undead_B : MonoBehaviour
 
 
     private Animator Anim;
-    private EnemySaveManager EnemySaveManager;
+    public EnemySaveManager EnemySaveManager;
     private GameObject Player;
     private Rigidbody2D RB;
     private Coroutine AttackingCoroutine;
@@ -83,6 +83,7 @@ public class Undead_B : MonoBehaviour
 
     public void Respawn()
     {
+        EnemySaveManager.IsLockOnAble = true;
         DamagerNumber.gameObject.SetActive(false);
         SeePlayer = false;
         IsDead = false;

@@ -201,11 +201,12 @@ MonoBehaviour:
     Path: event:/Player/WalkRun
   AttackAudioRef:
     Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
+      Data1: 797456993
+      Data2: 1306249645
+      Data3: -944741445
+      Data4: -1009765589
+    Path: event:/Enemies/Hollow/attack
+  isBoss: 0
   ParryIndicator: {fileID: 2315020144127576309}
 --- !u!212 &4401275330471859926
 SpriteRenderer:
@@ -247,7 +248,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 24380851
   m_SortingLayer: 2
-  m_SortingOrder: 5
+  m_SortingOrder: 7
   m_Sprite: {fileID: -2048186452, guid: e7b05f795e5a4b247be1ffccb2c3af6d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

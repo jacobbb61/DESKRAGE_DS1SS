@@ -79,13 +79,12 @@ public class EnemyLock : MonoBehaviour
                     }
                     else
                     {
-
                         LockedOnEnemyDistance = Vector3.Distance(transform.position, EnemyLockPos.position);
                     }
                 }
                 
 
-                if (LockedOnEnemyDistance > 22)
+                if (LockedOnEnemyDistance > 15)
                 {
                     LockedOn = false;
                     Pc.IsLockedOn = LockedOn;
@@ -140,7 +139,7 @@ public class EnemyLock : MonoBehaviour
             {
                 EnemyDistance = Vector3.Distance(transform.position, enemy.transform.position); // Distance between attached gameobject and enemy
 
-                if (EnemyDistance < 22) // in range
+                if (EnemyDistance < 15) // in range
                 {
                     if (EnemyDistance < ClosestEnemyDistance) // is the closest
                     {

@@ -182,6 +182,15 @@ MonoBehaviour:
       Data3: 0
       Data4: 0
     Path: 
+  AttackAudioRef:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  isBoss: 0
+  ParryIndicator: {fileID: 0}
 --- !u!212 &6565168764558948638
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -347,9 +356,9 @@ MonoBehaviour:
   MaxHealth: 35
   Behaviour: 
   LookDirection: -1
-  ForwardDetectionRange: 20
-  BackwardsDetectionRange: 20
-  AttackTriggerRange: 20
+  ForwardDetectionRange: 15
+  BackwardsDetectionRange: 15
+  AttackTriggerRange: 15
   TimeBeforeAttack: 0
   AttackAnimationTime: 2.5
   AttackCoolDownTime: 1
@@ -360,6 +369,7 @@ MonoBehaviour:
   IsDead: 0
   IsDying: 0
   IsAtOrigin: 0
+  EnemySaveManager: {fileID: 6565168765680694679}
   Assets: {fileID: 6565168764558948632}
   Arrow: {fileID: 8144088339725920745, guid: c86c3dd48efe99f42a882701f0307de5, type: 3}
   Eyes: {fileID: 6565168763947030370}
