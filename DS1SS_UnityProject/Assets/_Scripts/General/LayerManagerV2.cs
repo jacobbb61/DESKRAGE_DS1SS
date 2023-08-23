@@ -19,14 +19,10 @@ public class LayerManagerV2 : MonoBehaviour
     public GameObject Bonfire_2;
     public GameObject Bonfire_3;
 
-    private PlayerControllerV2 PC;
+    public PlayerControllerV2 PC;
 
 
 
-    private void Start()
-    {
-        PC = Player.GetComponent<PlayerControllerV2>();
-    }
 
     public void ChangeLayer(int layer)
     {
@@ -107,20 +103,6 @@ public class LayerManagerV2 : MonoBehaviour
                 CurrentLayerNumber = 2;
                 break;
         }
-
-        /*
-        GameObject [] DoorSaveManagerList = null;
-        DoorSaveManagerList = GameObject.FindGameObjectsWithTag("Door");
-        {
-            foreach (GameObject Door in DoorSaveManagerList)
-            {
-                //Pass each door data,from game to file
-                if (Door.GetComponent<DoorSaveManager>().DoorTag_This != "O" || Door.GetComponent<DoorSaveManager>().DoorTag_This != "P")
-                {
-                    Door.GetComponent<DoorManager>().ManualStart();
-                }
-            }
-        }*/
 
     }
 

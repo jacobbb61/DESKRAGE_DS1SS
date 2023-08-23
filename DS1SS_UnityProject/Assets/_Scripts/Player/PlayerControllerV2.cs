@@ -30,6 +30,7 @@ public class PlayerControllerV2 : MonoBehaviour
 
     [Header("movement states")]
     public bool IsGrounded;
+    public bool IsGroundedOnSlope;
     public bool IsStaminaRegen;
     public bool CanMove;
     public bool IsRolling;
@@ -45,6 +46,9 @@ public class PlayerControllerV2 : MonoBehaviour
     public float VerticalSpeed;
     public bool FootAOnSlope;
     public bool FootBOnSlope;
+
+    public bool GoingToRollUpSlope;
+    public bool GoingToRollDownSlope;
 
     [Header("Movement Data to edit")]
     public float WalkSpeed;
@@ -71,12 +75,14 @@ public class PlayerControllerV2 : MonoBehaviour
     public float TimeFalling;
 
 
+
     [Header("Combat states")]
     public bool IsImmune;
     public bool IsLockedOn;
     public bool IsBlocking;
     private bool IsHealing;
-    private bool IsPlunging;
+    public bool IsPlunging;
+    public bool TriggerIsPlunging;
     public bool CanPlunge;
     public bool CanUseSecondEstus;
     public bool CanAttack;
@@ -260,7 +266,7 @@ public class PlayerControllerV2 : MonoBehaviour
         }        
         BossCam.SetActive(false);
 
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(3f);
 
         healthCatchupSlider.value = 100;
         CanMove = true;
@@ -272,7 +278,9 @@ public class PlayerControllerV2 : MonoBehaviour
         IsBlocking = false;
         ahh = false;
 
-        Anim.Play("PlayerAnim_Idle");
+        State = "Idle";
+
+       // Anim.Play("PlayerAnim_Idle");
     }
 
     public void PlayerTakeDamage(float Damage, bool staggger, int KnockDownDirection) // -1 to left, 1 to right, 0 is the direction the player is on relative to the enemy
@@ -346,7 +354,7 @@ public class PlayerControllerV2 : MonoBehaviour
     //////////////////////////////////////////////////////////////
     public void A(InputAction.CallbackContext context)
     {
-        if (!IsJumping && IsGrounded)
+        if (!IsJumping && IsGrounded || IsGroundedOnSlope)
         {
             switch (State)
             {
@@ -602,19 +610,19 @@ public class PlayerControllerV2 : MonoBehaviour
         MovementInput = context.ReadValue<Vector2>();
         if (MovementInput.x > 0.1f && MovementInput.x <= 0.75f)
         {
-            if (IsGrounded && IsMovingInput) State = "Walking";
+            if (IsGrounded || IsGroundedOnSlope && IsMovingInput) State = "Walking";
         }
         else if (MovementInput.x < -0.1f && MovementInput.x >= -0.75f)
         {
-            if (IsGrounded && IsMovingInput) State = "Walking";
+            if (IsGrounded || IsGroundedOnSlope && IsMovingInput) State = "Walking";
         }
         else if (MovementInput.x > 0.75f && MovementInput.x <= 1f)
         {
-            if (IsGrounded && IsMovingInput) State = "Running";
+            if (IsGrounded || IsGroundedOnSlope && IsMovingInput) State = "Running";
         }
         else if (MovementInput.x < -0.75f && MovementInput.x >= -1f)
         {
-            if (IsGrounded && IsMovingInput) State = "Running";
+            if (IsGrounded || IsGroundedOnSlope && IsMovingInput) State = "Running";
         }
     }
 
@@ -1005,7 +1013,12 @@ public class PlayerControllerV2 : MonoBehaviour
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public void Update()
     {
-        if (Health <= 0) { StartCoroutine(PlayerDead()); }
+
+        //
+        transform.position = new Vector3(transform.position.x, transform.position.y, 0);
+        //
+
+        if (Health <= 0 && State!="Dead") { StartCoroutine(PlayerDead()); }
         if (Health <= 20) { LowHealthObj.SetActive(true); }
         else
         {
@@ -1101,9 +1114,13 @@ public class PlayerControllerV2 : MonoBehaviour
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     void Idle()
     {
+        TriggerIsPlunging = false;
+
         IsBlocking = false;
         IsRolling = false;
         IsImmune = false;
+        GoingToRollUpSlope = false;
+        GoingToRollDownSlope = false;
 
 
         if (StaminaRegenCoroutine != null) { StopCoroutine(StaminaRegenCoroutine); StaminaRegenCoroutine = StartCoroutine(StaminaRegenPause()); }
@@ -1118,10 +1135,10 @@ public class PlayerControllerV2 : MonoBehaviour
 
     void Walking()
     {
+        TriggerIsPlunging = false;
         IsBlocking = false;
         IsRolling = false;
         IsImmune = false;
-
 
         if (StaminaRegenCoroutine != null) { StopCoroutine(StaminaRegenCoroutine); StaminaRegenCoroutine = StartCoroutine(StaminaRegenPause()); }
         if (Stamina != MaxStamina && IsStaminaRegen == false) { StaminaRegenCoroutine = StartCoroutine(StaminaRegenPause()); }
@@ -1173,6 +1190,7 @@ public class PlayerControllerV2 : MonoBehaviour
 
     void Running()
     {
+        TriggerIsPlunging = false;
         IsBlocking = false;
         IsRolling = false;
         IsImmune = false;
@@ -1201,7 +1219,7 @@ public class PlayerControllerV2 : MonoBehaviour
     void Rolling()
     {
 
-        if (IsGrounded)
+        if (IsGrounded || IsGroundedOnSlope)
         {
             MyRb.velocity = new Vector2(PlayerDirection * RollSpeed, -VerticalSpeed);
         }
@@ -1213,7 +1231,7 @@ public class PlayerControllerV2 : MonoBehaviour
     }
     void BackStepping()
     {
-        if (IsGrounded) { MyRb.velocity = new Vector2(-PlayerDirection * BackstepSpeed, -VerticalSpeed); }
+        if (IsGrounded || IsGroundedOnSlope) { MyRb.velocity = new Vector2(-PlayerDirection * BackstepSpeed, 0); }
         else { MyRb.velocity = new Vector2(-PlayerDirection * BackstepSpeed, -5); }
         
     }
@@ -1223,6 +1241,7 @@ public class PlayerControllerV2 : MonoBehaviour
         IsRolling = false;
         IsJumping = true;
         IsGrounded = false;
+        IsGroundedOnSlope = false;
         FootAOnSlope = false;
         FootBOnSlope = false;
         IsStaminaRegen = false;
@@ -1257,17 +1276,31 @@ public class PlayerControllerV2 : MonoBehaviour
             IsPlunging = false;
             TimeFalling = 0;
         }
+        if (IsGroundedOnSlope && !IsJumping && !IsLanding)
+        {
+            StartCoroutine(Land());
+            IsLanding = true;
+            IsPlunging = false;
+            TimeFalling = 0;
+        }
         if (!IsGrounded && !IsLanding)
         {
             if (IsPlunging)
             {
                 Anim.Play("PlayerAnim_Plunge");
-                PlungeAttackRegester();
+
             }
             else
             {
                 Anim.Play("PlayerAnim_JumpIdle");
             }
+
+            if (IsPlunging)
+            {
+                PlungeAttackRegester();
+            }
+
+
         }
 
 
@@ -1324,94 +1357,96 @@ public class PlayerControllerV2 : MonoBehaviour
 
     void GroundCheck()
     {
-        if (!IsJumping && ShouldCheckGrounded)
-        {
-            
-            int layerMask = ~(LayerMask.GetMask("Enemy"));
-            RaycastHit2D hitA = Physics2D.Raycast(GroundCheckPosA.position, Vector2.down, .65f, layerMask);
-            RaycastHit2D hitB = Physics2D.Raycast(GroundCheckPosB.position, Vector2.down, .65f, layerMask);
+        if (State != "Dead") {
+            if (!IsJumping && ShouldCheckGrounded)
+            {
 
-            if (hitA.collider != null)
-            {
-                if (hitA.transform.CompareTag("Ground") || hitA.transform.CompareTag("Wall"))
-                {
-                    IsGrounded = true;
-                    FootAOnSlope = false;
-                }
-                else if (hitA.transform.CompareTag("Slope"))
-                {
-                    IsGrounded = true;
-                    FootAOnSlope = true;
-                }
-                else
-                {
-                    IsGrounded = false;
-                    FootAOnSlope = false;
-                }
-                
-            }
-            if (hitB.collider != null)
-            {
-                if (hitB.transform.CompareTag("Ground") || hitB.transform.CompareTag("Wall"))
-                {
-                    IsGrounded = true;
-                    FootBOnSlope = false;
-                }
-                else if (hitB.transform.CompareTag("Slope"))
-                {
-                    IsGrounded = true;
-                    FootBOnSlope = true;
-                }
-                else
-                {
-                    IsGrounded = false;
-                    FootBOnSlope = false;
-                }
-            }
-            if (hitA.collider == null && hitB.collider == null)
-            {
-                IsGrounded = false;
-            }
-            else
-            {
+                int layerMask = ~(LayerMask.GetMask("Enemy"));
+                RaycastHit2D hitA = Physics2D.Raycast(GroundCheckPosA.position, Vector2.down, .65f, layerMask);
+                RaycastHit2D hitB = Physics2D.Raycast(GroundCheckPosB.position, Vector2.down, .65f, layerMask);
+
                 if (hitA.collider != null)
                 {
-                    if (hitA.transform.CompareTag("Ground") || hitA.transform.CompareTag("Slope"))
+                    if (hitA.transform.CompareTag("Ground") || hitA.transform.CompareTag("Wall"))
                     {
-                        GroundType = hitA.collider.GetComponent<ObjectType_AudioRef>().ObjectType;
+                        IsGrounded = true;
+                        FootAOnSlope = false;
+                    }
+                    else if (hitA.transform.CompareTag("Slope"))
+                    {
+                        IsGrounded = true;
+                        IsGroundedOnSlope = true;
+                        FootAOnSlope = true;
+                    }
+                    else
+                    {
+                        IsGrounded = false;
+                        FootAOnSlope = false;
+                    }
+
+                }
+                if (hitB.collider != null)
+                {
+                    if (hitB.transform.CompareTag("Ground") || hitB.transform.CompareTag("Wall"))
+                    {
+                        IsGrounded = true;
+                        FootBOnSlope = false;
+                    }
+                    else if (hitB.transform.CompareTag("Slope"))
+                    {
+                        IsGrounded = true;
+                        IsGroundedOnSlope = true;
+                        FootBOnSlope = true;
+                    }
+                    else
+                    {
+                        IsGrounded = false;
+                        FootBOnSlope = false;
                     }
                 }
-                else if (hitB.collider != null)
+                if (hitA.collider == null && hitB.collider == null)
                 {
-                    if (hitB.transform.CompareTag("Ground") || hitB.transform.CompareTag("Slope"))
+                    IsGrounded = false;
+                }
+                else
+                {
+                    if (hitA.collider != null)
                     {
-                        GroundType = hitB.collider.GetComponent<ObjectType_AudioRef>().ObjectType;
+                        if (hitA.transform.CompareTag("Ground") || hitA.transform.CompareTag("Slope"))
+                        {
+                            GroundType = hitA.collider.GetComponent<ObjectType_AudioRef>().ObjectType;
+                        }
+                    }
+                    else if (hitB.collider != null)
+                    {
+                        if (hitB.transform.CompareTag("Ground") || hitB.transform.CompareTag("Slope"))
+                        {
+                            GroundType = hitB.collider.GetComponent<ObjectType_AudioRef>().ObjectType;
+                        }
+                    }
+
+                }
+
+                if (!IsGrounded && State != "Rolling" && State != "BackStepping")
+                {
+                    State = "Falling";
+                    VerticalSpeed = 5f;
+                }
+                else { VerticalSpeed = FallSpeed; }
+
+                if (State != "Blocking")
+                {
+                    if (FootAOnSlope && FootBOnSlope && hitA.transform != null) { OnSlope(hitA.transform); }
+                    else if (FootAOnSlope && !FootBOnSlope && hitA.transform != null) { OnSlope(hitA.transform); }
+                    else if (!FootAOnSlope && FootBOnSlope && hitB.transform != null) { OnSlope(hitB.transform); }
+                    else if (!FootAOnSlope && !FootBOnSlope)
+                    {
+                        //not on slope reset speeds
+                        WalkSpeed = 2.75f;
+                        RunSpeed = 6f;
                     }
                 }
-
             }
-
-            if (!IsGrounded && State != "Rolling" && State != "BackStepping")
-            {
-                State = "Falling";
-                Anim.Play("PlayerAnim_JumpIdle");
-                VerticalSpeed = 4f;
-            }
-            else { VerticalSpeed = FallSpeed; }
-
-            if (State != "Blocking")
-            {
-                if (FootAOnSlope && FootBOnSlope && hitA.transform != null) { OnSlope(hitA.transform); }
-                else if (FootAOnSlope && !FootBOnSlope && hitA.transform != null) { OnSlope(hitA.transform); }
-                else if (!FootAOnSlope && FootBOnSlope && hitB.transform != null) { OnSlope(hitB.transform); }
-                else if (!FootAOnSlope && !FootBOnSlope)
-                {
-                    //not on slope reset speeds
-                    WalkSpeed = 2.75f;
-                    RunSpeed = 6f;
-                }
-            }
-
         }
         
     }
@@ -1426,6 +1461,8 @@ public class PlayerControllerV2 : MonoBehaviour
                 if (MovementInputDirection == 1)
                 { //going against slope
 
+                    GoingToRollDownSlope = true;
+
                     WalkSpeed = 4f;
                     RunSpeed = 6.5f;
                     if (IsMovingInput)
@@ -1436,6 +1473,9 @@ public class PlayerControllerV2 : MonoBehaviour
                 }
                 else
                 {//going with slope
+
+                    GoingToRollUpSlope = true;
+
 
                     WalkSpeed = 2f;
                     RunSpeed = 4f;
@@ -1450,6 +1490,8 @@ public class PlayerControllerV2 : MonoBehaviour
                 // right  a 35 or MORE slope
                 if (MovementInputDirection == 1)
                 { //going against slope
+                    GoingToRollUpSlope = true;
+
                     WalkSpeed = 4f;
                     RunSpeed = 7.5f;
                     if (IsMovingInput)
@@ -1460,6 +1502,9 @@ public class PlayerControllerV2 : MonoBehaviour
                 }
                 else
                 {//going with slope
+
+                    GoingToRollDownSlope = true;
+
                     WalkSpeed = 2f;
                     RunSpeed = 3.5f;
                     if (IsMovingInput) { VerticalSpeed = 3f; } else { MyRb.velocity = Vector2.zero; }
@@ -1472,6 +1517,8 @@ public class PlayerControllerV2 : MonoBehaviour
                 // left a 35 or less slope
                 if (MovementInputDirection == 1)
                 { //going against slope
+                    GoingToRollDownSlope = true;
+
                     WalkSpeed = 2.5f;
                     RunSpeed = 4.5f;
                     if (IsMovingInput)
@@ -1484,6 +1531,8 @@ public class PlayerControllerV2 : MonoBehaviour
                 }
                 else
                 {//going with slope
+
+                    GoingToRollUpSlope = true;
                     WalkSpeed = 3.5f;
                     RunSpeed = 6f;
                     if (IsMovingInput) { VerticalSpeed = 0f; } else { MyRb.velocity = Vector2.zero; }
@@ -1494,6 +1543,8 @@ public class PlayerControllerV2 : MonoBehaviour
                 // left a 35 or MORE slope
                 if (MovementInputDirection == 1)
                 { //going with slope
+                    GoingToRollUpSlope = true;
+
                     WalkSpeed = 2f;
                     RunSpeed = 3.5f;
                     if (IsMovingInput) { VerticalSpeed = 3f; } else { MyRb.velocity = Vector2.zero; }
@@ -1502,6 +1553,8 @@ public class PlayerControllerV2 : MonoBehaviour
                 }
                 else
                 {//going against slope
+                    GoingToRollDownSlope = true;
+
                     WalkSpeed = 4f;
                     RunSpeed = 7.5f;
                     if (IsMovingInput)
@@ -1624,7 +1677,8 @@ public class PlayerControllerV2 : MonoBehaviour
         yield return new WaitForSeconds(.25f);
 
         IsJumping = false;
-    
+
+        Anim.Play("PlayerAnim_JumpIdle");
         State = "Falling";
 
         yield return new WaitForSeconds(.25f);
@@ -1632,6 +1686,7 @@ public class PlayerControllerV2 : MonoBehaviour
     }
     IEnumerator Land()
     {
+
         if (VerticalSpeed > 7) 
         {
             PlayerTakeDamage(30, true, 1);
@@ -1645,12 +1700,14 @@ public class PlayerControllerV2 : MonoBehaviour
 
         Anim.Play("PlayerAnim_JumpLand");
 
-        yield return new WaitForSeconds(.5f);
+        yield return new WaitForSeconds(.25f);
 
-        IsLanding = false;
+         MyRb.velocity = new Vector2(0, -5);
+  
         CanPlunge = false;
         VerticalSpeed = FallSpeed;
-        if (IsMovingInput) { State = "Walking"; } else { State = "Idle"; }     
+        if (IsMovingInput) { State = "Walking"; } else { State = "Idle"; }
+        IsLanding = false;
     }
 
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -2000,10 +2057,7 @@ public class PlayerControllerV2 : MonoBehaviour
                 hit.transform.GetComponent<Pursuer>().TakePlungeDamage();
                 IsPlunging = false;
             }
-            else
-            {
-                Debug.Log("Player hit" + hit.transform.name);
-            }
+
         }
     }
 

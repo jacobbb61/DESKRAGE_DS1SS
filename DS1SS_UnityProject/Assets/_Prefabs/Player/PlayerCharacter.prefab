@@ -419,6 +419,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 407094d1d99044f46b72a6b52648bfcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BossCam: {fileID: 0}
   State: Idle
   Health: 100
   MaxHealth: 100
@@ -442,21 +443,23 @@ MonoBehaviour:
   VerticalSpeed: 0
   FootAOnSlope: 0
   FootBOnSlope: 0
-  WalkSpeed: 2.75
-  RunSpeed: 6
-  RollSpeed: 5.5
+  GoingToRollUpSlope: 0
+  GoingToRollDownSlope: 0
+  WalkSpeed: 4
+  RunSpeed: 8
+  RollSpeed: 8
   RollUpSlopeSpeed: 8
-  RollDownSlopeSpeed: 2
+  RollDownSlopeSpeed: 0.2
   RollTime: 1
   BackstepSpeed: 5
   BackstepUpSlopeSpeed: 20
-  BackstepDownSlopeSpeed: 2
+  BackstepDownSlopeSpeed: 1
   BackstepTime: 0.5
   JumpVerticalSpeed: 7.5
   JumpHorizontalSpeed: 5
   JumpRunHorizontalSpeed: 6
   JumpTime: 1
-  FallSpeed: 0.5
+  FallSpeed: 5
   AirborneControl: 3
   TimeFalling: 0
   IsImmune: 0
