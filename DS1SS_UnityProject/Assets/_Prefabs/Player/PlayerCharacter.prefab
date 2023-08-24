@@ -282,11 +282,11 @@ MonoBehaviour:
   HitStartPos: {fileID: 7531493749407576679}
   ParryAudioRef:
     Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
+      Data1: -949101468
+      Data2: 1080559662
+      Data3: 1995505027
+      Data4: -810890911
+    Path: event:/Player/Parry
 --- !u!114 &5779796926974976982
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -433,6 +433,7 @@ MonoBehaviour:
   IsUiOpen: 0
   FadeOutMusic: 0
   IsGrounded: 0
+  IsGroundedOnSlope: 0
   IsStaminaRegen: 0
   CanMove: 1
   IsRolling: 0
@@ -465,6 +466,8 @@ MonoBehaviour:
   IsImmune: 0
   IsLockedOn: 0
   IsBlocking: 0
+  IsPlunging: 0
+  TriggerIsPlunging: 0
   CanPlunge: 0
   CanUseSecondEstus: 0
   CanAttack: 1
@@ -509,6 +512,20 @@ MonoBehaviour:
       Data3: -1603153526
       Data4: 1185929389
     Path: event:/Player/WeaponsHittingStuff/Shield-iron
+  Audio_PlungeSwing_Ref:
+    Guid:
+      Data1: 1932486624
+      Data2: 1094970764
+      Data3: -1083586929
+      Data4: 799332923
+    Path: event:/Player/Weaponswings/longSwing
+  Audio_Plunge_Ref:
+    Guid:
+      Data1: -949101468
+      Data2: 1080559662
+      Data3: 1995505027
+      Data4: -810890911
+    Path: event:/Player/Parry
   LowHealthObj: {fileID: 7229456465090059528}
 --- !u!114 &3137671597447383463
 MonoBehaviour:

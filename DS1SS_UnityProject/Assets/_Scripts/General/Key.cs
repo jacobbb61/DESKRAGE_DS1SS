@@ -11,11 +11,12 @@ public class Key : MonoBehaviour
     //private DoorManager door;
     public string itemName;
     //private PlayerItems playerItems;
-    private PlayerManager playerManager;
-    private PlayerControllerV2 PC;
+    public PlayerManager playerManager;
+    public PlayerControllerV2 PC;
     private CanvasManager canvasManager;
 
     public GameObject ItemAsset;
+    public GameObject ItemObject;
     
     [Tooltip("Current door tags: Cell, A, K, S")]public string targetDoorTag;
 
@@ -34,10 +35,8 @@ public class Key : MonoBehaviour
 
     private void Start()
     {
-                //door = correspondingDoor.GetComponent<DoorManager>();
+        //door = correspondingDoor.GetComponent<DoorManager>();
         itemName = gameObject.name;
-        playerManager = FindObjectOfType<PlayerManager>();
-        PC = FindObjectOfType<PlayerControllerV2>();
         canvasManager = FindAnyObjectByType<CanvasManager>();
     }
     // Start is called before the first frame update
@@ -51,11 +50,11 @@ public class Key : MonoBehaviour
                 {
                     if (playerManager.AKey == true)
                     {
-                        gameObject.SetActive(false);
+                        ItemObject.SetActive(false);
                     }
                     else
                     {
-                        gameObject.SetActive(true);
+                        ItemObject.SetActive(true);
                     }
                     break;
                 }
@@ -63,11 +62,23 @@ public class Key : MonoBehaviour
                 {
                     if (playerManager.SKey == true)
                     {
-                        gameObject.SetActive(false);
+                        ItemObject.SetActive(false);
                     }
                     else
                     {
-                        gameObject.SetActive(true);
+                        ItemObject.SetActive(true);
+                    }
+                    break;
+                }
+            case "K":
+                {
+                    if (playerManager.KKey == true)
+                    {
+                        ItemObject.SetActive(false);
+                    }
+                    else
+                    {
+                        ItemObject.SetActive(true);
                     }
                     break;
                 }
@@ -81,8 +92,11 @@ public class Key : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        canvasManager.ItemPrompt.SetActive(true);
-        PC.Interactable = GetComponent<InteractableV2>();
+        if (ItemObject.activeInHierarchy)
+        {
+            canvasManager.ItemPrompt.SetActive(true);
+            PC.Interactable = GetComponent<InteractableV2>();
+        }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
@@ -141,7 +155,7 @@ public class Key : MonoBehaviour
     {
 
         ItemPopUp.SetActive(true);
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(2f);
         ItemPopUp.SetActive(false);
         gameObject.SetActive(false);
 

@@ -195,6 +195,7 @@ public class AsylumDemonArena : MonoBehaviour
                     inBossFight = true;
                     arenaIsActive = true;
                     BossUI.SetActive(true);
+                    Boss.gameObject.SetActive(true);
                     Boss.IsActive = true;
                     Boss.IsDead = false;
                     Boss.IsTurning = false;

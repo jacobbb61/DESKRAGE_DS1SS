@@ -245,7 +245,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   correspondingDoor: {fileID: 0}
   itemName: 
+  playerManager: {fileID: 0}
+  PC: {fileID: 0}
   ItemAsset: {fileID: 8930091477465752363}
+  ItemObject: {fileID: 4753786782956492492}
   targetDoorTag: 
   ItemAudioRef:
     Guid:

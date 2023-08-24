@@ -215,7 +215,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   layerManager: {fileID: 0}
-  doorType: 1
+  doorType: 0
   targetLayer: 0
   inBossFight: 0
   DemonArena: {fileID: 0}
@@ -231,6 +231,7 @@ MonoBehaviour:
     Path: event:/Effects/UI SFX/FogWall
   CurrentDoorState_This: 
   doorCollider: {fileID: 3702622892975103703}
+  doorPrompt: {fileID: 0}
   FogAssets: {fileID: 8991338065409271480}
   doorSaveManager: {fileID: 436300435429700708}
   Anim: {fileID: 0}

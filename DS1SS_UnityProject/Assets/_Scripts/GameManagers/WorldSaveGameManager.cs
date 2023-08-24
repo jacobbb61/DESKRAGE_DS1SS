@@ -26,6 +26,7 @@ public class WorldSaveGameManager : MonoBehaviour
     public GameObject[] EnemySaveManagerList;
     public GameObject[] DoorSaveManagerList;
     public GameObject BonfireList;
+    public BoulderManager Boulder;
 
     [Header("Character Slots")]
     public CharacterSaveData CharacterSlot01;
@@ -195,6 +196,14 @@ public class WorldSaveGameManager : MonoBehaviour
             Player.GetComponent<PlayerManager>().OscarManager.SaveGameDataToCurrentCharacterData(ref CurrentCharacterData);
 
         }
+
+        Boulder = Player.GetComponent<PlayerManager>().BoulderManager;
+        if (Boulder != null)
+        {
+            CurrentCharacterData.BoulderUsed = Boulder.BoulderUsed;
+        }
+
+
         //clear the list of enemys
         EnemySaveManagerList = null;
         //clear the list of doors
@@ -266,6 +275,14 @@ public class WorldSaveGameManager : MonoBehaviour
                 Door.GetComponent<DoorSaveManager>().LoadGameFromDataToCurrentCharacterData(ref CurrentCharacterData);
             }
         }
+
+        Boulder = Player.GetComponent<PlayerManager>().BoulderManager;
+        if (Boulder != null)
+        {
+            Boulder.BoulderUsed = CurrentCharacterData.BoulderUsed;
+        }
+
+
         //get list of all Bonfire scripts in the scene 
         //Pass each door data,from file, to the player in game
         BonfireList = null;

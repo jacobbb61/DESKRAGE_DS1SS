@@ -102,8 +102,8 @@ public class InputDeviceManager : MonoBehaviour
     }
     public void SwitchToPC()
     {
-        if (Device!="Auto")  Device = "KeyBoard";
-        Debug.Log("Switch to KeyBoard");
+        if (Device != "Auto") { Device = "KeyBoard"; }
+
         foreach (GameObject icon in PCIcons)
         {
             icon.SetActive(true);

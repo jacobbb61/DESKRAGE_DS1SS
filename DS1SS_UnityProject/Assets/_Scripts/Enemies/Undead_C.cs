@@ -70,7 +70,7 @@ public class Undead_C : MonoBehaviour
 
     private Animator Anim;
     private GameObject Player;
-    private Rigidbody2D RB;
+    public Rigidbody2D RB;
     private Coroutine AttackingCoroutine;
 
     public GameObject Assets;
@@ -110,7 +110,6 @@ public class Undead_C : MonoBehaviour
     public void ManualStart()
     {
         Anim = GetComponentInChildren<Animator>();
-        RB = GetComponent<Rigidbody2D>();
         Player = GameObject.FindGameObjectWithTag("Player");
         if (Behaviour == null) { Behaviour = "Idle"; }
         if (LookDirection == 1) { Assets.transform.localScale = new Vector3(2, 2, 2); }
@@ -127,17 +126,26 @@ public class Undead_C : MonoBehaviour
 
     public void Respawn()
     {
+
+
+        if (AttackingCoroutine != null) { StopCoroutine(AttackingCoroutine); }
+
+        RB.constraints = RigidbodyConstraints2D.None;
+        RB.constraints = RigidbodyConstraints2D.FreezeRotation;
         EnemySaveManager.IsLockOnAble = true;
         DamagerNumber.gameObject.SetActive(false);
-        SeePlayer = false;
+
         IsDead = false;
         Assets.SetActive(true);
         gameObject.SetActive(true);
         Health = MaxHealth;
         HealthSlider.value = Health;
         transform.localPosition = OriginPosition;
+
         Behaviour = "Idle";
         SeePlayer = false;
+        ParryIndicator.SetActive(false);
+        IsAttackStepping = false;
 
     }
 
@@ -149,6 +157,8 @@ public class Undead_C : MonoBehaviour
 
         if (Health > 0)
         {
+            RB.constraints = RigidbodyConstraints2D.None;
+            RB.constraints = RigidbodyConstraints2D.FreezeRotation;
             IsDead = false; IsDying = false;
             switch (Behaviour)
             {
@@ -236,6 +246,11 @@ public class Undead_C : MonoBehaviour
                     break;
             }
         }
+        else
+        {
+
+            RB.constraints = RigidbodyConstraints2D.FreezeAll;
+        }
     }
 
 
@@ -269,19 +284,21 @@ public class Undead_C : MonoBehaviour
     
     void Death()
     {
-       
+       Behaviour = "Dying";
+
             IsDying = true;
             DamagerNumber.gameObject.SetActive(false);
             SeePlayer = false;
-
+            RB.constraints = RigidbodyConstraints2D.FreezeAll;
             EnemySaveManager.IsLockOnAble = false;
             RB.velocity = Vector2.zero;
             IsAttacking = false;
             IsHeavyAttacking = false;
-            IsAttackStepping = false;
             EnemySaveManager.CanBeParry = false;
+            ParryIndicator.SetActive(false);
+            IsAttackStepping = false;
 
-            Behaviour = "Dying";
+            
             StopAllCoroutines();
             HealthSlider.value = 0;
             Anim.Play("UndeadAnim_C_Death");
@@ -303,6 +320,10 @@ public class Undead_C : MonoBehaviour
     private void OnDisable()
     {
         if (Behaviour == "Dying") { Dead(); }
+
+        RB.constraints = RigidbodyConstraints2D.None;
+        RB.constraints = RigidbodyConstraints2D.FreezeRotation;
+
         DamagerNumber.gameObject.SetActive(false);
         DamageTakenInTime = 0;
         DamagerNumber.text = DamageTakenInTime.ToString();
@@ -316,6 +337,9 @@ public class Undead_C : MonoBehaviour
     }
     private void OnEnable()
     {
+        RB.constraints = RigidbodyConstraints2D.None;
+        RB.constraints = RigidbodyConstraints2D.FreezeRotation;
+
         if (Behaviour == "Attacking")
         {
             Behaviour = "Hostile";

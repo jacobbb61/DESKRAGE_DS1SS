@@ -166,6 +166,8 @@ public class PlayerControllerV2 : MonoBehaviour
     public bool ahh = false;
 
     public EventReference Audio_BlockHit_Ref;
+    public EventReference Audio_PlungeSwing_Ref;
+    public EventReference Audio_Plunge_Ref;
 
     public GameObject LowHealthObj;
 
@@ -215,13 +217,13 @@ public class PlayerControllerV2 : MonoBehaviour
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     IEnumerator PlayerDead()
     {
+        MyRb.constraints = RigidbodyConstraints2D.FreezeAll;
         FadeOutMusic = true;
         if (PM.HasDied == false) { PM.HasDied = true; }
 
         State = "Dead";
         CanMove = false;
         CanAttack = false;
-        IsMovingInput = false;
         MyRb.velocity = Vector2.zero;
         CM.YouDiedAnim.Play("YouDied");
         Anim.Play("PlayerAnim_Death");
@@ -266,21 +268,25 @@ public class PlayerControllerV2 : MonoBehaviour
         }        
         BossCam.SetActive(false);
 
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(1f);
 
+
+
+        MyRb.constraints = RigidbodyConstraints2D.None;
+        MyRb.constraints = RigidbodyConstraints2D.FreezeRotation;
+
+
+        Health = 100;
         healthCatchupSlider.value = 100;
         CanMove = true;
         CanAttack = true;
-        IsMovingInput = true;
 
         IsRolling = false;
         IsImmune = false;
         IsBlocking = false;
         ahh = false;
+       // State = "Idle";
 
-        State = "Idle";
-
-       // Anim.Play("PlayerAnim_Idle");
     }
 
     public void PlayerTakeDamage(float Damage, bool staggger, int KnockDownDirection) // -1 to left, 1 to right, 0 is the direction the player is on relative to the enemy
@@ -328,7 +334,7 @@ public class PlayerControllerV2 : MonoBehaviour
         }
 
 
-        if (Health <= 0) { StartCoroutine(PlayerDead()); }
+      //  if (Health <= 0) { StartCoroutine(PlayerDead()); }
     }
 
     void BloodEffect()
@@ -780,6 +786,8 @@ public class PlayerControllerV2 : MonoBehaviour
     {
         if (IsPlunging==false && CanPlunge)
         {
+
+            RuntimeManager.PlayOneShot(Audio_PlungeSwing_Ref, transform.position);
             IsPlunging = true;
             Stamina -= 40f;
             StaminaCatchup();
@@ -1954,7 +1962,7 @@ public class PlayerControllerV2 : MonoBehaviour
         Anim.Play("PlayerAnim_Parry");
         State = "Attacking";
 
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.5f);
 
         if (MovementInputDirection == 0) { State = "Idle"; } else { State = "Walking"; }
     }
@@ -2051,11 +2059,14 @@ public class PlayerControllerV2 : MonoBehaviour
             {
                 hit.transform.GetComponent<AsylumDemon>().TakePlungeDamage();
                 IsPlunging = false;
+
+                RuntimeManager.PlayOneShot(Audio_Plunge_Ref, transform.position);
             }
             else if (hit.transform.CompareTag("Pursuer"))
             {
                 hit.transform.GetComponent<Pursuer>().TakePlungeDamage();
                 IsPlunging = false;
+                RuntimeManager.PlayOneShot(Audio_Plunge_Ref, transform.position);
             }
 
         }

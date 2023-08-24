@@ -6,7 +6,7 @@ using FMODUnity;
 public class Bonfire : MonoBehaviour
 {
     private PlayerManager PM;
-    private PlayerControllerV2 PC;
+    public PlayerControllerV2 PC;
     public OscarManager OM;
 
     public int BonfireTagNum;
@@ -95,7 +95,7 @@ public class Bonfire : MonoBehaviour
 
     public void BonfireRest()
     {
-        PC.State = "Falling";
+        PC.State = "Idle";
         PC.CanMove = true;
 
         LayerManager.ChangeLayer(BonfireLayer);

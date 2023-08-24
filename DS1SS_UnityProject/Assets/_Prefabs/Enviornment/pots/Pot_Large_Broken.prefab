@@ -319,6 +319,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Anim: {fileID: 2805179709992057395}
   Broken: 0
+  Collider: {fileID: 2805179709992057404}
 --- !u!1 &2805179710021194665
 GameObject:
   m_ObjectHideFlags: 0

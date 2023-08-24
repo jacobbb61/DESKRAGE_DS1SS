@@ -9,8 +9,25 @@ using FMODUnity;
 
 public class PlayerMenuManager : MonoBehaviour
 {
+
+    private void OnApplicationQuit() //save game on force quit, alt f4
+    {
+        if (PM.DemonArena.inBossFight == false && PM.PursuerArena.inBossFight == false) 
+        {
+            WorldSaveGameManager.Instance.Player = PM;
+            WorldSaveGameManager.Instance.SaveGame();
+        }
+    }
+
+
+
+
+
+
+
+
     // this script will effect player movement and combat, while the menu ui is open the player can only walk, they cannot input for a roll or jump or attack as those buttons are used for the ui
-    
+
     //if MainOpen is true, then player cannot do above
 
 
@@ -539,7 +556,7 @@ public class PlayerMenuManager : MonoBehaviour
             PM.PursuerArena.StopMusic();
         }
 
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(0.5f);
         SceneManager.LoadScene("Main Menu", LoadSceneMode.Single);
     }
 

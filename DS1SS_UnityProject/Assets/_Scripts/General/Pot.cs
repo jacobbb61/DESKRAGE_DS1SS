@@ -6,6 +6,7 @@ public class Pot : MonoBehaviour
 {
     public Animator Anim;
     public bool Broken;
+    public Collider2D Collider;
 
 
 
@@ -20,6 +21,7 @@ public class Pot : MonoBehaviour
 
     public void ResetPot()
     {
+        Collider.enabled = true;
         gameObject.SetActive(true);
         Anim.Play("Pot_Idle");
         Broken = false;
@@ -27,6 +29,7 @@ public class Pot : MonoBehaviour
     }
     public void BreakPot()
     {
+        Collider.enabled = false;
         Anim.SetTrigger("Break");
         Broken = true;
         StartCoroutine(WaitToTurnOff());

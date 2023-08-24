@@ -61,6 +61,7 @@ public class PlayerAnimationEvents : MonoBehaviour
             else if (hit.transform.CompareTag("Pot"))
             {
                 hit.transform.GetComponent<Pot>().BreakPot();
+                LightAttack();
             }
             else
             {
@@ -103,6 +104,7 @@ public class PlayerAnimationEvents : MonoBehaviour
             else if (hit.transform.CompareTag("Pot"))
             {
                 hit.transform.GetComponent<Pot>().BreakPot();
+                LightAttackFollowUp();
             }
             else
             {
@@ -144,6 +146,7 @@ public class PlayerAnimationEvents : MonoBehaviour
             else if (hit.transform.CompareTag("Pot"))
             {
                 hit.transform.GetComponent<Pot>().BreakPot();
+                HeavyAttack();
             }
             else
             {
@@ -185,6 +188,7 @@ public class PlayerAnimationEvents : MonoBehaviour
             else if (hit.transform.CompareTag("Pot"))
             {
                 hit.transform.GetComponent<Pot>().BreakPot();
+                HeavyAttackFollowUp();
             }
             else
             {

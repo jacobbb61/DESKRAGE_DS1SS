@@ -97,6 +97,45 @@ public class AnimationAudio : MonoBehaviour
         walk.release();
 
     }
+
+    public void LandAudio()
+    {
+        EventInstance walk = RuntimeManager.CreateInstance(WalkAudioRef);
+        RuntimeManager.AttachInstanceToGameObject(walk, transform, GetComponentInParent<Rigidbody2D>());
+
+
+        walk.setParameterByName("WalkorRun", 1);
+
+
+        switch (GetComponentInParent<PlayerControllerV2>().GroundType)
+        {
+            case "Grass":
+                walk.setParameterByName("Terrain", 0);
+                break;
+            case "StoneDirty":
+                walk.setParameterByName("Terrain", 1);
+                break;
+            case "Stone":
+                walk.setParameterByName("Terrain", 2);
+                break;
+            case "Wood":
+                walk.setParameterByName("Terrain", 3);
+                break;
+            case "WetStone":
+                walk.setParameterByName("Terrain", 4);
+                break;
+            case "Snow":
+                walk.setParameterByName("Terrain", 5);
+                break;
+            default:
+                //RuntimeManager.PlayOneShot(WalkAudioRef, transform.position);
+                break;
+        }
+
+        walk.start();
+        walk.release();
+
+    }
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public void RollAudio()

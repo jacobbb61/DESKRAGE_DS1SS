@@ -39,7 +39,6 @@ public class StartScreenManger : MonoBehaviour
     {
         StartSceneAnim.SetTrigger("Active");
         FMODUnity.RuntimeManager.PlayOneShot(PressGameStart);
-        Debug.Log("Loading");
         yield return new WaitForSeconds(1.5f);
         SceneManager.LoadScene("Main Menu", LoadSceneMode.Single);
     }

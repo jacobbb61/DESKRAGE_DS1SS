@@ -1,22 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using FMODUnity;
 
 public class CollapseBridge : MonoBehaviour
 {
     [SerializeField] private GameObject bridge;
     //private Rigidbody2D rb;
     public string currentState;
-  
+
     //private Rigidbody2D playerRB;
     public Collider2D Collider;
     public DoorOcludingSection DoorOcludingSection;
-    [Tooltip("True = this gameobject is a bridge. False = this gameobject is a collapsable floor.")]public bool isBridge;
+    [Tooltip("True = this gameobject is a bridge. False = this gameobject is a collapsable floor.")] public bool isBridge;
 
     public GameObject FloorAssets_UnBroken;
     public GameObject FloorAssets_Broken1;
     public GameObject FloorAssets_Broken2;
     public GameObject FloorAssets_BrokenCompletely;
+    public GameObject FloorAssets_Parts;
 
     public GameObject BridgeAssets_UnBroken;
     public GameObject BridgeAssets_Broken;
@@ -24,18 +26,20 @@ public class CollapseBridge : MonoBehaviour
     public PursuerArena PursuerArena;
     public Animator Anim;
 
+    public EventReference WoodBreakRef;
+
     private bool CanBreak; //wait for time when loading into scene before player can trigger break
 
     // The bridge referenced in this script must have a collider and kinematic rigidbody
     private void Start()
     {
-         StartCoroutine(WaitForLoad());
+        StartCoroutine(WaitForLoad());
     }
     public void ManualStart()
     {
         if (!isBridge)
         {
-           
+
             switch (currentState)
             {
                 case "UnBroken":
@@ -84,6 +88,28 @@ public class CollapseBridge : MonoBehaviour
         yield return new WaitForSeconds(1.5f);
         CanBreak = true;
     }
+    IEnumerator WaitParts()
+    {
+        FloorAssets_Parts.SetActive(true);
+        yield return new WaitForSeconds(3f);
+        FloorAssets_Parts.SetActive(false);
+    }
+    IEnumerator WaitLand()
+    {
+        FloorAssets_Parts.SetActive(true);
+        yield return new WaitForSeconds(3f);
+        FloorAssets_Parts.SetActive(false);
+    }
+    IEnumerator Break()
+    {
+        yield return new WaitForSeconds(0.25f);
+        assetsOff();
+        RuntimeManager.PlayOneShot(WoodBreakRef, transform.position);
+        StartCoroutine(WaitParts());
+        FloorAssets_BrokenCompletely.SetActive(true);
+        DoorOcludingSection.RevealArea();
+        Collider.enabled = false;
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -103,11 +129,9 @@ public class CollapseBridge : MonoBehaviour
                     FloorAssets_Broken2.SetActive(true);
                     break;
                 case "Breaking2":
-                    assetsOff();
+
                     currentState = "Broken";
-                    FloorAssets_BrokenCompletely.SetActive(true);
-                    DoorOcludingSection.RevealArea();
-                    Collider.enabled = false;
+                    StartCoroutine(Break());
                     break;
             }
         }

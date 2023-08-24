@@ -14,10 +14,54 @@ public class BoulderManager : MonoBehaviour
     public EventReference Boulder0Audio;
     public EventReference Boulder1Audio;
     public EventReference Boulder2Audio;
-    private void Start()
+    public void ManualStart()
     {
-        if (BoulderUsed) { Assets.SetActive(false); GetComponent<BoxCollider2D>().enabled = false; }
+        if (BoulderUsed)
+        {
+            Assets.SetActive(false);
+            GetComponent<BoxCollider2D>().enabled = false;
+            DM.CurrentDoorState_This = "Closed";
+            DM.UseDoor();
+        }
+        else
+        {
+            Assets.SetActive(true);
+            GetComponent<BoxCollider2D>().enabled = true;
+            DM.CurrentDoorState_This = "Locked";
+            Anim.Play("BoulderIdle");
+        }
     }
+
+    public void Start()
+    {
+        if (BoulderUsed)
+        {
+            Assets.SetActive(false);
+            GetComponent<BoxCollider2D>().enabled = false;
+            DM.CurrentDoorState_This = "Closed";
+            DM.UseDoor();
+        }
+        else
+        {
+            Assets.SetActive(true);
+            GetComponent<BoxCollider2D>().enabled = true;
+            DM.CurrentDoorState_This = "Locked";
+            Anim.Play("BoulderIdle");
+        }
+    }
+
+    private void OnEnable()
+    {
+        if (BoulderUsed)
+        {
+            Assets.SetActive(false);
+            GetComponent<BoxCollider2D>().enabled = false;
+            DM.CurrentDoorState_This = "Closed";
+            DM.UseDoor();
+        }
+    }
+
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))

@@ -26,8 +26,8 @@ public class DoorManager : MonoBehaviour
     public string CurrentDoorState_This;
 
      private CanvasManager CanvasManager;
-    [SerializeField] private Collider2D doorCollider; 
-     private GameObject doorPrompt;
+    [SerializeField] private Collider2D doorCollider;
+    public GameObject doorPrompt;
      private GameObject fogDoorPrompt;
      private GameObject doorUI;
      public GameObject FogAssets;
@@ -262,6 +262,12 @@ public class DoorManager : MonoBehaviour
 
     public void UseDoor()
     {
+        if (PC == null)
+        {
+            PC = FindObjectOfType<PlayerControllerV2>();
+        }
+
+
         Debug.Log("A");
         doorPrompt.SetActive(false);
         if (doorType == 1) //perpendicular 

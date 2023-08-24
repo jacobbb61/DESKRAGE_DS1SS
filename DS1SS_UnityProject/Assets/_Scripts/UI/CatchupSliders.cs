@@ -8,10 +8,10 @@ using UnityEngine.UI;
 public class CatchupSliders : MonoBehaviour
 {
     private CanvasManager CM;
-    private Slider healthSlider;
-    private Slider staminaSlider;
-    private Slider healthCatchupSlider;
-    private Slider staminaCatchupSlider;
+    public Slider healthSlider;
+    public Slider staminaSlider;
+    public Slider healthCatchupSlider;
+    public Slider staminaCatchupSlider;
     [SerializeField] private float catchupSliderDelay = 0.75f;
     [SerializeField] private float catchupSliderSpeed = 0.02f;
     public bool staminaCatchupActive;
@@ -23,13 +23,14 @@ public class CatchupSliders : MonoBehaviour
         if (SceneManager.GetActiveScene().name == "Build")
         {
             CM = GameObject.FindGameObjectWithTag("Canvas").GetComponent<CanvasManager>();
-            healthSlider = CM.PlayerHealthSlider;
-            staminaSlider = CM.PlayerStaminaSlider;
-            healthCatchupSlider = CM.PlayerHealthCatchupSlider;
-            staminaCatchupSlider = CM.PlayerStaminaCatchupSlider;
+
 
             healthCatchupSlider.value = healthSlider.value;
             staminaCatchupSlider.value = staminaSlider.value;
+
+            StartCoroutine(ManualUpdate(true));
+            StartCoroutine(ManualUpdate(false));
+
         }
     }
 

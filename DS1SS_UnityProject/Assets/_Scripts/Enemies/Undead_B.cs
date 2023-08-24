@@ -162,6 +162,7 @@ public class Undead_B : MonoBehaviour
     }
     void Death()
     {
+            IsDying = true;
             DamagerNumber.gameObject.SetActive(false);
 
             EnemySaveManager.IsLockOnAble = false;
