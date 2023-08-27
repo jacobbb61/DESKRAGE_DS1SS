@@ -376,9 +376,9 @@ public class Undead_B : MonoBehaviour
 
         LayerManagerV2 Layer = Player.GetComponent<PlayerManager>().Layer;
        
-        if (Layer.CurrentLayerNumber == 0) { arrow.transform.parent = Layer.BackLayer.transform; }
-        if (Layer.CurrentLayerNumber == 1) { arrow.transform.parent = Layer.MiddleLayer.transform; }
-        if (Layer.CurrentLayerNumber == 2) { arrow.transform.parent = Layer.FrontLayer.transform; }
+        if (Layer.CurrentLayerNumber == 0) { arrow.transform.parent = Layer.BackLayer.transform; arrow.GetComponent<Renderer>().sortingLayerName = "BackSortingLayer"; }
+        if (Layer.CurrentLayerNumber == 1) { arrow.transform.parent = Layer.MiddleLayer.transform; arrow.GetComponent<Renderer>().sortingLayerName = "MiddleSortingLayer"; }
+        if (Layer.CurrentLayerNumber == 2) { arrow.transform.parent = Layer.FrontLayer.transform; arrow.GetComponent<Renderer>().sortingLayerName = "FrontSortingLayer"; }
 
         // arrow.GetComponent<Arrow>().Direction = -LookDirection;
         // arrow.GetComponent<Arrow>().ManualStart();

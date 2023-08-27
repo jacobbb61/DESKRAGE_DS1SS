@@ -127,7 +127,6 @@ public class Undead_C : MonoBehaviour
     public void Respawn()
     {
 
-
         if (AttackingCoroutine != null) { StopCoroutine(AttackingCoroutine); }
 
         RB.constraints = RigidbodyConstraints2D.None;
@@ -146,6 +145,7 @@ public class Undead_C : MonoBehaviour
         SeePlayer = false;
         ParryIndicator.SetActive(false);
         IsAttackStepping = false;
+        IsAttacking = false;
 
     }
 
@@ -206,6 +206,7 @@ public class Undead_C : MonoBehaviour
                         {
                             FacePlayer();
                             RB.velocity = new Vector2(0, -VerticalSpeed);
+                            Debug.Log("testestest");
                         }
                         else
                         {
