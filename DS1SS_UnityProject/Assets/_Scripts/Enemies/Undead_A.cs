@@ -211,7 +211,6 @@ public class Undead_A : MonoBehaviour
             DamagerNumber.gameObject.SetActive(false);
             EnemySaveManager.IsLockOnAble = false;
 
-            EnemySaveManager.IsLockOnAble = false;
             RB.velocity = Vector2.zero;
             IsAttacking = false;
             EnemySaveManager.CanBeParry = false;

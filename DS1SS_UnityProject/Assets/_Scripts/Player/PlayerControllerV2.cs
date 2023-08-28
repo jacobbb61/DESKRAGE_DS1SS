@@ -82,7 +82,6 @@ public class PlayerControllerV2 : MonoBehaviour
     public bool IsBlocking;
     private bool IsHealing;
     public bool IsPlunging;
-    public bool TriggerIsPlunging;
     public bool CanPlunge;
     public bool CanUseSecondEstus;
     public bool CanAttack;
@@ -1122,7 +1121,6 @@ public class PlayerControllerV2 : MonoBehaviour
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     void Idle()
     {
-        TriggerIsPlunging = false;
 
         IsBlocking = false;
         IsRolling = false;
@@ -1143,7 +1141,6 @@ public class PlayerControllerV2 : MonoBehaviour
 
     void Walking()
     {
-        TriggerIsPlunging = false;
         IsBlocking = false;
         IsRolling = false;
         IsImmune = false;
@@ -1198,7 +1195,6 @@ public class PlayerControllerV2 : MonoBehaviour
 
     void Running()
     {
-        TriggerIsPlunging = false;
         IsBlocking = false;
         IsRolling = false;
         IsImmune = false;
@@ -1256,6 +1252,7 @@ public class PlayerControllerV2 : MonoBehaviour
     }
     void Falling()
     {
+        IsGroundedOnSlope = false;
         IsRolling = false;
         IsImmune = false;
         if (MovementInputDirection > 0.2f) { PlayerDirection = 1; }
@@ -1277,14 +1274,14 @@ public class PlayerControllerV2 : MonoBehaviour
         VerticalSpeed = 5 + TimeFalling;
 
 
-        if (IsGrounded && !IsJumping && !IsLanding)
+        if (IsGrounded && !IsJumping && !IsLanding && State == "Falling")
         {
             StartCoroutine(Land());
             IsLanding = true;
             IsPlunging = false;
             TimeFalling = 0;
         }
-        if (IsGroundedOnSlope && !IsJumping && !IsLanding)
+        if (IsGroundedOnSlope && !IsJumping && !IsLanding && State=="Falling")
         {
             StartCoroutine(Land());
             IsLanding = true;
@@ -1713,6 +1710,7 @@ public class PlayerControllerV2 : MonoBehaviour
          MyRb.velocity = new Vector2(0, -5);
   
         CanPlunge = false;
+        IsPlunging = false;
         VerticalSpeed = FallSpeed;
         if (IsMovingInput) { State = "Walking"; } else { State = "Idle"; }
         IsLanding = false;

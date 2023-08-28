@@ -20,6 +20,7 @@ public class AsylumDemonArena : MonoBehaviour
     public Animator VictoryAnim;
 
     public EventReference BossKilledAudio;
+    public EventReference BossRoarAudio;
     public EventReference BossDeathAudio;
     public EventReference Theme_FirstPhase;
     public EventReference Theme_SecondPhase;
@@ -62,6 +63,8 @@ public class AsylumDemonArena : MonoBehaviour
     }
     public void SecondPhase()
     {
+
+        RuntimeManager.PlayOneShot(BossRoarAudio, transform.position);
         IsSecondPhase = true;
         StopMusic();
         FMODinstance = FMODUnity.RuntimeManager.CreateInstance(Theme_SecondPhase);

@@ -6,6 +6,7 @@ using FMODUnity;
 public class BoulderManager : MonoBehaviour
 {
     public GameObject Assets;
+    public GameObject Parts;
     public Animator Anim;
     public DoorManager DM;
 
@@ -79,8 +80,9 @@ public class BoulderManager : MonoBehaviour
     IEnumerator Roll()
     {
    
-        yield return new WaitForSeconds(2f); 
-        
+        yield return new WaitForSeconds(2f);
+
+        Parts.SetActive(true);
         RuntimeManager.PlayOneShot(Boulder0Audio);
 
         yield return new WaitForSeconds(0.1f);
@@ -92,6 +94,8 @@ public class BoulderManager : MonoBehaviour
         RuntimeManager.PlayOneShot(Boulder2Audio);
 
         yield return new WaitForSeconds(1.3f);
+
+        Parts.SetActive(false);
         Assets.SetActive(false);
         GetComponent<BoxCollider2D>().enabled = false;
         DM.CurrentDoorState_This = "Closed";

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using FMODUnity;
 using TMPro;
 
 public class AsylumDemon : MonoBehaviour
@@ -265,6 +266,7 @@ public class AsylumDemon : MonoBehaviour
     {
         if (HasBeenPlunged == false) { Health -= 150; HasBeenPlunged = true; }
         AddDamage(150);
+
         UpdateUI();
         if (Health <= 0) { StopAllCoroutines(); StartCoroutine(Death()); arenaManager.Victory(); Player.GetComponent<EnemyLock>().LockedOn = false; Player.GetComponent<EnemyLock>().ToggleLockOn(); }
         if (Health <= MaxHealth / 2 && !arenaManager.IsSecondPhase) { arenaManager.SecondPhase(); }
