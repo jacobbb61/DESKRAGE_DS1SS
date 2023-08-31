@@ -104,6 +104,8 @@ public class PlayerControllerV2 : MonoBehaviour
 
     public float StepDistance;
 
+    public float StaggerTime;
+
     [Header("DAMAGE Data to edit")]
     public float LightAttackDamage;
     public float HeavyAttackDamage;
@@ -158,6 +160,7 @@ public class PlayerControllerV2 : MonoBehaviour
 
     public CatchupSliders CatchupSliders;
 
+ 
 
     public AsylumDemonArena AsylumDemonArena;
     public PursuerArena PursuerArena;
@@ -320,7 +323,7 @@ public class PlayerControllerV2 : MonoBehaviour
             else
             {
 
-                if (State != "Stagger")
+                if (State != "Stagger" && KnockDownDirection==0)
                 { 
                     if (PM.HasBeenHit == false && KnockDownDirection == 0) { PM.HasBeenHit = true; }               
                     if (StaggerCoroutine != null) { StopCoroutine(StaggerCoroutine); }
@@ -328,7 +331,15 @@ public class PlayerControllerV2 : MonoBehaviour
                     StaggerCoroutine = StartCoroutine(Stagger());
                     StartCoroutine(CatchupSliders.ManualUpdate(true));
                 }
-                
+                if (State != "Stagger" && KnockDownDirection == 1)
+                {
+                    if (PM.HasBeenHit == false && KnockDownDirection == 0) { PM.HasBeenHit = true; }
+                    if (StaggerCoroutine != null) { StopCoroutine(StaggerCoroutine); }
+                    Health -= Damage; BloodEffect();
+                    StaggerCoroutine = StartCoroutine(KnockDown());
+                    StartCoroutine(CatchupSliders.ManualUpdate(true));
+                }
+
             }
         }
 
@@ -1075,6 +1086,9 @@ public class PlayerControllerV2 : MonoBehaviour
                 break;
             case "Dead":
                 IsImmune = true;
+                CanFollowUp = false;
+                CanFollowUpAgain = false;
+                CanFollowUpAgain2 = false;
                 break;
             case "Saving":
                 IsImmune = true;
@@ -1252,9 +1266,15 @@ public class PlayerControllerV2 : MonoBehaviour
     }
     void Falling()
     {
+
+        CanFollowUp = false;
+        CanFollowUpAgain = false;
+        CanFollowUpAgain2 = false;
+
         IsGroundedOnSlope = false;
         IsRolling = false;
         IsImmune = false;
+
         if (MovementInputDirection > 0.2f) { PlayerDirection = 1; }
         if (MovementInputDirection < -0.2f) { PlayerDirection = -1; }
         FaceTowardsInput();
@@ -1932,6 +1952,29 @@ public class PlayerControllerV2 : MonoBehaviour
         MyRb.constraints = RigidbodyConstraints2D.None;
         MyRb.constraints = RigidbodyConstraints2D.FreezeRotation;
     }
+
+    IEnumerator KnockDown()
+    {
+        if (EstusUseCoroutine != null) { StopCoroutine(EstusUseCoroutine); }
+        Anim.Play("PlayerAnim_KnockDown");
+        State = "Stagger";
+        IsBlocking = false;
+
+        yield return new WaitForSeconds(0.75f);
+
+        CanRollOut = true; CancelThisCoroutine = StaggerCoroutine;
+
+        yield return new WaitForSeconds(0.5f);
+
+        CanRollOut = false; CancelThisCoroutine = null;
+
+
+        if (MovementInputDirection == 0) { State = "Idle"; } else { State = "Walking"; }
+        IsImmune = false;
+        if (StaminaRegenCoroutine != null) { StopCoroutine(StaminaRegenCoroutine); }
+        StaminaRegenCoroutine = StartCoroutine(StaminaRegenPause());
+    }
+
 
     IEnumerator Stagger()
     {

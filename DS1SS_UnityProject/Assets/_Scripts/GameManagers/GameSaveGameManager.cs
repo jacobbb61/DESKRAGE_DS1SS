@@ -80,7 +80,7 @@ public class GameSaveGameManager : MonoBehaviour
 
             GameSaveData.HUD = true;
             GameSaveData.Subtitles = true;
-            GameSaveData.Controls = "Auto";
+            GameSaveData.Controls = "Keyboard";
 
             GameSaveData.LastSlotUsed = 0;
 

@@ -431,27 +431,27 @@ public class MainMenuManager : MonoBehaviour
                 break;
 
             case 1:
-                MainHightlightPos.anchoredPosition = new Vector2(0, -20);
+                MainHightlightPos.anchoredPosition = new Vector2(0, -41);
                 break;
 
             case 2:
-                MainHightlightPos.anchoredPosition = new Vector2(0, -50);
+                MainHightlightPos.anchoredPosition = new Vector2(0, -113.2f);
                 break;
 
             case 3:
-                MainHightlightPos.anchoredPosition = new Vector2(0, -80);
+                MainHightlightPos.anchoredPosition = new Vector2(0, -185.4f);
                 break;
 
             case 4:
-                MainHightlightPos.anchoredPosition = new Vector2(0, -110);
+                MainHightlightPos.anchoredPosition = new Vector2(0, -257.6f);
                 break;
 
             case 5:
-                MainHightlightPos.anchoredPosition = new Vector2(0, -140);
+                MainHightlightPos.anchoredPosition = new Vector2(0, -330.3f);
                 break;
 
             case 6:
-                MainHightlightPos.anchoredPosition = new Vector2(0, -170);
+                MainHightlightPos.anchoredPosition = new Vector2(0, -403);
                 break;
 
             case 7:
@@ -470,35 +470,35 @@ public class MainMenuManager : MonoBehaviour
                 break;
 
             case 1:
-                SettingsHightlightPos.anchoredPosition = new Vector2(-40, 80);
+                SettingsHightlightPos.anchoredPosition = new Vector2(0, 0);
                 break;
 
             case 2:
-                SettingsHightlightPos.anchoredPosition = new Vector2(-40, 55);
+                SettingsHightlightPos.anchoredPosition = new Vector2(0, -60);
                 break;
 
             case 3:
-                SettingsHightlightPos.anchoredPosition = new Vector2(-40, 30);
+                SettingsHightlightPos.anchoredPosition = new Vector2(0, -120);
                 break;
 
             case 4:
-                SettingsHightlightPos.anchoredPosition = new Vector2(-40, -20);
+                SettingsHightlightPos.anchoredPosition = new Vector2(0, -242);
                 break;
 
             case 5:
-                SettingsHightlightPos.anchoredPosition = new Vector2(-40, -50);
+                SettingsHightlightPos.anchoredPosition = new Vector2(0, -315);
                 break;
 
             case 6:
-                SettingsHightlightPos.anchoredPosition = new Vector2(-40, -80);
+                SettingsHightlightPos.anchoredPosition = new Vector2(0, -388);
                 break;
 
             case 7:
-                SettingsHightlightPos.anchoredPosition = new Vector2(-40, -110);
+                SettingsHightlightPos.anchoredPosition = new Vector2(0, -462);
                 break;
 
             case 8:
-                SettingsHightlightPos.anchoredPosition = new Vector2(-40, -140);
+                SettingsHightlightPos.anchoredPosition = new Vector2(0, -535);
                 break;
 
             case 9:
@@ -556,8 +556,8 @@ public class MainMenuManager : MonoBehaviour
         HUDActive = GameSaveGameManager.Instance.GameSaveData.HUD;
         SubtitlesActive = GameSaveGameManager.Instance.GameSaveData.Subtitles;
         ControlLayout = GameSaveGameManager.Instance.GameSaveData.Controls;
-        if (ControlLayout == "") { ControlLayout = "Auto"; }
-        if (ControlLayout == null) { ControlLayout = "Auto"; }
+        if (ControlLayout == "") { ControlLayout = "Keyboard"; }
+        if (ControlLayout == null) { ControlLayout = "Keyboard"; }
 
         AudioMasterNum = GameSaveGameManager.Instance.GameSaveData.Master;
         AudioEffectsNum = GameSaveGameManager.Instance.GameSaveData.Effects;
@@ -580,18 +580,16 @@ public class MainMenuManager : MonoBehaviour
 
             case 3:
                 if (Left)
-                {
-                    if (ControlLayout == "Keyboard") { ControlLayout = "Auto"; InputDeviceManager.SwitchToAuto(); break; }
-                    if (ControlLayout == "Xbox") { ControlLayout = "Keyboard"; InputDeviceManager.SwitchToPC(); break; }
-                    if (ControlLayout == "PlayStation") { ControlLayout = "Xbox"; InputDeviceManager.SwitchToXbox(); break; }
-                    if (ControlLayout == "Auto") { ControlLayout = "PlayStation"; InputDeviceManager.SwitchToPS(); break; }
+                { Debug.Log("SS");
+                    if (ControlLayout == "Keyboard") { ControlLayout = "PlayStation"; InputDeviceManager.SwitchToPS(); break; }
+                    else if (ControlLayout == "Xbox") { ControlLayout = "Keyboard"; InputDeviceManager.SwitchToPC(); break; }
+                    else if (ControlLayout == "PlayStation") { ControlLayout = "Xbox"; InputDeviceManager.SwitchToXbox(); break; }
                 }
                 else
                 {
-                    if (ControlLayout == "PlayStation") { ControlLayout = "Auto"; InputDeviceManager.SwitchToAuto(); break; }
-                    if (ControlLayout == "Xbox") { ControlLayout = "PlayStation"; InputDeviceManager.SwitchToPS(); break; }
-                    if (ControlLayout == "Keyboard") { ControlLayout = "Xbox"; InputDeviceManager.SwitchToXbox(); break; }
-                    if (ControlLayout == "Auto") { ControlLayout = "Keyboard"; InputDeviceManager.SwitchToPC(); break; }
+                    if (ControlLayout == "PlayStation") { ControlLayout = "Keyboard"; InputDeviceManager.SwitchToPC(); break; }
+                    else if (ControlLayout == "Xbox") { ControlLayout = "PlayStation"; InputDeviceManager.SwitchToPS(); break; }
+                    else if (ControlLayout == "Keyboard") { ControlLayout = "Xbox"; InputDeviceManager.SwitchToXbox(); break; }
                 }
 
 
@@ -616,6 +614,7 @@ public class MainMenuManager : MonoBehaviour
                 CanInput = true;
                 break;
         }
+
         AudioMasterNum = Mathf.Clamp(AudioMasterNum, 0, 10);
         AudioEffectsNum = Mathf.Clamp(AudioEffectsNum, 0, 10);
         AudioAmbienceNum = Mathf.Clamp(AudioAmbienceNum, 0, 10);

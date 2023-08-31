@@ -12,13 +12,19 @@ public class ControllerDetect : MonoBehaviour
     private void Start()
     {
         IDM = GetComponent<InputDeviceManager>();
-        CheckInputType();
+        if (IDM.Device == "Auto")
+        {
+            CheckInputType();
+        }
     }
 
-    /*private void Update()
+    private void LateUpdate()
     {
-        CheckInputType();
-    }*/
+        if (IDM.Device == "Auto")
+        {
+            CheckInputType();
+        }
+    }
 
     public void CheckInputType()
     {
@@ -42,7 +48,7 @@ public class ControllerDetect : MonoBehaviour
 
                 if (joystickName.ToLower().Contains("xbox") || joystickName.ToLower().Contains("x-box"))
                 {
-                    IDM.Device = "XBox";
+                    IDM.Device = "Xbox";
                     IDM.SwitchToXbox();
 
                 }
@@ -53,7 +59,7 @@ public class ControllerDetect : MonoBehaviour
                 }
                 else
                 {
-                    IDM.Device = "XBox";
+                    IDM.Device = "Xbox";
                     IDM.SwitchToXbox();
                 }
             }

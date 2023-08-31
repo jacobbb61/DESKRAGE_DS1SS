@@ -79,6 +79,7 @@ public class PursuerArena : MonoBehaviour
 
         if (currentState == "Idle")
         {
+            Boss.ResetPos();
             SwitchState("Active");
             inBossFight = true;
             arenaIsActive = true;

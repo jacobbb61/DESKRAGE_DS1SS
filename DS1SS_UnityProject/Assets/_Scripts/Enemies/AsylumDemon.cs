@@ -132,7 +132,7 @@ public class AsylumDemon : MonoBehaviour
 
         IsAttacking = false;
 
-        transform.localPosition = OriginPosition;
+        //transform.localPosition = OriginPosition;
 
         if (arenaManager.currentState == "Open") { Dead(); Behaviour = "Dead"; }
 
@@ -247,7 +247,7 @@ public class AsylumDemon : MonoBehaviour
             Health -= 5;
             AddDamage(5);
             UpdateUI();
-            if (Health <= 0) { StopAllCoroutines(); StartCoroutine(Death()); arenaManager.Victory(); Player.GetComponent<EnemyLock>().LockedOn = false; Player.GetComponent<EnemyLock>().ToggleLockOn(); }
+            if (Health <= 0) { StopAllCoroutines(); StartCoroutine(Death()); arenaManager.Victory(); Player.GetComponent<EnemyLock>().LockedOn = false;}
             if (Health <= MaxHealth / 2 && !arenaManager.IsSecondPhase) { arenaManager.SecondPhase(); }
         }
     }
@@ -258,7 +258,7 @@ public class AsylumDemon : MonoBehaviour
             Health -= 10;
             AddDamage(10);
             UpdateUI();
-            if (Health <= 0) { StopAllCoroutines(); StartCoroutine(Death()); arenaManager.Victory(); Player.GetComponent<EnemyLock>().LockedOn = false; Player.GetComponent<EnemyLock>().ToggleLockOn(); }
+            if (Health <= 0) { StopAllCoroutines(); StartCoroutine(Death()); arenaManager.Victory(); Player.GetComponent<EnemyLock>().LockedOn = false;}
             if (Health <= MaxHealth / 2 && !arenaManager.IsSecondPhase) { arenaManager.SecondPhase(); }
         }
     }
@@ -268,7 +268,7 @@ public class AsylumDemon : MonoBehaviour
         AddDamage(150);
 
         UpdateUI();
-        if (Health <= 0) { StopAllCoroutines(); StartCoroutine(Death()); arenaManager.Victory(); Player.GetComponent<EnemyLock>().LockedOn = false; Player.GetComponent<EnemyLock>().ToggleLockOn(); }
+        if (Health <= 0) { StopAllCoroutines(); StartCoroutine(Death()); arenaManager.Victory(); Player.GetComponent<EnemyLock>().LockedOn = false;}
         if (Health <= MaxHealth / 2 && !arenaManager.IsSecondPhase) { arenaManager.SecondPhase(); }
 
     }
@@ -516,7 +516,7 @@ public class AsylumDemon : MonoBehaviour
     {
         if (HD_Collider.bounds.Contains(Player.transform.position))
         {
-            PC.PlayerTakeDamage(HD_AttackDamage, true, 0);
+            PC.PlayerTakeDamage(HD_AttackDamage, true, 1);
         }
     }
 
@@ -550,7 +550,7 @@ public class AsylumDemon : MonoBehaviour
     {
         if (RH_Collider.bounds.Contains(Player.transform.position))
         {
-            PC.PlayerTakeDamage(RH_AttackDamage, true, 0);
+            PC.PlayerTakeDamage(RH_AttackDamage, true, 1);
         }
     }
     public void RH_AOE_AttackRegister()
@@ -591,7 +591,7 @@ public class AsylumDemon : MonoBehaviour
     {
         if (LH_Collider.bounds.Contains(Player.transform.position))
         {
-            PC.PlayerTakeDamage(LH_AttackDamage, true, 0);
+            PC.PlayerTakeDamage(LH_AttackDamage, true, 1);
         }
     }
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -625,7 +625,7 @@ public class AsylumDemon : MonoBehaviour
     {
         if (GP_Collider.bounds.Contains(Player.transform.position))
         {
-            PC.PlayerTakeDamage(GP_AttackDamage, true, 0);
+            PC.PlayerTakeDamage(GP_AttackDamage, true, 1);
         }
     }    
     

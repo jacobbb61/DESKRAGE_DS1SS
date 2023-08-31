@@ -8,6 +8,7 @@ public class Pursuer : MonoBehaviour
 {
     public Animator Anim; 
     public Collider2D Pursuer_Collider;
+    public Collider2D Door_Collider;
     private GameObject Player;
     private PlayerControllerV2 PC;
     private Rigidbody2D RB;
@@ -162,6 +163,13 @@ public class Pursuer : MonoBehaviour
 
         if (IsActive) { UIAssets.SetActive(true); } else { UIAssets.SetActive(false); }
     }
+    public void ResetPos()
+    {
+        if (IsDead == false)
+        {
+            transform.localPosition = OriginPosition;
+        }
+    }
 
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// updates
@@ -178,6 +186,8 @@ public class Pursuer : MonoBehaviour
                     Anim.Play("ThePursuerAnim_Idle");
                     break;
                 case "Hostile":
+
+                    Door_Collider.enabled = true;
 
                     FacePlayer();
 
@@ -234,7 +244,7 @@ public class Pursuer : MonoBehaviour
     IEnumerator Death()
     {
         Behaviour = "Dying";
-
+        Player.GetComponent<EnemyLock>().LockedOn = false;
 
 
         Player.GetComponent<PlayerControllerV2>().FadeOutMusic = true;
@@ -801,7 +811,7 @@ public class Pursuer : MonoBehaviour
 
         if (GP_Collider.bounds.Contains(Player.transform.position) && HitPlayer == false)
         {
-            PC.PlayerTakeDamage(GP_AttackDamage, true, 0);
+            PC.PlayerTakeDamage(GP_AttackDamage, true, 1);
             HitPlayer = true;
         }
     }
@@ -846,7 +856,7 @@ public class Pursuer : MonoBehaviour
     {
         if (SMF_Collider.bounds.Contains(Player.transform.position) && HitPlayer == false)
         {
-            PC.PlayerTakeDamage(SMF_AttackDamage, true, 0);
+            PC.PlayerTakeDamage(SMF_AttackDamage, true, 1);
             HitPlayer = true;
         }
     }

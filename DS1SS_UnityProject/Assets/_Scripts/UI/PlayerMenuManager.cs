@@ -10,14 +10,7 @@ using FMODUnity;
 public class PlayerMenuManager : MonoBehaviour
 {
 
-    private void OnApplicationQuit() //save game on force quit, alt f4
-    {
-        if (PM.DemonArena.inBossFight == false && PM.PursuerArena.inBossFight == false) 
-        {
-            WorldSaveGameManager.Instance.Player = PM;
-            WorldSaveGameManager.Instance.SaveGame();
-        }
-    }
+
 
 
 
@@ -352,35 +345,35 @@ public class PlayerMenuManager : MonoBehaviour
                 break;
 
             case 1:
-                SettingsHightlightPos.anchoredPosition = new Vector2(-7, 105);
+                SettingsHightlightPos.anchoredPosition = new Vector2(0, 0);
                 break;
 
             case 2:
-                SettingsHightlightPos.anchoredPosition = new Vector2(-7, 80);
+                SettingsHightlightPos.anchoredPosition = new Vector2(0, -60);
                 break;
 
             case 3:
-                SettingsHightlightPos.anchoredPosition = new Vector2(-7, 55);
+                SettingsHightlightPos.anchoredPosition = new Vector2(0,-120);
                 break;
 
             case 4:
-                SettingsHightlightPos.anchoredPosition = new Vector2(-7, 5);
+                SettingsHightlightPos.anchoredPosition = new Vector2(0, -235);
                 break;
 
             case 5:
-                SettingsHightlightPos.anchoredPosition = new Vector2(-7, -25);
+                SettingsHightlightPos.anchoredPosition = new Vector2(0, -305);
                 break;
 
             case 6:
-                SettingsHightlightPos.anchoredPosition = new Vector2(-7, -55);
+                SettingsHightlightPos.anchoredPosition = new Vector2(0, -375);
                 break;
 
             case 7:
-                SettingsHightlightPos.anchoredPosition = new Vector2(-7, -85);
+                SettingsHightlightPos.anchoredPosition = new Vector2(0, -445);
                 break;
 
             case 8:
-                SettingsHightlightPos.anchoredPosition = new Vector2(-7, -115);
+                SettingsHightlightPos.anchoredPosition = new Vector2(0, -515);
                 break;
 
             case 9:
@@ -423,17 +416,15 @@ public class PlayerMenuManager : MonoBehaviour
             case 3:
                 if (Left)
                 {
-                    if (ControlLayout == "Keyboard") { ControlLayout = "Auto"; InputDeviceManager.SwitchToAuto(); break; }
+                    if (ControlLayout == "Keyboard") { ControlLayout = "PlayStation"; InputDeviceManager.SwitchToPS(); break; }
                     if (ControlLayout == "Xbox") { ControlLayout = "Keyboard"; InputDeviceManager.SwitchToPC(); break; }
                     if (ControlLayout == "PlayStation") { ControlLayout = "Xbox"; InputDeviceManager.SwitchToXbox(); break; }
-                    if (ControlLayout == "Auto") { ControlLayout = "PlayStation"; InputDeviceManager.SwitchToPS(); break; }
                 }
                 else
                 {
-                    if (ControlLayout == "PlayStation") { ControlLayout = "Auto"; InputDeviceManager.SwitchToAuto(); break; }
+                    if (ControlLayout == "PlayStation") { ControlLayout = "Keyboard"; InputDeviceManager.SwitchToPC(); break; }
                     if (ControlLayout == "Xbox") { ControlLayout = "PlayStation"; InputDeviceManager.SwitchToPS(); break; }
                     if (ControlLayout == "Keyboard") { ControlLayout = "Xbox"; InputDeviceManager.SwitchToXbox(); break; }
-                    if (ControlLayout == "Auto") { ControlLayout = "Keyboard"; InputDeviceManager.SwitchToPC(); break; }
                 }
                 break;
 
@@ -488,16 +479,20 @@ public class PlayerMenuManager : MonoBehaviour
     }
 
 
-
-    public void LoadQuit()
+    private void LateUpdate()
     {
-
-       
         float timer = PM.TimePlayedSeconds;
         float seconds = timer % 60;
         float minutes = Mathf.Floor(timer / 60);
         float hours = Mathf.Floor(minutes / 60);
         TimePlayedText.text = hours.ToString("00") + ":" + minutes.ToString("00") + ":" + seconds.ToString("00");
+    }
+
+    public void LoadQuit()
+    {
+
+       
+
 
         if (!QuitOpen) { ActiveMenu = "Quit"; QuitUI.SetActive(true);} else { ActiveMenu = "Main"; QuitUI.SetActive(false); }
         QuitOrder = 2;
@@ -511,11 +506,11 @@ public class PlayerMenuManager : MonoBehaviour
         switch (QuitOrder)
         {
             case 1:
-                QuitHightlightPos.anchoredPosition = new Vector2(-85, -10);
+                QuitHightlightPos.anchoredPosition = new Vector2(0, 0);
                 break;
 
             case 2:
-                QuitHightlightPos.anchoredPosition = new Vector2(85, -10);
+                QuitHightlightPos.anchoredPosition = new Vector2(410, 0);
                 break;
 
             case 3:

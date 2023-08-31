@@ -148,6 +148,7 @@ public class Bonfire : MonoBehaviour
 
         //update boss pos
         AsylumDemon.ResetPos();
+        Pursuer.ResetPos();
 
         //upadate oscar
         OM.Reload();

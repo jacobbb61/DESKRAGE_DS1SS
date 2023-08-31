@@ -370,7 +370,7 @@ RectTransform:
   m_GameObject: {fileID: 286183239}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2.4141, y: 2.4141, z: 2.4141}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 192228054}
@@ -379,9 +379,9 @@ RectTransform:
   m_Father: {fileID: 1097592693}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 330, y: -200}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
+  m_AnchoredPosition: {x: -168, y: 65}
   m_SizeDelta: {x: 100, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!95 &286183241
@@ -529,7 +529,7 @@ RectTransform:
   m_GameObject: {fileID: 460229221}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 3.1986825, y: 2.4141, z: 2.4141}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1097592693}
@@ -1671,7 +1671,7 @@ RectTransform:
   m_GameObject: {fileID: 1063906023}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2.4141, y: 2.4141, z: 2.4141}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1588765623}
@@ -1900,9 +1900,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
-  m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
-  m_ScreenMatchMode: 0
+  m_ScaleFactor: 2.5
+  m_ReferenceResolution: {x: 1920, y: 1080}
+  m_ScreenMatchMode: 1
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
@@ -1964,7 +1964,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1333209965}
   - component: {fileID: 1333209964}
-  - component: {fileID: 1333209966}
   m_Layer: 0
   m_Name: InputDeviceManager
   m_TagString: Untagged
@@ -2006,19 +2005,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1333209966
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1333209963}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d3b79f233b8f36498e34cd178465c93, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  joystickNames: []
 --- !u!1001 &1365905878
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2068,15 +2054,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7829534106399025873, guid: df7e0778d4b47d446855c20cb0394c77, type: 3}
       propertyPath: m_LocalScale.x
-      value: 1
+      value: 2.4141
       objectReference: {fileID: 0}
     - target: {fileID: 7829534106399025873, guid: df7e0778d4b47d446855c20cb0394c77, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1
+      value: 2.4141
       objectReference: {fileID: 0}
     - target: {fileID: 7829534106399025873, guid: df7e0778d4b47d446855c20cb0394c77, type: 3}
       propertyPath: m_LocalScale.z
-      value: 1
+      value: 2.4141
       objectReference: {fileID: 0}
     - target: {fileID: 7829534106399025873, guid: df7e0778d4b47d446855c20cb0394c77, type: 3}
       propertyPath: m_LocalPosition.x
