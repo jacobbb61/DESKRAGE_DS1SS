@@ -144,10 +144,10 @@ TextureImporter:
       name: UndeadAnim_C_QuickBarrage_0
       rect:
         serializedVersion: 2
-        x: 179
+        x: 180
         y: 0
-        width: 39
-        height: 113
+        width: 36
+        height: 112
       alignment: 9
       pivot: {x: 0.45, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -165,10 +165,10 @@ TextureImporter:
       name: UndeadAnim_C_QuickBarrage_1
       rect:
         serializedVersion: 2
-        x: 423
+        x: 412
         y: 0
-        width: 45
-        height: 116
+        width: 56
+        height: 115
       alignment: 9
       pivot: {x: 0.45, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -186,10 +186,10 @@ TextureImporter:
       name: UndeadAnim_C_QuickBarrage_2
       rect:
         serializedVersion: 2
-        x: 684
+        x: 686
         y: 0
-        width: 41
-        height: 126
+        width: 40
+        height: 136
       alignment: 9
       pivot: {x: 0.45, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -207,12 +207,12 @@ TextureImporter:
       name: UndeadAnim_C_QuickBarrage_3
       rect:
         serializedVersion: 2
-        x: 925
+        x: 931
         y: 0
-        width: 82
-        height: 126
+        width: 76
+        height: 135
       alignment: 9
-      pivot: {x: 0.29, y: 0}
+      pivot: {x: 0.45, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -228,12 +228,12 @@ TextureImporter:
       name: UndeadAnim_C_QuickBarrage_4
       rect:
         serializedVersion: 2
-        x: 1170
+        x: 1175
         y: 0
-        width: 67
+        width: 70
         height: 111
       alignment: 9
-      pivot: {x: 0.27, y: 0}
+      pivot: {x: 0.45, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -249,12 +249,12 @@ TextureImporter:
       name: UndeadAnim_C_QuickBarrage_5
       rect:
         serializedVersion: 2
-        x: 1402
+        x: 1397
         y: 0
-        width: 73
-        height: 119
+        width: 76
+        height: 122
       alignment: 9
-      pivot: {x: 0.51, y: 0}
+      pivot: {x: 0.45, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -272,7 +272,7 @@ TextureImporter:
         serializedVersion: 2
         x: 1675
         y: 0
-        width: 52
+        width: 53
         height: 100
       alignment: 9
       pivot: {x: 0.45, y: 0}
@@ -291,10 +291,10 @@ TextureImporter:
       name: UndeadAnim_C_QuickBarrage_7
       rect:
         serializedVersion: 2
-        x: 1922
+        x: 1924
         y: 0
-        width: 61
-        height: 94
+        width: 58
+        height: 92
       alignment: 9
       pivot: {x: 0.45, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -312,10 +312,10 @@ TextureImporter:
       name: UndeadAnim_C_QuickBarrage_8
       rect:
         serializedVersion: 2
-        x: 2181
+        x: 2183
         y: 0
-        width: 58
-        height: 90
+        width: 55
+        height: 89
       alignment: 9
       pivot: {x: 0.45, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -335,8 +335,8 @@ TextureImporter:
         serializedVersion: 2
         x: 2446
         y: 0
-        width: 49
-        height: 98
+        width: 47
+        height: 97
       alignment: 9
       pivot: {x: 0.45, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -354,12 +354,12 @@ TextureImporter:
       name: UndeadAnim_C_QuickBarrage_10
       rect:
         serializedVersion: 2
-        x: 2703
+        x: 2708
         y: 0
-        width: 76
-        height: 104
+        width: 82
+        height: 102
       alignment: 9
-      pivot: {x: 0.24, y: 0}
+      pivot: {x: 0.45, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -375,12 +375,12 @@ TextureImporter:
       name: UndeadAnim_C_QuickBarrage_11
       rect:
         serializedVersion: 2
-        x: 2959
+        x: 2964
         y: 0
-        width: 96
-        height: 102
+        width: 98
+        height: 100
       alignment: 9
-      pivot: {x: 0.21, y: 0}
+      pivot: {x: 0.45, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -396,10 +396,10 @@ TextureImporter:
       name: UndeadAnim_C_QuickBarrage_12
       rect:
         serializedVersion: 2
-        x: 3208
+        x: 3212
         y: 0
-        width: 55
-        height: 99
+        width: 47
+        height: 95
       alignment: 9
       pivot: {x: 0.45, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -417,12 +417,12 @@ TextureImporter:
       name: UndeadAnim_C_QuickBarrage_13
       rect:
         serializedVersion: 2
-        x: 3426
+        x: 3421
         y: 0
-        width: 93
-        height: 98
+        width: 94
+        height: 102
       alignment: 9
-      pivot: {x: 0.66, y: 0}
+      pivot: {x: 0.45, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -438,12 +438,12 @@ TextureImporter:
       name: UndeadAnim_C_QuickBarrage_14
       rect:
         serializedVersion: 2
-        x: 3689
+        x: 3691
         y: 0
-        width: 86
-        height: 106
+        width: 80
+        height: 116
       alignment: 9
-      pivot: {x: 0.66, y: 0}
+      pivot: {x: 0.45, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -461,10 +461,10 @@ TextureImporter:
         serializedVersion: 2
         x: 3957
         y: 0
-        width: 74
+        width: 70
         height: 89
       alignment: 9
-      pivot: {x: 0.6, y: 0}
+      pivot: {x: 0.45, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -480,12 +480,12 @@ TextureImporter:
       name: UndeadAnim_C_QuickBarrage_16
       rect:
         serializedVersion: 2
-        x: 4239
+        x: 4241
         y: 0
-        width: 48
-        height: 94
+        width: 42
+        height: 92
       alignment: 9
-      pivot: {x: 0.39, y: 0}
+      pivot: {x: 0.45, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -501,12 +501,12 @@ TextureImporter:
       name: UndeadAnim_C_QuickBarrage_17
       rect:
         serializedVersion: 2
-        x: 4495
+        x: 4499
         y: 0
-        width: 66
-        height: 93
+        width: 68
+        height: 94
       alignment: 9
-      pivot: {x: 0.27, y: 0}
+      pivot: {x: 0.45, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -522,12 +522,12 @@ TextureImporter:
       name: UndeadAnim_C_QuickBarrage_18
       rect:
         serializedVersion: 2
-        x: 4745
+        x: 4747
         y: 0
-        width: 82
+        width: 89
         height: 95
       alignment: 9
-      pivot: {x: 0.3, y: 0}
+      pivot: {x: 0.45, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -543,7 +543,7 @@ TextureImporter:
       name: UndeadAnim_C_QuickBarrage_19
       rect:
         serializedVersion: 2
-        x: 5003
+        x: 4997
         y: 0
         width: 52
         height: 96
@@ -564,12 +564,12 @@ TextureImporter:
       name: UndeadAnim_C_QuickBarrage_20
       rect:
         serializedVersion: 2
-        x: 5246
+        x: 5240
         y: 0
-        width: 65
-        height: 90
+        width: 67
+        height: 92
       alignment: 9
-      pivot: {x: 0.54, y: 0}
+      pivot: {x: 0.45, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -585,12 +585,12 @@ TextureImporter:
       name: UndeadAnim_C_QuickBarrage_21
       rect:
         serializedVersion: 2
-        x: 5482
+        x: 5473
         y: 0
-        width: 85
-        height: 84
+        width: 90
+        height: 85
       alignment: 9
-      pivot: {x: 0.7, y: 0}
+      pivot: {x: 0.45, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -606,12 +606,12 @@ TextureImporter:
       name: UndeadAnim_C_QuickBarrage_22
       rect:
         serializedVersion: 2
-        x: 5748
+        x: 5723
         y: 0
-        width: 75
-        height: 77
+        width: 96
+        height: 79
       alignment: 9
-      pivot: {x: 0.63, y: 0}
+      pivot: {x: 0.45, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -627,12 +627,12 @@ TextureImporter:
       name: UndeadAnim_C_QuickBarrage_23
       rect:
         serializedVersion: 2
-        x: 6008
+        x: 6006
         y: 0
-        width: 71
-        height: 79
+        width: 69
+        height: 80
       alignment: 9
-      pivot: {x: 0.57, y: 0}
+      pivot: {x: 0.45, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -650,10 +650,10 @@ TextureImporter:
         serializedVersion: 2
         x: 6281
         y: 0
-        width: 70
-        height: 96
+        width: 82
+        height: 94
       alignment: 9
-      pivot: {x: 0.33, y: 0}
+      pivot: {x: 0.45, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -669,12 +669,12 @@ TextureImporter:
       name: UndeadAnim_C_QuickBarrage_25
       rect:
         serializedVersion: 2
-        x: 6531
+        x: 6534
         y: 0
-        width: 81
-        height: 106
+        width: 84
+        height: 114
       alignment: 9
-      pivot: {x: 0.39, y: 0}
+      pivot: {x: 0.45, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -690,12 +690,12 @@ TextureImporter:
       name: UndeadAnim_C_QuickBarrage_26
       rect:
         serializedVersion: 2
-        x: 6778
+        x: 6786
         y: 0
-        width: 81
-        height: 110
+        width: 78
+        height: 118
       alignment: 9
-      pivot: {x: 0.57, y: 0}
+      pivot: {x: 0.45, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -711,12 +711,12 @@ TextureImporter:
       name: UndeadAnim_C_QuickBarrage_27
       rect:
         serializedVersion: 2
-        x: 7060
+        x: 7064
         y: 0
-        width: 51
-        height: 110
+        width: 46
+        height: 109
       alignment: 9
-      pivot: {x: 0.33, y: 0}
+      pivot: {x: 0.45, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -732,12 +732,12 @@ TextureImporter:
       name: UndeadAnim_C_QuickBarrage_28
       rect:
         serializedVersion: 2
-        x: 7328
+        x: 7310
         y: 0
-        width: 41
+        width: 60
         height: 112
       alignment: 9
-      pivot: {x: 0.57, y: 0}
+      pivot: {x: 0.45, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -753,12 +753,12 @@ TextureImporter:
       name: UndeadAnim_C_QuickBarrage_29
       rect:
         serializedVersion: 2
-        x: 7590
+        x: 7577
         y: 0
-        width: 50
-        height: 113
+        width: 62
+        height: 114
       alignment: 9
-      pivot: {x: 0.66, y: 0}
+      pivot: {x: 0.45, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -774,12 +774,12 @@ TextureImporter:
       name: UndeadAnim_C_QuickBarrage_30
       rect:
         serializedVersion: 2
-        x: 7844
+        x: 7834
         y: 0
-        width: 55
-        height: 115
+        width: 68
+        height: 114
       alignment: 9
-      pivot: {x: 0.57, y: 0}
+      pivot: {x: 0.45, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -795,12 +795,12 @@ TextureImporter:
       name: UndeadAnim_C_QuickBarrage_31
       rect:
         serializedVersion: 2
-        x: 8099
+        x: 8087
         y: 0
-        width: 59
-        height: 114
+        width: 69
+        height: 115
       alignment: 9
-      pivot: {x: 0.54, y: 0}
+      pivot: {x: 0.45, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -816,12 +816,12 @@ TextureImporter:
       name: UndeadAnim_C_QuickBarrage_32
       rect:
         serializedVersion: 2
-        x: 8364
+        x: 8353
         y: 0
-        width: 44
-        height: 112
+        width: 54
+        height: 113
       alignment: 9
-      pivot: {x: 0.54, y: 0}
+      pivot: {x: 0.45, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
