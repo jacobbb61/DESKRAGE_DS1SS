@@ -10,7 +10,8 @@ public class PursuerAnimationEvents : MonoBehaviour
     public UnityEvent MoveEvent;
     public UnityEvent StopEvent;
     public UnityEvent ImmuneEvent;
-    public UnityEvent ParryEvent;
+    public UnityEvent ParryOnEvent;
+    public UnityEvent ParryOffEvent;
     public UnityEvent HitPlayerResetEvent;
     public UnityEvent Combo1Triggered;
     public UnityEvent Combo2Triggered;
@@ -43,9 +44,13 @@ public class PursuerAnimationEvents : MonoBehaviour
     {
         ImmuneEvent.Invoke();
     }   
-    public void Parryable()
+    public void ParryOn()
     {
-        ParryEvent.Invoke(); ParryIndicator.gameObject.SetActive(!ParryIndicator.activeInHierarchy);
+        ParryOnEvent.Invoke(); 
+    }   
+    public void ParryOff()
+    {
+        ParryOffEvent.Invoke(); 
     }
     public void HitPlayerReset()
     {

@@ -22,6 +22,9 @@ public class PursuerArena : MonoBehaviour
 
     public GameObject BossCam;
 
+    public ParticleSystem ParticleSystem1;
+    public ParticleSystem ParticleSystem2;
+
 
     public Animator VictoryAnim;
 
@@ -53,6 +56,8 @@ public class PursuerArena : MonoBehaviour
         FMODinstance = FMODUnity.RuntimeManager.CreateInstance(Theme_SecondPhase);
         FMODinstance.start(); 
         FMODinstance.release();
+        ParticleSystem1.Play();
+        ParticleSystem2.Play();
     }
     public void EnterArena() //called from door manager
     {
@@ -126,11 +131,18 @@ public class PursuerArena : MonoBehaviour
                     Boss.Behaviour = "FirstTime";
                     Boss.CanPhaseChanged = false;
 
+                    ParticleSystem1.Stop();
+                    ParticleSystem2.Stop();
+
                     IsSecondPhase = false;
                     break;
                 }
             case "Idle":
                 {
+
+                    ParticleSystem1.Stop();
+                    ParticleSystem2.Stop();
+
                     doorT.SwitchDoorState("FogEnter");
                     doorU.SwitchDoorState("Fog");
                     doorT.ManualStart();
@@ -200,6 +212,9 @@ public class PursuerArena : MonoBehaviour
     {
         RuntimeManager.PlayOneShot(BossKilledAudio, transform.position);
         VictoryAnim.Play("Active");
+
+        ParticleSystem1.Stop();
+        ParticleSystem2.Stop();
     }
     public void BossKilled() //Called by boss script
     {

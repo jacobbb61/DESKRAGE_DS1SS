@@ -602,11 +602,11 @@ public class OscarManager : MonoBehaviour
 
         if (QuestionOrder)
         {
-            QuestionHightlightPos.anchoredPosition = new Vector2(-80, 0);
+            QuestionHightlightPos.anchoredPosition = new Vector2(0, 0);
         }
         else
         {
-            QuestionHightlightPos.anchoredPosition = new Vector2(80, 0);
+            QuestionHightlightPos.anchoredPosition = new Vector2(382, 0);
         }
 
         CanInput = true;

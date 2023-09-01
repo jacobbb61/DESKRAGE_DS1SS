@@ -1037,9 +1037,17 @@ public class PlayerControllerV2 : MonoBehaviour
         //
 
         if (Health <= 0 && State!="Dead") { StartCoroutine(PlayerDead()); }
-        if (Health <= 20) { LowHealthObj.SetActive(true); }
+        if (State != "Dead")
+        {
+            if (Health <= 20) { LowHealthObj.SetActive(true); }
+            else
+            {
+                LowHealthObj.SetActive(false);
+            }
+        }
         else
         {
+
             LowHealthObj.SetActive(false);
         }
         GroundCheck();
@@ -1810,13 +1818,13 @@ public class PlayerControllerV2 : MonoBehaviour
 
         Anim.Play("PlayerAnim_LightSwingFollowUpAttack2");
 
-        yield return new WaitForSeconds(LightFollowUpAttackTime - .3f);
+        yield return new WaitForSeconds(LightFollowUpAttackTime - .25f);
 
         CanRollOut = true; CancelThisCoroutine = AttackFollowUpCoroutine;
         CanFollowUpAgain2 = true;
         CanAttack = true;
 
-        yield return new WaitForSeconds(.3f);
+        yield return new WaitForSeconds(.25f);
 
         CanRollOut = false; CancelThisCoroutine = null;
         CanFollowUpAgain2 = false;
@@ -1955,6 +1963,13 @@ public class PlayerControllerV2 : MonoBehaviour
 
     IEnumerator KnockDown()
     {
+        IsStaminaRegen = false;
+        CanFollowUp = false;
+        CanFollowUpAgain = false;
+        CanFollowUpAgain2 = false;
+        CanRollOut = false;
+        CanAttack = false;
+
         if (EstusUseCoroutine != null) { StopCoroutine(EstusUseCoroutine); }
         Anim.Play("PlayerAnim_KnockDown");
         State = "Stagger";
@@ -1962,6 +1977,7 @@ public class PlayerControllerV2 : MonoBehaviour
 
         yield return new WaitForSeconds(0.75f);
 
+        IsStaminaRegen = true;
         CanRollOut = true; CancelThisCoroutine = StaggerCoroutine;
 
         yield return new WaitForSeconds(0.5f);
@@ -1978,6 +1994,13 @@ public class PlayerControllerV2 : MonoBehaviour
 
     IEnumerator Stagger()
     {
+        IsStaminaRegen = false;
+        CanFollowUp = false;
+        CanFollowUpAgain = false;
+        CanFollowUpAgain2 = false;
+        CanRollOut = false;
+        CanAttack = false;
+
         if (EstusUseCoroutine != null) { StopCoroutine(EstusUseCoroutine); }
         Anim.Play("PlayerAnim_StaggerGettingHit");
         State = "Stagger";
@@ -1985,6 +2008,7 @@ public class PlayerControllerV2 : MonoBehaviour
 
         yield return new WaitForSeconds(0.5f);
 
+        IsStaminaRegen = true;
         CanRollOut = true; CancelThisCoroutine = StaggerCoroutine;
 
         yield return new WaitForSeconds(0.25f);

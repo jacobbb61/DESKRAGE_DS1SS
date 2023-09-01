@@ -236,6 +236,7 @@ public class Pursuer : MonoBehaviour
     public void UpdateUI()
     {
         HealthSlider.value = Health;
+
     }
 
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -301,25 +302,38 @@ public class Pursuer : MonoBehaviour
     }
 
 
-    public void ToggleParry()
+    public void ToggleParryOn()
     {
-        CanBeParry = !CanBeParry;
+        CanBeParry = true; 
+        ParryIndicator.SetActive(true); 
+
     }
+    public void ToggleParryOff()
+    {
+        CanBeParry = false;
+        ParryIndicator.SetActive(false);
+    }
+
     public void TriggerStagger()
     {
+        ParryIndicator.SetActive(false);
         Behaviour = "Parried";
         if (AttackingCoroutine != null) { StopCoroutine(AttackingCoroutine); }
         StartCoroutine(Staggered());
         RB.velocity = Vector2.zero;
+        CanBeParry = false;
     }
     IEnumerator Staggered()
     {
+        ParryIndicator.SetActive(false);
+        CanBeParry = false;
         Anim.Play("StaggerPlaceholder");
         IsAttacking = false;
         ParryIndicator.SetActive(false);
         yield return new WaitForSeconds(StaggerTime);
         IsAttacking = false;
         Behaviour = "Hostile";
+        CanBeParry = false;
     }
 
     void AddDamage(int DMG)
