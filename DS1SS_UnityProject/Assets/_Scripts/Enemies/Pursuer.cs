@@ -546,7 +546,7 @@ public class Pursuer : MonoBehaviour
     {
         if (arenaManager.IsSecondPhase)
         {
-            int attack = Random.Range(1, 4);
+            int attack = Random.Range(1, 5);
             Debug.Log("Long Attack " + attack);
             switch (attack)
             {
@@ -555,11 +555,15 @@ public class Pursuer : MonoBehaviour
                     AttackingCoroutine = StartCoroutine(CH_Attack());
                     break;
 
-                case 2: //cursed shockwave
+                case 2: //charge
+                    AttackingCoroutine = StartCoroutine(CH_Attack());
+                    break;
+
+                case 3: //cursed shockwave
                     AttackingCoroutine = StartCoroutine(CS_Attack());
                     break;
 
-                case 3: //GroundPound
+                case 4: //GroundPound
                     AttackingCoroutine = StartCoroutine(GP_Attack());
                     break;
 
@@ -567,7 +571,7 @@ public class Pursuer : MonoBehaviour
         }
         else
         {
-            int attack = Random.Range(1, 3);
+            int attack = Random.Range(1, 4);
             Debug.Log("Long Attack " + attack);
             switch (attack)
             {
@@ -575,7 +579,11 @@ public class Pursuer : MonoBehaviour
                     AttackingCoroutine = StartCoroutine(CH_Attack());
                     break;
 
-                case 2: //cursed shockwave
+                case 2: //charge
+                    AttackingCoroutine = StartCoroutine(CH_Attack());
+                    break;
+
+                case 3: //cursed shockwave
                     AttackingCoroutine = StartCoroutine(CS_Attack());
                     break;
 
@@ -902,6 +910,20 @@ public class Pursuer : MonoBehaviour
         yield return new WaitForSeconds(SPF_AttackCoolDownTime);
         IsCoolingDown = false;
 
+    }
+
+    public void DoubleSpin()
+    {
+        int attack = Random.Range(1, 6);
+        switch (attack)
+        {
+            case 1: //Spinning
+                StopCoroutine(AttackingCoroutine);
+                AttackingCoroutine = StartCoroutine(SPF_Attack());
+                break;
+            default:
+                return;
+        }
     }
 
     public void SPF_AttackRegister()
