@@ -942,21 +942,20 @@ public class Pursuer : MonoBehaviour
         StepDistance = DS_AttackStepForward;
     }
 
-    public void InFront_AttackPunish()
+    public void AttackPunish()
     {
         if (InFrontCol.bounds.Contains(Player.transform.position))
         {
-            int SmartAttack1 = Random.Range(1, 3);
-            if (SmartAttack1 == 1)
-            {
-                StopCoroutine(AttackingCoroutine);
-                AttackingCoroutine = StartCoroutine(SPF_Attack());
-            }
-            else
-            {
-                StopCoroutine(AttackingCoroutine);
-                AttackingCoroutine = StartCoroutine(SMF_Attack());
-            }
+
+            StopCoroutine(AttackingCoroutine);
+            AttackingCoroutine = StartCoroutine(SPF_Attack());
+            return;
+        }
+
+        else if (OnTopCol.bounds.Contains(Player.transform.position))
+        {
+            StopCoroutine(AttackingCoroutine);
+            AttackingCoroutine = StartCoroutine(SMF_Attack());
         }
     }
 
