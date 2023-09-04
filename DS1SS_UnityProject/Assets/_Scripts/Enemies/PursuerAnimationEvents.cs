@@ -108,7 +108,7 @@ public class PursuerAnimationEvents : MonoBehaviour
     {
         DoubleStabTriggered.Invoke();
     }
-    public void DoubleStabPunish()
+    public void Punish()
     {
         DoubleStabPunishTriggered.Invoke();
     }

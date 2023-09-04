@@ -942,7 +942,7 @@ public class Pursuer : MonoBehaviour
         StepDistance = DS_AttackStepForward;
     }
 
-    public void DS_AttackPunish()
+    public void InFront_AttackPunish()
     {
         if (InFrontCol.bounds.Contains(Player.transform.position))
         {
@@ -954,7 +954,8 @@ public class Pursuer : MonoBehaviour
             }
             else
             {
-                return;
+                StopCoroutine(AttackingCoroutine);
+                AttackingCoroutine = StartCoroutine(SMF_Attack());
             }
         }
     }
