@@ -24,6 +24,8 @@ public class EnemyAnimationEvents : MonoBehaviour
     public string GroundType;
     public EventReference WalkAudioRef;
     public EventReference AttackAudioRef;
+    public EventReference AttackBowAudioRef;
+    public EventReference AttackReleaseAudioRef;
 
     public bool isBoss;
 
@@ -95,7 +97,13 @@ public class EnemyAnimationEvents : MonoBehaviour
         if (!isBoss)
         {
             RuntimeManager.PlayOneShot(AttackAudioRef, transform.position);
+            RuntimeManager.PlayOneShot(AttackBowAudioRef, transform.position);
         }
+    }
+    public void AttackReleaseAudio()
+    {
+
+        RuntimeManager.PlayOneShot(AttackReleaseAudioRef, transform.position);
     }
     public  void Attack2()
     {

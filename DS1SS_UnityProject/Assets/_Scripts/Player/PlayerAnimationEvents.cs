@@ -143,6 +143,11 @@ public class PlayerAnimationEvents : MonoBehaviour
             {
                 PC.HitWall(hit.transform.GetComponent<ObjectType_AudioRef>().ObjectType);
             }
+
+            else if (hit.transform.CompareTag("Ground"))
+            {
+                PC.HitWall(hit.transform.GetComponent<ObjectType_AudioRef>().ObjectType);
+            }
             else if (hit.transform.CompareTag("Pot"))
             {
                 hit.transform.GetComponent<Pot>().BreakPot();

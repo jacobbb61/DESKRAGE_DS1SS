@@ -322,6 +322,10 @@ public class PlayerControllerV2 : MonoBehaviour
             }
             else
             {
+                if (IsBlocking)
+                {
+                    RuntimeManager.PlayOneShot(Audio_BlockHit_Ref, transform.position);
+                }
 
                 if (State != "Stagger" && KnockDownDirection==0)
                 { 
@@ -1149,6 +1153,7 @@ public class PlayerControllerV2 : MonoBehaviour
         IsImmune = false;
         GoingToRollUpSlope = false;
         GoingToRollDownSlope = false;
+        CanAttack = true;
 
 
         if (StaminaRegenCoroutine != null) { StopCoroutine(StaminaRegenCoroutine); StaminaRegenCoroutine = StartCoroutine(StaminaRegenPause()); }
@@ -2166,6 +2171,7 @@ public class PlayerControllerV2 : MonoBehaviour
     {
         WallHitType = WallHit;
         StartCoroutine(WallStagger());
+        GetComponentInChildren<AnimationAudio>().HitObjectAudio(WallHit);
     }
 
     IEnumerator WallStagger()

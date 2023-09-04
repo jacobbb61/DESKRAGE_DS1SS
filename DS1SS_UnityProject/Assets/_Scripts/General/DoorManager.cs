@@ -23,6 +23,7 @@ public class DoorManager : MonoBehaviour
 
 
     public EventReference FogEnterAudioRef;
+    public EventReference DoorClosedAudioRef;
     public string CurrentDoorState_This;
 
      private CanvasManager CanvasManager;
@@ -286,7 +287,8 @@ public class DoorManager : MonoBehaviour
                                     {
                                         doorUI.SetActive(true);
                                         doorUIText.text = "Door unlocked";
-                                       PlayOpen();
+                                        RuntimeManager.PlayOneShot(DoorClosedAudioRef, transform.position);
+                                        PlayOpen();
                                         //Wait();
                                         doorCollider.enabled = false;
                                         CurrentDoorState_This = "Open";
@@ -294,6 +296,7 @@ public class DoorManager : MonoBehaviour
                                     else
                                     {
                                         doorUI.SetActive(true);
+                                        RuntimeManager.PlayOneShot(DoorClosedAudioRef, transform.position);
                                         doorUIText.text = "Locked";
                                     }
                                     break;
@@ -305,7 +308,8 @@ public class DoorManager : MonoBehaviour
                                     {
                                         doorUI.SetActive(true);
                                         doorUIText.text = "Door unlocked";
-                                       PlayOpen();
+                                        RuntimeManager.PlayOneShot(DoorClosedAudioRef, transform.position);
+                                        PlayOpen();
                                         //Wait();
                                         doorCollider.enabled = false;
                                         CurrentDoorState_This = "Open";
@@ -313,6 +317,7 @@ public class DoorManager : MonoBehaviour
                                     else
                                     {
                                         doorUI.SetActive(true);
+                                        RuntimeManager.PlayOneShot(DoorClosedAudioRef, transform.position);
                                         doorUIText.text = "Locked";
                                     }
                                     break;
@@ -324,7 +329,8 @@ public class DoorManager : MonoBehaviour
                                     {
                                         doorUI.SetActive(true);
                                         doorUIText.text = "Door unlocked";
-                                       PlayOpen();
+                                        RuntimeManager.PlayOneShot(DoorClosedAudioRef, transform.position);
+                                        PlayOpen();
                                         //Wait();
                                         doorCollider.enabled = false;
                                         CurrentDoorState_This = "Open";
@@ -332,6 +338,7 @@ public class DoorManager : MonoBehaviour
                                     else
                                     {
                                         doorUI.SetActive(true);
+                                        RuntimeManager.PlayOneShot(DoorClosedAudioRef, transform.position);
                                         doorUIText.text = "Locked";
                                     }
                                     break;
@@ -341,6 +348,7 @@ public class DoorManager : MonoBehaviour
                                 {
                                     doorUI.SetActive(true);
                                     doorUIText.text = "Locked";
+                                    RuntimeManager.PlayOneShot(DoorClosedAudioRef, transform.position);
                                     break;
                                 }
                         }
@@ -486,6 +494,7 @@ public class DoorManager : MonoBehaviour
                     {
                         doorUI.SetActive(true);
                         doorUIText.text = "Does not open from this side";
+                        RuntimeManager.PlayOneShot(DoorClosedAudioRef, transform.position);
                         PC.PlayerFinishInteraction();
                         break;
                     }
