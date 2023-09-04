@@ -236,6 +236,13 @@ MonoBehaviour:
   Anim: {fileID: 4120004501381878762}
   Broken: 0
   Collider: {fileID: 4120004501381878765}
+  PotAudioRef:
+    Guid:
+      Data1: -432683743
+      Data2: 1170239978
+      Data3: 1057511562
+      Data4: 1724566939
+    Path: event:/Ambience/Pots
 --- !u!1 &4120004501471290105
 GameObject:
   m_ObjectHideFlags: 0

@@ -16,6 +16,7 @@ public class EndCreditsManager : MonoBehaviour
 
     public EventReference EndCreditsSong;
     public EventReference PressCancel;
+    public EventReference ThankYou;
     public FMOD.Studio.EventInstance FMODinstance;
 
     void Start()
@@ -29,7 +30,10 @@ public class EndCreditsManager : MonoBehaviour
 
     IEnumerator EndCredits()
     {
-        yield return new WaitForSeconds(200f);
+        yield return new WaitForSeconds(198.5f);
+        RuntimeManager.PlayOneShot(ThankYou);
+
+        yield return new WaitForSeconds(1.5f);
         SceneManager.LoadScene("Main Menu", LoadSceneMode.Single);
     }
 

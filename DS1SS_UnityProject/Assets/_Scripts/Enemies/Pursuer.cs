@@ -51,10 +51,13 @@ public class Pursuer : MonoBehaviour
     public float StaggerTime;
     public float CloseTriggerRange;
 
-    [Header("Trigger Colliders")] 
-    public Collider2D InFront_Collider;
-    public Collider2D OnTop_Collider;
-    public Collider2D Behind_Collider;
+
+    [Header("TRigger Colliders")]
+    public Collider2D InFrontCol;
+    public Collider2D OnTopCol;
+
+    public Transform left;
+    public Transform right;
 
 
 
@@ -259,6 +262,7 @@ public class Pursuer : MonoBehaviour
         HealthSlider.value = 0; UpdateUI();
 
         yield return new WaitForSeconds(3.3f);
+        Player.GetComponent<EnemyLock>().LockedOn = false;
 
         Behaviour = "Dead";
         Dead();
@@ -484,86 +488,78 @@ public class Pursuer : MonoBehaviour
 
     void ChooseCloseRangeAttack()
     {
-        if (arenaManager.IsSecondPhase)
+        int SmartAttack = Random.Range(1, 3);
+        if (SmartAttack == 1)//smart close range
         {
-            int attack = Random.Range(1, 6);
+
+
+            if (InFrontCol.bounds.Contains(Player.transform.position))
+            {
+                int SmartAttack1 = Random.Range(1, 3);
+                if (SmartAttack1 == 1) { AttackingCoroutine = StartCoroutine(CO_Attack()); }
+                else { AttackingCoroutine = StartCoroutine(CI_Attack()); }
+            }
+            else if (OnTopCol.bounds.Contains(Player.transform.position))
+            {
+                int SmartAttack2 = Random.Range(1, 3);
+                if (SmartAttack2 == 1) { AttackingCoroutine = StartCoroutine(SB_Attack()); }
+                else {
+                    AttackingCoroutine = StartCoroutine(DS_Attack());
+                    StepDistance = DS_AttackStepBack;
+                }
+            }
+
+
+
+
+
+        }
+        else //random close range
+        {
+            int attack = Random.Range(1, 5);
             Debug.Log("Close Attack " + attack);
             switch (attack)
             {
+
                 case 1: //combo 
                     AttackingCoroutine = StartCoroutine(CO_Attack());
                     break;
 
-                case 2: //combo 
-                    AttackingCoroutine = StartCoroutine(CO_Attack());
-                    break;
-
-                case 3: //DoubleStab
+                case 2: //DoubleStab
                     AttackingCoroutine = StartCoroutine(DS_Attack());
                     StepDistance = DS_AttackStepBack;
                     break;
 
-                case 4: //cursed impale
+                case 3: //cursed impale
                     AttackingCoroutine = StartCoroutine(CI_Attack());
                     break;
 
-                case 5: //sheild bash
+                case 4: //sheild bash
                     AttackingCoroutine = StartCoroutine(SB_Attack());
                     break;
 
             }
         }
-        else
-        {
-            int attack = Random.Range(1, 6);
-            Debug.Log("Close Attack " + attack);
-            switch (attack)
-            {
-                case 1: //combo 
-                    AttackingCoroutine = StartCoroutine(CO_Attack());
-                    break;
-
-                case 2: //combo 
-                    AttackingCoroutine = StartCoroutine(CO_Attack());
-                    break;
-
-                case 3: //DoubleStab
-                    AttackingCoroutine = StartCoroutine(DS_Attack());
-                    StepDistance = DS_AttackStepBack;
-                    break;
-
-                case 4: //cursed impale
-                    AttackingCoroutine = StartCoroutine(CI_Attack());
-                    break;
-
-                case 5: //sheild bash
-                    AttackingCoroutine = StartCoroutine(SB_Attack());
-                    break;
-
-            }
-        }
+     
     }
     void ChooseLongRangeAttack()
     {
         if (arenaManager.IsSecondPhase)
         {
-            int attack = Random.Range(1, 5);
+            int attack = Random.Range(1, 4);
             Debug.Log("Long Attack " + attack);
             switch (attack)
             {
+
                 case 1: //charge
                     AttackingCoroutine = StartCoroutine(CH_Attack());
                     break;
 
-                case 2: //charge
-                    AttackingCoroutine = StartCoroutine(CH_Attack());
-                    break;
-
-                case 3: //cursed shockwave
+                case 2: //cursed shockwave
                     AttackingCoroutine = StartCoroutine(CS_Attack());
                     break;
 
-                case 4: //GroundPound
+                case 3: //GroundPound
                     AttackingCoroutine = StartCoroutine(GP_Attack());
                     break;
 
@@ -834,11 +830,11 @@ public class Pursuer : MonoBehaviour
     {
         GameObject Bolt1 = Instantiate(CursedShockwaveProjectile);
         Bolt1.transform.position = GroundPoundPos.position;
-        Bolt1.GetComponent<ArrowV2>().Target = Behind_Collider.transform.position;
+        Bolt1.GetComponent<ArrowV2>().Target = left.position;
 
         GameObject Bolt2 = Instantiate(CursedShockwaveProjectile);
         Bolt2.transform.position = GroundPoundPos.position;
-        Bolt2.GetComponent<ArrowV2>().Target = InFront_Collider.transform.position;
+        Bolt2.GetComponent<ArrowV2>().Target = right.position;
     }
 
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

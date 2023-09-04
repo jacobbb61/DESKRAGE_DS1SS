@@ -5225,6 +5225,20 @@ MonoBehaviour:
       Data3: 2032545932
       Data4: -587010951
     Path: event:/Effects/UI SFX/Ok
+  DoorClosed2AudioRef:
+    Guid:
+      Data1: -1499365521
+      Data2: 1329209163
+      Data3: -1354709375
+      Data4: 118735828
+    Path: event:/Ambience/ClosedDoor
+  OpenAudioRef:
+    Guid:
+      Data1: 1405872076
+      Data2: 1175862782
+      Data3: -1186248280
+      Data4: -1703309075
+    Path: event:/Ambience/GateOpen
   CurrentDoorState_This: 
   doorCollider: {fileID: 4638701453398582779}
   doorPrompt: {fileID: 0}

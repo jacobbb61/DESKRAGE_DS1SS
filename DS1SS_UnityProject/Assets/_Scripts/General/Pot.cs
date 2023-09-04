@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using FMODUnity;
 
 public class Pot : MonoBehaviour
 {
     public Animator Anim;
     public bool Broken;
     public Collider2D Collider;
+    public EventReference PotAudioRef;
 
 
 
@@ -29,6 +31,7 @@ public class Pot : MonoBehaviour
     }
     public void BreakPot()
     {
+        RuntimeManager.PlayOneShot(PotAudioRef, transform.position);
         Collider.enabled = false;
         Anim.SetTrigger("Break");
         Broken = true;

@@ -24,6 +24,14 @@ public class DoorManager : MonoBehaviour
 
     public EventReference FogEnterAudioRef;
     public EventReference DoorClosedAudioRef;
+
+    public EventReference DoorClosed2AudioRef;
+    public EventReference OpenAudioRef;
+
+
+
+
+
     public string CurrentDoorState_This;
 
      private CanvasManager CanvasManager;
@@ -93,8 +101,6 @@ public class DoorManager : MonoBehaviour
             }
         }
     }
-
-
     public void PlayClosed()
     {
         switch (DoorMaterial)
@@ -125,15 +131,10 @@ public class DoorManager : MonoBehaviour
                 break;
         }
     }
-
-
-
-
     private void OnEnable()
     {
         ManualStart();
     }
-
     public void ManualStart()
     {
 
@@ -204,7 +205,6 @@ public class DoorManager : MonoBehaviour
          if (inBossFight) { doorCollider.enabled = true; }
         
     }
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
 
@@ -248,7 +248,6 @@ public class DoorManager : MonoBehaviour
             collision.GetComponent<PlayerControllerV2>().Interactable = GetComponent<InteractableV2>();
         }
     }
-
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
@@ -260,7 +259,6 @@ public class DoorManager : MonoBehaviour
             collision.GetComponent<PlayerControllerV2>().Interactable = null;
         }
     }
-
     public void UseDoor()
     {
         if (PC == null)
@@ -288,6 +286,7 @@ public class DoorManager : MonoBehaviour
                                         doorUI.SetActive(true);
                                         doorUIText.text = "Door unlocked";
                                         RuntimeManager.PlayOneShot(DoorClosedAudioRef, transform.position);
+                                        RuntimeManager.PlayOneShot(OpenAudioRef, transform.position);
                                         PlayOpen();
                                         //Wait();
                                         doorCollider.enabled = false;
@@ -297,6 +296,7 @@ public class DoorManager : MonoBehaviour
                                     {
                                         doorUI.SetActive(true);
                                         RuntimeManager.PlayOneShot(DoorClosedAudioRef, transform.position);
+                                        RuntimeManager.PlayOneShot(DoorClosed2AudioRef, transform.position);
                                         doorUIText.text = "Locked";
                                     }
                                     break;
@@ -309,6 +309,7 @@ public class DoorManager : MonoBehaviour
                                         doorUI.SetActive(true);
                                         doorUIText.text = "Door unlocked";
                                         RuntimeManager.PlayOneShot(DoorClosedAudioRef, transform.position);
+                                        RuntimeManager.PlayOneShot(OpenAudioRef, transform.position);
                                         PlayOpen();
                                         //Wait();
                                         doorCollider.enabled = false;
@@ -318,6 +319,7 @@ public class DoorManager : MonoBehaviour
                                     {
                                         doorUI.SetActive(true);
                                         RuntimeManager.PlayOneShot(DoorClosedAudioRef, transform.position);
+                                        RuntimeManager.PlayOneShot(DoorClosed2AudioRef, transform.position);
                                         doorUIText.text = "Locked";
                                     }
                                     break;
@@ -330,6 +332,7 @@ public class DoorManager : MonoBehaviour
                                         doorUI.SetActive(true);
                                         doorUIText.text = "Door unlocked";
                                         RuntimeManager.PlayOneShot(DoorClosedAudioRef, transform.position);
+                                        RuntimeManager.PlayOneShot(OpenAudioRef, transform.position);
                                         PlayOpen();
                                         //Wait();
                                         doorCollider.enabled = false;
@@ -339,6 +342,7 @@ public class DoorManager : MonoBehaviour
                                     {
                                         doorUI.SetActive(true);
                                         RuntimeManager.PlayOneShot(DoorClosedAudioRef, transform.position);
+                                        RuntimeManager.PlayOneShot(DoorClosed2AudioRef, transform.position);
                                         doorUIText.text = "Locked";
                                     }
                                     break;
@@ -349,6 +353,7 @@ public class DoorManager : MonoBehaviour
                                     doorUI.SetActive(true);
                                     doorUIText.text = "Locked";
                                     RuntimeManager.PlayOneShot(DoorClosedAudioRef, transform.position);
+                                    RuntimeManager.PlayOneShot(DoorClosed2AudioRef, transform.position);
                                     break;
                                 }
                         }
@@ -384,8 +389,9 @@ public class DoorManager : MonoBehaviour
                         CurrentDoorState_This = "Open";
                        PlayOpen(); 
 
-                        if (doorSaveManager.DoorTag_This == "E" && DemonArena.currentState == "FirstTime") 
+                        if (doorSaveManager.DoorTag_This == "E" && DemonArena.currentState == "FirstTime")
                         {
+                            RuntimeManager.PlayOneShot(OpenAudioRef, transform.position);
                             WorldSaveGameManager.Instance.Player = playerManager;
                             WorldSaveGameManager.Instance.SaveGame();
                             DemonArena.EnterArena(); playerManager.gameObject.transform.position = DemonArena.transform.position;
@@ -395,6 +401,7 @@ public class DoorManager : MonoBehaviour
 
                         if (doorSaveManager.DoorTag_This == "T" && PursuerArena.currentState == "FirstTime")
                         {
+                            RuntimeManager.PlayOneShot(OpenAudioRef, transform.position);
                             WorldSaveGameManager.Instance.Player = playerManager;
                             WorldSaveGameManager.Instance.SaveGame();
                             PursuerArena.EnterArena(); playerManager.gameObject.transform.position = PursuerArena.transform.position;
@@ -404,6 +411,7 @@ public class DoorManager : MonoBehaviour
 
                         if (doorSaveManager.DoorTag_This == "N")
                         {
+                            RuntimeManager.PlayOneShot(OpenAudioRef, transform.position);
                             AchievementsGameManager.Instance.UnlockedAchievement(1);
                         }
 
@@ -429,6 +437,7 @@ public class DoorManager : MonoBehaviour
                                     {
                                         doorUI.SetActive(true);
                                         doorUIText.text = "Door unlocked";
+                                        RuntimeManager.PlayOneShot(OpenAudioRef, transform.position);
                                         //Anim.Play("");
                                         //Wait();
                                         doorCollider.enabled = false;
@@ -438,6 +447,7 @@ public class DoorManager : MonoBehaviour
                                     {
                                         doorUI.SetActive(true);
                                         doorUIText.text = "Locked";
+                                        RuntimeManager.PlayOneShot(DoorClosed2AudioRef, transform.position);
                                     }
                                     break;
                                 }
@@ -448,6 +458,7 @@ public class DoorManager : MonoBehaviour
                                     {
                                         doorUI.SetActive(true);
                                         doorUIText.text = "Door unlocked";
+                                        RuntimeManager.PlayOneShot(OpenAudioRef, transform.position);
                                         //Anim.Play("");
                                         //Wait();
                                         doorCollider.enabled = false;
@@ -457,6 +468,7 @@ public class DoorManager : MonoBehaviour
                                     {
                                         doorUI.SetActive(true);
                                         doorUIText.text = "Locked";
+                                        RuntimeManager.PlayOneShot(DoorClosed2AudioRef, transform.position);
                                     }
                                     break;
                                 }
@@ -467,6 +479,7 @@ public class DoorManager : MonoBehaviour
                                     {
                                         doorUI.SetActive(true);
                                         doorUIText.text = "Door unlocked";
+                                        RuntimeManager.PlayOneShot(OpenAudioRef, transform.position);
                                         //Anim.Play("");
                                         //Wait();
                                         doorCollider.enabled = false;
@@ -476,6 +489,7 @@ public class DoorManager : MonoBehaviour
                                     {
                                         doorUI.SetActive(true);
                                         doorUIText.text = "Locked";
+                                        RuntimeManager.PlayOneShot(DoorClosed2AudioRef, transform.position);
                                     }
                                     break;
                                 }
@@ -484,6 +498,7 @@ public class DoorManager : MonoBehaviour
                                 {
                                     doorUI.SetActive(true);
                                     doorUIText.text = "Locked";
+                                    RuntimeManager.PlayOneShot(DoorClosed2AudioRef, transform.position);
                                     break;
                                 }
                         }
@@ -495,6 +510,7 @@ public class DoorManager : MonoBehaviour
                         doorUI.SetActive(true);
                         doorUIText.text = "Does not open from this side";
                         RuntimeManager.PlayOneShot(DoorClosedAudioRef, transform.position);
+                        RuntimeManager.PlayOneShot(DoorClosed2AudioRef, transform.position);
                         PC.PlayerFinishInteraction();
                         break;
                     }
@@ -523,6 +539,7 @@ public class DoorManager : MonoBehaviour
                 case "Open":
                     {
                         layerManager.ChangeLayer(targetLayer);
+                        RuntimeManager.PlayOneShot(OpenAudioRef, transform.position);
 
                         if (doorSaveManager.DoorTag_This == "F1")
                         {
