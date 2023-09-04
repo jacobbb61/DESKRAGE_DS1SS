@@ -495,18 +495,18 @@ public class Pursuer : MonoBehaviour
 
             if (InFrontCol.bounds.Contains(Player.transform.position))
             {
-                int SmartAttack1 = Random.Range(1, 3);
+                int SmartAttack1 = Random.Range(1, 4);
                 if (SmartAttack1 == 1) { AttackingCoroutine = StartCoroutine(CO_Attack()); }
-                else { AttackingCoroutine = StartCoroutine(CI_Attack()); }
+                else if (SmartAttack1 == 2) { AttackingCoroutine = StartCoroutine(CI_Attack()); }
+                else
+                {
+                 AttackingCoroutine = StartCoroutine(SB_Attack()); 
+                }
             }
             else if (OnTopCol.bounds.Contains(Player.transform.position))
             {
-                int SmartAttack2 = Random.Range(1, 3);
-                if (SmartAttack2 == 1) { AttackingCoroutine = StartCoroutine(SB_Attack()); }
-                else {
                     AttackingCoroutine = StartCoroutine(DS_Attack());
                     StepDistance = DS_AttackStepBack;
-                }
             }
 
 
@@ -612,6 +612,7 @@ public class Pursuer : MonoBehaviour
 
     IEnumerator CO_Attack()
     {
+        HitPlayer = false;
         Behaviour = "Attacking";
         IsCoolingDown = false;
         StepDistance = CO_AttackStep;
@@ -654,6 +655,7 @@ public class Pursuer : MonoBehaviour
 
     IEnumerator CH_Attack()
     {
+        HitPlayer = false;
         Behaviour = "Attacking";
         IsCoolingDown = false;
         StepDistance = CH_AttackStep;
@@ -688,6 +690,7 @@ public class Pursuer : MonoBehaviour
 
     IEnumerator CI_Attack()
     {
+        HitPlayer = false;
         Behaviour = "Attacking";
         IsCoolingDown = false;
         StepDistance = CI_AttackStep;
@@ -722,6 +725,7 @@ public class Pursuer : MonoBehaviour
 
     IEnumerator CS_Attack()
     {
+        HitPlayer = false;
         Behaviour = "Attacking";
         IsCoolingDown = false;
         StepDistance = CS_AttackStep;
@@ -762,6 +766,7 @@ public class Pursuer : MonoBehaviour
 
     IEnumerator SB_Attack()
     {
+        HitPlayer = false;
         Behaviour = "Attacking";
         IsCoolingDown = false;
         StepDistance = SB_AttackStep;
@@ -796,6 +801,7 @@ public class Pursuer : MonoBehaviour
 
     IEnumerator GP_Attack()
     {
+        HitPlayer = false;
         Behaviour = "Attacking";
         IsCoolingDown = false;
         StepDistance = 0;
@@ -843,6 +849,7 @@ public class Pursuer : MonoBehaviour
 
     IEnumerator SMF_Attack()
     {
+        HitPlayer = false;
         Behaviour = "Attacking";
         IsCoolingDown = false;
         StepDistance = SMF_AttackStep;
@@ -877,6 +884,7 @@ public class Pursuer : MonoBehaviour
 
     IEnumerator SPF_Attack()
     {
+        HitPlayer = false;
         Behaviour = "Attacking";
         IsCoolingDown = false;
         StepDistance = SPF_AttackStep;
@@ -911,6 +919,7 @@ public class Pursuer : MonoBehaviour
 
     IEnumerator DS_Attack()
     {
+        HitPlayer = false;
         Behaviour = "Attacking";
         IsCoolingDown = false;
         Anim.Play("ThePursuerAnim_DoubleStab");
@@ -931,6 +940,23 @@ public class Pursuer : MonoBehaviour
     public void DS_AttackStepSwitch()
     {
         StepDistance = DS_AttackStepForward;
+    }
+
+    public void DS_AttackPunish()
+    {
+        if (InFrontCol.bounds.Contains(Player.transform.position))
+        {
+            int SmartAttack1 = Random.Range(1, 3);
+            if (SmartAttack1 == 1)
+            {
+                StopCoroutine(AttackingCoroutine);
+                AttackingCoroutine = StartCoroutine(SPF_Attack());
+            }
+            else
+            {
+                return;
+            }
+        }
     }
 
 

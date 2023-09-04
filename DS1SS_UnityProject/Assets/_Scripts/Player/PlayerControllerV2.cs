@@ -1175,6 +1175,7 @@ public class PlayerControllerV2 : MonoBehaviour
         IsBlocking = false;
         IsRolling = false;
         IsImmune = false;
+        CanAttack = true;
 
         if (StaminaRegenCoroutine != null) { StopCoroutine(StaminaRegenCoroutine); StaminaRegenCoroutine = StartCoroutine(StaminaRegenPause()); }
         if (Stamina != MaxStamina && IsStaminaRegen == false) { StaminaRegenCoroutine = StartCoroutine(StaminaRegenPause()); }
@@ -1229,6 +1230,7 @@ public class PlayerControllerV2 : MonoBehaviour
         IsBlocking = false;
         IsRolling = false;
         IsImmune = false;
+        CanAttack = true;
 
 
         if (StaminaRegenCoroutine != null) { StopCoroutine(StaminaRegenCoroutine); StaminaRegenCoroutine = StartCoroutine(StaminaRegenPause()); }
