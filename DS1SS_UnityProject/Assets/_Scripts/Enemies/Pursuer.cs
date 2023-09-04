@@ -683,6 +683,22 @@ public class Pursuer : MonoBehaviour
 
     }
 
+    public void InstantCharge()
+    {
+        if (arenaManager.IsSecondPhase)
+        {
+            int attack = Random.Range(1, 3);
+            switch (attack)
+            {
+                case 1: //charge
+                    StopCoroutine(AttackingCoroutine);
+                    AttackingCoroutine = StartCoroutine(CH_Attack());
+                    break;
+            }
+        }
+    }
+
+
     public void CH_AttackRegister()
     {
         if (CH_Collider.bounds.Contains(Player.transform.position) && HitPlayer == false)

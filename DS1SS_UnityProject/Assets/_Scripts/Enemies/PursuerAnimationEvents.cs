@@ -28,6 +28,7 @@ public class PursuerAnimationEvents : MonoBehaviour
     public UnityEvent DoubleStabPunishTriggered;
     public UnityEvent DoubleSpinTriggered;
     public UnityEvent DoubleStabStepSwapTriggered;
+    public UnityEvent InstantChargeTriggered;
 
     public GameObject ParryIndicator;
     public void Turn()
@@ -118,6 +119,12 @@ public class PursuerAnimationEvents : MonoBehaviour
     {
         DoubleSpinTriggered.Invoke();
     }
+
+    public void InstantCharge()
+    {
+        InstantChargeTriggered.Invoke();
+    }
+
     public void DoubleStabStepSwap()
     {
         DoubleStabStepSwapTriggered.Invoke();
