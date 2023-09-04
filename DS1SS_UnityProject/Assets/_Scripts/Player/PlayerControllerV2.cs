@@ -211,6 +211,10 @@ public class PlayerControllerV2 : MonoBehaviour
             LowHealthObj.SetActive(false);
         }
 
+
+        if (CurrentEstus > 4) { CurrentEstus = 4; }
+        if (MaxEstus > 4) { MaxEstus = 4; }
+
         BossCam.SetActive(false);
     }
 
