@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using FMODUnity;
 
 public class ArrowV2 : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class ArrowV2 : MonoBehaviour
     public float angle;
     public bool IsArrow;
     public Animator Anim;
+    public EventReference ArrowBreakAudioRef;
 
     private void Start()
     {
@@ -39,7 +41,6 @@ public class ArrowV2 : MonoBehaviour
 
         StartCoroutine(SafetyDestroy());
 
-
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -67,7 +68,10 @@ public class ArrowV2 : MonoBehaviour
 
     void DestroyArrow()
     {
-        if (IsArrow) { Destroy(gameObject); }
+        if (IsArrow) { 
+            Destroy(gameObject);
+            RuntimeManager.PlayOneShot(ArrowBreakAudioRef, transform.position);
+        }
         else
         {
             GetComponent<BoxCollider2D>().enabled = false;

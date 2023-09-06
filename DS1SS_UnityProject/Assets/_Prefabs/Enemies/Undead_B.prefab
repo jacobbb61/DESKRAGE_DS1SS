@@ -184,11 +184,25 @@ MonoBehaviour:
     Path: 
   AttackAudioRef:
     Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
+      Data1: 797456993
+      Data2: 1306249645
+      Data3: -944741445
+      Data4: -1009765589
+    Path: event:/Enemies/Hollow/attack
+  AttackBowAudioRef:
+    Guid:
+      Data1: 1692535435
+      Data2: 1088111857
+      Data3: -2008547954
+      Data4: -2133307080
+    Path: event:/Enemies/Hollow/DrawBow
+  AttackReleaseAudioRef:
+    Guid:
+      Data1: 918836271
+      Data2: 1244534804
+      Data3: -764141439
+      Data4: -1894208875
+    Path: event:/Enemies/Hollow/FireBow
   isBoss: 0
   ParryIndicator: {fileID: 0}
 --- !u!212 &6565168764558948638

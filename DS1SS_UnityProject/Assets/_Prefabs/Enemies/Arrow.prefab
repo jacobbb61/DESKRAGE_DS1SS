@@ -53,6 +53,13 @@ MonoBehaviour:
   angle: 0
   IsArrow: 1
   Anim: {fileID: 0}
+  ArrowBreakAudioRef:
+    Guid:
+      Data1: 1414717485
+      Data2: 1231459711
+      Data3: -1025328710
+      Data4: -452252575
+    Path: event:/Enemies/Hollow/ArrowDestroy
 --- !u!50 &8144088339725920759
 Rigidbody2D:
   serializedVersion: 4

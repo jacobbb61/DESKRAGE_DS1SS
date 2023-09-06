@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using FMODUnity;
 
 public class AchievementsGameManager : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class AchievementsGameManager : MonoBehaviour
     public TextMeshProUGUI AchievementTitle;
     public RawImage AchievementSymbol;
     public GameObject AchievementObj;
+    public EventReference VeryGoodAudioRef;
 
     public Texture AchievementSymbol_1;
     public Texture AchievementSymbol_2;
@@ -91,6 +93,7 @@ public class AchievementsGameManager : MonoBehaviour
                     AchievementSymbol.texture = AchievementSymbol_5;
                     AchievementObj.GetComponent<Animator>().SetTrigger("Active");
                     GameSaveGameManager.Instance.SaveGameData();
+                    RuntimeManager.PlayOneShot(VeryGoodAudioRef);
                 }
                 break;
             case 6:
@@ -101,6 +104,7 @@ public class AchievementsGameManager : MonoBehaviour
                     AchievementSymbol.texture = AchievementSymbol_6; 
                     AchievementObj.GetComponent<Animator>().SetTrigger("Active");
                     GameSaveGameManager.Instance.SaveGameData();
+                    RuntimeManager.PlayOneShot(VeryGoodAudioRef);
                 }
                 break;
             default:              

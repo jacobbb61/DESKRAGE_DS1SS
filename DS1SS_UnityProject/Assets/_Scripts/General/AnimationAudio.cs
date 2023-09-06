@@ -20,6 +20,7 @@ public class AnimationAudio : MonoBehaviour
 
     [Header("Movement")]
     public EventReference RollAudioRef;
+    public EventReference WaterRollAudioRef;
 
 
     [Header("Misc")]
@@ -82,11 +83,11 @@ public class AnimationAudio : MonoBehaviour
             case "Wood":
                 walk.setParameterByName("Terrain", 3);
                 break;
-            case "WetStone":
-                walk.setParameterByName("Terrain", 4);
-                break;
             case "Snow":
                 walk.setParameterByName("Terrain", 5);
+                break;
+            case "WetStone":
+                walk.setParameterByName("Terrain", 6);
                 break;
             default:
                 //RuntimeManager.PlayOneShot(WalkAudioRef, transform.position);
@@ -122,7 +123,7 @@ public class AnimationAudio : MonoBehaviour
                 walk.setParameterByName("Terrain", 3);
                 break;
             case "WetStone":
-                walk.setParameterByName("Terrain", 4);
+                walk.setParameterByName("Terrain", 6);
                 break;
             case "Snow":
                 walk.setParameterByName("Terrain", 5);
@@ -140,14 +141,22 @@ public class AnimationAudio : MonoBehaviour
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public void RollAudio()
     {
-        RuntimeManager.PlayOneShot(RollAudioRef, transform.position);
+        switch (GetComponentInParent<PlayerControllerV2>().GroundType)
+        {
+            case "WetStone":
+                RuntimeManager.PlayOneShot(WaterRollAudioRef, transform.position);
+                break;
+            default:
+                RuntimeManager.PlayOneShot(RollAudioRef, transform.position);
+                break;
+        }
     }
 
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    public void HitObjectAudio()
+    public void HitObjectAudio(string type)
     {
-        switch (GetComponentInParent<PlayerControllerV2>().WallHitType)
+        switch (type)
         {
             case "Wood":
                 RuntimeManager.PlayOneShot(HitWoodRef, transform.position);

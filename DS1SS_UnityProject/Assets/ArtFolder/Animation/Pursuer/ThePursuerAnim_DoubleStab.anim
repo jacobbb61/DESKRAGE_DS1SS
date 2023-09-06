@@ -287,6 +287,13 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
+  - time: 0.6166667
+    functionName: Audio_SwooshShort
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
   - time: 0.73333335
     functionName: Stop
     data: 
@@ -322,7 +329,14 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 1.2
+  - time: 1.2166667
+    functionName: Turn
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 1.2666667
     functionName: Move
     data: 
     objectReferenceParameter: {fileID: 0}
@@ -343,6 +357,13 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
+  - time: 1.7
+    functionName: Audio_SwooshShort
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
   - time: 1.7333333
     functionName: DoubleStab
     data: 
@@ -352,6 +373,13 @@ AnimationClip:
     messageOptions: 0
   - time: 1.85
     functionName: DoubleStab
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 2.3333333
+    functionName: Punish
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

@@ -51,10 +51,13 @@ public class Pursuer : MonoBehaviour
     public float StaggerTime;
     public float CloseTriggerRange;
 
-    [Header("Trigger Colliders")] 
-    public Collider2D InFront_Collider;
-    public Collider2D OnTop_Collider;
-    public Collider2D Behind_Collider;
+
+    [Header("TRigger Colliders")]
+    public Collider2D InFrontCol;
+    public Collider2D OnTopCol;
+
+    public Transform left;
+    public Transform right;
 
 
 
@@ -259,6 +262,7 @@ public class Pursuer : MonoBehaviour
         HealthSlider.value = 0; UpdateUI();
 
         yield return new WaitForSeconds(3.3f);
+        Player.GetComponent<EnemyLock>().LockedOn = false;
 
         Behaviour = "Dead";
         Dead();
@@ -484,64 +488,59 @@ public class Pursuer : MonoBehaviour
 
     void ChooseCloseRangeAttack()
     {
-        if (arenaManager.IsSecondPhase)
+        int SmartAttack = Random.Range(1, 3);
+        if (SmartAttack == 1)//smart close range
         {
-            int attack = Random.Range(1, 6);
+
+
+            if (InFrontCol.bounds.Contains(Player.transform.position))
+            {
+                int SmartAttack1 = Random.Range(1, 4);
+                if (SmartAttack1 == 1) { AttackingCoroutine = StartCoroutine(CO_Attack()); }
+                else if (SmartAttack1 == 2) { AttackingCoroutine = StartCoroutine(CI_Attack()); }
+                else
+                {
+                 AttackingCoroutine = StartCoroutine(SB_Attack()); 
+                }
+            }
+            else if (OnTopCol.bounds.Contains(Player.transform.position))
+            {
+                    AttackingCoroutine = StartCoroutine(DS_Attack());
+                    StepDistance = DS_AttackStepBack;
+            }
+
+
+
+
+
+        }
+        else //random close range
+        {
+            int attack = Random.Range(1, 5);
             Debug.Log("Close Attack " + attack);
             switch (attack)
             {
+
                 case 1: //combo 
                     AttackingCoroutine = StartCoroutine(CO_Attack());
                     break;
 
-                case 2: //combo 
-                    AttackingCoroutine = StartCoroutine(CO_Attack());
-                    break;
-
-                case 3: //DoubleStab
+                case 2: //DoubleStab
                     AttackingCoroutine = StartCoroutine(DS_Attack());
                     StepDistance = DS_AttackStepBack;
                     break;
 
-                case 4: //cursed impale
+                case 3: //cursed impale
                     AttackingCoroutine = StartCoroutine(CI_Attack());
                     break;
 
-                case 5: //sheild bash
+                case 4: //sheild bash
                     AttackingCoroutine = StartCoroutine(SB_Attack());
                     break;
 
             }
         }
-        else
-        {
-            int attack = Random.Range(1, 6);
-            Debug.Log("Close Attack " + attack);
-            switch (attack)
-            {
-                case 1: //combo 
-                    AttackingCoroutine = StartCoroutine(CO_Attack());
-                    break;
-
-                case 2: //combo 
-                    AttackingCoroutine = StartCoroutine(CO_Attack());
-                    break;
-
-                case 3: //DoubleStab
-                    AttackingCoroutine = StartCoroutine(DS_Attack());
-                    StepDistance = DS_AttackStepBack;
-                    break;
-
-                case 4: //cursed impale
-                    AttackingCoroutine = StartCoroutine(CI_Attack());
-                    break;
-
-                case 5: //sheild bash
-                    AttackingCoroutine = StartCoroutine(SB_Attack());
-                    break;
-
-            }
-        }
+     
     }
     void ChooseLongRangeAttack()
     {
@@ -551,6 +550,7 @@ public class Pursuer : MonoBehaviour
             Debug.Log("Long Attack " + attack);
             switch (attack)
             {
+
                 case 1: //charge
                     AttackingCoroutine = StartCoroutine(CH_Attack());
                     break;
@@ -571,7 +571,7 @@ public class Pursuer : MonoBehaviour
         }
         else
         {
-            int attack = Random.Range(1, 3);
+            int attack = Random.Range(1, 4);
             Debug.Log("Long Attack " + attack);
             switch (attack)
             {
@@ -579,7 +579,11 @@ public class Pursuer : MonoBehaviour
                     AttackingCoroutine = StartCoroutine(CH_Attack());
                     break;
 
-                case 2: //cursed shockwave
+                case 2: //charge
+                    AttackingCoroutine = StartCoroutine(CH_Attack());
+                    break;
+
+                case 3: //cursed shockwave
                     AttackingCoroutine = StartCoroutine(CS_Attack());
                     break;
 
@@ -616,6 +620,7 @@ public class Pursuer : MonoBehaviour
 
     IEnumerator CO_Attack()
     {
+        HitPlayer = false;
         Behaviour = "Attacking";
         IsCoolingDown = false;
         StepDistance = CO_AttackStep;
@@ -658,6 +663,7 @@ public class Pursuer : MonoBehaviour
 
     IEnumerator CH_Attack()
     {
+        HitPlayer = false;
         Behaviour = "Attacking";
         IsCoolingDown = false;
         StepDistance = CH_AttackStep;
@@ -677,6 +683,22 @@ public class Pursuer : MonoBehaviour
 
     }
 
+    public void InstantCharge()
+    {
+        if (arenaManager.IsSecondPhase)
+        {
+            int attack = Random.Range(1, 3);
+            switch (attack)
+            {
+                case 1: //charge
+                    StopCoroutine(AttackingCoroutine);
+                    AttackingCoroutine = StartCoroutine(CH_Attack());
+                    break;
+            }
+        }
+    }
+
+
     public void CH_AttackRegister()
     {
         if (CH_Collider.bounds.Contains(Player.transform.position) && HitPlayer == false)
@@ -692,6 +714,7 @@ public class Pursuer : MonoBehaviour
 
     IEnumerator CI_Attack()
     {
+        HitPlayer = false;
         Behaviour = "Attacking";
         IsCoolingDown = false;
         StepDistance = CI_AttackStep;
@@ -726,6 +749,7 @@ public class Pursuer : MonoBehaviour
 
     IEnumerator CS_Attack()
     {
+        HitPlayer = false;
         Behaviour = "Attacking";
         IsCoolingDown = false;
         StepDistance = CS_AttackStep;
@@ -766,6 +790,7 @@ public class Pursuer : MonoBehaviour
 
     IEnumerator SB_Attack()
     {
+        HitPlayer = false;
         Behaviour = "Attacking";
         IsCoolingDown = false;
         StepDistance = SB_AttackStep;
@@ -800,6 +825,7 @@ public class Pursuer : MonoBehaviour
 
     IEnumerator GP_Attack()
     {
+        HitPlayer = false;
         Behaviour = "Attacking";
         IsCoolingDown = false;
         StepDistance = 0;
@@ -834,11 +860,11 @@ public class Pursuer : MonoBehaviour
     {
         GameObject Bolt1 = Instantiate(CursedShockwaveProjectile);
         Bolt1.transform.position = GroundPoundPos.position;
-        Bolt1.GetComponent<ArrowV2>().Target = Behind_Collider.transform.position;
+        Bolt1.GetComponent<ArrowV2>().Target = left.position;
 
         GameObject Bolt2 = Instantiate(CursedShockwaveProjectile);
         Bolt2.transform.position = GroundPoundPos.position;
-        Bolt2.GetComponent<ArrowV2>().Target = InFront_Collider.transform.position;
+        Bolt2.GetComponent<ArrowV2>().Target = right.position;
     }
 
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -847,6 +873,7 @@ public class Pursuer : MonoBehaviour
 
     IEnumerator SMF_Attack()
     {
+        HitPlayer = false;
         Behaviour = "Attacking";
         IsCoolingDown = false;
         StepDistance = SMF_AttackStep;
@@ -881,6 +908,7 @@ public class Pursuer : MonoBehaviour
 
     IEnumerator SPF_Attack()
     {
+        HitPlayer = false;
         Behaviour = "Attacking";
         IsCoolingDown = false;
         StepDistance = SPF_AttackStep;
@@ -900,6 +928,20 @@ public class Pursuer : MonoBehaviour
 
     }
 
+    public void DoubleSpin()
+    {
+        int attack = Random.Range(1, 6);
+        switch (attack)
+        {
+            case 1: //Spinning
+                StopCoroutine(AttackingCoroutine);
+                AttackingCoroutine = StartCoroutine(SPF_Attack());
+                break;
+            default:
+                return;
+        }
+    }
+
     public void SPF_AttackRegister()
     {
         if (SPF_Collider.bounds.Contains(Player.transform.position) && HitPlayer == false)
@@ -915,6 +957,7 @@ public class Pursuer : MonoBehaviour
 
     IEnumerator DS_Attack()
     {
+        HitPlayer = false;
         Behaviour = "Attacking";
         IsCoolingDown = false;
         Anim.Play("ThePursuerAnim_DoubleStab");
@@ -935,6 +978,23 @@ public class Pursuer : MonoBehaviour
     public void DS_AttackStepSwitch()
     {
         StepDistance = DS_AttackStepForward;
+    }
+
+    public void AttackPunish()
+    {
+        if (InFrontCol.bounds.Contains(Player.transform.position))
+        {
+
+            StopCoroutine(AttackingCoroutine);
+            AttackingCoroutine = StartCoroutine(SPF_Attack());
+            return;
+        }
+
+        else if (OnTopCol.bounds.Contains(Player.transform.position))
+        {
+            StopCoroutine(AttackingCoroutine);
+            AttackingCoroutine = StartCoroutine(SMF_Attack());
+        }
     }
 
 

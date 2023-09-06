@@ -1139,7 +1139,7 @@ MonoBehaviour:
   m_wordSpacing: 20
   m_lineSpacing: 0
   m_lineSpacingMax: 0
-  m_paragraphSpacing: 39.4
+  m_paragraphSpacing: 19.26
   m_charWidthMaxAdj: 0
   m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
@@ -1238,6 +1238,13 @@ MonoBehaviour:
       Data3: -834325584
       Data4: -1282867774
     Path: event:/Effects/UI SFX/Cancel
+  ThankYou:
+    Guid:
+      Data1: -171857901
+      Data2: 1332340417
+      Data3: 1957140150
+      Data4: 191132689
+    Path: event:/Effects/UI SFX/ThankYou
 --- !u!114 &988343089
 MonoBehaviour:
   m_ObjectHideFlags: 0

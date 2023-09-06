@@ -211,6 +211,10 @@ public class PlayerControllerV2 : MonoBehaviour
             LowHealthObj.SetActive(false);
         }
 
+
+        if (CurrentEstus > 4) { CurrentEstus = 4; }
+        if (MaxEstus > 4) { MaxEstus = 4; }
+
         BossCam.SetActive(false);
     }
 
@@ -322,6 +326,10 @@ public class PlayerControllerV2 : MonoBehaviour
             }
             else
             {
+                if (IsBlocking)
+                {
+                    RuntimeManager.PlayOneShot(Audio_BlockHit_Ref, transform.position);
+                }
 
                 if (State != "Stagger" && KnockDownDirection==0)
                 { 
@@ -1149,6 +1157,7 @@ public class PlayerControllerV2 : MonoBehaviour
         IsImmune = false;
         GoingToRollUpSlope = false;
         GoingToRollDownSlope = false;
+        CanAttack = true;
 
 
         if (StaminaRegenCoroutine != null) { StopCoroutine(StaminaRegenCoroutine); StaminaRegenCoroutine = StartCoroutine(StaminaRegenPause()); }
@@ -1166,6 +1175,7 @@ public class PlayerControllerV2 : MonoBehaviour
         IsBlocking = false;
         IsRolling = false;
         IsImmune = false;
+        CanAttack = true;
 
         if (StaminaRegenCoroutine != null) { StopCoroutine(StaminaRegenCoroutine); StaminaRegenCoroutine = StartCoroutine(StaminaRegenPause()); }
         if (Stamina != MaxStamina && IsStaminaRegen == false) { StaminaRegenCoroutine = StartCoroutine(StaminaRegenPause()); }
@@ -1220,6 +1230,7 @@ public class PlayerControllerV2 : MonoBehaviour
         IsBlocking = false;
         IsRolling = false;
         IsImmune = false;
+        CanAttack = true;
 
 
         if (StaminaRegenCoroutine != null) { StopCoroutine(StaminaRegenCoroutine); StaminaRegenCoroutine = StartCoroutine(StaminaRegenPause()); }
@@ -2166,6 +2177,7 @@ public class PlayerControllerV2 : MonoBehaviour
     {
         WallHitType = WallHit;
         StartCoroutine(WallStagger());
+        GetComponentInChildren<AnimationAudio>().HitObjectAudio(WallHit);
     }
 
     IEnumerator WallStagger()
