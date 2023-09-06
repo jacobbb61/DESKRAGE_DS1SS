@@ -95,74 +95,78 @@ public class Bonfire : MonoBehaviour
 
     public void BonfireRest()
     {
-        PC.State = "Idle";
-        PC.CanMove = true;
-
-        LayerManager.ChangeLayer(BonfireLayer);
-
-        PC.Health = PC.MaxHealth;
-        PC.Stamina = PC.MaxStamina;
-        // replenish estus
-        PC.CurrentEstus = PC.MaxEstus;
-        // Reset Enemies
-        if (EnemySaveManagerList != null)
+        if (PC.Health <= 0)
         {
-            foreach (GameObject Enemy in EnemySaveManagerList)
+
+            LayerManager.ChangeLayer(BonfireLayer);
+
+            PC.Health = PC.MaxHealth;
+            PC.Stamina = PC.MaxStamina;
+            // replenish estus
+            PC.CurrentEstus = PC.MaxEstus;
+            // Reset Enemies
+            if (EnemySaveManagerList != null)
             {
-                Enemy.GetComponent<EnemySaveManager>().RespawnEvent.Invoke();
+                foreach (GameObject Enemy in EnemySaveManagerList)
+                {
+                    Enemy.GetComponent<EnemySaveManager>().RespawnEvent.Invoke();
+                }
             }
-        }
 
-        if (PM.DemonArena.currentState == "Active" || PM.DemonArena.currentState == "Idle") //player died to demon
-        {
-            PM.DemonArena.SwitchState("Idle");
-            PM.DemonArena.ManualStart();
-
-        }
-        if (PM.PursuerArena.currentState == "Active") //player died to demon
-        {
-            PM.PursuerArena.SwitchState("Idle");
-            PM.PursuerArena.ManualStart();
-        }
-
-
-        switch (PM.LastBonfireVisited)
-        {
-            case 1:
-                PM.gameObject.transform.position = PM.Bonfire_1.transform.position;
-                //PM.Bonfire_1.BonfireRest();
-                break;
-            case 2:
-                PM.gameObject.transform.position = PM.Bonfire_2.transform.position;
-                //PM.Bonfire_2.BonfireRest();
-                break;
-            case 3:
-                PM.gameObject.transform.position = PM.Bonfire_3.transform.position;
-                //PM.Bonfire_3.BonfireRest();
-                break;
-            default:
-                PM.gameObject.transform.position = new Vector2(-90, -18);
-                //PM.Bonfire_1.BonfireRest();
-                break;
-        }
-
-        //update boss pos
-        AsylumDemon.ResetPos();
-        Pursuer.ResetPos();
-
-        //upadate oscar
-        OM.Reload();
-
-        //reset pots
-
-        if (PotManagers != null)
-        {
-            foreach (PotManager PotManager in PotManagers)
+            if (PM.DemonArena.currentState == "Active" || PM.DemonArena.currentState == "Idle") //player died to demon
             {
-                PotManager.ReloadPots();
-            }
-        }
+                PM.DemonArena.SwitchState("Idle");
+                PM.DemonArena.ManualStart();
 
+            }
+            if (PM.PursuerArena.currentState == "Active") //player died to demon
+            {
+                PM.PursuerArena.SwitchState("Idle");
+                PM.PursuerArena.ManualStart();
+            }
+
+
+            switch (PM.LastBonfireVisited)
+            {
+                case 1:
+                    PM.gameObject.transform.position = PM.Bonfire_1.transform.position;
+                    Debug.Log("reset pos");
+                    //PM.Bonfire_1.BonfireRest();
+                    break;
+                case 2:
+                    PM.gameObject.transform.position = PM.Bonfire_2.transform.position;
+                    //PM.Bonfire_2.BonfireRest();
+                    break;
+                case 3:
+                    PM.gameObject.transform.position = PM.Bonfire_3.transform.position;
+                    //PM.Bonfire_3.BonfireRest();
+                    break;
+                default:
+                    PM.gameObject.transform.position = new Vector2(-90, -18);
+                    //PM.Bonfire_1.BonfireRest();
+                    break;
+            }
+
+            //update boss pos
+            AsylumDemon.ResetPos();
+            Pursuer.ResetPos();
+
+            //upadate oscar
+            OM.Reload();
+
+            //reset pots
+
+            if (PotManagers != null)
+            {
+                foreach (PotManager PotManager in PotManagers)
+                {
+                    PotManager.ReloadPots();
+                }
+            }
+
+
+
+        }
     }
 
 

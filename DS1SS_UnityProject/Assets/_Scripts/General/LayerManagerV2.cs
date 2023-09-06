@@ -30,9 +30,7 @@ public class LayerManagerV2 : MonoBehaviour
 
         if(Player.GetComponent<EnemyLock>().LockedOn)
         {
-            Player.GetComponent<EnemyLock>().LockedOn = false;
-            PC.IsLockedOn = Player.GetComponent<EnemyLock>().LockedOn;
-            Player.GetComponent<EnemyLock>().LockOnSymbol.SetActive(Player.GetComponent<EnemyLock>().LockedOn);
+            Player.GetComponent<EnemyLock>().TurnOffLockOn();
         }
     }
 

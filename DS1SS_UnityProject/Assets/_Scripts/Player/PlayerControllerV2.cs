@@ -223,6 +223,7 @@ public class PlayerControllerV2 : MonoBehaviour
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     IEnumerator PlayerDead()
     {
+        Health = 0;
         MyRb.constraints = RigidbodyConstraints2D.FreezeAll;
         FadeOutMusic = true;
         if (PM.HasDied == false) { PM.HasDied = true; }
@@ -251,6 +252,7 @@ public class PlayerControllerV2 : MonoBehaviour
 
         if (ahh == false)
         {
+        Debug.Log("test");
             switch (PM.LastBonfireVisited)
             {
                 case 1:
@@ -275,9 +277,11 @@ public class PlayerControllerV2 : MonoBehaviour
         BossCam.SetActive(false);
 
         yield return new WaitForSeconds(1f);
+        FinishRespawn();
+    }
 
-
-
+    public void FinishRespawn()
+    {
         MyRb.constraints = RigidbodyConstraints2D.None;
         MyRb.constraints = RigidbodyConstraints2D.FreezeRotation;
 
@@ -291,8 +295,6 @@ public class PlayerControllerV2 : MonoBehaviour
         IsImmune = false;
         IsBlocking = false;
         ahh = false;
-       // State = "Idle";
-
     }
 
     public void PlayerTakeDamage(float Damage, bool staggger, int KnockDownDirection) // -1 to left, 1 to right, 0 is the direction the player is on relative to the enemy
@@ -352,7 +354,8 @@ public class PlayerControllerV2 : MonoBehaviour
         }
 
 
-      //  if (Health <= 0) { StartCoroutine(PlayerDead()); }
+        if (Health <= 0 && State != "Dead") { State = "Dead"; StartCoroutine(PlayerDead()); }
+        //  if (Health <= 0) { StartCoroutine(PlayerDead()); }
     }
 
     void BloodEffect()
@@ -365,7 +368,7 @@ public class PlayerControllerV2 : MonoBehaviour
 
     public void PlayerFinishInteraction()
     {
-        if (MovementInputDirection == 0) { State = "Idle"; } else { State = "Walking"; }
+        if (MovementInputDirection == 0 && State != "Dead") { State = "Idle"; } else { State = "Walking"; }
         IsRolling = false;
         IsImmune = false;
         IsBlocking = false;
@@ -566,87 +569,94 @@ public class PlayerControllerV2 : MonoBehaviour
     //////////////////////////////////////////////////////////////
     public void Move(InputAction.CallbackContext context)
     {
-        Vector2 MovementInput;
-        MovementInput = context.ReadValue<Vector2>();
+        if (State != "Dead")
+        {
+            Vector2 MovementInput;
+            MovementInput = context.ReadValue<Vector2>();
 
 
-        if (MovementInput.x > 0.1f && MovementInput.x <= 0.75f)
-        {
-            MovementInputDirection = 1;
-            MovementInputAmount = 0.5f;
-            IsMovingInput = true;
-            //walking
-        }
-        else if (MovementInput.x < -0.1f && MovementInput.x >= -0.75f)
-        {
-            MovementInputDirection = -1;
-            MovementInputAmount = 0.5f;
-            IsMovingInput = true;
-            //walking
-        }
-        else if (MovementInput.x > 0.75f && MovementInput.x <= 1f)
-        {
-            MovementInputDirection = 1;
-            MovementInputAmount = 1;
-            IsMovingInput = true;
-            //running
-        }
-        else if (MovementInput.x < -0.75f && MovementInput.x >= -1f)
-        {
-            MovementInputDirection = -1;
-            MovementInputAmount = 1;
-            IsMovingInput = true;
-            //running
-        }
+            if (MovementInput.x > 0.1f && MovementInput.x <= 0.75f)
+            {
+                MovementInputDirection = 1;
+                MovementInputAmount = 0.5f;
+                IsMovingInput = true;
+                //walking
+            }
+            else if (MovementInput.x < -0.1f && MovementInput.x >= -0.75f)
+            {
+                MovementInputDirection = -1;
+                MovementInputAmount = 0.5f;
+                IsMovingInput = true;
+                //walking
+            }
+            else if (MovementInput.x > 0.75f && MovementInput.x <= 1f)
+            {
+                MovementInputDirection = 1;
+                MovementInputAmount = 1;
+                IsMovingInput = true;
+                //running
+            }
+            else if (MovementInput.x < -0.75f && MovementInput.x >= -1f)
+            {
+                MovementInputDirection = -1;
+                MovementInputAmount = 1;
+                IsMovingInput = true;
+                //running
+            }
 
 
-        switch (State)
-        {
-            case "Idle":
-                ProccessMove(context);
-                break;
-            case "Walking":
-                ProccessMove(context);
-                break;
-            case "Running":
-                ProccessMove(context);
-                break;
-            case "Blocking":
-                ProccessMove(context);
-                break;
-            case "Rolling":
-                //if (CanRollOut) { if (Stamina >= 10) { ProcessInput_B(context); } }          
-                break;
-            default:
-                break;
 
-        }
+            switch (State)
+            {
+                case "Idle":
+                    ProccessMove(context);
+                    break;
+                case "Walking":
+                    ProccessMove(context);
+                    break;
+                case "Running":
+                    ProccessMove(context);
+                    break;
+                case "Blocking":
+                    ProccessMove(context);
+                    break;
+                case "Rolling":
+                    //if (CanRollOut) { if (Stamina >= 10) { ProcessInput_B(context); } }          
+                    break;
+                default:
+                    break;
 
-        if (context.canceled)
-        {
-            MovementInputDirection = 0;
-            IsMovingInput = false;
+            }
+
+            if (context.canceled)
+            {
+                MovementInputDirection = 0;
+                IsMovingInput = false;
+            }
         }
     }
     void ProccessMove(InputAction.CallbackContext context)
     {
-        Vector2 MovementInput;
-        MovementInput = context.ReadValue<Vector2>();
-        if (MovementInput.x > 0.1f && MovementInput.x <= 0.75f)
+        if (State != "Dead")
         {
-            if (IsGrounded || IsGroundedOnSlope && IsMovingInput) State = "Walking";
-        }
-        else if (MovementInput.x < -0.1f && MovementInput.x >= -0.75f)
-        {
-            if (IsGrounded || IsGroundedOnSlope && IsMovingInput) State = "Walking";
-        }
-        else if (MovementInput.x > 0.75f && MovementInput.x <= 1f)
-        {
-            if (IsGrounded || IsGroundedOnSlope && IsMovingInput) State = "Running";
-        }
-        else if (MovementInput.x < -0.75f && MovementInput.x >= -1f)
-        {
-            if (IsGrounded || IsGroundedOnSlope && IsMovingInput) State = "Running";
+            Vector2 MovementInput;
+            MovementInput = context.ReadValue<Vector2>();
+            if (MovementInput.x > 0.1f && MovementInput.x <= 0.75f)
+            {
+                if (IsGrounded || IsGroundedOnSlope && IsMovingInput) State = "Walking";
+            }
+            else if (MovementInput.x < -0.1f && MovementInput.x >= -0.75f)
+            {
+                if (IsGrounded || IsGroundedOnSlope && IsMovingInput) State = "Walking";
+            }
+            else if (MovementInput.x > 0.75f && MovementInput.x <= 1f)
+            {
+                if (IsGrounded || IsGroundedOnSlope && IsMovingInput) State = "Running";
+            }
+            else if (MovementInput.x < -0.75f && MovementInput.x >= -1f)
+            {
+                if (IsGrounded || IsGroundedOnSlope && IsMovingInput) State = "Running";
+            }
         }
     }
 
@@ -1044,7 +1054,11 @@ public class PlayerControllerV2 : MonoBehaviour
         transform.position = new Vector3(transform.position.x, transform.position.y, 0);
         //
 
-        if (Health <= 0 && State!="Dead") { StartCoroutine(PlayerDead()); }
+
+
+        if (Health <= 0) { State = "Dead"; }
+
+        //if (Health <= 0 && State!="Dead") { State = "Dead"; StartCoroutine(PlayerDead()); }
         if (State != "Dead")
         {
             if (Health <= 20) { LowHealthObj.SetActive(true); }
@@ -1061,6 +1075,8 @@ public class PlayerControllerV2 : MonoBehaviour
         GroundCheck();
         UpdateUI();
         if (IsStaminaRegen) { StaminaRegen(); }
+
+
 
         switch (State)
         {
@@ -1129,7 +1145,6 @@ public class PlayerControllerV2 : MonoBehaviour
         {
             PlayerMenuManager.AudioMusicNum -= Time.deltaTime * 5;
             PlayerMenuManager.UpdateFMODSettings();
-            Debug.Log(PlayerMenuManager.AudioMusicNum);
 
             if (PlayerMenuManager.AudioMusicNum <= 0)
             {
@@ -1183,8 +1198,8 @@ public class PlayerControllerV2 : MonoBehaviour
 
 
 
-        if (MovementInputAmount == 1) { State = "Running"; }
-        if (MovementInputDirection == 0) { State = "Idle"; }
+        if (MovementInputAmount == 1 && State != "Dead") { State = "Running"; }
+        if (MovementInputDirection == 0 && State != "Dead") { State = "Idle"; }
 
         if (MovementInputDirection > 0.1f && !IsLockedOn) { PlayerDirection = 1; }
         if (MovementInputDirection < -0.1f && !IsLockedOn) { PlayerDirection = -1; }
@@ -1222,7 +1237,7 @@ public class PlayerControllerV2 : MonoBehaviour
         }
         
         
-        if (MovementInputDirection == 0) { State = "Idle"; }
+        if (MovementInputDirection == 0 && State != "Dead") { State = "Idle"; }
     }
 
     void Running()
@@ -1243,7 +1258,7 @@ public class PlayerControllerV2 : MonoBehaviour
             if (MovementInputDirection >= 0.75f) { PlayerDirection = 1;}
             if (MovementInputDirection <= -0.75f) { PlayerDirection = -1;}
             if (MovementInputAmount == 0.5f) { State = "Walk"; }
-            if (MovementInputDirection == 0) { State = "Idle"; }
+            if (MovementInputDirection == 0 && State != "Dead") { State = "Idle"; }
             FaceTowardsInput(); 
 
            
@@ -1370,7 +1385,7 @@ public class PlayerControllerV2 : MonoBehaviour
         IsRolling = false;
         IsImmune = false;
         Anim.Play("PlayerAnim_Idle");
-        if (IsUiOpen == false) { if (MovementInputDirection == 0) { State = "Idle"; } else { State = "Walking"; } }
+        if (IsUiOpen == false) { if (MovementInputDirection == 0 && State != "Dead") { State = "Idle"; } else { State = "Walking"; } }
     }
 
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1668,11 +1683,11 @@ public class PlayerControllerV2 : MonoBehaviour
 
         MyRb.velocity = Vector2.zero;  
 
-        if (IsMovingInput) 
+        if (IsMovingInput && State != "Dead") 
         {
             State = "Walking"; 
         } 
-        else
+        else if (State != "Dead")
         {
             State = "Idle";
         }
@@ -1690,13 +1705,13 @@ public class PlayerControllerV2 : MonoBehaviour
 
         MyRb.velocity = Vector2.zero;
 
-       
 
-        if (IsMovingInput)
+
+        if (IsMovingInput && State != "Dead")
         {
             State = "Walking";
         }
-        else
+        else if (State != "Dead")
         {
             State = "Idle";
         }
@@ -1751,7 +1766,7 @@ public class PlayerControllerV2 : MonoBehaviour
         CanPlunge = false;
         IsPlunging = false;
         VerticalSpeed = FallSpeed;
-        if (IsMovingInput) { State = "Walking"; } else { State = "Idle"; }
+        if (IsMovingInput && State!="Dead") { State = "Walking"; } else { State = "Idle"; }
         IsLanding = false;
     }
 
@@ -1785,7 +1800,7 @@ public class PlayerControllerV2 : MonoBehaviour
 
         if (StaminaRegenCoroutine != null) { StopCoroutine(StaminaRegenCoroutine);} StaminaRegenCoroutine = StartCoroutine(StaminaRegenPause());
 
-        if (MovementInputDirection == 0) { State = "Idle"; } else { State = "Walking"; }
+        if (MovementInputDirection == 0 && State != "Dead") { State = "Idle"; } else { State = "Walking"; }
     }
     IEnumerator LightAttackFollowUp()
     {
@@ -1813,7 +1828,7 @@ public class PlayerControllerV2 : MonoBehaviour
 
         if (StaminaRegenCoroutine != null) { StopCoroutine(StaminaRegenCoroutine);} StaminaRegenCoroutine = StartCoroutine(StaminaRegenPause());
 
-        if (MovementInputDirection == 0) { State = "Idle"; } else { State = "Walking"; }
+        if (MovementInputDirection == 0 && State != "Dead") { State = "Idle"; } else { State = "Walking"; }
     }
 
     IEnumerator LightAttackFollowUp2()
@@ -1843,7 +1858,7 @@ public class PlayerControllerV2 : MonoBehaviour
         if (StaminaRegenCoroutine != null) { StopCoroutine(StaminaRegenCoroutine); }
         StaminaRegenCoroutine = StartCoroutine(StaminaRegenPause());
 
-        if (MovementInputDirection == 0) { State = "Idle"; } else { State = "Walking"; }
+        if (MovementInputDirection == 0 && State != "Dead") { State = "Idle"; } else { State = "Walking"; }
     }
 
 
@@ -1874,7 +1889,7 @@ public class PlayerControllerV2 : MonoBehaviour
 
         if (StaminaRegenCoroutine != null) { StopCoroutine(StaminaRegenCoroutine);} StaminaRegenCoroutine = StartCoroutine(StaminaRegenPause());
 
-        if (MovementInputDirection == 0) { State = "Idle"; } else { State = "Walking"; }
+        if (MovementInputDirection == 0 && State != "Dead") { State = "Idle"; } else { State = "Walking"; }
     }
     IEnumerator HeavyAttackFollowUp()
     {
@@ -1902,7 +1917,7 @@ public class PlayerControllerV2 : MonoBehaviour
 
         if (StaminaRegenCoroutine != null) { StopCoroutine(StaminaRegenCoroutine);} StaminaRegenCoroutine = StartCoroutine(StaminaRegenPause());
 
-        if (MovementInputDirection == 0) { State = "Idle"; } else { State = "Walking"; }
+        if (MovementInputDirection == 0 && State != "Dead") { State = "Idle"; } else { State = "Walking"; }
     }
 
     IEnumerator HeavyAttackFollowUp2()
@@ -1932,7 +1947,7 @@ public class PlayerControllerV2 : MonoBehaviour
         if (StaminaRegenCoroutine != null) { StopCoroutine(StaminaRegenCoroutine); }
         StaminaRegenCoroutine = StartCoroutine(StaminaRegenPause());
 
-        if (MovementInputDirection == 0) { State = "Idle"; } else { State = "Walking"; }
+        if (MovementInputDirection == 0 && State!="Dead") { State = "Idle"; } else { State = "Walking"; }
     }
 
     public void AttackStep()
@@ -1996,7 +2011,7 @@ public class PlayerControllerV2 : MonoBehaviour
         CanRollOut = false; CancelThisCoroutine = null;
 
 
-        if (MovementInputDirection == 0) { State = "Idle"; } else { State = "Walking"; }
+        if (MovementInputDirection == 0 && State!="Dead") { State = "Idle"; } else { State = "Walking"; }
         IsImmune = false;
         if (StaminaRegenCoroutine != null) { StopCoroutine(StaminaRegenCoroutine); }
         StaminaRegenCoroutine = StartCoroutine(StaminaRegenPause());
@@ -2027,7 +2042,7 @@ public class PlayerControllerV2 : MonoBehaviour
         CanRollOut = false; CancelThisCoroutine = null;
         
 
-        if (MovementInputDirection == 0) { State = "Idle"; } else { State = "Walking"; }
+        if (MovementInputDirection == 0 && State!="Dead") { State = "Idle"; } else { State = "Walking"; }
         IsImmune = false;
         if (StaminaRegenCoroutine != null) { StopCoroutine(StaminaRegenCoroutine); }
         StaminaRegenCoroutine = StartCoroutine(StaminaRegenPause());
@@ -2040,7 +2055,7 @@ public class PlayerControllerV2 : MonoBehaviour
 
         yield return new WaitForSeconds(0.5f);
 
-        if (MovementInputDirection == 0) { State = "Idle"; } else { State = "Walking"; }
+        if (MovementInputDirection == 0 && State!="Dead") { State = "Idle"; } else { State = "Walking"; }
     }
 
 
@@ -2073,7 +2088,7 @@ public class PlayerControllerV2 : MonoBehaviour
 
         IsBlocking = false;
         if (EnterBlockCoroutine != null) { StopCoroutine(EnterBlockCoroutine); }
-        if (MovementInputDirection == 0) { State = "Idle"; } else { State = "Walking"; }
+        if (MovementInputDirection == 0 && State!="Dead") { State = "Idle"; } else { State = "Walking"; }
 
 
       //  Anim.Play("PlayerAnim_ShieldBlockExit");
@@ -2085,7 +2100,7 @@ public class PlayerControllerV2 : MonoBehaviour
 
         IsBlocking = false;
 
-        if (MovementInputDirection == 0) { State = "Idle"; } else { State = "Walking"; }
+        if (MovementInputDirection == 0 && State!="Dead") { State = "Idle"; } else { State = "Walking"; }
     }
 
     IEnumerator UseEstus()
@@ -2107,7 +2122,7 @@ public class PlayerControllerV2 : MonoBehaviour
         CanRollOut = false;
         CanUseSecondEstus = false;
 
-        if (MovementInputDirection == 0) { State = "Idle"; } else { State = "Walking"; }
+        if (MovementInputDirection == 0 && State!="Dead") { State = "Idle"; } else { State = "Walking"; }
     }
     IEnumerator UseEmptyEstus()
     {
@@ -2119,7 +2134,7 @@ public class PlayerControllerV2 : MonoBehaviour
         yield return new WaitForSeconds(.5f);
         CancelThisCoroutine = null;
         CanRollOut = false;
-        if (MovementInputDirection == 0) { State = "Idle"; } else { State = "Walking"; }
+        if (MovementInputDirection == 0 && State!="Dead") { State = "Idle"; } else { State = "Walking"; }
     }
 
     void PlungeAttackRegester()
@@ -2185,6 +2200,6 @@ public class PlayerControllerV2 : MonoBehaviour
         Anim.Play("PlayerAnim_StaggerHitObject");
         State = "Stagger";
         yield return new WaitForSeconds(.5f);
-        if (MovementInputDirection == 0) { State = "Idle"; } else { State = "Walking"; }
+        if (MovementInputDirection == 0 && State!="Dead") { State = "Idle"; } else { State = "Walking"; }
     }
 }
