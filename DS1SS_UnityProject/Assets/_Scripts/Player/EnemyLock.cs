@@ -56,22 +56,28 @@ public class EnemyLock : MonoBehaviour
                 enemyToRight = false; // Enemy is to left
             }
 
-
-
-
-            if (AsylumArena.currentState != "Active" && PursuerArena.currentState != "Active")
+            // ||
+            if (AsylumArena.currentState == "Active" || PursuerArena.currentState == "Active") // Boss is active
             {
-                if (LockedOnToBoss)
+                LockedOnEnemyDistance = Vector3.Distance(transform.position, EnemyLockPos.position);
+            }
+            if (AsylumArena.currentState != "Active" && PursuerArena.currentState != "Active") // Boss not active
+            {
+                if (LockedOnToBoss) // still locked onto boss, turn lock on off
                 {
                     LockedOnToBoss = false;
-                    EnemyLockedOnTo = null;
-                    LockedOn = false;
-                    Pc.IsLockedOn = LockedOn;
-                    LockOnSymbol.SetActive(LockedOn);
-                    Debug.Log("Boss dead so Change to new lock on");
+                    TurnOffLockOn();
+                    Debug.Log("Boss dead");
                 }
-                else
-                {
+            }
+
+
+
+
+
+            if (AsylumArena.currentState != "Active" && PursuerArena.currentState != "Active" && EnemyLockedOnTo!=null) // Boss not active AND ther is an enemy to lock on to
+            {
+               
                     if (EnemyLockedOnTo.GetComponent<EnemySaveManager>().IsLockOnAble == false)
                     {
                         GetNearestEnemy();
@@ -81,24 +87,23 @@ public class EnemyLock : MonoBehaviour
                     {
                         LockedOnEnemyDistance = Vector3.Distance(transform.position, EnemyLockPos.position);
                     }
-                }
-                
-
-                if (LockedOnEnemyDistance > 15)
-                {
-                    LockedOn = false;
-                    Pc.IsLockedOn = LockedOn;
-                    LockOnSymbol.SetActive(LockedOn);
-                }
             }
-            else
+
+
+            if (LockedOnEnemyDistance > 15) // out off range
             {
-                LockedOnEnemyDistance = Vector3.Distance(transform.position, EnemyLockPos.position);
+                TurnOffLockOn();
             }
-        }
-
+        }     
     }
 
+    public void TurnOffLockOn()
+    {
+        EnemyLockedOnTo = null;
+        LockedOn = false;
+        Pc.IsLockedOn = LockedOn;
+        LockOnSymbol.SetActive(LockedOn);
+    }
 
 
 

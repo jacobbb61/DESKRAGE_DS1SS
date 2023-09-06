@@ -248,7 +248,7 @@ public class Pursuer : MonoBehaviour
     IEnumerator Death()
     {
         Behaviour = "Dying";
-        Player.GetComponent<EnemyLock>().LockedOn = false;
+        Player.GetComponent<EnemyLock>().TurnOffLockOn();
 
 
         Player.GetComponent<PlayerControllerV2>().FadeOutMusic = true;
