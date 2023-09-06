@@ -60,14 +60,10 @@ public class AnimationAudio : MonoBehaviour
         EventInstance walk = RuntimeManager.CreateInstance(WalkAudioRef);
         RuntimeManager.AttachInstanceToGameObject(walk, transform, GetComponentInParent<Rigidbody2D>());
 
-        if (GetComponentInParent<PlayerControllerV2>().State == "Running")
-        {
+       
             walk.setParameterByName("WalkorRun", 1);
-        }
-        else
-        {
-            walk.setParameterByName("WalkorRun", 0);
-        }
+      
+
 
         switch (GetComponentInParent<PlayerControllerV2>().GroundType)
         {
@@ -122,11 +118,11 @@ public class AnimationAudio : MonoBehaviour
             case "Wood":
                 walk.setParameterByName("Terrain", 3);
                 break;
-            case "WetStone":
-                walk.setParameterByName("Terrain", 6);
-                break;
             case "Snow":
                 walk.setParameterByName("Terrain", 5);
+                break;
+            case "WetStone":
+                walk.setParameterByName("Terrain", 6);
                 break;
             default:
                 //RuntimeManager.PlayOneShot(WalkAudioRef, transform.position);

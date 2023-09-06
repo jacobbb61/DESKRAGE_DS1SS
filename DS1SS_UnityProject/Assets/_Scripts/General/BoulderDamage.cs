@@ -9,7 +9,7 @@ public class BoulderDamage : MonoBehaviour
     {
         if (collision.transform.CompareTag("Player"))
         {
-            collision.GetComponent<PlayerControllerV2>().PlayerTakeDamage(Damage, true, 0);
+            collision.GetComponent<PlayerControllerV2>().PlayerTakeDamage(Damage, true, 1);
         }
     }
 }

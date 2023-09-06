@@ -17,39 +17,48 @@ public class EndOfLevelTrigger : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player"))
+
+            PC.MyRb.velocity = Vector2.zero;
+
+            if (PM.HasBeenHit == false && PM.HasDied == false && GameSaveGameManager.Instance.GameSaveData.Achievement_5==false && GameSaveGameManager.Instance.GameSaveData.Achievement_6 == false)
         {
-
-
-            if (PM.HasBeenHit == false && PM.HasDied == false)
-            {
                 AchievementsGameManager.Instance.UnlockedAchievement(5);
-                EndAnimLenght2 = 7f;
+                EndAnimLenght2 = 2.5f;
                 StartCoroutine(Awesome());
+                Debug.Log("Unlocked Both");
+                return;
             }
             else
             {
-                if (PM.HasBeenHit == false)
+                if (PM.HasBeenHit == false && GameSaveGameManager.Instance.GameSaveData.Achievement_6 == false)
                 {
                     AchievementsGameManager.Instance.UnlockedAchievement(6);
                     EndAnimLenght2 = 3.5f;
-                }
-                if (PM.HasDied == false)
+                StartCoroutine(EndLevel());
+                Debug.Log("Unlocked 6");
+                return;
+            }
+                if (PM.HasDied == false && GameSaveGameManager.Instance.GameSaveData.Achievement_5 == false)
                 {
                     AchievementsGameManager.Instance.UnlockedAchievement(5);
                     EndAnimLenght2 = 3.5f;
-                }
+                StartCoroutine(EndLevel());
+                Debug.Log("Unlocked 5");
+                return;
+            }
 
             }
-            StartCoroutine(EndLevel());
-        }
+
+        Debug.Log("Unlocked None");
+        StartCoroutine(EndLevel());
+        
     }
     IEnumerator Awesome()
     {
         
         yield return new WaitForSeconds(3.5f);
         AchievementsGameManager.Instance.UnlockedAchievement(6);
-        EndAnimLenght2 = 0;
+        StartCoroutine(EndLevel());
     }
 
         IEnumerator EndLevel()

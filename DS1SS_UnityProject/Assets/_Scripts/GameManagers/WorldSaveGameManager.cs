@@ -49,7 +49,7 @@ public class WorldSaveGameManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
         LoadAllCharacterSlots();
 
-       // Cursor.visible = false;
+        Cursor.visible = false;
     }
     private void Update()
     {

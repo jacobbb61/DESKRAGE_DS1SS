@@ -40,8 +40,13 @@ public class CanvasManager : MonoBehaviour
 
     private void Start()
     {
+
         if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Build"))
         {
+            HUD_1.SetActive(true);
+            HUD_2.SetActive(true);
+            HUD_3.SetActive(true);
+            HUD_4.SetActive(true);
             if (GameSaveGameManager.Instance.GameSaveData.HUD == false)
             {
                 ToggleHUD();
