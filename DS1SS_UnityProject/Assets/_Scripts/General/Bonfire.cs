@@ -95,8 +95,14 @@ public class Bonfire : MonoBehaviour
 
     public void BonfireRest()
     {
-        if (PC.Health <= 0)
-        {
+
+            PC.CanMove = false;
+            PC.IsMovingInput = false;
+            PC.CM.PlayerHealthSlider.value = 100;
+            PC.CM.PlayerHealthCatchupSlider.value = 100;
+            PC.CM.PlayerStaminaSlider.value = 100;
+            PC.CM.PlayerStaminaCatchupSlider.value = 100;
+
 
             LayerManager.ChangeLayer(BonfireLayer);
 
@@ -166,7 +172,7 @@ public class Bonfire : MonoBehaviour
 
 
 
-        }
+        
     }
 
 

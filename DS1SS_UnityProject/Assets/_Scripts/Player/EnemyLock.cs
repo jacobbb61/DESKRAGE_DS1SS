@@ -45,7 +45,6 @@ public class EnemyLock : MonoBehaviour
         {
             
 
-            // Finds nearest enemy every frame
             LockOnSymbol.transform.position = EnemyLockPos.position;
             if (EnemyLockPos.transform.position.x < transform.position.x) // Detects if enemy is to right of player
             {
@@ -75,7 +74,7 @@ public class EnemyLock : MonoBehaviour
 
 
 
-            if (AsylumArena.currentState != "Active" && PursuerArena.currentState != "Active" && EnemyLockedOnTo!=null) // Boss not active AND ther is an enemy to lock on to
+            if (AsylumArena.currentState != "Active" && PursuerArena.currentState != "Active") // Boss not active AND ther is an enemy to lock on to
             {
                
                     if (EnemyLockedOnTo.GetComponent<EnemySaveManager>().IsLockOnAble == false)
@@ -88,13 +87,24 @@ public class EnemyLock : MonoBehaviour
                         LockedOnEnemyDistance = Vector3.Distance(transform.position, EnemyLockPos.position);
                     }
             }
+            
+
+            if(EnemyLockedOnTo == null)
+            {
+                TurnOffLockOn();
+            }
 
 
             if (LockedOnEnemyDistance > 15) // out off range
             {
                 TurnOffLockOn();
             }
-        }     
+        }
+        if (EnemyLockPos == null)
+        {
+
+            TurnOffLockOn();
+        }
     }
 
     public void TurnOffLockOn()

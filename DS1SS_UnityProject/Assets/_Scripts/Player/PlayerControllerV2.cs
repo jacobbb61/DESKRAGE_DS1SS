@@ -175,7 +175,7 @@ public class PlayerControllerV2 : MonoBehaviour
 
 
     //UI
-    private CanvasManager CM;
+    public CanvasManager CM;
     private Slider StaminaSlider;
     private Slider HealthSlider; 
     private Slider healthCatchupSlider;
@@ -1749,7 +1749,7 @@ public class PlayerControllerV2 : MonoBehaviour
         if (VerticalSpeed > 7) 
         {
             PlayerTakeDamage(30, true, 1);
-            if (Health <= 0) { AchievementsGameManager.Instance.UnlockedAchievement(3);  }//deid to fall damage
+            if (Health <= 0) { AchievementsGameManager.Instance.UnlockedAchievement(3);}//deid to fall damage
         }
 
 
@@ -1757,7 +1757,10 @@ public class PlayerControllerV2 : MonoBehaviour
 
         if (JumpingCoroutine != null) { StopCoroutine(JumpingCoroutine); }
 
-        Anim.Play("PlayerAnim_JumpLand");
+        if (Health > 0)
+        {
+            Anim.Play("PlayerAnim_JumpLand");
+        }
 
         yield return new WaitForSeconds(.25f);
 
