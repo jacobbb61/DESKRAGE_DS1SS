@@ -107,7 +107,7 @@
 	</object>
 	<object class="EventMixerMaster" id="{af2ac6bc-cbda-4808-8850-9f8e33ac390f}">
 		<property name="volume">
-			<value>-6</value>
+			<value>-17</value>
 		</property>
 		<relationship name="effectChain">
 			<destination>{ae4ab00d-fcb5-4dd0-9735-0daeff720d9c}</destination>
@@ -234,7 +234,11 @@
 	</object>
 	<object class="MixerBusPanner" id="{36113c1d-9c4c-497b-a43d-fff75cac6aa0}" />
 	<object class="MixerBusFader" id="{fa8b9220-ba49-4600-961c-665a8da9adc2}" />
-	<object class="SpatialiserEffect" id="{a73fe30e-5dcd-430d-9a07-8ef650e4a772}" />
+	<object class="SpatialiserEffect" id="{a73fe30e-5dcd-430d-9a07-8ef650e4a772}">
+		<property name="panBlend">
+			<value>0.959999979</value>
+		</property>
+	</object>
 	<object class="AutomationCurve" id="{8d341dfe-fe76-45cd-937b-16b09d8b4481}">
 		<relationship name="parameter">
 			<destination>{84e9d3d9-877c-4bd9-8ece-3f2da711ec4b}</destination>

@@ -98,6 +98,9 @@
 		</relationship>
 	</object>
 	<object class="EventMixerGroup" id="{2a09bd49-2e7f-4b02-95ad-bb0c95d2b512}">
+		<property name="volume">
+			<value>-5.5</value>
+		</property>
 		<property name="name">
 			<value>Audio 1</value>
 		</property>
@@ -135,6 +138,9 @@
 		</property>
 		<property name="overrideRange">
 			<value>true</value>
+		</property>
+		<property name="panBlend">
+			<value>0.899999976</value>
 		</property>
 	</object>
 	<object class="MixerBusFader" id="{0c9c1d30-665b-42a4-bf1a-30a65e606c6a}" />

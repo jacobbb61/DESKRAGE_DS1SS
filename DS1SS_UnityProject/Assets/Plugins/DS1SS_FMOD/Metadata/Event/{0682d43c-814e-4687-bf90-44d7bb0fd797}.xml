@@ -125,6 +125,10 @@
 	</object>
 	<object class="MixerBusPanner" id="{cd68920b-4c22-4711-8349-43e4ce54d0e7}" />
 	<object class="MixerBusFader" id="{60de3dc2-a76e-456b-b6ea-c115af8243cd}" />
-	<object class="SpatialiserEffect" id="{a5fb6acc-5174-46bc-a332-98d1401888c9}" />
+	<object class="SpatialiserEffect" id="{a5fb6acc-5174-46bc-a332-98d1401888c9}">
+		<property name="panBlend">
+			<value>0.904999971</value>
+		</property>
+	</object>
 	<object class="MixerBusFader" id="{cbf45122-9f55-4d4d-86ce-1e0942079638}" />
 </objects>
