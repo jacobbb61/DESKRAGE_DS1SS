@@ -174,21 +174,24 @@ MonoBehaviour:
   Attack9Triggered:
     m_PersistentCalls:
       m_Calls: []
+  AttackAudioTriggered:
+    m_PersistentCalls:
+      m_Calls: []
   GroundType: 
   WalkAudioRef:
     Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
+      Data1: 1536091416
+      Data2: 1132977384
+      Data3: 1994861241
+      Data4: -631453580
+    Path: event:/Player/WalkRun
   AttackAudioRef:
     Guid:
-      Data1: 797456993
-      Data2: 1306249645
-      Data3: -944741445
-      Data4: -1009765589
-    Path: event:/Enemies/Hollow/attack
+      Data1: 1692535435
+      Data2: 1088111857
+      Data3: -2008547954
+      Data4: -2133307080
+    Path: event:/Enemies/Hollow/DrawBow
   AttackBowAudioRef:
     Guid:
       Data1: 1692535435

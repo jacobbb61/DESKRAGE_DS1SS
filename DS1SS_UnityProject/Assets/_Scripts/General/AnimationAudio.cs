@@ -61,7 +61,7 @@ public class AnimationAudio : MonoBehaviour
         RuntimeManager.AttachInstanceToGameObject(walk, transform, GetComponentInParent<Rigidbody2D>());
 
        
-            walk.setParameterByName("WalkorRun", 1);
+            walk.setParameterByName("WalkorRun", 0);
       
 
 

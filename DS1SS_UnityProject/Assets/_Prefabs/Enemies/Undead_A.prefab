@@ -565,6 +565,21 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  AttackAudioTriggered:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6729981753912794569}
+        m_TargetAssemblyTypeName: Undead_A, Assembly-CSharp
+        m_MethodName: PlayAttackSound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   GroundType: 
   WalkAudioRef:
     Guid:
@@ -580,6 +595,20 @@ MonoBehaviour:
       Data3: -944741445
       Data4: -1009765589
     Path: event:/Enemies/Hollow/attack
+  AttackBowAudioRef:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  AttackReleaseAudioRef:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
   isBoss: 0
   ParryIndicator: {fileID: 4634574182244323169}
 --- !u!212 &6729981754875089218

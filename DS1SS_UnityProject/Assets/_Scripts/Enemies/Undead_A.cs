@@ -622,5 +622,9 @@ public class Undead_A : MonoBehaviour
         }
     }
 
+    public void PlayAttackSound()
+    {
+        FMODUnity.RuntimeManager.PlayOneShotAttached(GetComponentInChildren<EnemyAnimationEvents>().AttackAudioRef, this.gameObject);
+    }
 
 }

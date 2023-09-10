@@ -20,6 +20,7 @@ public class EnemyAnimationEvents : MonoBehaviour
     public UnityEvent Attack7Triggered;
     public UnityEvent Attack8Triggered;
     public UnityEvent Attack9Triggered;
+    public UnityEvent AttackAudioTriggered;
 
     public string GroundType;
     public EventReference WalkAudioRef;
@@ -39,7 +40,7 @@ public class EnemyAnimationEvents : MonoBehaviour
             EventInstance walk = RuntimeManager.CreateInstance(WalkAudioRef);
             RuntimeManager.AttachInstanceToGameObject(walk, transform, GetComponentInParent<Rigidbody2D>());
 
-            walk.setParameterByName("WalkorRun", 0);
+            walk.setParameterByName("WalkorRun", 1);
 
 
             switch (GroundType)
@@ -56,11 +57,11 @@ public class EnemyAnimationEvents : MonoBehaviour
                 case "Wood":
                     walk.setParameterByName("Terrain", 3);
                     break;
-                case "WetStone":
-                    walk.setParameterByName("Terrain", 4);
-                    break;
                 case "Snow":
                     walk.setParameterByName("Terrain", 5);
+                    break;
+                case "WetStone":
+                    walk.setParameterByName("Terrain", 6);
                     break;
                 default:
                     //RuntimeManager.PlayOneShot(WalkAudioRef, transform.position);
@@ -97,7 +98,7 @@ public class EnemyAnimationEvents : MonoBehaviour
         if (!isBoss)
         {
             RuntimeManager.PlayOneShot(AttackAudioRef, transform.position);
-            RuntimeManager.PlayOneShot(AttackBowAudioRef, transform.position);
+            //FMODUnity.RuntimeManager.PlayOneShotAttached(AttackAudioRef, this.gameObject);
         }
     }
     public void AttackReleaseAudio()

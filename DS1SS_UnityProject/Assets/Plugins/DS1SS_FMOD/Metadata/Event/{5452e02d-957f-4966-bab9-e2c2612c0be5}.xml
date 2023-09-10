@@ -5,7 +5,7 @@
 			<value>ArrowDestroy</value>
 		</property>
 		<property name="outputFormat">
-			<value>2</value>
+			<value>1</value>
 		</property>
 		<relationship name="folder">
 			<destination>{94b06a07-491e-48dd-bbac-cc51bbe2cc55}</destination>
@@ -98,6 +98,9 @@
 		</relationship>
 	</object>
 	<object class="EventMixerGroup" id="{89fb4a5f-ecd8-4fc9-a205-7ae5b693ed2f}">
+		<property name="volume">
+			<value>-22.5</value>
+		</property>
 		<property name="name">
 			<value>Audio 1</value>
 		</property>
@@ -117,7 +120,14 @@
 			<destination>{e904be0b-f98c-4195-a06f-fd3b5898e58e}</destination>
 		</relationship>
 	</object>
-	<object class="MixerBusPanner" id="{8f78c12f-8538-475a-84ae-ee5425075ef1}" />
+	<object class="MixerBusPanner" id="{8f78c12f-8538-475a-84ae-ee5425075ef1}">
+		<property name="surroundLFELevel">
+			<value>-44</value>
+		</property>
+		<property name="overridingOutputFormat">
+			<value>1</value>
+		</property>
+	</object>
 	<object class="MixerBusFader" id="{f50d44aa-34d7-4367-8efb-68a08c7093d1}" />
 	<object class="MixerBusEffectChain" id="{c2f3ea1e-1f1f-413b-86c3-29a7b584b006}">
 		<relationship name="effects">

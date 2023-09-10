@@ -12018,6 +12018,10 @@ PrefabInstance:
       propertyPath: JumpRunHorizontalSpeed
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 6847898321215821318, guid: 5bce8272093059641ad8d3ab28c85500, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5bce8272093059641ad8d3ab28c85500, type: 3}
 --- !u!1 &810011442
