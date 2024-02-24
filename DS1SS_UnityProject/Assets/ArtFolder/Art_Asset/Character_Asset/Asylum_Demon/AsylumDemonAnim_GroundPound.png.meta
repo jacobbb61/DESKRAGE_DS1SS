@@ -1,0 +1,511 @@
+fileFormatVersion: 2
+guid: e75f442de8760ac468c3d455c597c538
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 128
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 16384
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 16384
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: AsylumDemonAnim_GroundPound_0
+      rect:
+        serializedVersion: 2
+        x: 161
+        y: 0
+        width: 514
+        height: 447
+      alignment: 9
+      pivot: {x: 0.42, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 239b8a547d670a848a5b72278002207c
+      internalID: 923762133
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AsylumDemonAnim_GroundPound_1
+      rect:
+        serializedVersion: 2
+        x: 904
+        y: 0
+        width: 526
+        height: 431
+      alignment: 9
+      pivot: {x: 0.39, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e134ad999573de349be0758b0012a9bc
+      internalID: -1166951326
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AsylumDemonAnim_GroundPound_2
+      rect:
+        serializedVersion: 2
+        x: 1640
+        y: 0
+        width: 548
+        height: 409
+      alignment: 9
+      pivot: {x: 0.33, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 95f88acd97c8f4f47af8a3a46c25d79a
+      internalID: 729240745
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AsylumDemonAnim_GroundPound_3
+      rect:
+        serializedVersion: 2
+        x: 2363
+        y: 0
+        width: 573
+        height: 465
+      alignment: 9
+      pivot: {x: 0.32, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 032d7fd3f2643b2469bd0ceb1bf49895
+      internalID: 595980336
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AsylumDemonAnim_GroundPound_4
+      rect:
+        serializedVersion: 2
+        x: 3119
+        y: 28
+        width: 550
+        height: 543
+      alignment: 9
+      pivot: {x: 0.39, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5166421d5d09e7c4cb500208255fcd86
+      internalID: -1458557574
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AsylumDemonAnim_GroundPound_5
+      rect:
+        serializedVersion: 2
+        x: 3845
+        y: 110
+        width: 554
+        height: 535
+      alignment: 9
+      pivot: {x: 0.39, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e9d6d3b19128b2c4caecc7779ac1dcc3
+      internalID: -2136527206
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AsylumDemonAnim_GroundPound_6
+      rect:
+        serializedVersion: 2
+        x: 4585
+        y: 82
+        width: 554
+        height: 535
+      alignment: 9
+      pivot: {x: 0.39, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 757ac2a173c1ca84fb7097a16c223342
+      internalID: 143768113
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AsylumDemonAnim_GroundPound_7
+      rect:
+        serializedVersion: 2
+        x: 5318
+        y: 71
+        width: 554
+        height: 556
+      alignment: 9
+      pivot: {x: 0.39, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5e72e74645704bc4b929dccc52f487c8
+      internalID: 1551547847
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AsylumDemonAnim_GroundPound_8
+      rect:
+        serializedVersion: 2
+        x: 6053
+        y: 90
+        width: 554
+        height: 535
+      alignment: 9
+      pivot: {x: 0.39, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 32295159a9af95b4989f6bd70257e3be
+      internalID: 1869402704
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AsylumDemonAnim_GroundPound_9
+      rect:
+        serializedVersion: 2
+        x: 6783
+        y: 118
+        width: 554
+        height: 535
+      alignment: 9
+      pivot: {x: 0.39, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2a09ef0676712b843a6decaa0b5b243e
+      internalID: -104438430
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AsylumDemonAnim_GroundPound_10
+      rect:
+        serializedVersion: 2
+        x: 7513
+        y: 59
+        width: 554
+        height: 535
+      alignment: 9
+      pivot: {x: 0.39, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b99e0072696c02141987b6eba19846d9
+      internalID: -264721202
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AsylumDemonAnim_GroundPound_11
+      rect:
+        serializedVersion: 2
+        x: 8261
+        y: 110
+        width: 554
+        height: 535
+      alignment: 9
+      pivot: {x: 0.39, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c8b845a7a8d606d4bb23b6f0f1b514ba
+      internalID: -421346434
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AsylumDemonAnim_GroundPound_12
+      rect:
+        serializedVersion: 2
+        x: 8993
+        y: 95
+        width: 547
+        height: 426
+      alignment: 9
+      pivot: {x: 0.3, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 56b15af59715c374ebf5beb42a8b3ca5
+      internalID: -759892180
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AsylumDemonAnim_GroundPound_13
+      rect:
+        serializedVersion: 2
+        x: 9731
+        y: 0
+        width: 538
+        height: 381
+      alignment: 9
+      pivot: {x: 0.3, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8d8d1191c7f1b4042b4cdbefa3397afc
+      internalID: 1120274804
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AsylumDemonAnim_GroundPound_14
+      rect:
+        serializedVersion: 2
+        x: 10477
+        y: 0
+        width: 554
+        height: 409
+      alignment: 9
+      pivot: {x: 0.3, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fcf1bec838161db47bd546f30c9c673c
+      internalID: -1056948597
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AsylumDemonAnim_GroundPound_15
+      rect:
+        serializedVersion: 2
+        x: 11201
+        y: 0
+        width: 514
+        height: 447
+      alignment: 9
+      pivot: {x: 0.42, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1a6c0b501a8b48241af4ca1e2fc0a622
+      internalID: -1899369365
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      AsylumDemonAnim_GroundPound_0: 923762133
+      AsylumDemonAnim_GroundPound_1: -1166951326
+      AsylumDemonAnim_GroundPound_10: -264721202
+      AsylumDemonAnim_GroundPound_11: -421346434
+      AsylumDemonAnim_GroundPound_12: -759892180
+      AsylumDemonAnim_GroundPound_13: 1120274804
+      AsylumDemonAnim_GroundPound_14: -1056948597
+      AsylumDemonAnim_GroundPound_15: -1899369365
+      AsylumDemonAnim_GroundPound_2: 729240745
+      AsylumDemonAnim_GroundPound_3: 595980336
+      AsylumDemonAnim_GroundPound_4: -1458557574
+      AsylumDemonAnim_GroundPound_5: -2136527206
+      AsylumDemonAnim_GroundPound_6: 143768113
+      AsylumDemonAnim_GroundPound_7: 1551547847
+      AsylumDemonAnim_GroundPound_8: 1869402704
+      AsylumDemonAnim_GroundPound_9: -104438430
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

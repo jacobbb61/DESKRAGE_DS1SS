@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{917373cb-d336-4a29-9288-a0fd59761e83}">
+		<property name="assetPath">
+			<value>Effects/UI SFX/CURSOL_OK.wav.mp3</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>22.0499992</value>
+		</property>
+		<property name="channelCount">
+			<value>1</value>
+		</property>
+		<property name="length">
+			<value>1.7240816326530612</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{62778189-5269-43bd-8b21-d1bef2a14ef8}</destination>
+		</relationship>
+	</object>
+</objects>

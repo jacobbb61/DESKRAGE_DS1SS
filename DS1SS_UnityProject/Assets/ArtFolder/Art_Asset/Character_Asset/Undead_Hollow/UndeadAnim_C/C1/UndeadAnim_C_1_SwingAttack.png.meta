@@ -1,0 +1,533 @@
+fileFormatVersion: 2
+guid: a0a68b5574e0ff94ca2740f1bc2933f7
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 128
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: UndeadAnim_C_1_SwingAttack_0
+      rect:
+        serializedVersion: 2
+        x: 169
+        y: 0
+        width: 49
+        height: 112
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 59954510719e93e47a99c37548478f68
+      internalID: -1608493871
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UndeadAnim_C_1_SwingAttack_1
+      rect:
+        serializedVersion: 2
+        x: 405
+        y: 0
+        width: 60
+        height: 117
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 85dbbc5eb3eadf243925fb257c76b7bb
+      internalID: -1637667805
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UndeadAnim_C_1_SwingAttack_2
+      rect:
+        serializedVersion: 2
+        x: 676
+        y: 0
+        width: 47
+        height: 153
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5abc4eb379f585044956731fe406b2dc
+      internalID: -53067220
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UndeadAnim_C_1_SwingAttack_3
+      rect:
+        serializedVersion: 2
+        x: 940
+        y: 0
+        width: 72
+        height: 145
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cc060ebb66239714ba5a796dd951fd1e
+      internalID: 55974296
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UndeadAnim_C_1_SwingAttack_4
+      rect:
+        serializedVersion: 2
+        x: 1168
+        y: 0
+        width: 106
+        height: 146
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f98af80b70537b541b10cfd8b9a5911a
+      internalID: -875570774
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UndeadAnim_C_1_SwingAttack_5
+      rect:
+        serializedVersion: 2
+        x: 1422
+        y: 0
+        width: 110
+        height: 145
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6ed13297d3490f04781f6942ef5ea08d
+      internalID: 759981902
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UndeadAnim_C_1_SwingAttack_6
+      rect:
+        serializedVersion: 2
+        x: 1673
+        y: 0
+        width: 76
+        height: 160
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2d129bdaabcefaa478aaba16dac55c79
+      internalID: -2029324730
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UndeadAnim_C_1_SwingAttack_7
+      rect:
+        serializedVersion: 2
+        x: 1872
+        y: 0
+        width: 118
+        height: 145
+      alignment: 9
+      pivot: {x: 0.68, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: badec2e9b780a5e4ba14f31843bd69dc
+      internalID: -388310889
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UndeadAnim_C_1_SwingAttack_8
+      rect:
+        serializedVersion: 2
+        x: 2092
+        y: 0
+        width: 163
+        height: 81
+      alignment: 9
+      pivot: {x: 0.77, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c7d68ccdb74200747903b28ce7f196f6
+      internalID: -184257454
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UndeadAnim_C_1_SwingAttack_9
+      rect:
+        serializedVersion: 2
+        x: 2360
+        y: 0
+        width: 151
+        height: 80
+      alignment: 9
+      pivot: {x: 0.77, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f87a47cd76845104eb841227eb70639e
+      internalID: 439336796
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UndeadAnim_C_1_SwingAttack_10
+      rect:
+        serializedVersion: 2
+        x: 2644
+        y: 0
+        width: 123
+        height: 118
+      alignment: 9
+      pivot: {x: 0.68, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8ecf602af7e40bc4cabe82c49f9c6e3f
+      internalID: -489784510
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UndeadAnim_C_1_SwingAttack_11
+      rect:
+        serializedVersion: 2
+        x: 2943
+        y: 0
+        width: 85
+        height: 128
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5f4dc4862253941458d6ad1b5f18fad7
+      internalID: -855905793
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UndeadAnim_C_1_SwingAttack_12
+      rect:
+        serializedVersion: 2
+        x: 3207
+        y: 0
+        width: 76
+        height: 130
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 538f7bbdc6646d14bbe66ed80b223e2a
+      internalID: -87252694
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UndeadAnim_C_1_SwingAttack_13
+      rect:
+        serializedVersion: 2
+        x: 3481
+        y: 0
+        width: 62
+        height: 128
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6c1a7466fc997414981be16a22d9cbbd
+      internalID: 1905459670
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UndeadAnim_C_1_SwingAttack_14
+      rect:
+        serializedVersion: 2
+        x: 3748
+        y: 0
+        width: 59
+        height: 125
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d66a7909f80a8154e8a6f193c231d527
+      internalID: 1925415020
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UndeadAnim_C_1_SwingAttack_15
+      rect:
+        serializedVersion: 2
+        x: 4006
+        y: 0
+        width: 50
+        height: 118
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ced37b5b9cb10634780301ff22a03514
+      internalID: 946393884
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UndeadAnim_C_1_SwingAttack_16
+      rect:
+        serializedVersion: 2
+        x: 4265
+        y: 0
+        width: 49
+        height: 115
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2df6d7328fe62e845891c8b36cd93352
+      internalID: -1139454299
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      UndeadAnim_C_1_SwingAttack_0: -1608493871
+      UndeadAnim_C_1_SwingAttack_1: -1637667805
+      UndeadAnim_C_1_SwingAttack_10: -489784510
+      UndeadAnim_C_1_SwingAttack_11: -855905793
+      UndeadAnim_C_1_SwingAttack_12: -87252694
+      UndeadAnim_C_1_SwingAttack_13: 1905459670
+      UndeadAnim_C_1_SwingAttack_14: 1925415020
+      UndeadAnim_C_1_SwingAttack_15: 946393884
+      UndeadAnim_C_1_SwingAttack_16: -1139454299
+      UndeadAnim_C_1_SwingAttack_2: -53067220
+      UndeadAnim_C_1_SwingAttack_3: 55974296
+      UndeadAnim_C_1_SwingAttack_4: -875570774
+      UndeadAnim_C_1_SwingAttack_5: 759981902
+      UndeadAnim_C_1_SwingAttack_6: -2029324730
+      UndeadAnim_C_1_SwingAttack_7: -388310889
+      UndeadAnim_C_1_SwingAttack_8: -184257454
+      UndeadAnim_C_1_SwingAttack_9: 439336796
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

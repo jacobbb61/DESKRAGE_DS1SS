@@ -1,0 +1,599 @@
+fileFormatVersion: 2
+guid: 5bc1b191a4326af439f21d22b3a6c152
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 128
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 16384
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: ThePursuerAnim_DoubleStab_0
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 195
+        height: 223
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fff2e737dc284f045932569d2c594064
+      internalID: 1993034197
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThePursuerAnim_DoubleStab_1
+      rect:
+        serializedVersion: 2
+        x: 550
+        y: 0
+        width: 197
+        height: 220
+      alignment: 9
+      pivot: {x: 0.56, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3c37b41193ddfed4085dae2cc1d73c87
+      internalID: -1238440558
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThePursuerAnim_DoubleStab_2
+      rect:
+        serializedVersion: 2
+        x: 991
+        y: 0
+        width: 263
+        height: 221
+      alignment: 9
+      pivot: {x: 0.34, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0e003f4678a0c0347adc67b33915b685
+      internalID: -2045102465
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThePursuerAnim_DoubleStab_3
+      rect:
+        serializedVersion: 2
+        x: 1449
+        y: 0
+        width: 239
+        height: 217
+      alignment: 9
+      pivot: {x: 0.31, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: db1679b6476acc9479e83dfd27ee9845
+      internalID: 2054861428
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThePursuerAnim_DoubleStab_4
+      rect:
+        serializedVersion: 2
+        x: 1743
+        y: 0
+        width: 377
+        height: 230
+      alignment: 9
+      pivot: {x: 0.38, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e37a35434d8384c40bcf60a24f01644e
+      internalID: 1748536646
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThePursuerAnim_DoubleStab_5
+      rect:
+        serializedVersion: 2
+        x: 2172
+        y: 0
+        width: 380
+        height: 245
+      alignment: 9
+      pivot: {x: 0.41, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fbe01c30ff3254248b7cb90f5ed300ce
+      internalID: 1451013745
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThePursuerAnim_DoubleStab_6
+      rect:
+        serializedVersion: 2
+        x: 2726
+        y: 0
+        width: 205
+        height: 220
+      alignment: 9
+      pivot: {x: 0.32, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e3e9c178720a31748a6b227cabb78860
+      internalID: -1636145701
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThePursuerAnim_DoubleStab_7
+      rect:
+        serializedVersion: 2
+        x: 3036
+        y: 0
+        width: 267
+        height: 218
+      alignment: 9
+      pivot: {x: 0.69, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e175b52428e71bf4f805bb195c1f600f
+      internalID: -6811846
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThePursuerAnim_DoubleStab_8
+      rect:
+        serializedVersion: 2
+        x: 3446
+        y: 0
+        width: 271
+        height: 215
+      alignment: 9
+      pivot: {x: 0.71, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 52df4a083bc021141844a8fc7354c49a
+      internalID: -796278632
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThePursuerAnim_DoubleStab_9
+      rect:
+        serializedVersion: 2
+        x: 3853
+        y: 0
+        width: 280
+        height: 217
+      alignment: 9
+      pivot: {x: 0.83, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aab8d93a6b28b4242a625f5b87b62c14
+      internalID: 629057814
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThePursuerAnim_DoubleStab_10
+      rect:
+        serializedVersion: 2
+        x: 4358
+        y: 0
+        width: 203
+        height: 216
+      alignment: 9
+      pivot: {x: 0.8, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 33cc871b8e624594c80f3f2a2fa9c026
+      internalID: -1088887423
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThePursuerAnim_DoubleStab_11
+      rect:
+        serializedVersion: 2
+        x: 4847
+        y: 0
+        width: 197
+        height: 216
+      alignment: 9
+      pivot: {x: 0.53, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 663a4b4a0c657db44b62ff01b1fb9044
+      internalID: 1359113761
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThePursuerAnim_DoubleStab_12
+      rect:
+        serializedVersion: 2
+        x: 5291
+        y: 7
+        width: 208
+        height: 214
+      alignment: 9
+      pivot: {x: 0.45, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7dbb42551f5669d48859112094e91cde
+      internalID: 1718564827
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThePursuerAnim_DoubleStab_13
+      rect:
+        serializedVersion: 2
+        x: 5604
+        y: 4
+        width: 250
+        height: 214
+      alignment: 9
+      pivot: {x: 0.78, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 138d158101107be4f984779e3de28f10
+      internalID: -746782259
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThePursuerAnim_DoubleStab_14
+      rect:
+        serializedVersion: 2
+        x: 6014
+        y: 4
+        width: 271
+        height: 212
+      alignment: 9
+      pivot: {x: 0.71, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0584633f2ec2950468dbe4656b2aca6d
+      internalID: -539257622
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThePursuerAnim_DoubleStab_15
+      rect:
+        serializedVersion: 2
+        x: 6421
+        y: 3
+        width: 280
+        height: 213
+      alignment: 9
+      pivot: {x: 0.84, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6cc0ac53848822048b912fae248de08d
+      internalID: 1510638076
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThePursuerAnim_DoubleStab_16
+      rect:
+        serializedVersion: 2
+        x: 6926
+        y: 6
+        width: 203
+        height: 209
+      alignment: 9
+      pivot: {x: 0.78, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 360dee40d209f2949b0a00788958768f
+      internalID: -1593278393
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThePursuerAnim_DoubleStab_17
+      rect:
+        serializedVersion: 2
+        x: 7415
+        y: 5
+        width: 197
+        height: 214
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 92f4878104a48214783de6ff1fa94ddd
+      internalID: -2018336209
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThePursuerAnim_DoubleStab_18
+      rect:
+        serializedVersion: 2
+        x: 7840
+        y: 0
+        width: 213
+        height: 218
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 39e6419c70e1d0345bb711245065fad9
+      internalID: -798342076
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThePursuerAnim_DoubleStab_19
+      rect:
+        serializedVersion: 2
+        x: 8268
+        y: 0
+        width: 179
+        height: 224
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1d012ca819101d941a4509f13f7e0cec
+      internalID: 1166781674
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      ThePursuerAnim_DoubleStab_0: 1993034197
+      ThePursuerAnim_DoubleStab_1: -1238440558
+      ThePursuerAnim_DoubleStab_10: -1088887423
+      ThePursuerAnim_DoubleStab_11: 1359113761
+      ThePursuerAnim_DoubleStab_12: 1718564827
+      ThePursuerAnim_DoubleStab_13: -746782259
+      ThePursuerAnim_DoubleStab_14: -539257622
+      ThePursuerAnim_DoubleStab_15: 1510638076
+      ThePursuerAnim_DoubleStab_16: -1593278393
+      ThePursuerAnim_DoubleStab_17: -2018336209
+      ThePursuerAnim_DoubleStab_18: -798342076
+      ThePursuerAnim_DoubleStab_19: 1166781674
+      ThePursuerAnim_DoubleStab_2: -2045102465
+      ThePursuerAnim_DoubleStab_3: 2054861428
+      ThePursuerAnim_DoubleStab_4: 1748536646
+      ThePursuerAnim_DoubleStab_5: 1451013745
+      ThePursuerAnim_DoubleStab_6: -1636145701
+      ThePursuerAnim_DoubleStab_7: -6811846
+      ThePursuerAnim_DoubleStab_8: -796278632
+      ThePursuerAnim_DoubleStab_9: 629057814
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

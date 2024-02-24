@@ -1,0 +1,734 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3914173468720186986
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4769806069682803568}
+  m_Layer: 2
+  m_Name: 6EstusItem
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4769806069682803568
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3914173468720186986}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.1500015, y: -0.35000038, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5828070884245676001}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &4598015155842118272
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4029986165306237454}
+  m_Layer: 2
+  m_Name: 3EstusItem
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4029986165306237454
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4598015155842118272}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.15, y: -0.35, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5828070884245676001}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &5828070884245676031
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5828070884245676001}
+  - component: {fileID: 5828070884245676030}
+  - component: {fileID: 5568107500476862235}
+  - component: {fileID: 5828070884245676000}
+  - component: {fileID: 5828070884245676003}
+  - component: {fileID: 862873101779281156}
+  m_Layer: 2
+  m_Name: Oscar
+  m_TagString: Oscar
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5828070884245676001
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5828070884245676031}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.17996415, y: -0.9965738, z: 0.62428707}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 5828070884769839139}
+  - {fileID: 4029986165306237454}
+  - {fileID: 4769806069682803568}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5828070884245676030
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5828070884245676031}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4605a961afec6734c9f353051394d62c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CanInput: 1
+  InRange: 0
+  IsOscarDead: 0
+  MoveInteractionOnLoad: 0
+  OfferEstus_3: 0
+  OfferEstus_6: 0
+  PC: {fileID: 0}
+  Interactable: {fileID: 5568107500476862235}
+  Assets: {fileID: 5828070884769839138}
+  MiddleLayerObject: {fileID: 0}
+  FrontLayerObject: {fileID: 0}
+  InteractPrompt: {fileID: 0}
+  InteractPromptText: {fileID: 0}
+  CurrentState: Null
+  Anim: {fileID: 4569153201842782655}
+  Locations:
+  - {x: -5, y: 0}
+  - {x: -3.5, y: 0}
+  - {x: 6.75, y: -7.5}
+  - {x: 66, y: -9.5}
+  - {x: 79.5, y: -9.75}
+  DialogObject: {fileID: 0}
+  DialogTextObject: {fileID: 0}
+  CurrentText: 
+  CurrentTextLine: 0
+  IsTalking: 0
+  QuestionObject: {fileID: 0}
+  QuestionHightlightPos: {fileID: 0}
+  QuestionOrder: 0
+  QuestionOpen: 0
+  KKeyItemDrop: {fileID: 0}
+  ItemPopUp: {fileID: 0}
+  ItemSymbol: {fileID: 0}
+  ItemName: {fileID: 0}
+  ItemQuantity: {fileID: 0}
+  EstusSymbol: {fileID: 2800000, guid: 7385ec6625f9ab4418b0894c60f27ad8, type: 3}
+  EstusName: Estus Flask
+  KeySymbol: {fileID: 2800000, guid: cf7467c540afdeb449a4d86dd1dda06f, type: 3}
+  KeyName: Key to place WOW!
+  StateATextLines: []
+  StateYESTextLines: []
+  StateNOTextLines: []
+  StateBTextLines: []
+  StateCTextLines: []
+  StateDFTextLines: []
+  StateGTextLines: []
+  StateHTextLines: []
+  StateITextLines: []
+  Emitter: {fileID: 5828070884245676003}
+  ItemAudioRef:
+    Guid:
+      Data1: -1260129922
+      Data2: 1127754944
+      Data3: 68576438
+      Data4: 2071406851
+    Path: event:/Effects/UI SFX/ItemGet
+  StateAAudioClips:
+  - Guid:
+      Data1: -49538305
+      Data2: 1290299153
+      Data3: -1883739479
+      Data4: -1740846837
+    Path: event:/OscarVoiceLines/OscarVoiceLinesA/OscarVoiceLineA1
+  - Guid:
+      Data1: 207275739
+      Data2: 1327183744
+      Data3: 777368243
+      Data4: -148244445
+    Path: event:/OscarVoiceLines/OscarVoiceLinesA/OscarVoiceLineA2
+  - Guid:
+      Data1: -1331768376
+      Data2: 1177082653
+      Data3: -103994448
+      Data4: 536408936
+    Path: event:/OscarVoiceLines/OscarVoiceLinesA/OscarVoiceLineA3
+  - Guid:
+      Data1: -391398584
+      Data2: 1138378680
+      Data3: 2038092710
+      Data4: -1300490877
+    Path: event:/OscarVoiceLines/OscarVoiceLinesA/OscarVoiceLineA4
+  StateYESAudioClips:
+  - Guid:
+      Data1: -1658143362
+      Data2: 1284578497
+      Data3: -1866964336
+      Data4: 2109680237
+    Path: event:/OscarVoiceLines/OscarVoiceLinesYes/OscarVoiceLineYES1
+  - Guid:
+      Data1: 1592123772
+      Data2: 1093406033
+      Data3: -439982970
+      Data4: 1135834419
+    Path: event:/OscarVoiceLines/OscarVoiceLinesYes/OscarVoiceLineYES2
+  - Guid:
+      Data1: 909580187
+      Data2: 1237581630
+      Data3: 1022464157
+      Data4: -411107920
+    Path: event:/OscarVoiceLines/OscarVoiceLinesYes/OscarVoiceLineYES3
+  - Guid:
+      Data1: -1875260708
+      Data2: 1113312701
+      Data3: 1396794030
+      Data4: 1844629933
+    Path: event:/OscarVoiceLines/OscarVoiceLinesYes/OscarVoiceLineYES4
+  - Guid:
+      Data1: -1553241039
+      Data2: 1147275927
+      Data3: -1652510799
+      Data4: -865425531
+    Path: event:/OscarVoiceLines/OscarVoiceLinesYes/OscarVoiceLineYES5
+  - Guid:
+      Data1: 1577156658
+      Data2: 1109630012
+      Data3: 894199727
+      Data4: 2030130405
+    Path: event:/OscarVoiceLines/OscarVoiceLinesYes/OscarVoiceLineYES6
+  - Guid:
+      Data1: -1942950350
+      Data2: 1149788088
+      Data3: -758150507
+      Data4: -976144435
+    Path: event:/OscarVoiceLines/OscarVoiceLinesYes/OscarVoiceLineYES7
+  - Guid:
+      Data1: 541573341
+      Data2: 1130309678
+      Data3: 1114794639
+      Data4: -1107399649
+    Path: event:/OscarVoiceLines/OscarVoiceLinesYes/OscarVoiceLineYES8
+  - Guid:
+      Data1: -1542932136
+      Data2: 1119093572
+      Data3: -12145247
+      Data4: -873779096
+    Path: event:/OscarVoiceLines/OscarVoiceLinesYes/OscarVoiceLineYES9
+  - Guid:
+      Data1: -1599367896
+      Data2: 1231205351
+      Data3: 605353890
+      Data4: -1066697123
+    Path: event:/OscarVoiceLines/OscarVoiceLinesYes/OscarVoiceLineYES10
+  StateNOAudioClips:
+  - Guid:
+      Data1: -896958858
+      Data2: 1087660796
+      Data3: -2032059251
+      Data4: -1772389568
+    Path: event:/OscarVoiceLines/OscarVoiceLinesNo/OscarVoiceLineNo1
+  - Guid:
+      Data1: -404356933
+      Data2: 1303188242
+      Data3: 1645209248
+      Data4: 1360792279
+    Path: event:/OscarVoiceLines/OscarVoiceLinesNo/OscarVoiceLineNo2
+  StateBAudioClips:
+  - Guid:
+      Data1: 347131385
+      Data2: 1129395691
+      Data3: 115464879
+      Data4: 1994414101
+    Path: event:/OscarVoiceLines/OscarVoiceLinesB/OscarVoiceLineB1
+  - Guid:
+      Data1: -1034677030
+      Data2: 1277448865
+      Data3: 1707680131
+      Data4: 2143043230
+    Path: event:/OscarVoiceLines/OscarVoiceLinesB/OscarVoiceLineB2
+  - Guid:
+      Data1: 1135193722
+      Data2: 1329560752
+      Data3: -1393243244
+      Data4: 436276938
+    Path: event:/OscarVoiceLines/OscarVoiceLinesB/OscarVoiceLineB3
+  StateCAudioClips:
+  - Guid:
+      Data1: -688505620
+      Data2: 1235039885
+      Data3: -1998483541
+      Data4: 1664841908
+    Path: event:/OscarVoiceLines/OscarVoiceLinesC/OscarVoiceLineC1
+  - Guid:
+      Data1: -879153673
+      Data2: 1297178215
+      Data3: -722099826
+      Data4: 1119079110
+    Path: event:/OscarVoiceLines/OscarVoiceLinesC/OscarVoiceLineC2
+  StateDFAudioClips:
+  - Guid:
+      Data1: -1444323019
+      Data2: 1139706685
+      Data3: -1938873447
+      Data4: 145568239
+    Path: event:/OscarVoiceLines/OscarVoiceLineFD
+  StateGAudioClips:
+  - Guid:
+      Data1: 2091935074
+      Data2: 1264676617
+      Data3: 1529291182
+      Data4: -1877014891
+    Path: event:/OscarVoiceLines/OscarVoiceLinesG/OscarVoiceLineG1
+  - Guid:
+      Data1: -789344590
+      Data2: 1278843158
+      Data3: 1979184025
+      Data4: 721067199
+    Path: event:/OscarVoiceLines/OscarVoiceLinesG/OscarVoiceLineG2
+  - Guid:
+      Data1: -1132348495
+      Data2: 1170128038
+      Data3: -1784060744
+      Data4: 1401694635
+    Path: event:/OscarVoiceLines/OscarVoiceLinesG/OscarVoiceLineG3
+  - Guid:
+      Data1: -1027564385
+      Data2: 1192700997
+      Data3: -364164703
+      Data4: -426216467
+    Path: event:/OscarVoiceLines/OscarVoiceLinesG/OscarVoiceLineG4
+  StateHAudioClips:
+  - Guid:
+      Data1: 130527367
+      Data2: 1306044689
+      Data3: 236854167
+      Data4: 574895114
+    Path: event:/OscarVoiceLines/OscarVoiceLinesH/OscarVoiceLineH1
+  - Guid:
+      Data1: 1714699653
+      Data2: 1186815197
+      Data3: 999384488
+      Data4: -524075624
+    Path: event:/OscarVoiceLines/OscarVoiceLinesH/OscarVoiceLineH2
+  - Guid:
+      Data1: -231156611
+      Data2: 1308916466
+      Data3: -1229992063
+      Data4: 1629221357
+    Path: event:/OscarVoiceLines/OscarVoiceLinesH/OscarVoiceLineH3
+  - Guid:
+      Data1: 687557183
+      Data2: 1230969613
+      Data3: 1130456218
+      Data4: -1606899033
+    Path: event:/OscarVoiceLines/OscarVoiceLinesH/OscarVoiceLineH4
+  StateIAudioClips:
+  - Guid:
+      Data1: -1670919974
+      Data2: 1256280278
+      Data3: -46738504
+      Data4: 1986849670
+    Path: event:/OscarVoiceLines/OscarVoiceLinesI/OscarVoiceLineI1
+  - Guid:
+      Data1: -751519533
+      Data2: 1197167751
+      Data3: -720102468
+      Data4: -97492315
+    Path: event:/OscarVoiceLines/OscarVoiceLinesI/OscarVoiceLineI2
+  - Guid:
+      Data1: -1114479622
+      Data2: 1126522422
+      Data3: -962662522
+      Data4: -2098459639
+    Path: event:/OscarVoiceLines/OscarVoiceLinesI/OscarVoiceLineI3
+--- !u!114 &5568107500476862235
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5828070884245676031}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c07e0dd330881234fab7100d93377685, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5828070884245676030}
+        m_TargetAssemblyTypeName: OscarManager, Assembly-CSharp
+        m_MethodName: Y
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &5828070884245676000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5828070884245676031}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: 98f6a9fd5d664334f878082bf3213a92, type: 3}
+  m_NotificationBehavior: 2
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 4b95c619-8b76-4720-bb99-29c964b9978b
+    m_ActionName: UI /Up[/XInputControllerWindows/dpad/up]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: d1b7d4f5-c55c-4213-8ab4-1792f3f69403
+    m_ActionName: UI /Down[/XInputControllerWindows/dpad/down]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5828070884245676030}
+        m_TargetAssemblyTypeName: OscarManager, Assembly-CSharp
+        m_MethodName: Right
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 05c2d017-7c9e-4462-9bde-aa7b4b2a8f92
+    m_ActionName: UI /Left[/XInputControllerWindows/dpad/left]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5828070884245676030}
+        m_TargetAssemblyTypeName: OscarManager, Assembly-CSharp
+        m_MethodName: Right
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 200e969c-929a-4462-aa5f-8e409bd720a2
+    m_ActionName: UI /Right[/XInputControllerWindows/dpad/right]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: a09d0f98-ffcb-41a0-a50e-768de180ee34
+    m_ActionName: UI /Start[/XInputControllerWindows/start]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5828070884245676030}
+        m_TargetAssemblyTypeName: OscarManager, Assembly-CSharp
+        m_MethodName: A
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 97ffee7e-a7d8-4b12-889d-9aa51412833c
+    m_ActionName: UI /A[/XInputControllerWindows/buttonSouth]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5828070884245676030}
+        m_TargetAssemblyTypeName: OscarManager, Assembly-CSharp
+        m_MethodName: B
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: f66fe781-bdcd-400b-8cd0-a1c7c842263a
+    m_ActionName: UI /B[/XInputControllerWindows/buttonEast]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5828070884245676030}
+        m_TargetAssemblyTypeName: OscarManager, Assembly-CSharp
+        m_MethodName: Y
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 236c4b89-b691-43b7-a8cd-a75ff49f6e5e
+    m_ActionName: UI /Y[/XInputControllerWindows/buttonNorth]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 3155e660-c8dc-47bc-8d24-8ba74ba461ea
+    m_ActionName: Player/Y[/Keyboard/e,/XInputControllerWindows/buttonNorth]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 14da7b48-5050-415d-b449-0239ca66ffb1
+    m_ActionName: Player/X[/XInputControllerWindows/buttonWest,/Keyboard/f]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 5f671c7d-e909-4833-8574-8570854bd5e8
+    m_ActionName: Player/B[/Keyboard/shift,/XInputControllerWindows/buttonEast]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 9fca1d51-655b-4157-9c2c-488daa06bfb7
+    m_ActionName: Player/A[/Keyboard/space,/XInputControllerWindows/buttonSouth]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 9bd09b67-0e0b-4b74-a695-9a8507772160
+    m_ActionName: Player/Move[/XInputControllerWindows/leftStick,/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 503e8d25-6d85-46bc-b037-67d704198c19
+    m_ActionName: Player/RT[/Mouse/rightButton,/XInputControllerWindows/rightTrigger]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 10dcf732-a674-41d3-96af-ae6f12f59cf7
+    m_ActionName: Player/RB[/Mouse/leftButton,/XInputControllerWindows/rightShoulder]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: e5746827-3d49-46fa-88f4-f92092ead19b
+    m_ActionName: Player/LockOn[/XInputControllerWindows/leftStickPress,/Keyboard/r]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 2353280c-d69a-4d45-b042-ef5e95abf612
+    m_ActionName: UI /AnyKey[/Keyboard/anyKey]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 4ee2e67e-cf76-4b69-8191-7da63fdf9e6b
+    m_ActionName: Player/LT[/Keyboard/f,/XInputControllerWindows/leftTrigger,/XInputControllerWindows1/leftTrigger]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: fff3ec5d-67d0-4c3b-82a0-f841283f05c4
+    m_ActionName: Player/LB[/Keyboard/q,/XInputControllerWindows/leftShoulder,/XInputControllerWindows1/leftShoulder]
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: 'UI '
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
+--- !u!114 &5828070884245676003
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5828070884245676031}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: -49538305
+      Data2: 1290299153
+      Data3: -1883739479
+      Data4: -1740846837
+    Path: event:/Dialog/OscarVoiceLines/OscarVoiceLinesA/OscarVoiceLineA1
+  Event: 
+  PlayEvent: 0
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  AllowNonRigidbodyDoppler: 0
+  Params: []
+  OverrideAttenuation: 1
+  OverrideMinDistance: 4
+  OverrideMaxDistance: 15
+--- !u!61 &862873101779281156
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5828070884245676031}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.036025763, y: 0.5273603}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 2.2794833, y: 1.0422714}
+  m_EdgeRadius: 0
+--- !u!1 &5828070884769839136
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5828070884769839139}
+  - component: {fileID: 5828070884769839138}
+  - component: {fileID: 4569153201842782655}
+  m_Layer: 2
+  m_Name: Assets
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5828070884769839139
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5828070884769839136}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -1, z: 0}
+  m_LocalScale: {x: -2, y: 2, z: 2}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5828070884245676001}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!212 &5828070884769839138
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5828070884769839136}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 1334263109
+  m_SortingLayer: 3
+  m_SortingOrder: 10
+  m_Sprite: {fileID: -1021816575, guid: b6d0c6fae65469f4794ae03eca784b31, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1, y: 1}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+--- !u!95 &4569153201842782655
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5828070884769839136}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 4d5d1ea084ca13f4db6cd8fbba37ef70, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

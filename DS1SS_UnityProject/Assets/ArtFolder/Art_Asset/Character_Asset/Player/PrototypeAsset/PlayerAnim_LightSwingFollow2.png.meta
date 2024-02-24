@@ -1,0 +1,427 @@
+fileFormatVersion: 2
+guid: b3f0d935dfbf274478ba8daf54320356
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 128
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: PlayerAnim_LightSwingFollow2_0
+      rect:
+        serializedVersion: 2
+        x: 99
+        y: 0
+        width: 91
+        height: 107
+      alignment: 9
+      pivot: {x: 0.53, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 671b7a8d25b722a46b33780e77e33766
+      internalID: 1526997749
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayerAnim_LightSwingFollow2_1
+      rect:
+        serializedVersion: 2
+        x: 355
+        y: 0
+        width: 84
+        height: 114
+      alignment: 9
+      pivot: {x: 0.48, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 98ff0c94adfda4f47b1a71451bebe4c0
+      internalID: 656853109
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayerAnim_LightSwingFollow2_2
+      rect:
+        serializedVersion: 2
+        x: 610
+        y: 0
+        width: 99
+        height: 114
+      alignment: 9
+      pivot: {x: 0.38, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 49cd3c44f5068204a82f16367d2b6e36
+      internalID: -1033983930
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayerAnim_LightSwingFollow2_3
+      rect:
+        serializedVersion: 2
+        x: 867
+        y: 0
+        width: 97
+        height: 111
+      alignment: 9
+      pivot: {x: 0.42, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8a70c6e09c7db444090e8a7cf65bd0de
+      internalID: -720799402
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayerAnim_LightSwingFollow2_4
+      rect:
+        serializedVersion: 2
+        x: 1122
+        y: 0
+        width: 102
+        height: 114
+      alignment: 9
+      pivot: {x: 0.4, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 812a088aa725e5e4d993b5e2526d0dfc
+      internalID: -543054658
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayerAnim_LightSwingFollow2_5
+      rect:
+        serializedVersion: 2
+        x: 1336
+        y: 0
+        width: 110
+        height: 111
+      alignment: 9
+      pivot: {x: 0.77, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cd128f31d197a284c826e4d94e0f6300
+      internalID: -143161383
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayerAnim_LightSwingFollow2_6
+      rect:
+        serializedVersion: 2
+        x: 1539
+        y: 0
+        width: 148
+        height: 117
+      alignment: 9
+      pivot: {x: 0.85, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: af9dc0e1895b8dd4c8868dbcb13502f4
+      internalID: -571620147
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayerAnim_LightSwingFollow2_7
+      rect:
+        serializedVersion: 2
+        x: 1809
+        y: 0
+        width: 148
+        height: 111
+      alignment: 9
+      pivot: {x: 0.83, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 75b232eaa8cb2a548808745accbdf3b1
+      internalID: -694867475
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayerAnim_LightSwingFollow2_10
+      rect:
+        serializedVersion: 2
+        x: 2086
+        y: 0
+        width: 162
+        height: 114
+      alignment: 9
+      pivot: {x: 0.62, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8edab54a8689f8c48833eaf17d40d51e
+      internalID: -2121982113
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayerAnim_LightSwingFollow2_11
+      rect:
+        serializedVersion: 2
+        x: 2401
+        y: 0
+        width: 99
+        height: 114
+      alignment: 9
+      pivot: {x: 0.41, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f2e12f1434d4e8440a38caedb4e03e24
+      internalID: -951862069
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayerAnim_LightSwingFollow2_12
+      rect:
+        serializedVersion: 2
+        x: 2658
+        y: 0
+        width: 85
+        height: 114
+      alignment: 9
+      pivot: {x: 0.47, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 30cfd0c12e96d854b9d6d32c9410e441
+      internalID: -994212197
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayerAnim_LightSwingFollow2_13
+      rect:
+        serializedVersion: 2
+        x: 2914
+        y: 0
+        width: 84
+        height: 114
+      alignment: 9
+      pivot: {x: 0.47, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 22010a5128c794245b44aa4bf1daa05a
+      internalID: 2047567382
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      PlayerAnim_LightSwingFollow2_0: 1526997749
+      PlayerAnim_LightSwingFollow2_1: 656853109
+      PlayerAnim_LightSwingFollow2_10: -2121982113
+      PlayerAnim_LightSwingFollow2_11: -951862069
+      PlayerAnim_LightSwingFollow2_12: -994212197
+      PlayerAnim_LightSwingFollow2_13: 2047567382
+      PlayerAnim_LightSwingFollow2_14: -1831694724
+      PlayerAnim_LightSwingFollow2_15: -1112579388
+      PlayerAnim_LightSwingFollow2_2: -1033983930
+      PlayerAnim_LightSwingFollow2_3: -720799402
+      PlayerAnim_LightSwingFollow2_4: -543054658
+      PlayerAnim_LightSwingFollow2_5: -143161383
+      PlayerAnim_LightSwingFollow2_6: -571620147
+      PlayerAnim_LightSwingFollow2_7: -694867475
+      PlayerAnim_LightSwingFollow2_8: 935134248
+      PlayerAnim_LightSwingFollow2_9: 132463812
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

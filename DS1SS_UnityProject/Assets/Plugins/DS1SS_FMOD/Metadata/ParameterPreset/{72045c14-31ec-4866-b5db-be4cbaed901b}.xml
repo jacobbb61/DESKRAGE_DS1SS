@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="ParameterPreset" id="{72045c14-31ec-4866-b5db-be4cbaed901b}">
+		<property name="name">
+			<value>RollVolume</value>
+		</property>
+		<relationship name="folder">
+			<destination>{9953503d-b042-4ce9-9d99-78a05b2afb64}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{835f8c7d-ebe2-472c-8c7a-ad35803f5f7f}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{835f8c7d-ebe2-472c-8c7a-ad35803f5f7f}">
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+	</object>
+</objects>

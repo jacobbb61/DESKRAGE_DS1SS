@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{af8f8ca9-da5e-4a8f-a958-937b4257b0d3}">
+		<property name="assetPath">
+			<value>Enemy/Hollows/some other noises not sure where to use them/c2500_maebure1.wav.mp3</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>1</value>
+		</property>
+		<property name="length">
+			<value>2.0375510204081633</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{62778189-5269-43bd-8b21-d1bef2a14ef8}</destination>
+		</relationship>
+	</object>
+</objects>

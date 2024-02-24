@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="ParameterPreset" id="{4625bc91-be82-4863-8120-8516272dceea}">
+		<property name="name">
+			<value>Terrain</value>
+		</property>
+		<relationship name="folder">
+			<destination>{9953503d-b042-4ce9-9d99-78a05b2afb64}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{7eeb0bbd-88bb-4c07-a490-4393fc673008}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{7eeb0bbd-88bb-4c07-a490-4393fc673008}">
+		<property name="parameterType">
+			<value>1</value>
+		</property>
+		<property name="maximum">
+			<value>11</value>
+		</property>
+		<property name="isHeld">
+			<value>true</value>
+		</property>
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+	</object>
+</objects>

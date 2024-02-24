@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="ParameterPreset" id="{21302dc6-7912-4040-ace1-2fe1b92411e4}">
+		<property name="name">
+			<value>wind_loud</value>
+		</property>
+		<relationship name="folder">
+			<destination>{9953503d-b042-4ce9-9d99-78a05b2afb64}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{685afb04-9292-484f-923e-e31e1d07c8da}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{685afb04-9292-484f-923e-e31e1d07c8da}">
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+		<property name="seekSpeed">
+			<value>1</value>
+		</property>
+	</object>
+</objects>

@@ -1,0 +1,643 @@
+fileFormatVersion: 2
+guid: 6425555a29f74d04eab22d8b3eb3a66b
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 128
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: UnDeadAnim_D_Death_0
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 0
+        width: 53
+        height: 117
+      alignment: 9
+      pivot: {x: 0.55, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 25796ab1f77b7804abfbc23bb1939b3a
+      internalID: -892193292
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UnDeadAnim_D_Death_1
+      rect:
+        serializedVersion: 2
+        x: 346
+        y: 0
+        width: 66
+        height: 117
+      alignment: 9
+      pivot: {x: 0.55, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e8e3b5c912d7b1741a2d9fb5502685e8
+      internalID: -1112448633
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UnDeadAnim_D_Death_2
+      rect:
+        serializedVersion: 2
+        x: 605
+        y: 0
+        width: 64
+        height: 114
+      alignment: 9
+      pivot: {x: 0.55, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 73004983a91a2e0469ea0d196a6fe7eb
+      internalID: 785503017
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UnDeadAnim_D_Death_3
+      rect:
+        serializedVersion: 2
+        x: 856
+        y: 0
+        width: 68
+        height: 107
+      alignment: 9
+      pivot: {x: 0.55, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 00f1ba5a6202adb45bc245eb82415601
+      internalID: -1579978185
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UnDeadAnim_D_Death_4
+      rect:
+        serializedVersion: 2
+        x: 1120
+        y: 0
+        width: 64
+        height: 110
+      alignment: 9
+      pivot: {x: 0.55, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 72679a0a83035514e8b34b16203178af
+      internalID: -350134313
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UnDeadAnim_D_Death_5
+      rect:
+        serializedVersion: 2
+        x: 1372
+        y: 0
+        width: 63
+        height: 112
+      alignment: 9
+      pivot: {x: 0.55, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ead98da48c5d4574586f9817177bb49e
+      internalID: 384945366
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UnDeadAnim_D_Death_6
+      rect:
+        serializedVersion: 2
+        x: 1638
+        y: 0
+        width: 54
+        height: 114
+      alignment: 9
+      pivot: {x: 0.55, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2ee2adf1b286aed4891193a06e8b3478
+      internalID: 371910439
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UnDeadAnim_D_Death_7
+      rect:
+        serializedVersion: 2
+        x: 1891
+        y: 0
+        width: 63
+        height: 107
+      alignment: 9
+      pivot: {x: 0.55, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1c6ac18d938d30345a1e365df7fe0967
+      internalID: -416334158
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UnDeadAnim_D_Death_8
+      rect:
+        serializedVersion: 2
+        x: 2133
+        y: 0
+        width: 92
+        height: 95
+      alignment: 9
+      pivot: {x: 0.55, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bc0b04ec1c609b444b6c3b1e1f0aea7d
+      internalID: 541363947
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UnDeadAnim_D_Death_9
+      rect:
+        serializedVersion: 2
+        x: 2378
+        y: 0
+        width: 103
+        height: 61
+      alignment: 9
+      pivot: {x: 0.55, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5831ac68d0316cc49bee80769277e645
+      internalID: -2064629112
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UnDeadAnim_D_Death_10
+      rect:
+        serializedVersion: 2
+        x: 2640
+        y: 0
+        width: 115
+        height: 68
+      alignment: 9
+      pivot: {x: 0.55, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 78600a472031c7b4bad42844e5f7235c
+      internalID: 407864200
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UnDeadAnim_D_Death_11
+      rect:
+        serializedVersion: 2
+        x: 2888
+        y: 0
+        width: 123
+        height: 63
+      alignment: 9
+      pivot: {x: 0.55, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d5ddfe403afb85743b3c90d2a9e18bb8
+      internalID: -617289737
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UnDeadAnim_D_Death_12
+      rect:
+        serializedVersion: 2
+        x: 3146
+        y: 0
+        width: 121
+        height: 73
+      alignment: 9
+      pivot: {x: 0.55, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 66a98b5b6164dea41842b7960423b155
+      internalID: 1390987333
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UnDeadAnim_D_Death_13
+      rect:
+        serializedVersion: 2
+        x: 3425
+        y: 0
+        width: 98
+        height: 85
+      alignment: 9
+      pivot: {x: 0.55, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c95c16d2a7d2cd4498f90eddd9d4799e
+      internalID: 936000054
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UnDeadAnim_D_Death_14
+      rect:
+        serializedVersion: 2
+        x: 3679
+        y: 0
+        width: 100
+        height: 84
+      alignment: 9
+      pivot: {x: 0.55, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2f54704aee865de4fa0480c833585bfa
+      internalID: -1059504628
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UnDeadAnim_D_Death_15
+      rect:
+        serializedVersion: 2
+        x: 3937
+        y: 0
+        width: 98
+        height: 85
+      alignment: 9
+      pivot: {x: 0.55, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d83a759ed8547aa46a674ecb49e4f0f8
+      internalID: 1831503710
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UnDeadAnim_D_Death_16
+      rect:
+        serializedVersion: 2
+        x: 4195
+        y: 0
+        width: 96
+        height: 85
+      alignment: 9
+      pivot: {x: 0.55, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f1f870b9b6a80bb4aba14cad8183e4df
+      internalID: 1183171618
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UnDeadAnim_D_Death_17
+      rect:
+        serializedVersion: 2
+        x: 4445
+        y: 0
+        width: 102
+        height: 83
+      alignment: 9
+      pivot: {x: 0.55, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 893a43665c7f7244cbe7c4866a743a42
+      internalID: 355888903
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UnDeadAnim_D_Death_18
+      rect:
+        serializedVersion: 2
+        x: 4687
+        y: 0
+        width: 116
+        height: 74
+      alignment: 9
+      pivot: {x: 0.55, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 250b1abb9ad62694a9f1a621ea775e21
+      internalID: 1163960503
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UnDeadAnim_D_Death_19
+      rect:
+        serializedVersion: 2
+        x: 4892
+        y: 0
+        width: 167
+        height: 31
+      alignment: 9
+      pivot: {x: 0.55, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b2434aeacb5959c4f8c6151decdc6e88
+      internalID: 1407874390
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UnDeadAnim_D_Death_20
+      rect:
+        serializedVersion: 2
+        x: 5142
+        y: 0
+        width: 173
+        height: 16
+      alignment: 9
+      pivot: {x: 0.55, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 41bb4c2ef83ed45499bf07dfd247c351
+      internalID: 1074693427
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UnDeadAnim_D_Death_21
+      rect:
+        serializedVersion: 2
+        x: 5398
+        y: 0
+        width: 173
+        height: 16
+      alignment: 9
+      pivot: {x: 0.55, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d75d1d245dd326a43b7e5ef6faf346d8
+      internalID: 110824780
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      UnDeadAnim_D_Death_0: -892193292
+      UnDeadAnim_D_Death_1: -1112448633
+      UnDeadAnim_D_Death_10: 407864200
+      UnDeadAnim_D_Death_11: -617289737
+      UnDeadAnim_D_Death_12: 1390987333
+      UnDeadAnim_D_Death_13: 936000054
+      UnDeadAnim_D_Death_14: -1059504628
+      UnDeadAnim_D_Death_15: 1831503710
+      UnDeadAnim_D_Death_16: 1183171618
+      UnDeadAnim_D_Death_17: 355888903
+      UnDeadAnim_D_Death_18: 1163960503
+      UnDeadAnim_D_Death_19: 1407874390
+      UnDeadAnim_D_Death_2: 785503017
+      UnDeadAnim_D_Death_20: 1074693427
+      UnDeadAnim_D_Death_21: 110824780
+      UnDeadAnim_D_Death_3: -1579978185
+      UnDeadAnim_D_Death_4: -350134313
+      UnDeadAnim_D_Death_5: 384945366
+      UnDeadAnim_D_Death_6: 371910439
+      UnDeadAnim_D_Death_7: -416334158
+      UnDeadAnim_D_Death_8: 541363947
+      UnDeadAnim_D_Death_9: -2064629112
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

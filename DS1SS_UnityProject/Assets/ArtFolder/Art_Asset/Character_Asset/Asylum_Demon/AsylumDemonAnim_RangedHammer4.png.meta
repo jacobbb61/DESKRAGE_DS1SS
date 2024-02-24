@@ -1,0 +1,309 @@
+fileFormatVersion: 2
+guid: 0f2d89a1523aa4f45819ed105f804701
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 128
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 16384
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: AsylumDemonAnim_RangedHammer4_7
+      rect:
+        serializedVersion: 2
+        x: 37
+        y: 0
+        width: 1377
+        height: 475
+      alignment: 9
+      pivot: {x: 0.67, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2e57dea5b88f01d41b72c5e7e92de4c9
+      internalID: 877240066
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AsylumDemonAnim_RangedHammer4_11
+      rect:
+        serializedVersion: 2
+        x: 1530
+        y: 0
+        width: 1326
+        height: 479
+      alignment: 9
+      pivot: {x: 0.67, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 93826277e8e68004e8a19840e5484e5c
+      internalID: -524898125
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AsylumDemonAnim_RangedHammer4_13
+      rect:
+        serializedVersion: 2
+        x: 3018
+        y: 0
+        width: 1280
+        height: 442
+      alignment: 9
+      pivot: {x: 0.66, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 43c23d57809e5754bbcb9f259e9d7ba9
+      internalID: 980577330
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AsylumDemonAnim_RangedHammer4_15
+      rect:
+        serializedVersion: 2
+        x: 4476
+        y: 0
+        width: 1264
+        height: 426
+      alignment: 9
+      pivot: {x: 0.65, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 86126a89cd3522a41bf92c4862e1d94c
+      internalID: 137199895
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AsylumDemonAnim_RangedHammer4_17
+      rect:
+        serializedVersion: 2
+        x: 5910
+        y: 0
+        width: 1272
+        height: 428
+      alignment: 9
+      pivot: {x: 0.65, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b588599bc54dd6b4a94685df0286be65
+      internalID: 1746016761
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AsylumDemonAnim_RangedHammer4_19
+      rect:
+        serializedVersion: 2
+        x: 7375
+        y: 0
+        width: 1249
+        height: 424
+      alignment: 9
+      pivot: {x: 0.65, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b407704d2c7688d40bea33a0d538278f
+      internalID: -389494120
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      AsylumDemonAnim_RangedHammer4_0: 638466417
+      AsylumDemonAnim_RangedHammer4_1: -591109104
+      AsylumDemonAnim_RangedHammer4_10: 1594711593
+      AsylumDemonAnim_RangedHammer4_11: -524898125
+      AsylumDemonAnim_RangedHammer4_12: 583130672
+      AsylumDemonAnim_RangedHammer4_13: 980577330
+      AsylumDemonAnim_RangedHammer4_14: 160552425
+      AsylumDemonAnim_RangedHammer4_15: 137199895
+      AsylumDemonAnim_RangedHammer4_16: -1965386679
+      AsylumDemonAnim_RangedHammer4_17: 1746016761
+      AsylumDemonAnim_RangedHammer4_18: -1187112122
+      AsylumDemonAnim_RangedHammer4_19: -389494120
+      AsylumDemonAnim_RangedHammer4_2: 1286606119
+      AsylumDemonAnim_RangedHammer4_20: 744949732
+      AsylumDemonAnim_RangedHammer4_21: 1651105914
+      AsylumDemonAnim_RangedHammer4_22: 226207259
+      AsylumDemonAnim_RangedHammer4_23: 2073044897
+      AsylumDemonAnim_RangedHammer4_3: -206663802
+      AsylumDemonAnim_RangedHammer4_4: 1666295722
+      AsylumDemonAnim_RangedHammer4_5: 1979095761
+      AsylumDemonAnim_RangedHammer4_6: -1824658815
+      AsylumDemonAnim_RangedHammer4_7: 877240066
+      AsylumDemonAnim_RangedHammer4_8: 1029537515
+      AsylumDemonAnim_RangedHammer4_9: -1049775135
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

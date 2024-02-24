@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{622f2337-c742-46aa-81df-76239b5ac98b}">
+		<property name="assetPath">
+			<value>Enemy/Demon/c5270_weapon_zimen.wav.mp3</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>2.0897959183673471</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{62778189-5269-43bd-8b21-d1bef2a14ef8}</destination>
+		</relationship>
+	</object>
+</objects>

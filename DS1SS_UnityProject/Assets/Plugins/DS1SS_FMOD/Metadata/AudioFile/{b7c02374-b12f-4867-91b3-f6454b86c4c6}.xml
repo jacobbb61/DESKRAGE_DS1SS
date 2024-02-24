@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{b7c02374-b12f-4867-91b3-f6454b86c4c6}">
+		<property name="assetPath">
+			<value>Ambience/Crows/o0150-voice2.wav.mp3</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>22.0499992</value>
+		</property>
+		<property name="channelCount">
+			<value>1</value>
+		</property>
+		<property name="length">
+			<value>0.31346938775510202</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{62778189-5269-43bd-8b21-d1bef2a14ef8}</destination>
+		</relationship>
+	</object>
+</objects>

@@ -1,0 +1,555 @@
+fileFormatVersion: 2
+guid: 1ae8f53c7c3ed024381376f8d95035a9
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 128
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: UndeadAnim_B_ShootArrow_0
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 0
+        width: 42
+        height: 116
+      alignment: 9
+      pivot: {x: 0.55, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7ef9123c2dcee884a837f9f07a243cc3
+      internalID: -1337815948
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UndeadAnim_B_ShootArrow_1
+      rect:
+        serializedVersion: 2
+        x: 422
+        y: 0
+        width: 70
+        height: 114
+      alignment: 9
+      pivot: {x: 0.55, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2bcc18caff744e4489cbe5a423f46538
+      internalID: -1915642905
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UndeadAnim_B_ShootArrow_2
+      rect:
+        serializedVersion: 2
+        x: 662
+        y: 0
+        width: 80
+        height: 116
+      alignment: 9
+      pivot: {x: 0.52, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a421058847ecd474a9360da8a437aec6
+      internalID: 1728924190
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UndeadAnim_B_ShootArrow_3
+      rect:
+        serializedVersion: 2
+        x: 920
+        y: 0
+        width: 78
+        height: 117
+      alignment: 9
+      pivot: {x: 0.49, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 20868420e55d65e489dd17a4ff5530f1
+      internalID: -1061608957
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UndeadAnim_B_ShootArrow_4
+      rect:
+        serializedVersion: 2
+        x: 1170
+        y: 0
+        width: 88
+        height: 118
+      alignment: 9
+      pivot: {x: 0.49, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 651eacf9e9495a04d9535d8cff88018c
+      internalID: -286686522
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UndeadAnim_B_ShootArrow_5
+      rect:
+        serializedVersion: 2
+        x: 1411
+        y: 0
+        width: 103
+        height: 118
+      alignment: 9
+      pivot: {x: 0.55, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 901c7c644e7ed0f4c8be4025db23049a
+      internalID: -1614803296
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UndeadAnim_B_ShootArrow_6
+      rect:
+        serializedVersion: 2
+        x: 1669
+        y: 0
+        width: 101
+        height: 118
+      alignment: 9
+      pivot: {x: 0.55, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a86c941a1513579439f815fbc64d5c66
+      internalID: 1438525880
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UndeadAnim_B_ShootArrow_7
+      rect:
+        serializedVersion: 2
+        x: 1930
+        y: 0
+        width: 96
+        height: 118
+      alignment: 9
+      pivot: {x: 0.52, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0cdf37c1bb78aeb43ba152b4b0f4ac91
+      internalID: 1580596375
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UndeadAnim_B_ShootArrow_8
+      rect:
+        serializedVersion: 2
+        x: 2200
+        y: 0
+        width: 82
+        height: 118
+      alignment: 9
+      pivot: {x: 0.43, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 76c08d5a861c36141abd2b605cb289bb
+      internalID: -217872037
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UndeadAnim_B_ShootArrow_9
+      rect:
+        serializedVersion: 2
+        x: 2457
+        y: 0
+        width: 81
+        height: 118
+      alignment: 9
+      pivot: {x: 0.43, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 29386ff79c1bdc54bae0f9382f7e6b66
+      internalID: 814538382
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UndeadAnim_B_ShootArrow_10
+      rect:
+        serializedVersion: 2
+        x: 2713
+        y: 0
+        width: 81
+        height: 118
+      alignment: 9
+      pivot: {x: 0.43, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f4dfe10ca4dd2a6459bf8622e3c1974e
+      internalID: 1726829470
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UndeadAnim_B_ShootArrow_11
+      rect:
+        serializedVersion: 2
+        x: 2969
+        y: 0
+        width: 86
+        height: 118
+      alignment: 9
+      pivot: {x: 0.43, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 809320615f315a349a7d5c080eaaa050
+      internalID: 1583586928
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UndeadAnim_B_ShootArrow_12
+      rect:
+        serializedVersion: 2
+        x: 3227
+        y: 0
+        width: 84
+        height: 122
+      alignment: 9
+      pivot: {x: 0.43, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8c668688305c06b40a23234e2eb59463
+      internalID: 1909296033
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UndeadAnim_B_ShootArrow_13
+      rect:
+        serializedVersion: 2
+        x: 3484
+        y: 0
+        width: 84
+        height: 126
+      alignment: 9
+      pivot: {x: 0.43, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ba06d593bb0dae04599d2f1de80dcf22
+      internalID: 273400275
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UndeadAnim_B_ShootArrow_15
+      rect:
+        serializedVersion: 2
+        x: 4004
+        y: 0
+        width: 64
+        height: 117
+      alignment: 9
+      pivot: {x: 0.45, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ead46ec84dbb6bd4b87572d4773f7d83
+      internalID: 2098408618
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UndeadAnim_B_ShootArrow_16
+      rect:
+        serializedVersion: 2
+        x: 4261
+        y: 0
+        width: 59
+        height: 117
+      alignment: 9
+      pivot: {x: 0.55, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e3d68f05c4a8882439fa54e793283ed5
+      internalID: 1878272900
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UndeadAnim_B_ShootArrow_17
+      rect:
+        serializedVersion: 2
+        x: 4526
+        y: 0
+        width: 44
+        height: 116
+      alignment: 9
+      pivot: {x: 0.55, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bb9a14ae560784f459f6020bc8b56ee5
+      internalID: -1021002089
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UndeadAnim_B_ShootArrow_14
+      rect:
+        serializedVersion: 2
+        x: 3741
+        y: 0
+        width: 75
+        height: 118
+      alignment: 9
+      pivot: {x: 0.49, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2715cff94c5825a43b4d315d06f69d66
+      internalID: 1728691729
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      UndeadAnim_B_ShootArrow_0: -1337815948
+      UndeadAnim_B_ShootArrow_1: -1915642905
+      UndeadAnim_B_ShootArrow_10: 1726829470
+      UndeadAnim_B_ShootArrow_11: 1583586928
+      UndeadAnim_B_ShootArrow_12: 1909296033
+      UndeadAnim_B_ShootArrow_13: 273400275
+      UndeadAnim_B_ShootArrow_14: 1728691729
+      UndeadAnim_B_ShootArrow_15: 2098408618
+      UndeadAnim_B_ShootArrow_16: 1878272900
+      UndeadAnim_B_ShootArrow_17: -1021002089
+      UndeadAnim_B_ShootArrow_2: 1728924190
+      UndeadAnim_B_ShootArrow_3: -1061608957
+      UndeadAnim_B_ShootArrow_4: -286686522
+      UndeadAnim_B_ShootArrow_5: -1614803296
+      UndeadAnim_B_ShootArrow_6: 1438525880
+      UndeadAnim_B_ShootArrow_7: 1580596375
+      UndeadAnim_B_ShootArrow_8: -217872037
+      UndeadAnim_B_ShootArrow_9: 814538382
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

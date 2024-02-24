@@ -1,0 +1,643 @@
+fileFormatVersion: 2
+guid: 4a292cfb48164fc4c9a38f043342a8c1
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 128
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: UndeadAnim_B_Death_0
+      rect:
+        serializedVersion: 2
+        x: 107
+        y: 0
+        width: 50
+        height: 115
+      alignment: 9
+      pivot: {x: 0.55, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9ae45443f1120944a96c1428c433da96
+      internalID: 1226303604
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UndeadAnim_B_Death_1
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 0
+        width: 58
+        height: 116
+      alignment: 9
+      pivot: {x: 0.55, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 71cabd20e32dc9c4f9d3cbde27758f86
+      internalID: 402715204
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UndeadAnim_B_Death_2
+      rect:
+        serializedVersion: 2
+        x: 624
+        y: 0
+        width: 45
+        height: 112
+      alignment: 9
+      pivot: {x: 0.55, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9c3d8688e87295745b5cd1156fbf78d7
+      internalID: 1904472500
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UndeadAnim_B_Death_3
+      rect:
+        serializedVersion: 2
+        x: 877
+        y: 0
+        width: 50
+        height: 108
+      alignment: 9
+      pivot: {x: 0.55, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 89e8c49a260e04c4ebac5e95187be87d
+      internalID: -450466755
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UndeadAnim_B_Death_4
+      rect:
+        serializedVersion: 2
+        x: 1135
+        y: 0
+        width: 50
+        height: 110
+      alignment: 9
+      pivot: {x: 0.55, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6b406cdc8c142b14bb5abd274322fe51
+      internalID: 959115445
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UndeadAnim_B_Death_5
+      rect:
+        serializedVersion: 2
+        x: 1392
+        y: 0
+        width: 50
+        height: 112
+      alignment: 9
+      pivot: {x: 0.55, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8bf447e95f2b1c541a10a336c662bbf6
+      internalID: 1510167716
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UndeadAnim_B_Death_6
+      rect:
+        serializedVersion: 2
+        x: 1650
+        y: 0
+        width: 50
+        height: 113
+      alignment: 9
+      pivot: {x: 0.55, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5080147d468b61c4db3fdfac612aa88d
+      internalID: 170095034
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UndeadAnim_B_Death_7
+      rect:
+        serializedVersion: 2
+        x: 1891
+        y: 0
+        width: 67
+        height: 107
+      alignment: 9
+      pivot: {x: 0.55, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ab3ebd0e0c14fce49b1ea9c2ca880ec2
+      internalID: 1060459579
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UndeadAnim_B_Death_8
+      rect:
+        serializedVersion: 2
+        x: 2133
+        y: 0
+        width: 96
+        height: 94
+      alignment: 9
+      pivot: {x: 0.55, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 261877d52055d3948b55eb10daad9218
+      internalID: 957457165
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UndeadAnim_B_Death_9
+      rect:
+        serializedVersion: 2
+        x: 2381
+        y: 0
+        width: 116
+        height: 60
+      alignment: 9
+      pivot: {x: 0.55, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7ced11c9e3b91bb46bea9438086be6bb
+      internalID: 634213995
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UndeadAnim_B_Death_10
+      rect:
+        serializedVersion: 2
+        x: 2641
+        y: 0
+        width: 110
+        height: 65
+      alignment: 9
+      pivot: {x: 0.55, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4eb403328d24fe74eb5957b8ad74cc2b
+      internalID: -929956320
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UndeadAnim_B_Death_11
+      rect:
+        serializedVersion: 2
+        x: 2888
+        y: 0
+        width: 119
+        height: 59
+      alignment: 9
+      pivot: {x: 0.55, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 46b824477128f25498919fcaa505b312
+      internalID: -1423964148
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UndeadAnim_B_Death_12
+      rect:
+        serializedVersion: 2
+        x: 3148
+        y: 0
+        width: 115
+        height: 67
+      alignment: 9
+      pivot: {x: 0.55, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dcf5de36d1d9be4489f5d0b1af5af065
+      internalID: 1870788406
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UndeadAnim_B_Death_13
+      rect:
+        serializedVersion: 2
+        x: 3425
+        y: 0
+        width: 94
+        height: 83
+      alignment: 9
+      pivot: {x: 0.55, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2ce34d9bc1086f04bb1c4e570128c172
+      internalID: 997000865
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UndeadAnim_B_Death_14
+      rect:
+        serializedVersion: 2
+        x: 3680
+        y: 0
+        width: 95
+        height: 82
+      alignment: 9
+      pivot: {x: 0.55, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 476741e9b8100a6459ef8f01390e08c2
+      internalID: -1769868115
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UndeadAnim_B_Death_15
+      rect:
+        serializedVersion: 2
+        x: 3937
+        y: 0
+        width: 94
+        height: 83
+      alignment: 9
+      pivot: {x: 0.55, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aebbcd1092e9eb2418942b585eaee74c
+      internalID: 1319697939
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UndeadAnim_B_Death_16
+      rect:
+        serializedVersion: 2
+        x: 4194
+        y: 0
+        width: 93
+        height: 83
+      alignment: 9
+      pivot: {x: 0.55, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e543bd6ac21835e48a62a382757621eb
+      internalID: -1841848939
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UndeadAnim_B_Death_17
+      rect:
+        serializedVersion: 2
+        x: 4443
+        y: 0
+        width: 100
+        height: 80
+      alignment: 9
+      pivot: {x: 0.55, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 15656c9f8be8a894597198c398503085
+      internalID: -638748947
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UndeadAnim_B_Death_18
+      rect:
+        serializedVersion: 2
+        x: 4682
+        y: 0
+        width: 117
+        height: 72
+      alignment: 9
+      pivot: {x: 0.55, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 72f2e6bf13a944a45b9e8e76c1138355
+      internalID: 1345682327
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UndeadAnim_B_Death_19
+      rect:
+        serializedVersion: 2
+        x: 4894
+        y: 0
+        width: 161
+        height: 30
+      alignment: 9
+      pivot: {x: 0.55, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 721f095c3695f714eb5eca077ccd54da
+      internalID: 474166025
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UndeadAnim_B_Death_20
+      rect:
+        serializedVersion: 2
+        x: 5145
+        y: 0
+        width: 166
+        height: 15
+      alignment: 9
+      pivot: {x: 0.55, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 92cebf78a850c2e48ab7dbad006833bb
+      internalID: 1155886335
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UndeadAnim_B_Death_21
+      rect:
+        serializedVersion: 2
+        x: 5401
+        y: 0
+        width: 166
+        height: 15
+      alignment: 9
+      pivot: {x: 0.55, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cb10b90029bffdb4bbbc38daa0058ec0
+      internalID: 1907870867
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      UndeadAnim_B_Death_0: 1226303604
+      UndeadAnim_B_Death_1: 402715204
+      UndeadAnim_B_Death_10: -929956320
+      UndeadAnim_B_Death_11: -1423964148
+      UndeadAnim_B_Death_12: 1870788406
+      UndeadAnim_B_Death_13: 997000865
+      UndeadAnim_B_Death_14: -1769868115
+      UndeadAnim_B_Death_15: 1319697939
+      UndeadAnim_B_Death_16: -1841848939
+      UndeadAnim_B_Death_17: -638748947
+      UndeadAnim_B_Death_18: 1345682327
+      UndeadAnim_B_Death_19: 474166025
+      UndeadAnim_B_Death_2: 1904472500
+      UndeadAnim_B_Death_20: 1155886335
+      UndeadAnim_B_Death_21: 1907870867
+      UndeadAnim_B_Death_3: -450466755
+      UndeadAnim_B_Death_4: 959115445
+      UndeadAnim_B_Death_5: 1510167716
+      UndeadAnim_B_Death_6: 170095034
+      UndeadAnim_B_Death_7: 1060459579
+      UndeadAnim_B_Death_8: 957457165
+      UndeadAnim_B_Death_9: 634213995
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,0 +1,515 @@
+fileFormatVersion: 2
+guid: a604f0f50a8ad81439aa63fbe59328d7
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 128
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 16384
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: ThePursuerAnim_Charge_0
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 179
+        height: 220
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 37af4eab8042c4c40b6d66ff33d5eabc
+      internalID: -923239372
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThePursuerAnim_Charge_1
+      rect:
+        serializedVersion: 2
+        x: 888
+        y: 1
+        width: 192
+        height: 219
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dfe20ecd14ad4a74a875cd7264f9f113
+      internalID: -2057087668
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThePursuerAnim_Charge_2
+      rect:
+        serializedVersion: 2
+        x: 1530
+        y: 11
+        width: 254
+        height: 209
+      alignment: 9
+      pivot: {x: 0.35, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 64a9a3bd115d18448b75213ad7675f57
+      internalID: 1515567826
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThePursuerAnim_Charge_3
+      rect:
+        serializedVersion: 2
+        x: 2176
+        y: 11
+        width: 239
+        height: 209
+      alignment: 9
+      pivot: {x: 0.32, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9befde4ec4ca3364e82e7436066eeb75
+      internalID: 134056511
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThePursuerAnim_Charge_4
+      rect:
+        serializedVersion: 2
+        x: 2737
+        y: 8
+        width: 377
+        height: 227
+      alignment: 9
+      pivot: {x: 0.35, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9f817c5d37f64694eb9e75e485a8536d
+      internalID: -509967304
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThePursuerAnim_Charge_5
+      rect:
+        serializedVersion: 2
+        x: 3362
+        y: 8
+        width: 385
+        height: 242
+      alignment: 9
+      pivot: {x: 0.35, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 78f0f857fdfd01647aa600c41a5ad4bc
+      internalID: 330989526
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThePursuerAnim_Charge_6
+      rect:
+        serializedVersion: 2
+        x: 3987
+        y: 0
+        width: 383
+        height: 220
+      alignment: 9
+      pivot: {x: 0.36, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9fd688262ddf0f64a977484e2313d56b
+      internalID: 210981871
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThePursuerAnim_Charge_7
+      rect:
+        serializedVersion: 2
+        x: 4602
+        y: 0
+        width: 288
+        height: 220
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4cbeb3528e731fe479bd674e309d4295
+      internalID: 1816280380
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThePursuerAnim_Charge_8
+      rect:
+        serializedVersion: 2
+        x: 5269
+        y: 0
+        width: 169
+        height: 220
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 69fc8f5473e561546a7ea490531bcd3e
+      internalID: -1442343774
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThePursuerAnim_Charge_9
+      rect:
+        serializedVersion: 2
+        x: 5751
+        y: 0
+        width: 310
+        height: 220
+      alignment: 9
+      pivot: {x: 0.8, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 79e20373ac5770a4cbbbc6c515931608
+      internalID: -430505268
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThePursuerAnim_Charge_11
+      rect:
+        serializedVersion: 2
+        x: 6310
+        y: 0
+        width: 381
+        height: 235
+      alignment: 9
+      pivot: {x: 0.83, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 97574a85fa488644c971c0d1375f5dba
+      internalID: 700799989
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThePursuerAnim_Charge_13
+      rect:
+        serializedVersion: 2
+        x: 6952
+        y: 0
+        width: 349
+        height: 221
+      alignment: 9
+      pivot: {x: 0.83, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9e06967975e21ff4283b514d1faf6c2c
+      internalID: 1643114057
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThePursuerAnim_Charge_15
+      rect:
+        serializedVersion: 2
+        x: 7628
+        y: 0
+        width: 406
+        height: 220
+      alignment: 9
+      pivot: {x: 0.59, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d57f304b97dd5254989220c70767f96a
+      internalID: -114140731
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThePursuerAnim_Charge_16
+      rect:
+        serializedVersion: 2
+        x: 8403
+        y: 11
+        width: 262
+        height: 209
+      alignment: 9
+      pivot: {x: 0.38, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7ab3b84abffa50f468dcecb6fe156763
+      internalID: -862027999
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThePursuerAnim_Charge_17
+      rect:
+        serializedVersion: 2
+        x: 9016
+        y: 1
+        width: 211
+        height: 218
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 734ec0341d875ab478e771684d2f5302
+      internalID: -633682427
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThePursuerAnim_Charge_18
+      rect:
+        serializedVersion: 2
+        x: 9631
+        y: 0
+        width: 179
+        height: 220
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 63cbcfeea5ef0b241a0772b57843d20a
+      internalID: 847711414
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      ThePursuerAnim_Charge_0: -923239372
+      ThePursuerAnim_Charge_1: -2057087668
+      ThePursuerAnim_Charge_10: 245293825
+      ThePursuerAnim_Charge_11: 700799989
+      ThePursuerAnim_Charge_12: 1556071252
+      ThePursuerAnim_Charge_13: 1643114057
+      ThePursuerAnim_Charge_14: -1893339529
+      ThePursuerAnim_Charge_15: -114140731
+      ThePursuerAnim_Charge_16: -862027999
+      ThePursuerAnim_Charge_17: -633682427
+      ThePursuerAnim_Charge_18: 847711414
+      ThePursuerAnim_Charge_19: 1634378405
+      ThePursuerAnim_Charge_2: 1515567826
+      ThePursuerAnim_Charge_3: 134056511
+      ThePursuerAnim_Charge_4: -509967304
+      ThePursuerAnim_Charge_5: 330989526
+      ThePursuerAnim_Charge_6: 210981871
+      ThePursuerAnim_Charge_7: 1816280380
+      ThePursuerAnim_Charge_8: -1442343774
+      ThePursuerAnim_Charge_9: -430505268
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
