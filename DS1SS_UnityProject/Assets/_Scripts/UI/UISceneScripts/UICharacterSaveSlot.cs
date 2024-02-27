@@ -20,6 +20,9 @@ public class UICharacterSaveSlot : MonoBehaviour
     private float hours;
     public GameObject CompletedGame;
 
+    public GameObject nightmare01;
+    public GameObject nightmare02;
+
     private void OnEnable()
     {
         LoadSaveSlots();
@@ -49,6 +52,11 @@ public class UICharacterSaveSlot : MonoBehaviour
                 {
                     CompletedGame.SetActive(true);
                 }
+                if (WorldSaveGameManager.Instance.CharacterSlot01.Nightmare)
+                {
+                    nightmare01.SetActive(true);
+                    nightmare02.SetActive(true);
+                }
 
             }
             // doesnt exits, disable
@@ -75,6 +83,11 @@ public class UICharacterSaveSlot : MonoBehaviour
                 {
                     CompletedGame.SetActive(true);
                 }
+                if (WorldSaveGameManager.Instance.CharacterSlot02.Nightmare)
+                {
+                    nightmare01.SetActive(true);
+                    nightmare02.SetActive(true);
+                }
             }
             // doesnt exits, disable
             else
@@ -99,6 +112,11 @@ public class UICharacterSaveSlot : MonoBehaviour
                 if (WorldSaveGameManager.Instance.CharacterSlot03.FinishedGame)
                 {
                     CompletedGame.SetActive(true);
+                }
+                if (WorldSaveGameManager.Instance.CharacterSlot03.Nightmare)
+                {
+                    nightmare01.SetActive(true);
+                    nightmare02.SetActive(true);
                 }
 
             }
