@@ -12,6 +12,7 @@ public class CanvasManager : MonoBehaviour
     public Slider PlayerStaminaCatchupSlider;
     public Slider PlayerHealthCatchupSlider;
 
+    public GameObject SpeedrunSetting;
     public GameObject DoorPrompt;
     public GameObject FogDoorPrompt;
     public GameObject DoorUI;
@@ -41,7 +42,7 @@ public class CanvasManager : MonoBehaviour
     private void Start()
     {
 
-        if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Build"))
+        if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Build") || SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Build Nightmare"))
         {
             HUD_1.SetActive(true);
             HUD_2.SetActive(true);
@@ -50,6 +51,14 @@ public class CanvasManager : MonoBehaviour
             if (GameSaveGameManager.Instance.GameSaveData.HUD == false)
             {
                 ToggleHUD();
+            }
+            if (GameSaveGameManager.Instance.GameSaveData.Speedrun)
+            {
+                SpeedrunSetting.SetActive(true);
+            }
+            else
+            {
+                SpeedrunSetting.SetActive(false);
             }
         }
     }

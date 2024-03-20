@@ -56,6 +56,7 @@ public class MainMenuManager : MonoBehaviour
     private int SettingsOrder;
     public bool HUDActive;
     public bool SubtitlesActive;
+    public bool SpeedrunActive;
     public string ControlLayout;
 
     public FMOD.Studio.VCA VcaMasterController;
@@ -73,6 +74,7 @@ public class MainMenuManager : MonoBehaviour
     public TextMeshProUGUI HUDText;
     public TextMeshProUGUI SubtitlesText;
     public TextMeshProUGUI ControlsText;
+    public TextMeshProUGUI SpeedrunText;
     public TextMeshProUGUI AudioMasterText;
     public TextMeshProUGUI AudioEffectsText;
     public TextMeshProUGUI AudioAmbienceText;
@@ -261,7 +263,7 @@ public class MainMenuManager : MonoBehaviour
     {
         if (context.action.triggered && CanInput == true)
         {
-            GameSaveGameManager.Instance.SaveSettings(HUDActive, SubtitlesActive, ControlLayout, AudioMasterNum, AudioEffectsNum, AudioAmbienceNum, AudioMusicNum, AudioDialogNum);
+            GameSaveGameManager.Instance.SaveSettings(HUDActive, SubtitlesActive, SpeedrunActive, ControlLayout, AudioMasterNum, AudioEffectsNum, AudioAmbienceNum, AudioMusicNum, AudioDialogNum);
             Debug.Log("B Button Pressed");
             CanInput = false;
             PlayAudioPressCancel();
@@ -277,7 +279,7 @@ public class MainMenuManager : MonoBehaviour
                     StartCoroutine(LoadAchievements());
                     break;
                 case "Settings":                    
-                    GameSaveGameManager.Instance.SaveSettings(HUDActive, SubtitlesActive, ControlLayout, AudioMasterNum, AudioEffectsNum, AudioAmbienceNum, AudioMusicNum, AudioDialogNum);
+                    GameSaveGameManager.Instance.SaveSettings(HUDActive, SubtitlesActive, SpeedrunActive, ControlLayout, AudioMasterNum, AudioEffectsNum, AudioAmbienceNum, AudioMusicNum, AudioDialogNum);
                     SettingsExitAnim.SetTrigger("Active");
                     StartCoroutine(LoadSettings());
                     break;
@@ -482,26 +484,30 @@ public class MainMenuManager : MonoBehaviour
                 break;
 
             case 4:
-                SettingsHightlightPos.anchoredPosition = new Vector2(0, -242);
+                SettingsHightlightPos.anchoredPosition = new Vector2(0, -180);
                 break;
 
             case 5:
-                SettingsHightlightPos.anchoredPosition = new Vector2(0, -315);
+                SettingsHightlightPos.anchoredPosition = new Vector2(0, -242);
                 break;
 
             case 6:
-                SettingsHightlightPos.anchoredPosition = new Vector2(0, -388);
+                SettingsHightlightPos.anchoredPosition = new Vector2(0, -315);
                 break;
 
             case 7:
-                SettingsHightlightPos.anchoredPosition = new Vector2(0, -462);
+                SettingsHightlightPos.anchoredPosition = new Vector2(0, -388);
                 break;
 
             case 8:
-                SettingsHightlightPos.anchoredPosition = new Vector2(0, -535);
+                SettingsHightlightPos.anchoredPosition = new Vector2(0, -462);
                 break;
 
             case 9:
+                SettingsHightlightPos.anchoredPosition = new Vector2(0, -535);
+                break;
+
+            case 10:
                 SettingsOrder = 1; MoveSettingsHighlight();
                 break;
         }
@@ -556,6 +562,7 @@ public class MainMenuManager : MonoBehaviour
         HUDActive = GameSaveGameManager.Instance.GameSaveData.HUD;
         SubtitlesActive = GameSaveGameManager.Instance.GameSaveData.Subtitles;
         ControlLayout = GameSaveGameManager.Instance.GameSaveData.Controls;
+        SpeedrunActive = GameSaveGameManager.Instance.GameSaveData.Speedrun;
         if (ControlLayout == "") { ControlLayout = "Keyboard"; }
         if (ControlLayout == null) { ControlLayout = "Keyboard"; }
 
@@ -594,20 +601,22 @@ public class MainMenuManager : MonoBehaviour
 
 
                 break;
-
             case 4:
-                if (Left) { AudioMasterNum--; } else { AudioMasterNum++; } ;
+                SpeedrunActive = !SpeedrunActive;
                 break;
             case 5:
-                if (Left) { AudioEffectsNum--; } else { AudioEffectsNum++; };
+                if (Left) { AudioMasterNum--; } else { AudioMasterNum++; } ;
                 break;
             case 6:
-                if (Left) { AudioAmbienceNum--; } else { AudioAmbienceNum++; };
+                if (Left) { AudioEffectsNum--; } else { AudioEffectsNum++; };
                 break;
             case 7:
-                if (Left) { AudioMusicNum--; } else { AudioMusicNum++; };
+                if (Left) { AudioAmbienceNum--; } else { AudioAmbienceNum++; };
                 break;
             case 8:
+                if (Left) { AudioMusicNum--; } else { AudioMusicNum++; };
+                break;
+            case 9:
                 if (Left) { AudioDialogNum--; } else { AudioDialogNum++; };
                 break;
             default:
@@ -640,6 +649,7 @@ public class MainMenuManager : MonoBehaviour
     {
         if (HUDActive) { HUDText.text = "ON"; } else { HUDText.text = "OFF"; }
         if (SubtitlesActive) { SubtitlesText.text = "ON"; } else { SubtitlesText.text = "OFF"; }
+        if (SpeedrunActive) { SpeedrunText.text = "ON"; } else { SpeedrunText.text = "OFF"; }
         ControlsText.text = ControlLayout;
         AudioMasterText.text = AudioMasterNum.ToString();
         AudioEffectsText.text = AudioEffectsNum.ToString();
@@ -705,18 +715,24 @@ public class MainMenuManager : MonoBehaviour
         switch (CharacterMenuOrder)
         {
             case 1:
+                Slot01.nightmare01.SetActive(false);
+                Slot01.nightmare02.SetActive(false);
                 Slot01.gameObject.SetActive(false);
                 NewGame1.gameObject.SetActive(true);
                 LastSlotPlayed = 0;
                 break;
 
             case 2:
+                Slot02.nightmare01.SetActive(false);
+                Slot02.nightmare02.SetActive(false);
                 Slot02.gameObject.SetActive(false);
                 NewGame2.gameObject.SetActive(true);
                 LastSlotPlayed = 0;
                 break;
 
             case 3:
+                Slot03.nightmare01.SetActive(false);
+                Slot03.nightmare02.SetActive(false);
                 Slot03.gameObject.SetActive(false);
                 NewGame3.gameObject.SetActive(true);
                 LastSlotPlayed = 0;

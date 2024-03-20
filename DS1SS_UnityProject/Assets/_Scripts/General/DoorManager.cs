@@ -169,6 +169,7 @@ public class DoorManager : MonoBehaviour
                     ParticleSystem.Stop();
                     break;
                 case "Fog":
+                    Debug.Log("Close Door");
                     doorCollider.enabled = true;
                     if (Anim.gameObject.activeInHierarchy) { PlayClosed(); }
                     //ParticleSystem.Play();
@@ -392,6 +393,7 @@ public class DoorManager : MonoBehaviour
                         //move player in
                         //trigger boss fight
 
+                        doorCollider.enabled = false;
                         RuntimeManager.PlayOneShot(FogEnterAudioRef, transform.position);
 
                         if (doorSaveManager.DoorTag_This == "E") 
@@ -407,7 +409,7 @@ public class DoorManager : MonoBehaviour
                             PursuerArena.EnterArena(); playerManager.gameObject.transform.position = PursuerArena.transform.position;
                             PlayClosed();
                         }
-                        doorCollider.enabled = false;
+                        doorCollider.enabled = true;
                         break;
                     }
                 case "Closed":

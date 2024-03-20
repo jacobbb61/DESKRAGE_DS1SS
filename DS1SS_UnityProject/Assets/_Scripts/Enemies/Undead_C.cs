@@ -138,6 +138,13 @@ public class Undead_C : MonoBehaviour
 
 
     }
+    public void SetHealth()
+    {
+
+
+        HealthSlider.maxValue = MaxHealth;
+        HealthSlider.value = Health;
+    }
 
     public void Respawn()
     {

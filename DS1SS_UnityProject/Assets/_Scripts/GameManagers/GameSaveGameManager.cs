@@ -17,6 +17,7 @@ public struct GameSaveData
 
     public bool HUD;
     public bool Subtitles;
+    public bool Speedrun;
     public string Controls;
 
     public float Master;
@@ -80,6 +81,7 @@ public class GameSaveGameManager : MonoBehaviour
 
             GameSaveData.HUD = true;
             GameSaveData.Subtitles = true;
+            GameSaveData.Speedrun = false;
             GameSaveData.Controls = "Keyboard";
 
             GameSaveData.LastSlotUsed = 0;
@@ -107,10 +109,11 @@ public class GameSaveGameManager : MonoBehaviour
         Debug.Log(GameSaveData.LastSlotUsed);
     }
 
-    public void SaveSettings(bool HUD, bool Subtitles,string Controls, float Master, float Effects, float Ambience, float Music, float Dialog)
+    public void SaveSettings(bool HUD, bool Subtitles,bool Speedrun, string Controls, float Master, float Effects, float Ambience, float Music, float Dialog)
     {
         GameSaveData.HUD = HUD;
         GameSaveData.Subtitles = Subtitles;
+        GameSaveData.Speedrun = Speedrun;
         GameSaveData.Controls = Controls;
 
         GameSaveData.Master = Master;

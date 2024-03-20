@@ -259,12 +259,19 @@ public class PlayerControllerV2 : MonoBehaviour
         }
 
         yield return new WaitForSeconds(4.5f);
-
-        if(PM.DemonArena.currentState == "Active") //player died to demon
+        if (nightmare)
+        {
+            BloodDeath.SetActive(false);
+        }
+        if (PM.DemonArena.currentState == "Active") //player died to demon
         {
             PM.DemonArena.SwitchState("Idle");
             PM.DemonArena.DemonDeaths++;
-            Oscar.DiedToDemon();
+            if (!nightmare)
+            {
+                Oscar.DiedToDemon();
+            }
+
         }
 
         if(PM.PursuerArena.currentState == "Active" || PM.PursuerArena.inBossFight==true) //player died to pursuer
@@ -301,10 +308,7 @@ public class PlayerControllerV2 : MonoBehaviour
         BossCam.SetActive(false);
 
         yield return new WaitForSeconds(1f);
-        if (nightmare)
-        {
-            BloodDeath.SetActive(false);
-        }
+
         FinishRespawn();
     }
 

@@ -102,7 +102,6 @@ public class Undead_A : MonoBehaviour
         {
             nightmare = true;
             nightmareAssets.SetActive(true);
-            Anim.speed = 1.5f;
         }
 
         IsAttacking = false;

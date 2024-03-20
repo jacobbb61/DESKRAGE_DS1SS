@@ -20,6 +20,7 @@ public class EnemyAnimationEvents : MonoBehaviour
     public UnityEvent Attack7Triggered;
     public UnityEvent Attack8Triggered;
     public UnityEvent Attack9Triggered;
+    public UnityEvent EndAttackTriggered;
     public UnityEvent AttackAudioTriggered;
 
     public string GroundType;
@@ -138,5 +139,9 @@ public class EnemyAnimationEvents : MonoBehaviour
     {
         Attack9Triggered.Invoke();
         if (ParryIndicator != null) { ParryIndicator.gameObject.SetActive(!ParryIndicator.activeInHierarchy); }
+    }
+    public void EndAttack()
+    {
+        EndAttackTriggered.Invoke();
     }
 }

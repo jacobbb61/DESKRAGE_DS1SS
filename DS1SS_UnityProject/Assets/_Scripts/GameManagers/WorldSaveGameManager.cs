@@ -578,6 +578,7 @@ public class WorldSaveGameManager : MonoBehaviour
 
     public void HardCodeNewNightmareGameCharacterSlot(CharacterSaveData CurrentCharacterData)
     {
+        Debug.Log("New Nightmare");
     CurrentCharacterData.FinishedGame = false;
 
     // player world position

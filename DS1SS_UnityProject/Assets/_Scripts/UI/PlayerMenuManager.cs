@@ -63,6 +63,7 @@ public class PlayerMenuManager : MonoBehaviour
     private int SettingsOrder;
     public bool HUDActive;
     public bool SubtitlesActive;
+    public bool SpeedrunActive;
     public string ControlLayout;
 
     public FMOD.Studio.VCA VcaMasterController;
@@ -121,7 +122,7 @@ public class PlayerMenuManager : MonoBehaviour
         {
             if (context.action.triggered && CanInput == true)
             {
-                GameSaveGameManager.Instance.SaveSettings(HUDActive, SubtitlesActive,ControlLayout, AudioMasterNum, AudioEffectsNum, AudioAmbienceNum, AudioMusicNum, AudioDialogNum);
+                GameSaveGameManager.Instance.SaveSettings(HUDActive, SubtitlesActive, SpeedrunActive,ControlLayout, AudioMasterNum, AudioEffectsNum, AudioAmbienceNum, AudioMusicNum, AudioDialogNum);
                 Debug.Log("Start Button Pressed");
                 CanInput = false;
                 PC.State = "MenuOpen";
@@ -264,7 +265,7 @@ public class PlayerMenuManager : MonoBehaviour
                     LoadQuit();
                     break;
                 case "Settings":
-                    GameSaveGameManager.Instance.SaveSettings(HUDActive, SubtitlesActive,ControlLayout, AudioMasterNum, AudioEffectsNum, AudioAmbienceNum, AudioMusicNum, AudioDialogNum);
+                    GameSaveGameManager.Instance.SaveSettings(HUDActive, SubtitlesActive, SpeedrunActive, ControlLayout, AudioMasterNum, AudioEffectsNum, AudioAmbienceNum, AudioMusicNum, AudioDialogNum);
                     LoadSettings();
                     break;
                 default:
@@ -480,16 +481,17 @@ public class PlayerMenuManager : MonoBehaviour
     }
 
 
-    private void LateUpdate()
+    private void Update()
     {
         float timer = PM.TimePlayedSeconds;
+        float mili = TimeSpan.FromSeconds(timer).Milliseconds;
         float seconds = TimeSpan.FromSeconds(timer).Seconds;
         float minutes = TimeSpan.FromSeconds(timer).Minutes;
         float hours = TimeSpan.FromSeconds(timer).Hours;
 
 
 
-        TimePlayedText.text = hours.ToString("00") + ":" + minutes.ToString("00") + ":" + seconds.ToString("00");
+        TimePlayedText.text = hours.ToString("00") + ":" + minutes.ToString("00") + ":" + seconds.ToString("00") + ":" + mili.ToString("00"); ;
 
 
 

@@ -107,6 +107,7 @@ public class AsylumDemon : MonoBehaviour
     public float DHS_AttackCoolDownTime;
 
     bool Nightmare;
+    Coroutine NightmareCool;
 
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// start
@@ -115,23 +116,18 @@ public class AsylumDemon : MonoBehaviour
     private void Start()
     {      
         
+        Anim = GetComponentInChildren<Animator>();
         if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Build Nightmare"))
         {
-            HD_AttackCoolDownTime = 1;
-            RH_AttackCoolDownTime = 1;
-            GP_AttackCoolDownTime = 1;
-            HSP_AttackCoolDownTime = 1;
-            HFS_AttackCoolDownTime = 1;
-            HBS_AttackCoolDownTime = 1;
-            LH_AttackCoolDownTime = 1;
-            DHS_AttackCoolDownTime = 1;
+
+
+            Anim.speed = 1.2f;
 
             MaxHealth = 450;
             Nightmare = true;
         }
 
 
-        Anim = GetComponentInChildren<Animator>();
         RB = GetComponent<Rigidbody2D>();
         Player = GameObject.FindGameObjectWithTag("Player");
         PC = Player.GetComponent<PlayerControllerV2>();
@@ -327,7 +323,35 @@ public class AsylumDemon : MonoBehaviour
 
 
 
+    public void EndAttack()
+    {
+        if (Nightmare)
+        {
+            if (NightmareCool != null)
+            {
+                StopCoroutine(NightmareCool);
+                NightmareCool = StartCoroutine(Cool());
+            }
+            else
+            {
+                NightmareCool = StartCoroutine(Cool());
+            }
+        }
+    }
+    IEnumerator Cool()
+    {
+        IsCoolingDown = true;
+        IsImmune = false;
+        Behaviour = "Hostile";
+        Anim.Play("AsylumDemonAnim_Idle");
+        StepDistance = 0;
+        yield return new WaitForSeconds(0.5f);
 
+        IsCoolingDown = false;
+        Behaviour = "Hostile";
+
+        Debug.Log("END ATTACK");
+    }
 
 
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -527,23 +551,28 @@ public class AsylumDemon : MonoBehaviour
 
         Anim.Play("AsylumDemonAnim_HammerDrive");
 
+        if (!Nightmare)
+        {
+            yield return new WaitForSeconds(HD_AttackAnimationTime);
+            IsImmune = false;
+            Behaviour = "Hostile";
+            IsCoolingDown = true;
+            Anim.Play("AsylumDemonAnim_Idle");
 
-        yield return new WaitForSeconds(HD_AttackAnimationTime);
-        IsImmune = false;
-        Behaviour = "Hostile";
-        IsCoolingDown = true;
-        Anim.Play("AsylumDemonAnim_Idle");
-
-        yield return new WaitForSeconds(HD_AttackCoolDownTime);
-        IsCoolingDown = false;
-
+            yield return new WaitForSeconds(HD_AttackCoolDownTime);
+            IsCoolingDown = false;
+        }
+        else
+        {
+            yield return new WaitForSeconds(0); 
+        }
     }
 
     public void HD_AttackRegister()
     {
         if (HD_Collider.bounds.Contains(Player.transform.position))
         {
-            if (Nightmare) { PC.PlayerTakeDamage(HD_AttackDamage + 10, true, 0); }
+            if (Nightmare) { PC.PlayerTakeDamage(HD_AttackDamage + 10, true, 1); }
             else
             {
                 PC.PlayerTakeDamage(HD_AttackDamage, true, 0);
@@ -564,17 +593,24 @@ public class AsylumDemon : MonoBehaviour
         Anim.Play("AsylumDemonAnim_RangedHammer");
 
 
-        yield return new WaitForSeconds(RH_AttackAnimationTime);
+        if (!Nightmare)
+        {
+            yield return new WaitForSeconds(RH_AttackAnimationTime);
 
-        IsImmune = false;
-        Behaviour = "Hostile";
-        IsCoolingDown = true;
-        Anim.Play("AsylumDemonAnim_Idle");
-        StepDistance = 0;
 
-        yield return new WaitForSeconds(RH_AttackCoolDownTime);
-        IsCoolingDown = false;
+            IsImmune = false;
+            Behaviour = "Hostile";
+            IsCoolingDown = true;
+            Anim.Play("AsylumDemonAnim_Idle");
+            StepDistance = 0;
 
+            yield return new WaitForSeconds(RH_AttackCoolDownTime);
+            IsCoolingDown = false;
+        }
+        else
+        {
+            yield return new WaitForSeconds(0);
+        }
     }
 
     public void RH_AttackRegister()
@@ -612,18 +648,23 @@ public class AsylumDemon : MonoBehaviour
 
         Anim.Play("AsylumDemonAnim_LeapingHammerSmash");
 
+        if (!Nightmare)
+        {
+            yield return new WaitForSeconds(LH_AttackAnimationTime);
 
-        yield return new WaitForSeconds(LH_AttackAnimationTime);
+            IsImmune = false;
+            Behaviour = "Hostile";
+            IsCoolingDown = true;
+            Anim.Play("AsylumDemonAnim_Idle");
+            StepDistance = 0;
 
-        IsImmune = false;
-        Behaviour = "Hostile";
-        IsCoolingDown = true;
-        Anim.Play("AsylumDemonAnim_Idle");
-        StepDistance = 0;
-
-        yield return new WaitForSeconds(LH_AttackCoolDownTime);
-        IsCoolingDown = false;
-
+            yield return new WaitForSeconds(LH_AttackCoolDownTime);
+            IsCoolingDown = false;
+        }
+        else
+        {
+            yield return new WaitForSeconds(0);
+        }
     }
 
     public void LH_AttackRegister()
@@ -649,19 +690,24 @@ public class AsylumDemon : MonoBehaviour
 
         Anim.Play("AsylumDemonAnim_GroundPoung");
 
+        if (!Nightmare)
+        {
+            yield return new WaitForSeconds(GP_AttackAnimationTime);
 
-        yield return new WaitForSeconds(GP_AttackAnimationTime);
+            IsImmune = false;
 
-        IsImmune = false;
+            Behaviour = "Hostile";
+            IsCoolingDown = true;
+            Anim.Play("AsylumDemonAnim_Idle");
+            StepDistance = 0;
 
-        Behaviour = "Hostile";
-        IsCoolingDown = true;
-        Anim.Play("AsylumDemonAnim_Idle");
-        StepDistance = 0;
-
-        yield return new WaitForSeconds(GP_AttackCoolDownTime);
-        IsCoolingDown = false;
-
+            yield return new WaitForSeconds(GP_AttackCoolDownTime);
+            IsCoolingDown = false;
+        }
+        else
+        {
+            yield return new WaitForSeconds(0);
+        }
     }
 
     public void GP_AttackRegister()
@@ -687,19 +733,24 @@ public class AsylumDemon : MonoBehaviour
 
         Anim.Play("AsylumDemonAnim_HammerBackSwing");
 
+        if (!Nightmare)
+        {
+            yield return new WaitForSeconds(HBS_AttackAnimationTime);
 
-        yield return new WaitForSeconds(HBS_AttackAnimationTime);
+            IsImmune = false;
 
-        IsImmune = false;
+            Behaviour = "Hostile";
+            IsCoolingDown = true;
+            Anim.Play("AsylumDemonAnim_Idle");
+            StepDistance = 0;
 
-        Behaviour = "Hostile";
-        IsCoolingDown = true;
-        Anim.Play("AsylumDemonAnim_Idle");
-        StepDistance = 0;
-
-        yield return new WaitForSeconds(HBS_AttackCoolDownTime);
-        IsCoolingDown = false;
-
+            yield return new WaitForSeconds(HBS_AttackCoolDownTime);
+            IsCoolingDown = false;
+        }
+        else
+        {
+            yield return new WaitForSeconds(0);
+        }
     }
 
     public void HBS_AttackRegister()
@@ -725,19 +776,24 @@ public class AsylumDemon : MonoBehaviour
 
         Anim.Play("AsylumDemonAnim_HammerSwing");
 
+        if (!Nightmare)
+        {
+            yield return new WaitForSeconds(HFS_AttackAnimationTime);
 
-        yield return new WaitForSeconds(HFS_AttackAnimationTime);
+            IsImmune = false;
 
-        IsImmune = false;
+            Behaviour = "Hostile";
+            IsCoolingDown = true;
+            Anim.Play("AsylumDemonAnim_Idle");
+            StepDistance = 0;
 
-        Behaviour = "Hostile";
-        IsCoolingDown = true;
-        Anim.Play("AsylumDemonAnim_Idle");
-        StepDistance = 0;
-
-        yield return new WaitForSeconds(HFS_AttackCoolDownTime);
-        IsCoolingDown = false;
-
+            yield return new WaitForSeconds(HFS_AttackCoolDownTime);
+            IsCoolingDown = false;
+        }
+        else
+        {
+            yield return new WaitForSeconds(0);
+        }
     }
 
     public void HFS_AttackRegister()
@@ -761,19 +817,24 @@ public class AsylumDemon : MonoBehaviour
 
         Anim.Play("AsylumDemonAnim_DoubleHammerSwing");
 
+        if (!Nightmare)
+        {
+            yield return new WaitForSeconds(DHS_AttackAnimationTime);
 
-        yield return new WaitForSeconds(DHS_AttackAnimationTime);
+            IsImmune = false;
 
-        IsImmune = false;
+            Behaviour = "Hostile";
+            IsCoolingDown = true;
+            Anim.Play("AsylumDemonAnim_Idle");
+            StepDistance = 0;
 
-        Behaviour = "Hostile";
-        IsCoolingDown = true;
-        Anim.Play("AsylumDemonAnim_Idle");
-        StepDistance = 0;
-
-        yield return new WaitForSeconds(DHS_AttackCoolDownTime);
-        IsCoolingDown = false;
-
+            yield return new WaitForSeconds(DHS_AttackCoolDownTime);
+            IsCoolingDown = false;
+        }
+        else
+        {
+            yield return new WaitForSeconds(0);
+        }
     }
 
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -787,19 +848,24 @@ public class AsylumDemon : MonoBehaviour
 
         Anim.Play("AsylumDemonAnim_HammerSweep");
 
+        if (!Nightmare)
+        {
+            yield return new WaitForSeconds(HSP_AttackAnimationTime);
 
-        yield return new WaitForSeconds(HSP_AttackAnimationTime);
+            IsImmune = false;
 
-        IsImmune = false;
+            Behaviour = "Hostile";
+            IsCoolingDown = true;
+            Anim.Play("AsylumDemonAnim_Idle");
+            StepDistance = 0;
 
-        Behaviour = "Hostile";
-        IsCoolingDown = true;
-        Anim.Play("AsylumDemonAnim_Idle");
-        StepDistance = 0;
-
-        yield return new WaitForSeconds(HSP_AttackCoolDownTime);
-        IsCoolingDown = false;
-
+            yield return new WaitForSeconds(HSP_AttackCoolDownTime);
+            IsCoolingDown = false;
+        }
+        else
+        {
+            yield return new WaitForSeconds(0);
+        }
     }
 
 }

@@ -49,9 +49,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Target: {x: 0, y: 0, z: 0}
   RB: {fileID: 8144088339725920759}
-  speed: 30
+  speed: 45
   angle: 0
   IsArrow: 1
+  IsDown: 0
   Anim: {fileID: 0}
   ArrowBreakAudioRef:
     Guid:

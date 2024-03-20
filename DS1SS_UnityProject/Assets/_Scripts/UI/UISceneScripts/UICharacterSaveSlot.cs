@@ -43,10 +43,11 @@ public class UICharacterSaveSlot : MonoBehaviour
             if (SaveFileWriter.CheckToSeeIfFileExists())
             {
                 float timer = WorldSaveGameManager.Instance.CharacterSlot01.TimePlayed;
+                float mili = TimeSpan.FromSeconds(timer).Milliseconds;
                 float seconds = TimeSpan.FromSeconds(timer).Seconds;
                 float minutes = TimeSpan.FromSeconds(timer).Minutes;
                 float hours = TimeSpan.FromSeconds(timer).Hours;
-                TimePlayed.text = hours.ToString("00") + ":" + minutes.ToString("00") + ":" + seconds.ToString("00");
+                TimePlayed.text = hours.ToString("00") + ":" + minutes.ToString("00") + ":" + seconds.ToString("00") + ":" + mili.ToString("00");
 
                 if (WorldSaveGameManager.Instance.CharacterSlot01.FinishedGame)
                 {
@@ -74,10 +75,14 @@ public class UICharacterSaveSlot : MonoBehaviour
             if (SaveFileWriter.CheckToSeeIfFileExists())
             {
                 float timer = WorldSaveGameManager.Instance.CharacterSlot02.TimePlayed;
+                float mili = TimeSpan.FromSeconds(timer).Milliseconds;
                 float seconds = TimeSpan.FromSeconds(timer).Seconds;
                 float minutes = TimeSpan.FromSeconds(timer).Minutes;
                 float hours = TimeSpan.FromSeconds(timer).Hours;
-                TimePlayed.text = hours.ToString("00") + ":" + minutes.ToString("00") + ":" + seconds.ToString("00");
+                TimePlayed.text = hours.ToString("00") + ":" + minutes.ToString("00") + ":" + seconds.ToString("00") + ":" + mili.ToString("00");
+
+
+
 
                 if (WorldSaveGameManager.Instance.CharacterSlot02.FinishedGame)
                 {
@@ -104,10 +109,11 @@ public class UICharacterSaveSlot : MonoBehaviour
             if (SaveFileWriter.CheckToSeeIfFileExists())
             {
                 float timer = WorldSaveGameManager.Instance.CharacterSlot03.TimePlayed;
+                float mili = TimeSpan.FromSeconds(timer).Milliseconds;
                 float seconds = TimeSpan.FromSeconds(timer).Seconds;
                 float minutes = TimeSpan.FromSeconds(timer).Minutes;
                 float hours = TimeSpan.FromSeconds(timer).Hours;
-                TimePlayed.text = hours.ToString("00") + ":" + minutes.ToString("00") + ":" + seconds.ToString("00");
+                TimePlayed.text = hours.ToString("00") + ":" + minutes.ToString("00") + ":" + seconds.ToString("00") + ":" + mili.ToString("00");
 
                 if (WorldSaveGameManager.Instance.CharacterSlot03.FinishedGame)
                 {

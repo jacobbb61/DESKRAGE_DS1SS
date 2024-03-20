@@ -15,6 +15,7 @@ public class AsylumDemonArena : MonoBehaviour
     public GameObject BossUI;
     public GameObject BossDoorHint;
     public PlayerManager playerManager;
+    public SpeedRunManager speedRunManager;
 
     public AsylumDemon Boss;
     public Animator VictoryAnim;
@@ -215,6 +216,7 @@ public class AsylumDemonArena : MonoBehaviour
                     FMODinstance = FMODUnity.RuntimeManager.CreateInstance(Theme_FirstPhase);
                     FMODinstance.start();
                     FMODinstance.release();
+                    doors[0].SwitchDoorState("Fog"); //Door E
                     break;
                 }
             case "Open":
@@ -255,6 +257,7 @@ public class AsylumDemonArena : MonoBehaviour
 
     public void BossKilled() //Called by boss script
     {
+        speedRunManager.DemonKilled();
         SwitchState("Open");
         arenaIsActive = false;
 

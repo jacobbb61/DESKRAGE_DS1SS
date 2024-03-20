@@ -16,6 +16,7 @@ public class PursuerArena : MonoBehaviour
 
     public GameObject BossUI;
     public PlayerManager playerManager;
+    public SpeedRunManager speedRunManager;
 
     public Pursuer Boss;
 
@@ -220,6 +221,7 @@ public class PursuerArena : MonoBehaviour
     }
     public void BossKilled() //Called by boss script
     {
+        speedRunManager.PursuerKilled();
         SwitchState("Open");
         arenaIsActive = false;
 

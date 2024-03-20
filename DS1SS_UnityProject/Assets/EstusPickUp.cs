@@ -75,6 +75,12 @@ public class EstusPickUp : MonoBehaviour
             case 6:
                 estusPickUpManager.EstusPickedUp_6 = true;
                 break;
+            case 7:
+                PC.MaxHealth = 10000;
+                PC.Health = 10000;
+                PC.MaxEstus = 10000;
+                PC.CurrentEstus = 10000;
+                break;
         }
 
 
