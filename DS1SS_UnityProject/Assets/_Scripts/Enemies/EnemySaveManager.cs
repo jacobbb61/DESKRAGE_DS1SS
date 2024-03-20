@@ -27,7 +27,6 @@ public class EnemySaveManager : MonoBehaviour
 
     public void SaveGameDataToCurrentCharacterData(ref CharacterSaveData CurrentCharacterData)
     {
-        Debug.Log("Saved Enemy " + EnemyTag_This);
         
 
         EnemyPosX_This = transform.localPosition.x;
@@ -236,13 +235,57 @@ public class EnemySaveManager : MonoBehaviour
                 CurrentCharacterData.EnemyPosY_100 = EnemyPosY_This;
                 break;
 
+                ////////////////////////////////////////////////////////////////////////////////////////////////////////
+
             case 25:
                 CurrentCharacterData.EnemyBehaviour_25 = EnemyBehaviour_This;
                 CurrentCharacterData.EnemyHealth_25 = EnemyHealth_This;
                 CurrentCharacterData.EnemyPosX_25 = EnemyPosX_This;
                 CurrentCharacterData.EnemyPosY_25 = EnemyPosY_This;
                 CurrentCharacterData.EnemyDirection_25 = EnemyDirection_This;
-                Debug.Log("saved 25 data");
+                break;
+
+            case 26:
+                CurrentCharacterData.EnemyBehaviour_26 = EnemyBehaviour_This;
+                CurrentCharacterData.EnemyHealth_26 = EnemyHealth_This;
+                CurrentCharacterData.EnemyPosX_26 = EnemyPosX_This;
+                CurrentCharacterData.EnemyPosY_26 = EnemyPosY_This;
+                CurrentCharacterData.EnemyDirection_26 = EnemyDirection_This;
+                break;
+            case 27:
+                CurrentCharacterData.EnemyBehaviour_27 = EnemyBehaviour_This;
+                CurrentCharacterData.EnemyHealth_27 = EnemyHealth_This;
+                CurrentCharacterData.EnemyPosX_27 = EnemyPosX_This;
+                CurrentCharacterData.EnemyPosY_27 = EnemyPosY_This;
+                CurrentCharacterData.EnemyDirection_27 = EnemyDirection_This;
+                break;
+            case 28:
+                CurrentCharacterData.EnemyBehaviour_28 = EnemyBehaviour_This;
+                CurrentCharacterData.EnemyHealth_28 = EnemyHealth_This;
+                CurrentCharacterData.EnemyPosX_28 = EnemyPosX_This;
+                CurrentCharacterData.EnemyPosY_28 = EnemyPosY_This;
+                CurrentCharacterData.EnemyDirection_28 = EnemyDirection_This;
+                break;
+            case 29:
+                CurrentCharacterData.EnemyBehaviour_29 = EnemyBehaviour_This;
+                CurrentCharacterData.EnemyHealth_29 = EnemyHealth_This;
+                CurrentCharacterData.EnemyPosX_29 = EnemyPosX_This;
+                CurrentCharacterData.EnemyPosY_29 = EnemyPosY_This;
+                CurrentCharacterData.EnemyDirection_29 = EnemyDirection_This;
+                break;
+            case 30:
+                CurrentCharacterData.EnemyBehaviour_30 = EnemyBehaviour_This;
+                CurrentCharacterData.EnemyHealth_30 = EnemyHealth_This;
+                CurrentCharacterData.EnemyPosX_30 = EnemyPosX_This;
+                CurrentCharacterData.EnemyPosY_30 = EnemyPosY_This;
+                CurrentCharacterData.EnemyDirection_30 = EnemyDirection_This;
+                break;
+            case 31:
+                CurrentCharacterData.EnemyBehaviour_31 = EnemyBehaviour_This;
+                CurrentCharacterData.EnemyHealth_31 = EnemyHealth_This;
+                CurrentCharacterData.EnemyPosX_31 = EnemyPosX_This;
+                CurrentCharacterData.EnemyPosY_31 = EnemyPosY_This;
+                CurrentCharacterData.EnemyDirection_31 = EnemyDirection_This;
                 break;
         }
 
@@ -250,7 +293,6 @@ public class EnemySaveManager : MonoBehaviour
     }
     public void LoadGameFromDataToCurrentCharacterData(ref CharacterSaveData CurrentCharacterData)
     {
-        Debug.Log("Loaded Enemy " + EnemyTag_This);
 
         switch (EnemyTag_This)
         {
@@ -428,13 +470,58 @@ public class EnemySaveManager : MonoBehaviour
                 EnemyPosX_This = CurrentCharacterData.EnemyPosX_100;
                 EnemyPosY_This = CurrentCharacterData.EnemyPosY_100;
                 break;
+                //////////////////////////////////////////////////////////////////////////////// new
             case 25:
                 EnemyBehaviour_This = CurrentCharacterData.EnemyBehaviour_25;
                 EnemyHealth_This = CurrentCharacterData.EnemyHealth_25;
                 EnemyPosX_This = CurrentCharacterData.EnemyPosX_25;
                 EnemyPosY_This = CurrentCharacterData.EnemyPosY_25;
                 EnemyDirection_This = CurrentCharacterData.EnemyDirection_25;
-                Debug.Log("loaded 25 data");
+                break;
+
+            case 26:
+                EnemyBehaviour_This = CurrentCharacterData.EnemyBehaviour_26;
+                EnemyHealth_This = CurrentCharacterData.EnemyHealth_26;
+                EnemyPosX_This = CurrentCharacterData.EnemyPosX_26;
+                EnemyPosY_This = CurrentCharacterData.EnemyPosY_26;
+                EnemyDirection_This = CurrentCharacterData.EnemyDirection_26;
+                break;
+
+            case 27:
+                EnemyBehaviour_This = CurrentCharacterData.EnemyBehaviour_27;
+                EnemyHealth_This = CurrentCharacterData.EnemyHealth_27;
+                EnemyPosX_This = CurrentCharacterData.EnemyPosX_27;
+                EnemyPosY_This = CurrentCharacterData.EnemyPosY_27;
+                EnemyDirection_This = CurrentCharacterData.EnemyDirection_27;
+                break;
+
+            case 28:
+                EnemyBehaviour_This = CurrentCharacterData.EnemyBehaviour_28;
+                EnemyHealth_This = CurrentCharacterData.EnemyHealth_28;
+                EnemyPosX_This = CurrentCharacterData.EnemyPosX_28;
+                EnemyPosY_This = CurrentCharacterData.EnemyPosY_28;
+                EnemyDirection_This = CurrentCharacterData.EnemyDirection_28;
+                break;
+            case 29:
+                EnemyBehaviour_This = CurrentCharacterData.EnemyBehaviour_29;
+                EnemyHealth_This = CurrentCharacterData.EnemyHealth_29;
+                EnemyPosX_This = CurrentCharacterData.EnemyPosX_29;
+                EnemyPosY_This = CurrentCharacterData.EnemyPosY_29;
+                EnemyDirection_This = CurrentCharacterData.EnemyDirection_29;
+                break;
+            case 30:
+                EnemyBehaviour_This = CurrentCharacterData.EnemyBehaviour_30;
+                EnemyHealth_This = CurrentCharacterData.EnemyHealth_30;
+                EnemyPosX_This = CurrentCharacterData.EnemyPosX_30;
+                EnemyPosY_This = CurrentCharacterData.EnemyPosY_30;
+                EnemyDirection_This = CurrentCharacterData.EnemyDirection_30;
+                break;
+            case 31:
+                EnemyBehaviour_This = CurrentCharacterData.EnemyBehaviour_31;
+                EnemyHealth_This = CurrentCharacterData.EnemyHealth_31;
+                EnemyPosX_This = CurrentCharacterData.EnemyPosX_31;
+                EnemyPosY_This = CurrentCharacterData.EnemyPosY_31;
+                EnemyDirection_This = CurrentCharacterData.EnemyDirection_31;
                 break;
         }
 

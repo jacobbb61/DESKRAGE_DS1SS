@@ -133,7 +133,6 @@ public class Undead_C : MonoBehaviour
         HealthSlider.value = Health;
 
         IsDying = false;
-        Debug.Log(EnemySaveManager.EnemyTag_This + "is active");
         if (Health > 0) { IsDead = false;  EnemySaveManager.IsLockOnAble = true; } else { Dead(); Behaviour = "Dead";}
 
 
@@ -151,6 +150,7 @@ public class Undead_C : MonoBehaviour
 
         if (AttackingCoroutine != null) { StopCoroutine(AttackingCoroutine); }
 
+        Bleeding.SetActive(false);
         RB.constraints = RigidbodyConstraints2D.None;
         RB.constraints = RigidbodyConstraints2D.FreezeRotation;
         EnemySaveManager.IsLockOnAble = true;

@@ -95,6 +95,7 @@ public class Undead_B : MonoBehaviour
 
     public void Respawn()
     {
+        Bleeding.SetActive(false);
         EnemySaveManager.IsLockOnAble = true;
         DamagerNumber.gameObject.SetActive(false);
         SeePlayer = false;

@@ -283,20 +283,9 @@ public class WorldSaveGameManager : MonoBehaviour
 
         yield return new WaitForSeconds(.5f);
 
-
-
         //get list of all EnemySaveManager scripts in the scene 
         //Pass each enemy data,from file, to the player in game
-        EnemySaveManagerList = null;
-        EnemySaveManagerList = GameObject.FindGameObjectsWithTag("Enemy");
-        EnemySaveManagerList = GameObject.FindGameObjectWithTag("EnemyList").GetComponent<EnemyList>().EnemySaveManagerList;
-        if (EnemySaveManagerList != null)
-        {
-            foreach (GameObject Enemy in EnemySaveManagerList)
-            {
-                Enemy.GetComponent<EnemySaveManager>().LoadGameFromDataToCurrentCharacterData(ref CurrentCharacterData);
-            }
-        }
+
         //get list of all DoorSaveManager scripts in the scene 
         //Pass each door data,from file, to the player in game
         DoorSaveManagerList = null;
@@ -347,7 +336,19 @@ public class WorldSaveGameManager : MonoBehaviour
         Player.GetComponent<PlayerManager>().OscarManager.ManualStart();
         }
 
+        EnemySaveManagerList = null;
 
+        //  EnemySaveManagerList = GameObject.FindGameObjectsWithTag("Enemy");
+        //  EnemySaveManagerList = GameObject.FindGameObjectWithTag("EnemyList").GetComponent<EnemyList>().EnemySaveManagerList;
+
+        EnemySaveManagerList = BonfireList.GetComponent<LayerManagerV2>().Bonfire_1.GetComponent<Bonfire>().EnemySaveManagerList;
+        if (EnemySaveManagerList != null)
+        {
+            foreach (GameObject Enemy in EnemySaveManagerList)
+            {
+                Enemy.GetComponent<EnemySaveManager>().LoadGameFromDataToCurrentCharacterData(ref CurrentCharacterData);
+            }
+        }
 
         // pass the player info, from file, to the player in game
         Player = null;
@@ -355,10 +356,6 @@ public class WorldSaveGameManager : MonoBehaviour
         Player.LoadGameFromDataToCurrentCharacterData(ref CurrentCharacterData);
 
 
-        if (CurrentCharacterData.Nightmare)
-        {
-            SaveGame();
-        }
 
 
         yield return null;
@@ -677,7 +674,7 @@ public class WorldSaveGameManager : MonoBehaviour
 
     CurrentCharacterData.EnemyBehaviour_7 = "";   // new undead A front boulder
     CurrentCharacterData.EnemyHealth_7 = Ahealth;
-    CurrentCharacterData.EnemyPosX_7 = 128;
+    CurrentCharacterData.EnemyPosX_7 = 114.21f;
     CurrentCharacterData.EnemyPosY_7 = 23.5f;
     CurrentCharacterData.EnemyDirection_7 = 1;
 
@@ -707,7 +704,7 @@ public class WorldSaveGameManager : MonoBehaviour
 
     CurrentCharacterData.EnemyBehaviour_12 = "";   // new undead A front under
     CurrentCharacterData.EnemyHealth_12 = Ahealth;
-    CurrentCharacterData.EnemyPosX_12 = 173.5f;
+    CurrentCharacterData.EnemyPosX_12 = 159.79f;
     CurrentCharacterData.EnemyPosY_12 = -5.75f;
     CurrentCharacterData.EnemyDirection_12 = -1;
 
@@ -731,8 +728,8 @@ public class WorldSaveGameManager : MonoBehaviour
 
     CurrentCharacterData.EnemyBehaviour_16 = "";   //new undead c middle upper
     CurrentCharacterData.EnemyHealth_16 = Chealth;
-    CurrentCharacterData.EnemyPosX_16 = 185.11f;
-    CurrentCharacterData.EnemyPosY_16 = 21.3f;
+    CurrentCharacterData.EnemyPosX_16 = 196f;
+    CurrentCharacterData.EnemyPosY_16 = 22.2f;
     CurrentCharacterData.EnemyDirection_16 = -1;
 
     CurrentCharacterData.EnemyBehaviour_17 = ""; // B after bridge
@@ -743,7 +740,7 @@ public class WorldSaveGameManager : MonoBehaviour
 
     CurrentCharacterData.EnemyBehaviour_18 = ""; //C sewer first
     CurrentCharacterData.EnemyHealth_18 = Chealth;
-    CurrentCharacterData.EnemyPosX_18 = 158;
+    CurrentCharacterData.EnemyPosX_18 = 166.36f;
     CurrentCharacterData.EnemyPosY_18 = -5.85f;
     CurrentCharacterData.EnemyDirection_18 = -1;
 
@@ -789,10 +786,53 @@ public class WorldSaveGameManager : MonoBehaviour
     CurrentCharacterData.EnemyPosX_100 = 90;
     CurrentCharacterData.EnemyPosY_100 = 6.15f;
 
+        ////////////////////////////////////////////////////////////////////////////////// new
+
     CurrentCharacterData.EnemyBehaviour_25 = ""; //C tutorial door
     CurrentCharacterData.EnemyHealth_25 = Chealth;
     CurrentCharacterData.EnemyPosX_25 = 53.35f;
     CurrentCharacterData.EnemyPosY_25 = 4.38f;
     CurrentCharacterData.EnemyDirection_25 = 1;
+
+    CurrentCharacterData.EnemyBehaviour_26 = ""; //A tutorial door
+    CurrentCharacterData.EnemyHealth_26 = Ahealth;
+    CurrentCharacterData.EnemyPosX_26 = 68.6f;
+    CurrentCharacterData.EnemyPosY_26 = 7.15f;
+    CurrentCharacterData.EnemyDirection_26 = 1;
+
+    CurrentCharacterData.EnemyBehaviour_27 = ""; //B outskirts upper
+    CurrentCharacterData.EnemyHealth_27 = Bhealth;
+    CurrentCharacterData.EnemyPosX_27 = 182.9f;
+    CurrentCharacterData.EnemyPosY_27 = 22.28f;
+    CurrentCharacterData.EnemyDirection_27 = 1;
+
+    CurrentCharacterData.EnemyBehaviour_28 = ""; //B demon room
+    CurrentCharacterData.EnemyHealth_28 = Bhealth;
+    CurrentCharacterData.EnemyPosX_28 = 133.35f;
+    CurrentCharacterData.EnemyPosY_28 = 26.53f;
+    CurrentCharacterData.EnemyDirection_28 = 1;
+
+    CurrentCharacterData.EnemyBehaviour_29 = ""; //B out skirts lower
+    CurrentCharacterData.EnemyHealth_29 = Bhealth;
+    CurrentCharacterData.EnemyPosX_29 = 180.75f;
+    CurrentCharacterData.EnemyPosY_29 = -5.74f;
+    CurrentCharacterData.EnemyDirection_29 = 1;
+
+    CurrentCharacterData.EnemyBehaviour_30 = ""; //B boulder 
+    CurrentCharacterData.EnemyHealth_30 = Bhealth;
+    CurrentCharacterData.EnemyPosX_30 = 132.49f;
+    CurrentCharacterData.EnemyPosY_30 = 23.2f;
+    CurrentCharacterData.EnemyDirection_30 = 1;
+
+    CurrentCharacterData.EnemyBehaviour_31 = ""; //B before persurr 
+    CurrentCharacterData.EnemyHealth_31 = Bhealth;
+    CurrentCharacterData.EnemyPosX_31 = 201.25f;
+    CurrentCharacterData.EnemyPosY_31 = -5.7f;
+    CurrentCharacterData.EnemyDirection_31 = 1;
+
+
+
+
+
 }
 }

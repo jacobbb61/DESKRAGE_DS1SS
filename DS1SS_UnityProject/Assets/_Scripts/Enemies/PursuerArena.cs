@@ -114,6 +114,7 @@ public class PursuerArena : MonoBehaviour
         {
             case "FirstTime":
                 {   //Door states are "Open", "Closed", "Locked", "OneSided", "Fog", "FogEnter"
+                    speedRunManager.PersuerReset();
                     doorT.SwitchDoorState("Closed"); 
                     doorU.SwitchDoorState("Locked");
                     doorT.ManualStart();
@@ -139,10 +140,11 @@ public class PursuerArena : MonoBehaviour
                 }
             case "Idle":
                 {
+                    speedRunManager.PersuerReset();
 
 
                     ParticleSystem.SetActive(false);
-                    nightmareAttackSpawner.stop = true;
+                    if (nightmareAttackSpawner != null) { nightmareAttackSpawner.stop = true; }
 
                     doorT.SwitchDoorState("FogEnter");
                     doorU.SwitchDoorState("Fog");
@@ -170,6 +172,8 @@ public class PursuerArena : MonoBehaviour
                 }
             case "Active":
                 {
+                    speedRunManager.pursuerTime = 0;
+                    speedRunManager.inPursuer = true;
                     doorT.SwitchDoorState("Fog");
                     doorU.SwitchDoorState("Fog");
                     doorT.ManualStart();

@@ -79,6 +79,9 @@ public class AsylumDemonArena : MonoBehaviour
     public void EnterArena() //called from door manager
     {
 
+        speedRunManager.demonTime = 0;
+        speedRunManager.inDemon = true;
+
         BossCam.SetActive(true);
 
             for (int i = 0; i < doors.Length; i++)
@@ -169,10 +172,12 @@ public class AsylumDemonArena : MonoBehaviour
                     Boss.IsCoolingDown = false;
                     Boss.Health = Boss.MaxHealth;
                     Boss.Behaviour = "Idle";
+                    speedRunManager.DemonReset();
                     break;
                 }
             case "Idle":
                 {
+                    speedRunManager.DemonReset();
                     Debug.Log("Bos set to idle");
                     doors[0].SwitchDoorState("FogEnter"/*FogEnter not implemented yet*/); //Door E
                     doors[1].SwitchDoorState("Open"); //Door F1
@@ -197,6 +202,8 @@ public class AsylumDemonArena : MonoBehaviour
                 }
             case "Active":
                 {
+                    speedRunManager.demonTime = 0;
+                    speedRunManager.inDemon = true;
                     doors[0].SwitchDoorState("Fog"); //Door E
                     doors[1].SwitchDoorState("Open"); //Door F1
                     doors[2].SwitchDoorState("Fog"); //Door M1

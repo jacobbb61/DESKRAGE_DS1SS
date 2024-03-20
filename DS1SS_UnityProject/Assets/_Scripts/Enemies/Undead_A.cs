@@ -114,6 +114,7 @@ public class Undead_A : MonoBehaviour
 
     public void Respawn()
     {
+        Bleeding.SetActive(false);
         EnemySaveManager.IsLockOnAble = true;
         DamagerNumber.gameObject.SetActive(false);
         SeePlayer = false;

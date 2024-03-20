@@ -235,5 +235,41 @@ public class CharacterSaveData
     public float EnemyPosY_25;
     public int EnemyDirection_25;
 
+    public string EnemyBehaviour_26;
+    public float EnemyHealth_26;
+    public float EnemyPosX_26;
+    public float EnemyPosY_26;
+    public int EnemyDirection_26;
+
+    public string EnemyBehaviour_27;
+    public float EnemyHealth_27;
+    public float EnemyPosX_27;
+    public float EnemyPosY_27;
+    public int EnemyDirection_27;
+
+    public string EnemyBehaviour_28;
+    public float EnemyHealth_28;
+    public float EnemyPosX_28;
+    public float EnemyPosY_28;
+    public int EnemyDirection_28;
+
+    public string EnemyBehaviour_29;
+    public float EnemyHealth_29;
+    public float EnemyPosX_29;
+    public float EnemyPosY_29;
+    public int EnemyDirection_29;
+
+    public string EnemyBehaviour_30;
+    public float EnemyHealth_30;
+    public float EnemyPosX_30;
+    public float EnemyPosY_30;
+    public int EnemyDirection_30;
+
+    public string EnemyBehaviour_31;
+    public float EnemyHealth_31;
+    public float EnemyPosX_31;
+    public float EnemyPosY_31;
+    public int EnemyDirection_31;
+
 
 }
